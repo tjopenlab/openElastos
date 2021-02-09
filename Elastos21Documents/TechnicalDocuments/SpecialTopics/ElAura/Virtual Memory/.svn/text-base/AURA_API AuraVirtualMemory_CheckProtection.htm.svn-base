@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<TITLE>AuraVirtualMemory_CheckProtection</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<H3>AuraVirtualMemory_CheckProtection</H3>
+<p>
+        Checks the specified access protection to the virtual address. 
+        </p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="4" class="datatype">AURA_API AuraVirtualMemory_CheckProtection(
+        </TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">Address</TD>
+<TD class="param">baseAddr<span style="color:black; font-size:110%">,</span></TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">MemoryProtection</TD>
+<TD class="param">protection<span style="color:black; font-size:110%">,</span></TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">Boolean</TD>
+<TD class="param">*pIsValid</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">);</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<H4>Parameters</H4>
+<DL><DT class="param" style="color:#222222;margin-left:42">baseAddr</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+                    	[in] The specified virtual address
+                    <BR /><BR />
+</font></DD>
+<DT class="param" style="color:#222222;margin-left:42">protection</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+                    	[in] The specified access protection. See MemoryProtection</a> for detailed help
+                    <BR /><BR />
+</font></DD>
+</DL>
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return Value</TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">Access protection exists</TD>
+</TR>
+<TR><TD class="cell">E_ACCESS_DENIED</TD>
+<TD class="cell">Specified virtual memory address is invalid</TD>
+</TR>
+</table></p>
+<h4>Remarks</h4>
+<p>
+         CVirtualMemory::CheckProtection is used to check if the user have the specified access right to the specified virtual memory address. Kernel address space can only be accessed under kernel mode, if the user usesCVirtualMemory::CheckProtection method to check, then the return result will indicate that user cannot access kernel address space
+         </p>
+<h4>Requirements</h4>
+<p><table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>Windows 2000 or later; Elastos 2.0 or later.</td>
+<td></td>
+</tr>
+<tr>
+<td>Header Files: </td>
+<td>elastos.h</td>
+<td></td>
+</tr>
+<tr>
+<td>Library: </td>
+<td>elastos.lib</td>
+<td></td>
+</tr>
+</table></p>
+<p><script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>
+

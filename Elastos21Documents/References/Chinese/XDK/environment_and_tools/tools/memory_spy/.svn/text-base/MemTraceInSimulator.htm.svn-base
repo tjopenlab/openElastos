@@ -1,0 +1,58 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>在模拟器开发环境监测内存泄漏</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+</head>
+
+<body>
+<h2>在模拟器开发环境监测内存泄漏</h2>
+        <p>XDK检查内存泄漏的实现原理是：在程序中，对每次成功的动态分配操作额外生成一个相应结点，记录其相关信息（包括分配序列号index，分配的地址ad, 大小size, 线程ID号thd等）；所有的结点组成一个链表。在释放时，将对应的结点从链表中删除。这样，只要在程序退出时，若链表为空，则没有泄漏；反之，则存在泄漏。</p>
+    <h3>下面介绍调试内存泄漏的具体步骤：</h3>
+        <p>注：在调试前，请确保XDK\DevKit\simulators\XXX\carhost.cfg(XXX为板卡名)文件中memtrace=on，此设置决定内存泄漏开关是否打开，默认为打开。</p>
+        <h4>(1)运行程序</h4>
+        <P>若程序存在内存泄漏，则在正常退出前会有相关的泄漏提示信息。例如，运行以下程序:</P>
+        <pre class="code">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main()
+{
+    printf("Hello World!\n");
+    char *p = (char *)malloc(10);
+    return 0;
+}
+</pre>
+        <center><img src="images\memleak1.jpg"></center>
+        <center>图4-17</center>        
+        <P>从内存泄漏的提示反馈中(见图4-17)可以获取以下信息：
+            index为分配的索引号，其与分配顺序相关，从1开始递增；
+            ad为分配的地址；sz为分配的大小；thd为分配时的线程ID；stamp为分配时的时间；chksum与栈相关的数。</P>
+        <h4>(2)进行泄漏调试。</h4>
+        <P>其基本思想为：设置中断条件，当条件满足时，程序会中断下来供调试，捕捉有用的信息。</P>
+        <P><b>方法一：</b>在控制台进行中断设置。如上例，index=72时有泄漏，则可在控制台set HEAPDEBUGINDEX=72，见图4-18。</P>
+        <center><img src="images\memleak2.jpg"></center>
+        <center>图4-18</center>        
+        <P>再在控制台运行HelloWorld1.exe, 程序将在第72次动态分配时中断，并弹出VS调试窗口(之前须安装VS2005或以上版本)，选择“是”便可进入调试状态。</P>
+        <center><img src="images\memleak3.jpg"></center>
+        <center>图4-19</center>        
+        <P>从图4-19中的堆栈信息不难定位出，HelloWorld1.cpp中malloc没被释放。当n很大时，建议调n 号泄漏时，适当将中断提前，因为多线程下，程序执行的顺序有很大的不确定性，所以，一般将set HEAPDEBUGINDEX=m(m&lt;n)。同理，可对set HEAPDEBUGSIZE=n进行调试，程序将在分配大小为n 中断下来供调试。</P>
+        <P>注：不再需要中断时应取消该中断条件，否则每次程序运行时都会在设置的条件处中断。方法为：set HEAPDEBUGINDEX=0。</P>
+        <P><b>方法二：</b>在VS2005中直接将进程(如superexe.exe)附加进来，将断点设在Elastos21\Zener\ElAuraDll\EmuFoundation\Services\platform\win32\MemoryManager\CMalloc.cpp中的void CMSpyMalloc::PreAlloc(size_t Size)处，见图4-20。</p>
+        <center><img src="images\memleak4.jpg"></center>
+        <center>图4-20</center>        
+        <P>同时设置断点的触发条件(右击断点设置，若调试index为74000，size为552)，如可进行如下设置：(m_allocIndex可小于index, Size则一定为552)，见图4-21以及图4-22。</P>
+        <center><img src="images\memleak5.jpg"></center>
+        <center>图4-21</center>        
+        <P></P>
+        <center><img src="images\memleak6.jpg"></center>
+        <center>图4-22</center>        
+        <P>然后再运行相应的程序（HelloWorld1.exe）,当程序满足条件时，就会中断下来供调试。结合堆栈信息来分析哪些动态分配内存没释放，这也是找到内存泄漏的关键所在。</P>
+
+<script>footer("chinese")</script>
+</body>
+</html>

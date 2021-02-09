@@ -1,0 +1,229 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title> Introduction to Elastos </title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> Introduction to Elastos </h2>
+    <h3>What is Elastos</h3>
+    <p>
+    	Elastos&nbsp;2.0 is a 32-bit embedded operating system which can be described from the following aspects: 
+    </p>
+    <p>
+    	<b>32-bit Embedded Operating System</b> The OS is based on micro kernel technology, with multi-tasking, 
+    	multi-threading, pre-emptive, thread based multi priority task scheduling and other characteristics. It 
+    	provides FAT compatible file system, which is bootable from floppy, hard drive, FLASH ROM, as well as 
+    	network. Elastos is compact, fast and suitable for most embedded information system of the Internet era.
+    </p>
+    <p>
+    	<b>Fully Component Based Operating System.</b> All the functional modules of the operating system are based 
+    	on CAR component technology. Therefore, they can be easily loaded/unloaded to customize the application system 
+    	as needed, or dynamically load the necessary component during run-time.
+    </p>
+    <p>
+    	From the perspective of traditional operating system architecture, Elastos can be viewed as a combination 
+    	of micro kernel, component support module and system server.
+    </p>
+    <ul>
+        <li>
+        	<b>Micro Kernel:</b> It is composed of 4 major layers. They are hardware abstraction layer (Abstract 
+	        description of hardware and common interface for upper layer software module); Memory management layer 
+	        (Standard memory management interface and virtual memory management); Task management layer (Basic 
+	        support for task management, support multi-tasking and multi-threading); Inter-process communication 
+	        layer (Provide inter-process communication mechanism which forms the basis of component based technology).
+        
+        <li>
+        	<b>Component Support Module:</b> Provides CAR component support to realize the component run-time 
+        	environment. The component support module does not exist seperately from the micro kernel, the 
+        	inter-process communication layer of micro kernel provides the essential support for component 
+        	support module. 
+        	
+        <li>
+        	<b>System Server:</b> In a micro kernel based operating system, file system, device driver, network 
+        	support and other system services are provided by the system server. In Elastos, system server exists 
+        	in the form of dynamically linked library.
+    </ul>
+
+    <h3>Functionality of Elastos</h3>
+    <p>
+    	From the perspective of application programming, Elastos contains a complete set of CAR compatible system 
+    	service components and system API. This provides a uniform application programming environment for CAR 
+    	binary components, which can be run on various embedded system hardware platforms. 
+    </p>
+    <p>
+    	Elastos also provides a set of dynamic linked libraries and component libraries which are essential for 
+    	developing embedded system software application: 
+    </p>
+    <ul>
+        <li><b>Graphic System Component Library</b> (For GUI Development);
+        <li><b>Device Driver Component Library</b> (Various IO Device Drivers);
+        <li><b>File System Component Library</b> (FAT Compatible and FLASH Support);
+        <li><b>Network System Component Library</b> (TCP/IP Networking Protocol Support).
+    </ul>
+    <p>
+    	System component library and user developed application components are all interfacing with the kernel 
+    	through the system interface. From that perspective, they are in the same level. The users can develop 
+    	better file system, networking component library to replace the component libraries supplied by Elastos, 
+    	or build their own application component libraries. This is one of the advantages of component based 
+    	operating systems.
+    </p>
+    <p>
+    	In addition, to facilitate user programming, the Elastos SDK also provides the following function libraries: 
+    </p>
+    <ul>
+        <li><b>Microsoft Win32 API Compatible APIs</b> (elaw32 API);
+        <li><b>Standard C run-time library</b> (libc);
+        <li><b>Elastos utility function library</b> (elautil).
+    </ul>
+    <p>
+    	To a programmer, Elastos provides the same APIs as the Elastos run-time platform. Therefore, applications 
+    	can run on both Elastos and Windows platform.
+    </p>
+    <p>
+    	Elastos realizes and supports mechanism for system component and user component to invoke each other, 
+    	this provides the run-time environment for the CAR components. The description of CAR component run-time 
+    	environment is identical as <i>Elastos run-time platform</i>. Hence, the Elastos operating system is 
+    	considered to be running directly on the <a class="style1" href="elastos_zee.htm">"Elastos run-time 
+    	platform"</a> over the hardware platform.
+    </p>
+    <p>
+    	The following figure illustrates the major building blocks of the Elastos operating system: 
+    </p>
+    <center><img src="images/system.jpg"/></center>
+
+    <h3>Applications of Elastos</h3>
+    <p>
+    	Elastos can be used in embedded devices for industrial equipments, information home appliances, automobile 
+    	electronics, handheld devices, office equipments, commercial electronics, information security, military 
+    	defence, and other areas.
+    </p>
+    <center><img src="images/app.jpg"/></center>
+
+    <h3>Elastos application development</h3>
+    <p>
+    	<a class="style1" href="elastosSDK.htm">Elastos.SDK</a> provides both the development environment and tools. 
+    	The following figure illustrates the Elastos application development environment: 
+    </p>
+    <center><img src="images/host.jpg"/></center>
+    <p>
+    	The following figure illustrates the application software development process using "Elastos": 
+    </p>
+    <center><img src="images/process.jpg"/></center>
+    <p>
+    	For details on developments, please see User Guide and User Manual for details.
+    </p>
+
+    <h3>Advantages of Elastos</h3>
+    <p>
+    	The main characteristics of Elastos are: 
+    </p>
+    <ul>
+        <li>Component based technology, operating system support for the component run-time environment; 
+        <li>Realize <b>Agile</b> operating system via component technology.
+    </ul>
+    <p>
+    	These are the major advantages of Elastos over other commercial embedded operating system.
+    </p>
+    <p>
+    	With new generation of Internet applications, more and more embedded products require support for 
+    	"Web Service"; and the Web Service must be based on component technology. Users obtain the service program 
+    	via the network, the program must be a component containing self-descriptive information. The local system 
+    	can then setup the run-time envionment, automatically load and run the component. This is the requirement 
+    	and inevitable evolution path for the new generation of Internet application. Elastos operating system 
+    	is the answer for the above needs, and takes the lead in developing component-based technology for 
+    	embedded opertaing systems.
+    </p>
+    <p>
+    	Therefore, the component based Elastos operating system can bring the following benefits to the embedded 
+    	system development: 
+    </p>
+    <ul>
+        <li>
+        	Introduce the advanced software engineering technology into the embedded software development domain. 
+        	Embedded software development normally uses assembly and C languages with handful systems support C++ 
+        	language. Due to the fact that there is no component based run-time environment support for embedded 
+        	operating system, relatively speaking, the embedded software development still stucks with the labor 
+        	intensive, workshop style methodology. Elastos brings the modern software engineering and manufacturing 
+        	processes to the embedded application development. Please refer to the <a class="style1" href=
+        	"elastos_car.htm#car">" Advantage of CAR component technology in software engineering"</a> section in 
+        	Elastos Technology System Introduction.
+        	
+        <li>
+        	Ability to dynamically load components. The ability to dynamically load components is an essential 
+        	requirement for embedded system in the Internet era. New generation of mobile electronics such as PDA 
+        	and mobile phones are no longer with fixed functionalities programmed at the time of manufacturing by 
+        	vendors. Users require the capability to download softwares online, based on their own interest.
+        	
+        <li>
+        	Perform dynamic software upgrade anytime, anywhere. The dynamic component loading capability can be used 
+        	to upgrade software, so that vendors do not need to provide a complete software distribution in order to 
+        	introduce a few new functionalities, they only need to upgrade the individual component.
+        	
+        <li>
+        	The <b>Agile</b>, modular structure can be easily ported and tailored as needed. This can help to customize 
+        	the compact and highly efficient embedded operating system for different hardware configurations. It is 
+        	very easy to add or remove some functional modules.
+        	
+        <li>
+        	It is very easy for embedded software vendors to build their own component library. During different phases 
+        	of software component development, the end result can be easily shared by the subsequent phases, and the 
+        	software development investment can be well protected. The reusable software makes the development of a 
+        	series of products trivial and the software development cycle is significantly reduced.
+        	
+        <li>
+        	Components of third party vendors can be easily shared. The building of specific component library and 
+        	abundance of open source softwares relieves device manufactures from the burden of developing all the 
+        	softwares by themselves. They can fully utilize the readily available software resources, and focus on 
+        	enhancing their own products.
+        	
+        <li>
+        	Cross-platform compatibility reduces the risk in porting software. The cross-platform compatibility of 
+        	Elastos development environment allows the users to run same executables on both Elastos (embedded device) 
+        	and Windows 2000/XP (PC) without any modification. Especially for the users who want to port their 
+        	Windows applications to embedded system for the purpose of reducing cost, this characteristics will not 
+        	only save software porting expense, but also avoid other hidden troubles coming with the porting of 
+        	software.
+        <li>
+        	The full featured development environment and the convenient development tools will help embedded 
+        	software developer to learn and master the advanced component software programming technology with 
+        	little effort and tremendously improve the software development efficiency. Application software can 
+        	be debugged and developed at the same time as the hardware development to reduce the product R&D cycle.
+    </ul>
+
+    <h3>Provide WEB service via embedded device directly</h3>
+    <p>
+    	With increasing dissemination of Internet and various intelligent embedded device, the requirements of 
+    	interconnectivity and "plug and play" for different devices are ever more important. The connectivity 
+    	requirements between the handheld device, printer, digital camera is one example. Currently, many hardware 
+    	devices' interface protocol supports "plug and play" functionality, such as USB external peripherals and 
+    	infrared interfaces. But most traditional operating systems require the user to install the device driver, 
+    	to detect and use those external peripherals.
+    </p>
+    <p>
+    	The critical technology to realize "Web Service" is the component based middleware programming technology. 
+    	The software services provided by "Web Service" are those executable functional modules, that is the 
+    	components. Components themselves contians self-descriptive information about the functionalities of the 
+    	source module. Elastos supports dynamically search and link the component over the network environment. 
+    	This provides the support platform of the "Web Service". USB "plug and play" interface protocol provides 
+    	the simplest "network" to its end devices. Therefore, the system can obtain devices' self-descriptive 
+    	information and automatically load the driver component to be able to achieve the true "plug and play" 
+    	without pre-installing the device driver.
+    </p>
+    <p>
+    	The component self-descriptive information in the "Web Service" are essentially the same as the hardware 
+    	self-descriptive information. Elastos fully realizes this capability to let embedded devices to provide 
+    	"Web Service"
+    </p>
+
+
+
+<script>footer("english")</script>
+</body>
+</html>

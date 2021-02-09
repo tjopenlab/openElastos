@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+     <volume> Callback相关API </volume>
+    <method>Probe</method>
+    <description>
+        <para>通过一个构件的指针，得到该构件的其他接口指针。</para>
+    </description>
+    <syntax>
+        <return_val>static CARAPI_(IXxxxxx*)  </return_val>
+        <parameters>
+        <api_param>
+            <param_type>PInterface</param_type>
+            <param_name>pObj</param_name>
+            <param_note>
+                <para> 接口指针 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    
+    <remarks>
+        <para>1.IXxxxxx代表接口名。比如定义接口IFooEvent，则此函数的返回值类型为CARAPI_(IIFooEvent*)</para>
+        <para>2.要想调用CAR构件的方法，必须得到定义该方法的接口指针。用户只要得到构件的一个接口指针，那么就可以通过Probe方法得到任一个该构件的其它接口指针。</para>
+    </remarks>
+</manpage>

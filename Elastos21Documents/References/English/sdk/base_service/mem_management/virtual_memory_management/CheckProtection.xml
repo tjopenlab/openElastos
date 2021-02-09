@@ -1,0 +1,92 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzCreateObject">EzCreateObject</sample>
+    <volume></volume>
+    <title>CVirtualMemory::CheckProtection</title>
+    <routine_idx>.../mem_management_idx.htm</routine_idx>
+
+    <description>
+        <para>
+        Checks the specified access protection to the virtual address. 
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECode  </return_val>
+        <api_name>CVirtualMemory::CheckProtection</api_name>
+       <parameters>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name> baseAddr</param_name>
+                <param_note>
+                    <para>
+                    	[in] The specified virtual address
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>MemoryProtection </param_type>
+                <param_name>protection</param_name>
+                <param_note>
+                    <para>
+                    	[in] The specified access protection. See <link url="\sdk\base_service\data structer\MemoryProtection.htm">MemoryProtection</link> for detailed help
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>Boolean</param_type>
+                <param_name>*pIsValid</param_name>
+                <param_note>
+                    <para>
+                    	
+                    </para>
+                </param_note>
+            </api_param>
+           </parameters>
+    </syntax>
+
+    <return>
+       <table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Access protection exists</td>
+            </tr>
+            
+            <tr>
+                <td>E_ACCESS_DENIED</td>
+                <td>Specified virtual memory address is invalid</td>
+            </tr>
+        </table>
+        <para>See <link url="/sdk/reference/basic_data_type/hresult.htm">ECODE</link> related help for more details.</para>
+    </return>   	
+
+    <remarks>
+         <para>
+         CVirtualMemory::CheckProtection is used to check if the user have the specified access right to the specified virtual memory address. Kernel address space can only be accessed under kernel mode, if the user usesCVirtualMemory::CheckProtection method to check, then the return result will indicate that user cannot access kernel address space
+         </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

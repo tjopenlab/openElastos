@@ -1,0 +1,78 @@
+
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CarClass定义</title>
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</head>
+
+<body>
+
+<p><b>CarClass定义</b></p>
+<div class="Section1" style="LAYOUT-GRID:  15.6pt none">
+<table class="MsoNormalTable" id="table7" style="border-collapse: collapse; margin-left: 32.4pt; background: #e6e6e6" cellSpacing="0" cellPadding="0" border="0" height="22">
+	<tr>
+		<td style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: windowtext 1pt solid; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; BORDER-LEFT: windowtext 1pt solid; WIDTH: 393.7pt; PADDING-TOP: 0cm; BORDER-BOTTOM: windowtext 1pt solid" vAlign="top" width="525">
+		<p style="text-indent: 21pt"><font face="Arial" size="3">
+				<span lang="EN-US" style="FONT-FAMILY: Arial">
+				#define CarClass(name)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; class name : public _##name</span></font></td>
+	</tr>
+</table>
+
+
+    </div>
+<h3>使用说明</h3>
+<p style="TEXT-INDENT: 21pt"><font face="宋体"><span style="FONT-SIZE: 10.5pt">
+<span lang="EN-US">1.在.car</span>文件中声明一个CHello类，如下所示：</span></font></p>
+<table class="MsoNormalTable" id="table5" style="border-collapse: collapse; margin-left: 32.4pt; background: #e6e6e6" cellSpacing="0" cellPadding="0" border="0">
+	<tr>
+		<td style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: windowtext 1pt solid; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; BORDER-LEFT: windowtext 1pt solid; WIDTH: 393.7pt; PADDING-TOP: 0cm; BORDER-BOTTOM: windowtext 1pt solid" vAlign="top" width="525">
+		<p class="MsoNormal"><span lang="en-us"><font size="3">module
+		<a href="http://www.elastos.com/car/HelloDemo.dll">
+		www.elastos.com/car/HelloDemo.dll</a><br>
+		{<br>
+		&nbsp;&nbsp;&nbsp; interface IHello{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Hello();<br>
+		&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp; class CHello{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; interface IHello;<br>
+		&nbsp;&nbsp;&nbsp; }<br>
+		}</font></span><span lang="EN-US"><font size="3">&nbsp;</font></span></td>
+	</tr>
+</table>
+<p><b>&nbsp;&nbsp; </b>&nbsp;<font face="宋体" style="font-size: 11pt">2. 
+在.car文件编译之后会生成CHello.h的头文件，头文件中有如下定义</font></p>
+<table class="MsoNormalTable" id="table6" style="border-collapse: collapse; margin-left: 32.4pt; background: #e6e6e6" cellSpacing="0" cellPadding="0" border="0">
+	<tr>
+		<td style="BORDER-RIGHT: windowtext 1pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: windowtext 1pt solid; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0cm; BORDER-LEFT: windowtext 1pt solid; WIDTH: 393.7pt; PADDING-TOP: 0cm; BORDER-BOTTOM: windowtext 1pt solid" vAlign="top" width="525">
+		<p class="MsoNormal">#ifndef __CHELLO_H__<br>
+		#define __CHELLO_H__<br>
+		#include &quot;_CHello.h&quot;<br>
+		CarClass(CHello)&nbsp;&nbsp;&nbsp;&nbsp; <font color="#000080">&nbsp;//在编译时被替换为：class 
+		CHello:public _CHello</font><br>
+		{<br>
+		public:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CARAPI Hello();<br>
+		private:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // TODO: Add your private member variables here.<br>
+		};<br>
+		#endif // __CHELLO_H__</td>
+	</tr>
+</table>
+<p>　</p>
+<p><span style="FONT-SIZE: 10.5pt">&nbsp;&nbsp;&nbsp; </span></p>
+
+
+    </body>
+</html>

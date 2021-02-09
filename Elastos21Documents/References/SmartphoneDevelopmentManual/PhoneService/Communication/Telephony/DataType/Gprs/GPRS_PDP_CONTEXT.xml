@@ -1,0 +1,90 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>通讯引擎</volume>
+    <types> GPRS_PDP_CONTEXT </types>
+    <description>
+        <para>
+            PDP上下文信息。
+        </para>
+    </description>
+
+  <struct>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>cbSize</mem_name>
+            <mem_description>校验用，等于sizeof（GPRS_PDP_CONTEXT） </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwID</mem_name>
+            <mem_description>当前配置项目编号（系统保存多个配置表，项目编号从最小值1到最大GPRS_MAX_PDP_CONTEXT_ITEMS）</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name> dwProtocolType </mem_name>
+            <mem_description>协议类型 </mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>WCHAR</mem_type>
+            <mem_name>wszAccessPointName[GPRS_CONFIG_MAXLENGTH_GPRSACCESSPOINTNAME]</mem_name>
+            <mem_description>存取点名称</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>WCHAR</mem_type>
+            <mem_name>wszAddress[GPRS_CONFIG_MAXLENGTH_GPRSADDRESS]</mem_name>
+            <mem_description>给定PDP的地址</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwDataCompression</mem_name>
+            <mem_description>数据压缩模式</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwHeaderCompression</mem_name>
+            <mem_description>头部压缩模式</mem_description>
+        </struct_member>
+    </struct>
+    <remarks>
+		<para>协议类型定义:</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>GPRS_CONFIG_GPRSPROTOCOL_UNKNOWN</td><td>未知</td>
+    </tr>
+    <tr>
+       <td>GPRS_CONFIG_GPRSPROTOCOL_X25</td><td>X25协议（当前不支持）</td>
+    </tr>
+    <tr>
+       <td>GPRS_CONFIG_GPRSPROTOCOL_IP</td><td>IP协议，以存取PPP server方式通讯</td>
+    </tr>
+    <tr>
+       <td>GPRS_CONFIG_GPRSPROTOCOL_IHOSP</td><td>不支持</td>
+    </tr>
+    <tr>
+       <td>GPRS_CONFIG_GPRSPROTOCOL_PPP</td><td>点对点协议（直接PPP帧传输到终端SERVER）</td>
+    </tr>
+    </table>
+
+    <para>数据压缩模式定义:</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>GPRS_CONFIG_GPRSCOMPRESSION_OFF</td><td>不压缩</td>
+    </tr>
+    <tr>
+       <td>GPRS_CONFIG_GPRSCOMPRESSION_ON</td><td>压缩</td>
+    </tr>
+    <tr>
+       <td>GPRS_CONFIG_GPRSCOMPRESSION_UNKNOWN</td><td>未知</td>
+    </tr>
+    </table>
+
+	</remarks>
+
+
+</manpage>

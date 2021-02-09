@@ -1,0 +1,132 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字-- virtual </title>
+</head>
+
+<body>
+	<h2>virtual</h2>
+	    <b>含义 </b>
+	        <p> 此关键字用于在类中声明虚接口，虚接口可以被派生类重载。</p>
+	
+	    <b>语法 </b>
+	    	<p><b>virtual</b>  interface IInterfaceName; </p>
+	    <b>使用说明 </b>
+	        <p>1.被继承的基类class中必须声明虚接口； </p>
+	        <p>2.派生类可以调用基类中非virtual接口中的方法。 </p>
+	        <p>3.当基类声明了虚接口后，派生类可以有选择的重载基类的虚接口。在派生类中重新声明该接口则表示重载基类的虚接口；如果在派生类中不重新声明，则表示不重载。 </p>
+	        <p>4.派生类重载基类虚接口时，需重载该接口中的所有方法。但不论重载与否，在派生类的所有方法中均可以通过Super::前缀，调用基类的虚接口中的方法。 </p>
+	        <p>5.虚接口有着类似c++函数的特性，即运行时的多态性。在程序运行时，若在基构件中调用虚接口方法，程序会跳到派生构件里相应虚接口的方法中执行，而派生构件可以重载和直接调用基构件中相应虚接口的方法的实现。</p>
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IAnimal {
+        Says([in] WString sound);
+    }
+
+    class CAnimal {
+        <b>virtual</b> interface IAnimal;
+    }
+
+    class CPig inherits CAnimal {
+        interface IAnimal;
+    }
+
+    class CCat inherits CAnimal {
+        interface IAnimal;
+    }
+}
+</pre>
+	        <p>编译上述virtualDemo.car文件，在生成的代码框架中添加如下:(其中黑体部分是编译器自动生成的代码框架) </p>
+<pre class= code>
+//CCat.cpp文件
+
+<b>#include "CCat.h"
+#include "_CCat.cpp"
+ECode CCat::Says(
+    /* [in] */ WString sound)
+{
+    // TODO: Add your code here</b>
+    CConsole::Write("There is a cat saying: ");
+    CConsole::WriteLine(sound);
+    return NOERROR;
+ <b>}</b>
+
+//CPig.cpp文件
+
+<b>#include "CPig.h"
+#include "_CPig.cpp"
+ECode CPig::Says(
+    /* [in] */ WString sound)
+{
+    // TODO: Add your code here</b>
+    CConsole::Write("There is a pig saying: ");
+    CConsole::WriteLine(sound);
+    return NOERROR;
+<b>}</b>
+
+// CAnimal.cpp文件
+
+<b>#include "CAnimal.h"
+#include "_CAnimal.cpp"
+ECode CAnimal::Says(
+    /* [in] */ WString sound)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}</b>
+
+</pre>
+	        <p>客户端实现如下：  </p>
+<pre class= code>
+#include "virtualDemo.h"
+using namespace Elastos;
+
+	
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    ECode ec;
+    IAnimal* pAnimal = NULL;
+
+    ec = CPig::New(&pAnimal);
+    if (FAILED(ec)) {
+        CConsole::WriteLine("The pig isn't here...");
+        return ec;
+    }
+
+    pAnimal->Says(L"meow!");
+    pAnimal->Release();
+
+    ec = CCat::New(&pAnimal);
+    if (FAILED(ec)) {
+        CConsole::WriteLine("The cat isn't here...");
+        return ec;
+    }
+
+    pAnimal->Says(L"oink!");
+    pAnimal->Release();
+    
+    CProcess::Exit(0);
+    return NOERROR;
+}
+
+</pre>
+	        <p>运行结果如下： </p>
+<pre class= code>
+There is a pig saying: meow!
+There is a cat saying: oink!
+</pre>
+
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

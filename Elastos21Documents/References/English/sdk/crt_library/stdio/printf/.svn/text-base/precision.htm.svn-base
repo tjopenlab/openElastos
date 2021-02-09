@@ -1,0 +1,132 @@
+<html>
+<head>
+<title>Precision Specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>Precision Specification</h2>
+    <p>The third optional field of the format specification is the precision specification. It specifies a nonnegative decimal integer, preceded by a period (.), which specifies the number of characters to be printed, the number of decimal places, or the number of significant digits (see Table How Precision Values Affect Type). Unlike the width specification, the precision specification can cause either truncation of the output value or rounding of a floating-point value. If precision is specified as 0 and the value to be converted is 0, the result is no characters output, as shown below:</p>
+    <pre class="code">
+printf( "%.0d", 0 );      /* No characters output */
+</pre>
+    <p>If the precision specification is an asterisk (*), an int argument from the argument list in the <a class="style1" href="../wprintf.htm">printf</a> function supplies the value.The precision argument must precede the value being formatted in the argument list.</p>
+    <p>The type determines the interpretation of precision and the default when precision is omitted, as shown in Table:</p>
+    <p>How Precision Values Affect Type</p>
+    <table>
+        <thead>
+            <td>Type</td><td>Meaning</td><td>Default</td>
+        </thead>
+        <tr>
+            <td>
+                c, C
+            </td>
+            <td>
+                The precision has no effect.
+            </td>
+            <td>
+                Character is printed.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                d, i, u, o, x, X
+            </td>
+            <td>
+                The precision specifies the minimum number of digits to be printed. If the number of digits in the argument is less than precision, the output value is padded on the left with zeros. The value is not truncated when the number of digits exceeds precision.
+            </td>
+            <td>
+                Default precision is 1.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                e, E
+            </td>
+            <td>
+                The precision specifies the number of digits to be printed after the decimal point. The last printed digit is rounded.
+            </td>
+            <td>
+                Default precision is 6; if precision is 0 or the period (.) appears without a number following it, no decimal point is printed. 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                f
+            </td>
+            <td>
+                The precision value specifies the number of digits after the decimal point. If a decimal point appears, at least one digit appears before it.
+            </td>
+            <td>
+                Default precision is 6; if precision is 0, or if the period (.) appears without a number following it, no decimal point is printed.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                g, G
+            </td>
+            <td>
+                The precision specifies the maximum number of significant digits printed.
+            </td>
+            <td>
+                Six significant digits are printed, with any trailing zeros truncated.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                s, S
+            </td>
+            <td>
+                The precision specifies the maximum number of characters to be printed. Characters in excess of precision are not printed.
+            </td>
+            <td>
+                Characters are printed until a null character is encountered.
+            </td>
+        </tr>
+    </table>
+    <p>If the argument corresponding to a floating-point specifier is infinite, indefinite, or NAN, printf gives the following output.</p>
+    <table>
+        <thead>
+            <td>Value</td>
+            <td>Output</td>
+        </thead>
+        <tr>
+            <td>
+                + infinity
+            </td>
+            <td>
+                1.#INFrandom-digits
+            </td>
+        </tr>
+        <tr>
+            <td>
+                - infinity
+            </td>
+            <td>
+                –1.#INFrandom-digits
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Indefinite (same as quiet NAN)
+            </td>
+            <td>
+                digit.#INDrandom-digits
+            </td>
+        </tr>
+        <tr>
+            <td>
+                NAN
+            </td>
+            <td>
+                digit.#NANrandom-digits
+            </td>
+        </tr>
+    </table>
+
+<script>footer("english")</script>
+</body>
+
+</html>

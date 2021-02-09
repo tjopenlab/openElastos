@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="D:\Elastos20.SDK\src\Elastos20.Hlp\Chinese/xsl/xsl_c/methodmanual.xsl"?><manpage>
+
+<volume>系统COM接口</volume>
+<interface>IThread</interface><method> GetProcessorTimes </method>
+    <description>
+        <para>
+            获取线程运行所占用CPU的时间。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Millisecond *  </param_type>
+                <param_name> pUserTime </param_name>
+                <param_note>
+                    <para>
+                        线程在应用程序部分执行所花费的时间总和（不包括在操作系统内核执行部分），单位为毫秒。pUserTime为NULL时表示忽略本参数，它不能与另一个参数同时为NULL
+                    </para>
+                </param_note>
+            </api_param>
+
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Millisecond *</param_type>
+                <param_name> pPrivilegedTime </param_name>
+                <param_note>
+                    <para>
+                        线程在操作系统内核部分执行所花费的时间总和，单位为毫秒。pPrivilegedTime为NULL时表示忽略本参数，它不能与另一个参数同时为NULL
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值 </td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>成功获取线程占CPU的时间</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>参数错误</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>pUserTime和pPrivilegedTime的总和就是线程运行所占用总的CPU的时间，用毫秒表示。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

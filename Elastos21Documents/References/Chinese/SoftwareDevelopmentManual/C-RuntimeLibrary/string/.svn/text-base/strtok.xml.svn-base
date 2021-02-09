@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strtok">strtok</sample>
+    <title>strtok wcstok</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>查找字符串中的标记。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strtok</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strToken</param_name>
+                <param_note>
+                    <para>包含标记的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strDelimit</param_name>
+                <param_note>
+                    <para>分割标记的字符集</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回值：返回指针，指向从strToken头开始的一个个被分割的串；当没有被分割的串时则返回NULL。所有strDelimit中包含的字符都会被滤掉，并将被滤掉的地方设为一处分割的节点。</para>
+    </return>
+
+    <remarks>
+        <para>备 注：返回值是指向源串的指针.每次调用返回找到的子串的时候都会把源串中该子串的尾部字符修改成'\0'字符.这个函数使用全局的静态缓冲区（函数自己的静态buffer)，所以在某一个线程里不要同时调用这个函数来处理两个字符串，否则极易出现不正常的结果，正确的处理方法是先找出一个字符串中的所有子串，然后才转到处理另一个字符串。多线程之间则不会出现这种干扰。源串中不包含字符集中的字符时，第一次调用不会返回NULL，而是返回指向源串的头指针。</para>
+        <para>如果想得到字符串的下一个标记，则用NULL代替原有strToken。</para>
+
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strtok</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strtok.cpp: In this program, a loop uses strtok
+ * to print all the tokens (separated by commas
+ * or blanks) in the string named &quot;string&quot;.
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+char string[] = &quot;A string\tof ,,tokens\nand some  more tokens&quot;;
+char seps[]   = &quot; ,\t\n&quot;;
+char *token;
+
+int main()
+{
+    printf(&quot;%s\n\nTokens:\n&quot;, string);
+    /* Establish string and get the first token: */
+    token = strtok(string, seps);
+    while (token != NULL) {
+        /* While there are tokens in &quot;string&quot; */
+        printf(&quot; %s\n&quot;, token);
+        /* Get next token: */
+        token = strtok(NULL, seps);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+A string        of ,,tokens
+and some  more tokens
+
+Tokens:
+A
+string
+of
+tokens
+and
+some
+more
+tokens
+</result>
+
+
+
+</manpage>

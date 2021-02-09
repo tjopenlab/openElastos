@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IIPAddressCtrl</interface><method> GetFieldFocus </method>
+    <description>
+        <para>
+            获取 IP 地址栏中具有输入焦点的域。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32*</param_type>
+                <param_name> field </param_name>
+                <param_note>
+                    <para>
+指向 Int32 型的指针，用于获具有焦点的域，有效值为 0～3，不能为 NULL                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	    	  </tr>
+	    	  <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	    	  </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  可以通过调用 <link url="SetFieldFocus.htm">SetFieldFocus</link> 方法或者鼠标点击某个域设置 IP 地址栏中具有输入焦点的域。注意：当 IP 地址栏中没有输入焦点的域的时候，点击 field1，field2 或 field3时，都将是 field0 获得输入焦点。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CIPAddressCtrl 类介绍</ref_name>
+        <ref_url>../../class/IPAddressCtrl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IIPAddressCtrl 接口方法列表</ref_name>
+        <ref_url>../IIPAddressCtrl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetFieldFocus</ref_name>
+        <ref_url>SetFieldFocus</ref_url>
+    </reference>
+</references>
+</manpage>

@@ -1,0 +1,79 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\isspace">isspace</sample>
+    <title>isspace iswspace</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>Returns true if c is a whitespace character. In the standard "C" locale, isspace returns true only for the standard whitespace characters, which are ' ' space, '\f' formfeed, '\n' newline, '\r' carriage return, '\t' horizontal tab, '\v' vertical tab.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>isspace</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>input integer</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If c is a whitespace character (0x09 - 0x0D or 0x20),then isspace returns a non-zero value. It returns 0 if c does not satisfy the test condition.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>isspace</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* isspace.cpp: This program uses isspace to verify c
+ * whether it is a space character (0x09 – 0x0D or 0x20).
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+{
+    int c = 0x09;
+    if (isspace(c)) {
+        printf(&quot;it is a particular representation of a &quot;
+            &quot;space character.\n&quot;);
+    }
+    else {
+        printf(&quot;it is not a particular representation of a &quot;
+            &quot;space character.\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+it is a particular representation of a space character.
+</result>
+
+
+
+</manpage>

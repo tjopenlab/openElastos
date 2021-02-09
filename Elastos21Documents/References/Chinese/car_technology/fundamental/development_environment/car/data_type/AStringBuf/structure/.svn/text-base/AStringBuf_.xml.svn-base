@@ -1,0 +1,44 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/structuremanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>AStringBuf</class>
+    <function> AStringBuf_&lt;length &gt; </function>
+
+    <description>
+        <para> 构造一个AStringBuf对象，并指定字符串字符数。</para>
+    </description>
+
+    <syntax_nopara>
+        <apiname>AStringBuf_&lt;length &gt;</apiname>
+    </syntax_nopara>   
+    
+    <remarks>
+       <para>length长度中不包含'\0'字符。</para>
+   </remarks>
+<example>
+<pre>
+AStringBuf_&lt;20&gt; asbuf;    
+ASSERT(asbuf.GetCapacity() == 20);
+ASSERT(asbuf.GetLength() == 0);
+ASSERT(asbuf.GetAvailableSpace() == 20);
+</pre>
+</example>   
+
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::AStringBuf </ref_name>
+        <ref_url>AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::WStringBuf_&lt;length&gt; </ref_name>
+        <ref_url>../../WStringBuf/structure/WStringBuf_</ref_url>
+    </reference>
+</references>
+   
+</manpage>

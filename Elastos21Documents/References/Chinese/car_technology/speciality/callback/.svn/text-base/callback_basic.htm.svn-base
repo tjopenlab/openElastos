@@ -1,0 +1,33 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>回调事件机制</title>
+</head>
+
+<body>
+<h2>回调</h2>
+    <p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+	<span style="font-size:10.5pt;line-height:150%;font-family:宋体">
+	软件模块总是存在着一定的接口，以供相互之间进行调用。</span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size:10.5pt;line-height:150%;font-family:宋体">
+从调用方式上，可以把他们分为三类：同步调用、回调和异步调用。</span></p>
+<p class="MsoNormal" style="text-indent: -21.0pt; line-height: 150%; layout-grid-mode: char; margin-left: 42.0pt">
+<span style="font-size:10.5pt;line-height:150%;
+font-family:宋体">&nbsp;&nbsp;&nbsp; 1.同步调用是一种单向调用，调用方要等待对方执行完毕才返回。</span></p>
+<p class="MsoNormal" style="text-indent: -21.0pt; line-height: 150%; layout-grid-mode: char; margin-left: 42.0pt">&nbsp;&nbsp;
+<span style="font-family: 宋体; font-size: 10.5pt">2</span><span style="font-size:10.5pt;line-height:150%;
+font-family:宋体">.回调是一种双向调用模式，也就是说，被调用方在接口被调用时也会调用对方的接口。</span></p>
+<p class="MsoNormal" style="text-indent: -21.0pt; line-height: 150%; layout-grid-mode: char; margin-left: 42.0pt">&nbsp;&nbsp;
+<span style="font-style: normal; font-variant: normal; font-weight: normal; font-size: 7.0pt; font-family: Times New Roman; line-height: 150%" lang="EN-US">&nbsp;</span><span style="font-family: 宋体; font-size: 10.5pt">3</span><span style="font-size:10.5pt;line-height:150%;
+font-family:宋体">.异步调用是一种类似消息或事件的机制，不过它的调用方向刚好相反，接口的服务在收到某种讯息或发生某种事件时，会主动通知客户方（即调用客户方的接口）。回调又常常是异步调用的基础。</span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size:10.5pt;line-height:150%;font-family:宋体">回调，讲的更具体一点，就是模块<span lang="EN-US">A</span>调用模块<span lang="EN-US">B</span>，而模块<span lang="EN-US">B</span>中又存在调用模块<span lang="EN-US">A</span>中的一个函数<span lang="EN-US">c</span>的代码</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">。</span><span style="font-size:10.5pt;line-height:150%;font-family:宋体">其实<span lang="EN-US">B</span>不一定由<span lang="EN-US">A</span>来调用，当<span lang="EN-US">B</span>所在的系统发生某件事件时，系统会自动调用<span lang="EN-US">B</span>并通过<span lang="EN-US">B</span>模块来调用由<span lang="EN-US">A</span>定义的函数<span lang="EN-US">c</span>，起到了<span lang="EN-US">B</span>对<span lang="EN-US">A</span>的通知作用。</span></p>
+<p class="MsoNormal" style="line-height: 150%; layout-grid-mode: char">
+<span lang="EN-US" style="font-size:10.5pt;
+line-height:150%;font-family:宋体">&nbsp;</span></p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>构件缓存机制</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>构件缓存机制</h2>
+    <p>CCM（CAR&nbsp;Cache&nbsp;Manager，CAR高速缓存管理）是一套构件化的缓存管理机制，它主要是为了支持Elastos网络操作系统的构件自滚动运行。CMM划分成三个部分，在cachemgr.dll中实现为三个构件，分别为：Cache，Download，CCM。CCM结构如图一所示。</p>
+    <center><img src="images/cmm.jpg"></center>
+    <center>图一：CCM结构示意图</center>
+    <p>Cache构件负责管理Cache目录及索引文件，是一个纯粹的Cache目录或者说是索引管理；Download构件负责从网络下载文件，可以支持多种协议，但目前只实现了HTTP协议；CCM作为策略层，通过调用Cache接口和Download接口，加上自身的策略来完成各种功能。在Elastos上将CCM注册为“cachemgr”服务，主要向构件层（elastos@DDK）提供服务。当构件的Loader访问CCM，询问指定的uunm在本地对应文件的路径时，CCM会先从Cache中查找，如果本地已经存在，则将Cache返回的路径返回给Loader；如果本地不存在，则调用Download的接口到网上去下载文件，并保存到Cache目录当中。下载成功后，将uunm及文件全路径名添加到Cache的索引当中，下次访问时就不必重新下载了。</p>
+    <p>CCM提供了参数。用户可以指定该参数，通过三种途径获取文件路径。这三种途径分别为：只从Cache获取，只从网络获取及先从Cache获取，没有命中再到网络去下载。一般情况下，我们认为Cache索引文件只包含Cache目录下的文件记录。同时，Cache也提供了接口，可以将Cache目录之外的文件添加到Cache的索引当中，交由Cache来访问。</p>
+    <p>本节将从以下几个方面对构件缓存机制进行介绍：</p>
+    <ul>
+        <li><a class="style1" href="use_ccm.htm">CAR构件缓存机制的用法</a>
+        <li><a class="style1" href="samples_ccm.htm">使用CAR构件缓存机制的范例</a>
+    </ul>
+
+<script>footer("chinese")</script>
+</body>
+</html>    

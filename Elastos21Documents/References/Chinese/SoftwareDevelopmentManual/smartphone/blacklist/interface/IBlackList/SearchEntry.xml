@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBlackList</interface><method> SearchEntry </method>
+    <description>
+        <para>
+            根据指定的黑名单内容，查找相应记录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esPattern </param_name>
+                <param_note>
+                    <para>
+查询的条件，电话号码或者email                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nPatternType </param_name>
+                <param_note>
+                    <para>
+查询的类型，电话号码或者email                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nBlockType </param_name>
+                <param_note>
+                    <para>
+屏蔽的项目                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nContactId </param_name>
+                <param_note>
+                    <para>
+联系人id                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IObjectEnumeratorRef * </param_type>
+                <param_name> ppEnum </param_name>
+                <param_note>
+                    <para>
+指向黑名单对象枚举器接口指针的指针                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数ppEnum为空或参数nPatternType是不合法的            <link url="../../datatype/BL_PatternType.htm">            L_PatternType            </link>            ，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            如果ezPattern为EZSTR_NULL，则忽略该参数。</para><para>            如果nPatternType只能在PT_EAMIL，PT_NUMBER，PT_NONE选择一个，为            <link url="../../datatype/BL_PatternType.htm">            PT_NONE            </link>            表明忽略类型条件。</para><para>            如果nBlockType为            <link url="../../datatype/BL_BlockType.htm">            BT_NONE            </link>            表明忽略类型条件，屏蔽类型允许使用枚举的组合，比如BT_MMS | BT_CALL | BT_SMS，组合的含义是按照‘或’关系进行的。</para><para>            如果nContactId为            <link url="../../datatype/BL_ContactType.htm">            BL_CID_NONE            </link>            表明忽略联系人id这个条件ppEnum为IObjectEnumerator语义，其中的reset方法没有实现，其余方法的返回值和IObjectEnumerator完全一致。
+        </para>
+    </remarks>
+</manpage>

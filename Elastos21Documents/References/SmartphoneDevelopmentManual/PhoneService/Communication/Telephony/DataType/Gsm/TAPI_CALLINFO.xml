@@ -1,0 +1,53 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>通讯引擎</volume>
+    <types> TAPI_CALLINFO </types>
+    <description>
+        <para>
+            通话信息。
+        </para>
+    </description>
+
+  <struct>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwType</mem_name>
+            <mem_description>通话类型 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name> dwCallId</mem_name>
+            <mem_description>通话Id </mem_description>
+         </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name> dwCallDirection</mem_name>
+            <mem_description>通话目标地址 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name> dwCallState</mem_name>
+            <mem_description>通话状态 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name> dwCallBearer</mem_name>
+            <mem_description>通话人 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>BOOL</mem_type>
+            <mem_name> fMpty</mem_name>
+            <mem_description>是否空 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>WCHAR</mem_type>
+            <mem_name> wszAddress[MAX_LENGTH_ADDRESS]</mem_name>
+            <mem_description>实际通话号码域 </mem_description> // @field The actual phone number
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name> dwAddressType</mem_name>
+            <mem_description>通话地址类型 </mem_description>
+        </struct_member>
+   </struct>
+</manpage>

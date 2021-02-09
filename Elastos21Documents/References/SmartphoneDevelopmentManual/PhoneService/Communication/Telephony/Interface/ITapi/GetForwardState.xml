@@ -1,0 +1,156 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>ITapi</interface><method> GetForwardState </method>
+    <description>
+        <para>
+           获取呼叫转移服务的当前设置。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwForwardMode </param_name>
+                <param_note>
+                    <para>
+                       转接的条件
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwClass </param_name>
+                <param_note>
+                    <para>
+                      转接的类型
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> DWORD * </param_type>
+                <param_name> pdwCallState </param_name>
+                <param_note>
+                    <para>
+                      标识前两参数对应的转接服务是否启动
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WCHAR * </param_type>
+                <param_name> pwszAddress </param_name>
+                <param_note>
+                    <para>
+                      转移号码
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> DWORD * </param_type>
+                <param_name> pdwAddressType </param_name>
+                <param_note>
+                    <para>
+                      转移号码的类型
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> DWORD * </param_type>
+                <param_name> pdwTime </param_name>
+                <param_note>
+                    <para>
+                      对无应答转移有效，本参数设置转接前等待的时间。取值范围1～30（单位：秒），0为未知，可忽略
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>FAMILY_GEN 类或FAMILY_CME类错误值</td>
+	    	    <td>表示指令发送到通讯模块过程中遇到错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../Telephony_Error.htm">Telephony_Error</link>相关帮助。</para>
+	   </return>
+	<remarks>
+		<para>转接的条件定义如下：</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>TAPI_FORWARDMODE_UNCOND</td><td>无条件转接</td>
+    </tr>
+    <tr>
+       <td>TAPI_FORWARDMODE_BUSY</td><td>当前手机忙</td>
+    </tr>
+    <tr>
+       <td>TAPI_FORWARDMODE_NOANSW</td><td>无应答</td>
+    </tr>
+    <tr>
+       <td>TAPI_FORWARDMODE_NOT_REACHABLE</td><td>不在服务区或关机</td>
+    </tr>
+    <tr>
+       <td>TAPI_FORWARDMODE_ALLCOND</td><td>所有上述三种条件下</td>
+    </tr>
+    <tr>
+       <td>TAPI_FORWARDMODE_ALL</td><td>	所有的转移</td>
+    </tr>
+    </table>
+
+    <para>转接的类型定义如下：</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>TAPI_CLASS_VOICE</td><td>电话</td>
+    </tr>
+    <tr>
+       <td>TAPI_CLASS_DATA</td><td>数据</td>
+    </tr>
+    <tr>
+       <td>TAPI_CLASS_FAX</td><td>传真</td>
+    </tr>
+    <tr>
+       <td>TAPI_CLASS_ALL</td><td>所有上述三种</td>
+    </tr>
+    </table>
+    <para>
+      *pdwCallState为TAPI_CALLFORWARD_STATE_INACTIVE表示未启动;为TAPI_CALLFORWARD_STATE_ACTIVE表示启动。
+    </para>
+    <para>
+      *pdwAddressType为TAPI_ADDRTYPE_INTERNATIONAL表示国际的号码;为TAPI_ADDRTYPE_NATIONAL表示国内的号码。
+    </para>
+ </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+         <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

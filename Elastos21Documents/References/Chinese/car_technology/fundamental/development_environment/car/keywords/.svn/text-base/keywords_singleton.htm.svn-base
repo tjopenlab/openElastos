@@ -1,0 +1,117 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字-- singleton</title>
+</head>
+
+<body>
+	<h2>singleton</h2>
+	    <b>含义 </b>
+	        <p> 此关键字用于修饰构件类（<a class="style1" href= "..\keywords\keywords_aspect.htm">aspect构件类<a>除外），表示该类只能创建出唯一的对象。</p>
+	
+	    <b>语法 </b>
+<pre class = code>
+<b>singleton</b> class className classBody;
+</pre>
+	    <b>使用说明 </b>
+	        <p>1.singleton修饰的构件类只能拥有不带参数的构造函数。</p>
+	        <p>2.Singleton不能修饰<a class="style1" href= "..\keywords\keywords_aspect.htm">aspect构件类<a>。 </p>
+            <p>3.singleton 可以和关键字<a class="style1" href= "..\keywords\keywords_final.htm">final</a>同时修饰构件类，使用顺序是singleton在前，<a class="style1" href= "..\keywords\keywords_final.htm">final</a>在后。 </p>
+	    <b>使用范例 </b>
+	        <p> 示例singletonDemo.car文件如下：</p>
+<pre class= code>
+module
+{
+    interface IFoo {
+        Hello();
+    }
+
+    <b>singleton</b> class CFoo {
+        constructor();
+        interface IFoo;
+    }
+}
+
+</pre>
+	        <p>上述示例定义了一个具有Singleton属性的类CFoo。 </p>
+	        <p>编译singleton.car，扩充生成的CFoo.cpp文件中constructor()方法如下： </p>
+<pre class= code>
+ECode CFoo::constructor()
+{
+    <b>CConsole::WriteLine ("Constructor.");</b>
+    <b>return NOERROR;</b>
+}
+
+</pre>
+	        <p>客户端调用CFoo:AcquireSingleton()或CFoo::AcquireSingletonInContext()来获取对象。第一次调用创建出实际的对象，随后的调用仅仅返回已创建的对象。 </p>
+<pre class= code>
+#include &lt;stdio.h&gt;
+#include "singletonDemo.h"
+using namespace Elastos;
+
+int main()
+{
+    IFoo* pIFoo1, *pIFoo2;
+    ECode ec;
+    
+    //创建Singleton对象pIFoo1
+    ec = CFoo::AcquireSingleton(&pIFoo1);
+    if (FAILED(ec)) return ec;
+
+    //创建Singleton对象pIFoo2
+    ec = CFoo::AcquireSingleton(&pIFoo2);
+    if (FAILED(ec)) {
+        pIFoo1->Release();
+        return ec;
+    }
+
+   //打印出两个对象指针的地址，验证是否指向同一个对象
+    printf("pIFoo1 :%p\n", pIFoo1);
+    printf("pIFoo2 :%p\n", pIFoo2);
+
+    pIFoo1->Release();
+    pIFoo2->Release();
+    return NOERROR;
+}
+
+</pre>
+	        <p>程序运行结果为: </p>
+<pre class= code>
+Constructor.
+pIFoo1 : 00963A08
+pIFoo2 : 00963A08
+</pre>
+	        <p>由此可见，CFoo的构造函数只是在第一次创建对象时被调用。 </p>
+        <b>备注 </b>
+            <p>1. AcquireSingletonInContext()方法的signature为
+服务器端自动代码生成框架会生成三个方法供客户端创建一个singleton对象:
+</p>
+<pre class= code >
+static ECode AcquireSingleton(/*[out]>*/ IFoo **ppIFoo)
+// 创建一个singleton对象(同一Domain)
+
+static ECode AcquireSingletonInContext(
+            /*[in] */ IContext* pContext,
+            /*[out] */ IFoo** ppIFoo)
+//根据pContext创建一个singleton对象
+
+static ECode AcquireSingletonInContext(
+            /*[in]*/ IInterface* pContextObject,
+            /*[out]*/ IFoo** ppIFoo)
+//根据pContextObject创建一个singleton对象
+
+</pre>
+        <p>当参数PContext取值为CTX_SAME_DOMAIN或者CTX_SAME_PROCESS时，构件对象创建在与该Client端同一个进程空间内；当参数PContext取值为CTX_DIFF_DOMAIN或者CTX_DIFF_PROCESS或者CTX_DIFF_MACHINE时，NewInContext把构件对象创建在与该Client端不同的进程空间内。 </p>
+
+        <b><a class="style1" href="../attribute.htm">【CAR属性关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

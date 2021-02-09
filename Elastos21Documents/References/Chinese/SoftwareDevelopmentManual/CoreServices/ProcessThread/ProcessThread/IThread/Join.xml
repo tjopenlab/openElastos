@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IThread\Join">Join</sample>
+<volume>线程</volume>
+<interface>IThread</interface><method> Join </method>
+    <description>
+        <para>
+            在指定时间内等待线程结束。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Millisecond </param_type>
+                <param_name> timeout </param_name>
+                <param_note>
+                    <para>
+                        等待线程结束的时间，单位为毫秒。
+                    </para>
+                </param_note>
+            </api_param>
+             <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult  * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>
+                        指向<link url="../../../DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址，可以为空。如果成功等待线程结束，则返回WaitResult_OK；如果在指定时间内线程还没退出，等待超时，则返回WaitResult_TimedOut；如果等待被打断，则返回WaitResult_Interrupted
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>方法调用成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_OPERATION</td>
+                <td>线程对自己使用Join方法</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para><link url="Join.htm">IThread::Join</link>方法用来确保线程已经终止。</para>
+        <para>当参数ms为0时，方法返回 WaitResult_TimedOut；当参数ms为INFINITE时，会一直阻塞当前进程，直到调用Join方法的线程结束。如果线程已经退出，方法返回NOERROR,且*pResult指向的等待结果值为WaitResult_OK。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

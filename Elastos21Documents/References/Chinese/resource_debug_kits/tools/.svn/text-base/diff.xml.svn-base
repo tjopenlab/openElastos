@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> diff </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para>对两个文件进行比较。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> DIFF</cmd_name>
+        <cmd_param> &lt;from-file&gt;  &lt;to-file&gt;</cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> from-file</param_name>
+        <param_note> 用于比较的文件</param_note>
+    </param>
+    <param>
+        <param_name> to-file</param_name>
+        <param_note> 用于比较的文件</param_note>
+    </param>
+    </parameters>
+     <remarks>
+      <para>输出信息包括：文件内容不同行的行号，改变类型：a（append）、c（change）和d（delete），以及文件内容。</para>
+        <para>形式为：</para>
+        <para>[行号][改变类型][行号]</para>
+        <para>&lt; from-file文件内容</para>
+        <para>---</para>
+        <para>&gt; to-file文件内容</para>
+        <para>……</para>
+    </remarks>
+    <examples>
+    <example>
+        <eg_line>diff file1.txt file2.txt   </eg_line>
+        <eg_note> 比较文件file1.txt和file2.txt。并输出不同的行。输出结果：</eg_note>
+
+    <eg_result><![CDATA[
+1,2c1,3
+< the
+< file
+---
+> file
+> get
+> right
+]]></eg_result>
+    </example>
+    <example>
+        <eg_note>其中，1,2c1,3表示test1.txt的第1行至第2行和test2.txt的第1行至第3行内容不同。随后列出的是两个文件不同部分的内容。</eg_note>
+    </example>
+    </examples>
+
+</manpage>

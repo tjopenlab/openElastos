@@ -1,0 +1,32 @@
+htmtoc
+------
+
+1. 要求
+
+   perl, cat
+
+2. 用途
+
+   htmtoc用来产生一个可折叠的“目录表页面” 。(TOC, Table of Contents)
+
+3. 用法
+
+   0. 获得帮助: htmtoc.bat -h
+
+   1. 准备“内容”文件，例如list.txt:
+
+      Operating System,
+        Elastos,http://www.koretide.com
+        Windows,http://www.microsoft.com
+        Unix-like,
+          UNIX,http://www.att.com
+          BSD,http://www.freebsd.org
+      Search Engine,
+        Baidu,http://www.baidu.com
+        Google,http://www.google.com
+
+      需要注意的是：一层缩进两个空格。
+
+   2. 运行下列命令，将在.t目录中产生TOC文件。
+
+      htmtoc list.txt .t\toc.htm

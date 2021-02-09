@@ -1,0 +1,44 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字-- extends </title>
+</head>
+
+<body>
+	<h2>extends</h2>
+	    <b>含义 </b>
+	        <p> 此关键字表示接口<a class="style1" href="keywords_interface.htm">interface</a>继承接口<a class="style1" href="keywords_interface.htm">interface</a>。</p>
+	
+	    <b>语法 </b>
+	    	<p>interface IFoo <b>extends</b> IBar {...}</p>
+	    <b>使用说明 </b>
+	        <p> 此关键字只能用于接口间单继承。</p>
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IFoo {
+        Foo();
+    }
+    
+    interface IBar <b>extends</b> IFoo  {
+        Bar();
+    }
+    class CBar {
+        interface IBar;
+    }
+}
+
+</pre>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

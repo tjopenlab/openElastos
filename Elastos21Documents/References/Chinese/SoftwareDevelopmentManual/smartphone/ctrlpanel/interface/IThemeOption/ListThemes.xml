@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IThemeOption</interface><method> ListThemes </method>
+    <description>
+        <para>
+            获取目前所有的系统主题或用户自定义主题的列表。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> THEMETYPE </param_type>
+                <param_name> nThemeType </param_name>
+                <param_note>
+                    <para>
+表示所列出来主题类型，参见<link url="../../datatype/THEMETYPE.htm">THEMETYPE</link>                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf </param_type>
+                <param_name> esbThemeNames </param_name>
+                <param_note>
+                    <para>
+返回的主题名                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；esbThemeNames为空或者nThemeType不是            <link url="../../datatype/THEMETYPE.htm">            USER_THEME            </link>            和            <link url="../../datatype/THEMETYPE.htm">            SYSTEM_THEME            </link>            ，返回E_INVALIDARG；读取环境变量（数据库名）失败；返回E_INVALID_ENVIRONMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            nThemeType为SYSTEM_THEME是系统主题，为USER_THEME时是用户自定义主题。</para><para>            如果有多个名字，主题名之间用“,”隔开，返回的主题名最后以“,”结束。
+        </para>
+    </remarks>
+</manpage>

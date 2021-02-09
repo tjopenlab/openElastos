@@ -1,0 +1,238 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>图形控件Form\IGShell</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> IForm::ShowDialog\IGShell::MessageBox 范例程序 </h2>
+
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+<h3> CDlgDemo.h </h3>
+#include &quot;_CDlgDemo.h&quot;
+class CDlgDemo : public _CDlgDemo
+{
+public:
+    CDlgDemo();
+    ~CDlgDemo();
+
+    CARAPI AtEntry(
+        /* [in] */ EzArray<WString> argcv);
+
+    CARAPI AtExit();
+
+    CARAPI OnClick(
+        /* [in] */ IButton* pIObject);
+
+    CARAPI OnClose(
+        /* [in] */ IButton* pIObject);
+private:
+    IButton     *m_pIButton;
+    IButton     *m_pIButtonOK;
+    IButton     *m_pIButtonCancle;
+    IForm       *m_pIMainForm;
+    IForm       *m_pIDlgForm;
+    IGShell     *m_pIGShell;
+    IButton     * m_pIBtnClose;
+};
+
+<h3> CDlgDemo.cpp </h3>
+#include &quot;CDlgDemo.h&quot;
+#include &quot;_CDlgDemo.cpp&quot;
+#include &lt;stdio.h&gt;
+
+CDlgDemo::CDlgDemo()
+{
+    m_pIButton   = NULL;
+    m_pIButtonOK = NULL;
+    m_pIMainForm = NULL;
+    m_pIDlgForm  = NULL;
+    m_pIGShell   = NULL;
+    m_pIBtnClose = NULL;
+    m_pIButtonCancle = NULL;
+}
+
+CDlgDemo::~CDlgDemo()
+{
+    if (m_pIButton) {
+        m_pIButton->Release();
+    }
+
+    if (m_pIButtonOK) {
+        m_pIButtonOK->Release();
+    }
+
+    if (m_pIMainForm) {
+        m_pIMainForm->Release();
+    }
+
+    if (m_pIDlgForm) {
+        m_pIDlgForm->Release();
+    }
+
+    if (m_pIButtonCancle) {
+        m_pIButtonCancle->Release();
+    }
+
+    if (m_pIGShell) {
+        m_pIGShell->Release();
+    }
+
+    if (m_pIBtnClose) {
+        m_pIBtnClose->Release();
+    }
+}
+
+ECode CDlgDemo::AtEntry(
+        /* [in] */ EzArray < WString > argcv)
+{
+    ECode ec;
+
+/////////////  form
+    ec = CForm::New(&m_pIMainForm);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    ec = m_pIMainForm->Init(0, L"MAIN", 0, 0, 200, 280, NULL);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+////////////    GShell
+    ec = CGShell::AcquireSingleton(&m_pIGShell);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+////////////    DlgForm
+    ec = CForm::New(&m_pIDlgForm);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    ec = m_pIDlgForm->Init(0, L"MAIN", 20, 20, 200, 200, m_pIMainForm);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+////////////    button
+    ec = CButton::New(&m_pIButtonOK);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    ec = m_pIButtonOK->Init(0, L"OK", 20, 50, 80, 30, m_pIDlgForm);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    CButton::AddClickCallback(m_pIButtonOK,
+                 this, &CDlgDemo::OnClick);
+
+////////////    button
+    ec = CButton::New(&m_pIButtonCancle);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    ec = m_pIButtonCancle->Init(0, L"Exit", 110, 50, 80, 30, m_pIDlgForm);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    CButton::AddClickCallback(m_pIButtonCancle,
+                 this, &CDlgDemo::OnClose);
+
+////////////    button
+    ec = CButton::New(&m_pIButton);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    ec = m_pIButton->Init(0, L"ShowDlgForm", 30, 50, 130, 30, m_pIMainForm);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    CButton::AddClickCallback(m_pIButton,
+                 this, &CDlgDemo::OnClick);
+
+///////////////  Exit Button
+    ec = CButton::New(&m_pIBtnClose);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    ec = m_pIBtnClose->Init(0, L"Exit", 0, 0, 80, 30, m_pIMainForm);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 this, &CDlgDemo::OnClose);
+
+    m_pIGShell->SetMessageBoxButtonText(MessageBoxButton_OK, L"OK");
+    m_pIGShell->SetMessageBoxButtonText(MessageBoxButton_Abort, L"Abort");
+    m_pIGShell->SetMessageBoxButtonText(MessageBoxButton_Retry, L"Retry");
+    m_pIGShell->SetMessageBoxButtonText(MessageBoxButton_Ignore, L"Ignore");
+
+    m_pIMainForm->Show();
+
+    return NOERROR;
+}
+
+ECode CDlgDemo::OnClick(
+        /* [in] */ IButton* pIObject)
+{
+    ECode ec;
+
+    if (pIObject == (IObject*)m_pIButton) {
+        Int32 nDResult = 0;
+        ec = m_pIDlgForm->ShowDialog(m_pIMainForm, &nDResult);
+            if (FAILED(ec)) {
+               return ec;
+            }
+        prInt32f("GetDialogResult %x\n",   nDResult);
+    }
+
+    else if (pIObject == (IObject*)m_pIButtonOK) {
+        ec = m_pIGShell->MessageBox(0, L"确认", 0,
+                MessageBoxType_OKCancel, 0);
+    }
+
+    else if (pIObject == (IObject*)m_pIButtonCancle) {
+        m_pIDlgForm->Close();
+    }
+
+    return NOERROR;
+}
+
+ECode CDlgDemo::AtExit()
+{
+    return NOERROR;
+}
+
+ECode CDlgDemo::OnClose(
+        /* [in] */ IButton* pIObject)
+{
+    m_pIMainForm->Close();
+
+    return NOERROR;
+}
+
+</pre>
+
+<script>footer("KoreTide")</script>
+</body>
+</html>

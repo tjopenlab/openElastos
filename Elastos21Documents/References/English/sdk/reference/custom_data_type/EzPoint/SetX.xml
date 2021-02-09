@@ -1,0 +1,67 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding = "GB2312"?>
+<?xml:stylesheet type = "text/xsl" href = "/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url = "datatypes\EzPoint\SetX"> SetX </sample>
+    <volume> Common data structure </volume>
+    <interface> EzPoint </interface>
+    <method> SetX </method>
+
+    <description>
+        <para> This method is used to assign the EzPoint object's X-axis co-ordinate. </para>
+    </description>
+    <syntax>
+        <return_val> void </return_val>
+        <parameters>
+        <api_param>
+
+            <param_type> long </param_type>
+            <param_name> x </param_name>
+            <param_rem></param_rem>
+            <param_note>
+                <para> X-axis co-ordinate. </para>
+            </param_note>
+        </api_param>
+
+        </parameters>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include <EzPoint.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+    EzPoint* pThisPoint;
+    pThisPoint = new EzPoint(1, 2);
+
+    pThisPoint->SetX(3);
+    pThisPoint->SetY(4);
+    EzPoint ThatPoint;
+    ThatPoint = *pThisPoint;
+    long x = ThatPoint.GetX();
+    long y = ThatPoint.GetY();
+    printf("ThatPoint x=%d, y=%d", x, y);
+    delete pThisPoint;
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+ThatPoint x=3, y=4
+]]>
+    </result>
+
+    <references>
+    <reference>
+        <ref_name> EzPoint::GetX </ref_name>
+        <ref_url> GetX </ref_url>
+    </reference>
+    </references>
+
+</manpage>

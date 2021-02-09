@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>WString</class>
+    <method> Substring </method>
+
+    <description>
+        <para> 从此实例检索子字符串。子字符串从指定的字符位置开始且具有指定的长度。</para>
+    </description>
+    <syntax>
+        <return_val> WString </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> start </param_name>
+            <param_note>
+                <para> 此实例中子字符串的起始字符位置（从零开始）。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> len </param_name>
+            <param_note>
+                <para> 子字符串长度。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>WStringBuf &amp;</param_type>
+            <param_name> sub  </param_name>
+            <param_note>
+                <para> 保存子字符串的AStringBuf对象。 </para>
+            </param_note>
+        </api_param>               
+        </parameters>        
+    </syntax>
+    <return>
+        <para>一个AString对象，它等于此实例中从start开始的长度为len的子字符串，如果start等于此实例的长度且len为零，则为空字符串("")。 </para>
+    </return>
+<remarks>
+	<para>1.索引编号从零开始。 </para>
+	<para>2.若start小于0或大于实例中字符串的长度， 返回的AString对象包含的字符串指针为NULL。 </para>
+	<para>3.若此实例或sub包含的字符串指针为NULL，返回的AString对象包含的字符串指针为NULL。 </para>
+	</remarks>
+<example>
+<pre>
+请参见：<link url="../../AString/Substring/index/Substring.htm">AString::Substring(Int32,Int32,AStringBuf&amp;,Encoding)</link>
+</pre>
+</example>
+
+
+
+<references>
+    <reference>
+        <ref_name>WString</ref_name>
+        <ref_url>../../WString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::Substring</ref_name>
+        <ref_url>index/Substring</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::Trim </ref_name>
+        <ref_url>../Trim</ref_url>
+    </reference>
+</references>    
+</manpage>

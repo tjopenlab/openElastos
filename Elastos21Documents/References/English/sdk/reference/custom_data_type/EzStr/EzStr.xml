@@ -1,0 +1,60 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <volume> Common Data Structure </volume>
+    <interface> EzStr </interface>
+    <method> EzStr </method>
+
+    <description>
+        <para> 
+        	The constructor of EzStr, which is invoked to create an EzStr object.
+        </para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type> const EzStr&amp; </param_type>
+            <param_name> str </param_name>
+            <param_note>
+                <para>
+                	An existing EzStr variable.
+                </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>
+        	1. We can also declare an EzStr directly:
+        </para>
+        <para>
+        	<![CDATA[EzStr myEzStr；]]>
+        </para>
+        <para>
+        	It creates a Unicode pointer inside EzStr.
+        </para>
+        <para>
+        	2. Creates an EzStr variable through an existing EzStr variable: 
+        </para>
+        <para>
+        	<![CDATA[EzStr(const EzStr& str)；]]>
+        </para>
+        <para>
+        	If there exists an EzStr variable in the application, we can declare an EzStr this way; creates a new 
+        	EzStr variable using the existing EzStr variable and points the string pointer in the new EzStr 
+        	variable to the position, which the string pointer in the original EzStr variable is pointing to.
+        </para>
+        <para>
+        	Note: No matter in which way we declare the EzStr variable, it does not allocate memory space for 
+        	the string in the variable.
+        </para>
+    </remarks>
+
+</manpage>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicFileSystem</interface><method> GetStat </method>
+    <description>
+        <para>
+            获取文件系统当前的统计信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> FileSystemStat * </param_type>
+                <param_name> fileSystemStat </param_name>
+                <param_note>
+                    <para>
+指向<link url="../../FileSystemDataType/FileSystemStat.htm">FileSystemStat</link>结构体数据类型的指针，用于输出文件系统当前的统计数据                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果参数pFileSystemStat为空，返回E_INVALID_ARGUMENT。 </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+</manpage>

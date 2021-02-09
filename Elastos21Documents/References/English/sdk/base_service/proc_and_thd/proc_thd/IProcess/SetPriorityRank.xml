@@ -1,0 +1,96 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+<manpage>
+	<volume>System COM Interface</volume>
+	<interface>IProcess</interface><method> SetPriorityRank</method>
+		<description>
+			<para>
+	
+			</para>
+		</description>
+		<syntax>
+			<return_val> ECODE </return_val>
+			<parameters>
+				<api_param>
+					<param_inout>[in]</param_inout>
+					<param_type> ThreadPriorityRank  </param_type>
+					<param_name> priorityRank </param_name>
+					<param_note>
+						<para>
+							The value which is set, based on the priority rank of the process.
+						</para>
+					</param_note>
+				</api_param>           
+			</parameters>
+		</syntax>
+		
+		<return>
+		<table>            
+			<th>            
+			<td>Return Value </td>            
+			<td>Hex Value</td>
+			<td>Description</td>            
+			</th>            
+			<tr>            
+			<td>NOERROR</td>            
+			<td></td>            
+			</tr>
+			<tr>            
+			<td>E_INVALID_ARGUMENT</td>            
+			<td></td>            
+			</tr>       
+			<tr>            
+			<td>E_PROCESS_ALREADY_EXITED</td>            
+			<td></td>            
+			</tr>       
+			<tr>            
+			<td>E_NOT_IMPLEMENTED</td>            
+			<td></td>            
+			</tr>                     	    
+		</table>
+		   <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>           	            	
+		</return>
+		
+		
+		<remarks>	
+			<para>
+				A process priority class encompasses a range of thread priority levels. Threads with different priorities 
+				running in the process run relative to the PriorityClass of the process. The following table shows the 
+				relationship between BasePriority values and PriorityClass values:
+			</para>		
+			<table>			
+				<th>
+					<td> BasePriority </td>
+					<td> PriorityClass </td>
+				</th>
+				<tr>
+					<td> 1 </td>
+					<td> Idle </td>
+				</tr>
+				<tr>
+					<td> 2 </td>
+					<td> Timesharing </td>
+				</tr>
+				<tr>
+					<td> 3 </td>
+					<td> SoftRealTime </td>
+				</tr>
+				<tr>
+					<td> 4 </td>
+					<td> HardRealTime </td>
+				</tr>
+			</table>		
+		</remarks>
+	
+		<requirements>
+			<system>
+				<system_name>
+					Windows 2000 or later; Elastos 2.0 or later.            
+				</system_name>
+			</system>
+		</requirements>
+</manpage>

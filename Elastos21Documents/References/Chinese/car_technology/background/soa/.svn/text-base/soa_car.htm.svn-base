@@ -1,0 +1,25 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>面向服务的软件体系结构</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>SOA和CAR</h2>
+        <h4>SOA和CAR</h4>
+            <p>目前在CAR中体现SOA架构的技术有两个，命名服务和基于SOAP的Web&nbsp;Services。</p>
+            <p>命名服务定义为通过某个特定的名字获得相应已注册的服务接口的方式。在Elastos中，允许用户将一个用户实现的服务以构件对象的方式向系统注册，使之与一个用户指定的名字相关联。其它用户可以通过该名字获得该构件服务的默认接口，从而能够调用服务提供的方法。在适当的时候，用户也可以注销自己注册的服务。命名服务类似于Windows中的注册表，不同的是注册表的位置不是在硬盘上而是在内存中。因此，命名服务的架构很容易和SOA联系起来。服务的使用者通过名字查找在内核中注册的组件，以获得服务的位置；而服务使用者和服务提供者通过CAR构件平台进行绑定。如下图所示：</p>
+            <center><img src="images/soa_car.jpg"></center>
+            <p>有关命名服务的详细介绍请参见<a class="style1" href="../../speciality/naming_service/naming_service.htm">“构件命名服务”</a>。</p>
+            <p>基于SOAP的Web&nbsp;Services与前面的讨论类似，这里就不再赘述，可以参照<a class="style1" href="soa.htm">“面向服务的软件体系结构简介”</a>一文中的有关内容或查找相关的资料。</p>
+        <h4>CAR中SOA架构的展望</h4>
+            <p>如前所述，SOA是未来不同部分之间整合的框架结构，目前比较实际的例子就是Web&nbsp;Services。SOA虽然从CORBA中汲取了不少概念，但是CORBA还是过于复杂和繁琐，对于Internet环境下的应用程序集成显得有些不足。但是如果只是参照Web&nbsp;Services，出于效率和安全性的考虑，内核部分完全按照Web&nbsp;Services实现也不合适。好在SOA是一个体系结构，并没有规定具体的实现细节。因此，可以考虑一种折中的方案，既保证效率和安全，又具有灵活性。服务调用者和提供者之间的绑定协议将是关键所在。</p>
+            <p>总之，SOA是未来体系结构的发展方向，有利于软件公司内部的资源重整和利用，但在具体实施过程中需要合理地安排，如“面向服务的软件体系结构简介”一文中“向SOA架构迁移”部分所描述的“循序渐进地实施”。</p>
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR中的数据类型</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</head>
+
+<body>
+<h2>内存管理函数</h2>
+
+    <h3 align="left">内存管理函数对比表</h3>
+    <p align="left">下表列出内存管理函数分别在2.0和2.1上的对比以及在其它语言中的映射：</p>
+
+
+    <table class="MsoNormalTable" border="1" cellpadding="0" style="width: 801px" id="table1">
+		<thead>
+			<tr>
+				<td style="width:248px;padding:.75pt">
+				<p class="MsoNormal" align="left">2.1</td>
+				<td style="width:142px;padding:.75pt">
+				<p class="MsoNormal" align="left"><span lang="EN-US">2.0</span></td>
+				<td style="padding:.75pt .75pt .75pt .75pt" width="389">
+				<p class="MsoNormal" align="left"><span lang="EN-US">C++</span>数据类型</td>
+			</tr>
+		</thead>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CProcess::FlushInstructionCache</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzFlushInstructionCache</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33" width="389">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CProcess_FlushInstructionCache(baseAddr, 
+			size); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="28">
+			<span style="font-family: 宋体">刷出当前进程所对应的指令缓存</span></td>
+		</tr>
+		<tr style="height: 13.2pt">
+			<td style="padding:.75pt;" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CVirtualMemory::IoRemap </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt;height:13.2pt">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzIoRemap</span><span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">()</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt;height:13.2pt" width="389">
+			<p class="MsoNormal"><span lang="EN-US">
+			_CVirtualMemory_IoRemap(virtualAddr,size,physicalAddr,flags,</span><span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">protection,pVirtualAddr)</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="32">
+			将指定的IO地址段映射到进程虚存段上</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CVirtualMemory::Alloc&nbsp; </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="31">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzMemoryAlloc</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="31" width="389">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CVirtualMemory_Alloc(baseAddr, 
+			size, flags, protection, pBaseAddr); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="31">
+			<p align="left">分配一个虚存段</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CVirtualMemory::CheckProtection</span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+		<p class="MsoNormal" align="left">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+		EzMemoryCheck</span><span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">();</span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="33" width="389">
+		<p class="MsoNormal" align="left">
+		<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CVirtualMemory_CheckProtection(address, 
+		protection, pIsValid);</span></td>
+		</tr>
+		<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="35">
+		<p class="MsoNormal" align="left">检查对于指定的虚存地址是否具有指定的访问权限</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CVirtualMemory::Commit&nbsp; </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzMemoryFree</span><span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">();</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32" width="389">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CVirtualMemory_Commit(address);
+			</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38" colspan="2">
+			<p align="left">要求系统提交指定虚存的物理内存</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CVirtualMemory::Free</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzMemoryCommit</span><span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">();</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38" width="389">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CVirtualMemory_Free(baseAddr, 
+			size); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="37" colspan="2">
+			<p class="MsoNormal" align="left">释放指定的虚存块</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="66" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CVirtualMemory::SetProtection </span>
+			</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzMemoryProtect</span><span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">()</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33" width="389">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CVirtualMemory_SetProtection(baseAddr, 
+			size, protection); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33" colspan="2">
+			<p class="MsoNormal" align="left">
+			设置指定虚存的保护权限</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="66" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CVirtualMemory::Query</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="26">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzMemoryQuery</span><span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">();</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="26" width="389">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CVirtualMemory_Query(address, 
+			pBaseAddr, pSize)</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="30" colspan="2">
+			<p align="left">查询指定地址所在虚存内存块的信息</td>
+		</tr>
+		</table>
+
+
+<p>　</p>
+
+
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>web_service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>CAR Web服务</h2>
+    <h3>技术简介</h3>
+        <p>CAR网络服务技术是一种构建于CAR构件运行平台之上的将运行的构件实例发布为网络服务的方法。任何的CAR构件实例，都可以通过CAR网络服务运行环境发布到互联网，通过WWW标准网络服务协议（<a class="style1" href="http://www.w3.org/TR/soap/">SOAP</a>、<a class="style1" href="http://www.w3.org/TR/wsdl">WSDL</a>、<a class="style1" href="http://www.oasis-open.org/committees/tc_home.php?wg_abbrev=uddi-spec">UDDI</a>等）被远程访问。目前实现的CAR网络服务运行环境是一个内建了CAR构件网络服务代理功能的简单HTTP服务器，采用构件化的体系结构，支持的协议包括HTTP 1.1、SOAP 1.1和WSDL 1.0。其中CAR构件网络服务代理的主要功能包括解释、转发客户端的SOAP远程调用并返回执行结果，为运行的构件实例自动生成对应的WSDL描述并作为HTTP&nbsp;GET请求的结果返回等。经过验证，目前实现的CAR 网络服务运行环境发布的网络服务可以通过Microsoft&nbsp;.NET、Microsoft&nbsp;SOAP&nbsp;Toolkit、<a class="style1" href="http://www.cs.fsu.edu/~engelen/soap.html">gSOAP</a>等第三方工具访问。</p>
+    <h3>体系结构</h3>
+        <p>实现CAR网络服务技术的方案是在CAR中间件平台之上运行一个网络服务代理程序（以下简称CAR&nbsp;Web服务代理）。该程序依托Web服务器（可以是包括SMTP，HTTP在内的任意类型Web服务器）接收远程客户通过互联网发送来的服务请求（SOAP服务请求和WSDL文件下载请求），解析并完成客户请求的服务后再将输出结果通过Web服务器返回给客户。图一中给出了该方案的体系结构。</p>
+        <center><img src="images/car.jpg"></center>
+        <center>图一：CAR网络服务技术体系结构</center>
+    <h3>功能说明</h3>
+        <p>目前版本的CAR&nbsp;Web服务实现在很大程度上还只是基于CAR中间件平台构建Web服务体系结构的一次尝试，因此在功能上相对比较简单。具体来说，主要包含以下限制：</p>
+    <ol>
+        <li>只能使用于Elastos&nbsp;环境，暂时无法使用在Windows NT虚拟机；
+        <li>在WSDL和SOAP中使用类似Interface$(INDEX)、Method$(INDEX)以及Param$(INDEX)的方式命名接口、方法和参数。原因是当前Elastos系统的CAR构件运行平台的反射系统调用（Reflection&nbsp;APIs）仍未完全实现；
+        <li>目前只能支持int、UINT、int*、UINT*、LONG、ULONG、LONG*、ULONG*这几种数据类型；对于其他情况可能产生未知错误；
+        <li>只支持返回为服务调用返回SOAP Response数据包，未实现SOAP Fault数据包的返回；
+        <li>不支持任何类型的安全性、工作流协议；
+        <li>不支持DIME；不支持SOAP&nbsp;1.2（支持SOAP&nbsp;1.1）。
+    </ol>
+
+<script>footer("chinese")</script>
+</body>
+</html>           

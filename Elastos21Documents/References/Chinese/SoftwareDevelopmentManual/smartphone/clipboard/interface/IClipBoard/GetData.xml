@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IClipBoard</interface><method> GetData </method>
+    <description>
+        <para>
+            获取format指定格式对应的数据。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> format </param_name>
+                <param_note>
+                    <para>
+需要取得数据对应的剪贴板格式                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzByteBuf </param_type>
+                <param_name> esbBuf </param_name>
+                <param_note>
+                    <para>
+返回对应格式的数据                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            成功调用，返回S_OK；format不在剪贴板支持的格式范围内或esbBuf为空，返回E_INVALIDARG；需要的数据格式不存在，返回E_INVALID_OPERATION；esbBuf空间不足返回E_BUFFER_TOO_SMALL。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            应用程序应尽快复制数据，否则数据可能被覆盖。
+        </para>
+    </remarks>
+</manpage>

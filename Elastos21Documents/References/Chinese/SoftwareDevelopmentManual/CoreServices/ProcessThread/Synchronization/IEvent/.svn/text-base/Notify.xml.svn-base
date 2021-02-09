@@ -1,0 +1,56 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IEvent">Notify</sample>
+<volume>事件</volume>
+<interface>IEvent</interface><method> Notify </method>
+    <description>
+        <para>设置事件对象为一个指定的已通知状态。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EventState  </param_type>
+                <param_name> state </param_name>
+                <param_note>
+                    <para>指定一个已通知状态，可由用户自行定义的一个非零无符号整数来表示。在默认情况下，State将被设置为SIGNALED。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数不正确</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		本方法设置事件对象为一个指定的已通知状态，从而唤醒等待着的线程。如果事件对象是自动重置的，则仅唤醒一个等待线程，并且事件对象将被重置为未通知状态；如果事件对象是手动重置的，则唤醒所有等待线程，并且事件对象将保持此已通知状态，直到被<link url="Clear.htm">IEvent::Clear</link>方法重置为未通知状态为止。如果没有任何线程在事件对象上等待，本方法仅仅将事件对象设置为指定的已通知状态。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

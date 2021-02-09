@@ -1,0 +1,54 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="../../../../../../xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IThread</interface><method> Suspend </method>
+    <description>
+        <para>
+			Suspends the specified thread.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters></parameters>
+    </syntax>
+
+	<return>
+    	<table>
+    	    <th>
+    		<td>Return Value </td>
+    		<td>Description</td>
+    	    </th>
+    	    <tr>
+    		<td>NOERROR</td>
+    		<td>Function succeeds in suspending the specified thread.</td>
+    	    </tr>
+    	    <tr>
+    		<td>E_THREAD_ALREADY_FINISHED</td>
+    		<td>The thread is already finished.</td>
+    	    </tr>
+    	</table>
+    	    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			If the specified thread is in ThreadState_Running state, the method will remove it from running list and
+			the list is rescheduled. If the thread is already suspended, this method increments the count of the
+			threads, which needs to suspend the associated thread. If the execution of the thread is finished, this
+			method has no effect and return E_THREAD_ALREADY_FINISHED. After suspending a thread, the corresponding thread with higher
+			priority will continue its execution.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

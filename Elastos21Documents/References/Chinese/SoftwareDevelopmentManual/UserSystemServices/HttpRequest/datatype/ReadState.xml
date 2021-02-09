@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>HttpRequest</volume>
+    <types> ReadState </types>
+    <description>
+        <para>
+            HTTP 请求的状态。
+        </para>
+    </description>
+    <enum>
+        <enum_member>
+        	  <mem_name>ReadState_UNINITIALIZED</mem_name>
+        	  <mem_value>0</mem_value>
+        	  <mem_description>对象已建立，但是尚未初始化（尚未调用<link url="../interface/IHttpRequest/Open.htm">Open</link> 方法）。</mem_description>
+        </enum_member>
+        <enum_member>
+        	  <mem_name>ReadState_LOADING</mem_name>
+        	  <mem_value>1</mem_value>
+        	<mem_description>对象已建立，尚未调用 <link url="../interface/IHttpRequest/Send.htm">Send</link> 方法。</mem_description>
+        </enum_member>
+        <enum_member>
+        	  <mem_name>ReadState_LOADED</mem_name>
+        	  <mem_value>2</mem_value>
+        	  <mem_description><link url="../interface/IHttpRequest/Send.htm">Send</link> 方法已经被调用，仅可获取响应的状态值和头信息。</mem_description>
+        </enum_member>
+        <enum_member>
+        	  <mem_name>ReadState_INTERACTIVE</mem_name>
+        	  <mem_value>3</mem_value>
+        	  <mem_description>部分响应数据可以获取，此时通过 <link url="../interface/IHttpRequest/GetResponseBody.htm">GetResponseBody</link>、<link url="../interface/IHttpRequest/GetResponseText.htm">GetResponseText</link> 或 <link url="../interface/IHttpRequest/GetResponseStream.htm">GetResponseStream</link> 方法欲获取这些数据将失败。</mem_description>
+        </enum_member>
+        <enum_member>
+        	  <mem_name>ReadState_COMPLETED</mem_name>
+        	  <mem_value>4</mem_value>
+        	<mem_description>接收到服务器端发送的所有响应数据或传输被 <link url="../interface/IHttpRequest/Abort.htm">Abort</link> 方法中断。</mem_description>
+        </enum_member>
+    </enum>
+</manpage>

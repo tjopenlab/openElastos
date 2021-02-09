@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>图形系统</volume>
+    <types> PixelFormat </types>
+    <description>
+        <para>
+            像素格式。
+        </para>
+    </description>
+<enum>    <enum_member>    <mem_name> PixelFormat_Unknown </mem_name>    <mem_value> 0x00000000 </mem_value>    <mem_description>     unknown or unspecified format    </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> PixelFormat_A8 </mem_name>    <mem_value> 0x00118001 </mem_value>    <mem_description>     8 bit alpha (1 byte, alpha 8@0), e.g. anti-aliased glyphs     </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> PixelFormat_RGBT555 </mem_name>    <mem_value> 0x00200782 </mem_value>    <mem_description>     16 bit ARGB (2 byte, T 1@15, red 5@10, green 5@5, blue 5@0)    </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> PixelFormat_RGB565 </mem_name>    <mem_value> 0x00200803 </mem_value>    <mem_description>     16 bit RGB  (2 byte, red 5@11, green 6@5, blue 5@0)    </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> PixelFormat_RGBT666 </mem_name>    <mem_value> 0x00400904 </mem_value>    <mem_description>     19 bit  RGBT666(4 bytes, nothing 13@19,T 1@18, red 6@12, green 6@6, blue 6@0 )    </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> PixelFormat_RGB24 </mem_name>    <mem_value> 0x00400c05 </mem_value>    <mem_description>     24 bit   RGB (3 byte, red 8@16, green 8@8, blue 8@0)    </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> PixelFormat_ARGB </mem_name>    <mem_value> 0x00418c06 </mem_value>    <mem_description>     32 bit   ARGB (4 byte, alpha 8@24, red 8@16, green 8@8, blue 8@0)    </mem_description>    </enum_member>
+          <enum_member>    <mem_name> PixelFormat_YUV422 </mem_name>    <mem_value> 0x00000007 </mem_value>    <mem_description>   INPUT: Read 4 bytes of YUV (u, y1, v, y2 ) OUTPUT: Writes 6 bytes of RGB (R, G, B, R, G, B),YUV422 can also be expressed in YUY2 FOURCC format code. That means 2 pixels will be defined in each macropixel (four bytes) treated in the image.  </mem_description>    </enum_member>
+          <enum_member>    <mem_name> PixelFormat_YUV420 </mem_name>    <mem_value> 0x00000008 </mem_value>    <mem_description>   As shown in the below image, the Y, U and V components in YUV420 are encoded separately in sequential blocks. A Y value is stored for every pixel, followed by a U value for each 2x2 square block of pixels, and finally a V value for each 2x2 block. Corresponding Y, U and V values are shown using the same color in the diagram above. Read line-by-line as a byte stream from a device, the Y block would be found at position 0, the U block at position x*y (6*4 = 24 in this example) and the V block at position x*y + (x*y)/4 (here, 6*4 + (6*4)/4 = 30). </mem_description>    </enum_member>
+</enum>
+<remarks>
+        <img url="images\YUV420.jpg">
+        
+        </img> 
+</remarks>
+</manpage>

@@ -1,0 +1,91 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\ezMutex">CMutex::New</sample>
+    <volume>互斥体</volume>
+    <title>CMutex::New</title>
+    <routine_idx>../../Mutex.htm</routine_idx>
+
+    <description>
+        <para>创建命名互斥锁对象。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>[in]互斥锁对象的名字，不能为空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> IMutex ** </param_type>
+                <param_name> ppMutex </param_name>
+                <param_note>
+                    <para>[out]指向互斥锁对象接口指针的指针，用以获取创建的互斥锁对象接口指针，不能为空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Boolean * </param_type>
+                <param_name> pAlreadyExists </param_name>
+                <param_note>
+                    <para>[out]用于获取指定名字的Mutex对象是否已经存在，为NULL时表示忽略此参数</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_SERVICE_NAME_TOO_LONG</td><td>指定的名字超过限制长度(256个字符)</td>
+            </tr>
+            <tr>
+                <td>E_ALREADY_EXIST</td><td>一个同名的非Mutex对象已经存在</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+    	<para>用于创建命名Mutex对象。</para>
+        <para>两个或多个（同进程或者不同进程中的）线程可以通过这个调用创建同名的Mutex对象。第一个线程将会创建一个Mutex对象并注册命名服务，之后的线程将会打开这个已经存在的Mutex对象。这使得多个线程可以通过相同的名字使用同一个Mutex对象。通过pAlreadyExists参数可以知道所得到的Mutex对象是创建的还是已经存在的。每个线程调用IMutex::Release方法来销毁自己对命名对象的引用，最后一个线程的Release操作真正销毁该命名对象并撤销命名服务。</para>
+        <para>其它进程可以通过name指定的名字，使用
+        <link url="../../../../CARServices/NamingService/CSystem/FindRunningObject.htm">CSystem::FindRunningObject</link>
+        函数获得并使用该对象。</para>
+        <para>参见<link url="../../IMutex.htm">IMutex</link>接口</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

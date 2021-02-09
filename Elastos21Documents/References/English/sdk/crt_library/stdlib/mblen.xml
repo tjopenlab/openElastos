@@ -1,0 +1,99 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\mblen">mblen</sample>
+    <title>mblen</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Gets the length and determines the validity of a multibyte character.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>mblen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>mbstr</param_name>
+                <param_note>
+                    <para>Address of multibyte-character byte sequence.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Number of bytes to check.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If mbstr is not null, mblen returns the length, in bytes, of the multibyte character. If mbstr is NULL or if it points to the wide-character null character(L'\0'), mblen returns 0. If the object that mbstr points to does not form a valid multibyte character within the first count characters, mblen returns -1.</para>
+    </return>
+
+    <remarks>
+        <para>mblen returns the length of mbstr in byte, if mbstr is a valid multibyte character. mblen examines count or fewer bytes contained in mbstr, but not more than MB_CUR_MAX bytes. mblen determines multibyte-character validity according to the LC_CTYPE category setting of the current locale. For more information on the LC_CTYPE category, see setlocale.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>mblen</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* mblen.cpp:this program use mblen to display the length of multibyte
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int     i;
+    char    *pmbc = (char *)malloc(sizeof(char));
+
+
+    i = mblen(pmbc, 0);
+    printf(&quot;Length in bytes of multibyte character %x: %u\n&quot;, pmbc, i);
+    free(pmbc);
+
+    pmbc = NULL;
+    i = mblen(pmbc, 1);
+    printf(&quot;Length in bytes of NULL multibyte character %x: %u\n&quot;, pmbc, i);
+
+    i = mblen(&quot;   aaaa&quot;, 1);
+    printf(&quot;Length in bytes of multibyte character: %u\n&quot;, i);
+
+    return 0;
+
+}
+</pre>
+    </example>
+<result>
+Length in bytes of multibyte character 10540: 0
+Length in bytes of NULL multibyte character 0: 0
+Length in bytes of multibyte character: 1
+</result>
+
+
+
+
+
+</manpage>

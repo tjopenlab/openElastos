@@ -1,0 +1,46 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--typedef</title>
+</head>
+
+<body>
+	<h2>typedef</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于定义类型，使用方法与C语言中的typedef基本相同。  </p>
+	
+	    <b>语法 </b>
+	    	<p><b>typedef</b>  [ "dummytype" ] oldTypeName newTypeName {, newTypeName}; </p>
+
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    
+    <b>typedef</b> ECode int_32,  *PInt_32;
+ 
+    struct MyStruct{
+        Int64 a;
+        AString asName;
+    }
+    <b>typedef</b> MyStruct MyStructEx;    
+    ...
+}
+
+</pre>
+	        <p>示例中，在CAR文件中定义了ECode类型别名int_32和PInt_32。int_32类型别名可作为ECode类型使用；PInt_32类型别名可作为ECode * 类型使用。同样的，类型MyStructEx可作为结构体类型MyStruct的类型别名使用。 </p>
+
+        <b>备注 </b>
+            <p>dummytype选项的使用请参见<a class="style1" href= "..\attributes\attributes_dummytype.htm">dummytype关键字</a>。</p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

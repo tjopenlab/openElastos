@@ -1,0 +1,84 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>getpeername</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>获取连接对方的套接口地址（IP和port）。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>已连接的套接口。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>struct sockaddr*</param_type>
+                <param_name>name</param_name>
+                <param_note>
+                    <para>接收端的地址结构。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int*</param_type>
+                <param_name>namelen</param_name>
+                <param_note>
+                    <para>指向name结构大小的指针。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果程序执行成功，getpeername()返回0。否则，返回SOCKET_ERROR值，通过WSAGetLastError()可获取相应错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>getpeername()获得已连接套接口s的端地址，并将其存储其到参数name指定的SOCKADDR结构中。函数getpeername只能对已连接套接口使用。getpeername将不返回数据报套接口通过sendto()或connect()指定的缺省目标地址。</para>
+        <para>namelen参数在开始时包含了name结构的大小，以字节为单位。当返回时，namelen参数将包含以字节为单位的实际地址大小。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>bind</ref_name>
+            <ref_url>bind</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getsockname</ref_name>
+            <ref_url>getsockname</ref_url>
+        </reference>
+        <reference>
+            <ref_name>select</ref_name>
+            <ref_url>select</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

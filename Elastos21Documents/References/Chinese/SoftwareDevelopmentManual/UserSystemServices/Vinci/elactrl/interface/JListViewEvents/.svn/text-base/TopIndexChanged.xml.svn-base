@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>JListViewEvents</interface><method> TopIndexChanged </method>
+    <description>
+        <para>
+            ListView 中第一个可见行改变时触发。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> Index </param_name>
+                <param_note>
+                    <para>
+第一个可见行的索引值                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<remarks>
+        <para>
+            通过滚动或者调用 <link url="../IListView/SetTopIndex.htm">SetTopIndex</link> 方法设置 TopIndex 均有可能触发该事件。除非设置的 TopIndex 之前已经在可视范围内，例如：当前 ListView 有5行，且一屏可以显示10行，在这种情况下设置 TopIndex 为3，则 ListView的显示无变化，也不会触发该事件。
+        </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CListView 类介绍</ref_name>
+        <ref_url>../../class/ListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ListView 回调事件列表</ref_name>
+        <ref_url>../JListViewEvents</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetTopIndex</ref_name>
+        <ref_url>../IListView/SetTopIndex</ref_url>
+    </reference>    
+</references> 
+</manpage>

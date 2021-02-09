@@ -1,0 +1,46 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>系统引导数据结构 </volume>
+    <types>memory_map</types>
+
+    <description>
+        <para> 内存映射信息的首结构 </para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>size</mem_name>
+            <mem_description>整个内存映射结构大小（size域自身的大小除外），本域的位置为相对于首址的偏移－4处</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>base_addr_low</mem_name>
+            <mem_description>存放本内存映射结构的物理基地址（64位）的低32位，本域的位置为相对于首址</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>base_addr_high</mem_name>
+            <mem_description>存放本内存映射结构的物理基地址（64位）的高32位</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>length_low</mem_name>
+            <mem_description>存放本内存映射结构的长度（64位）的低32位</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>length_high</mem_name>
+            <mem_description>存放本内存映射结构的长度（64位）的高32位</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name> type </mem_name>
+            <mem_description>本内存映射结构的类型，其值为1表明它是可用的RAM</mem_description>
+        </struct_member>
+    </struct>
+
+</manpage>
+

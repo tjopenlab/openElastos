@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>内核提供的相关函数</volume>
+    <title>KrnStartup</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>启动内核</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>void</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+	<return>
+	    <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本函数为内核启动做些初始化工作，包括：初始化物理内存管理器， Mantle层的初始化工作，Crust层的初始化工作，驱动初始化，时间初始化，线程调度等操作，最后内核处于正常运行状态。</para>
+        <para>本函数为启动内核的入口点，对本函数的调用将永远不会返回。对板卡的引导例程来说，启动内核将是其最后一步。在启动内核之前先要调用<link url="KrnInitialize.htm">KrnInitialize</link>函数初始化内核。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                《Elastos2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>

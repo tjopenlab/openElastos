@@ -1,0 +1,28 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>Component Cache Mechanism</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Component Cache Mechanism</h2>
+    <p>CCM (CAR&nbsp;Cache&nbsp;Manager, CAR high speed cache management) is a set of component based cache management mechanism, it is mostly for the support of Elastos network operating system component automatic scroll and run. CMM can be divided into three parts, they are implemented in cachemgr.dll as three components. They are: Cache, Download, CCM. CCM structure is shown as image one.</p>
+    <center><img src="images/cmm.jpg"></center>
+    <center>Image one: CCM Structure Diagram</center>
+    <p>Cache component is responsible to manage Cache directory and its index file. It is a pure Cache directory or it is a index manager. Download component is responsible to download file from network. It supports many protocols. Currently, only HTTP protocol is implemented. CCM is a strategic layer. Various functions are completed through Cache interface and Download interface invocation, plus its own strategy. Registers CCM as "cachemgr" service on Elastos 2.0, it mostly provide service to component layer (elastos@DDK). When the component Loader visits CCM, asking corresponding file path of specified uunm, CCM will first searches in the Cache. If locally it exists, then Cache return path is returned to Loader. If locally does not exists, then invokes interface of Download to download the file from the Internet and save in the Cache directory. After download successful, uunm and file full path will be added to Cache index. You don't need to download again when visiting next time.</p>
+    <p>CCM provided parameters. The user can specify this parameter, obtains file path through three methods. These three methods are: Only obtains from Cache, only obtains from network and obtain first from Cache, if not hit then download from the network. Under normal condition, we think Cache index file only includes file records under Cache directory. Meanwhile, Cache also provides interface, files outside Cache directory can also be added to the index of Cache. We let Cache to visit these files.</p>
+    <p>This section will introduce to component cache mechanism from the following aspects: </p>
+    <ul>
+        <li><a class="style1" href="use_ccm.htm">How to use CAR component cache mechanism?</a>
+        <li><a class="style1" href="samples_ccm.htm">Samples of CAR component cache mechanism</a>
+    </ul>
+
+<script>footer("english")</script>
+</body>
+</html>    

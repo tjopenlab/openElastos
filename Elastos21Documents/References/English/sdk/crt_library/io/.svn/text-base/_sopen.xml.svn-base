@@ -1,0 +1,184 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_sopen">_sopen</sample>
+    <title> _sopen,_wsopen</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>Opens a file for sharing,returns a file descriptor for the opened file</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_sopen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char *</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>File name.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>oflag</param_name>
+                <param_note>
+                    <para>Type of operations allowed.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>shflag</param_name>
+                <param_note>
+                    <para>Type of sharing allowed.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+                <param_note>
+                    <para>Permission setting..</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para> returns a file descriptor for the opened file.If a wrong execution is allowed to continue, these functions return -1 and set errno to one of the following values.</para>
+        <table>
+    	    <tr>
+    	        <td>EACCES</td>
+    	        <td>Given path is a directory, or file is read-only, but an open-for-writing operation was attempted</td>
+    	    </tr>
+            <tr>
+                <td>EEXIST</td>
+                <td>_O_CREAT and _O_EXCL flags were specified, but filename already exists</td>
+            </tr>
+            <tr>
+                <td>EINVAL</td>
+                <td>Invalid oflag or shflag argument.</td>
+            </tr>
+            <tr>
+                <td>EMFILE</td>
+                <td>No more file descriptors available</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>File or path not found.</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The _sopen function opens the file specified by filename and prepares the file for shared reading or writing, as defined by oflag and shflag. _wsopen is a wide-character version of _sopen; the filename argument to _wsopen is a wide-character string. _wsopen and _sopen behave identically otherwise.</para>
+         
+        <para>The integer expression oflag is formed by combining one or more of the following manifest constants, defined in the file Fcntl.h</para>
+         <table>
+    	   <th>
+    	   <td>Errno</td>
+    	   <td>Description</td>
+    	   </th> 
+    	    <tr>
+    	        <td>_O_APPEND</td>
+    	        <td>Opens a file in binary (untranslated) mode</td>
+    	    </tr>
+            <tr>
+                <td>_O_BINARY</td>
+                <td>Opens a file in binary (untranslated) mode(See fopen for a description of binary mode.)</td>
+            </tr>
+            <tr>
+                <td>_O_CREAT</td>
+                <td>Creates and opens new file for writing. Has no effect if the file specified by filename exists. The pmode argument is required when _O_CREAT is specified.</td>
+            </tr>
+            <tr>
+                <td>_O_CREAT| _O_SHORT_LIVED</td>
+                <td>Create a file as temporary and if possible do not flush to disk. The pmode argument is required when _O_CREAT is specified</td>
+            </tr>
+            <tr>
+                <td>_O_CREAT| _O_TEMPORARY</td>
+                <td>Create a file as temporary; the file is deleted when the last file descriptor is closed. The pmode argument is required when _O_CREAT is specified.</td>
+            </tr>
+            <tr>
+                <td>_O_CREAT| _O_EXCL</td>
+                <td>Returns an error value if a file specified by filename exists. Applies only when used with _O_CREAT.</td>
+            </tr>
+            <tr>
+                <td>_O_NOINHERIT</td>
+                <td>Prevents creation of a shared file descriptor</td>
+            </tr>
+            <tr>
+                <td>_O_RANDOM</td>
+                <td>Specifies primarily random access from disk.</td>
+            </tr>
+            <tr>
+                <td>_O_RDONLY</td>
+                <td>Opens a file for reading only; cannot be specified with _O_RDWR or _O_WRONLY.</td>
+            </tr>
+            <tr>
+                <td>_O_RDWR</td>
+                <td>Opens file for both reading and writing; cannot be specified with _O_RDONLY or _O_WRONLY.</td>
+            </tr>
+            <tr>
+                <td>__O_SEQUENTIAL</td>
+                <td>Specifies primarily sequential access from disk.</td>
+            </tr>
+            <tr>
+                <td>_O_TEXT</td>
+                <td>Opens a file in text (translated) mode. (For more information, see Text and Binary Mode File I/O and fopen.)</td>
+            </tr>
+          <tr>
+                <td>_O_TRUNC</td>
+                <td>Opens a file and truncates it to zero length; the file must have write permission. You cannot specify this flag with _O_RDONLY. _O_TRUNC used with _O_CREAT opens an existing file or creates a new file.The _O_TRUNC flag destroys the contents of the specified file.</td>
+            </tr>
+            <tr>
+                <td>_O_WRONLY</td>
+                <td>Opens a file for writing only; cannot be specified with _O_RDONLY or _O_RDWR</td>
+            </tr>
+          </table>
+          <para>To specify the file access mode, you must specify either _O_RDONLY, _O_RDWR, or _O_WRONLY. There is no default value for the access mode.</para>
+          
+          <para>When two or more constants form the argument oflag, they are combined with the bitwise-OR operator ( | ).</para>
+          <para>The pmode argument is required only when one specifies _O_CREAT. If the file does not exist, pmode specifies the file's permission settings, which are set when the new file is closed the first time. Otherwise pmode is ignored. pmode is an integer expression that contains one or both of the manifest constants _S_IWRITE and _S_IREAD, defined in SYS\Stat.h. When both constants are given, they are combined with the bitwise-OR operator. The meaning of pmode is as follows.</para>
+      <table>
+        <th>
+         <td>pmode argument</td>
+         <td>Description</td>
+        </th>
+        <tr>
+            <td>_S_IREAD</td>
+            <td>Reading permitted.</td>
+        </tr>
+        <tr>
+            <td>_S_IWRITE</td>
+            <td>Writing permitted..</td>
+        </tr>
+        <tr>
+            <td>_S_IREAD | _S_IWRITE</td>
+            <td>Reading and writing permitted..</td>
+        </tr>
+      </table>
+      <para> If write permission is not given, the file is read-only. Under the Elastos operating system, all files are readable; it is not possible to give write-only permission. Thus, the modes _S_IWRITE and _S_IREAD | _S_IWRITE are equivalent</para> 
+  </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_open</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wopen</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example></example>
+</manpage>

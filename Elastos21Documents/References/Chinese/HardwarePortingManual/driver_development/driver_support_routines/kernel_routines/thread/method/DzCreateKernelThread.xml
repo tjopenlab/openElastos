@@ -1,0 +1,101 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+
+    <volume>线程与调度</volume>
+    <title>DzCreateKernelThread</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>创建一个内核线程。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> threadroutine_t</param_type>
+                <param_name> threadroutine </param_name>
+                <param_note>
+                    <para>指向内核线程例程的指针</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> PVoid </param_type>
+                <param_name> pvArg </param_name>
+                <param_note>
+                    <para>指定一个参数。当threadroutine所指定的内核线程例程被调用时，会将本参数传入内核线程例程</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> ThreadCreationFlags </param_type>
+                <param_name> flags </param_name>
+                <param_note>
+                    <para>指定附加标识以控制内核线程的创建</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> ThreadPriorityRank </param_type>
+                <param_name> priorityRank </param_name>
+                <param_note>
+                    <para>指定所创建的内核线程的优先级别</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> IThread **</param_type>
+                <param_name> ppThread </param_name>
+                <param_note>
+                    <para>指向一个线程接口指针变量的指针，用以接收所创建的内核线程的接口指针</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>内存不足</td>
+            </tr>
+            <tr>
+                <td>E_NOT_IMPLEMENTED</td>
+                <td>未能实现</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>本函数用于创建一个内核线程。内核线程被创建出来以后，将执行由用户指定的内核线程例程。执行完毕后，将从内核线程例程中返回，从而使所创建的内核线程退出。</para>
+        <para>参数flags，如果CreateThreadFlag_System标志被指定，内核线程将被创建为系统内核线程，即本内核线程不属于任何进程所有，只有系统上下文而没有进程上下文。如果本参数值为零，则内核线程将被创建为当前进程的内核线程，即本内核线程属于当前进程，拥有当前进程的上下文。目前，本参数的其它值未被支持。</para>
+        <para>参数priorityRank，priorityRank同<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/ProcessThread/IProcess/SetPriorityRank.htm">IProcess::SetPriorityRank</link>的priorityRank参数的情况。</para>
+        <para>参数ppThread，如果本参数为NULL，表示忽略此参数，则本函数将不返回所创建的内核线程的接口指针。详情请参考IThread接口。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+
+
+</manpage>

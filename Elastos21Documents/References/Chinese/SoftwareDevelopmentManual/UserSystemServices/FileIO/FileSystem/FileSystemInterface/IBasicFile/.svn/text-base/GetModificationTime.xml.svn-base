@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicFile</interface><method> GetModificationTime </method>
+    <description>
+        <para>
+            获取操作对象的最后一次修改时间。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> pTime </param_name>
+                <param_note>
+                    <para>
+指向Int32类型的指针，用于返回秒数                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR; </para>
+    <para>如果参数pTime为空，返回E_INVALID_ARGUMENT。 </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            返回的时间是从UTC时间1970年1月1日00:00:00时起，至最后一次修改对象所经历的时间，单位为秒。
+        </para>
+    </remarks>
+</manpage>

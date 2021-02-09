@@ -1,0 +1,458 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>DiskManager: IDiskManager接口参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>接口</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>IDiskManager接口参考</h1><!-- doxytag: class="IDiskManager" -->此接口表示磁盘管理。  
+<a href="#_details">更多...</a>
+
+<p>
+<a href="interface_i_disk_manager-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_disk_manager.html#fbded12cac6e806a2c59b0da9eca3ec0">AddDisk</a> ([in] Int32 disk,[in] WString serviceName,[in] WString deviceName,[in] <a class="el" href="_disk_manager_8car.html#f2b1919d9ecd316ed7d5bf1021555733">DiskType</a> diskType)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">添加指定的磁盘。  <a href="#fbded12cac6e806a2c59b0da9eca3ec0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_disk_manager.html#cc55d86cd7c6e2dfbbe481c7a957e02b">DelDisk</a> ([in] Int32 disk)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">删除指定磁盘。  <a href="#cc55d86cd7c6e2dfbbe481c7a957e02b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_disk_manager.html#520816c68162af311e55a9bb0679cd09">OpenDisk</a> ([in] Int32 disk,[out] WStringBuf *serviceName)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">打开指定磁盘。  <a href="#520816c68162af311e55a9bb0679cd09"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_disk_manager.html#66a44e2abd7a61a9da9e91dd9be27c68">CloseDisk</a> ([in] Int32 disk)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">关闭指定磁盘。  <a href="#66a44e2abd7a61a9da9e91dd9be27c68"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_disk_manager.html#d1e5988f9ccb97a34f5a14f7e899178a">GetDisks</a> ([in] <a class="el" href="_disk_manager_8car.html#f2b1919d9ecd316ed7d5bf1021555733">DiskType</a> diskType,[out] Int32 *pDisks)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获得指定磁盘。  <a href="#d1e5988f9ccb97a34f5a14f7e899178a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_disk_manager.html#ed948d0cf56f330a7d9dcd564529a592">GetPartitionFreeSpace</a> ([in] WString partitionName,[out] Int64 *pTotalNumberOfBytes,[out] Int64 *pTotalNumberOfFreeBytes)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获得指定磁盘的空余容量。  <a href="#ed948d0cf56f330a7d9dcd564529a592"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_disk_manager.html#bd4c339c7ca65b474ee1c2a284701e92">AcquireDirInterface</a> ([in] WString filepath,[out] IBasicDirectory **ppDir,[out] WStringBuf *fileName)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获得最后一层目录的IBasicDirectory接口。  <a href="#bd4c339c7ca65b474ee1c2a284701e92"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_disk_manager.html#16cc7da003445c229c72231ede9134c7">AddFileMonitor</a> ([in] WString filePath,[out] IEvent **ppPpEvent)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">添加文件监视。  <a href="#16cc7da003445c229c72231ede9134c7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_disk_manager.html#747652d16cefa46a960b432d971a1ef8">RemoveFileMonitor</a> ([in] WString filePath,[in] IEvent *pPEvent)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">删除文件监视。  <a href="#747652d16cefa46a960b432d971a1ef8"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+此接口表示磁盘管理。 
+<hr><h2>成员函数文档</h2>
+<a class="anchor" name="fbded12cac6e806a2c59b0da9eca3ec0"></a><!-- doxytag: member="IDiskManager::AddDisk" ref="fbded12cac6e806a2c59b0da9eca3ec0" args="([in] Int32 disk,[in] WString serviceName,[in] WString deviceName,[in] DiskType diskType)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDiskManager::AddDisk           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>disk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>serviceName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>deviceName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] <a class="el" href="_disk_manager_8car.html#f2b1919d9ecd316ed7d5bf1021555733">DiskType</a>&nbsp;</td>
+          <td class="paramname"> <em>diskType</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+添加指定的磁盘。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>disk</em>&nbsp;</td><td>- 指定需添加的磁盘。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>serviceName</em>&nbsp;</td><td>- 指定磁盘的服务名。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>deviceName</em>&nbsp;</td><td>- 指定磁盘需连接的设备名。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>diskType</em>&nbsp;</td><td>- 指定磁盘的类型。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>E_ALREADY_EXIST</em>&nbsp;</td><td>指定的磁盘已经存在。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="cc55d86cd7c6e2dfbbe481c7a957e02b"></a><!-- doxytag: member="IDiskManager::DelDisk" ref="cc55d86cd7c6e2dfbbe481c7a957e02b" args="([in] Int32 disk)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDiskManager::DelDisk           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>disk</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+删除指定磁盘。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>disk</em>&nbsp;</td><td>- 指定需删除的磁盘。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_OPERATION</em>&nbsp;</td><td>删除磁盘没有成功。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="520816c68162af311e55a9bb0679cd09"></a><!-- doxytag: member="IDiskManager::OpenDisk" ref="520816c68162af311e55a9bb0679cd09" args="([in] Int32 disk,[out] WStringBuf *serviceName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDiskManager::OpenDisk           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>disk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf *&nbsp;</td>
+          <td class="paramname"> <em>serviceName</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+打开指定磁盘。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>disk</em>&nbsp;</td><td>- 指定需打开的磁盘。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>serviceName</em>&nbsp;</td><td>- 指定磁盘的服务名。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>NOERROR</em>&nbsp;</td><td>方法调用成功。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_DOES_NOT_EXIST</em>&nbsp;</td><td>指定磁盘不存在。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="66a44e2abd7a61a9da9e91dd9be27c68"></a><!-- doxytag: member="IDiskManager::CloseDisk" ref="66a44e2abd7a61a9da9e91dd9be27c68" args="([in] Int32 disk)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDiskManager::CloseDisk           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>disk</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+关闭指定磁盘。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>disk</em>&nbsp;</td><td>- 指定需关闭的磁盘。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>NOERROR</em>&nbsp;</td><td>方法调用成功。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_DOES_NOT_EXIST</em>&nbsp;</td><td>指定磁盘不存在。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d1e5988f9ccb97a34f5a14f7e899178a"></a><!-- doxytag: member="IDiskManager::GetDisks" ref="d1e5988f9ccb97a34f5a14f7e899178a" args="([in] DiskType diskType,[out] Int32 *pDisks)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDiskManager::GetDisks           </td>
+          <td>(</td>
+          <td class="paramtype">[in] <a class="el" href="_disk_manager_8car.html#f2b1919d9ecd316ed7d5bf1021555733">DiskType</a>&nbsp;</td>
+          <td class="paramname"> <em>diskType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>pDisks</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获得指定磁盘。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>diskType</em>&nbsp;</td><td>- 指定获得的磁盘类型。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pDisks</em>&nbsp;</td><td>- 返回指定类型的所有磁盘。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>NOERROR</em>&nbsp;</td><td>方法调用成功。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ed948d0cf56f330a7d9dcd564529a592"></a><!-- doxytag: member="IDiskManager::GetPartitionFreeSpace" ref="ed948d0cf56f330a7d9dcd564529a592" args="([in] WString partitionName,[out] Int64 *pTotalNumberOfBytes,[out] Int64 *pTotalNumberOfFreeBytes)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDiskManager::GetPartitionFreeSpace           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>partitionName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int64 *&nbsp;</td>
+          <td class="paramname"> <em>pTotalNumberOfBytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int64 *&nbsp;</td>
+          <td class="paramname"> <em>pTotalNumberOfFreeBytes</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获得指定磁盘的空余容量。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>partitionName</em>&nbsp;</td><td>- 指定需查找的磁盘名。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pTotalNumberOfBytes</em>&nbsp;</td><td>- 返回此磁盘的字节总数。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pTotalNumberOfFreeBytes</em>&nbsp;</td><td>- 返回此磁盘的空余字节总数。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_DOES_NOT_EXIST</em>&nbsp;</td><td>需获得的磁盘不存在。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="bd4c339c7ca65b474ee1c2a284701e92"></a><!-- doxytag: member="IDiskManager::AcquireDirInterface" ref="bd4c339c7ca65b474ee1c2a284701e92" args="([in] WString filepath,[out] IBasicDirectory **ppDir,[out] WStringBuf *fileName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDiskManager::AcquireDirInterface           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>filepath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] IBasicDirectory **&nbsp;</td>
+          <td class="paramname"> <em>ppDir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf *&nbsp;</td>
+          <td class="paramname"> <em>fileName</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获得最后一层目录的IBasicDirectory接口。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>filepath</em>&nbsp;</td><td>- 指定目录所在的文件路径。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>ppDir</em>&nbsp;</td><td>- 接口指针。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>fileName</em>&nbsp;</td><td>- 文件名。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_DOES_NOT_EXIST</em>&nbsp;</td><td>需获得的目录不存在。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="16cc7da003445c229c72231ede9134c7"></a><!-- doxytag: member="IDiskManager::AddFileMonitor" ref="16cc7da003445c229c72231ede9134c7" args="([in] WString filePath,[out] IEvent **ppPpEvent)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDiskManager::AddFileMonitor           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>filePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] IEvent **&nbsp;</td>
+          <td class="paramname"> <em>ppPpEvent</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+添加文件监视。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>filePath</em>&nbsp;</td><td>- 指定要监视的目标文件路径。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>ppPpEvent</em>&nbsp;</td><td>- 返回一个IEvent接口指针，可以通过其获得目标文件发生变化的通知。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="747652d16cefa46a960b432d971a1ef8"></a><!-- doxytag: member="IDiskManager::RemoveFileMonitor" ref="747652d16cefa46a960b432d971a1ef8" args="([in] WString filePath,[in] IEvent *pPEvent)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDiskManager::RemoveFileMonitor           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>filePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] IEvent *&nbsp;</td>
+          <td class="paramname"> <em>pPEvent</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+删除文件监视。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>filePath</em>&nbsp;</td><td>- 指定要监视的目标文件路径。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pPEvent</em>&nbsp;</td><td>- 指定需删除监视的目标文件的接口指针。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<hr size="1"><address style="text-align: right;"><small>Generated at Sun Sep 28 15:11:57 2008 for DiskManager by&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
+</body>
+</html>

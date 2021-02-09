@@ -1,0 +1,88 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Program Debugger</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<h2>GDB Debugger Start Method</h2>
+
+    <p><b>Start Method One: Automatically enters debug mode when target program fails.</b></p>
+    <p>
+    	Debug interrupt will occur when the executable file of application running on Elastos fails. The 
+    	<a class="style1" href="gdb.htm#stub">stub</a> program in operating system will display the following 
+    	information as soon as it receives debug interrupt. Prompts the developer whether to debug the error 
+    	program or not.
+    </p>
+    <pre class="code">Program Fault. Debug Or Terminate[D/T]?</pre>
+    <p>
+    	Select <b>D</b> for dubug, then the thread that failed will enter wait state 
+    	immediately. stub prepares debug information and communicates with host, begins debug dialog.
+    </p>
+    <p>
+    	Select <b>T</b> to terminate the faulty program, and return to command prompt as usual. If it is a 
+    	kernel fault, it will reboot Elastos.
+    </p>
+    <p>
+    	While debugging the faulty programs, start GDB on host machine. Use the command: gdb 
+    	provided by Elastos.SDK to debug the faulty program. After GDB program started, it will do 
+    	the following: 
+    </p>
+    <ul>
+    <li>Establish communication with stub on target machine.
+    <li>Starts gdb&nbsp;insight (gdb GUI).
+    <li>Prompt and wait for further debug command from the programmer.
+    </ul>
+
+    <p>
+    	<b>Start Method Two: Inserts breakpoint interrupt instructions DebugBreak() in source code or GCC inline 
+    	assembler instructions ASM("int&nbsp;$3;") and program will enter debug mode when it executes this line of 
+    	code.</b>
+    </p>
+    <p>
+    	Use the method of setting interrupt instruction if you want to enter debug mode while running the program.
+    </p>
+    <p>
+    	Include a header file named _inline.h in source program. i.e. #include&nbsp;<_inline.h>. Inserts DebugBreak() 
+    	at the lines that you want the program to stop. No need to include this header if you are using GCC inline 
+    	assembler.
+    </p>
+    <p>
+    	Compile and link this source file and run the executable of this application on target machine. When the 
+    	program executes DebugBreak() or GCC inline assembler instruction ASM("int&nbsp;$3;"), the following prompt 
+    	will be displayed: 
+    </p>
+    <pre class="code">Program Fault. Debug Or Terminate[D/T]?</pre>
+    <p>Input D to go to debug mode directly. </p>
+    <p>
+    	Then you can start gdb debugger on host machine. Actions after gdb program started is the same as mentioned 
+    	in start method one.
+    </p>
+
+    <p>
+    	<b>Start Method Three: Key-in debug &lt; executable file name &gt; in Elastos command line, makes executable 
+    	file enters debug mode as soon as it runs.</b>
+    </p>
+    <p>
+    	This method can be used when programmers want to debug applications as soon as the program started, not wait 
+    	for a program fault.
+    </p>
+    <p>
+    	When debugging using this method, program to be debugged will be located in the main function or wmain function 
+    	implemented by the programmer. Program will pause if a .exe file is built, if it is an executable dll file, 
+    	the program will stop at code that load the dll. The following will be prompted: 
+    </p>
+    <pre class="code">Program Fault. Debug Or Terminate[D/T]?</pre>
+    <p>Inputs D to enter debug mode directly.</p>
+    <p>
+    	Then you can start GDB on host machine. Actions after gdb program started is the same as mentioned in start 
+    	method one. This start debug method provides the user a convenient method of debugging.
+    </p>
+
+<script>footer("english")</script>
+</body>
+</html>

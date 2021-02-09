@@ -1,0 +1,75 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>构件缓存机制</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>CAR构件缓存机制的使用</h2>
+    <p>CCM通过在本地使用一个索引文件来管理文件。每个文件对应于索引文件中的一条记录。记录存储了文件的相关信息，包括网络地址URL、本地地址（全路径名）。从网络上下载的文件保存在Cache目录。</p>
+    <a NAME="ccm">
+    <h3>CCM的使用方法</h3>
+        <p>下面介绍CAR&nbsp;Cache&nbsp;Manager的使用方法:</p>
+        <ol>
+            <li>打开DDK中的编译选项，在Elastos\src\libpub\inc\eladef.h中有一行：
+            <pre class="code">
+//#define CACHEMANAGER
+</pre>
+            将前面的注释符去掉，改为:<pre class="code">
+#define CACHEMANAGER
+</pre>
+            编译DDK，再执行dropsdk.exe。
+            <li>设置配置文件（config）。
+                <p>（1）在mkpkg.cfg中添加：</p>
+                <pre class="code">
+%ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\ElSocket.dll \
+%ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\cachemgr.dll \
+</pre>
+                <p>（2）在service.cfg中添加注册Cache&nbsp;Manager服务的设置。</p>
+                <pre class="code">
+CLSID_CCARCacheMgr =
+{{0xDEFDE809,0x9A01,0x4223,{0x81,0xB7,0x05,0xF6,0xD4,0xF0,0xE0,0x8
+1}}, L"www.elastos.com.cn/car/cachemgr.dll"};
+IID_ICARCacheMgr =
+{0xD67B9349,0xF033,0x44FA,{0x8A,0xC3,0x13,0x22,0x16,0xB4,0x80,0xD2}
+};
+
+RegisterService(CLSID_CCARCacheMgr, IID_ICARCacheMgr, "cachemgr");
+</pre>
+                <p><b>规定：</b>Cache&nbsp;Manager服务必须作为第一个服务启动。</p>
+                <p>（3）在startup.cfg中注册服务（默认已设置好）。</p>
+                <pre class="code">
+ezregsvr.exe services.cfg &amp;
+</pre>
+                <p>（4）将网络和文件系统配置好（使用硬盘的情况下），例如：</p>
+                <pre class="code">
+ifconfig.exe lo0 127.0.0.1 netmask 255.255.248.0
+ifconfig.exe eth0 192.168.2.82 netmask 255.255.248.0 broadcast 192.168.7.255
+route.exe add default 192.168.0.1
+mount.exe -t tftpfs -d / -s TFTP
+mount.exe -t msdos -d /msdos -s device:idepartition0
+</pre>
+                <p>上面的配置表明将TFTP&nbsp;<a class="style1" href="../../../xdk/environment_and_tools/tools/shell/Mount.htm">mount</a>到根目录，单板机系统中根目录为开发机镜像目录下的bin目录。我们还需要在bin目录下创建文件夹msdos，才能成功的将硬盘mount到msdos目录。</p>
+            <li>在SDK环境下编译cachemgr代码。目前CCM的Cache目录和索引文件都在程序中直接指定，而不采用配置文件的方式。这两个参数在src/cachemgr/CCARCache.cpp中指定，如下：
+                <pre class="code">
+wchar_t * g_pIndexFile = L"/msdos/cache/index.dat";
+wchar_t * g_pCacheDir  = L"/msdos/cache/";
+</pre>
+                <p>其中g_pIndexFile指定了索引文件，g_pCacheDir变量指定了Cache目录。虽然索引文件不要求一定要放在Cache目录中，但建议还是放在Cache目录为好。</p>
+            <li>执行<a class="style1" href="../../../resource_debug_kits/tools/mkpkg.htm">mkpkg.exe</a>。
+        </ol>
+    <h3>注意事项</h3>
+        <p>按照以前的习惯，所有目标程序都被拷贝到镜像目录下。现在，如果用户不打开CCM的开关（eladef.h），CMM并没有改变这种习惯。但如果开关被打开，就必须在SDK环境下按照上文<a class="style1" href="use_ccm.htm#ccm">“CMM使用方法”</a>中介绍的流程进行配置，在系统启动时注册CCM服务，否则无法正确加载构件程序。默认情况下该开关是关闭状态。</p>
+        <p>因为一般uunm指定的网络地址不是开发机，而目标文件却一般都保存在开发机上，如果每次将文件拷贝到网络，会很不方便，因此建议在开发过程中不要打开CCM开关。当然，也可以调用ICARCache接口中的Add方法将自己的dll程序添加到索引当中。</p>
+        <p>使用CCM带来了很多好处，不仅可以实现CAR构件的自滚动下载运行、点击下载运行等，还可以使用同名目标文件。在现有的开发环境中，所有目标程序文件被拷贝到镜像目录下，如exe、dll都放在镜像目录的bin目录中，这种情况下我们不能生成同名文件。但如果使用CCM，我们就可以生成同名目标文件，只不过它们的路径不同，对于CAR构件程序来说，它们的uunm不同即可。</p>
+
+
+<script>footer("chinese")</script>
+</body>
+</html>

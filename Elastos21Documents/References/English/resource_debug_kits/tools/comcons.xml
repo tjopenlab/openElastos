@@ -1,0 +1,50 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> comcons </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para>Serial port console tools program, it receives characters passed by serial port and displays it, it receives keyboard input character and passes it to serial port.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> COMCONS </cmd_name>
+        <cmd_param> [-?] [/L] [/Hn] [/2] [/?]</cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> -?  </param_name>
+        <param_note> Displays help information </param_note>
+    </param>
+    <param>
+        <param_name> /L  </param_name>
+        <param_note> Communicates using 9600 baud rate </param_note>
+    </param>
+    <param>
+        <param_name>  /Hn </param_name>
+        <param_note> Level transmission data specified by number n.If the parameter is only /h, then 115200 baud rate is used to transmit. n=0 baud rate is 115200, n=1 baud rate is 19200, n=2 baud rate is 9600 </param_note>
+    </param>
+    <param>
+        <param_name> /2   </param_name>
+        <param_note> Communicates using com2 </param_note>
+    </param>
+    <param>
+        <param_name> /?   </param_name>
+        <param_note> Displays help information  </param_note>
+    </param>
+    </parameters>
+
+    <examples>
+     <example>
+        <eg_line>comcons /h/2  </eg_line>
+        <eg_note> Communicates through com2 port, using high speed (115200 baud rate).</eg_note>
+    </example>
+    </examples>
+
+</manpage>

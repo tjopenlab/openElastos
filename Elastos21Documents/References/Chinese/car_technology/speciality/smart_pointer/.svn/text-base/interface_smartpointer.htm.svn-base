@@ -1,0 +1,211 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>接口智能指针</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+    <h2>接口智能指针</h2>
+        <p>在MS&nbsp;COM中，用户是直接得到COM对象的接口指针，然后通过这个接口指针访问该接口所定义的接口方法。</p>
+        <p>在CAR中，实现了接口智能指针，用户通过接口智能指针来访问这个接口所定义的方法，从这个角度讲，接口智能指针是对接口的封装。在这里，将具体说明是怎样实现接口智能指针的，并提供一种接口智能指针的实现方法。</p>
+        <p>在C++语言中，接口智能指针被定义为类，这个类只有一个成员变量，这个成员变量就是实际指向对象接口的接口指针。其示意图如下：</p>
+        <center><img src="images/inter.jpg"></center>
+        <p>图中IARef表示接口IA对应的接口智能指针，构件对象实现了接口IA。</p>
+        <p>接口智能指针类实现了该接口的所有方法。这些接口方法的实现，都是通过成员变量调用构件对象实现的对应方法。图示如下：</p>
+        <center><img src="images/transfer.jpg"></center>
+        <p>CAR的接口智能指针实现了智能管理引用计数，不需要用户去自己管理引用计数。</p>
+        <p>首先定义了对应于IUnknown接口的两个接口智能指针类，InterfaceRefArg和InterfaceRef，InterfaceRef继承了InterfaceRefArg。（IUnknown接口的解释参见MSDN）InterfaceRefArg类中定义了一个成员变量IUnknown&nbsp;*&nbsp;&amp;&amp;&amp;&amp;m_pIface。其它所有接口智能指针追根溯源都继承于此类，因此所有接口智能指针都具有该成员变量。</p>
+        <p>正如所有的接口都继承于IUnknown一样，所有的接口智能指针都继承于InterfaceRefArg。以IButton为例，它们继承关系图如下：</p>
+        <center><img src="images/inherit.jpg"></center>
+        <p>通过接口智能指针可以创建出实现了该接口的构件对象，并使该智能指针的成员变量指向这个新创建出的构件对象。</p>
+        <p>本文主要包括以下内容：</p>
+    <ul>
+        <li><a class="style1" href="#form">接口智能指针的表示形式</a>
+        <li><a class="style1" href="#create">接口智能指针的创建</a>
+        <li><a class="style1" href="#validity">接口智能指针的有效性的判断</a>
+        <li><a class="style1" href="#use">接口智能指针的使用方法</a>
+    </ul>
+    <h4><a name="form"></a>接口智能指针的表示形式</h4>
+        <p>接口智能指针的表示形式：IxxxRef，其中Ixxx表示接口名。</p>
+        <p>下面以Hello构件为例，介绍接口智能指针的创建和使用方法。先请看helloworld.car文件内容：</p>
+        <pre class="code">
+[
+    uuid(29899803-5da2-45f0-a4b7-387b76590abe),
+    uunm(http://www.koretide.com/car/helloworld.dll)
+]
+component Hello
+{
+    //接口IHello
+    [uuid(225c5629-5cd8-403a-97d9-204ffda2976d)]
+    interface IHello {
+        ECODE SayHello();
+    }
+
+    //接口IWorld
+    [uuid(ba85f03f-7f55-4595-9137-cee4ea43b404)]
+    interface IWorld {
+        ECODE SayWorld();
+    }
+
+    //类CHello
+    [uuid(3b1e3a47-9a78-4466-ab11-ad8512761e0d)]
+    class CHello {
+        interface IHello;
+    }
+
+    //类CHelloWorld
+    [uuid(1627061a-36b9-4dcb-b9af-5967db085d17)]
+    class CHelloWorld {
+        interface IHello;
+        interface IWorld;
+    }
+}
+</pre>
+        <p>helloworld.car文件中定义了两个接口，IHello和IWorld。在客户程序中使用import语句引用Hello构件，方法如下：</p>
+        <pre class="code">
+#import &lt;helloworld.dll&gt;
+</pre>
+        <p>则客户程序中即拥有这两个接口智能指针类型：IHelloRef和IWorldRef。</p>
+
+    <h4><a name="create"></a>接口智能指针的创建</h4>
+        <p>合法的接口智能指针可以通过下面几种方式创建：</p>
+        <p><b>方法一：</b>创建一个接口智能指针，调用Instantiate方法创建一个指定类的对象，并使该接口智能指针指向该对象中的相应接口。</p>
+        <ul>
+            <li>当用户需要指定创建的对象与客户程序的相对位置时，调用Instantiate方法时需要设置相应的参数，例如：</p>
+                <pre class="code">
+IHelloRef iHello;   //创建接口智能指针iHello
+//对象化类CHello，接口智能指针iHello指向该对象中的IHello接口
+ECODE ec = iHello.<b>Instantiate(CLSID_CHello, CTX_SAME_DOMAIN)</b>;
+if (FAILED(ec)) {   //使用返回值判断智能指针的有效性
+    printf("iHello initialize failed\n");
+    return 1;
+}
+</pre>
+            <p><b><font color="red">注意：</b>由于在多个类中可以提供同一接口，因此调用Instantiate方法创建接口智能指针时需要指定类的标识CLSID，参数表示形式为CLSID_classname。</font></p>
+            <p>示例中：Instantiate方法的第一个参数CLSID_CHello指示将生成一个CHello类的对象，若将该参数换成CLSID_CHelloWorld则表示将生成一个CHelloWorld类的对象。</p>
+            <p>第二个参数CTX_SAME_DOMAIN指定对象与客户程序的相对位置，参数二的可选值及每种值表示的意义请参见<a class="style1" href="code_running_env.htm">可执行代码的运行环境（context）</a>。</p>
+
+            <li>当用户不关心创建的对象与客户程序的相对位置时，调用Instantiate方法时不需要第二个参数。例如：</p>
+                <pre class="code">
+IHelloRef iHello;   //创建接口智能指针iHello
+//实例化类CHello，接口智能指针iHello指向该对象中的IHello接口
+ECODE ec = iHello.<b>Instantiate(CLSID_CHello)</b>;
+if (FAILED(ec)) {   //使用返回值判断智能指针的有效性
+    printf("iHello initialize failed\n");
+    return 1;
+}
+</pre>
+            <p>示例中调用Instantiate方法时没有设第二个参数，系统默认值为CTX_SAME_DOMAIN、CTX_DIFF_DOMAIN和CTX_DIFF_PROCESS三值之一，由优先级来确定创建的对象与客户程序的相对位置。</p>
+        </ul>
+
+        <p>创建合法的接口智能指针还可以通过以下两种方法，即使用合法的接口智能指针初始化或赋值新的接口智能指针。但是使用这两种方法时有一个<b>前提条件：这个合法的接口智能指针所指向的对象，必须能够提供新创建的接口智能指针的相应接口。</b></p>
+
+        <p><b>方法二：</b>使用合法的接口智能指针初始化新创建的接口智能指针。例如：</p>
+        <pre class="code">
+IHelloRef iHello;
+ECODE ec = iHello.Instantiate(CLSID_CHelloWorld);
+if (FAILED(ec)) {   //使用返回值判断智能指针iHello的有效性
+    printf("iHello initialize failed\n");
+    return 1;
+}
+
+//使用接口智能指针iHello初始化新创建的接口智能指针iWorld
+<b>IWorldRef iWorld = i2i(iHello);</b>
+if (!iWorld.IsValid()) { //使用IsValid()方法判断智能指针iWorld的有效性
+    assert(0 && "Can't create cHello");
+    return 1;
+}
+</pre>
+        <p>示例中，在类CHelloWorld中实现了两个接口IHello和IWorld。调用i2i函数将iHello接口智能指针转化为IWorldRef类型的值，使用返回的结果初始化iWorld接口智能指针，前提是iHello必须为合法的接口智能指针。因此必须对iHello的有效性进行判断。若成功转化接口智能指针iHello，则接口智能指针iWorld指向类CHelloWorld的对象中的IWorld接口。</p>
+        <p><b>备注：</b>i2i函数的参数和返回值必须都是同一个类中的接口的智能指针。i2i函数执行的操作是将一个接口的智能指针类型转化为同一类中的任意一个接口的智能指针类型。</p>
+
+        <p><b>方法三：</b>由合法的接口智能指针给新创建的接口智能指针赋值：</p>
+        <pre class="code">
+IHelloRef iHello;
+ECODE ec = iHello.Instantiate(CLSID_CHelloWorld);
+if (FAILED(ec)) {   //使用返回值判断智能指针iHello的有效性
+    printf("iHello initialize failed\n");
+    return 1;
+}
+
+IWorldRef iWorld;
+//使用接口智能指针iHello给新创建的接口智能指针iWorld赋值
+<b>iWorld = i2i(iHello);</b>
+if (!iWorld.IsValid()) {    //使用IsValid()方法判断智能指针iWorld的有效性
+    assert(0 && "Can't create cHello");
+    return 1;
+}
+</pre>
+        <p>示例中，在类CHelloWorld中有两个接口IHello和IWorld，使用接口智能指针iHello给接口智能指针iWorld赋值，前提是iHello必须为合法的智能指针，因此必须对iHello的有效性进行判断。若创建的接口智能指针iWorld合法，它指向类CHelloWorld的对象中的IWorld接口。</p>
+
+    <h4><a name="validity"></a>接口智能指针有效性的判断</h4>
+        <p>用户在创建新的接口智能指针后必须判断其有效性，只有有效的接口智能指针才是合法的接口智能指针。方法如下：</p>
+        <p><b>方法一：</b>利用返回值进行判断，例如：</p>
+        <pre class="code">
+……
+IHelloRef iHello;
+<b>ECODE ec = iHello.Instantiate(CLSID_CHelloWorld);
+if (FAILED(ec)) {   //利用返回值判断接口智能指针iHello的有效性
+    printf("iHello initialize failed\n");
+    return 1;
+}</b>
+……
+</pre>
+
+        <p><b>方法二：</b>调用IsValid方法进行判断，例如：</p>
+        <pre class="code">
+……
+IHelloRef iHello;
+ECODE ec = iHello.Instantiate(CLSID_CHelloWorld);
+if (FAILED(ec)) {
+    printf("iHello initialize failed\n");
+    return 1;
+}
+
+IWorldRef iWorld = i2i(iHello);
+//调用IsValid()方法判断接口智能指针iWorld的有效性
+<b>if (!iWorld.IsValid()) {
+    assert(0 && "Can't create cHello");
+    return 1;
+}</b>
+……
+</pre>
+        <p><b>备注：</b>当调用Instantiate()方法初始化智能指针时，建议利用返回值判断智能指针的有效性。因为，通过返回值可以获得更加详尽的信息，例如：接口没有找到、或内存不足等。IsValid()方法只是简单的判断智能指针是否有效，无法得到具体的出错信息。</p>
+
+    <h4><a name="use"></a>接口智能指针的使用方法</h4>
+        <p>接口智能指针使用“.”点操作符调用相关接口中的方法。例如：</p>
+        <pre class="code">
+//使用接口智能指针调用相应接口中的方法
+IHelloRef iHello;
+ECODE ec;
+ec = iHello.Instantiate(CLSID_CHello);
+if (FAILED(ec)) {   //使用返回值判断智能指针的有效性
+    printf("iHello initialize failed\n");
+    return 1;
+}
+
+IWorldRef iWorld;
+ec = iWorld.Instantiate(CLSID_CHelloWorld);
+if (FAILED(ec)) {   //使用返回值判断智能指针的有效性
+    printf("iWorld initialize failed\n");
+    return 1;
+}
+
+//通过接口智能指针iHello调用类CHello的对象中IHello接口中的方法SayHello()
+<b>iHello.SayHello();</b>
+//通过接口智能指针iWorld调用类CHelloWorld的对象中IWorld接口中的方法SayWorld()
+<b>iWorld.SayWorld();</b>
+</pre>
+        <p><b><font color=red>注意：</b>通过接口智能指针只能调用它指向的接口内的方法。</font></p>
+
+
+<script>footer("chinese")</script>
+</body>
+</html>

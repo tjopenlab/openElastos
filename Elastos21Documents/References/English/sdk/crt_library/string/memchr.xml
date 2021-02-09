@@ -1,0 +1,130 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\memchr">memchr</sample>
+    <title>memchr</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Finds characters in a buffer.</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <func_name>memchr</func_name>
+        <parameters>
+                <func_param>
+                <param_type>const void *</param_type>
+                <param_name>buf</param_name>
+                <param_note>
+                    <para>Pointer to buffer</para>
+                </param_note>
+            </func_param>
+             <func_param>
+                <param_type> int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Character to look for.</para>
+                </param_note>
+            </func_param>
+             <func_param>
+                <param_type>size_t </param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Number of characters to check</para>
+                </param_note>
+            </func_param>
+            </parameters>
+    </syntax>
+
+    <return>
+        <para>IIf successful, returns a pointer to the first location of c in buf. Otherwise it returns NULL</para>
+    </return>
+
+    <remarks>
+        <para>memchr  looks for the first occurrence of c in the first count bytes of buf. It stops when it finds c or when it has checked the first count bytes.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>memchr </routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int  ch = &apos;r&apos;;
+char str[] =    &quot;lazy&quot;;
+char string[] = &quot;The quick brown dog jumps over the lazy fox&quot;;
+char fmt1[] =   &quot;         1         2         3         4         5&quot;;
+char fmt2[] =   &quot;12345678901234567890123456789012345678901234567890&quot;;
+
+int main()
+{
+    char *pdest;
+    int result;
+    printf(&quot;String to be searched:\n\t\t%s\n&quot;, string);
+    printf(&quot;\t\t%s\n\t\t%s\n\n&quot;, fmt1, fmt2);
+
+    printf(&quot;Search char:\t%c\n&quot;, ch);
+    pdest = (char *)memchr(string, ch, sizeof(string));
+    result = pdest - string + 1;
+    if (pdest != NULL)
+        printf(&quot;Result:\t\t%c found at position %d\n\n&quot;, ch, result);
+    else
+        printf(&quot;Result:\t\t%c not found\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+String to be searched:
+The quick brown dog jumps over the lazy fox
+1         2         3         4         5
+12345678901234567890123456789012345678901234567890
+
+Search char:    r
+Result:         r found at position 12
+</result>
+   <references>
+        <reference>
+            <ref_name>_memccpy </ref_name>
+            <ref_url>_memccpy  </ref_url>
+        </reference>
+        <reference>
+            <ref_name> memcmp  </ref_name>
+            <ref_url>memcmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name>memcpy </ref_name>
+            <ref_url>memcpy </ref_url>
+        </reference>
+        <reference>
+            <ref_name>memset </ref_name>
+            <ref_url>memset </ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcschr  </ref_name>
+            <ref_url>wcschr  </ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,108 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字-- affiliates </title>
+</head>
+
+<body>
+	<h2>affiliates</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于修饰方面构件类<a class= "style1" href= "keywords_aspect.htm">aspect</a>，表示被修饰的方面构件类只能被该属性中列举的非方面构件类聚合，且aspect将使用目标class的线程模型。 </p>
+	
+	    <b>语法 </b>
+	    	<p>aspect AspectName <b>affiliates</b> ClassName1, ClassName2 {...}</p>
+
+	    <b>使用范例 </b>
+<pre class= code>
+module 
+{
+    interface IChildZhang {
+        Play();
+    }
+    interface IChildLi {
+        Play();
+    }
+    class CChildZhang {
+        interface IChildZhang;
+    }
+    interface IStudent {
+        Study();
+    }
+
+    class CChildLi {
+        interface IChildLi;
+    }
+
+    aspect AStudent <b>affiliates</b> CChildZhang {
+        interface IStudent;
+    }
+}
+
+</pre>
+    <p>示例中，方面类AStudent被“affiliates CChildZhang”修饰，这表示AStudent方面类只能与CChildZhang类聚合，而不能和其他普通类CChildLi聚合，并且AStudent方面类将使用CChild的锁和相同的线程模型。  </p>
+    <p>客户端实现如下:  </p>
+<pre class= code>
+#include "classDemo.h"
+using namespace Elastos;
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    IChildZhang * pChildZhang;
+    IChildLi *pChildLi = NULL;
+    IStudent *pStudent = NULL;
+    ECode ec;
+    
+    ec = CChildZhang::New(&pChildZhang);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    ec = AStudent::Attach(pChildZhang);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    CConsole::WriteLine("ChildZhang attach AStduent sucess!");
+    
+    pStudent = IStudent::Probe(pChildZhang);
+    if (NULL != pStudent) {
+        CConsole::WriteLine("IChildZhang Probe IStduent sucess!");
+    }
+    pChildZhang->Release();
+    
+    ec = CChildLi::New(&pChildLi);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    
+    ec = AStudent::Attach(pChildLi);
+    if (FAILED(ec)) {
+        CConsole::WriteLine("ChildLi attach AStudent error");
+        pChildLi->Release();
+        return ec;
+    }
+
+    CProcess::Exit(0);
+    return NOERROR;
+}
+
+</pre>    
+    <p>运行结果如下：</p>
+<pre class= code>
+ChildZhang attach AStduent sucess!
+IChildZhang Probe IStduent sucess!
+ChildLi attach AStudent error
+</pre> 
+    <b>备注 </b>
+        <p>最多可以声明32个可以与方面类（如上例中AStudent）聚合的类（如上例中CChild），并使用逗号分隔。 </p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+   
+    <volume>内存管理函数</volume>
+    <title>DzKIoUnmap</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>撤销IO内存地址区域在内核虚拟地址空间中的映射。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> virtaddr_t </param_type>
+                <param_name> vaBase </param_name>
+                <param_note>
+                    <para>[in]已建立映射的内核虚拟地址空间的起始地址，必须是由成功调用KIoRemap函数后的返回值。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>无</para>
+    </return>
+
+    <remarks>
+    	<para>本函数用于撤销IO内存地址区域在内核虚拟地址空间中的映射。这些映射是由先前成功调用了KIoRemap函数所建立的。成功调用此函数撤销映射后，就无法再通过所传入的内核虚拟地址空间的起始地址来访问IO内存地址空间了。</para>
+    	<para>本函数目前仅可被用于设备驱动程序的初始化部分中。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

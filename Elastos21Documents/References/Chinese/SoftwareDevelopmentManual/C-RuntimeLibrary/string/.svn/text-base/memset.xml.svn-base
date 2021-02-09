@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\memset">memset</sample>
+    <title> memset</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>将缓冲区设置成指定的字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>void*</return_val>
+        <func_name>memset</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>dest</param_name>
+                <param_note>
+                    <para>指向目的缓冲区的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>要设置的字符</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>字符的数目</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回指针dest。</para>
+    </return>
+
+    <remarks>
+        <para>函数memset把缓冲区的前count个字符设置成由C指定的字符。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>memset</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* memset.cpp:  This program uses memset to
+ * set the first four bytes of buffer to &quot;*&quot;.
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buffer[] = &quot;This is a test of the memset function&quot;;
+
+    printf(&quot;Before: %s\n&quot;, buffer);
+    memset(buffer, &apos;*&apos;, 4);
+    printf(&quot;After:  %s\n&quot;, buffer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+Before: This is a test of the memset function
+After:  **** is a test of the memset function
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_memccpy</ref_name>
+            <ref_url>_memccpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memcmp</ref_name>
+            <ref_url>memcmp</ref_url>
+        </reference>
+    </references>
+
+</manpage>

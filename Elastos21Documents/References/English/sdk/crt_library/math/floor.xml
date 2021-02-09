@@ -1,0 +1,85 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\floor">floor</sample>
+    <title> floor</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>The floor function returns the largest integer value less than or equal to x, expressed as a floating-point number.</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>floor</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>Floating-point value.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The floor function returns a floating-point value representing the largest integer that is less than or equal to x. There is no error return.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>floor</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* floor.cpp: This example displays the largest integers
+ * less than or equal to the floating-point values 2.8
+ * and -2.8.
+ */
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double y;
+
+    y = floor(2.8);
+    printf(&quot;The floor of 2.8 is %f\n&quot;, y);
+    y = floor(-2.8);
+    printf(&quot;The floor of -2.8 is %f\n&quot;, y);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The floor of 2.8 is 2.000000
+The floor of -2.8 is -3.000000
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>ceil</ref_name>
+            <ref_url>ceil</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,74 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzCreateReaderWriterLock">EzCreateReaderWriterLock</sample>
+    <volume>System API</volume>
+    <title>CReaderWriterLock::New</title>
+    <routine_idx> ..\system_api_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	Creates <b>ReaderWriterLock</b> object.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> IReaderWriterLock ** </param_type>
+                <param_name> ppRWLock </param_name>
+                <param_note>
+                    <para>
+                    	[out] Interface pointer to the <b>ReaderWriterLock</b> object, if the function succeeds.
+					</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>    	
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+			<tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in creating <b>ReaderWriterLock</b> object.</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>Invalid argument(s)</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>Memory is insufficient</td>
+            </tr>
+        </table>
+        <para>references <link url="/sdk/hresult.htm"> ECODE </link> correlative help.</para>
+    </return>
+
+    <remarks>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+              	Windows 2000 or later; Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+
+</manpage>

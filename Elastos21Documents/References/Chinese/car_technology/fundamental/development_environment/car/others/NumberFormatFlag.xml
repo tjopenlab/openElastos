@@ -1,0 +1,94 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>枚举类型</volume>
+    <types>_NumberFormat</types>
+
+
+    <enum>
+        <enum_member>
+            <mem_name>NumberFormat_RightAlign</mem_name>
+            <mem_value>0x00000000</mem_value>
+            <mem_description>缺省。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_LeftAlign</mem_name>
+            <mem_value>0x00010000</mem_value>
+            <mem_description>输出值左对齐，右边补全。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_Signed</mem_name>
+            <mem_value>0x00020000</mem_value>
+            <mem_description>输出值右对齐，输出符号位（为正时输出正号，为负时输出负号）。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_ZeroPrefixed</mem_name>
+            <mem_value>0x00040000</mem_value>
+            <mem_description>与width同时使用，如果未达到最小width值，则在输出值前填充0，直到达到最小width值为止。如果0和-同时出现，0将被忽略。如果0是被整数格式（i,u,x,X,o,d）指定的，则0被忽略。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_BlankPrefixed</mem_name>
+            <mem_value>0x00080000</mem_value>
+            <mem_description>如果输出值是有符号类型，并且符号位是正号时，则在该值前加一个空格；如果' '和'+'同时出现，则忽略' '。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_PoundSign</mem_name>
+            <mem_value>0x00100000</mem_value>
+            <mem_description>当使用o,x或X格式时，#标记将在所有非零的输出值前分别加上0，0x或0X；当使用e,E,或f格式时，#标记强制所有的输出值都包含一个小数点；当使用g或G格式时，#标记强制所有的输出值都包含一个小数点且保留小数末尾的0 忽略使用c,d,i,u,或s的情况。</mem_description>
+        </enum_member>
+
+        <enum_member>
+            <mem_name>NumberFormat_Decimal</mem_name>
+            <mem_value>0x00000000</mem_value>
+            <mem_description>以十进制形式输出带符号整数（正号不显示）。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_UsignedDecimal</mem_name>
+            <mem_value>0x01000000</mem_value>
+            <mem_description>以十进制形式输出无符号整数。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_Octal</mem_name>
+            <mem_value>0x02000000</mem_value>
+            <mem_description>以八进制形式输出无符号整数（不输出前缀0）。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_Hex</mem_name>
+            <mem_value>0x04000000</mem_value>
+            <mem_description>以十六进制形式输出无符号整数（不输出前缀0x），对于十六进制字母，x输出小写。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_BigHex</mem_name>
+            <mem_value>0x08000000</mem_value>
+            <mem_description>以十六进制形式输出无符号整数（不输出前缀0X），对于十六进制字母，X输出大写。</mem_description>
+        </enum_member>
+
+
+        <enum_member>
+            <mem_name>NumberFormat_Double</mem_name>
+            <mem_value>0x00000000</mem_value>
+            <mem_description>以小数形式输出单、双精度实数，隐含输出6位小数。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_ScientificDouble</mem_name>
+            <mem_value>0x10000000</mem_value>
+            <mem_description>以指数形式[-]x.xxxxxe±xx输出单、双精度实数。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_BigScientificDouble</mem_name>
+            <mem_value>0x20000000</mem_value>
+            <mem_description>以指数形式[-]x.xxxxxE±xx输出单、双精度实数。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_FlexScientificDouble</mem_name>
+            <mem_value>0x40000000</mem_value>
+            <mem_description>以f或e格式显示的带符号值，仅当指数值小于-4或大于等于精度参数时使用e格式。末尾的0自动被删除，且仅当小数位有一个或多个数字时，才加上小数点。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>NumberFormat_BigFlexScientificDouble</mem_name>
+            <mem_value>0x80000000</mem_value>
+            <mem_description>与g格式相同，仅当指数值小于-4或大于等于精度参数时使用E格式。 </mem_description>
+        </enum_member>
+    </enum>
+</manpage>

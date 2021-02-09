@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\ungetc">ungetc</sample>
+    <title>ungetc, ungetwc</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>将字符压回到文件流。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>ungetc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>压入流的字符</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>ungetwc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wint_t</param_type>
+                <param_name>c</param_name>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果成功，返回字符参数c。如果参数c指定的字符，不能压回流或者还没读取字符，那么输入流不变，而且ungetc返回EOF，ungetwc返回WEOF。</para>
+    </return>
+
+    <remarks>
+        <para>函数ungetc将参数c指定字符压回文件流并清除文件结束符。文件必须是以读方式打开的。下一次读操作从c开始。试图用ungetc将EOF压回文件流，是无用的。</para>
+        <para>在从文件流中读出由ungetc置入文件流的字符之前，如果调用了函数fflush、fseek或rewind，置入的字符将被清除。文件位置指针将置为ungetc压回字符之前的原始值。与文件流相关的外存保持不变。对于文本文件流成功的调用ungetc，文件位置指针直到读出或清除所有压回的字符以后，才被指定（定位）。对于二进制文件流，每次成功的调用ungetc，文件位置指针都减1；如果调用前位置指针值为0，调用后值是不确定的。若在两次调用ungetc之间，未进行读或文件位置操作，结果是不可预见的。在调用fscanf之后，除非执行另一个读操作（如getc），否则调用ungetc会失败；这是因为fscanf本身就调用了ungetc。</para>
+        <para>函数ungetwc是ungetc的宽字符版本。然而，对于文本流或二进制流，文件位置指针直到读出或清除所有压回的字符以后，才被指定（定位）。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>ungetc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>ungetwc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ungetc.cpp: This program first converts a character
+ * representation of an unsigned integer to an integer. If
+ * the program encounters a character that is not a digit,
+ * the program uses ungetc to replace it in the  stream.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+{
+    int ch;
+    int result = 0;
+
+    printf(&quot;Enter an integer: &quot;);
+
+    /* Read in and convert number: */
+    while (((ch = getchar()) != EOF) &amp;&amp; isdigit(ch))
+        result = result * 10 + ch - &apos;0&apos;;     /* Use digit. */
+    if (ch != EOF)
+        ungetc(ch, stdin);                     /* Put nondigit back. */
+    printf(&quot;Number = %d\nNextcharacter in stream = &apos;%c&apos;&quot;,
+            result, getchar());
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Enter an integer: 521a
+Number = 521
+Nextcharacter in stream = &apos;a&apos;
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>getwchar</ref_name>
+            <ref_url>getwchar</ref_url>
+        </reference>
+    </references>
+
+</manpage>

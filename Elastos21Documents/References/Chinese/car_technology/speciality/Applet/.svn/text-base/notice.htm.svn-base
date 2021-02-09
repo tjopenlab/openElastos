@@ -1,0 +1,66 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>applet使用注意 </title>
+</head>
+
+<body>
+	<h2>applet注意事项</h2>
+
+
+    <b>潜在的<a class= "style1"href="..\lifecycle_control\refcnt_introduce.htm">引用计数</a>问题 </b>
+        <p>按照面向接口编程的思想，对哪个接口AddRef，就要对哪个来Release。比如下面的例子： </p>
+        
+<pre class= code>
+CAR文件代码片断：
+    ...
+    interface IMail {
+        SendMail();
+        RecvMail();
+    }
+    
+    applet TMail {
+        interface IMail;
+    }
+
+C++文件代码片断1：
+    ....
+    ec = TMail::New(&pMail);
+    pApplet = IApplet::Probe(pMail);
+
+//   pApplet->AddRef();
+//   pMail->Release();
+</pre>
+    <p>通常被注释的两行代码可以被省略，因为它们都指向同一个对象，两下操作抵消，加上那两句反而降低效率。但如果是下面的情形就要注意了：</p>
+
+<pre class= code>
+C++文件代码片断2：
+    ...
+    ec = TMail::New(&pApplet);
+    pMail = IMail::Probe(pApplet); 
+    
+    pMail->AddRef();
+    pApplet->Release();
+</pre>        
+        <p>由于创建TMail对象时，会先创建其父类对象TApplet，此时通过pApplet查询pMail时，pMail与pApplet指向了不同的对象，对其中一个的AddRef不会作用到另一个身上，如果还如之前一样省略代码，会导致pApplet不会被释放（成为mem leak），而pMail被多释放一次（导致pMail非预期情况下变成无效指针）。 </p>
+    <b>applet的几种获得退出的通知方式 </b>
+        <p>1，通过<a class="style1"href="API\AtFinish.htm">CApplet::AtFinish</a>注册托管函数，这种方式是针对applet内部运行的代码，使用户可以在applet即将退出时做相关资源清理的工作。 </p>
+        <p>2，注册<a class="style1"href="IAppletEvents.htm">JAppletEvents::Finishing</a>回调事件，这种方式主要为applet之外运行的代码使用，当然内部也可以用，这是一个异步回调事件，当这个applet的回调循环结束，并且将所有通过CApplet::AtFinish()托管的函数都调用完成以后，会发出这个事件，随后就准备退出applet的主线程。 </p>        
+        <p>3，调用<a class="style1"href="IApplet\WaitUntilFinished.htm">IAppet::WaitUntilFinished(timeOut, &waitResult)</a>方法，这个方法将采用同步阻塞方式调用，如果返回NOERROR，则表示applet的主线程已经结束退出，如果超过timeOut所设定的时间，则返回E_TIME_OUT。</p>
+        <p>这个方法主要是给类似于applet manager之类的程序使用，因为这个manager可能要确保它退出之前所有它所启动的applet都已结束。就如同进程主线程要join子线程结束后再退出一样。
+ </p>
+        <p>另外，JAppletEvents::MainCompleted事件和JAppletEvents::Finishing事件是一定会发出的，但要选择恰当的注册时机，最好是在applet的New之后，调用IApplet::Start方法之前，否则由于多线程调度的不确定性，不能保证注册是在事件发生之前或后。 </p>          
+<script>footer("chinese")</script>
+
+</body>
+
+</html>
+
+
+

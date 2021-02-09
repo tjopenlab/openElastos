@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    
+    <volume>内存管理函数</volume>
+    <title>DzMemoryQueryPhysicalBlock</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>查询指定虚址的连续物理内存块  </para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Address</param_type>
+                <param_name> virtualAddr</param_name>
+                <param_note>
+                    <para>指定的虚存地址</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Address * </param_type>
+                <param_name> physicalAddr </param_name>
+                <param_note>
+                    <para>对应的连续物理内存的物理地址</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> MemorySize *</param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>对应的连续物理内存的大小，以字节为单位</para>
+                </param_note>
+            </api_param>
+        
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定虚址无效，或者两个out参数均为空</td>
+            </tr>
+            <tr>
+                <td> E_DOES_NOT_EXIST </td><td>没有映射物理内存</td>
+            </tr>
+        </table>
+
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+</manpage>

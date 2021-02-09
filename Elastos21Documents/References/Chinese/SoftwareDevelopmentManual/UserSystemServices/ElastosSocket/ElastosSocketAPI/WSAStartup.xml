@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\user_com_interface\elasock\sam01\server">WSAStartup</sample>
+    <volume>elasock API</volume>
+    <title>WSAStartup</title>
+    <routine_idx>ElastosSocketIndex.htm</routine_idx>
+
+    <description>
+        <para>对ElSocket.dll进行初始化。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>WORD</param_type>
+                <param_name>wVersionRequested</param_name>
+                <param_note>
+                    <para>[in]elasock版本号，《Elastos》支持的版本号为0x0101,高位字节和低位字节大于0x01的值将被舍入到0x01。两个字节中任一个为0将返回WSAVERNOTSUPPORTED错误。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>LPWSADATA</param_type>
+                <param_name>lpWSAData</param_name>
+                <param_note>
+                    <para>[in]指向<link url="DataType\wsadata.htm">WSADATA</link>数据结构的指针，用来接收版本的有关信息。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，返回0；否则返回指定的错误值，下表为可能的错误值：</para>
+        <table>
+                <th>
+                <td>错误值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>WSASYSNOTREADY</td><td>协议栈未准备好。</td>
+            </tr>
+            <tr>
+                <td>WSAVERNOTSUPPORTED</td><td>elasock版本号错误。</td>
+            </tr>
+        </table>
+        <para>如果WSAStartup失败，即使是elasock正常工作的话，也不能通过调用<link url="WSAGetLastError.htm">WSAGetLastError</link>来决定这个错误的代码。因为在失败的情况下，最后存储的错误信息在客户数据区域是不能确定的。</para>
+    </return>
+
+    <remarks>
+        <para>WSAStartup必须是第一个被应用程序或DLL调用的elasock API函数。它允许一个应用程序或DLL指明elasock的版本号，并且重新获得elasock实现的详细资料。调用WSAStartup成功后，这个应用程序才能进一步调用其他的elasock API函数。</para>
+        <para>考虑到以后的版本发展和具体实现，WSAStartup将检查应用程序所需的版本。如果版本高于elasock支持的最低版本，则调用成功并且在wHighVersion中返回它所支持的最高版本，在wVersion中返回它的高版本和wVersionRequested中的较小者。然后elasock会假设应用程序将使用wVersion。如果WSADATA结构中的wVersion域对调用方来说不可接收，则初始化失败。</para>
+        <para>如果一个应用程序或者DLL需要得到WSADATA结构信息不止一次，可以继续通过相互调用WSAStartup和<link url="WSACleanup.htm">WSACleanup</link>，指定由elasock所支持的任何版本号。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>WSACleanup</ref_name>
+            <ref_url>WSACleanup</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

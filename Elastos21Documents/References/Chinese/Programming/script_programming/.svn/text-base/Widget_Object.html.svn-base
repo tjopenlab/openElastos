@@ -1,0 +1,617 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>预定义对象Widget参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="Script_Language.html"><span>XmlGlue支持的脚本语言</span></a></li>
+    <li><a href="XmlGlue_CAR.html"><span>脚本中的CAR构件及其使用</span></a></li>
+    <li class="current"><a href="XmlGlue_Globals.html"><span>预定义对象</span></a></li>
+  </ul>  
+ </div>
+ <div class="tabs"> 
+  <ul>
+    <li><a href="Event_Object.html"><span>预定义对象Event参考</span></a></li>
+    <li><a href="Locale_Object.html"><span>预定义对象Locale参考</span></a></li>
+    <li><a href="LocaleManager_Object.html"><span>预定义对象LocaleManager参考</span></a></li>
+    <li><a href="Arguments_Object.html"><span>预定义对象Arguments参考</span></a></li>
+    <li class="current"><a href="Widget_Object.html"><span>预定义对象Widget参考</span></a></li>
+  </ul>  
+</div>
+<h1>预定义对象Widget参考</h1>
+<p>
+
+<p>
+<p><font color="red"><b>注意</b></font>：如无特别声明，本节中所有示例的采用的脚本语言为Lua。
+<hr><h2>方法</h2>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Widget:Load           </td>
+          <td>(</td>
+          <td class="paramtype">[in] U8String </td>
+          <td class="paramname"><em>url</em>，</td><td>&nbsp;</td>
+        </tr>
+        <tr>
+	        <td class="paramkey"></td>
+        	<td></td>        	
+          <td class="paramtype">[out] IWidgetView ** </td>
+          <td class="paramname"><em>view</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+从当前视图上加载另一个视图。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>url</em>&nbsp;</td><td>-所加载的视图源文件（.xgl）的路径。此路径为相对路径，即相对于当前视图源文件的所加载的视图源文件的路径。同时,使用&lt;parameters&gt;和&lt;parameter&gt;可在路径中还可以传递视图的相关参数，用法为Load('xxx.xgl?argument1=value1...&argumentn=valuen'),各参数之间用"&"连接。</td></tr>
+   <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>view</em>&nbsp;</td><td>-指向IWidgetView接口指针的指针，用于获取视图加载成功后的接口指针。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>备注:</b></dt><dd>
+<p>加载视图，仅仅是将一个事先已定义的视图加载进来。所加载视图的状态可以事先指定为显示为不显示。如果已指定为显示状态，那么加载此视图后，其状态即为显示状态;反之，则需调用相应的视图显示方法Show/ShowDialog将其显示出来。</p>	
+</div>
+</div>
+<p>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Widget:Show           </td>
+          <td>(</td>
+          <td class="paramtype">[in] U8String </td>
+          <td class="paramname"><em>url</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+从当前视图上加载另一个视图。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>url</em>&nbsp;</td><td>-所加载的视图源文件（.xgl）的路径。此路径为相对路径，即相对于当前视图源文件的所加载的视图源文件的路径。同时,使用&lt;parameters&gt;和&lt;parameter&gt;可在路径中还可以传递视图的相关参数，用法为Show('xxx.xgl?argument1=value1...&argumentn=valuen'),各参数之间用"&"连接。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>备注:</b></dt><dd>
+<p>此方法不返回任何代表视图的句柄。待程序执行关闭此视图以后，此视图将自动被销毁。</p>	
+</div>
+</div>
+<p>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Widget:ShowDialog          </td>
+                  <td>(</td>
+          <td class="paramtype">[in] U8String </td>
+          <td class="paramname"><em>url</em>,</td><td>&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="paramkey"></td>
+        	<td></td>
+          <td class="paramtype">[in] IForm *&nbsp;</td>
+          <td class="paramname"> <em>owner</em>,</td><td>&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="paramkey"></td>
+        	<td></td>
+          <td class="paramtype">[out] VARIANT *&nbsp;</td>
+          <td class="paramname"> <em>result</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+加载一个视图并以模式对话框方式显示此视图，返回一个VARIANT类型的对话框的返回值。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>url</em></td><td>-所加载的视图源文件（.xgl）的路径。此路径为相对路径，即相对于当前视图源文件的所加载的视图源文件的路径。同时,使用&lt;parameters&gt;和&lt;parameter&gt;可在路径中还可以传递视图的相关参数，用法为ShowDialog('xxx.xgl?argument1=value1...&argumentn=valuen'),各参数之间用"&"连接。</td></tr>
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>owner</em>&nbsp;</td><td>-指向IForm接口类型的指针，用于设置窗体的拥有者。</td></tr>
+      <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>result</em>&nbsp;</td><td>-用于获取对话框的返回值。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>备注:</b></dt><dd>
+<p>使用此方法加载的视图本身会在该方法返回之前被销毁。</p>	
+</div>
+</div>
+<p>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Widget:GetMainView           </td>
+          <td>(</td>
+          <td class="paramtype">[out] IWidgetView **</td>
+          <td class="paramname"><em>view</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+获取当前视图的父视图。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+      <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>view</em>&nbsp;</td><td>-指向IWidgetView接口指针的指针，用于获取视图加载成功后的接口指针。</td></tr>
+  </table>
+</dl>
+</div>
+</div>
+<p>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Widget:GetWorkingDir         </td>
+          <td>(</td>
+        </tr>
+        <tr>
+	        <td class="paramkey"></td>
+        	<td></td>        	
+          <td class="paramtype">[out] U8StringBuf&lt;MAX_WIDGET_PATH_LENGTH&gt; </td>
+          <td class="paramname"><em>path</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获得当前视图的所在的目录，为绝对路径。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+
+   <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>path</em>&nbsp;</td><td>-当前视图的所在的目录，且此目录为绝对路径,最长路径长度为256。</td></tr>
+  </table>
+</dl>
+</div>
+</div>
+<p>
+<b>备注：</b>
+<p>对于在需加载的视图中定义的全局的脚本函数，用户可以在加载此视图后调用之。其作用是在涉及多页面交互时可缩短响应的时间，提高实时性。
+<p>例如，一个View里定义了一个全局的脚本函数foo：
+<pre>
+function foo(str, num, obj)
+  print(obj)
+  return str .. " aha, " .. num
+end
+</pre>
+<p>则该方法可以在该View被加载后:
+<pre>
+	v = Widget:Load("someviewpath")
+</pre>	
+<p>再通过以下这种方式调用之：
+<pre>
+  v:foo("hello", 123, someObj)
+</pre>
+<p>同时，对于这个全局函数的相关约束如下：
+<p>对于要做这种调用的脚本函数，其参数只能是数字或字符串或CAR构件对象或空（nil），其返回值类型也只能是这几者之一，并且只能有一个返回值（一般Lua函数可以返回多个值）。		
+
+<hr><h2>属性</h2> 
+<ul>
+	<li><b>MainView</b>
+	<p>获取当前视图的父视图。</p>
+	<li><b>Properties</b>
+	<p>通过Widget.Properties.xxx或Put方法去设置一些值会自动保存至.Properties的配置文件中，当程序正常结束时此文件在当前视图所在的目录下创建。此文件记录了用户在当前视图中的创建相关属性及其值，且以键值对的形式存在。同时属性的值只能是数字或字符串。若多个视图源文件处于同一级目录，还支持在另一个视图取已设置的属性值或为同一个属性重新赋值。	
+
+<p>相关方法
+  <a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+  <div class="memitem">
+  <div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Properties:Put           </td>
+          <td>(</td>
+          <td class="paramtype">[in] U8String </td>
+          <td class="paramname"><em>name</em>,</td><td>&nbsp;</td>
+        </tr>
+        <tr>
+        	<td class="paramkey"></td>
+        	<td></td>
+          <td class="paramtype">[in] U8String  &nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设定一个属性及其值。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>-属性名。</td></tr>
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>-属性值。其值可为数字或字符串。当属性值为字符串时，此字符串中不能含有一些特定字符，这些字符包括“=”和换行符等。</td></tr>
+  </table>
+</dl>
+</div>
+</div>
+<p>
+ 	<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+  <div class="memitem">
+  <div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Properties:Get           </td>
+          <td>(</td>
+          <td class="paramtype">[in] U8String </td>
+          <td class="paramname"><em>name</em>,</td><td>&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="paramkey"></td>
+        	<td></td>
+          <td class="paramtype">[out,callee] U8StringBuf  **&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取一个属性的值。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>-指定的属性名。</td></tr>
+  <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>-属性值。</td></tr>
+  </table>
+</dl>		
+</div>
+</div>
+
+<p> 
+  <li><b>Globals</b>
+  <p>使用此属性并通过相关方法可创建一个或多个全局变量的值，同时获取已设定的变量值。从而实现使这些全局变量可以在多个视图间的传递。
+  <p>
+相关方法
+  <a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+  <div class="memitem">
+  <div class="memproto"> 
+      <table class="memname">
+        <tr>
+          <td class="memname">Globals:Put           </td>
+          <td>(</td>
+          <td class="paramtype">[in] U8String </td>
+          <td class="paramname"><em>name<em>,</td><td>&nbsp;</td>
+        </tr>
+        <tr>
+        	<td class="paramkey"></td>
+        	<td></td>
+          <td class="paramtype">[in] VARIANT  &nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设定一个全局变量及其值，以键值对形式存在。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>-属性名。</td></tr>
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>-属性值。其类型为数字或字符串。</td></tr>
+  </table>
+</dl>
+</div>
+</div><p>
+ 	<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+  <div class="memitem">
+  <div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Globals:Get           </td>
+          <td>(</td>
+          <td class="paramtype">[in] U8String </td>
+          <td class="paramname"><em>name<em>,</td><td>&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="paramkey"></td>
+        	<td></td>
+          <td class="paramtype"> [out] VARIANT * &nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取一个全局变量的值。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>-指定的属性名。</td></tr>
+   <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>-返回的属性值。</td></tr>
+  </table>
+</dl>		
+</ul>  
+<div class="memdoc"> 
+<hr><h1>视图对象View参考</h1>
+<p>一个xgl文件所描述的UI及其逻辑为一个视图（View），对应的文件为视图文件。
+<p>当使用Widget对象获得一个视图后，我们便可以使用视图对象View的IWidgetView相关方法来操作视图或判断视图的状态。
+<p>
+
+<hr><h2>IWidgetView接口方法</h2>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a name="A"><font color="black">Show</font></a>         </td>
+          <td>(</td>
+          <td class="paramtype">[in] Boolean </td>
+          <td class="paramname">show</td>
+          </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+使视图处于显示或不显示的状态。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>show</em>&nbsp;</td><td>-Boolean型的值，当为true时则显示视图，反之不显示视图。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>备注:</b></dt><dd>
+<p>当所加载的视图为非显示状态时，可调用此方法将其设定为显示状态。
+</dl>
+</div>
+</div>
+<p>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Close           </td>
+          <td>(</td>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+关闭视图。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt></tt>&nbsp;</td><td valign="top"><em></em>&nbsp;</td><td>无。</td></tr>
+  </table>
+</dl>
+</div>
+</div>
+<p>
+
+ <a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+  <div class="memitem">
+  <div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ShowDialog           </td>
+          <td>(</td>
+          <td class="paramtype">[in] IForm * </td>
+          <td class="paramname"><em>owner</em>,</td><td>&nbsp;</td>
+        </tr>
+        <tr>
+	        <td class="paramkey"></td>
+        	<td></td>        	
+          <td class="paramtype">[out] Int32 * </td>
+          <td class="paramname"><em>dialogResult</em></td><td>&nbsp;</td>
+       </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+按模式对话框方式显示窗体。
+<table><tr><td>其步骤如下：</td><td>1.dialog = Widget:Load('xxx.xgl'); 得到一个视图对象。</td></tr>
+<tr><td></td><td>2.通过ShowDialog方法以对话框形式显示该页面。</td></tr>
+<tr><td></td><td>3.对话框可以通过 <a href="../../SoftwareDevelopmentManual/UserSystemServices/Vinci/elactrl/interface/IForm/Close.htm">Close()</a>或者 <a href="../../SoftwareDevelopmentManual/UserSystemServices/Vinci/elactrl/interface/IForm/SetDialogResult.htm">SetDialogResult()</a>方法返回到owener页面。</td></tr>
+</table>
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>owner</em>&nbsp;</td><td>-指向IForm接口类型的指针，用于设置窗体的拥有者。</td></tr>
+      <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>dialogResult</em>&nbsp;</td><td>-指向Int32型的指针，用于获取对话框的返回值。</td></tr>
+  </table>
+</dl>
+</div>
+</div>
+<p>	
+		
+	
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IsVisible           </td>
+           <td>(</td>
+          <td class="paramtype">[out] Boolean *</td>
+          <td class="paramname">visible</td>
+          </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>	
+判断视图是否可见。
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>visible</em>&nbsp;</td><td>-视图当前的可视状态，Ture为处于可视状态，False为处于非可视状态。 
+</td></tr>
+  </table>
+</dl>
+</div>
+</div>    		
+<p>	
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetForm           </td>
+           <td>(</td>
+          <td class="paramtype">[out]IForm ** </td>
+          <td class="paramname">form</td>
+          </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+获取一个视图对应的窗体。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>form</em>&nbsp;</td><td>-指向IForm接口指针的指针,用于获取视图对应的窗体。</td></tr>
+  </table>
+</dl>
+</div>
+</div>
+<p>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GetObject           </td>
+          <td>(</td>
+          <td class="paramtype">[in] U8String </td>
+          <td class="paramname"><em>name</em>,</td><td>&nbsp;</td>
+        </tr>
+        <tr>
+	        <td class="paramkey"></td>
+        	<td></td>        	
+          <td class="paramtype"> [out] VARIANT *  </td>
+          <td class="paramname"><em>obj</em></td><td>&nbsp;</td>
+       </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+取得一个已加载视图（View）里定义为Global的字符串、数值或者CAR对象类型。
+<p>
+<b>备注：</b>
+<p>任何通过XML标签里定义的对象(例如实例化了一个button实例）都是该View的全局变量。
+<p>在脚本（Lua）中的用法如：
+<pre>	
+local v = Widget:Load("xxx.xgl?...")
+local s = v:GetObject("abc")
+</pre>
+其中abc所对应的对象只能是字符串、数值或者CAR对象类型。
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>-参数名。参数类型为字符串、数值或者CAR对象类型。</td></tr>
+      <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>obj</em>&nbsp;</td><td>-返回的对象指针。</td></tr>
+  </table>
+</dl>
+</div>
+</div>           
+<script>footer("chinese")</script>
+</body>
+</html>

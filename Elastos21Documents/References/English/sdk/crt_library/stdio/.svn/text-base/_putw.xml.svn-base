@@ -1,0 +1,105 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_putw">_putw</sample>
+    <title> _putw </title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes an integer to a file.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_putw</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Binary integer to be output. </para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>fp</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure. </para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns the value written if successful. A return value of EOF may indicate an error of input data. Because EOF is also a legitimate integer value, use feof or ferror to verify an error.</para>
+    </return>
+
+    <remarks>
+        <para>The _putw function writes a binary value of type int to the current position of stream. Portability problems may occur with _putw because the size of an int and the ordering of bytes within an int differ across systems.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_putw</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _putw.cpp: This program uses _putw to write a
+ * word to a stream, then performs an error check.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    FILE *stream;
+    unsigned u;
+    if ((stream = fopen(&quot;data.out&quot;, &quot;wb&quot;)) == NULL) {
+        printf(&quot;problem open the file!\n&quot;);
+        exit(1);
+    }
+    for (u = 0; u &lt; 10; u++) {
+        _putw(u + 0x2130, stdout);
+        _putw(u + 0x2130, stream);    /* Write word to stream. */
+        if (ferror(stream)) {            /* Make error check. */
+            printf(&quot;_putw failed&quot;);
+            clearerr(stream);
+            exit(1);
+        }
+    }
+    printf(&quot;Wrote ten words\n&quot;);
+    fclose(stream);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+0!  1!  2!  3!  4!  5!  6!  7!  8!  9!  Wrote ten words
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_getw</ref_name>
+            <ref_url>_getw</ref_url>
+        </reference>
+    </references>
+
+</manpage>

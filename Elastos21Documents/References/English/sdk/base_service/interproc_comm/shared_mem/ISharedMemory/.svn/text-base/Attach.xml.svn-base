@@ -1,0 +1,137 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface </volume>
+<interface>ISharedMemory</interface><method> Attach </method>
+    <description>
+        <para>
+        	Map the shared memory to process space.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> MemoryProtection  </param_type>
+                <param_name> protect </param_name>
+                <param_note>
+                    <para>
+						Specify the protection range of mapping to the process space.It contains the protection range as follows
+                    </para>
+                </param_note>
+           <table>
+           <thead>
+           <td> Protection Range</td>
+           <td> Value</td>
+           <td>Description</td>
+           </thead>
+           <tr>
+           <td>MemoryProtection_Read</td>
+           <td>0x01</td>
+           <td>Can read</td>
+           </tr>
+           <tr>
+           <td>MemoryProtection_Write</td>
+           <td>0x02</td>
+           <td>Can write</td>
+           </tr>
+            <tr>
+           <td>MemoryProtection_RW</td>
+           <td>0x03</td>
+           <td>Can read and write</td>
+           </tr>
+           <tr>
+           <td>MemoryProtection_VMem</td>
+           <td>0x00000018</td>
+           <td></td>
+           </tr>
+           <tr>
+           <td>MemoryProtection_RWIO</td>
+           <td>0x0000000b</td>
+           <td>Can read and write</td>
+           </tr>
+           <tr>
+           <td>MemoryProtection_RWVM</td>
+           <td>0x0000001b</td>
+           <td>Can read and write</td>
+           </tr>
+           </table>
+            </api_param>
+        </parameters>
+       <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Address * </param_type>
+                <param_name> pAddress </param_name>
+                <param_note>
+                    <para>
+						The starting and ending address in process space to which it will return after succeeding,which can not be null
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value</td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>NOERROR</td>
+		<td>0x00000000</td>
+		<td>Function succeeds in mapping the shared memory to process space.</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALID_ARGUMENT</td>
+		<td>0x80070057</td>
+		<td>Invalid argument(s)</td>
+	    </tr>   <tr>
+		<td>E_OUT_OF_MEMORY</td>
+		<td>0x8007000E</td>
+		<td>Insufficient memory</td>
+	    </tr>
+	</table>
+            <para>References <link url="/sdk/reference/basic_data_type/hresult.htm"> ECODE </link> for correlative help.</para>
+    </return>
+
+	<remarks>
+		<para>
+		 	 Usually we can create a kernel shared memory object by <link url="..\..\system_lib\EzCreateSharedMemory.htm">
+		 	 EzCreateSharedMemory</link>, tie the shared memory and virtual address with the method Attach by return 
+		 	 interface pointer, and then do read-write operation to the space of this virtual address. Shared memory of 
+		 	 other processes can be found by <link url="..\..\system_lib\EzFindService.htm">EzFindService</link> and 
+		 	 corresponding operations can be done.
+		</para>
+		<para>
+		 	One ISharedMemory interface can be attached many times in a process with Attach function, but only the first 
+		 	one will succeed. This mapping can be detached from process address space with the method 
+		 	<link url="Detach.htm">Detach</link>.
+		</para>
+		<para>
+			One IShareMemory interface can be attached in many processes. The virtual addresses, which it will return 
+			in every process are the same.
+		</para>
+		<para>
+		 	pAddress must be a valid address pointer, can not be NULL.
+		</para>
+		<para>
+		 	Release must be called to release this pointer after using shared memory interface pointer.
+		</para>
+		
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				  Windows 2000 or later; Elastos2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

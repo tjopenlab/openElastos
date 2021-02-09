@@ -1,0 +1,54 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface </volume>
+<interface>IEvent</interface><method> Clear </method>
+    <description>
+        <para>
+         	Clears the notification of the event object.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+			<td>Return Value </td>
+			
+			<td>Description</td>
+	    </th>
+	    <tr>
+			<td>NOERROR</td>
+			<td>Function succeeds in clearing the notification of the event object.</td>
+	    </tr>
+	    <tr>
+			<td>E_INVALID_ARGUMENT</td>
+			<td>Invalid argument(s)</td>
+	    </tr>
+	</table>
+    		    <para>See <link url="..\..\..\..\reference\basic_data_type\hresult.htm">ECODE</link> for related help.</para>   
+    </return>
+
+	<remarks>
+		<para>
+			The method clears the notification of the event object, manually, and all waiting threads will
+			be blocked after the notification is cleared.
+		</para>
+		<para>
+			An auto cleared event object clears its notification as soon as a waiting thread is woken up.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

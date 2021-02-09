@@ -1,0 +1,146 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>IApplet接口方法介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>IApplet接口方法介绍</h2>
+    <p>IApplet接口继承了接口IAppletTaskSpecific，其方法需要用户去实现；IApplet接口其它方法均由系统实现。</p>
+    <p>&nbsp&nbsp <b>系统实现</b>的方法不会生成在前台代码框架里，由后台代码默认实现。</p>
+    <p>&nbsp&nbsp <b>用户实现</b>的方法，则会自动生成在前台框架代码中，需要用户填充。</p>
+        <table>
+            <thead>
+                <td>方法</td>
+                <td>功能描述</td>
+                <td>实现者</td>
+            </thead>
+            <tr>
+                <td><a class="style1" href="IApplet\Start.htm">Start</a></td>
+                <td>启动applet</td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\Finish.htm">Finish</a></td>
+                <td>结束applet的消息循环，使applet线程结束</td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\GetMainThread.htm">GetMainThread</a></td>
+                <td>获取applet的主线程，即其消息处理线程</td>
+                <td>系统实现</td>
+             </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\GetStatus.htm">GetStatus</a></td>
+                <td>获取applet状态。</td>
+                <td>系统实现</td>
+            </tr>
+
+            <tr>
+                <td><a class="style1" href="IApplet\SetPriorityRank.htm">SetPriorityRank</a></td>
+                <td>设置applet的优先级</td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\GetPriorityRank.htm">GetPriorityRank</a></td>
+                <td>获取applet的优先级</td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\GetAllThreads.htm">GetAllThreads</td>
+                <td>获取applet内部的所有子线程</td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+               <td><a class="style1" href="IApplet\GetStartTime.htm">GetStartTime</td>
+               <td>获取applet的开始运行时间</td>
+               <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\Idle.htm">Idle()</td>
+                <td>通知applet其消息队列为空</td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\WaitUntilFinished.htm">WaitUntilFinished</a></td>
+                <td>等待applet主线程结束退出</td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\SetCurrentDirectory.htm">SetCurrentDirectory </a></td>
+                <td> 设置当前applet（其dll）的路径 </td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\GetCurrentDirectory.htm"> GetCurrentDirectory </a></td>
+                <td> 获取applet（其dll）所在路径。</td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\GetCurrentDirectoryInStorage.htm">GetCurrentDirectoryInStorage</a></td>
+                <td>获得当前applet在不同盘符的当前路径 </td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\SetEnvironmentVariable.htm">SetEnvironmentVariable  </a></td>
+                <td> 设置当前applet的环境变量</td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\GetEnvironmentVariable.htm">GetEnvironmentVariable  </a></td>
+                <td> 获得当前applet的环境变量</td>
+                <td>系统实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\GetAllForms.htm">GetAllForms  </a></td>
+                <td> 获得application的所有Form</td>
+                <td>系统实现</td>
+            </tr>
+
+        </table>
+        
+<h3>IAppletTaskSpecific接口</h3>
+    <p>&nbsp&nbsp 用户实现的每个applet类会默认实现此接口，其方法都会被自动包含在前台框架代码中，用户可以在此代码框架中添加自己的代码，实现所需功能。详见下表：</p>
+    <table>        
+            <tr>
+                <td>Activate()</td>
+                <td>使applet激活</td>
+                <td>用户实现 </td>
+            </tr>
+            <tr>
+                <td>Deactivate()</td>
+                <td>使applet无效</td>
+                <td>用户实现 </td>
+            </tr>
+            <tr>
+                <td>IsActivated([out] Boolean *activated)</td>
+                <td>判断applet当前是否激活</td>
+                <td>用户实现 </td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\SnoozeWakeup.htm">Snooze()</a></td>
+                <td>使applet休眠</td>
+                <td>用户实现</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="IApplet\SnoozeWakeup.htm">Wakeup()</a></td>
+                <td>将applet从snooze状态唤醒</td>
+                <td>用户实现 </td>
+            </tr>
+            <tr>
+                <td>GetName([out] WStringBuf<256> name)</td>
+                <td>获取applet的名称</td>
+                <td>用户实现</td>
+            </tr>
+    </table>
+    <p></p>
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICallRecord</interface><method> GetLastCallInfo </method>
+    <description>
+        <para>
+            获取最后一次通话记录信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf </param_type>
+                <param_name> esbNumber </param_name>
+                <param_note>
+                    <para>
+返回最后通话的电话号码                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pnTime </param_name>
+                <param_note>
+                    <para>
+指向INT类型的指针，用于返回最后通话时间                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pnDuration </param_name>
+                <param_note>
+                    <para>
+指向INT类型的指针，用于返回呼叫时长                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pnType </param_name>
+                <param_note>
+                    <para>
+指向INT类型的指针，用于返回呼叫类型                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功时，返回S_OK；参数错误，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

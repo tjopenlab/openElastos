@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址簿引擎</volume>
+<interface>IContactGroup</interface><method> SetFieldValue </method>
+    <description>
+        <para>
+            设置组记录的字段值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> nGrpField </param_name>
+                <param_note>
+                    <para>
+组记录的字段                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esValue </param_name>
+                <param_note>
+                    <para>
+组记录的字段值                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果内存不足，返回E_AB_OUT_OF_MEMORY。</para><para>            其他参见            <link url="../../ab_error.htm">            地址簿错误返回值列表            </link>            。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            如果参数nGrpField指定的字段已存在，则更新该字段的值；如果不存在，则新建一个字段节点。
+        </para>
+    </remarks>
+    <references>
+        <reference>
+            <ref_name>GetFieldValue</ref_name>
+            <ref_url>GetFieldValue</ref_url>
+        </reference>
+    </references>
+</manpage>

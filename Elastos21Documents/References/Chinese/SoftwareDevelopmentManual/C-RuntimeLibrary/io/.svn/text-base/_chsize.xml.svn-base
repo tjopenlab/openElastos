@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_chsize">_chsize</sample>
+    <title> _chsize</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>改变文件的大小。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_chsize</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>打开文件的句柄</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>文件的新的长度，以字节为单位</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果成功改变文件的大小，则返回0；出错则返回-１，将错误号(errno)设置为下列常量之一：</para>
+        <table>
+    	    <th>
+    	        <td>错误号</td>
+    	        <td>描述</td>
+    	    </th>
+            <tr>
+                <td>EACCES</td>
+                <td>指定文件被锁定，不能进行该操作</td>
+            </tr>
+            <tr>
+                <td>EBADF</td>
+                <td>指定文件为只读文件，或者句柄是非法的</td>
+            </tr>
+            <tr>
+                <td>ENOSPC</td>
+                <td>设备上没有足够剩余空间进行此操作</td>
+            </tr>
+            <tr>
+               <td>EINVAL</td>
+               <td>文件的新长度(参数size)应该大于0</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>根据参数size指定的长度，_chsize函数扩展或截短与句柄handle向关联的文件。该文件必须打开，并且是可写模式。当文件被扩展时，文件的扩展部分将添加空字符（“\0”）。如果文件被截短，从被截短的文件末尾到原始文件长度部分的数据将全部丢失。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_chsize</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _chsize.cpp:This program uses _filelength to report the size
+ * of a file before and after modifying it with _chsize.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;fcntl.h&gt;
+
+int main()
+{
+    int fh = 0, result = 0;
+
+    /* Open a file */
+    if ((fh = _open(&quot;data&quot;, _O_RDWR | _O_CREAT, _S_IREAD
+                         | _S_IWRITE))  != -1) {
+        printf(&quot;File length before: %ld\n&quot;, _filelength(fh));
+        if ((result = _chsize(fh, 329678)) == 0)
+            printf(&quot;Size successfully changed\n&quot;);
+        else
+            printf(&quot;Problem in changing the size\n&quot;);
+        printf(&quot;File length after:  %ld\n&quot;, _filelength(fh));
+        _close(fh);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File length before: 0
+Size successfully changed
+File length after:  329678
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>_creat</ref_name>
+            <ref_url>_wcreat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_close</ref_name>
+            <ref_url>_close</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_open</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

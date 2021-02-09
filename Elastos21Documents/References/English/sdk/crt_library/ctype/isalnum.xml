@@ -1,0 +1,79 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\isalnum">isalnum</sample>
+    <title>isalnum iswalnum</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>Returns true if c is an alphanumeric character (a letter or number).In other words, if either isalpha or isdigit is true of a character, then isalnum becomes true too.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>isalnum </func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Input integer</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>isalnum  returns a non-zero value if either isalpha or isdigit is true for c,i.e. if c is within ranges A - Z, a - z or 0 - 9. This routine returns 0 if c does not satisfy the test condition.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>isalnum </routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* isalnum.cpp: This program uses isalnum to verify c
+ * whether it is an alphanumeric(A – Z，a – z or 0 – 9).
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+{
+    int c = 100;
+    if (isalnum(c)) {
+        printf(&quot;it is a particular representation&quot;
+            &quot; of an alphanumeric character.\n&quot;);
+    }
+    else {
+        printf(&quot;it is not a particular representation &quot;
+                &quot;of an alphanumeric character.\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+it is a particular representation of an alphanumeric character.
+</result>
+
+
+
+</manpage>

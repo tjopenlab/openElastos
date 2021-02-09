@@ -1,0 +1,80 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzExitThread"> EzExitThread </sample>
+    <volume>System API</volume>
+    <title>CThread::Quit</title>
+    <routine_idx> ..\thread_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> QuitCode </param_type>
+                <param_name> quitCode </param_name>
+                <param_note>
+                    <para>
+                    [in] Quit code .	 Caller can still get exit code by calling <link url=
+    		"../proc_thd/IThread/GetFinishCode.htm">IThread::GetFinishCode</link>
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+    	<thead>
+    	<td>Return value</td>
+    	<td>Description</td>
+    	</thead>
+    	<tr>
+    	<td>NOERROR</td>
+    	<td>Succeeds in quitting the thread</td>
+    	</tr>
+    	</table>
+    </return>
+
+    <remarks>
+    	<para>
+    		This function will exit the current thread. After this function is invoked, all codes in the program will no longer be executed any more.
+    	</para>
+    	<para>
+    		If other threads are holding the pointer of the current thread, the current thread object will not get 
+    		destroyed by invoking this function .If all pointers to current thread are freed, then this thread object will no longer exist.
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+    <reference>
+        <ref_name>CProcess::Exit</ref_name>
+        <ref_url>EzExitProcess</ref_url>
+    </reference>
+    </references>
+
+</manpage>

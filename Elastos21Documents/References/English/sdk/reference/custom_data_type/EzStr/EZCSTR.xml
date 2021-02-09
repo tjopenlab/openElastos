@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\EzStr\EZCSTR">EZCSTR</sample>
+    <!-- Add your own title in this tab,otherwise it appears the default one-->
+    <volume> Common Data Structure </volume>
+    <macro> EZCSTR </macro>
+
+    <description>
+        <para>A macro which can transform a single byte string to an EzStr object. It is usually used to initialize a EzStr object.</para>
+    </description>
+
+    <syntax>
+        <return_val> EzStr </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const char* </param_type>
+            <param_name> str </param_name>
+            <param_note>
+                <para>The string which is initialized (single byte width)</para>
+            </param_note>
+        </api_param>
+
+        </parameters>
+    </syntax>
+<!--============= Sections below are optional ===================-->
+    <return>
+        <para>Returns an EzStr object.</para>
+    </return>
+
+    <example></example>
+
+    <remarks>
+        <para>EZCSTR allocates memory on the stack. The allocated memory cannot be freed by <link url="FreeString.htm">FreeString</link>.</para>
+        <para>The parameter must be <red>constant string</red>, you cannot input variable as the parameter of this macro.</para>
+    </remarks>
+
+</manpage>

@@ -1,0 +1,351 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Kortide DCD API: UIControl.car文件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<div class="tabs">
+  <ul>
+    <li><a href="main.html"><span>首页</span></a></li>
+    <li><a href="globals.html"><span>全部</span></a></li>
+    <li><a href="Engineglobals.html"><span>引擎部分</span></a></li>
+    <li class="current"><a href="UIglobals.html"><span>UI部分</span></a></li>
+  </ul>
+</div>
+<h1>DCD 引擎控制部分相关API参考</h1>
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>函数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="_u_i_control_8car.html#f42d50c9dc2c3171b51bc349df313fc7">DCDInitialize</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">DCD引擎初始化.  <a href="#f42d50c9dc2c3171b51bc349df313fc7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="_u_i_control_8car.html#3fc32f3e6cf49f51900a49ea9e815264">DCDStartup</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">启动DCD引擎.  <a href="#3fc32f3e6cf49f51900a49ea9e815264"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="_u_i_control_8car.html#87f95802720a48cd1833357722e4c037">DCDTeminate</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">终止DCD引擎, 系统退出时调用.  <a href="#87f95802720a48cd1833357722e4c037"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">Int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="_u_i_control_8car.html#d2424866f3ee7848c4bcad44ef85a1dc">DCDSetUserAgent</a> (char *pUserAgent)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置请求所用的UserAgent.  <a href="#d2424866f3ee7848c4bcad44ef85a1dc"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="_u_i_control_8car.html#d637649a256a640f90dd8f83950fd40e">DCDSetConfigInfo</a> (DCDScrollType sType, DCDStoreDevice sDevice, DCDUpdateMode mode, bool enabled)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">取得DCD的频道更新模式.  <a href="#d637649a256a640f90dd8f83950fd40e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="_u_i_control_8car.html#1030d6b6ea6a34f44fc047ccdd60a07e">DCDGetConfigInfo</a> (DCDScrollType *pType, DCDStoreDevice *pDevice, DCDUpdateMode *pMode, bool *pEnabled)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取DCD的相关配置.  <a href="#1030d6b6ea6a34f44fc047ccdd60a07e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="_u_i_control_8car.html#418a85bb77bb6a95236fdb6d32d7bacc">DCDGetLastUpdateTime</a> (unsigned long *pTime)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取DCD引擎最近一次成功下载的时间.  <a href="#418a85bb77bb6a95236fdb6d32d7bacc"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="_u_i_control_8car.html#116b94c545b5ad5348b3e246150cf7aa">DCDGetLastUpdateCount</a> (int *nCount)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取DCD引擎最近一次成功下载的所有频道项个数.  <a href="#116b94c545b5ad5348b3e246150cf7aa"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="_u_i_control_8car.html#a9dc9d49d33af1fae5549db5ed0cbab6">DCDManualUpdate</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">手动更新所有的频道内容，用户点击手动更新频道内容时调用此函数.  <a href="#a9dc9d49d33af1fae5549db5ed0cbab6"></a><br></td></tr>
+</table>
+<hr><h2>函数文档</h2>
+<a class="anchor" name="1030d6b6ea6a34f44fc047ccdd60a07e"></a><!-- doxytag: member="UIControl.car::DCDGetConfigInfo" ref="1030d6b6ea6a34f44fc047ccdd60a07e" args="(DCDScrollType *pType, DCDStoreDevice *pDevice, DCDUpdateMode *pMode, bool *pEnabled)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DCDGetConfigInfo           </td>
+          <td>(</td>
+          <td class="paramtype">DCDScrollType *&nbsp;</td>
+          <td class="paramname"> <em>pType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DCDStoreDevice *&nbsp;</td>
+          <td class="paramname"> <em>pDevice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DCDUpdateMode *&nbsp;</td>
+          <td class="paramname"> <em>pMode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool *&nbsp;</td>
+          <td class="paramname"> <em>pEnabled</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取DCD的相关配置.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pType</em>&nbsp;</td><td>- 滚动速度，DCDScrollType_Middle为中速，DCDScrollType_Slow为慢速，DCDScrollType_Fast为快速. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pDevice</em>&nbsp;</td><td>- 永久保存位置：DCDStoreDevice_Phone为手机，DCDStoreDevice_Removable为存储卡. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pMode</em>&nbsp;</td><td>- 频道更新模式.参见DCDUpdateMode定义. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pEnabled</em>&nbsp;</td><td>- 设置DCD开启或关闭.True为开启，false为关闭. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功返回0, 失败返回-1. </dd></dl>
+<dl class="note" compact><dt><b>注解:</b></dt><dd>若某个参数不合法则会被忽略不计. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="116b94c545b5ad5348b3e246150cf7aa"></a><!-- doxytag: member="UIControl.car::DCDGetLastUpdateCount" ref="116b94c545b5ad5348b3e246150cf7aa" args="(int *nCount)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DCDGetLastUpdateCount           </td>
+          <td>(</td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>nCount</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取DCD引擎最近一次成功下载的所有频道项个数.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>nCount</em>&nbsp;</td><td>- 频道项个数存放于该参数. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="418a85bb77bb6a95236fdb6d32d7bacc"></a><!-- doxytag: member="UIControl.car::DCDGetLastUpdateTime" ref="418a85bb77bb6a95236fdb6d32d7bacc" args="(unsigned long *pTime)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DCDGetLastUpdateTime           </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long *&nbsp;</td>
+          <td class="paramname"> <em>pTime</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取DCD引擎最近一次成功下载的时间.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em></em>&nbsp;</td><td>- 返回时间，单位为秒. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功返回0, 失败返回-1. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="f42d50c9dc2c3171b51bc349df313fc7"></a><!-- doxytag: member="UIControl.car::DCDInitialize" ref="f42d50c9dc2c3171b51bc349df313fc7" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DCDInitialize           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+DCD引擎初始化.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>无.</em>&nbsp;</td><td></td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功初始化返回0, 失败返回-1. </dd></dl>
+<dl class="note" compact><dt><b>注解:</b></dt><dd>DCD引擎应用必须一开始调用该函数进行初始化. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="a9dc9d49d33af1fae5549db5ed0cbab6"></a><!-- doxytag: member="UIControl.car::DCDManualUpdate" ref="a9dc9d49d33af1fae5549db5ed0cbab6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DCDManualUpdate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+手动更新所有的频道内容，用户点击手动更新频道内容时调用此函数.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>无.</em>&nbsp;</td><td></td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>如果DCD引擎正在下载数据那么返回1，其他类型的成功值返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d637649a256a640f90dd8f83950fd40e"></a><!-- doxytag: member="UIControl.car::DCDSetConfigInfo" ref="d637649a256a640f90dd8f83950fd40e" args="(DCDScrollType sType, DCDStoreDevice sDevice, DCDUpdateMode mode, bool enabled)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DCDSetConfigInfo           </td>
+          <td>(</td>
+          <td class="paramtype">DCDScrollType&nbsp;</td>
+          <td class="paramname"> <em>sType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DCDStoreDevice&nbsp;</td>
+          <td class="paramname"> <em>sDevice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DCDUpdateMode&nbsp;</td>
+          <td class="paramname"> <em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>enabled</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+取得DCD的频道更新模式.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>sType</em>&nbsp;</td><td>- 滚动速度，DCDScrollType_Middle为中速，DCDScrollType_Slow为慢速，DCDScrollType_Fast为快速. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>sDevice</em>&nbsp;</td><td>- 永久保存位置：DCDStoreDevice_Phone为手机，DCDStoreDevice_Removable为存储卡. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>mode</em>&nbsp;</td><td>- 频道更新模式.参见DCDUpdateMode定义. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>enabled</em>&nbsp;</td><td>- 设置DCD开启或关闭.True为开启，false为关闭. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>执行成功返回0,失败返回-1. </dd></dl>
+<dl class="note" compact><dt><b>注解:</b></dt><dd>若某个参数不合法则会被忽略不计. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d2424866f3ee7848c4bcad44ef85a1dc"></a><!-- doxytag: member="UIControl.car::DCDSetUserAgent" ref="d2424866f3ee7848c4bcad44ef85a1dc" args="(char *pUserAgent)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Int DCDSetUserAgent           </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>pUserAgent</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设置请求所用的UserAgent.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pUserAgent</em>&nbsp;</td><td>- 以'\0'结束的字符串. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功返回0, 失败返回-1. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3fc32f3e6cf49f51900a49ea9e815264"></a><!-- doxytag: member="UIControl.car::DCDStartup" ref="3fc32f3e6cf49f51900a49ea9e815264" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DCDStartup           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+启动DCD引擎.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>无.</em>&nbsp;</td><td></td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功返回0, 失败返回-1. </dd></dl>
+<dl class="note" compact><dt><b>注解:</b></dt><dd>DCD引擎初始化后，必须先设置回调函数，才能调用该函数，该函数调用后，DCD引擎开始工作. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="87f95802720a48cd1833357722e4c037"></a><!-- doxytag: member="UIControl.car::DCDTeminate" ref="87f95802720a48cd1833357722e4c037" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DCDTeminate           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+终止DCD引擎, 系统退出时调用.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>无.</em>&nbsp;</td><td></td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>无. </dd></dl>
+
+</div>
+</div><p>
+<hr size="1"><address style="text-align: right;"><small>
+<a href="http://www.kortide.com.cn">© Kortide Corp.All rights reserved.</a></small></address></body>
+</html>

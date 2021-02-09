@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>
+    <manpage>
+    <volume>同步</volume>
+    <interface> DzMutex Class </interface>
+    <description>
+        <para>互斥体类</para>
+    </description>
+
+    <methods>
+<self>
+
+    <method>
+        <method_name>Mutex Constructor</method_name>
+        <method_url>DzMutex\structure\Mutex</method_url>
+    <m_description>
+        构造互斥体对象
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Lock</method_name>
+        <method_url>DzMutex\Lock</method_url>
+    <m_description>
+        获取互斥体对象
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>TryLock</method_name>
+        <method_url>DzMutex\TryLock</method_url>
+    <m_description>
+        尝试在指定时间间隔内获取互斥体对象
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Unlock</method_name>
+        <method_url>DzMutex\Unlock</method_url>
+    <m_description>
+        释放已占有的互斥体对象
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+
+    <remarks>
+        <para>一个互斥体类的对象代表一个“互斥体”（一种同步对象），通过它可允许一个线程互斥地访问一个资源。</para>
+        <para>互斥体对象在某个时刻仅可以被一个线程所占有，该线程被称为该互斥体对象的属主，其它去获取该互斥体对象的线程将全部进入等待状态，直到互斥体对象的属主释放它，才允许这些等待线程中的一个成功获得到它，其余线程将继续保持等待状态。</para>
+        <para>为了使用互斥体对象，必须在需要时通过互斥体类构造函数<link url="DzMutex/structure/Mutex.htm">DzMutex::Mutex</link>构造它。互斥体对象可以被定义为全局或局部变量，或是被创建在内核堆上。</para>
+        <para>当前线程通过调用<link url="DzMutex\Lock.htm">DzMutex::Lock</link>方法或<link url="DzMutex\TryLock.htm">DzMutex::TryLock</link>方法获取或尝试获取互斥体对象，通过调用<link url="DzMutex\Unlock.htm">DzMutex::Unlock</link>方法释放已占有的互斥体对象。</para>
+        <para>互斥体对象是递归的。这意味着一个已经占有互斥体对象的线程可以再次成功地获取此互斥体对象，但是需要成功调用与已经成功调用的Mutex::Lock方法和Mutex::TryLock方法次数之和相同次数的Mutex::Unlock方法才能最终释放此互斥体对象。</para>
+        <para>在互斥体对象析构前必须保证此互斥体对象处于无属主状态。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>
+

@@ -1,0 +1,33 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>手机应用的烧写步骤</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>手机应用的烧写步骤</h2>
+   <p>这里手机应用的烧写有两种方式。</p>
+   <p>&nbsp;&nbsp;&nbsp;第一种方式：用tmc串口工具直接传送，和上面传送image文件的方式是一样的。</p>
+   <p>&nbsp;&nbsp;&nbsp;第二种方式：用WinImg工具烧写，这里还需要一些硬件工具：MiniSD卡和读卡器，Usb链接线（小口转大口）。</p>
+
+   <h3>下面介绍第二种烧写步聚:</h3>
+   
+   <p>&nbsp;&nbsp;&nbsp;手机应用烧写的硬件需求：MiniSD卡和读卡器，Usb链接线（小口转大口).</p> 
+   <p>&nbsp;&nbsp;&nbsp;手机应用烧写的软件需求：WinImg工具</p>
+   <p>&nbsp;&nbsp;&nbsp;手机应用烧写的烧写步骤：</p>
+<p>&nbsp;&nbsp;&nbsp;1.安装WinImg工具（详细参考WinImg工具安装说明）。</p>
+<p>&nbsp;&nbsp;&nbsp;2.选择要烧录的应用，并将应用分为三个目录存放：</p>
+<p>&nbsp;&nbsp;&nbsp;3.用WinImg工具生成将要烧到手机doc设备上的app.ima文件、data.ima文件、user.ima文件。</p>
+<p>&nbsp;&nbsp;&nbsp;4.将如下的烧写程序和文件（共6个）拷贝到MinSD卡中：3个和欣工具文件：res.exe,res.bat,setenv.bat及在本地生成的三个文件：app.ima,data.ima,user.bat。</p>
+<p>&nbsp;&nbsp;&nbsp;5.主机先运行tmc.exe工具，之后在确定手机处于关键状态，一直按住手机上的是相应键，接上链接主机的USB线。再插入装有烧写数据的sd卡，在tmc的控制台下，进入sd卡分区（如d:盘），执行res.bat程序，进行手机应用的烧写。在烧写过程中，三个ima文件的烧写，都需要用户进行确认，具体为：在tmc控制台中，提示是否烧录，请输入大写的Y（每个ima烧写都要输入一次，否则会烧写失败） </p>
+<p>注意：对于第一次使用TMC的用户，如果TMC的comcons没有任何反应，请先检查主机是否安装了USB驱动。
+<script>footer("chinese")</script>
+</p>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/structuremanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>U8String</class>
+    <method>U8String(const char* pch)</method>
+
+    <description>
+        <para> U8String的构造函数，用于构造一个U8String对象, 并初始化一指定字符串。 </para>
+        <para>U8String继承自AString类，其包含一指向char *的私有成员变量指针，调用此构造函数创建一个U8String对象，并把指针指向一指定字符串。 </para>
+    </description>
+
+    <syntax>
+        <apiname>U8String</apiname>
+        <parameters>
+        <api_param>
+            <param_type> const char* </param_type>
+            <param_name>pch </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>指定的字符串 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+<remarks>
+    <para>值得注意的是：代码中窄串字符的编码是编译器决定的，不一定是UTF8编码。</para>
+    <para> </para>
+    <para>获得UTF8编码可以有以下方法： </para>
+    <para>1.通过AStringBuf::Copy(WString, Encoding_UTF8)。 </para>
+    <para>2.通过U8StringBuf::Copy(WString); </para>
+    <para>3.在文件中存储字符时选择UTF8编码存储，再读取。 </para>
+            
+</remarks>
+<example>
+<pre>
+U8String as("abcd");
+CConsole::WriteLine(as);  //Display : "abcd"
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>U8String()</ref_name>
+        <ref_url>U8String</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>AString()</ref_name>
+        <ref_url>../AString/structure/AString1</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>AString(const char *)</ref_name>
+        <ref_url>../AString/structure/AString2</ref_url>
+    </reference>
+</references>   
+</manpage>

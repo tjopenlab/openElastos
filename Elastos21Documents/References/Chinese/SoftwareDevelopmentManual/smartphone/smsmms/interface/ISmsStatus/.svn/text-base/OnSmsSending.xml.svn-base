@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>短信彩信引擎</volume>
+<interface>ISmsStatus</interface><method> OnSmsSending </method>
+    <description>
+        <para>
+            短信发送过程中的UI状态流程交互。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nMsgId </param_name>
+                <param_note>
+                    <para>
+信息的索引                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> ezAddress </param_name>
+                <param_note>
+                    <para>
+短信的发送目标地址，Ezstr类型                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uSendingStatus </param_name>
+                <param_note>
+                    <para>
+短信的发送状态值(暂时不考虑提供用户重发的状态反馈)                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+</para><para>            更多返回值，参见            <link url="../../sms_error.htm">            短信彩信返回值            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elatype.h、stdlib.h、mmsdef.h、mmstype.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElDatabase.lib、elastos.lib、ElCRuntime.lib、ElUtilities.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            发送状态的取值指定为            <link url="../../datatype/_SmsSendingstatus.htm">            SmsSendingstatus            </link>            数据类型。
+        </para>
+    </remarks>
+</manpage>

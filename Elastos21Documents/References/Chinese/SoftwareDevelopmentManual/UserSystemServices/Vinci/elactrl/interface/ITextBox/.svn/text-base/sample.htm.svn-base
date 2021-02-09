@@ -1,0 +1,267 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>图形控件ITextBox</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> ITextBox 范例程序 </h2>
+
+<h3> TTextDemo.h </h3>
+<pre class = "code">
+
+#ifndef __TTextDemo_H__
+#define __TTextDemo_H__
+
+#include "_TTextDemo.h"
+
+CarClass(TTextDemo)
+{
+public:
+    TTextDemo();
+    ~TTextDemo();
+    CARAPI Main(
+        /* [in] */ const BufferOf<WString> & argcv);
+
+    CARAPI OnTextChanged(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI OnClose(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI Quit();
+
+    CARAPI Terminate();
+
+    CARAPI Activate();
+
+    CARAPI Deactivate();
+
+    CARAPI IsActivated(
+        /* [out] */ Boolean * pActivated);
+
+    CARAPI Snooze();
+
+    CARAPI Wakeup();
+
+    CARAPI GetName(
+        /* [out] */ WStringBuf * pName);
+private:
+    IForm        * m_pMainForm;
+    ITextBox    * m_pISTextBox;
+    ITextBox    * m_pIMTextBox;
+    ITextBox    * m_pIFTextBox;
+    IButton      * m_pIBtnClose;
+};
+
+#endif // __TTextDemo_H__
+
+</pre>
+<h3> TTextDemo.cpp </h3>
+<pre class = "code">
+
+#include "TTextDemo.h"
+#include "_TTextDemo.cpp"
+#include <stdio.h>
+
+TTextDemo::TTextDemo()
+{
+    m_pIBtnClose = NULL;
+    m_pMainForm = NULL;
+    m_pISTextBox = NULL;
+    m_pIMTextBox = NULL;
+    m_pIFTextBox = NULL;
+}
+
+TTextDemo::~TTextDemo()
+{
+    if (m_pMainForm) {
+        m_pMainForm->Release();
+    }
+
+    if (m_pISTextBox) {
+        m_pISTextBox->Release();
+    }
+
+    if (m_pIMTextBox) {
+        m_pIMTextBox->Release();
+    }
+
+    if (m_pIFTextBox) {
+        m_pIFTextBox->Release();
+    }
+
+    if (m_pIBtnClose) {
+        m_pIBtnClose->Release();
+    }
+}
+
+ECode TTextDemo::Main(
+    /* [in] */ const BufferOf<WString> & argcv)
+{
+    ECode ec;
+
+/////////////   form
+    ec = CForm::New(L"MAIN", 0, 0, 0, 240, 320,  NULL,&m_pMainForm);
+
+    if (FAILED(ec)) {
+        assert(0 && "EzCreateObject Failed");
+        return ec;
+    }
+
+    printf("m_pMainForm = %x\n", m_pMainForm);
+/////////////   textbox
+    ec = CTextBox::New(L"SL TextBox", 0,
+                    10, 60, 120, 30,  m_pMainForm,&m_pISTextBox);
+
+    if (FAILED(ec)) {
+        assert(0 && "EzCreateObject Failed");
+        return ec;
+    }
+
+    printf("m_pISTextBox = %x\n", m_pISTextBox);
+
+///////////     textbox
+    CTextBox::New(L"ML TextBox",
+        TextBoxStyle_Multiline | ControlStyle_VScroll,
+        10, 100, 120, 80,  m_pMainForm,&m_pIMTextBox);
+
+    printf("m_pIMTextBox = %x\n", m_pIMTextBox);
+
+    m_pIMTextBox->SetInputMethod(L"SystemTouchPad", L"T9Stroke");
+
+///////////     textbox
+    ec = CTextBox::New(L"Filter TextBox",
+        TextBoxStyle_Multiline,
+        10, 190, 120, 80, m_pMainForm,&m_pIFTextBox);
+
+    if (FAILED(ec)) {
+        assert(0 && "EzCreateObject Failed");
+        return ec;
+    }
+
+    printf("m_pIFTextBox = %x\n", m_pIFTextBox);
+
+    m_pIFTextBox->SetFilterChars(L"+-0123456789PW", TRUE);   // 设为TRUE，TextBox只处理这些字符串
+
+//    m_pIMTextBox->SetInputMethod(InputMethod_Keypad | InputMethod_T9Pinyin);
+///////////////////  event
+    CTextBox::AddTextChangedCallback(m_pISTextBox,
+                 this, &TTextDemo::OnTextChanged);
+    CTextBox::AddTextChangedCallback(m_pIMTextBox,
+                 this, &TTextDemo::OnTextChanged);
+    //DebugBreak();
+    //m_pMainForm->GrabKey(Keys_Q, 0);
+
+///////////////  Exit Button
+    ec = CButton::New(L"Exit", 0,
+                0, 0, 80, 30,  m_pMainForm,&m_pIBtnClose);
+
+    if (FAILED(ec)) {
+        assert(0 && "EzCreateObject Failed");
+        return ec;
+    }
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 this, &TTextDemo::OnClose);
+
+    m_pMainForm->Show();
+
+    return NOERROR;
+}
+
+ECode TTextDemo::OnTextChanged(
+    /* [in] */ PInterface pIObject)
+{
+    printf("OnValueChanged:this = %x\n", pIObject);
+    return NOERROR;
+}
+
+ECode TTextDemo::OnClose(
+    /* [in] */ PInterface pIObject)
+{
+    m_pMainForm->Close();
+    return NOERROR;
+}
+
+ECode TTextDemo::Quit()
+{
+    return NOERROR;
+}
+
+ECode TTextDemo::Terminate()
+{
+    return NOERROR;
+}
+
+ECode TTextDemo::Activate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTextDemo::Deactivate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTextDemo::IsActivated(
+    /* [out] */ Boolean * pActivated)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTextDemo::Snooze()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTextDemo::Wakeup()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTextDemo::GetName(
+    WStringBuf * name)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+</pre>
+
+<h3> textdemo.car </h3>
+<pre class = "code">
+module www.koretide.com/ezcom/textdemo.dll
+{
+    importlib("elcontrols.dll");
+
+    applet TTextDemo {}
+}
+</pre>
+
+<h3> sources </h3>
+<pre class = "code">
+TARGET_NAME= textdemo
+TARGET_TYPE= dll
+
+SOURCES= \
+    textdemo.car \
+    TTextDemo.cpp \
+
+LIBRARIES = $(XDK_USER_LIB)\ElCRuntime.lib     $(XDK_LIB_PATH)\elastos.lib \
+
+</pre>
+<script>footer("KoreTide")</script>
+</body>
+</html>

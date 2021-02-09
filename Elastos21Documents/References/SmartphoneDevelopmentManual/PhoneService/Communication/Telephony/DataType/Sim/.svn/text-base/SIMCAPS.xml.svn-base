@@ -1,0 +1,70 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>通讯引擎</volume>
+    <types> SIMCAPS </types>
+    <description>
+        <para>
+            SIM卡的性能参数结构体
+        </para>
+    </description>
+  <struct>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>cbSize</mem_name>
+            <mem_description>本结构的长度（in bytes） </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwParams</mem_name>
+            <mem_description>结构中的有效参数类型 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwPBStorages</mem_name>
+            <mem_description>SIM卡支持的电话本相关存储项</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name> dwMinPBIndex </mem_name>
+            <mem_description>电话本条目最小有效索引值 </mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwMaxPBIndex</mem_name>
+            <mem_description>电话本条目最大有效索引值</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwMaxPBEAddressLength</mem_name>
+            <mem_description>一条电话本记录中号码部分的最大长度</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwLockFacilities</mem_name>
+            <mem_description>支持的加锁项</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwReadMsgStorages</mem_name>
+            <mem_description>可读的短信条数，即已记录的短信条数</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwWriteMsgStorages</mem_name>
+            <mem_description>可写的短信条数，即当前空闲的存储容量</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwNumLockingPwdLengths</mem_name>
+            <mem_description>后面记录密码长度数组的有效记录数</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>SIMLOCKINGPWDLENGTH</mem_type>
+            <mem_name>rgLockingPwdLengths[10]</mem_name>
+            <mem_description>记录加锁项的最大密码长度</mem_description>
+        </struct_member>
+    </struct>
+
+
+
+</manpage>

@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字-- pertainsto </title>
+</head>
+
+<body>
+	<h2>pertainsto</h2>
+	    <b>含义 </b>
+	        <p> 此关键字用于修饰语境构件类<a class= "style1" href= "keywords_context.htm">context</a>，表示该语境构件类拥有该属性中列举的方面构件类，当其它构件对象进入该语境构件类时，其它构件对象会自动聚合上这些方面构件类；当对象离开该语境构件类时，将自动解聚合掉这些方面构件类。</p>
+	
+	    <b>语法 </b>
+	    	<p>context contextName <b>pertainsto</b> AAspect1，AAspect2 {...}</p>
+	    <b>使用说明</b> 
+	        <p>pertainsto结构和<a class="style1" href= "keywords_aggregates.htm">aggregates</a>结构都可以修饰<a class="style1" href= "keywords_applet.htm">applet</a>和<a class="style1" href= "keywords_context.htm">context</a>，它们的顺序是先<a class="style1" href= "keywords_aggregates.htm">aggregates</a>，再pertainsto结构。 </p>
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IHello {
+        Hello();
+    }
+
+    context KFoo <b>pertainsto</b> AObjectEx {
+        interface IHello;
+    }
+}
+
+</pre>
+    <p>上述car构件定义了语境构件类KFoo，该构件类由pertainsto修饰，表示KFoo具有AObjectEx特征。当其他构件对象进入KFoo对象时就会自动聚合AObjectEx方面（该方面是Elastos系统预定义的aspect类，也可使用自定义的aspect类）。聚合上这些这些方面以后，就可以访问这些方面包含的接口。当这些构件对象离开KFoo环境时，就会自动拆卸与AobjectEx的聚合。 </p>
+    <p>关于pertainsto的完整示例可参见<a class= "style1" href= "../../../../speciality/context/index.htm">语境类编程示例</a>。</p> 
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

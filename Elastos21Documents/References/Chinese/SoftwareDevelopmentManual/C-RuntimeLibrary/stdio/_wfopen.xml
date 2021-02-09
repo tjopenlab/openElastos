@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fopen">fopen</sample>
+    <title> fopen, _wfopen</title>
+    <volume>C 运行库函数</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>打开文件。</para>
+    </description>
+
+    <syntax>
+        <return_val>FILE *</return_val>
+        <func_name>fopen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>指向文件名的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>mode</param_name>
+                <param_note>
+                    <para>指向文件打开模式的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>FILE *</return_val>
+        <func_name>_wfopen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>mode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回文件流指针，指向被打开的文件，如果出错，返回空指针。</para>
+    </return>
+
+    <remarks>
+        <para>函数fopen打开由参数filename指定的文件。_wfopen是fopen的宽字符版本。_wfopen的参数都是宽字符串，除此之外，_wfopen和fopen是一样的。</para>
+        <para>模式选项c、n和t是Microsoft对fopen和_wfopen的扩展，当需要兼容ANSI时，不应该使用它。</para>
+        <para>参数mode指定了的文件打开方式，具体内容如下：</para>
+        <table>
+            <th>
+                <td>参数mode的值</td>
+                <td>对应的文件打开方式</td>
+            </th>
+            <tr>
+                <td> "w" </td>
+                <td>以只写方式打开空文件。如果给定的文件存在，内容将被清空。</td>
+            </tr>
+
+            <tr>
+                <td> "r" </td>
+                <td>以只读方式打开文件。如果文件不存在或者没有找到，函数调用失败。</td>
+            </tr>
+
+            <tr>
+                <td> "a" </td>
+                <td>以追加方式打开文件，在写入数据前不删除EOF标志。如果文件不存在，则首先创建文件。</td>
+            </tr>
+
+            <tr>
+                <td> "w+" </td>
+                <td>以读/写方式打开一个空文件。如果给定的文件存在，内容将被清空。</td>
+            </tr>
+
+            <tr>
+                <td> "r+" </td>
+                <td>以读/写方式打开文件(此文件必须存在）。</td>
+            </tr>
+
+            <tr>
+                <td> "a+" </td>
+                <td>以读/追加方式打开文件；追加操作向文件写入新数据之前会删除EOF标志（不管当前是否有EOF标志），而在完成写入后则不会建立EOF标志，只有当再次调用读操作试图读取超过文件尾时，文件才会再建立EOF标志；如果文件不存在，则首先创建文件。</td>
+            </tr>
+        </table>
+
+        <para>当文件以"a"或"a+"的方式打开时，所有写操作都发生在文件末尾。调用函数fseek或rewind可以重新定位文件指针，但是进行任何写操作之前，文件指针都会移回到文件末尾。因而，已有数据不能被改写。</para>
+        <para>当指定"r+"、"w+"或者"a+"的访问方式后，读和写都是允许的(也就是说，文件是为更新而打开的)。然而，在读和写之间切换时，必须插入fflush、fseek或者rewind操作。如果需要，可以用fseek或者fsetpos函数操作指定文件指针的当前位置。</para>
+
+        <para>除了上述参数以外，mode中可以包含如下字符，来指定换行符的转换方式。</para>
+        <table>
+            <th>
+                <td>参数mode中包含的字符</td>
+                <td>对应的换行符的转换方式</td>
+            </th>
+            <tr>
+                <td> t </td>
+                <td>以文本（转换后）方式打开文件，在文本模式下，输入时的回车和换行符转换为单个换行符；输出时，换行符转换为回车和换行两个字符。</td>
+            </tr>
+
+            <tr>
+                <td>b</td>
+                <td>以二进制方式（未转换）打开文件，不进行包括回车和换行符在内的转换。</td>
+            </tr>
+
+        </table>
+        <para>模式选项t是fopen和_fdopen的扩展，当需要兼容ANSI时，不应该使用它。</para>
+        <para>如果t或b作为参数的前缀，函数调用失败，返回NULL。</para>
+
+        <para>_fdopen（_wfdopen）的参数mode的有效字符与_open的参数oflag的对照关系如下表所示：</para>
+        <table>
+            <th>
+                <td>状态串中的字符</td>
+                <td> _open中相应的oflag值</td>
+            </th>
+            <tr>
+                <td>a</td>
+                <td>_O_WRONLY | _O_APPEND (usually _O_WRONLY | _O_CREAT | _O_APPEND) </td>
+            </tr>
+            <tr>
+                <td>a+</td>
+                <td>_O_RDWR | _O_APPEND (usually _O_RDWR | _O_APPEND | _O_CREAT )</td>
+            </tr>
+            <tr>
+                <td>r</td>
+                <td>_O_RDONLY</td>
+            </tr>
+            <tr>
+                <td>r+</td>
+                <td>_O_RDWR</td>
+            </tr>
+            <tr>
+                <td>w</td>
+                <td>_O_WRONLY (usually _O_WRONLY | _O_CREAT | _O_TRUNC)</td>
+            </tr>
+            <tr>
+                <td>w+</td>
+                <td>_O_RDWR (usually _O_RDWR | _O_CREAT | _O_TRUNC)</td>
+            </tr>
+            <tr>
+                <td>b</td>
+                <td>_O_BINARY</td>
+            </tr>
+            <tr>
+                <td>t</td>
+                <td>_O_TEXT</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fopen</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wfopen</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fopen.cpp: This program opens files named &quot;data&quot;
+ * and &quot;data2&quot;.It  uses fclose to close &quot;data&quot; and
+ * _fcloseall to close all remaining files.
+ */
+
+#include &lt;stdio.h&gt;
+
+FILE *stream, *stream2;
+
+int main()
+{
+
+    /* Open for read (will fail if file &quot;data&quot; does not exist) */
+    if ((stream  = fopen(&quot;fopen.exe&quot;, &quot;r&quot;)) == NULL)
+        printf(&quot;The file &apos;fopen.cpp&apos; was not opened\n&quot;);
+    else
+        printf(&quot;The file &apos;fopen.cpp&apos; was opened\n&quot;);
+
+    /* Open for write */
+    if ((stream2 = fopen(&quot;fopen.out&quot;, &quot;w+&quot;)) == NULL)
+          printf(&quot;The file &apos;fopen.out&apos; was not opened\n&quot;);
+    else
+          printf(&quot;The file &apos;fopen.out&apos; was opened\n&quot;);
+
+     /* Close stream */
+    if (fclose(stream))
+        printf(&quot;The file &apos;fopen.cpp&apos; was not closed\n&quot;);
+
+    if (fclose(stream2))
+        printf(&quot;The file &apos;fopen.out&apos; was not closed\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The file &apos;fopen.cpp&apos; was opened.
+The file &apos;fopen.out&apos; was opened.
+</result>
+
+   
+
+    <references>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+    </references>
+
+</manpage>

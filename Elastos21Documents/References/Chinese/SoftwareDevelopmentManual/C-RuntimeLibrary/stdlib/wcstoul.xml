@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\strtoul">strtoul</sample>
+    <title> strtoul, wcstoul</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>将字符串转化成无符号长整型数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>unsigned long</return_val>
+        <func_name>strtoul</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>nptr</param_name>
+                <param_note>
+                    <para>字符指针，指向待转换的，以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char**</param_type>
+                <param_name>endptr</param_name>
+                <param_note>
+                    <para>字符指针，指向扫描停止时的字符</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>base</param_name>
+                <param_note>
+                    <para>进行转换的基数，如base=10，即将nptr字符串按十进制转换</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>unsigned long</return_val>
+        <func_name>wcstoul</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>nptr</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t**</param_type>
+                <param_name>endptr</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>base</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>strtoul返回转换后的无符号长整数。如果溢出，返回ULONG_MAX。不能转换时，返回0。wcstoul的返回值与strtoul类似。</para>
+    </return>
+
+    <remarks>
+        <para>函数strtoul将字符串转换成无符号长整型的数值。读串时遇到非数字字符，停止读操作，该字符是终结符'\0'或者是第一个大于或等于base的数字字符。函数wcstoul是函数strtoul的宽字符版本。nptr是待转换宽字符串。其它方面两者类似。</para>
+        <para>函数strtoul要求nptr指向的字符串符合如下格式：</para>
+        <para>[whitespace] [{+ | –}] [0 [{ x | X }]] [数字]</para>
+        <para>whitespace可以由空格或制表符组成，本函数忽略这部分字符。digits可以是由一个或多个十进制数字组成。若第一个字符不符合这种格式，结束扫描。如果base介于2和36之间，则用作转换的基数。如果base是0，则由nptr所指字符串的起始字符确定基数。如果该起始字符是0且第二个字符不是'x' 或'X'，字符串将转换为八进制数，否则转换为十进制数。起始字符是0且第二个字符是'x'或'X'，字符串将转换为十六进制数。起始字符是'1'到'9'，字符串将转换为十进制数。字母'a'到'z'(或'A'到'Z')被赋值为10到35。对字母赋值，只有小于基数才有意义。strtoul允许待转换的字符串以加号（＋）或减号（－）作前缀，当减号作前缀时，返回的无符号整数的最高位为1，表示负数。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strtoul</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcstoul</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strtoul.cpp: This program uses strtoul
+ * to convert a string to unsigned long-integer values.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char    *string, *stopstring;
+    int     base;
+    unsigned long ul;
+
+    string = &quot;10110134932&quot;;
+    printf(&quot;string = %s\n&quot;, string);
+    /* Convert string using base 2, 4, and 8: */
+    for (base = 2; base &lt;= 8; base *= 2) {
+        /* Convert the string: */
+        ul = strtoul(string, &amp;stopstring, base);
+        printf(&quot;    strtol = %ld (base %d)\n&quot;, ul, base);
+        printf(&quot;    Stopped scan at: %s\n&quot;, stopstring);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+string = 10110134932
+strtol = 45 (base 2)
+Stopped scan at: 34932
+strtol = 4423 (base 4)
+Stopped scan at: 4932
+strtol = 2134108 (base 8)
+Stopped scan at: 932
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcstod</ref_name>
+            <ref_url>wcstod</ref_url>
+        </reference>
+        <reference>
+            <ref_name>strtol</ref_name>
+            <ref_url>wcstol</ref_url>
+        </reference>
+        <reference>
+            <ref_name>atof</ref_name>
+            <ref_url>atof</ref_url>
+        </reference>
+    </references>
+
+</manpage>

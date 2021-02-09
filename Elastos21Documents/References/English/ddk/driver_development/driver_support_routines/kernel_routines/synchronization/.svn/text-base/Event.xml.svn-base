@@ -1,0 +1,122 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>    <manpage>
+    <volume>Synchronization</volume>
+    <interface> Event </interface>
+    <description>
+        <para>
+        	Event class.
+        </para>
+    </description>
+    <methods>
+<self>
+
+    <method>
+        <method_name>Event constructor</method_name>
+        <method_url>Event\structure\Event</method_url>
+    <m_description>
+        The constructor to create an <b>Event</b> object.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Wait</method_name>
+        <method_url>Event\Wait</method_url>
+    <m_description>
+        Waits for the event object to notify.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>TryWait</method_name>
+        <method_url>Event\TryWait</method_url>
+    <m_description>
+        Tries to wait for the event object to notify.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Notify</method_name>
+        <method_url>Event\Notify</method_url>
+    <m_description>
+        Triggers the <b>Event</b> object a specified notification, to wake up the waiting threads.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>NotifyByIsr</method_name>
+        <method_url>Event\NotifyByIsr</method_url>
+    <m_description>
+        Is the same as the <b>Notify</b> method. But it can only be used in the bottom of a drive (i.e. in the interrupt
+        service routine).
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Clear</method_name>
+        <method_url>Event\Clear</method_url>
+    <m_description>
+        Clears the notification of the event object.
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+
+    <remarks>
+        <para>
+        	An Event object is a synchronization object that allows one thread to notify other threads that, the 
+        	event is occurred.
+        </para>
+        <para>
+        	An Event object is in cleared or notified state at a particular point in time. If an event object is 
+        	cleared, all threads that wait for the Event object will be blocked. If an Event object is notified, 
+        	the waiting threads will not be blocked.
+        </para>
+        <para>
+        	The event object has two modes: manual cleared and auto cleared, which can be specified through the 
+        	function arguments when it is created. A manual cleared event object can make a specific notification 
+        	by calling the <link url="Event/Notify.htm">Event::Notify</link> method, and can be cleared by calling 
+        	the <link url="Event/Clear.htm">Event::Clear</link> method. A manual event object keeps its notification 
+        	until the <link url="Event/Clear.htm">Event::Clear</link> method is called. An auto cleared event object 
+        	can also make a notification by calling the <link url="Event/Notify.htm">Event::Notify</link> method, 
+        	and can be cleared by calling the <link url="Event/Clear.htm">Event::Clear</link> method. And an auto 
+        	cleared event object clears its notification automatically when it wakes up a waiting thread.
+        </para>
+        <para>
+        	To construct an Event object by its constructor <link url="Event/structure/Event.htm">Event::Event</link>. The 
+        	arguments specify the mode and the initial state of the object. An Event object can be global or local. 
+        	Or it can be created on the kernel heap.
+        </para>
+        <para>
+        	The event object has only one predefined cleared state, but has arbitrary number of the notified states; 
+        	user defines a non-zero unsigned integer to represent the state. The notified state is specified while 
+        	calling the <link url="Event/Notify.htm">Event::Notify</link> method. And a woken up thread gets the 
+        	specified notification state from the <link url="Event/Wait.htm">Event::Wait</link> method or <link 
+        	url="Event/TryWait.htm">Event::TryWait</link> method.
+        </para>
+        <para>
+        	Be sure that no thread waits for the Event object when it destructs.
+        </para>
+        <para>
+        	If several threads wait for an auto cleared event object, and when the event object makes a notification, 
+        	the operating system will wake up the waiting thread with the highest priority. If any waiting threads 
+        	have same priorities, the thread with the longest waiting time will be woken up.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBitmapBuf</interface><method> LockBitmap </method>
+    <description>
+        <para>
+            取得Buffer信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> BitmapBuf * </param_type>
+                <param_name> bitmap </param_name>
+                <param_note>
+                    <para>
+Buffer信息。                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统           </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+<remarks>
+	  <para>
+				Buffer中所包含的成员，详见<link url="../IBitmapBuf/BitmapBufInfo_struct.htm">BitmapBuf</link>结构体类型。
+		</para>
+		<para>
+				此时Form必须是FormStyle_StickyBuffer风格，否则LockBitmap会不成功。
+		</para>
+</remarks>    
+</manpage>

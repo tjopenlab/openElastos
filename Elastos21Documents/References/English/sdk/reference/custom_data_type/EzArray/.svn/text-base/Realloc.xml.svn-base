@@ -1,0 +1,75 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\Realloc">Realloc</sample>
+    <volume> Common data structure  </volume>
+    <interface> EzArray </interface>
+    <method> Realloc </method>
+
+    <description>
+        <para> Reallocates memory for current EzArray array.</para>
+    </description>
+
+    <syntax>
+        <return_val> BOOL </return_val>
+        <parameters>
+        <api_param>
+            <param_type> int</param_type>
+            <param_name> size</param_name>
+            <param_note>
+                <para> Length of array allocated newly. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If it is successful in allocating memory,then return TRUE, else return FALSE.</para>
+    </return>
+
+    <remarks>
+        <para> EzArray array only on stack may call Realloc. </para>
+        <para> When its size is negative or larger than remaining memory of current system,then it will lead to failure of allocating memory newly for <b>Realloc</b>. </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <EzArray.h>
+
+int __cdecl main()
+{
+    EzArray<int> myArray1 = EzArray<int>::CreateObject(10);
+    int l = myArray1.GetLength();
+    printf("The length of myArray1 is %d.\n", l);
+    myArray1.Realloc(100000);
+    l = myArray1.GetLength();
+    printf("After Realloc the length of myArray1 is %d.\n", l);
+    myArray1.Dispose();
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+The length of myArray1 is 10.
+After Realloc the length of myArray1 is 100000.
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name>CreateObject</ref_name>
+            <ref_url> CreateObject</ref_url>
+        </reference>
+        <reference>
+            <ref_name> Dispose</ref_name>
+            <ref_url> Dispose</ref_url>
+        </reference>
+    </references>
+
+</manpage>

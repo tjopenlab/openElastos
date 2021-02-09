@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>item标签/控件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li class="current"><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li class="current"><a href="annotated.html"><span>图形标签(控件)列表</span></a></li>
+    <li><a href="attribute.html"><span>图形标签通用属性</span></a></li>
+    <li><a href="event.html"><span>图形标签通用事件</span></a></li>
+    <li><a href="genstyle_8car.html"><span>图形标签通用风格</span></a></li>
+  </ul>
+</div>
+<h1>item标签/控件参考</h1><!-- doxytag: class="window" -->
+    <p>列表项，允许用户为<a href="class_comboBox.html">comboBox</a>、<a href="class_listBox.html">listBox</a>、<a href="class_listView.html">listView</a>添加一行。
+<a href="#_details">更多...</a>
+
+<hr><h2>命名空间</h2>
+http://www.elastos.com/XmlGlue/Widgets
+
+<hr><a name="_details"></a><h2>详细描述</h2>
+列表项，允许用户为<a href="class_comboBox.html">comboBox</a>、<a href="class_listBox.html">listBox</a>、<a href="class_listView.html">listView</a>添加一行。系统会自动为item添加索引值index，第一个创建item的index为0，第二个创建的item的index为1，依次类推。
+<p>
+要使用item标签，必须首先使用listView标签，因为item是其子元素，否则将无法使用item标签。
+<p><b>注：</b>当listView绑定数据源后，item标签中text、image属性会自动替换成数据源中的记录。
+<p>用法示例如下：
+<table border="0" cellpadding="0" cellspacing="0"><tr><td class="memitem" valign="bottom"><pre>&lt;listView x:id="lv" x="0" y="60" width="240" height="80" selected="print(selected)"&gt;
+    &lt;model&gt;
+        &lt;column width="50" text="column1" image="filepath"/&gt;
+        &lt;column width="100" text="column2" image="filepath"/&gt;
+        &lt;column width="90" text="column3" image="filepath"/&gt;
+    &lt;/model&gt;
+    &lt;data source="ens" max="xxx"&gt;
+        &lt;item text="Name" image="filepath"&gt;
+            &lt;prop text="Gender" image="filepath"/&gt;
+            &lt;prop text="Size" image="filepath"/&gt;
+        &lt;/item&gt;
+    &lt;/data&gt;
+&lt;/listView&gt;</td></tr></table>
+
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>属性</h2></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>text</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置行显示的文本。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>text="Name"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;item text="Name"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>image</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定行图标文件的相对路径。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>image="filepath"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;item text="Name" image="images/test.png"/&gt;</td></tr>
+</table>
+
+ <script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>DMA例程</volume>
+<interface>DzDmaChannel</interface><method> RequestTransfer </method>
+    <description>
+        <para>
+            请求并设置一次DMA传输(设备与内存之间)。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_type> DmaTransferMode </param_type>
+                <param_name> mode </param_name>
+                <param_note>
+                    <para>
+                        DMA通道的传输模式
+                    </para>
+                </param_note>
+            </api_param>
+
+            <api_param>
+                <param_type> virtaddr_t </param_type>
+                <param_name> vaBuffer </param_name>
+                <param_note>
+                    <para>
+                        用作DMA通道传输的内存的虚拟地址
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> uint32_t </param_type>
+                <param_name> uLength </param_name>
+                <param_note>
+                    <para>
+                        传输的数据长度，单位为byte
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+        <th>
+            <td>返回值 </td>
+            <td>描述</td>
+        </th>
+        <tr>
+            <td>NOERROR</td>
+            <td>设置DMA传输事务成功</td>
+        </tr>
+        <tr>
+            <td>E_FAIL</td>
+            <td>DMA传输模式不可用</td>
+        </tr>
+        </table>
+        <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>
+            该方法请求并设置一次设备与内存之间DMA传输。
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+</manpage>

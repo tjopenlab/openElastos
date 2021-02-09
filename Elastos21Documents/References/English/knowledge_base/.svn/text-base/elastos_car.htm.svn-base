@@ -1,0 +1,203 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title> Introduction to CAR Component Technology </title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> Introduction to CAR Component Technology </h2>
+    <h3>What is CAR Component Technology</h3>
+    <p>	CAR component technology is component oriented programming model. It provides a set of component calling 
+    	standard, so that binary component can be self-described and dynamically linked at run-time.
+    </p>
+    <p>
+    	CAR is compatible with Microsoft's COM. However, CAR removed the obsolete protocol in COM, forbid user to 
+    	define non-self-described interfaces, completed self-described feature of component and its interfaces, 
+    	extended COM and simplified its user interface. CAR is easy to pick up and easy to use.
+    </p>
+    <p>
+    	From the previous definition, we can say that CAR is a subset of Microsoft's COM, while extending COM, 
+    	with the help of Elastos SDK, component programming become a piece of cake to C/C++ programmer. The "ez" 
+    	in our code comes from the word "easy".
+    </p>
+    <p>
+    	The quintessence of <b>Elastos</b> technology lies in CAR programming, it spends the realization of the whole 
+    	system.
+    </p>
+
+    <h3>Where does CAR technology come from</h3>
+    <p>
+    	Since the 80s, development in target pointer software programming technology provided fundamentals for 
+    	large scale software development and software standardisation, software sharing and software security. Its 
+    	development can be characterized into the following :- 
+    </p>
+    <p><b>Object Oriented Programming</b></p>
+    <p>
+    	We simplify complex issues by encapsulating relatively independent software component. Object oriented 
+    	programming emphasize on encapsulation; however, the relationship between components is fixed at compile 
+    	time. The relationship between components is static, one cannot change the relationship between components 
+    	at runtime, and thus one cannot replace parts during runtime. One representation of this is C++.
+    </p>
+    <center><img src="images/module.jpg"/></center>
+    <p><b>Component Oriented Programming</b></p>
+    <p>
+    	Different software vendors need to establish standard protocols so that the different components they have, 
+    	can interact each other. Component programming emphasize on protocol standard, need to provide protocols 
+    	that can be followed by other vendors. Just like nuts and bolts are standard in metric system, all the 
+    	standardized nuts and bolts can fit each other. Component programming is based on object-oriented 
+    	technology, which provides dynamic component (component can be assembled at run-time) mechanism. Component 
+    	is loaded and removed dynamically at run-time. The base is COM technology.
+    </p>
+    <center><img src="images/accessory.jpg"/></center>
+    <p><b>Middleware Oriented Programming</b></p>
+    <p>
+    	Since the evolution of Internet, component can come from network; system needs to resolve automatic download 
+    	and security issues. Therefore, system will have to generate component run-time environment automatically 
+    	according to component's self-description, generate agent component and control the run-time state of 
+    	component using middleware. Middleware programming emphasizes on component self-description and the 
+    	transparency of component run-time environment. Some of the typical illustrations are CAR, Java and .NET (C#).
+    </p>
+    <center><img src="images/circumstance.jpg"/></center>
+    <p>
+    	Through these developments, we understand large-scale software development and software mechanism under 
+    	network environment more clearly. Software technology has reached a new level: 
+    </p>
+        <ul>
+            <li>
+            	<b>Component interoperability.</b> Unique components developed by different vendors can interoperate 
+            	with components developed by others.
+            <li>
+            	<b>Software upgrade independence.</b> Upgrading one of the components do not affect other components 
+            	in the system.
+            <li>
+            	<b>Programming language independence.</b> Components implemented by different programming languages can 
+            	interoperate.
+            <li>
+            	<b>Component run-time environment transparency.</b> Provides a simple, coherent programming model, such 
+            	that component can run in intra-process, inter-process and inter-network environment. Also provides 
+            	system security protection mechanism.
+        </ul>
+    <p>
+    	CAR technology is based on object-oriented programming and component oriented programming technology. It's 
+    	goal is to support web service oriented next-generation network application software development. CAR draws 
+    	on the experience of COM technology, while remains compatible with COM and extended COM to a great extend.
+    </p>
+    <p>
+    	In order to realize middleware programming technology in resource limited embedded systems, and achieve the 
+    	efficiency of C/C++, CAR didn't use the binary stream based mechanism as in Java and .NET, instead, it uses C++ 
+    	programming, using <b>Elastos</b> SDK provided tools which directly generate binary code running on Elastos 
+    	component platform. Implementing component technology using C++, can help more programmers to use 
+    	programming languages they are familiar with and makes it easier to learn component oriented middleware 
+    	programming technology. Elastos component platform can run on different operating systems, so that binary 
+    	code of CAR components can achieve platform independence.
+    </p>
+    <p>
+    	In order to avoid ambiguity of the word "middleware", we simply call CAR technology as CAR component technology.
+    </p>
+
+    <A NAME="CAR"></A>
+    <h3>Effect of CAR Technology over Software Engineering</h3>
+    <p>
+    	CAR's main charateristics are as above: component interoperability, software upgrade independency, programming 
+    	language independency, process transparency.
+    </p>
+    <p>
+    	In real time programming, CAR technology can benefit programmer in the following area: 
+    </p>
+    <p><b>Easy to learn and easy to use</b></p>
+    <p>
+    	Component programming technology based on COM is an effective way of enterprise software development. 
+    	Microsoft's Windows 2000 software is entirely a COM implementation. However, Microsoft COM's fussy component 
+    	description system is too scary. CAR development environment and Elastos SDK provided simple component 
+    	description language and supporting automatic scripting tools let C++ programmer master CAR programming quickly.
+    </p>
+    <p><b>Dynamic component loading</b></p>
+    <p>
+    	In network programming environment, software components are equivalent to parts, which can be assembled at 
+    	any time. CAR technology realized dynamic component loading; ie, user can acquire latest components from network.
+    </p>
+    <p><b>Third party software enrich system features</b></p>
+    <p>
+    	CAR technology's component interoperability ensures system developers to use third party components that fit 
+    	CAR criterion. Software resources can be shared, product development period can be shortened. Users can expand 
+    	system's features by loading third party components.
+    </p>
+    <p><b>Software reusability</b></p>
+    <p>
+    	Software reuse is a long term goal of software engineering. CAR technology provided component standard and 
+    	binary components can be used by different applications which make software component truly "industry part". 
+    	Using 'time-tested' software parts and avoiding 'reinvention of the wheel', are the key to software development 
+    	efficiency and software product quality.
+    </p>
+    <p><b>System upgrade</b></p>
+    <p>
+    	Traditional software system upgrade is a tough problem to the system administrator; a large software 
+    	system is often interconnected, so a single feature upgrade may require the testing of the whole system. CAR 
+    	technology's software upgrade independency is the perfect solution for this problem; individual component 
+    	upgradation need not affect the whole system.
+    </p>
+    <p><b>Realization of software assembly line production</b></p>
+    <p>
+    	The above are the required characteristics of software part assembly line production. Component based software 
+    	design methodologies, standardized software engineering and assembly line production provides clear, reliable 
+    	software interface standards, which makes software component development as manufacturing industrial parts 
+    	that can be used on various equipments.
+    </p>
+    <p><b>Improve system reliability, error tolerance</b></p>
+    <p>
+    	Since component run-time environment is controllable, it is possible to avoid system crash caused by 
+    	individual component failure and there by improve system reliability. At the same time, system can restart 
+    	components that hang up accidentally, which enables the error tolerance of the system.
+    </p>
+    <p><b>Effectively realize system security</b></p>
+    <p>
+    	System can generate surrogate components through controlling, eavesdropping, backup error tolerance, 
+    	though surrogate component achieve communication encryption, automatic communication protocol 
+    	replacement and other security protection methods.
+    </p>
+
+    <h3>The significance of CAR technology</h3>
+    <p>
+    	For a software development company, using CAR component technology has the following significance: </p>
+    <ul>
+        <li>
+        	CAR component is binary compatible with Microsoft COM component. CAR development tools automatically 
+        	encapsulate the component; simplifies component programming, which helps component programming to
+        	become more popular.
+        <li>
+        	CAR component technology is vital for modern software development as it can improve ability, 
+        	efficiency and quality.
+        <li>
+        	Modern software development needs component standard. CAR component technology establishes framework 
+        	for software standard, which enables to set up industry standards and developing proprietory component 
+        	libraries. 
+    </ul>
+
+    <h3>How to apply CAR technology in your program</h3>
+    <p>
+    	CAR is a component oriented programming model, thus, it is a programming method which is represented by a set 
+    	of programming criterion, including component, class, object, interface definition and rules for 
+    	communicating with component object.
+    </p>
+    <p>
+    	CAR is implemented by a set of development environment and run-time environment. In the following sections, 
+    	we are going to introduce <a class="style1" href="elastos_zee.htm">"Elastos component run-time platform"</a> 
+    	and <a class="style1" href="elastosSDK.htm">"Elastos SDK"</a> to the user, so that they can fully understand 
+    	CAR programming.
+    </p>
+
+    <h3>Summary</h3>
+    <p>
+    	CAR, programming and run time environment is depicted below.
+    </p>
+    <center><img src="images/CAR.jpg"/></center>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>短信彩信引擎</volume>
+<interface>IMmsComposer</interface><method> CurVideoExist </method>
+    <description>
+        <para>
+            判断当前页面是否包含视频资源。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> BOOL * </param_type>
+                <param_name> pbExist </param_name>
+                <param_note>
+                    <para>
+指向布尔型的指针，用于获取是否包含视频资源，若为TRUE存在，则当前页存在视频资源，若为为FALSE，则不存在视频资源。                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回S_OK；如果有参数无效，则方法调用失败，并返回E_INVALIDARG；如果未初始化，则方法调用失败，并返回E_MMS_NOINIT。</para><para>            更多返回值，参见            <link url="../../sms_error.htm">            短信彩信返回值            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>elatype.h、stdlib.h、mmsdef.h、mmstype.h、CMmsComposer.h、_CMmsComposer.h</dll_name>
+        </dll>
+        <library>
+            <lib_name>ElDatabase.lib、elastos.lib、ElCRuntime.lib、ElUtilities.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

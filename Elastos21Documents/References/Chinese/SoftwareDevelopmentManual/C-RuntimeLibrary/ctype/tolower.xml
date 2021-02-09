@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\tolower">tolower towlower</sample>
+    <title>tolower towlower</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>将一个英文字符转换成小写字符（a - z）。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>tolower</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>需要判断的整型值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>towlower</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+              
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>tolower 将给定整型值（英文字符的ascii值）c的一个拷贝转换成对应小写字符的ascii值，无错误返回。</para>
+    </return>
+
+    <remarks>
+        <para>该函数将能够转换的大写字符转换为小写字符。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>tolower</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>towlower</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* tolower.cpp: This program use tolower converts a english characters
+ * string to a lowercase string.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+char msg[] = &quot;THESE letters will BE in lower cases\r\n&quot;;
+char *p;
+
+int main()
+{
+    printf(&quot;%s&quot;, msg);
+
+    /* Reverse case of message. */
+    for (p = msg; *p; p++)
+        putchar(tolower(*p));
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+THESE letters will BE in lower cases
+these letters will be in lower cases
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>toupper</ref_name>
+            <ref_url>toupper</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,82 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> tail </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para> Displays the last n lines (n is specified parameter) of specified file.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> TAIL </cmd_name>
+        <cmd_param> [-? | -n | -f filename] [filename...] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name>  -?  </param_name>
+        <param_note> Displays help information</param_note>
+    </param>
+    <param>
+        <param_name>  -n  </param_name>
+        <param_note> Displays the last n lines of the file, the default is 10</param_note>
+    </param>
+    <param>
+        <param_name>  -f filename  </param_name>
+        <param_note> Does not stop at the end of file, waits for input. Only one file can be opened when using -f parameter</param_note>
+    </param>
+    <param>
+        <param_name>  filename  </param_name>
+        <param_note> File name, can be multiple files</param_note>
+    </param>
+    </parameters>
+
+    <remarks>
+        <para>When displaying multiple file content prints the file name before display each file content.</para>
+    </remarks>
+
+    <examples>
+    <example>
+        <eg_line>tail -1 file1.txt</eg_line>
+        <eg_note> This displays the last line of the file1.txt file. Output result: </eg_note>
+        <eg_result><![CDATA[
+the last line in file1.txt.
+]]></eg_result>
+
+    </example>
+    <example>
+        <eg_line>tail -1 file1.txt file2.txt  </eg_line>
+        <eg_note> This displays the last line of the file1.txt file and file2.txt file. Output result: </eg_note>
+        <eg_result><![CDATA[
+==> file1.txt <==
+the last line in file1.txt.
+
+==> file2.txt <==
+the last line in file2.txt.
+]]></eg_result>
+
+    </example>
+
+    </examples>
+
+    <references>
+    <reference>
+        <ref_name> head </ref_name>
+        <ref_url> head </ref_url>
+    </reference>
+    <reference>
+        <ref_name> grep </ref_name>
+        <ref_url> grep </ref_url>
+    </reference>
+    <reference>
+        <ref_name> tee </ref_name>
+        <ref_url> tee </ref_url>
+    </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <sample url=""></sample>
+    <volume>Elastos网络编程接口（elasock API）</volume>
+    <types>linger</types>
+    <routine_idx> ElastosSocketIndex.htm </routine_idx>
+
+    <description>
+        <para>该结构用于确定closesocket的执行方式，以决定对未发送队列中的数据如何操作。</para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> l_onoff </mem_name>
+            <mem_description> 决定closesocket命令将等待数据队列发送完毕再关闭套接口，还是强行关闭套接口并丢弃未发送数据 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> l_linger </mem_name>
+            <mem_description> 超时值 </mem_description>
+        </struct_member>
+    </struct>
+
+    <remarks>
+        <para>如果需要等待数据队列发送完毕再关闭套接口，应用程序需要将l_onoff设为非零，将l_linger置为零或所需的超时值，然后调用setsockopt()。l_onoff置为零将禁止SO_LINGER套接口选项，缺省即为该种情况。此外，不推荐在一个非阻塞套接口上设置SO_LINGER选项并设一个非零的超时值。 </para>
+    </remarks>
+    
+      <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+    
+    <reference>
+      <reference>
+            <ref_name>select</ref_name>
+            <ref_url>select</ref_url>
+        </reference>
+   </reference>
+
+</manpage>

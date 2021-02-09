@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\Live">IsAlive</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> IsAlive </method>
+    <description>
+        <para>
+           得到一个值判断进程是否处于运行状态。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Boolean  * </param_type>
+                <param_name> pIsAlive </param_name>
+                <param_note>
+                    <para>
+                 Boolean型的指针，用于获取判断结果，不能为空。若为TRUE，表示进程在运行；若为FLASE，则表示进程未启动或已经结束。
+                    </para>
+                </param_note>
+            </api_param>
+
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>如果同时pIsAlive为True表示进程处于运行状态，反之pIsAlive为False则表示进程未启动或已经结束。</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remark>
+        <para>如果*pIsAlive为False表示IProcess接口指向的进程已经终止，不管它以正常或者异常的的方式终止的。  </para>
+        <para>你能以<link url="Kill.htm">IProcess::Kill</link>接口强迫进程终止。 </para>
+        <para>当一个进程退出后，系统将释放进程所拥有的内存，但是进程的管理信息，例如退出时间，退出码等。你可以使用<link url="Kill.htm">IProcess::GetExitTime</link>方法和<link url="Kill.htm">IIProcess::GetExitCode</link>方法去得到退出时间和退出码这些进程属性。这些属性当进程开始运行后进程就自动拥有。当系统中最后一个IProcess接口调用Release方法后，所有进程相关的信息才被销毁。 </para>
+        <para>进程能自己终止自己。当使用IProcess::Start方法和进程独立终止的时候，系统能自动更新*pIsAlive值。 </para>
+    </remark>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

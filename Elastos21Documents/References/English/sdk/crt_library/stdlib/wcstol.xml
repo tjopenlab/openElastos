@@ -1,0 +1,137 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\strtol">strtol</sample>
+    <title> strtol, wcstol</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Converts strings to a long-integer value.</para>
+    </description>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>strtol</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>nptr</param_name>
+                <param_note>
+                    <para>Null-terminated string to convert.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char**</param_type>
+                <param_name>endptr</param_name>
+                <param_note>
+                    <para>Pointer to character that stops scan.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>base</param_name>
+                <param_note>
+                    <para>Number base to use.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>wcstol</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>nptr</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t**</param_type>
+                <param_name>endptr</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>base</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>strtol returns the value represented in the string nptr, except when the representation would cause an overflow, in which case it returns LONG_MAX or LONG_MIN. strtol returns 0 if no conversion can be performed. wcstol returns values analogously to strtol.</para>
+    </return>
+
+    <remarks>
+        <para>The strtol function converts nptr to a long. strtol stops reading the string nptr at the first character it cannot recognize as part of a number. This may be the terminating null character or it may be the first numeric character greater than or equal to base. </para>
+        <para>wcstol is a wide-character version of strtol; its nptr argument is a wide-character string. Otherwise these functions behave identically.</para>
+        <para>strtol expects nptr to point to a string of the following form:</para>
+        <para>[whitespace] [{+ | –}] [0 [{ x | X }]] [digits]</para>
+        <para>A whitespace may consist of space and tab characters, which are ignored; digits are one or more decimal digits. The first character that does not fit this form stops the scan. If base is between 2 and 36, then it is used as the base of the number. If base is 0, the initial characters of the string pointed to by nptr are used to determine the base. If the first character is 0 and the second character is not 'x' or 'X', the string is interpreted as an octal integer; otherwise, it is interpreted as a decimal number. If the first character is '0' and the second character is 'x' or 'X', the string is interpreted as a hexadecimal integer. If the first character is '1' through '9', the string is interpreted as a decimal integer. The letters 'a' through 'z' (or 'A' through 'Z') are assigned the values 10 through 35; only letters whose assigned values are less than base are permitted.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strtol</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcstol</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strtol.cpp: This program uses strtol to
+ * convert a string to long integer values.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char    *string, *stopstring;
+    long    l;
+
+    string = &quot;-10110134932This stopped it&quot;;
+    l = strtol(string, &amp;stopstring, 10);
+    printf(&quot;string = %s\n&quot;, string);
+    printf(&quot;    strtol = %ld\n&quot;, l);
+    printf(&quot;    Stopped scan at: %s\n&quot;, stopstring);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+string = -10110134932This stopped it
+strtol = -2147483648
+Stopped scan at: This stopped it
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcstod</ref_name>
+            <ref_url>wcstod</ref_url>
+        </reference>
+        <reference>
+            <ref_name>atof</ref_name>
+            <ref_url>atof</ref_url>
+        </reference>
+    </references>
+
+</manpage>

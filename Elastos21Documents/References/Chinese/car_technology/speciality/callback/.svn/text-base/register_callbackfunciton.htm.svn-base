@@ -1,0 +1,78 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>回调事件机制</title>
+</head>
+
+<body>
+<h2><span style="font-family: 黑体">注册回调函数</span></h2>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">
+在客户端第一次注册回调处理函数时，注册函数</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">AddXXXCallback</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">会创建一个和可连接对象有关联的接收器，并把回调函数注册到该接收器中。之后每一次注册其它回调函数时，只要找到这个接收器，然后直接把回调函数注册到该接收器中就行了。客户注册了事件函数后，接收器对象保存了该函数指针。</span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">注册回调函数时两种情况：</span></p>
+<p class="MsoNormal" style="text-indent: 21.1pt; line-height: 150%; layout-grid-mode: char">
+<span lang="EN-US" style="font-size:10.5pt;line-height:150%;font-family:黑体">1.c</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">allback</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">处理函数是普通方法</span></p>
+<p class="MsoNormal" style="text-indent: 21.1pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">参见</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%"><a style="color: blue; text-decoration: underline; text-underline: single" href="AddXXXCallback.htm">AddXXXCallback</a></span></p>
+<p class="MsoNormal" style="text-indent: 21.1pt; line-height: 150%; layout-grid-mode: char">
+<span lang="EN-US" style="font-size:10.5pt;line-height:150%;font-family:黑体">2.c</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">allback</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">处理函数是类成员函数</span></p>
+<p class="MsoNormal" style="text-indent: 21.1pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">参见</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%"><a style="color: blue; text-decoration: underline; text-underline: single" href="AddXXXCallback_.htm">AddXXXCallback</a></span></p>
+<h3 style="margin-top:5.0pt;margin-right:0cm;margin-bottom:5.0pt;margin-left:
+0cm;line-height:150%">
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">回调函数触发事件</span></h3>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%">
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">
+在注册回调之前先确定回调接口所要触发的事件。将回调事件的代码放在客户端实现代码中，在此示例中</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">OnFire()
+</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">中调用了</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">Employee()</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">函数，</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">Employee()</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">为一个回调事件，回调事件触发时调用以下函数。</span></p>
+<table class="MsoNormalTable" border="0" cellpadding="0" width="100%" style="width: 100.0%; background: #CCCCCC" id="table3">
+	<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt">
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">ECode 
+		EmployeeRunAway(PVoid,PInterface pSender)</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">{</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; 
+		printf(&quot;The employee are running away......&quot;);</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; 
+		CApplet::Finish(AppletFinish_ASAP);</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; return 
+		NOERROR;</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">}</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;</span></td>
+	</tr>
+</table>
+<h3 style="margin-top:5.0pt;margin-right:0cm;margin-bottom:5.0pt;margin-left:
+0cm;line-height:150%">
+<span style="font-size:10.5pt;line-height:150%;
+font-family:宋体">注册回调函数</span></h3>
+<table class="MsoNormalTable" border="0" cellpadding="0" width="100%" style="width: 100.0%; background: #CCCCCC" id="table4">
+	<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt">
+		<p class="MsoNormal"><span lang="EN-US" style="font-size:10.5pt">ECode 
+		ElastosMain(const BufferOf&lt;WString&gt;&amp; args)</span></p>
+		<p class="MsoNormal"><span lang="EN-US" style="font-size:10.5pt">{</span></p>
+		<p class="MsoNormal"><span lang="EN-US" style="font-size:10.5pt">&nbsp;&nbsp;&nbsp;
+		</span><span style="font-size: 10.5pt; font-family: 宋体">…………………………</span></p>
+		<p class="MsoNormal"><span lang="EN-US" style="font-size:10.5pt">&nbsp;&nbsp;&nbsp; ec 
+		= CBuilding::AddEmployeeCallback(pBuilding,EmployeeRunAway, NULL);</span></p>
+		<p class="MsoNormal"><span lang="EN-US" style="font-size:10.5pt">&nbsp;&nbsp;&nbsp;
+		</span><span style="font-size: 10.5pt; font-family: 宋体">…………………………</span></p>
+		<p class="MsoNormal"><span lang="EN-US" style="font-size:10.5pt">}</span></td>
+	</tr>
+</table>
+<p class="MsoNormal" style="line-height: 150%; layout-grid-mode: char">
+<span lang="EN-US" style="font-size:10.5pt;
+line-height:150%">&nbsp;</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">当客户端调用<span lang="EN-US">OnFire()</span>时，会自动调用<span lang="EN-US">EmployeeRunAway()</span>函数。</span></p>
+</body>
+</html>

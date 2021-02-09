@@ -1,0 +1,340 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>applet</title>
+</head>
+
+<body>
+<h2>applet</h2>
+
+    <p> Applet，顾名思义就是“应用”，比如一个计算器，一个记事本等等。它是Elastos操作系统所支持程序模型的一个重要概念和CAR技术的重要组成部分，之前我们基于CAR编程模型的应用都在进程内不同的线程中独立运行，一个应用可能有一个线程，也可能有若干个线程，进程内这些线程没有什么差别，他们共享相同的地址空间和数据，应用之间没有明确的界限。有了applet的概念以后，每次启动一个applet,它会创建一个独立的属于它的applet主线程，在这个线程的局部存储（TLS，Thread Local Stogage）上会有这个applet的属性数据，有别于其他applet，当这个主线程需要创建子线程时，这些属性数据也会被子线程继承，这样，凭借applet属性就可以明确地划分出进程内不同applet的边界，我们可以判断出一个调用是在applet内部，还是跨applet边界的。“应用”这个逻辑的、业务上的概念在编程时有了对应的实现手段。</p>
+    <p> applet是一种新的class类型，使用T字头命名。它是在进程内一个相对独立的小应用，具有自己的消息处理线程，它所注册的回调和它的子线程所注册的回调都由applet的回调线程处理。</p>
+    <p> 进程，线程和Applet的关系如下图所示：</p>
+    <center><img src="images\Applet.gif"/></center>
+    <p>这里我们需要注意的几点是:</p>
+    <p>1.Applet有自己的“主线程”。</p>
+    <p>2.Applet有自己的Main方法，并在自己的主线程里执行Main方法。</p>
+    <p>3.用户的Main方法类似于ElastosMain，如果Applet::Main返回NOERROR，Applet的主线程也进入消息循环。</p>
+    <p>4.Applet的主线程就是自己的消息处理线程。</p>
+    <p>5.所有Applet的子线程都属于该Applet。</p>
+    <p>6.所有Applet的子线程都继承Applet的回调线程。</p>
+    <p>7.进程可以被看作一个大的Applet，它的子线程都使用进程的消息处理线程（即主线程）。</p>
+    <p>8.无论谁创建的Applet，Applet都使用它自己的消息处理线程。</p>
+    <p>9.Applet内创建的子线程也都使用该Applet的消息处理线程。</p>
+    <p>10.Singleton是个例外，它和它内部使用的callback是由进程的主线程来处理，因为它的生命周期可能比它所在的Applet还要长。</p>
+    <p>11.图形应用退出时使用CApplet::Finish来中止当前applet的消息循环。</p>
+    <p>自动代码生成框架为每个applet类默认实现了IApplet接口，其中包含若干接口方法供用户调用和实现。此外，每个applet都有IAppletEvent这个回调接口，调用者可以注册回调事件获得applet相应事件发生时的通知。具体请参见相关接口方法介绍。</p>
+    <p>下面是同时使用了applet和callback的示例程序，它的CAR文件如下：</p>
+    <pre class = code>
+module
+{
+    interface IMail {
+        SendMail(WString strTitle);
+        RecvMail(WStringBuf_<100> strTitle);
+    }
+
+    interface IMailEvent {
+        Send();
+        Recv();
+    }
+
+    applet TMail {
+        interface IMail;
+        callback interface IMailEvent;
+    }
+}
+</pre>
+<p>在这个CAR文件中，定义了两个接口，一个applet类包含了定义了的两个接口，其中IMailEvent是回调接口。</p>
+<p>通过自动代码生成框架生成的TMail.cpp文件如下：</p>
+<pre class = code>
+#include "TMail.h"
+#include "_TMail.cpp"
+
+ECode TMail::Main(const BufferOf<WString> & args)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::Activate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::Deactivate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::IsActivated(
+    /* [out] */ Boolean * pActivated)
+{
+    // TODO: Add your code here
+    if (NULL == pActivated) return E_INVALID_ARGUMENT;
+    *pActivated = TRUE;
+
+    return NOERROR;
+}
+
+ECode TMail::Snooze()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::Wakeup()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::GetName(
+    WStringBuf * pName)
+{
+    // TODO: Add your code here
+    if (NULL == pName) return E_INVALID_ARGUMENT;
+    pName->Copy(L"TMail");
+    return NOERROR;
+}
+
+ECode TMail::SendMail(
+    /* [in] */ WString strTitle)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::RecvMail(
+    /* [out] */ WStringBuf * pStrTitle)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+</pre>
+<p>可以看到，该文件中包含了自动生成的IApplet接口方法，如Activate，Deactivate等，并包含一个Main方法，该Main方法即applet程序的入口地址。我们修改Main方法和在CAR文件中定义的两个接口方法：SendMail和RecvMail，并增加两个注册给回调方法的函数：OnSend和OnRecv，修改后的TMail.cpp文件如下：</p>
+<pre class = code>
+#include "TMail.h"
+#include "_TMail.cpp"
+
+ECode OnRecv(PVoid pUserData, PInterface pSender)
+{
+    CConsole::WriteLine(L"Received a mail");
+    CApplet::Finish(AppletFinish_ASAP);                  // applet主动退出消息循环，结束applet
+    return NOERROR;
+}
+
+ECode OnSend(PVoid pUserData, PInterface pSender)
+{
+    CConsole::WriteLine(L"Sended a mail");
+    return NOERROR;
+}
+
+ECode TMail::Main(const BufferOf<WString> & args)
+{
+    TMail::AddSendCallback((_IInterface*)this, OnSend);   // 由applet的消息线程处理
+    TMail::AddRecvCallback((_IInterface*)this, OnRecv);
+    return  NOERROR;                                      // 返回后进入消息循环
+}
+
+WStringBuf_<100> g_strTitle;
+
+ECode TMail::SendMail(
+    /* [in] */ WString strTitle)
+{
+    // TODO: Add your code here
+    g_strTitle.Copy(strTitle);
+    Send();
+    return NOERROR;
+}
+
+ECode TMail::RecvMail(
+    /* [out] */ WStringBuf * pStrTitle)
+{
+    // TODO: Add your code here
+    pStrTitle->Copy(g_strTitle);
+    Recv();
+    return NOERROR;
+}
+
+TMail::~TMail()
+{
+    CConsole::WriteLine(L"TMail::~TMail()");
+}
+
+ECode TMail::Activate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::Deactivate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::IsActivated(
+    /* [out] */ Boolean * pActivated)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::Snooze()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::Wakeup()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::GetName(
+    WStringBuf * name)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+</pre>
+<p>可以看到，我们在Main函数中分别为两个回调方法注册了两个函数，并修改TMail.h文件，如下：</p>
+<pre class = code>
+#ifndef __TMAIL_H__
+#define __TMAIL_H__
+
+#include "_TMail.h"
+
+CarClass(TMail)
+{
+public:
+    CARAPI Main(const BufferOf<WString> & args);
+
+    CARAPI SendMail(
+        /* [in] */ WString strTitle);
+
+    CARAPI RecvMail(
+        /* [out] */ WStringBuf * pStrTitle);
+
+    ~TMail();
+
+    CARAPI Activate();
+
+    CARAPI Deactivate();
+
+    CARAPI IsActivated(
+        /* [out] */ Boolean * pActivated);
+
+    CARAPI Snooze();
+
+    CARAPI Wakeup();
+
+    CARAPI GetName(
+        /* [out] */ WStringBuf * pName);
+
+private:
+    // TODO: Add your private member variables here.
+};
+
+#endif // __TMAIL_H__
+</pre>
+<p>修改sources文件：</p>
+<pre class=code>
+TARGET_NAME= mail
+TARGET_TYPE= dll
+
+SOURCES= mail.car
+SOURCES+= TMail.cpp
+
+ELASTOS_LIBS= ElCRuntime.lib
+ELASTOS_LIBS+= elastos.lib
+
+</pre>
+<p>以上是服务器端的设计，下面介绍客户端程序client.cpp：</p>
+<pre class=code>
+#include &lt;elastos.h&gt;
+#include &lt;mail.h&gt;
+
+using namespace Elastos;
+
+ECode OnFinish(PVoid pUserData, PInterface pSender)
+{
+    CConsole::WriteLine(L"Applet finished");
+    CApplet::Finish(AppletFinish_ASAP);
+    return NOERROR;
+}
+
+ECode ElastosMain(const BufferOf<WString> & args)
+{
+    IApplet* pApplet = NULL;
+    IMail *pMail = NULL;
+    ECode ec;
+    WStringBuf_<100> strTitle;
+
+    ec = TMail::New(&pMail);                 // 创建一个applet
+    if (FAILED(ec)) return ec;
+
+    pApplet = IApplet::Probe(pMail);         // 获得applet接口
+    if (pApplet == NULL) {
+        if (pMail) pMail->Release();
+        return E_FAIL;
+    }
+    pApplet->AddRef();
+
+    TMail::AddFinishingCallback(pMail, OnFinish);   // 注册applet的结束消息 (参见<a href=IAppletEvents.htm>IAppletEvents</a>回调接口及其方法Finishing)
+
+    pApplet->Start(args);                           // 启动applet(参见<a href=IApplet.htm>IApplet</a>接口及其接口方法<a href=IApplet\Start.htm>Start<a>的介绍)
+
+    CThread::Sleep(100, NULL);                      // 释放CPU，给applet一段启动时间
+
+    pMail->SendMail(L"test send mail");             // 调用applet的方法，激发回调
+    pMail->RecvMail(&strTitle);
+
+    CConsole::Write(L"Title: ");
+    CConsole::WriteLine(strTitle);
+
+    if (pApplet) pApplet->Release();
+    if (pMail) pMail->Release();
+    return NOERROR;                                 // 返回NOERROR，进入消息循环
+}
+</pre>
+<p>修改客户端sources文件：</p>
+<pre class=code>
+TARGET_NAME= TestMail
+TARGET_TYPE= exe
+
+IMPORTS= mail.dll
+
+SOURCES= client.cpp
+
+ELASTOS_LIBS= ElCRuntime.lib
+ELASTOS_LIBS+= elastos.lib
+
+</pre>
+<p>客户端设计完成，该程序执行结果如下：</p>
+<pre class=code>
+Sended a mail
+Title: test send mail
+Received a mail
+Applet finished
+TMail::~TMail()
+</pre>
+<p>相关API和接口</p>
+<p>1.<a href="CApplet.htm">CApplet相关API</a></p>
+<p>2.<a href="IApplet.htm">IApplet接口方法介绍</a></p>
+<p>3.<a href="IAppletEvents.htm">IAppletEvent回调接口方法介绍</a></p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

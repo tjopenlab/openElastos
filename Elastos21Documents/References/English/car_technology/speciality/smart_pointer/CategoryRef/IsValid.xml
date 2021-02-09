@@ -1,0 +1,54 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <volume> Category Smart Pointer Class Shared Method </volume>
+    <interface> CategoryRef </interface>
+    <method>IsValid</method>
+
+    <description>
+        <para>Validate Category category smart pointer.</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>BOOL</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para>If Category category smart pointer is valid, returns TRUE; otherwise, returns FALSE.</para>
+    </return>
+
+    <remarks>
+        <para> Before using category smart pointer, it needs to be validated, only validated category smart pointer can invoke all methods in corresponding category smart pointer class.If the current category smart pointer is not initialized through <b>Instantiate</b>, it needs to be validated through <b>IsValid</b> method.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+Situation one: Category smart pointer is passed to function as parameter, IsValid is needed to validate.For example: 
+void Foo(CategoryRef& senderRef)
+{
+    if (!senderRef.IsValid()) { //invokes IsValid method to validate category smart pointer senderRef.
+        assert(0 && "senderRef is invalid.");
+        return;
+    }
+    ……
+}
+]]></pre>
+        <pre><![CDATA[
+Situation two: Category smart pointer is converted from i2i function, IsValid method is needed to check.For example: 
+CategoryRef cCategoryRef
+
+//interface smart pointer IXXXRef already points to Category object, through which we can obtain corresponding category smart pointer
+CategoryRef cCategoryRef = i2i(IXXXRef);
+
+if (!cCategoryRef.IsValid()) { //validate category smart pointer cCategoryRef by invoking IsValid method.
+    assert(0 && "cCategoryRef is invalid.");
+    return 1;
+}
+]]></pre></example>
+
+</manpage>

@@ -1,0 +1,251 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>图形控件IRadioButton</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> IRadioButton 范例程序 </h2>
+
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+<h3> CRadioSam.h </h3>
+#include &quot;_CRadioSam.h&quot;
+class CRadioSam : public _CRadioSam
+{
+public:
+    CRadioSam() : m_pMainForm(NULL),
+                  m_pIPanel(NULL),
+                  m_pIRadio1(NULL),
+                  m_pIRadio2(NULL),
+                  m_pIRadio3(NULL),
+                  m_pIRadio4(NULL),
+                  m_pIRadio5(NULL),
+                  m_pIBtnClose(NULL) {}
+
+    ~CRadioSam();
+    CARAPI AtEntry(
+        /* [in] */ EzArray<WString> argcv);
+
+    CARAPI AtExit();
+
+    CARAPI OnCheckedChanged(
+        /* [in] */ IRadioButton* pIObject);
+
+    CARAPI OnClose(
+        /* [in] */ IButton* pIObject);
+
+private:
+    IForm        * m_pMainForm;
+    IPanel       * m_pIPanel;
+    IRadioButton * m_pIRadio1;
+    IRadioButton * m_pIRadio2;
+    IRadioButton * m_pIRadio3;
+    IRadioButton * m_pIRadio4;
+    IRadioButton * m_pIRadio5;
+    IButton      * m_pIBtnClose;
+};
+
+<h3> CRadioSam.cpp </h3>
+#include &quot;CRadioSam.h&quot;
+#include &quot;_CRadioSam.cpp&quot;
+#include &lt;stdio.h&gt;
+
+CRadioSam::~CRadioSam()
+{
+    if (m_pMainForm) {
+        m_pMainForm->Release();
+    }
+
+    if (m_pIRadio1) {
+        m_pIRadio1->Release();
+    }
+
+    if (m_pIRadio2) {
+        m_pIRadio2->Release();
+    }
+
+    if (m_pIRadio3) {
+        m_pIRadio3->Release();
+    }
+
+    if (m_pIRadio4) {
+        m_pIRadio4->Release();
+    }
+
+    if (m_pIRadio5) {
+        m_pIRadio5->Release();
+    }
+
+    if (m_pIPanel) {
+        m_pIPanel->Release();
+    }
+
+    if (m_pIBtnClose) {
+        m_pIBtnClose->Release();
+    }
+}
+
+ECode CRadioSam::AtEntry(
+        /* [in] */ EzArray < WString > argcv)
+{
+    ECode ec;
+///////////     Form
+    ec = CForm::New(&m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Create Form failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pMainForm->Init(0, L"MAIN", 0, 0, 200, 280,  NULL);
+    if (FAILED(ec)) {
+        prInt32f("Init Form failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+///////////     Panel
+    ec = CPanel::New(&m_pIPanel);
+    if (FAILED(ec)) {
+        prInt32f("Create Panel failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pIPanel->Init(0, L" ", 10, 40, 180, 130,  m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Init Panel failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+///////////     AutoCheckRadio
+    ec = CRadioButton::New(&m_pIRadio1);
+    if (FAILED(ec)) {
+        prInt32f("Create RadioButton1 failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pIRadio1->Init(RadioButtonStyle_AutoCheck,
+                L"Radio1", 50, 10, 80, 30,  m_pIPanel);
+    if (FAILED(ec)) {
+        prInt32f("Init RadioButton1 failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = CRadioButton::New(&m_pIRadio2);
+    if (FAILED(ec)) {
+        prInt32f("Create RadioButton2 failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pIRadio2->Init(RadioButtonStyle_AutoCheck,
+                L"Radio2", 50, 50, 80, 30,  m_pIPanel);
+    if (FAILED(ec)) {
+        prInt32f("Init RadioButton2 failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = CRadioButton::New(&m_pIRadio3);
+    if (FAILED(ec)) {
+        prInt32f("Create RadioButton3 failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pIRadio3->Init(RadioButtonStyle_AutoCheck,
+                L"Radio3", 50, 90, 80, 30,  m_pIPanel);
+    if (FAILED(ec)) {
+        prInt32f("Init RadioButton3 failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+///////////     Normal Style
+    ec = CRadioButton::New(&m_pIRadio4);
+    if (FAILED(ec)) {
+        prInt32f("Create RadioButton4 failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pIRadio4->Init(0, L"Radio4",
+                    50, 200, 80, 30,  m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Init RadioButton4 failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = CRadioButton::New(&m_pIRadio5);
+    if (FAILED(ec)) {
+        prInt32f("Create RadioButton5 failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pIRadio5->Init(0, L"Radio5",
+                    50, 240, 80, 30,  m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Init RadioButton5 failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+///////////     AddEventHandler
+    CRadioButton::AddCheckedChangedCallback(m_pIRadio1,
+                 this, &CRadioSam::OnCheckedChanged);
+    CRadioButton::AddCheckedChangedCallback(m_pIRadio2,
+                 this, &CRadioSam::OnCheckedChanged);
+    CRadioButton::AddCheckedChangedCallback(m_pIRadio3,
+                 this, &CRadioSam::OnCheckedChanged);
+    CRadioButton::AddCheckedChangedCallback(m_pIRadio4,
+                 this, &CRadioSam::OnCheckedChanged);
+    CRadioButton::AddCheckedChangedCallback(m_pIRadio5,
+                 this, &CRadioSam::OnCheckedChanged);
+
+///////////////  Exit Button
+    ec = CButton::New(&m_pIBtnClose);
+    if (FAILED(ec)) {
+        prInt32f("Create CloseButton failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pIBtnClose->Init(0, L"Exit",
+                0, 0, 80, 30,  m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Init CloseButton failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 this, &CRadioSam::OnClose);
+
+    m_pMainForm->Show();
+
+    return NOERROR;
+}
+
+ECode CRadioSam::AtExit()
+{
+    return NOERROR;
+}
+
+ECode CRadioSam::OnCheckedChanged(
+        /* [in] */ IRadioButton* pIObject)
+{
+    prInt32f("OnCheckedChanged:this = %x\n", pIObject);
+    return NOERROR;
+}
+
+ECode CRadioSam::OnClose(
+        /* [in] */ IButton* pIObject)
+{
+    m_pMainForm->Close();
+
+    return NOERROR;
+}
+
+</pre>
+
+<script>footer("KoreTide")</script>
+</body>
+</html>

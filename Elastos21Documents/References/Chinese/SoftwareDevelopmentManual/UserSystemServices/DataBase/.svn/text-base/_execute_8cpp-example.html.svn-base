@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: Execute.cpp</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<h1>Execute.cpp</h1>This is an example of how to use the function: <a class="el" href="interface_i_database.html#b68a1bd86c5b4d996a9dde72b6ea3f9d" title="创建一个用于向数据库传递SQL语句的SQL语句对象。 没有参数的...">IDatabase::CreateStatement()</a>,<a class="el" href="interface_i_statement.html#35b2e4f67a8b5274a8c876f46a72a25f" title="执行SQL语句。">IStatement::Execute()</a>.<p>
+<div class="fragment"><pre class="fragment"><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<span class="preprocessor">#include &lt;ElDatabase.h&gt;</span>
+<span class="preprocessor">#include &lt;io.h&gt;</span>
+
+<span class="keyword">using namespace </span>Elastos;
+
+<span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)
+{
+    <span class="comment">// 打开数据库文件“samples.db”。</span>
+    <span class="comment">// 如果该文件不存在，则创建一个名为“samples.db”的文件。</span>
+    if (!_waccess(L"samples.db", 0))
+    	_wremove(L"samples.db");
+    <a name="_a0"></a><a class="code" href="interface_i_database.html" title="特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。...">
+    IDatabase</a> *pDatabase;
+    ECode ec = CDatabase::New(L<span class="stringliteral">"samples.db"</span>, &amp;pDatabase);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        <span class="keywordflow">return</span> -1;
+    }
+
+    <span class="comment">// 获取执行SQL语句的接口。</span>
+    <a name="_a1"></a><a class="code" href="interface_i_statement.html" title="Statement接口，该接口用来执行静态的SQL语句并返回相应的结果集。...">IStatement</a> *pStatement;
+    ec = pDatabase-&gt;<a name="a2"></a><a class="code" href="interface_i_database.html#b68a1bd86c5b4d996a9dde72b6ea3f9d" title="创建一个用于向数据库传递SQL语句的SQL语句对象。 没有参数的...">CreateStatement</a>(&amp;pStatement);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        pDatabase-&gt;Release();
+        <span class="keywordflow">return</span> -1;
+    }
+
+    <span class="comment">// 创建一个名为students的表，该表包含四个字段：number, name, sex, age。</span>
+    ec = pStatement-&gt;<a name="a3"></a><a class="code" href="interface_i_statement.html#35b2e4f67a8b5274a8c876f46a72a25f" title="执行SQL语句。">Execute</a>(
+        L<span class="stringliteral">"CREATE TABLE students(number CHAR(10), name CHAR(10), sex CHAR(6), age INT);"</span>);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        pStatement-&gt;Release();
+        pDatabase-&gt;Release();
+        <span class="keywordflow">return</span> -1;
+    }
+
+    <span class="comment">// 插入10条记录。</span>
+    ec = pStatement-&gt;<a class="code" href="interface_i_statement.html#35b2e4f67a8b5274a8c876f46a72a25f" title="执行SQL语句。">ExecuteBatch</a>(
+        L<span class="stringliteral">"INSERT INTO students VALUES('00001', 'Mary', 'female', 15); "</span>
+        L<span class="stringliteral">"INSERT INTO students VALUES('00002', 'John', 'male', 16); "</span>
+        L<span class="stringliteral">"INSERT INTO students VALUES('00003', 'Mike', 'male', 15); "</span>
+        L<span class="stringliteral">"INSERT INTO students VALUES('00004', 'Kevin', 'male', 17); "</span>
+        L<span class="stringliteral">"INSERT INTO students VALUES('00005', 'Alice', 'female', 14); "</span>
+        L<span class="stringliteral">"INSERT INTO students VALUES('00006', 'Susan', 'female', 16); "</span>
+        L<span class="stringliteral">"INSERT INTO students VALUES('00007', 'Christina', 'female', 15); "</span>
+        L<span class="stringliteral">"INSERT INTO students VALUES('00008', 'Brian', 'male', 16); "</span>
+        L<span class="stringliteral">"INSERT INTO students VALUES('00009', 'Dennis', 'male', 14); "</span>
+        L<span class="stringliteral">"INSERT INTO students VALUES('00010', 'Daphne', 'female', 18);"</span>,
+        NULL);
+    <span class="keywordflow">if</span> (SUCCEEDED(ec)) {
+        printf(<span class="stringliteral">"10 records are inserted."</span>);
+    }
+
+    pStatement-&gt;Release();
+    pDatabase-&gt;Release();
+
+    <span class="keywordflow">return</span> 0;
+}
+
+<span class="comment">/*</span>
+<span class="comment">Output</span>
+<span class="comment">    10 records are inserted.</span>
+<span class="comment">*/</span>
+</pre></div>
+<script>footer("chinese")</script>
+</body>
+</html>

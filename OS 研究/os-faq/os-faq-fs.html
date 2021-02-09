@@ -1,0 +1,588 @@
+
+<html>
+<head>
+	<title>Operating Systems FAQ :: Filesystems</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="file_systems">Tell me about Filesystems</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>There are many different kinds of filesystems around, from the well known to
+		the more obscure ones. The most unfortunate thing about filesystems is that
+		every hobbyist OS programmer thinks that the filesystem they design is the ants
+		pants when all it is, is a knock off of DOS FAT with a change here and there.
+<P>The world doesn't need another crap filesystem. Investigate all the possibilites
+		before you decide you have to create your own.</P>
+			<UL>
+				<LI><A href="#fs_fat">FAT</A>
+				<LI><a href="#fs_vfat">VFAT</a>
+				<LI><a href="#fs_fat32">FAT32</a>
+				<LI><a href="#fs_hpfs">HPFS (High Performance File System)</a>
+				<LI><a href="#fs_ntfs">NTFS (New Technology File System)</a>
+				<LI><a href="#fs_ext2fs">EXT2FS (Second Extended File System)</a>
+				<LI><a href="#fs_befs">BeFS</a>
+				<LI><a href="#fs_ffs_amiga">FFS (Fast File System) AMIGA</a>
+				<li><a href="#fs_ffs_bsd">FFS BSD</a>
+				<li><a href="#fs_nfs">NFS (Networked File System)</a>
+				<li><a href="#fs_afs">AFS (Andrew File System)</a>
+				<li><a HREF="#fs_rfs">RFS (Remote File System)</a>
+				<li><a href="#fs_xfs">XFS (SGI File System)</a>
+			</UL>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_fat">Filesystems :: FAT</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>File Allocation Table (FAT) was introduced 
+            with DOS v1.0 (and possably CP/M) and was supposedly written by Bill 
+            Gates. FAT is a very simple filesystem which is nothing more than a 
+            singular linked list of clusters. FAT filesystems use very little 
+            memory and is one of, if not the most basic of filesystems in 
+            existance today.
+<P></P>
+<P>There are two versions of this simplified FAT, FAT12 and FAT16. FAT12
+		was designed for floppy disks and can manage a maximum size of 16mb using
+		12bit cluster numbers. FAT16 was designed for early hard disks and could
+		handle a maximum size of 64kb * cluster_size.  The larger the hard disk,
+		the larger the cluster size would be, which lead to large amounts of
+		&quot;slack space&quot; on the disk.</P>
+<P>FAT12+FAT16 filesystems have fixed size for filenames of &quot;8.3&quot;
+		and limited support for file attributes.</P>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_vfat">Filesystems :: VFAT</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>VFAT is an extension of FAT16 and FAT12 that has the ability to use
+		long filenames (up to 255 characters i think). First introduced
+		by Windows95. It uses a &quot;cludge&quot; whereby long filenames
+		are marked with an &quot;volume lable&quot;e; attribute and filenames
+		are subsequently stored in the 8.3 format in sequential directory
+		entries. (This is a bit of an oversimplification, but close enough).
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_fat32">Filesystems :: FAT32</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>FAT32 was introduced to us by Windows95-B and Windows98. FAT32 broke
+		through some of FAT's problems. No more 64kb max clusters! FAT32
+		as its name suggests, can handle a maximum of 4gig clusters per
+		partition.  This enables very large hard disks to still maintain
+		very small cluster sizes and thus reduce slack space between files.
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_hpfs">Filesystems :: HPFS (High Performace Filesystem)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The HPFS was designed by IBM/Microsoft for IBMs new windowing system, OS/2.
+<P>HPFS was designed to be fast, remove all the shortcomings of FAT, support
+		long filenames, small cluster sizes, remove degfragmentation as much as
+		possible and support more attributes.</P>
+<P>HPFS is the precursor to NTFS and is, in a nutshell, NTFS minus all
+		the securty features embeded into NTFS. Instead of storing cluster
+		chains in a single linked list format, HPFS stores its information
+		in sorted B-Tree's. This makes searching for files blindingly fast.</P>
+<P>HPFS is a member of the &quot;inode&quot; family if filesystems
+		as opposed to the &quot;FAT&quot; family. Other examples
+		of INODE type filesystems are, NTFS, ext2fs and most unix filesystems.</P>
+<P>Instead of keeping the directory tables and other descriptors
+		at the start of the disk, HPFS bands them at regular intervals
+		through out the disk and in the middle of the disk, the theory
+		being, the heads only have to move half as much in any direction
+		as maximum to get to the middle of the disk.</P>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_ntfs">Filesystems :: NTFS (New Technology Filesystem)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>NTFS is the native filesystem of WindowsNT. It is much like HPFS but
+		supports security features in the filesystem such as access controls.
+		Since WindowsNT is entirly unicode, NTFS is a unicode filesystem,
+		each &quot;character&quot; being 16bits wide.
+		<p>
+		NTFS adds quite a bit more to HPFS than just security features. First, it
+		adds quite a bit of builtin redundancy -- with HPFS, wiping out one sector
+		in the wrong place can render an entire volume inaccessible.  Second, it
+		adds support for multiple hard-links to a file (up 'til now, the only easy
+		access has been via the POSIX subsystem, but NT 5/Win2K adds this to Win32
+		as well).  Third, it supports an arbitrary number of file forks al la MacOS
+		(except MacOS always has exactly 2 forks per file).  Fourth, HPFS decrees
+		that a cluster is always 512 bytes, and a cluster is always one sector.
+		For the sake of performance and compatibility with some (especially
+		Japanese) machines, NTFS allows sectors of other sizes.  It also supports
+		clusters of more than one sector, which tends to help performance a little.
+		</p>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_ext2fs">Filesystems :: ext2fs (Second Extended Filesystem)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The Second Extended Filesystem is the native filesystem of Linux. It is another
+		&quot;inode&quot; based system....
+		<p>		
+		An ext2fs-partition is made up from blocks, which normally are 1K each.
+		The first block (the bootblock) is zeroized, all the other blocks are 
+		divided into so-called block groups (normally, between 256 and 8192 
+		blocks form a group). Each block group contains:
+		<ul>
+			<li>a copy of the superblock (which is a mighty useful structure containing info about the filesystem)
+			<li>the filesystem descriptors (dunno what that is exactly)
+			<li>the block bitmap, tells which blocks are used
+			<li>the inode bitmap, tells which inodes are used (difference?)
+			<li>the inode table, which contains the inodes themselves
+			<li>the data blocks referenced by the inodes
+		</ul>
+		</p>
+		<p>
+		The first inode is a special one; it is the bad blocks inode, which 
+		references all the damaged sectors of the partition. The fifth inode 
+		contains the bootloader, whereas the 11th contains the root directory.
+		</p>		
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_befs">Filesystems :: BeFS</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>BeFS is the new filesystem for the Be Operating system. It is very much like
+		the MacOS Filesystem. It supports multiple forks and is a 64bit filesystem.
+		<p>
+		more info required.
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_ffs_amiga">Filesystems :: FFS (Amiga)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Here's info on the Amiga FFS, version 1.3 or 2.0, can't remember which...
+		Expect spelling errors to abound, as I am writing this while drop-dead
+		tired..
+<p>
+1.1 Root Block<p>
+The root of the tree is the root block, which is at a fixed place on the
+disk. The root is like any other directory, except that it has no parent,
+and it's secondary type is different. AmigaDOS stores the name of the disk
+volume in the name field of the root block.
+<p>
+Each filing system blck contains a checksum, where the sum (ignoring
+overflow) of all the words in the block is zero.
+<pre>
+	  +---------------+
+	0 |  T. SHORT	  | Type
+	  |---------------|
+	1 |       0       | header key (always 0)
+	  |---------------|
+	2 |	    0     | Highest seq number (always 0)
+	  |---------------|
+	3 |   HT SIZE     | Hashtable size (=blocksize -56)
+	  |---------------|
+	4 |       0       |
+	  |---------------|
+	5 |   CHECKSUM    |
+	  |---------------|
+	6 |     hash      |
+	  |     table     |
+	  /               /
+	  \               \
+  SIZE-51 |               |
+	  |---------------|
+  SIZE-50 |  BMFLAG       | TRUE if bitmap on disk is valid
+	  |---------------|
+  SIZE-49 |   bitmap      | Used to indicate the blocks
+  SIZE-24 |    pages      | containing the bitmap
+	  |---------------|
+  SIZE-23 |    DAYS       | Volume last altered date and time
+	  |---------------|
+  SIZE-22 |    MINS       |
+	  |---------------|
+  SIZE-21 |    TICKS      |
+	  |---------------|
+  SIZE-20 |     DISK      | Volume name as a BCPL string
+	  |     NAME      | of <= 30 characters
+	  |---------------|
+  SIZE-7  |   CREATEDAYS  | Volume creation date and time
+	  |---------------|
+  SIZE-6  |   CREATEMINS  |
+	  |---------------|
+  SIZE-5  |  CREATETICKS  |
+	  |---------------|
+  SIZE-4  |       0       | Next entry on this hash chain
+	  |---------------| (always 0)
+  SIZE-3  |       0       | Parent directory (always 0)
+	  |---------------|
+  SIZE-2  |       0       | Extension (always 0)
+	  |---------------|
+  SIZE-1  |    ST.ROOT    | Secondary type indicates root block
+	  +---------------+
+</pre>
+<p>
+1.1.2 User Directory Blocks
+<pre>
+	  +---------------+
+	0 |   T.SHORT     | Type
+	  |---------------|
+	1 |   OWN KEY     | Header Key (pointer to self)
+	  |---------------|
+	2 |       0       | Highest Seq Number (always 0)
+	  |---------------|
+	3 |       0       |
+	  |---------------|
+	4 |       0       |
+	  |---------------|
+	5 |  CHECKSUM     |
+	  |---------------|
+	6 |               |
+	  |    hash table |
+	  /		  /
+	  \		  \
+  SIZE-51 |               |
+	  |---------------|	
+  SIZE-50 |    Spare      |
+	  |---------------|
+  SIZE-48 |    PROTECT    |  Protection bits
+	  |---------------|
+  SIZE-47 |       0       | Unused (always 0)
+	  |---------------|
+  SIZE-46 |               |
+	  |   COMMENT     | Stored as  BCPL string
+  SIZE-24 |               |
+	  |---------------|
+  SIZE-23 |     DAYS      | Creation date and time
+	  |---------------|
+  SIZE-22 |     MINS      |
+	  |---------------|
+  SIZE-21 |    TICKS      |
+	  |---------------|
+  SIZE-20 | DIRECTORY NAME| Stored as a BCPL string <=30 chars
+  	  |---------------|
+  SIZE-4  | HASHCHAIN     | Next entry with same hash value
+          |---------------|
+  SIZE-3  |    PARENT     | back pointer to parent directory
+          |---------------|
+  SIZE-2  |      0        | Extension (always 0)
+	  |---------------|
+  SIZE-1  |  ST.USERDIR   | secondary type
+	  +---------------+
+</pre>
+<p>
+	User directory blocks have type T.SHORT and secondary type
+ST.USERDIRECTORY. The six information words at the start of the block also
+indicate the block's own key (this is, the block number) as a consistency
+check and the size of the hash table. The 50 information words at the end
+of the block contain the date and time of creation, the name of the
+directory, a pointer to the next file or directory on the hash chain, and a
+pointer to the directory above.
+<p>
+	To find a file or sub-directory, you must first apply a hash function to
+its name. This has function yields and offset in the hash table, which is
+the key of the first block on a chain linking those with the same hash
+value (or 0, if there are none). AmigaDOS reads teh block with this key and
+compares the name of the block with the required name. If the names do not
+match, it reads the next block on the chain, and so on.
+
+<p>
+1.1.3 File Header Block
+<pre>
+	   +------------+
+	0  |   T.SHORT  | Type
+	   |------------|
+	1  |   OWN KEY  | Header Key
+	   |------------|
+	2  | HIGHEST SEQ| Total number of data blocks in file
+	   |------------|
+	3  |  DATA SIZE | Number of data block slots used
+	   |------------|
+	4  | FIRST DATA | First data block
+	   |------------|
+	5  |  CHECKSUM  |
+	   |------------|
+	6  |		|
+	   /            /
+	   \            \
+	   | DATA BLK 3 |
+	   | DATA BLK 2 | List of data block keys
+  SIZE-51  | DATA BLK 1 |
+	   |------------|
+  SIZE-50  |  Spare     |
+	   |------------|
+  SIZE-49  |   PROTECT  | Protection bits
+	   |------------|
+  SIZE-48  |  BYTESIZE  | Total size of file in bytes
+	   |------------|
+  SIZE-46  |		|
+	   |  COMMENT   | Comment as a BCPL string
+  SIZE-24  |            |
+	   |------------|
+  SIZE-23  |    DAYS    | Creation date and time
+           |------------|
+  SIZE-22  |    MINS    |
+	   |------------|
+  SIZE-21  |    TICKS   |
+	   |------------|
+  SIZE-20  | FILE NAME  | Stored as BCPL string <= 30 chars
+	   |------------|
+  SIZE-4   |  HASHCHAIN | Next entry with same hash value
+	   |------------|
+  SIZE-3   |   PARENT   | Back pointer to the parent directory
+	   |------------|
+  SIZE-2   |  EXTENSION | Zero pointer to the first extension 	  
+           |------------| block
+  SIZE-1   |  ST. FILE  | Secondary type
+	   +------------+
+</pre>
+<p>
+	Each terminal file starts with a file header block, which has type T.SHORT
+and secondary type ST.FILE. The start and end of the block contain name,
+time, and redundancy information similar to that in a directory block. The
+body of the file consists of Data blocks with sequence numbers from 1
+upwards. AmigaDOS stores the addresses of these blocks in consecutive words
+downwards from offset size-51 in the block. In general, AmigaDOS does not
+use all the space for this list and the last data block is not full.
+<p>
+1.1.4 File List Block
+<p>
+	If there are more blocks in the file than can be specified in the block
+list, then the EXTENSION field is non-zero and points to another disk block
+which contains a further data block list. The following figure explains the
+structure of the file list block.
+<pre>
+	   +-------------+
+	0  |   T. LIST   | Type
+	   |-------------|
+	1  |   OWN KEY   | Header Key
+	   |-------------|
+	2  | BLOCK COUNT | =number of data blocks in block list
+	   |-------------|
+	3  | DATA SIZE   | Same as above
+	   |-------------|
+	4  | FIRST DATA  | First Data Block
+	   |-------------|
+	5  |  CHECKSUM   |
+	   |-------------|
+	6  |             |
+	   /             /
+	   \             \
+	   | BLOCK N+3   |
+	   | BLOCK N+2   | Extended list of data block keys
+  SIZE-51  | BLOCK N+1   |
+	   |-------------|
+  SIZE-50  |	  info   | (unused)
+	   |-------------|
+  SIZE-4   |     0       | Next in hash list (always 0)
+	   |-------------|
+  SIZE-3   |   PARENT    | File header block of this file
+           |-------------|
+  SIZE-2   | EXTENTSION  | Next extension block
+	   |-------------|
+  SIZE-1   |   ST. FILE  | Secondary type
+	   +-------------+
+</pre>
+<p>
+	There are as many file extension blocks as required to list the data
+blocks that make up the file. The layout of the block is very similar to
+that of a file header block, except that the type is different and the date
+and filename fields are not used.
+<p>
+1.1.5 Data Block
+<pre>
+	   +-------------+
+	0  |   T. DATA   | type
+	   |-------------|
+	1  |   HEADER    | header key
+	   |-------------|
+	2  |   SEQ NUM   | Sequence number
+	   |-------------|
+	3  |  DATA SIZE  |
+	   |-------------|
+	4  |  NEXT DATA  | next data block
+	   |-------------|
+	5  |  CHECKSUM   |
+	   |-------------|
+	6  |		 |
+	   |             |
+	   |             |
+	   |             |
+	   |    DATA     |
+	   |             |
+	   |             |
+	   |             |
+	   +-------------+
+</pre>
+<p>
+	Data blocks contain only siz words of filing system information. These six
+words refer to the following:
+<ul>
+	<li>type (T.DATA)
+	<li>pointer to the file header block
+	<li>sequence number of the data block
+	<li>number of words of data
+	<li>pointer to the next data block
+	<li>checksum
+</ul>	
+<p>
+	Normally, all data blocks except the last are full (that is, they have a
+blocksize = blocksize-6). The last data block has a forward pointer of 0.
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_ffs_bsd">Filesystems :: FFS (BSD)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Not to be confused with the Amiga FFS, the BSD FFS is commonly used on hard disks
+		for the FreeBSD, NetBSD etc, derivatives....
+		<br><br>		
+		more info...
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_nfs">Filesystems :: NFS</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+NFS was invented by Sun Microsystems.  It became widespread largely because
+it'a quite easy to implement.  In return for its simplicity, it tends to
+give relatively poor performance and a nearly complete lack of safety.
+These are both due largely to its connectionless nature.  When you request
+data from a file, the server sends you the requested information, but does
+NOT keep track of which clients have which files open.  To keep you from
+seeing (terribly) out-of-date information from a file, the data you read
+has an "expiration date".  If you refer to the data from more than, say, a
+minute, it will expire and your client will request the data from the
+server again, whether it's changed or not.  If you write data to the file,
+you have no way of knowing whether somebody else has updated the
+information between your reading and writing your data, so you may
+overwrite things they've written with older data.  To ensure at least a
+little bit of safety, the server is supposed to actually commit data you
+write to disk before it returns to you.
+<p>
+IOW, NFS works pretty well for read-only access to things like executables
+on a server.  For things like on-line databases, it's essentially a
+disaster waiting  to happen (and it usually doesn't wait very long).
+<p>
+More recent versions of the NFS spec have cured most of these problems, but
+support for these updates is still (years later) somewhat uneven.
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_afs">Filesystems :: AFS</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>AFS is the Andrew File System aka Advanced File System, and from
+		memory is like a FTP filesystem / NFS type filesystem...
+		<p>
+AFS is similar to NFS to about the same degree that a tricycle is similar
+to a fighter jet -- they're both typically one-person vehicles.  AFS is a
+drastically more robust design than NFS, and is intended for MUCH larger
+networks.  OTOH, it's also much more difficult to implement completely --
+to the point that it's not likely to be of much interest to most hobbiests
+and such writing a new OS.		
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<table border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_rfs">Filesystems :: RFS</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+RFS (Remote File System) was introduced in UNIX System V to compete with
+NFS and such.  Unlike NFS, RFS is a connection-oriented system, so if, for
+example, two different machines access a file on a server, they get about
+the same semantics as if two processes on a single machine accessed the file.
+<p>
+Note that NFS and RFS are both built on top of some sort of local file
+system, which determines things like inodes and such.
+		</td>
+	</tr>
+</table>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="fs_xfs">Filesystems :: XFS</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>XFS is Silicon Graphics &quot;A Next Generation Journalled 64-Bit
+		Filesystem With Guaranteed Rate I/O&quot; filesystem designed for IRIX
+		based systems.
+		<p>XFS uses the standard inodes, bitmaps and blocks, and is compatable
+		with EFS and NFS filesystems.</p>
+		<p>According to the XFS white paper it has;
+		<ul>
+			<li>Scalable features and performance from small to truly huge data (petabytes)		
+			<li>Huge numbers of files (millions) 
+			<li>Exceptional performance: 500+ MBytes/second 
+			<li>Designed with log/database (journal) technology as a fundamental part not just an extension to an existing filesystem 
+			<li>Mission-critical reliability
+		</ul>
+		</p>
+		</TD>
+	</TR>
+</TABLE>
+
+</body>
+</html>

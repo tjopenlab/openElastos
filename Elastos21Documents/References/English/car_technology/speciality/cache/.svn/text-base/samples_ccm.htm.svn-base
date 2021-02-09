@@ -1,0 +1,53 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>Component Cache Mechanism</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Samples Using CAR Component Cache Mechanism</h2>
+    <p>The following is a example to demonstrate method that uses CAR component cache mechanism to implement CAR component automatic rolling download and execution method. This sample program is located under the SDK\src\samples\ezcom\cachemgr\autoroll directory.</p>
+    <p>In this example, four components are implemented: CA, CB, CC, CD are implemented in four component programs cma.dll, cmb.dll, cmc.dll, cmd.dll respectively. These components implement interfaces IA, IB, IC, ID respectively, each interface has a corresponding method. They are FA, FB, FC, FD.</p>
+    <p>Client program invokes FA method of component CA. In component CA, FA method invokes FB method of component CB, FC method of component CC. In component CB, FB method invokes FD method of component CD. As shown in the following image: </p>
+    <center><img src="images/samples.jpg"></center>
+    <p>In order to see result of the demonstration easily, some print information is added in CCM to output component uunm information or corresponding local file path name. The program runs twice, the result is displayed as the following: </p>
+    <pre class="code">
+[/ $]autoroll.exe
+Download the file: 192.168.1.82/car/cma.dll
+        CA::FA() is called.
+CA: I'll call CB::FB().
+Download the file: 192.168.1.82/car/cmb.dll
+        CB::FB() is called.
+CB: I'll call CD::FD().
+Download the file: 192.168.1.82/car/cmd.dll
+        CD::FD() is called.
+CA: I'll call CC::FC().
+Download the file: 192.168.1.82/car/cmc.dll
+        CC::FC() is called.
+</pre>
+        <pre class="code">
+[/ $]autoroll.exe
+File is in the Cache: 192.168.1.82/car/cma.dll->/msdos/cache/1727.dll
+        CA::FA() is called.
+CA: I'll call CB::FB().
+File is in the Cache: 192.168.1.82/car/cmb.dll->/msdos/cache/6a40.dll
+        CB::FB() is called.
+CB: I'll call CD::FD().
+File is in the Cache: 192.168.1.82/car/cmd.dll->/msdos/cache/4654.dll
+        CD::FD() is called.
+CA: I'll call CC::FC().
+File is in the Cache: 192.168.1.82/car/cmc.dll->/msdos/cache/54ef.dll
+        CC::FC() is called.
+</pre>
+    <p>When run at the first time, since there is no corresponding file locally, you need to download file from the network, only uunm information of the component is output. When the second time run it, it is used directly, since local Cache already has corresponding file. There is no need to download from network again. Component uunm information and corresponding local file path name are output.</p>
+    <p><b>Remarks: </b>In the example, the uunm in car file identifies the Internet address of the component. It could be an IP address or domain name, the user need to specify according to actual needs.</p>
+
+<script>footer("english")</script>
+</body>
+</html>  

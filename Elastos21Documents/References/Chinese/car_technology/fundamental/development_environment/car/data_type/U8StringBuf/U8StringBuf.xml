@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/structuremanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>U8StringBuf</class>
+    <method> U8StringBuf </method>
+
+    <description>
+        <para> U8StringBuf继承自<link url="../AStringBuf/structure/AStringBuf.htm">ASringBuf</link>。</para>
+        <para> 用于构造一个U8StringBuf对象，并指向用户分配的内存块。</para>
+    </description>
+
+    <syntax>
+        <apiname>U8StringBuf</apiname>
+        <parameters>
+        <api_param>
+            <param_type>char * </param_type>
+            <param_name> pstr </param_name>
+            <param_note>
+                <para> 指向用户分配的内存块。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>Int32 </param_type>
+            <param_name> size </param_name>
+            <param_note>
+                <para> 用户分配的内存块的大小。单位为sizeof(char)。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    
+    <remarks>
+       <para> 此函数是一个Box的函数，只分配五元组的内存，数据的内存是放在pstr指向的内存块。详细参见<link url="../Alloc/Alloc1.htm">Alloc</link>函数。 </para>
+
+       <para>值得注意的是：代码中窄串字符的编码是编译器决定的，不一定是UTF8编码。</para>
+
+    </remarks>
+
+
+<example>
+<pre>
+char *pstr="1234";
+U8StringBuf u8buf(pstr,20);
+CConsole::WriteLine(u8buf); //1234
+CConsole::WriteLine(u8buf.GetCapacity()); //19
+CConsole::WriteLine(u8buf.GetLength());   //4
+CConsole::WriteLine(u8buf.GetAvailableSpace()); //15
+</pre>
+</example>
+<references>
+
+    <reference>
+        <ref_name>U8StringBuf::U8StringBuf_&lt;length &gt; </ref_name>
+        <ref_url>U8StringBuf_</ref_url>
+    </reference>
+
+</references>
+   
+</manpage>

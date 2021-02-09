@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>短信彩信引擎</volume>
+<interface>IMmsParser</interface><method> SmilFree </method>
+    <description>
+        <para>
+            释放空间解析使用的空间。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <NoArguments/>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回S_OK；</para><para>            更多返回值，参见            <link url="../../sms_error.htm">            短信彩信返回值            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elatype.h、stdlib.h、mmsdef.h、mmstype.h、CMmsParser.h、_CMmsParser.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElDatabase.lib、elastos.lib、ElCRuntime.lib、ElUtilities.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            清除解析彩信数据时，为smil文本所分配的内存空间。</para><para>            本函数一般在管理界面模块中，对含有smil文本的MMS信息解析预览结束后调用。一旦调用了            <link url="SmilParserEntry.htm">            SmilParserEntry            </link>            ，不管执行成功失败，都必须调用SmilFree来释放解析使用的空间。
+        </para>
+    </remarks>
+</manpage>

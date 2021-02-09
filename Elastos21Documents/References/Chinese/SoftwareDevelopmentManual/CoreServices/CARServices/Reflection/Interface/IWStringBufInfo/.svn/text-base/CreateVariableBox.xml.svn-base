@@ -1,0 +1,58 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>IWStringBufInfo接口函数</volume>
+<interface>IWStringBufInfo</interface>
+<method> CreateVariableBox</method>
+    <description>
+        <para>
+创建变量容器对象，并指向用户分配的内存块。 
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+
+                <param_inout>[in]</param_inout>
+                <param_type> PCarQuintet </param_type>
+                <param_name> varDescriptor </param_name>                
+                <param_note>
+                    <para>
+                    五元结构体指针，可以通过设置其成员m_size,来指定要创建的WStringBuf对象变量的容量。
+                    参见<link url="../../../../../../car_technology/fundamental/development_environment/car/others/CarQuintet.htm">CarQuintet</link>五元组结构体定义。
+                     </para>
+                </param_note>         
+            </api_param> 
+            <api_param>
+
+                <param_inout>[out]</param_inout>
+                <param_type> IVariableOfWStringBuf ** </param_type>
+                <param_name> varBox </param_name>                
+                <param_note>
+                    <para>
+                   返回指向IVariableOfWStringBuf类型的指针。 
+                    </para>
+                </param_note>         
+            </api_param>                  
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功返回值</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        
+	    </table>
+	    <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+</manpage>
+

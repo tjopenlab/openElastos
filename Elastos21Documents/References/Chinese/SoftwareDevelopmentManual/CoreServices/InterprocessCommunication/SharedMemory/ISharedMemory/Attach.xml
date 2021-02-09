@@ -1,0 +1,135 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\ISharedMemory\Read"> Attach </sample>
+<volume> 共享内存</volume>
+<interface>ISharedMemory</interface><method> Attach </method>
+    <description>
+        <para>
+        映射共享内存到进程空间。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> MemoryProtection  </param_type>
+                <param_name> protect </param_name>
+                <param_note>
+                    <para>
+						指定映射到进程空间的保护权限，是由MemoryProtection表示的。MemoryProtection 表示读、写、执行，也可以跟IoRemapFlag“或”一下，表示IO的各种属性。</para>
+					<para>MemoryProtection：</para>
+	            <para_table>
+                        <th>
+	                    <td>  权限 </td>
+	                    <td>  值 </td>
+	                    <td> 含义 </td>
+	                </th>
+	                <tr>
+	                    <td>MemoryProtection_Read</td>
+	                    <td>0x01</td>
+	                    <td>读</td>
+	                </tr>
+	                <tr>
+	                    <td>MemoryProtection_Write</td>
+	                    <td>0x02</td>
+	                    <td>写</td>
+	                </tr>
+	                <tr>
+	                    <td>MemoryProtection_Exec</td>
+	                    <td>0x04</td>
+	                    <td>执行</td>
+	                </tr>
+	                <tr>
+	                    <td>MemoryProtection_RW</td>
+	                    <td>0x03</td>
+	                    <td>读，写</td>
+	                </tr>
+	                <tr>
+	                    <td>MemoryProtection_RX</td>
+	                    <td>0x05</td>
+	                    <td>读，执行</td>
+	                </tr>
+	                <tr>
+	                    <td>MemoryProtection_RWX</td>
+	                    <td>0x07</td>
+	                    <td>读，写，执行</td>
+	                </tr>
+	         </para_table>
+					<para>IoRemapFlag：</para>					
+	            <para_table>
+                        <th>
+	                    <td>  权限 </td>
+	                    <td>  值 </td>
+	                    <td> 含义 </td>
+	                </th>
+	                <tr>
+	                    <td>IoRemapFlag_Direct</td>
+	                    <td>0x08</td>
+	                    <td>直接读写物理内存，没有缓存（Cache）、没有写缓存（WriteBuffer）</td>
+	                </tr>
+	                <tr>
+	                    <td>IoRemapFlag_BufferedWrite</td>
+	                    <td>0x18</td>
+	                    <td>没有缓存（Cache），有写缓存（WriteBuffer）</td>
+	                </tr>
+	         </para_table>	         
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Address *  </param_type>
+                <param_name> pAddress </param_name>
+                <param_note>
+                    <para>
+						指向Address类型的指针，用于获取映射在进程空间内的起始地址，不能为空
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值</td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_OUT_OF_MEMORY</td>
+	    	    <td>内存不足</td>
+	        </tr>
+
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		 同一个<link url="../ISharedMemory.htm">ISharedMemory</link>接口在一个进程中可以Attach多次，并都能正确返回pAddress；同一个ISharedMemory接口在多个进程Attach后，在每个进程中返回的虚拟地址都是相同的。 可以使用<link url="Detach.htm">Detach</link>方法从进程空间中去除对该映射的使用，每个进程调用Detach的次数要与该进程调用Attach的次数一致。最后一次Detach才会从该进程空间中去除该映射。
+		</para>
+		<para>
+		 pAddress参数必须为一有效地址指针，不能为NULL。如果pAddress为NULL，方法返回E_INVALID_ARGUMENT。
+		</para>
+		<para>
+		 在使用完共享内存接口指针后，需调用Release方法释放该指针。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

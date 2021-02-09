@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\strtol">strtol</sample>
+    <title> strtol, wcstol</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>将字符串转化成长整型数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>strtol</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>nptr</param_name>
+                <param_note>
+                    <para>字符指针，指向待转换的、以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char**</param_type>
+                <param_name>endptr</param_name>
+                <param_note>
+                    <para>字符指针，指向扫描停止时的字符</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>base</param_name>
+                <param_note>
+                    <para>进行转换的基数，如base=10，即将nptr字符串按十进制转换</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>wcstol</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>nptr</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t**</param_type>
+                <param_name>endptr</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>base</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>strtol返回字符串nptr表示的长整数。如果因表示方式产生溢出，返回LONG_MAX或LONG_MIN。不能转换时，函数返回0。wcstol的返回值与strtol类似。</para>
+    </return>
+
+    <remarks>
+        <para>函数strtol将字符串转换成长整型的数值。读串时遇到非数字字符，停止读操作，该字符是终结符'\0'或者是第一个大于或等于base的数字字符。wcstol是strtol的宽字符串版本。nptr是待转换宽字符串。其它方面两者类似。</para>
+        <para>strtol函数要求nptr指向的字符串符合如下格式：</para>
+        <para>[whitespace] [{+ | –}] [0 [{ x | X }]] [字符] </para>
+        <para>whitespace可以由空格或制表符组成，本函数忽略这部分字符。digits可以是由一个或多个十进制数字组成。若第一个字符不符合这种格式，结束扫描。如果base介于2和36之间，则用作转换的基数。如果base是0，则由nptr所指字符串的起始字符确定基数。如果该起始字符是0且第二个字符不是'x' 或'X'，字符串将转换为八进制数，否则转换为十进制数。起始字符是0且第二个字符是'x'或'X'，字符串将转换为十六进制数。起始字符是'1'到'9'，字符串将转换为十进制数。字母'a'到'z'(或'A'到'Z')被赋值为10到35。对字母赋值，只有小于基数才意义。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strtol</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcstol</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strtol.cpp: This program uses strtol to
+ * convert a string to long integer values.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char    *string, *stopstring;
+    long    l;
+
+    string = &quot;-10110134932This stopped it&quot;;
+    l = strtol(string, &amp;stopstring, 10);
+    printf(&quot;string = %s\n&quot;, string);
+    printf(&quot;    strtol = %ld\n&quot;, l);
+    printf(&quot;    Stopped scan at: %s\n&quot;, stopstring);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+string = -10110134932This stopped it
+strtol = -2147483648
+Stopped scan at: This stopped it
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcstod</ref_name>
+            <ref_url>wcstod</ref_url>
+        </reference>
+        <reference>
+            <ref_name>atof</ref_name>
+            <ref_url>atof</ref_url>
+        </reference>
+    </references>
+
+</manpage>

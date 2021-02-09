@@ -1,0 +1,63 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Character String Enumerator Interface</volume>
+<interface>IEzStrEnumerator</interface><method> MoveNext </method>
+    <description>
+        <para>
+        	Make EzStr object enumerator points to the next object in EzStr object set.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value </td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>S_OK</td>
+		        <td>Function succeeds in moving the cursor to the next element.</td>
+	        </tr>
+	        <tr>
+		        <td>S_FALSE</td>
+		        <td>EzStr enumerator currently points to the last object.</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../../reference/basic_data_type/hresult.htm">ECODE</link> related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+		      EzStr object enumerator points before the first element after creating it 
+		      or calling <link url="Reset.htm">Reset</link>. Calling <link url="Current.htm">Current</link>
+		      at this point in time is invalid and will return false. So you should call <b>MoveNext</b> to make 
+		      EzStr object move forward to the corresponding object and then call <link url="Current.htm">Current
+		      </link> to get any copy of EzStr object.
+		</para>
+		<para>
+        	If EzStr object enumerator points to the last object of EzStr object set, calling <b>MoveNext</b> will 
+        	return S_FALSE.
+		</para>
+		<para>
+           
+	    	If some modifications are made to EzStr object set (including adding and deleting EzStr object),
+	    	you should call <link url="Reset.htm">Reset</link> to reset EzStr object enumerator, otherwise  
+	    	errors will occur while calling <link url="Current.htm">Current</link> and <b>MoveNext</b>.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

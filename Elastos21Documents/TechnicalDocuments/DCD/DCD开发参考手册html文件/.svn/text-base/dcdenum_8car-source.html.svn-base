@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Kortide DCD API: dcdenum.car源文件</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="main.html"><span>首页</span></a></li>
+    <li><a href="annotated.html"><span>类</span></a></li>
+    <li class="current"><a href="files.html"><span>文件</span></a></li>
+  </ul>
+</div>
+<h1>dcdenum.car</h1><a href="dcdenum_8car.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00004"></a>00004 <span class="preprocessor">        #ifndef ELASTOS_DCD_UNICODE</span>
+<a name="l00005"></a><a class="code" href="dcdenum_8car.html#a55c825970107ffb49428d8d1cf480b3">00005</a> <span class="preprocessor"></span>        <span class="keyword">typedef</span> <span class="keywordtype">char</span> <a class="code" href="dcdenum_8car.html#a55c825970107ffb49428d8d1cf480b3" title="宽窄串的定义，如果平台支持宽串，则定义：typedef wchar_t DcdChar...">DcdChar</a>;
+<a name="l00006"></a>00006 <span class="preprocessor">        #else</span>
+<a name="l00007"></a>00007 <span class="preprocessor"></span>                <span class="keyword">typedef</span> <span class="keywordtype">wchar_t</span> <a class="code" href="dcdenum_8car.html#a55c825970107ffb49428d8d1cf480b3" title="宽窄串的定义，如果平台支持宽串，则定义：typedef wchar_t DcdChar...">DcdChar</a>;
+<a name="l00008"></a>00008 <span class="preprocessor">        #endif</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span>
+<a name="l00013"></a>00013     <span class="keyword">typedef</span> <span class="keywordtype">void</span>* <a class="code" href="dcdenum_8car.html#a9c0a0b2f6a4660ca7cb028e26feb8ca" title="内核对象的句柄，根据平台的支持亦可定义：typedef unsigned long...">Handle</a>;
+<a name="l00014"></a>00014 
+<a name="l00018"></a>00018      <span class="keyword">enum</span> {
+<a name="l00022"></a>00022               <a class="code" href="dcdenum_8car.html#06fc87d81c62e9abb8790b6e5713c55b7e9e2f78aa9d6a4efc536d955dac51b0" title="等待成功">WaitResult_OK</a> = 0x00000000,<span class="comment">//等待成功</span>
+<a name="l00026"></a>00026 <span class="comment"></span>              <a class="code" href="dcdenum_8car.html#06fc87d81c62e9abb8790b6e5713c55b53f777d21c5a6baf79ca698e407efd76" title="等待被中断">WaitResult_Interrupted</a> = 0x00000001,<span class="comment">//等待被中断</span>
+<a name="l00030"></a>00030 <span class="comment"></span>              <a class="code" href="dcdenum_8car.html#06fc87d81c62e9abb8790b6e5713c55b2445850905a8c2257c2d54064aca2a4a" title="等待超时">WaitResult_TimedOut</a> = 0x00000002<span class="comment">//等待超时</span>
+<a name="l00031"></a>00031     };
+<a name="l00032"></a>00032 
+<a name="l00036"></a>00036     <span class="keyword">enum</span> {
+<a name="l00040"></a>00040               <a class="code" href="dcdenum_8car.html#df764cbdea00d65edcd07bb9953ad2b7d0607625971ce3b95f31e549b16f854d" title="线程启动运行">ThreadCreationFlag_Started</a> = 0,<span class="comment">//线程启动运行</span>
+<a name="l00044"></a>00044 <span class="comment"></span>              <a class="code" href="dcdenum_8car.html#df764cbdea00d65edcd07bb9953ad2b7fe3d54e6c8fc08619c2eaf47336349fd" title="线程挂起">ThreadCreationFlag_Unstarted</a> = 4<span class="comment">//线程挂起</span>
+<a name="l00045"></a>00045     };
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 <span class="preprocessor">    #ifdef __cplusplus</span>
+<a name="l00048"></a>00048 <span class="preprocessor"></span><span class="preprocessor">        #define DCD_Extern extern “C”</span>
+<a name="l00049"></a><a class="code" href="dcdenum_8car.html#ece92a3985bb8db09e5a9201858bb583">00049</a> <span class="preprocessor"></span><span class="preprocessor">        #else</span>
+<a name="l00050"></a>00050 <span class="preprocessor"></span><span class="preprocessor">        #define DCD_Extern extern</span>
+<a name="l00051"></a><a class="code" href="dcdenum_8car.html#7b93b419d6f21d4969a2475875bb5b48">00051</a> <span class="preprocessor"></span><span class="preprocessor">        #endif</span>
+<a name="l00052"></a><a class="code" href="dcdenum_8car.html#f0cc41bab3043671f27ab9b77457be26">00052</a> <span class="preprocessor"></span><span class="preprocessor">        #define AURA_API        DCD_Extern int</span>
+<a name="l00053"></a>00053 <span class="preprocessor"></span><span class="preprocessor">        #define AURA_API_(type) DCD_Extern type</span>
+<a name="l00054"></a>00054 <span class="preprocessor"></span>
+<a name="l00055"></a><a class="code" href="dcdenum_8car.html#070d2ce7b6bb7e5c05602aa8c308d0c4">00055</a> <span class="preprocessor">        #ifndef NULL</span>
+<a name="l00056"></a>00056 <span class="preprocessor"></span><span class="preprocessor">        #define NULL 0x0000</span>
+<a name="l00057"></a>00057 <span class="preprocessor"></span><span class="preprocessor">        #endif</span>
+<a name="l00058"></a><a class="code" href="dcdenum_8car.html#5ea24eccf1e472b0a5c00719b7e5812d">00058</a> <span class="preprocessor"></span>
+<a name="l00059"></a>00059 <span class="preprocessor">        #define DCD_INFINITE 0xFFFFFFFF</span>
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated at Thu Mar 27 11:35:54 2008 for Kortide DCD API by&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
+</body>
+</html>

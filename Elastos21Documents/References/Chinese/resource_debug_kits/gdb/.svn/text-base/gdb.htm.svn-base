@@ -1,0 +1,50 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>程序调试工具</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+    <h2>图形界面的调试工具GDB</h2>
+        <p>GDB（GNU&nbsp;symbolic&nbsp;debugger）是一个GNU调试器。它是受到通用公共许可证（即GPL）保护的自由软件。GDB功能强大，就调试方式而言，有本地调试和针对嵌入式系统的远程交叉调试。对于嵌入式系统Elastos,在这里只重点介绍远程交叉调试部分。若需要更详细地了解GDB，可参看<a class="style1" href="http://www.gnu.org/software/gdb/" target="_blank">http://www.gnu.org/software/gdb/</a>上的相关文档。</p>
+
+        <h3>开发者必备知识</h3>
+            <p>要求读者了解调试相关知识。</p>
+
+        <h3>GDB的远程交叉调试原理 </h3>
+            <p>GDB远程交叉调试是一种针对嵌入式系统的调试方式。其调试过程需要在两台机器上完成，主机和目标机之间的通讯通过串口（COM1，调试端口），网络或其他远程通讯手段来实现。这种通过主机（host）上的调试工具去调试另一台目标机（target）上的目标程序的方式，称为交叉调试（Cross&nbsp;Debugging）。</p>
+            <p><a name="stub"></a>在Elastos的内核中预置了一段程序，这段程序称为<b>桥头堡程序(Stub)</b>。桥头堡程序有两个主要功能：第一个功能是读写目标机系统的内存和寄存器；第二个功能是与主机进行通讯。</p>
+            <p>Stub和GDB通过GDB串行协议进行通信。GDB串行协议RSP(Remote&nbsp;Serial&nbsp;Protocol)是一种基于消息的ASCII码协议，包含了诸如读写内存、查询寄存器、程序控制等命令。其原理见图4-2：</P>
+            <center><img src="images/gdb2.jpg"></center>
+            <center>图4-2</center>
+            <p>通过STUB，我们使用GDB不但可调试Elastos的应用程序，也可调试Elastos的内核。STUB运行在操作系统内核态，它并不占用多少系统资源，但在工程上却非常重要。软件工程师几乎都遇到过系统“死机”的现象，这时常常束手无策，只好重新启动系统。但是在按下“Reset”键的瞬间，我们已经丢失了死机时的现场状态，也就失去了找到导致系统崩溃原因的机会。在Elastos中，当整个系统出错或发生异常（即“死机”）时，只要这个桥头堡程序还能够运行，系统程序员就能够通过主机对目标机进行调试。这一功能对于查找一些系统或应用软件的重大错误或重复性极小的软件错误非常有用。</p>
+
+        <h3>GDB的运行环境</h3>
+            <p>GDB的运行环境如图4-3所示，需要一台主机通过串口线（RS232C）和目标机相连。</p>
+            <center><img src="images/gdb3.jpg"></center>
+            <center>图4-3</center>
+            <table align=center>
+                <thead>
+                    <td>宿主机运行</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp</td>
+                    <td>目标机运行</td>
+                </thead>
+                <tr>
+                    <td>
+                    Windows&nbsp;2000操作系统<br>
+                    ElastosXDK<br>
+                    gdb
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp</td>
+                    <td>Elastos被调试程序和桥头堡程序（串行接口通讯） </td>
+                </tr>
+            </table>
+            <p>在宿主机上运行的<a class="style1" href="../../resource_debug_kits/tools/gdb.htm">gdb</a>命令是一个批处理命令，这个批处理命令会启动一个带有图形的gdb&nbsp;insight。通过insight图形界面，我们不论是调试内核还是应用程序都变得可视化。Insight在启动时会侦察目标机是否陷入debug状态。若陷入了debug状态，insight会很快和目标机建立连接，并弹出图形界面的调试窗口；否则，insight会启动得比较慢。</p>
+
+
+<script>footer("chinese")</script>
+</body>
+</html>

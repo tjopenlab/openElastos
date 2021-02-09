@@ -1,0 +1,39 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>web_service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Deploying The CAR&nbsp;Web Service Environment</h2>
+        <p>The current design is to distribute all the locally registered naming service in Elastos&nbsp;2.0 as web service. The way to distribute service is simple. User only needs to start a web server, and no modification of source code is needed. For the purpose of easy use, Elastos&nbsp;2.0 has implemented a CAR Web service distribution program, which was kept in the directory "Elastos20.SDK\src\websvrs\soapsvr\testing\soapsexe\". The users only need to compile the directory and run soapsexe.exe (Since soapsexe.exe never exits, background execution is recommended).</p>
+        <p>Below is the way to register CAR&nbsp;Web service environment in application program.</p>
+        <p>The example below is a SOAP&nbsp;Web server (Actually a HTTP&nbsp;Web server) starting procedure.</p>
+        <pre class="code">
+INetworkServerRef iNetworkSvrRef;
+    // declares interface smart pointer implemented by SOAP Web server.
+iNetworkSvrRef.Instantiate(CLSID_CSOAPServer);
+    // creates a new instance of SOAP Web server.
+iNetworkSvrRef.RegisterCGIModulePath(CLSID_CWebServiceStub, EZCSTR("WSStub"));
+    // registers web service agent for CAR component to path "WSStub".
+iNetworkSvrRef.Start(5380);
+// starts SOAP Web server, listens to port 5380.
+
+… …
+</pre>
+        <p>From the above code we can see that current SOAP&nbsp;Web server and web service agent for CAR component are implemented as component, the corresponding component identifiers are CLSID_CSOAPServer and CLSID_CWebServiceStub. The whole register process includes: </p>
+    <ul>
+        <li>Creates a new instance of HTTP server component.
+        <li>Registers web service agent component EZCLSID of CAR component to path "/WSStub/" (Note: Similar to the way common HTTP server trigger CGI application program, it will create a new instance of component to handle the HTTP message sent by user after receiving HTTP request pointing to that path).
+        <li>Starts web server, listens to port 5380.
+    </ul>
+        <p>After all these initializations, all local CAR services can be remotely called by standard WWW web service protocol. Since only the WSDL and SOAP protocol have been implemented now, we will describe the supporting method for the two protocols.</p>
+
+<script>footer("english")</script>
+</body>
+</html>         

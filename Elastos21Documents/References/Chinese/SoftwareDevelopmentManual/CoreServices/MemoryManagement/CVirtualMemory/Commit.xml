@@ -1,0 +1,71 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\EzMemory"> CVirtualMemory::Commit</sample>
+    <volume>虚拟内存管理</volume>
+    <title>CVirtualMemory::Commit</title>
+    <routine_idx>../VirtualMemoryManagement.htm</routine_idx>
+
+    <description>
+        <para>要求系统提交指定虚存的物理内存。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name> address </param_name>
+                <param_note>
+                    <para>[in]指定的虚存地址</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_DOES_NOT_EXIST</td><td>指定的虚存地址没有分配</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+    	<para><link url="Alloc.htm">CVirtualMemory::Alloc</link>会获得一段虚拟内存地址资源，但是没有分配相应的物理内存。只有调用<link url="Commit.htm">CVirtualMemory::Commit</link>后才会分配相应的物理内存，并映射给指定的虚拟内存。</para>
+    	<para>参数address必须是通过<link url="Alloc.htm">CVirtualMemory::Alloc</link>函数所获得的虚拟内存块内的某一地址，否则将返回E_DOES_NOT_EXIST。</para>
+    	<para><link url="Alloc.htm">CVirtualMemory::Alloc</link>的参数flags的Map_Upgrow和Map_Downgrow位将影响<link url="Commit.htm">CVirtualMemory::Commit</link>函数提交物理内存的方式。在调用<link url="Commit.htm">CVirtualMemory::Commit</link>函数提交物理页时，如果标志位设置为Map_Upgrow，当前线程会提交从获取到的虚存块的最低地址到<link url="Commit.htm">CVirtualMemory::Commit</link>函数所传入的地址之间的所有虚存块所需的物理内存，并映射；如果标志位设置为Map_Downgrow，当前线程会提交从获取到的虚存块的最高地址到<link url="Commit.htm">CVirtualMemory::Commit</link>函数所传入的地址之间的所有虚存块所虚的物理内存，并映射。如果标志位既没有设置为Map_Upgrow，也没有设置为Map_Downgrow，则系统不会自动提交物理内存，当前线程必需通过提交<link url="Commit.htm">CVirtualMemory::Commit</link>函数所传入的地址的虚存所需的一页物理内存并映射。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

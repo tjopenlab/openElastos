@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 类别智能指针类共有方法 </volume>
+    <interface> CategoryRef </interface>
+    <method>Instantiate</method>
+
+    <description>
+        <para>创建Category类别对象，并使相应的类别智能指针指向该对象。此方法有两种形式，如下所示：</para>
+    </description>
+    <syntax_nopara>
+        <return_val>ECODE</return_val>
+    </syntax_nopara>
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+        <api_param>
+            <param_type>UInt32</param_type>
+            <param_name>dwClsContext </param_name>
+            <param_note>
+                <para> 指定对象与客户程序的相对位置，有五个可选值，如下所示：</para>
+                <para_table>
+                    <th>
+                        <td>参数可选值</td><td>描述</td>
+                    </th>
+                    <tr>
+                        <td>CTX_SAME_DOMAIN</td><td>对象与客户程序在同一地址空间内</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_DIFF_DOMAIN</td><td>对象与客户程序在不同的地址空间内，但在同一进程中</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_KERN_DOMAIN</td><td>对象与客户程序在不同的地址空间内，且对象运行在内核程序中</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_DIFF_PROCESS</td><td>对象与客户程序在不同进程空间中，但在同一机器中</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_DIFF_MACHINE</td><td>对象与客户程序在不同的机器中</td>
+                    </tr>
+                </para_table>
+                <para>详细情况请参见<link url="../code_running_env.htm">可执行代码的运行环境（context）</link>。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+     <return>
+        <para>此方法的返回值有以下几种情况：</para>
+        <table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>S_OK</td><td>方法调用成功</td>
+            </tr>
+            <tr>
+                <td>CO_S_NOTALLINTERFACES</td><td>指定的类中的接口指针没有被全部成功获取</td>
+            </tr>
+            <tr>
+                <td>E_NOINTERFACE</td><td>指定的类中所有的接口指针都未能被成功获取</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para> 当用户不关心创建的对象与客户程序的相对位置时，选择第一种形式，即调用Instantiate方法时不需要加参数。系统默认值为CTX_SAME_DOMAIN、CTX_DIFF_DOMAIN和CTX_DIFF_PROCESS三值之一，由优先级来确定创建的对象与客户程序的相对位置。</para>
+        <para> 当用户需要指定创建的对象与客户程序的相对位置时，选择第二种形式，即调用Instantiate方法时需要设置相应的参数。 </para>
+        <para> 【注意】如果用户要创建的是文件系统对象，必须选择第二种形式，且参数dwClsContext必须设置为CTX_KERN_DOMAIN。</para>
+    </remarks>
+
+</manpage>

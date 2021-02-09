@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListView</interface><method> SetMultiSelect </method>
+    <description>
+        <para>
+            设置 ListView 是否允许多选及多选风格。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> MultiSelectStyle </param_type>
+                <param_name> multiSelect </param_name>
+                <param_note>
+                    <para>
+指示是否允许多选及多选风格，详见 <link url="../../datatype/MultiSelectStyle.htm">MultiSelectStyle</link> 枚举类型</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+    	  当 multiSelect 指定为 MultiSelectStyle_CheckBox 时，则 ListView 允许多选，且多选风格为 CheckBox 样式。当 multiSelect 指定为 MultiSelectStyle_RadioButton 时，和 MultiSelectStyle_None 类似，都将 ListView 设置成单选，只是前者使用 RadioButton 样式显示。一旦将指示某行被选中的图标设置在左边显示时，则所有行的第一列图标将不再显示。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CListView 类介绍 </ref_name>
+        <ref_url>../../class/ListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListView 接口方法列表</ref_name>
+        <ref_url>../IListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListViewPaint 接口方法列表</ref_name>
+        <ref_url>../IListViewPaint</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetMultiSelect</ref_name>
+        <ref_url>GetMultiSelect</ref_url>
+    </reference>
+</references>
+</manpage>

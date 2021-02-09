@@ -1,0 +1,78 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzGetTime"> EzGetSystemTime  </sample>
+    <volume>System API</volume>
+    <title>CSystem::GetElapsedTime</title>
+    <routine_idx> ..\other_service.htm</routine_idx>
+
+    <description>
+        <para>
+        	The function retrieves the Elapsed Time since the system started,
+        	in micro seconds.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Millisecond * </param_type>
+                <param_name> pTime </param_name>
+                <param_note>
+                    <para>
+                    [out]	retrieves the Elapsed Time since the system started ,in micro seconds.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+       
+        <table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in retrieving the current UTC </td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>Invalid argument(s)</td>
+            </tr>           
+        </table>
+        <para>
+        	See <link url="/sdk/hresult.htm">ECODE</link> related help for more details.
+        </para>
+    </return>
+
+    <remarks>
+        <para>
+        	The  function retrieves  the Elapsed Time since the system  was started 
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+
+
+</manpage>

@@ -1,0 +1,271 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>vinci图形系统介绍</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+    <h2>vinci图形系统介绍</h2>
+        <p>vinci是一个面向嵌入式系统的图形用户界面支持系统，运行在Elastos操作系统上，主要的特点是：</p>
+    <ol>
+        <li>支持启动多个图形应用
+        <li>基于多窗口设计，提供完善的窗口裁剪
+        <li>单独线程中可以运行多个窗口
+        <li>预定义各种控件及对话框
+        <li>事件回调机制
+        <li>支持主流图形格式，多字体支持
+    </ol>
+    <h3>vinci图形系统编程:</h3>
+        <p>编写图形程序的基本步骤如下：</p>
+    <ol>
+        <li>编写.car文件
+        <li>运行 emake *.car，生成相应的sources、.h和.cpp文件
+        <li>填写sources、.h和.cpp文件
+        <li>编译，生成可执行文件
+        <li>在命令行模式下执行
+    </ol>
+        <p>下面我们通过一个简单的“Hello，World”程序来介绍vinci图形系统的编程原理：</p>
+        <p>程序编写步骤如下：</p>
+    <ol>
+        <li>编写.car文件
+        <li>生成sources、.h和.cpp文件
+        <li>编写这些文件
+    </ol>
+       <p>.car 文件内容：</p>
+        <pre class="code">
+//*******************************
+//
+module
+{
+    importlib("elagdi.dll");
+    importlib("elactrl.dll");
+
+    [aggregate(AGrafixAppletAspect), main]
+    class CHello {}
+}
+</pre>
+        <p>生成的sources 文件内容：</p>
+        <pre class="code">
+//*******************************
+//
+TARGET_NAME= hello
+TARGET_TYPE= dll
+
+SOURCES= hello.car
+SOURCES+= CHello.cpp
+
+ELASTOS_LIBS= elastos.lib
+ELASTOS_LIBS+= ElCRuntime.lib
+
+</pre>
+        <p>生成的CHello.h 文件：</p>
+        <pre class="code">
+//*****************************
+//
+#ifndef __CHELLO_H__
+#define __CHELLO_H__
+
+#include "_CHello.h"
+
+class CHello : public _CHello
+{
+public:
+    CARAPI AtEntry(
+        /* [in] */ EzArray<WString> argcv);
+
+    CARAPI AtExit();
+
+
+private:
+    // TODO: Add your private member variables here.
+};
+
+#endif // __CHELLO_H__
+</pre>
+        <p>生成的CHello.cpp文件：</p>
+        <pre class="code">
+#include "CHello.h"
+#include "_CHello.cpp"
+
+
+ECODE CHello::AtEntry(
+    /* [in] */ EzArray<WString> argcv)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECODE CHello::AtExit()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+</pre>
+        <p>填写后的CHello.h文件：</p>
+        <pre class="code">
+#ifndef __CHello_H__
+#define __CHello_H__
+
+#include "_CHello.h"
+
+class CHello : public _CHello
+{
+public:
+    CHello();
+    ~CHello();
+
+    CARAPI AtEntry(
+        /* [in] */ EzArray<WString> argcv);
+
+    CARAPI AtExit();
+
+    CARAPI OnPaint(
+        /* [in] */ IObject* pIObject);
+
+    CARAPI OnClose(
+        /* [in] */ IObject* pIObject);
+
+private:
+    IForm       * m_pMainForm;
+    IGraphics   * m_pIGraphics;
+    IFont       * m_pIFont;
+    IButton     * m_pIBtnClose;
+};
+
+#endif // __CHello_H__
+</pre>
+        <p>填写后的CHello.cpp文件：</p>
+        <pre class="code">
+#include "CHello.h"
+#include "_CHello.cpp"
+#include "graphdef.h"
+
+#define DECLARE_EVENTHANDLER(Class, pHandle, arglist, method) \
+    ECODE (CARAPICALLTYPE Class::*pHandle)(arglist) = &Class::method;
+
+#define ADDEVENTHANDLER(pIFoo, EvType, EvProc)                  \
+            pIFoo->AddEventHandler(EvType,                      \
+                    Delegate((void*)this, *(void**)&EvProc));
+
+CHello::CHello()
+{
+    m_pMainForm     = NULL;
+    m_pIGraphics    = NULL;
+    m_pIFont        = NULL;
+    m_pIBtnClose    = NULL;
+}
+
+CHello::~CHello()
+{
+    if (m_pMainForm) {
+        m_pMainForm->Release();
+    }
+
+    if (m_pIGraphics) {
+        m_pIGraphics->Release();
+    }
+
+    if (m_pIFont) {
+        m_pIFont->Release();
+    }
+
+    if (m_pIBtnClose) {
+        m_pIBtnClose->Release();
+    }
+}
+
+ECODE CHello::AtEntry(
+    /* [in] */ EzArray<WString> argcv)
+{
+    ECODE ec;
+//////////////  form
+    ec = EzCreateObject(CLSID_CForm,
+                     CTX_SAME_DOMAIN,
+                     IID_IForm,
+                     (IObject**)&m_pMainForm);
+
+    if (FAILED(ec)) {
+        assert(0 && "EzCreateObject Failed");
+        return ec;
+    }
+
+    m_pMainForm->Init(FormStyle_Gradient,
+                L"main", 0, 0, 240, 320,NULL);
+
+    m_pMainForm->CreateGraphics(&m_pIGraphics);
+
+    ECODE (CARAPICALLTYPE CHello::*pPaint)(IObject*) = &CHello::OnPaint;
+    m_pMainForm->AddEventHandler(CForm_Paint,
+                Delegate((void*)this, *(void**)&pPaint));
+
+/////////////   font
+    ec = EzCreateObject(CLSID_CFont,
+                     CTX_SAME_DOMAIN,
+                     IID_IFont,
+                     (IObject**)&m_pIFont);
+
+    if (FAILED(ec)) {
+        assert(0 && "EzCreateObject Failed");
+        return ec;
+    }
+
+    m_pIFont->Init(L"宋体", 14, FontStyle_Regular);
+
+///////////////  Exit Button
+    ec = EzCreateObject(CLSID_CButton, CTX_SAME_DOMAIN,
+                        IID_IButton, (IObject**)&m_pIBtnClose);
+
+    if (FAILED(ec)) {
+        assert(0 && "EzCreateObject Failed");
+        return ec;
+    }
+
+    m_pIBtnClose->Init(0, L"Exit", 0, 220, 80, 30,  m_pMainForm);
+
+    DECLARE_EVENTHANDLER(CHello, pClose, IObject*, OnClose);
+    ADDEVENTHANDLER(m_pIBtnClose, CButton_Click, pClose);
+
+    m_pMainForm->Show();
+
+    return NOERROR;
+}
+
+ECODE CHello::AtExit()
+{
+    return NOERROR;
+}
+
+ECODE CHello::OnPaint(
+        /* [in] */ IObject* pIObject)
+{
+    m_pIGraphics->DrawString(L"Hello World!", 20, m_pIFont, Color_Red,
+                   Color_Transparent,10, 20, 100, 100,
+                   GfxTextAlign_Middle | GfxTextAlign_Center);
+
+    return NOERROR;
+}
+
+ECODE CHello::OnClose(
+        /* [in] */ IObject* pIObject)
+{
+    m_pMainForm->Close();
+    return NOERROR;
+}
+</pre>
+        <p> 该程序的入口是AtEntry，在AtEntry中创建主窗口，退出button，以及绘图需要用到的IGraphics接口和IFont接口，并对它们进行初始化；同时也定义了事件的回调函数，即某事件发生时对其进行处理的函数，并在系统中注册，在后面的程序中实现了这些函数。当用户的行为触发这些事件时，系统会调用相应的事件处理函数。</p>
+        <p> OnPaint函数进行绘图操作。该函数在AtEntry中声明并在系统中注册，负责在窗口中进行绘字操作。</p>
+        <p> OnClose函数处理Exit Button的mousedown事件。同样的，该函数也在AtEntry中声明并注册，负责关闭主窗口，结束程序。</p>
+        <p> 当您写一个图形应用程序时，在AtEntry中可以绘制出您需要的界面，并且，您可以在此处声明程序需要处理的事件函数，然后在后续程序中实现事件处理函数。绘制窗口是任何vinci图形程序的首要步骤，因为其它控件的消息传递都需要form来处理，它们以主form为父容器并且与主form共用同一个消息队列。</p>
+        <p> 程序运行结果如下图所示：</p>
+        <center><img src="images/hello.bmp"></center>
+
+<script>footer("chinese")</script>
+</body>
+</html>

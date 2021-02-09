@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>自动生成代码框架</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>生成构件源代码框架的内部过程</h2>
+    <p>当使用emake&nbsp;hello.car命令时，emake.bat接收到参数“hello.car”，它会判别出这是一个CAR文件，于是执行gen_src系列命令。</p>
+    <p>gen_src包括以下命令：</p>
+    <ul>
+    <li><pre class="code">
+carc -c hello.cls hello.car
+</pre>
+    <p>这个命令会根据hello.car在当前目录下生成对应的压缩格式的样式库hello.cls。这里提到的样式库就是提供接口、类、方法、结构、枚举等的定义。</p>
+    <li><pre class="code">
+cls2src -f hello.cls
+</pre>
+    <p>这个命令会根据hello.cls提供的信息，产生对应的源代码框架，在这里就是CHello.h，CHello.cpp，sources。</p>
+    <li><pre class="code">
+if exist hello.cls del /f hello.cls
+</pre>
+    <p>这个命令编译时会把中间临时生成的hello.cls从当前目录删除。因此当emake&nbsp;hello.car命令执行完毕后，用dir命令在当前目录不会看到hello.cls，只有生成的源码CHello.h和CHello.cpp，sources，还有原先编写的hello.car文件。</p>
+    </ul>
+    <p>生成的CHello.h文件中有如下代码：</p>
+    <pre class="code">
+#include "_CHello.h"
+
+class CHello : public _CHello
+{
+	……
+}
+</pre>
+    <p>可以看到CHello类继承了_CHello类，该类定义在_CHello.h头文件中。但是现在_CHello.h事实上还是不存在的。在下面编译的阶段，_CHello.h会被先生成出来，这样CHello.h才能编译通过并正确执行。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\qsort">qsort</sample>
+    <title> qsort</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Performs a quick sort.</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>qsort</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>base</param_name>
+                <param_note>
+                    <para>Start of target array.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>num</param_name>
+                <param_note>
+                    <para>Array size in elements.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>width</param_name>
+                <param_note>
+                    <para>Element size in bytes.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>(__cdecl *compare)(const void *elem1, const void *elem2)</param_name>
+                <param_note>
+                    <para>Comparison function compares elem1 and elem2. The first parameter elem1 is a pointer to the key for the search and the second parameter elem2 is a pointer to the array element to be compared with the key.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para> The qsort function implements a quick-sort algorithm to sort an array of num elements, each of width bytes. The argument base is a pointer to the base of the array to be sorted. qsort overwrites this array with the sorted elements. The argument compare is a pointer to a user-supplied routine that compares two array elements and returns a value specifying their relationship. qsort calls the compare routine one or more times during the sort, passing pointers to two array elements on each call: </para>
+        <para>compare( (void *) elem1, (void *) elem2 );</para>
+        <para>The routine must compare the elements, then return one of the following values: </para>
+        <para>Return value and description: </para>
+        <table>
+            <th>
+               <td>Return Value of Comparison Function</td>
+               <td>Description</td>
+            </th>
+            <tr>
+               <td>&lt; 0</td>
+               <td>elem1 less than elem2.</td>
+            </tr>
+            <tr>
+               <td>0</td>
+               <td>elem1 equivalent to elem2.</td>
+            </tr>
+            <tr>
+               <td>&gt; 0 </td>
+               <td>elem1 greater than elem2.</td>
+            </tr>
+        </table>
+        <para>The array is sorted in increasing order, as defined by the comparison function. To sort an array in decreasing order, reverse the sense of "greater than" and "less than" in the comparison function.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>qsort</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* qsort.cpp: This program reads the command-line
+ * parameters and uses qsort to sort them. It
+ * then displays the sorted arguments.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int __cdecl compare(const void *arg1, const void *arg2)
+{
+    /* Compare all of both strings: */
+    return _stricmp(* (char**) arg1, * (char**) arg2);
+}
+
+int main(int argc, char **argv)
+{
+    int i;
+    /* Eliminate argv[0] from sort: */
+    argv++;
+    argc--;
+
+    /* Sort remaining args using Quicksort algorithm: */
+    qsort((void *)argv, (size_t)argc, sizeof(char *), compare);
+
+    
+    for (i = 0; i &lt; argc; ++i)
+        printf(&quot;%s &quot;, argv[i]);
+    printf(&quot;\n&quot;);
+
+    return 0;
+}
+
+/*
+Input
+    [/$]qsort every good boy deserves favor
+
+Output
+
+     boy deserves every favor good
+*/
+</pre>
+    </example>
+<result>
+sorted list:
+</result>
+
+
+
+</manpage>

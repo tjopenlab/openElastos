@@ -1,0 +1,81 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>自动生成代码框架</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>编译生成构件及其内部过程</h2>
+    <h3>编译构件：</h3>
+    <p>在填写完实现代码后，使用emake工具，编译源代码即可在镜像目录生成CAR构件。与生成源程序框架不同的是，这次emake命令不需带参数。执行emake命令后，将在镜像目录下生成该构件(hello.dll文件)。</p>
+    <h3>内部过程：</h3>
+    <p>这次的emake命令不带参数，所以会按照Elastos.SDK\build\misc\makefile.gnu脚本中的规则执行命令。用emake&nbsp;-v可以看到整个编译过程。</p>
+    <p>首先用carc工具重新根据hello.car生成压缩格式的hello.cls样式库。</p>
+    <pre class="code">
+    carc  -a -c hello.cls hello.car
+</pre>
+    <p>然后用regezcom工具，将hello.cls在系统中注册。</p>
+    <pre class="code">
+regezcom -c hello.cls -a \category.cfg \ -d …\driver.cfg
+</pre>
+    <p>再用mkimport工具，根据hello.cls中的信息，生成头文件hello.h。</p>
+    <pre class="code">
+mkimport  -p D:\…\server -"|" hello.cls
+</pre>
+    <p>hello.h里面包含了接口C++定义和智能指针的实现代码。其他的C++头文件和源文件会由cls2src生成。</p>
+    <pre class="code">
+cls2src  -p D:\…\server -b hello.cls
+</pre>
+    <p>该命令会生成多个文件包括：</br>
+        <ul>
+            <li>_CHello.cpp：实现了hello构件的AddRef/Release和QueryInterface
+            <li>_hellopub.cpp:实现了创建类厂和获取元数据的DLL出口函数_EzComDllGetClassObject
+            <li>_CHello.h：_CHello类对接口Ihello的继承
+            <li>_Hello_1_0.h：包含了头文件hello.h
+            <li>hello.etl：二进制文件
+            <li>HelloClsInfo.cpp：定义了数组g_Hello_classInfo，里面存放的是用于列集散集的元数据
+        </ul>
+    </p>
+    <p>下面接着创建了hello.def文件，其中说明了hello.dll出口函数。包括以下函数：</br>
+    <b>
+    DllGetClassObject = _EzComDllGetClassObject@12</br>
+    DllCanUnloadNow = _EzComDllCanUnloadNow@0</br>
+    DllRegisterServer = _EzComDllRegisterServer@0</br>
+    DllUnregisterServer = _EzComDllUnregisterServer@0
+    </b>
+    </p>
+    <p>现在使用dlltool工具就可以生成hello.dll的接口库文件hello.lib。</p>
+    <pre class="code">
+dlltool -C -d hello.def -e hello.exp -D hello.dll -l hello.lib
+</pre>
+    <p>其中hello.def和hello.lib是输出文件，hello.def是输入文件，hello.dll仅仅做为文件名输入，当前并不需要有这个文件。</p>
+    <p>hello.def文件是hello.dll出口文件，在后面链接产生hello.dll的时候要用到。</br>hello.lib文件是hello.dll入口文件，在其他程序调用hello.dll的时候要用到。</p>
+    <p>接着生成了hello.rc资源脚本文件其中包括两个文件:</p>
+    <pre class="code">
+1 ClassInfo hello.cls
+1 ZTLB hello.etl
+</pre>
+    <p>以hello.rc为输入，使用windres工具生成了hello.rsc资源文件。</p>
+    <pre class="code">
+windres … -o hello.rsc -i hello.rc
+</pre>
+    <p>然后用gcc编译CHello.cpp文件产生目标文件CHello.o。</p>
+    <pre class="code">
+gcc  …   -o CHello.o …\CHello.cpp
+</pre>
+    <p>现在可以用链接器ld生成hello.dll。</p>
+    <pre class="code">
+ld  … -Map hello.map … -o hello.dll  --start-group hello.rsc CHello.o -lelastos
+-lElCRuntime hello.exp --end-group
+</pre>
+    <p>ld生成hello.dll的过程中也生成了hello.map. 该文件记录了hello.dll中的链接信息。</p>
+    <p>最后用gcc产生了depend.mk文件，该文件记录了CHello.cpp文件对其他程序的依赖关系。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

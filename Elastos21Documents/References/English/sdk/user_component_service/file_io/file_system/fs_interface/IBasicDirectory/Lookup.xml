@@ -1,0 +1,87 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Directory Object Interface</volume>
+<interface>IBasicDirectory</interface><method> Lookup </method>
+    <description>
+        <para>
+        	Looks up a file or subdirectory in current directory object.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>
+						The name of the file or subdirectory to be searched. <i>name</i> must be the name of the file 
+						or subdirectory and should not include path separator'/'.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IBasicFile** </param_type>
+                <param_name> piBasicFile </param_name>
+                <param_note>
+                    <para>
+						If the file or subdirectory exists, returns the interface pointer to that file or 
+						subdirectory, otherwise return NULL.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value </td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>S_OK</td>
+		        <td>Function succeeds in look up.</td>
+	        </tr>
+	        <tr>
+		        <td>E_INVALIDARG</td>
+		        <td>Parameter name is NULL, or parameter piBasicFile is NULL.</td>
+	        </tr>
+	        <tr>
+		        <td>E_NOINTERFACE</td>
+		        <td>Search interface fails.</td>
+	        </tr>
+	        <tr>
+		        <td>E_OUTOFMEMORY</td>
+		        <td>Not enough memory, directory or file object creation fails.</td>
+	        </tr>
+            <tr>
+	    	    <td>ECODE_FROM_ERRNO(ENOENT)</td>
+	    	    <td>File or directory represented by name does not exist.</td>
+	        </tr>
+	  	</table>
+	    <para>See <link url="../../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			Release <i>piBasicFile</i> by calling piBasicFile->Release(); to avoid memory leak.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,80 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>CAR Keywords--category</title>
+</head>
+
+<body>
+<h2>category</h2>
+    <p>This keyword is used to define category. A category is a set of interfaces. For example: </p>
+    <pre class="code">
+[
+    uuid(f1036818-b060-4766-ada5-e7b60e1ac722),
+    uunm(http://www.koretide.com/car/CategoryDemo1.dll)
+]
+component CategoryDemo1
+{
+    [uuid(9e4bc3b9-6e64-4a78-885e-c9da33517fd5)]
+    interface IInterface1 {
+        ……
+    };
+    [uuid(6c5c4d28-23f3-4a9e-a0e6-98b01a553ee2)]
+    interface IInterface2 {
+        ……
+    };
+    [ uuid(97f35e33-4858-4ec3-8cf6-764f9dd0ea08) ]
+    <b>category</b> CatCategory {
+        interface IInterface1;
+        interface IInterface2;
+    }
+}
+</pre>
+    <p>In sample component CategoryDemo1, a category CatCategory is defined.In this category interface, IInterface1 and interface IInterface2 are provided.</p>
+    <p>In the "[]" before category keyword, there is the attribute of the category. Class attribute modifies class. Among the attributes the <a class="style1" href="../attributes/attributes_uuid.htm">uuid</a> attribute is required. The uuid in this category attribute is called the category ID (CATID), which is used to identify a category. Other attributes can also be included in category attribute. All attributes that are used to modify class can be used to modify category defined by category. For details please see <a class="style1" href="../attribute.htm">CAR Attribute</a>.</p>
+    <p>After the category keyword is the name of the category.</p>
+    <p>In the "()" after category keyword, is the definition of this category. The category definition mainly consists of interfaces provided by this category.</p>
+    <p>The usage of component category is similar to the usage of abstract base class in C++. An abstract base class is a set of a group of functions to be implemented required by a group of its derived class. You can say that this derived class is a specific implementation of derived base class. Similar to this a component category is the set of interface that must be implemented by the components of this category. A component of some component category is the specified implementation of this component.</p>
+    <p><b>Remarks: </b>Category CatCategory in sample component CategoryDemo1 need to be inherited by other classes and need these inherited classes to implement interfaces provided by this category, otherwise the definition of this category is meaningless. The user can introduce component CategoryDemo1 in other components and define the class that inherits category CatCategory to implement the interfaces provided by this category. About component introduction, please see <a class="style1" href="../keywords/keywords_importlib.htm">importlib</a> keywords documentation for details.</p>
+    <p>Categories definied by the category keyword can inherit other categories and also can be inherited by classes defined by the <a class="style1" href="keywords_class.htm">class</a> keyword. For example: </p>
+    <pre class="code">
+[
+    version(1.0),uuid(2eb274e9-7ab6-470c-b511-ae5cad89c060),
+    uunm(http://www.koretide.com/car/CategoryDemo2.dll)
+]
+component CategoryDemo2
+{
+    [uuid(44db5056-06d1-4bda-9b6d-03cfb7e681e0)]
+    interface IInterface1 {
+        ……
+    };
+    [uuid(5e5b34cf-98c9-4ba2-81e0-f217d182b021)]
+    category CatCategory1 {
+        ……
+    };
+    [uuid(5a5c3ce9-eed2-4737-93af-963ad6dbd86a)]
+    <b>category CatCategory2 : CatCategory1</b> {
+        ……
+    };
+    [uuid(5e5b34cf-98c9-4ba2-81e0-f217d182b021)]
+    <b>class CClass : CCategory1</b> {
+        ……
+    };
+}
+</pre>
+    <p>In sample component CategoryDemo2, category CatCategory2 inherits category CatCategory1, class CClass also inherits category CatCategory1 .</p>
+    <ol><font color="red"><b>Note: </b>
+        <li>Interface in category defined by category keywords is used to inherit, classes that inherit this category must implement all interface methods of it: 
+        <li>category can inherit one or more other category.</font>
+    </ol>
+    <b><a class="style1" href="../keyword.htm">CAR Keywords Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

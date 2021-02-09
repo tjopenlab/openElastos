@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICurThemeOption</interface><method> GetBkPicture </method>
+    <description>
+        <para>
+            从配置文件中获取当前墙纸图片文件的具体路径。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf </param_type>
+                <param_name> esbPath </param_name>
+                <param_note>
+                    <para>
+获取墙纸图片文件的路径                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；当esbPath为空，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            获取的路径是从配置文件中读取，不对路径的合法性和长度进行判断。路径的长度不能超过255个字符，因为数据库中该字段的长度是255个字节。
+        </para>
+    </remarks>
+</manpage>

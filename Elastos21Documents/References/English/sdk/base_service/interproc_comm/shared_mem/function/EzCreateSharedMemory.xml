@@ -1,0 +1,131 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzCreateSharedMemory">EzCreateSharedMemory</sample>
+    <volume>System API</volume>
+    <title>EzCreateSharedMemory</title>
+    <routine_idx> ..\system_api_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	Creates shared memory.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString</param_type>
+                <param_name>name </param_name>
+                <param_note>
+                    <para>
+                    	[in] The object name of the shared memory
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemorySize </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>
+                    	[in] Specifies the size of the shared memory block
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Boolean </param_type>
+                <param_name> commit </param_name>
+                <param_note>
+                    <para>
+                    	[in] Specifies whether to allocate all the physical memory of the shared memory upon 
+                    	creation.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> ISharedMemory ** </param_type>
+                <param_name> ppSharedMemory </param_name>
+                <param_note>
+                    <para>
+                    	[out] Interface pointer to the shared memory object, if the function succeeds.
+					</para>
+                </param_note>
+            </api_param>
+        <api_param>
+                <param_type>Boolean * </param_type>
+                <param_name> pAlreadyExists </param_name>
+                <param_note>
+                    <para>
+                    	[out] Used to acquire whether the specified SharedMemory object already existed, Ignore the parameter if it is null
+					</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>Return value</td><td>Description</td>
+            </th>
+		<tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in creating a named event object</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>Invalid argument(s)</td>
+            </tr>
+           <tr>
+                <td>E_SERVICE_NAME_TOO_LONG</td>
+                <td>The service name is beyond the confines (256 characters)</td>
+            </tr>
+            <tr>
+                <td>E_ALREADY_EXIST</td>
+                <td>A non-SharedMemory  object  already existed ,whose name is the same as the Event one</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>Insufficient memory</td>
+            </tr>
+        </table>
+        <para>references<link url="/sdk/hresult.htm">ECODE </link> correlative help.</para>
+    </return>
+
+    <remarks>
+    	<para>
+    		esName can not be null, and also cant be the same name as other named service object in system,
+    		if so, return E_ALREADY_EXISTS.
+    	</para>
+        <para>
+        	<i>ppSharedMemory</i> can be set as null when this process does not operate on this shared memory；Release must 
+        	be called to release this pointer after user operate on this shared memory by <i>ppSharedMemory</i>.
+        </para>
+    	<para>
+    		Other process can access and use this object through the name specified by <i>esName</i> and by <link url=
+    		"EzFindService.htm">EzFindService</link> function.
+    	 </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                  Windows 2000 or later; Elastos2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+
+</manpage>

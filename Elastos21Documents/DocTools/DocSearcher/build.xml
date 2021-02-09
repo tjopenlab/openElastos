@@ -1,0 +1,154 @@
+<!-- Setting up the Getting Started example to prepare to build and deploy -->
+<project name="docsearher" default="webapp" basedir=".">
+
+    <!-- init -->
+    <target name="init">
+        <tstamp/>
+
+        <mkdir dir="${bin}"/>
+    </target>
+
+    <!-- Configure the context PATH for this application -->
+    <property name="apidoc" value="apidoc"/>
+    <property name="base" value="."/>
+    <property name="bin" value="bin"/>
+    <property name="dist" value="dist"/>
+    <property name="icons" value="icons"/>
+    <property name="lib" value="lib"/>
+    <property name="src" value="src"/>
+
+    <!-- Other project properties -->
+    <property name="version" value="3.89"/>
+
+    <!-- class path -->
+    <path id="classpath">
+        <fileset dir="${lib}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <!-- run classpath -->
+    <path id="runclasspath">
+        <pathelement location="${bin}"/>
+        <path refid="classpath" />
+    </path>
+
+    <!-- Compile source -->
+    <target name="compile" description="Compile Java files" depends="init">
+        <copy file="docSearch.properties" todir="${bin}"/>
+        <copy file="${src}/org/jab/docsearch/log4j.xml" todir="${bin}/org/jab/docsearch"/>
+        <javac
+              srcdir="${src}"
+              destdir="${bin}"
+              deprecation="on"
+              debug="on"
+              source="1.4"
+              target="1.4">
+            <include name="**/*.java" />
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <!-- Run DocSearcher -->
+    <target name="run" description="Runs DocSearcher with logfile" >
+        <java
+             classname="org.jab.docsearch.DocSearch"
+             fork="true">
+            <classpath refid="runclasspath"/>
+            <arg value="enable_logfile"/>
+        </java>
+    </target>
+
+    <!-- Generate API Doc -->
+    <target name="apidoc" description="Generates DocSearcher Javadoc" >
+        <mkdir dir="${apidoc}"/>
+
+        <javadoc
+            destdir="${apidoc}"
+            author="true"
+            version="true"
+            use="true"
+            windowtitle="DocSearcher API"
+            verbose="false">
+            <classpath refid="classpath"/>
+            <fileset dir="${src}" defaultexcludes="yes">
+                <include name="**/*.java" />
+            </fileset>
+        </javadoc>
+    </target>
+
+    <!-- Build Servlet webapp directory -->
+    <target name="webapp" depends="dist">
+        <mkdir dir="${base}/webapp"/>
+        <mkdir dir="${base}/webapp/WEB-INF"/>
+        <mkdir dir="${base}/webapp/WEB-INF/lib"/>
+
+        <copy file="${base}/web.xml" todir="${base}/webapp/WEB-INF"/>
+        <copy todir="${base}/webapp/WEB-INF/lib">
+            <fileset dir="${lib}">
+                <include name="*.jar"/>
+            </fileset>
+            <fileset dir="${dist}">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+        <jar jarfile="${dist}/DocSearch.war" basedir="${base}/webapp" />
+    </target>
+
+
+    <!-- Creates distribution directory -->
+    <target name="dist" depends="compile">
+        <mkdir dir="${dist}"/>
+
+        <!-- copy all extra files -->
+        <copy file="splash.gif" todir="${dist}"/>
+        <copy file="help_page.htm" todir="${dist}"/>
+        <copy file="start_page.htm" todir="${dist}"/>
+        <copy file="Default.theme" todir="${dist}"/>
+        <copy file="CHANGELOG.txt" todir="${dist}"/>
+        <copy file="GPL.txt" todir="${dist}"/>
+        <copy file="README.txt" todir="${dist}"/>
+        <copy file="TODO.txt" todir="${dist}"/>
+
+        <!-- copy all icons -->
+        <copy todir="${dist}/icons">
+            <fileset dir="${icons}">
+                <include name="*.png"/>
+                <include name="*.gif"/>
+            </fileset>
+        </copy>
+
+        <!-- copy all libraries -->
+        <copy todir="${dist}/lib">
+            <fileset dir="${lib}">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+
+        <!-- create jar -->
+        <jar jarfile="${dist}/DocSearch.jar" basedir="${bin}" manifest="${base}/manifest.txt" />
+    </target>
+
+    <!-- Build distribution package -->
+    <target name="buildpackage" description="Builds distribution package">
+        <echo>Clean all before build distribution package</echo>
+        <antcall target="clean"/>
+
+        <!--<echo>Pack sources</echo>
+        <zip destfile="DocSearcher-src-${version}.zip"  basedir="." />-->
+
+        <echo>Build distribution</echo>
+        <antcall target="dist"/>
+
+        <echo>Pack binaries</echo>
+        <zip destfile="DocSearcher-${version}.zip"  basedir="${dist}" />
+    </target>
+
+    <!-- Remove all created files -->
+    <target name="clean">
+        <delete dir="${apidoc}"/>
+        <delete dir="${bin}"/>
+        <delete dir="${base}/webapp"/>
+        <delete dir="${dist}"/>
+    </target>
+</project>

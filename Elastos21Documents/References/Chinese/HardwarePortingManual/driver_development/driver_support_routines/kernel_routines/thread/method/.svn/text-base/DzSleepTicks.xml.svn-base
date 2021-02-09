@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+
+     <volume>线程与调度</volume>
+    <title>DzSleep</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>使当前线程睡眠一段指定的时间（以Tick为单位）。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> uint_t</param_type>
+                <param_name> uTicks </param_name>
+                <param_note>
+                    <para>指定一个期望的睡眠时间长度，单位为Tick</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> WaitResult </param_type>
+                <param_name> *pResult </param_name>
+                <param_note>
+                    <para>一个枚举型值，用来得到方法的调用结果</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>当参数uTicks为0时，线程放弃时间片所有权，将其让给任意具有同优先级的就绪线程，如果没有其它同优先级就绪线程，函数立即返回，线程继续执行。pResult返回WaitResult_TimedOut。</para>
+        <para>当程序执行成功时，pResult返回WaitResult_TimedOut。</para>
+        <para>当被其它线程中断睡眠时，pResult返回WaitResult_Interrupted。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>DzSleep</ref_name>
+            <ref_url>DzSleep</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzDelay</ref_name>
+            <ref_url>DzDelay</ref_url>
+        </reference>
+    </references>
+
+
+
+</manpage>
+

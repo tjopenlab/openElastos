@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>    <manpage>
+    <volume>同步</volume>
+    <interface> ICondition </interface>
+    <description>
+        <para>条件变量对象接口。</para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Wait</method_name>
+        <method_url>ICondition\Wait</method_url>
+    <m_description>
+		使调用线程在条件变量对象上等待
+    </m_description>
+    </method>
+    <method>
+        <method_name>TryWait</method_name>
+        <method_url>ICondition\TryWait</method_url>
+    <m_description>
+		尝试在指定时间间隔内使调用线程在条件变量对象上等待
+    </m_description>
+    </method>
+    <method>
+        <method_name>Pulse</method_name>
+        <method_url>ICondition\Pulse</method_url>
+    <m_description>
+		唤醒一个等待着的线程
+    </m_description>
+    </method>
+    <method>
+        <method_name>PulseAll</method_name>
+        <method_url>ICondition\PulseAll</method_url>
+    <m_description>
+        唤醒所有等待着的线程
+    </m_description>
+    </method>
+</self>
+    </methods>
+
+	<remarks>
+		<para>一个条件变量对象代表一个“条件变量”（一种同步对象），它提供了一种与某些共享数据的谓词（其结果为布尔逻辑表达式）相关的机制。条件变量对象通过暴露出ICondition接口来提供服务。</para>
+        <para>当前线程可以通过调用<link url="Function/CCondition/New0.htm">CCondition::New</link>函数来创建一个条件变量对象；或是调用另一个<link url="Function/CCondition/New.htm">CCondition::New</link>函数来创建一个命名的条件变量对象；其它线程可以通过调用<link url="../../CARServices/NamingService/CSystem/FindRunningObject.htm">CSystem::FindRunningObject</link>函数以其名字来获得此条件变量对象的接口指针。</para>
+		<para>条件变量对象通过与一个互斥体对象的共同使用，提供谓词测试操作和等待操作的原子性。此互斥体对象保护了共享数据，避免了唤醒丢失等问题的发生。用户线程一般先占有此互斥体对象，再测试谓词。</para>
+		<para>条件变量对象允许线程在必要时（通常是在完成测试谓词后），以已占有的互斥体对象为参数，通过调用<link url="ICondition/Wait.htm">ICondition::Wait</link>方法或<link url="ICondition/TryWait.htm">ICondition::TryWait</link>方法进入等待状态；在谓词结果改变时，通过调用<link url="ICondition/Pulse.htm">ICondition::Pulse</link>方法唤醒在此条件变量对象上等待着的一个线程，或是通过调用<link url="ICondition/PulseAll.htm">ICondition::PulseAll</link>方法唤醒在此条件变量对象上等待着的全部线程。ICondition::Wait方法和ICondition::TryWait方法在返回前将重新占有所传入的互斥体对象。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

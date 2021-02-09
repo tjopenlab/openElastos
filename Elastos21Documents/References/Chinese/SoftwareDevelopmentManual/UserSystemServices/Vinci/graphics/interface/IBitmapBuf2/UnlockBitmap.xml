@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBitmapBuf</interface><method> UnlockBitmap </method>
+    <description>
+        <para>
+            完成对Buffer的使用。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统           </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+<remarks>
+		<para>
+				用完缓冲区后，相应地得调用UnlockBitmap方法，不然会有内存泄漏。
+		</para>
+</remarks>     
+</manpage>

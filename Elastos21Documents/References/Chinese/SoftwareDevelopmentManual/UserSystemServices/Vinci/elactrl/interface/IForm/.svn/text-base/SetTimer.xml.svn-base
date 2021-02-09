@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> SetTimer </method>
+    <description>
+        <para>
+            设置用户定义的时间间隔引发 Timer 事件的计时器。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> timerId </param_name>
+                <param_note>
+                    <para>
+定时器的索引值，有效值为 1～8                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> interval </param_name>
+                <param_note>
+                    <para>
+时间间隔的长度，精度是50ms，有效值 > 0                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_CLOSED</td>
+	    	    <td>窗体已关闭</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_ALREADY_EXIST</td>
+	    	    <td>该 timerId 的定时器已经存在</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        调用该方法会在每个时间间隔触发一个 <link url="../JFormEvents/Timer.htm">Timer</link> 回调事件，同时调用该 Timer 事件的事件处理函数。允许用户为一个 Form 最多设置8个触发 Timer 事件的定时器。
+    </para>
+    <para>
+        取消事件定时器可以通过 <link url="KillTimer.htm">KillTimer</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Timer 回调事件</ref_name>
+        <ref_url>../JFormEvents/Timer</ref_url>
+    </reference>
+    <reference>
+        <ref_name>KillTimer</ref_name>
+        <ref_url>KillTimer</ref_url>
+    </reference>
+</references>
+</manpage>

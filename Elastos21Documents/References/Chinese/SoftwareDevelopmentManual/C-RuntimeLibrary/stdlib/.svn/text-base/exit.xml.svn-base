@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\exit">exit</sample>
+    <title> exit, _exit</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>exit清除函数注册表之后终止调用进程、_exit立即终止调用进程。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>exit</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>status</param_name>
+                <param_note>
+                    <para>退出状态</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>_exit</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>status</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>函数exit和_exit终止调用进程。函数exit按照后进先出的顺序，调用由atexit注册的函数，然后在中止进程之前刷新所有文件缓冲区。而函数_exit不执行由atexit注册的函数就立即终止进程。status的值通常设置为0表示正常退出，非零值表示错误。</para>
+        <para>exit和_exit的函数行为如下：</para>
+        
+        <table>
+	        <th>
+               <td>函数</td>
+               <td>描述</td>
+            </th>
+            <tr>
+               <td>exit</td>
+               <td>遵循C语言库终止程序的完整步骤，终止进程并以系统提供的状态码退出。</td>
+            </tr>
+            <tr>
+               <td>_exit</td>
+               <td>快速终止进程，并以系统提供的状态码退出。</td>
+            </tr>
+        </table>
+        <para>当调用了exit或 _exit函数，任何临时对象或自动对象在本调用下结束，但其析构函数不会被调用。自动对象是在一个函数中定义的一个非静态的对象。临时对象是由编译器生成的一个对象。要在调用exit或 _exit函数之前销毁一个自动对象，仅须要调用本对象的析构函数即可，如下所示：</para>
+        <para>myObject.myClass::~myClass ();</para>
+        <para>不能用DLL_PROCESS_ATTACH在DllMain中调用exit。如果想结束DLLMain函数，只要从DLL_PROCESS_ATTACH中返回FALSE即可。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>exit</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_exit</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+//==========================================================================
+// discription: This program prompts the user for a yes or no and returns
+// an exit code of 1 if the user answers Y or y; otherwise it returns 0.
+// The error code could be tested in a batch file.
+//==========================================================================
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+
+int main()
+{
+    int ch;
+
+    printf(&quot;Yes or no? &quot;);
+    ch = getwchar();
+    printf(&quot;\n&quot;);
+    if (ch == &apos;Y&apos; || ch == &apos;y&apos;)
+        exit(1);
+    else
+        exit(0);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Yes or no? Y
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>abort</ref_name>
+            <ref_url>abort</ref_url>
+        </reference>
+        <reference>
+            <ref_name>atexit</ref_name>
+            <ref_url>atexit</ref_url>
+        </reference>
+    </references>
+
+</manpage>

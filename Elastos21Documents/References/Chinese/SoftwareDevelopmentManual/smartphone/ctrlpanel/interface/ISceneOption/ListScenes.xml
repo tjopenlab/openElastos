@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISceneOption</interface><method> ListScenes </method>
+    <description>
+        <para>
+            获取目前所有的系统情景模式和用户自定义情景模式列表。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> SCENETYPE </param_type>
+                <param_name> nSeneType </param_name>
+                <param_note>
+                    <para>
+所列出来的情景模式类型，具体参见<link url="../../datatype/SCENETYPE.htm">SCENETYPE</link>                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf </param_type>
+                <param_name> esbSceneNames </param_name>
+                <param_note>
+                    <para>
+返回的情景模式名                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；esbSceneNames为空或者nSceneType不是            <link url="../../datatype/SCENETYPE.htm">            SYSTEM_SCENE            </link>            和            <link url="../../datatype/SCENETYPE.htm">            USER_SCENE            </link>            ，返回E_INVALIDARG；读取环境变量（数据库名）失败，返回E_INVALID_ENVIRONMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            nSceneType为SYSTEM_SCENE时是系统情景模式，为USER_SCENE时是用户自定义情景模式。</para><para>            如果情景模式名有多个名字，情景模式名之间用“，”隔开，最后以“，”结束。
+        </para>
+    </remarks>
+</manpage>

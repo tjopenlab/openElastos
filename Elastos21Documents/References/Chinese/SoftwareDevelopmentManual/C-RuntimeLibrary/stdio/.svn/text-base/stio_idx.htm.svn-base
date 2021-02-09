@@ -1,0 +1,468 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>libc中的标准输入输出函数</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2><a class="style1" href="../libc_idx.htm" title="libc 函数列表">libc</a><a class="style1">中的标准输入输出函数 </a></h2>
+<p>
+    在stdio.h中声明的函数列表如下：
+</p>
+
+<table>
+    <thead>
+        <td>函数名称</td><td>函数描述</td>
+    </thead>
+     <tr>
+        <td>
+            <a class="style1" href="clearerr.htm"> clearerr </a>
+        </td>
+        <td>
+            重置流的错误指示器
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fclose.htm"> fclose,_fcloseall </a>
+        </td>
+        <td>
+            关闭文件流
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fcloseall.htm"> fcloseall </a>
+        </td>
+        <td>
+            关闭文件流
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="_fdopen.htm"> _fdopen, _wfdopen </a>
+        </td>
+        <td>
+            将流和指定文件相关联，此文件先前为低级I/O打开
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fdopen.htm"> fdopen </a>
+        </td>
+        <td>
+            将流和指定文件相关联，此文件先前为低级I/O打开
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="feof.htm"> feof </a>
+        </td>
+        <td>
+            判断文件流是否具有文件尾（end-of-file）指示器
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="ferror.htm"> ferror </a>
+        </td>
+        <td>
+            检测流中错误
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fflush.htm"> fflush </a>
+        </td>
+        <td>
+            清空文件缓冲区
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fgetwc.htm"> fgetc, fgetwc </a>
+        </td>
+        <td>
+            从文件流中读一个字符
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fgetpos.htm"> fgetpos </a>
+        </td>
+        <td>
+            获取流位置指示器（stream-position indicator）的内容
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fgetws.htm"> fgets, fgetws </a>
+        </td>
+        <td>
+            从文件流中读入字符串
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="_fileno.htm"> _fileno</a>
+        </td>
+        <td>
+            得到文件指针所指的文件的文件句柄
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fileno.htm"> fileno</a>
+        </td>
+        <td>
+            得到文件指针所指的文件的文件句柄
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="_flushall.htm"> _flushall </a>
+        </td>
+        <td>
+            清空所有的流，清空所有缓冲区
+        </td>
+    </tr>
+   <tr>
+        <td>
+            <a class="style1" href="_wfopen.htm"> fopen, _wfopen</a>
+        </td>
+        <td>
+            打开文件
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fwprintf.htm"> fprintf, fwprintf </a>
+        </td>
+        <td>
+              格式化输出到文件流
+        </td>
+    </tr>
+     <tr>
+        <td>
+            <a class="style1" href="fputc.htm"> fputc, fputwc </a>
+        </td>
+        <td>
+            将字符写入文件流
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fputws.htm">fputs, fputws </a>
+        </td>
+        <td>
+            将字符串写入文件流
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fread.htm"> fread </a>
+        </td>
+        <td>
+            从文件流中读取数据
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="freopen.htm"> freopen,_wfreopen</a>
+        </td>
+        <td>
+            重新分配一个文件指针
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fscanf.htm">fscanf fwscanf</a>
+        </td>
+        <td>
+            从文件流中读取格式化数据
+        </td>
+    </tr>
+     <tr>
+        <td>
+            <a class="style1" href="fseek.htm"> fseek </a>
+        </td>
+        <td>
+           将文件指针移动到指定位置
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fsetpos.htm"> fsetpos </a>
+        </td>
+        <td>
+            设置流位置指示器（stream-position indicator）的内容
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fsopen.htm"> fsopen,_wfsopen </a>
+        </td>
+        <td>
+            打开一个共享流文件
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="ftell.htm"> ftell </a>
+        </td>
+        <td>
+            获取文件指针的当前位置
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="fwrite.htm"> fwrite </a>
+        </td>
+        <td>
+            将数据写入文件流
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="getwc.htm"> getc, getwc</a>
+        </td>
+        <td>
+            从流中读取一个字符
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="getwchar.htm"> getchar, getwchar</a>
+        </td>
+        <td>
+            从标准输入流中取一个字符
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="_getws.htm"> gets, _getws</a>
+        </td>
+        <td>
+            从标准输入流中取一行字符
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="_getw.htm"> _getw </a>
+        </td>
+        <td>
+            从标准文件流中读取一个整型数据
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="getw.htm"> getw </a>
+        </td>
+        <td>
+            从标准文件流中读取一个整型数据
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="perror.htm"> perror</a>
+        </td>
+        <td>
+            打印错误信息
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="wprintf.htm"> printf, wprintf </a>
+        </td>
+        <td>
+            格式化输出到标准输出流
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="putc.htm"> putc, putwc</a>
+        </td>
+        <td>
+            将字符写入流
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="putwchar.htm"> putchar, putwchar</a>
+        </td>
+        <td>
+            将字符写入标准输出流
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="_puts.htm"> puts, _putws </a>
+        </td>
+        <td>
+            将字符串写入标准输出流
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="_putw.htm"> _putw</a>
+        </td>
+        <td>
+            向文件流写入一个整型数据
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="putw.htm"> putw</a>
+        </td>
+        <td>
+            向文件流写入一个整型数据
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="remove.htm"> remove, wremove</a>
+        </td>
+        <td>
+            删除文件
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="_remove.htm"> _remove, _wremove</a>
+        </td>
+        <td>
+            删除文件
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="rename.htm"> rename, wrename</a>
+        </td>
+        <td>
+            重新命名文件或路径名
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="_rename.htm"> _rename, _wrename</a>
+        </td>
+        <td>
+            重新命名文件或路径名
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="rewind.htm"> rewind </a>
+        </td>
+        <td>
+            将文件指针重新定位到文件头
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="scanf.htm">scanf, wscanf</a>
+        </td>
+        <td>
+            从标准输入流中读取格式化数据
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="setbuf.htm">setbuf</a>
+        </td>
+        <td>
+            控制文件流的缓冲区
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="setvbuf.htm">setvbuf</a>
+        </td>
+        <td>
+            控制文件流的缓冲区及缓冲区大小
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="_snprintf.htm"> _snprintf, _snwprintf </a>
+        </td>
+        <td>
+            格式化数据并输出到字符串
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="snprintf.htm"> snprintf </a>
+        </td>
+        <td>
+            格式化数据并输出到字符串
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="swprintf.htm"> sprintf, swprintf </a>
+        </td>
+        <td>
+            格式化输出到字符串
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="sscanf.htm">sscanf swscanf</a>
+        </td>
+        <td>
+            从字符串中读取格式化数据
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="ungetwc.htm"> ungetc, ungetwc </a>
+        </td>
+        <td>
+            将字符压回到文件流
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="vfprintf.htm"> vfprintf, vfwprintf </a>
+        </td>
+        <td>
+            使用参数链表指针格式化输出到标准输出
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="vprintf.htm"> vprintf, vwprintf</a>
+        </td>
+        <td>
+            使用参数链表指针格式化输出到标准输出
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="_vsnprintf.htm"> _vsnprintf, _vsnwprintf </a>
+        </td>
+        <td>
+            使用参数链表指针格式化输出到字符串
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="vswprintf.htm"> vsprintf, vswprintf </a>
+        </td>
+        <td>
+            使用参数链表指针格式化输出到字符串
+        </td>
+    </tr>
+</table>
+
+<script>footer("KoreTide")</script>
+</body>
+
+</html>

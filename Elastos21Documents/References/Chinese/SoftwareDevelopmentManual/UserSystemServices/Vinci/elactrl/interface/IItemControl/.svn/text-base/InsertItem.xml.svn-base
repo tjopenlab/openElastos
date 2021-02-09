@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IItemControl</interface><method> InsertItem </method>
+    <description>
+        <para>
+            在指定位置处插入列表项。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+插入的位置，有效值为 0～项数                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+列表项显示的文本</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_OUT_OF_MEMORY</td>
+	    	    <td>没有足够的空间</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法与 <link url="AddItem.htm">AddItem</link> 方法类似，都可以用于插入列表项，只是 InsertItem 在指定位置处插入，AddItem 是按顺序在末尾插入一项。当列表项是自动排序时，则该项不一定会插入到指定位置，而是插入排序后的位置，同时该项的索引值也将变更为排序后的索引值。若列表项非自动排序的，则成功插入一项列表项后，其后所有项的索引值都将自动增加1。
+    </para>
+    <para>
+        当某项的文本的高度超过行高，则显示的文本将与下行或者上一行的内容重叠。设置行高可以通过 <link url="SetItemHeight.htm">SetItemHeight</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IItemControl 接口方法列表</ref_name>
+        <ref_url>../IItemControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AddItem</ref_name>
+        <ref_url>AddItem</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetItem</ref_name>
+        <ref_url>SetItem</ref_url>
+    </reference>
+</references>
+</manpage>

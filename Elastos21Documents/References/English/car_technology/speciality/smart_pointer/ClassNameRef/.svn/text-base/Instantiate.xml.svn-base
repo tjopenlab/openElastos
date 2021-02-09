@@ -1,0 +1,78 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <volume> Class Smart Pointer Class Shared Method </volume>
+    <interface> ClassNameRef </interface>
+    <method>Instantiate</method>
+
+    <description>
+        <para>Creates ClassName class object and makes corresponding class smart pointer to point to this object. This method has two forms,which are the following: </para>
+    </description>
+    <syntax_nopara>
+        <return_val>ECODE</return_val>
+    </syntax_nopara>
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+        <api_param>
+            <param_type>DWORD</param_type>
+            <param_name>dwClsContext </param_name>
+            <param_note>
+                <para> Specify relative location of object and client. There are five option values, as the following: </para>
+                <para_table>
+                    <th>
+                        <td>Parameter Option</td><td>Description</td>
+                    </th>
+                    <tr>
+                        <td>CTX_SAME_DOMAIN</td><td>Object and client located in the same address space</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_DIFF_DOMAIN</td><td>Object and client are located in different address spaces, but they are located in the same process</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_KERN_DOMAIN</td><td>Object and client are located in different address spaces and object runs in kernel</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_DIFF_PROCESS</td><td>Object and client are located in different process space, but they are in the same machine</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_DIFF_MACHINE</td><td>Object and client are located in different machines</td>
+                    </tr>
+                </para_table>
+                <para>For details please see <link url="../code_running_env.htm">executable code run-time environment (context)</link>. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+     <return>
+        <para>This method has the following return value: </para>
+        <table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>S_OK</td><td>Method invocation successful</td>
+            </tr>
+            <tr>
+                <td>CO_S_NOTALLINTERFACES</td><td>Does not successfully obtain interface pointer in specified class</td>
+            </tr>
+            <tr>
+                <td>E_NOINTERFACE</td><td>All interface pointers in specified class are not obtained successfully</td>
+            </tr>
+        </table>
+        <para>See <link url="../../../../sdk/reference/basic_data_type/hresult.htm">ECODE</link> related help.</para>
+    </return>
+
+    <remarks>
+        <para> When user does not care relative location of created object and client, choose the first method, thus no need to add parameter while invoking <b>Instantiate</b> method. The system default value is one of the three values CTX_SAME_DOMAIN, CTX_DIFF_DOMAIN and CTX_DIFF_PROCESS. Relative location of created object and client is determind by priority.</para>
+        <para> When user needs to specify relative location between created object and client, the second method is selected.Hence, corresponding parameter needs to be set when invoking <b>Instantiate</b> method. </para>
+        <para> Note:If user needs to create file system object, the second method must be selected and parameter <i>dwClsContext</i> must be set to CTX_KERN_DOMAIN.</para>
+    </remarks>
+
+</manpage>

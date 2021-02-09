@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IIPAddressCtrl</interface><method> SetFieldRange </method>
+    <description>
+        <para>
+            设置指定域允许输入的范围。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> field </param_name>
+                <param_note>
+                    <para>
+指定的域                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> minValue </param_name>
+                <param_note>
+                    <para>
+允许输入的最小值，有效值为0～最大值</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> maxValue </param_name>
+                <param_note>
+                    <para>
+允许输入的最大值，有效值为最小值～255</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	    	  </tr>
+	    	  <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	    	  </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  允许输入的最小值默认为0，最大值默认为255。若设置的最小值小于0或者最大值大于255，则系统会自动将最小值设置为0，而最大值设置为255。
+	  </para>
+	  <para>
+	  	  若 IP 地址栏当前某个域显示的数值在设置的范围以外，则该域的值会自动更新为允许输入的最大或者最小值。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CIPAddressCtrl 类介绍</ref_name>
+        <ref_url>../../class/IPAddressCtrl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IIPAddressCtrl 接口方法列表</ref_name>
+        <ref_url>../IIPAddressCtrl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetFieldRange</ref_name>
+        <ref_url>GetFieldRange</ref_url>
+    </reference>
+</references>
+</manpage>

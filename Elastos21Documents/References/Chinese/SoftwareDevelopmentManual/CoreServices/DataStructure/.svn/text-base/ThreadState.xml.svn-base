@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>系统基本服务</volume>
+    <types>ThreadState</types>
+
+    <description>
+        <para>线程状态</para>
+    </description>
+
+    <enum>
+        <enum_member>
+            <mem_name>ThreadState_Running</mem_name>
+            <mem_value>0x00</mem_value>
+            <mem_description>线程正在运行</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>ThreadState_Sleeping</mem_name>
+            <mem_value>0x01</mem_value>
+            <mem_description>线程在睡眠中</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>ThreadState_InterruptibleSleeping</mem_name>
+            <mem_value>0x03</mem_value>
+            <mem_description>线程在可中断睡眠中</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>ThreadState_Suspended</mem_name>
+            <mem_value>0x04</mem_value>
+            <mem_description>线程被挂起</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>ThreadState_SleepingSuspended</mem_name>
+            <mem_value>0x05</mem_value>
+            <mem_description>线程被睡眠且挂起</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>ThreadState_Finished</mem_name>
+            <mem_value>0x10</mem_value>
+            <mem_description>线程已经结束</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>ThreadState_Unstarted</mem_name>
+            <mem_value>0x20</mem_value>
+            <mem_description>线程未启动</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>ThreadState_DebugSuspended</mem_name>
+            <mem_value>0x80</mem_value>
+            <mem_description>线程处于调试挂起状态</mem_description>
+        </enum_member>
+    </enum>
+</manpage>

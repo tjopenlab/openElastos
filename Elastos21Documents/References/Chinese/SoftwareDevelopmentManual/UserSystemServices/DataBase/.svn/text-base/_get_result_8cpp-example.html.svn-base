@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: GetResult.cpp</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<h1>GetResult.cpp</h1>This is an example of how to use the function: <a class="el" href="interface_i_statement.html#2b4134722e421e4e64314c479d81788e" title="执行给定的SQL语句(通常为SELECT语句)，并返回一个结果集接口。...">IStatement::ExecuteQuery()</a>,<a class="el" href="interface_i_result_set.html#3027181174fa81656967e185a5215eeb" title="获取当前ResultSet对象当前行指定索引的列的String类型数据。">IResultSet::GetStringColumnByIndex()</a>.<p>
+<div class="fragment"><pre class="fragment"><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<span class="preprocessor">#include &lt;ElDatabase.h&gt;</span>
+
+<span class="keyword">using namespace </span>Elastos;
+
+<span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)
+{
+    <span class="comment">// 打开数据库文件“samples.db”。</span>
+    <span class="comment">// 如果该文件不存在，则创建一个名为“samples.db”的文件。</span>
+    <a name="_a0"></a><a class="code" href="interface_i_database.html" title="特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。...">IDatabase</a> *pDatabase;
+    ECode ec = CDatabase::New(L<span class="stringliteral">"samples.db"</span>, &amp;pDatabase);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        <span class="keywordflow">return</span> -1;
+    }
+
+    <span class="comment">// 获取执行SQL语句的接口。</span>
+    <a name="_a1"></a><a class="code" href="interface_i_statement.html" title="Statement接口，该接口用来执行静态的SQL语句并返回相应的结果集。...">IStatement</a> *pStatement;
+    ec = pDatabase-&gt;<a name="a2"></a><a class="code" href="interface_i_database.html#b68a1bd86c5b4d996a9dde72b6ea3f9d" title="创建一个用于向数据库传递SQL语句的SQL语句对象。 没有参数的...">CreateStatement</a>(&amp;pStatement);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        pDatabase-&gt;Release();
+        <span class="keywordflow">return</span> -1;
+    }
+
+    <span class="comment">// 查询记录，并返回相应的结果集,students表已在Execute.cpp例程中创建。</span>
+    <a name="_a3"></a><a class="code" href="interface_i_result_set.html" title="对数据库进行执行一条查询语句的操作通常会创建一个代表数据库查询结果笮.">IResultSet</a> *pRS;
+    pStatement-&gt;<a name="a4"></a><a class="code" href="interface_i_statement.html#2b4134722e421e4e64314c479d81788e" title="执行给定的SQL语句(通常为SELECT语句)，并返回一个结果集接口。...">ExecuteQuery</a>(L<span class="stringliteral">"SELECT name FROM students WHERE sex='female';"</span>, &amp;pRS);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        pStatement-&gt;Release();
+        pDatabase-&gt;Release();
+        <span class="keywordflow">return</span> -1;
+    }
+
+    <span class="comment">// 输出查询结果</span>
+    Boolean bHasRow;
+    WStringBuf_&lt;128&gt; pName;
+    <span class="keywordflow">while</span> (SUCCEEDED(pRS-&gt;<a name="a5"></a><a class="code" href="interface_i_result_set.html#c9c06de8fa9111395920590cbc9567e1" title="将指针从当前位置下移一行。 ResultSet指针最初位于第一行之前，...">Next</a>(&amp;bHasRow)) &amp;&amp; bHasRow) {
+        ec = pRS-&gt;<a name="a6"></a><a class="code" href="interface_i_result_set.html#3027181174fa81656967e185a5215eeb" title="获取当前ResultSet对象当前行指定索引的列的String类型数据。">GetStringColumnByIndex</a>(1, &amp;pName);
+        <span class="keywordflow">if</span> (SUCCEEDED(ec)) {
+            printf(<span class="stringliteral">"%S\n"</span>, pName.GetPayload());
+        }
+    }
+
+    pRS-&gt;Release();
+    pStatement-&gt;Release();
+    pDatabase-&gt;Release();
+
+    <span class="keywordflow">return</span> 0;
+}
+
+<span class="comment">/*</span>
+<span class="comment">Output</span>
+<span class="comment">    Mary</span>
+<span class="comment">    Alice</span>
+<span class="comment">    Susan</span>
+<span class="comment">    Christina</span>
+<span class="comment">    Daphne</span>
+<span class="comment">*/</span>
+</pre></div>
+<script>footer("chinese")</script>
+</body>
+</html>

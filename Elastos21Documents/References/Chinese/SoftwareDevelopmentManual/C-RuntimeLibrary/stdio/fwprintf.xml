@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fprintf">fprintf</sample>
+    <title> fprintf, fwprintf</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>格式化输出到文件流。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format[, argument]...</param_name>
+                <param_note>
+                    <para>格式化控制（argument为可选参数）</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fwprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format[, argument]...</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数fprintf返回写入的字节数。函数fwprintf返回写入的宽字符数。如果输出错误，返回负值。</para>
+    </return>
+
+    <remarks>
+        <para>函数fprintf格式化输出一系列的字符和数值到文件输出流。函数的每个可选参数，都要根据<link url="printf/FormatSpec.htm">format格式规范</link>中相应的格式进行转换并输出。fprintf的参数format与printf的format，具有相同的语法和使用方法。函数fwprintf是fprintf的宽字符版本。fwprintf的参数format是宽字符串，除此之外，和fprintf是一样的。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>fwprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fprintf.cpp: This program uses fprintf to format various
+ * data and print it to the file named FPRINTF.OUT. It
+ * then displays FPRINTF.OUT on the screen using the system
+ * function to invoke the operating-system TYPE command.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+FILE *stream;
+
+int main()
+{
+    int     i = 10;
+    double fp = 1.5;
+    char    s[] = &quot;this is a string&quot;;
+    char    c = &apos;\n&apos;;
+    char buffer[100];
+
+    if ((stream = fopen(&quot;fprintf.out&quot;, &quot;w&quot;)) == NULL)
+        printf(&quot;problem open the file!&quot;);
+    else {
+        fprintf(stream, &quot;%s%c&quot;, s, c);
+        fprintf(stream, &quot;%d\n&quot;, i);
+        fprintf(stream, &quot;%f\n&quot;, fp);
+        fclose(stream);
+    }
+    if ((stream = fopen(&quot;fprintf.out&quot;, &quot;r&quot;)) != NULL) {
+        if (fread(buffer, sizeof(char),100, stream) == NULL)
+            printf(&quot;fread error\n&quot;);
+        else {
+            printf(&quot;input is :\n&quot;);
+            printf(&quot;%s\n&quot;, buffer);
+        }
+        fclose(stream);
+    }
+    else
+        printf(&quot;problem open the file!\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+to the &apos;fprintf.out&apos;
+input is :
+this is a string
+10
+1.500000
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>wprintf</ref_name>
+            <ref_url>wprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>swprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

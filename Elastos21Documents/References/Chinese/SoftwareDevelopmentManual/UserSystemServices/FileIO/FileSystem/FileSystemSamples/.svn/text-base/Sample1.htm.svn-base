@@ -1,0 +1,234 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>文件操作范例</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>基本文件操作函数的使用</h2>
+    <p>本程序运用了一些基本的文件操作，包括查看文件的大小、操作时间等信息，以及读写操作。</p>
+    <p>在得到Filesys指针后，通过GetRoot可得到根目录指针，再以只读方式创建一个文件，之后将文件对象的读写模式改为可读可写，写入字符串"123456789"。接下来，分别获取文件内容，文件大小，文件的创建时间，修改时间，访问时间。最后进行资源回收工作。</p>
+    <h3>sam001.cpp</h3>
+    <p>下面是sam001.cpp文件在编译链接时的有效内容：</p>
+    <pre class = "code">
+//sam001.cpp
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;elastos.h&gt;
+#include &lt;direct.h&gt;
+#include &lt;ctype.h&gt;
+using namespace Elastos;
+
+#define TFS_SERVICE_NAME    L"filesys"
+
+ECode FindFileService(IBasicFileSystem ** ppFilesys, WStringBuf& wsbServiceName);
+
+int PrintBuf(MemoryBuf &buf, Int32 size)
+{
+    int i;
+    char *p = (char *)buf.GetPayload();
+    for(i = 0; i < size; i++) {
+        printf("%C", *(p + i));
+    }
+    return 0;
+}
+
+ECode main(int argc, char *argv[])
+{
+    WString filename = L"file.txt";
+
+    IBasicFileSystem *pFilesys = NULL;
+    IBasicDirectory *pRoot = NULL;
+    IBasicFile *fp = NULL;
+    IAbsoluteIO *iAb = NULL;
+    Int32 wsize;
+    Int32 size;
+    Int32 time;
+    WStringBuf_<100> wsbServiceName;
+    MemoryBuf_<100> buf;
+
+    // Get the IFileSystem pointer
+    ECode ec = FindFileService(&pFilesys, wsbServiceName);
+    if (FAILED(ec)) {
+        printf(">>>>>>>>>>failed to find IBasicFileSystem, ec = 0x%08x\n", ec);
+        return 1;
+    }
+
+    // GetRoot
+    ec = pFilesys->GetRoot(&pRoot);
+    if (FAILED(ec)) {
+        printf("Error in GetRoot! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // CreateFile
+    ec = pRoot->CreateFile(filename, FileAccessMode_Read, 1, &fp);
+    if (NOERROR == ec) {
+        printf("CreateFile: %S (Read) Success.\n", filename);
+    }
+    else {
+    	  printf("Error in CreateFile! ec = 0x%08x\n", ec);
+    	  goto myexit;
+    }
+
+    // SetAccessMode
+    ec = fp->SetAccessMode(FileAccessMode_ReadWrite);
+    if (NOERROR == ec) {
+        printf("The file is set FileAccessMode_ReadWrite.\n");
+    }
+    else {
+        printf("Error in SetAccessMode! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // Probe to get iAb pointer
+    iAb = IAbsoluteIO::Probe(fp);
+    if (FAILED(ec)) {
+        printf("Probe failed, ec = 0x%08x.\n", ec);
+        goto myexit;
+    }
+    iAb->AddRef();
+
+    // Write
+    buf.Copy((Byte *)"123456789", 9);
+    ec = iAb->Write(0, buf, &wsize);
+    if (NOERROR == ec) {
+        printf("Write %d bytes success.\n", wsize);
+    }
+    else {
+        printf("Error in Write! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // GetSize
+    ec = iAb->GetSize(&size);
+    if (NOERROR == ec) {
+        printf("The file is get Size: %d\n", size);
+    }
+    else {
+        printf("Error in GetSize! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // Read
+    ec = iAb->Read(0, size, &buf);
+    if (NOERROR == ec) {
+        printf("The file content is:");
+        PrintBuf(buf, size);
+        printf("\n");
+    }
+    else {
+        printf("Error in Read! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // GetCreateTime
+    ec = fp->GetCreateTime(&time);
+    if (NOERROR == ec) {
+        printf("CreateTime: %d\n", time);
+    }
+    else {
+        printf("Error in GetCreateTime! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+    
+    // GetModificationTime
+    ec = fp->GetModificationTime(&time);
+    if (NOERROR == ec) {
+        printf("ModifyTime: %d\n", time);
+    }
+    else {
+        printf("Error in GetModificationTime! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // GetAccessTime
+    ec = fp->GetAccessTime(&time);
+    if (NOERROR == ec) {
+        printf("AccessTime: %d\n", time);
+    }
+    else {
+        printf("Error in GetAccessTime! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+myexit:
+    if (iAb) iAb->Release();
+    if (fp) fp->Release();
+    if (pRoot) pRoot->Release();
+    if (pFilesys) pFilesys->Release();
+    return 0;
+}
+
+ECode FindFileService(IBasicFileSystem ** ppFilesys, WStringBuf& wsbServiceName)
+{
+    IDiskManager *pDiskMgr = NULL;
+    wchar_t buffer[_MAX_PATH];
+    WStringBuf_<_MAX_PATH> esbFilesysType;
+    int iDisk;
+    ECode ec = NOERROR;
+    ec = CSystem::FindRunningObject(L"diskmgr", (IInterface **)&pDiskMgr);
+    if (FAILED(ec)) {
+        wprintf(L"Error in find diskmgr, ec = 0x%08x\n", ec);
+        goto exit;
+    }
+
+    _wgetcwd(buffer, _MAX_PATH);
+    iDisk = toupper(buffer[0]) - L'A' + 1;
+
+    ec = pDiskMgr->OpenDisk(iDisk, &esbFilesysType);
+    if (FAILED(ec)) {
+        wprintf(L"Error in OpenDisk, ec = 0x%08x\n", ec);
+        goto exit;
+    }
+
+    wprintf(L"File Service Name: %s\n", (wchar_t *)esbFilesysType);
+    wsbServiceName.Copy(esbFilesysType);
+
+    ec = CSystem::FindRunningObject(esbFilesysType, (IInterface **)ppFilesys);
+
+exit:
+    if (pDiskMgr) pDiskMgr->Release();
+    return ec;
+}
+
+
+    </pre>
+    <p>简述：</p>
+    <p>1. 程序通过FindFileService查找名称为"filesys"的服务，获取IBasicFileSystem的接口指针pFilesys；<br>
+    2. 调用pFilesys的GetRoot方法获取根目录指针pRoot；<br>
+    3. 在根目录下调用pRoot的CreateFile方法以只读方式(FileAccessMode_Read)创建filename所命名的文件，获得文件的指针fp；<br>
+    4. 调用fp的SetAccessMode方法将文件改为可读可写模式(FileAccessMode_ReadWrite)；<br>
+    5. 通过Probe转为输入输出接口指针iAb；<br>
+    6. 调用iAb的Write方法写入9个字符"123456789"，这里的字符数组要求是MemoryBuf数组；<br>
+    7. 调用iAb的GetSize方法获得文件对象大小并输出；<br>
+    8. 调用iAb的Read方法读取文件对象的内容并输出；<br>
+    9. 调用fp的GetCreateTime获取创建时间并输出；<br>
+    11. 调用fp的GetModificationTime获取修改时间并输出；<br>
+    12. 调用fp的GetAccessTime获取访问时间并输出；<br>
+    13. 进行适当的Release操作，退出程序。</p>
+
+    <p>运行结果：</p>
+    <pre class="code">
+File Service Name: D:
+CreateFile: file.txt (Read) Success.
+The file is set FileAccessMode_ReadWrite.
+Write 9 bytes success.
+The file is get Size: 9
+The file content is:123456789
+CreateTime: 1085411328
+ModifyTime: 1085411328
+AccessTime: 1085328000
+</pre>
+
+    <p><b>备注：</b>在程序中加入了错误处理代码，一旦某个操作发生错误或异常，程序就执行资源回收代码段后退出。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

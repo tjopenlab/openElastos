@@ -1,0 +1,104 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_strset">_strset</sample>
+    <title> _strset</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Sets all characters in the string to specified character.</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>_strset</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>NULL-terminated string to be set.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Specified character.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns pointer to string set. NULL means wrong return value.</para>
+    </return>
+
+    <remarks>
+        <para>This function sets all characters (Except the NULL character at the end of the string) in the string to character C.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_strset</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+// _strset.cpp:this progeam use _strset to sets all the characters of string to &apos;*&apos;
+
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[] = &quot;Fill the string with something&quot;;
+    printf(&quot;Before: %s\n&quot;, string);
+    _strset(string, &apos;*&apos;);
+    printf(&quot;After:  %s\n&quot;, string);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+Before: Fill the string with something
+After:  ******************************
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>memset</ref_name>
+            <ref_url>memset</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcscat</ref_name>
+            <ref_url>wcscat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcscmp</ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcscpy</ref_name>
+            <ref_url>wcscpy</ref_url>
+        </reference>
+    </references>
+
+</manpage>

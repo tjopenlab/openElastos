@@ -1,0 +1,83 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>ISimMgr</interface><method> ReadRecord </method>
+    <description>
+        <para>
+         从SIM卡中读文件（目前未实现）。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwAddress </param_name>
+                <param_note>
+                    <para>
+
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwRecordType </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwIndex </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> PBYTE </param_type>
+                <param_name> pData </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwBufferSize </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> PDWORD </param_type>
+                <param_name> pdwBytesRead </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

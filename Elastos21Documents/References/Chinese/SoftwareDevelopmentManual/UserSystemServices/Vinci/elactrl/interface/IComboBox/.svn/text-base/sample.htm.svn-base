@@ -1,0 +1,250 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>图形控件IComboBox</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> IComboBox 范例程序 </h2>
+
+<h3> TComboBoxDemo.h </h3>
+<pre class = "code">
+
+#ifndef __CCOMBOBOXDEMO_H__
+#define __CCOMBOBOXDEMO_H__
+
+#include "_TComboBoxDemo.h"
+
+CarClass(TComboBoxDemo)
+{
+public:
+    TComboBoxDemo() :
+        m_pMainForm(NULL),
+        m_pIComboBox(NULL),
+        m_pIComboBox2(NULL),
+        m_pIBtnClose(NULL)
+    {
+    }
+
+    ~TComboBoxDemo();
+
+    CARAPI Main(
+        /* [in] */ const BufferOf<WString> & argcv);
+
+    CARAPI OnSelected(
+        PInterface pIObject,
+        Int32 nIndex) ;
+
+    CARAPI OnClose(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI Quit();
+
+    CARAPI Terminate();
+
+    CARAPI Activate();
+
+    CARAPI Deactivate();
+
+    CARAPI IsActivated(
+        /* [out] */ Boolean * pActivated);
+
+    CARAPI Snooze();
+
+    CARAPI Wakeup();
+
+    CARAPI GetName(
+        /* [out] */ WStringBuf * pName);
+
+private:
+    IForm        * m_pMainForm;
+
+    IComboBox    * m_pIComboBox;
+    IComboBox    * m_pIComboBox2;
+
+    IButton      * m_pIBtnClose;
+};
+
+#endif // __CCOMBOBOXDEMO_H__
+
+</pre>
+
+<h3> TComboBoxDemo.cpp </h3>
+<pre class = "code">
+#include "TComboBoxDemo.h"
+#include "_TComboBoxDemo.cpp"
+#include <stdio.h>
+
+TComboBoxDemo::~TComboBoxDemo()
+{
+    if (NULL != m_pMainForm) {
+        m_pMainForm->Release();
+    }
+
+    if (NULL != m_pIComboBox) {
+        m_pIComboBox->Release();
+    }
+
+    if (NULL != m_pIComboBox2) {
+        m_pIComboBox2->Release();
+    }
+
+    if (NULL != m_pIBtnClose) {
+        m_pIBtnClose->Release();
+    }
+}
+
+ECode TComboBoxDemo::Main(
+    /* [in] */ const BufferOf<WString> & argcv)
+{
+
+/////////// Form
+    CForm::New(L"MAIN", 0, 0, 0, 200, 220, NULL,&m_pMainForm);
+
+/////////// Combobox1
+    CComboBox::New(L"cb", 0, 80, 40, 75, 50, m_pMainForm,&m_pIComboBox);
+
+    m_pIComboBox->InsertItem(0, L"1111111");
+    m_pIComboBox->InsertItem(0, L"2222222");
+    m_pIComboBox->InsertItem(0, L"3333333");
+    m_pIComboBox->InsertItem(0, L"4444444");
+    m_pIComboBox->InsertItem(0, L"5555555");
+    m_pIComboBox->InsertItem(0, L"6666666");
+    m_pIComboBox->SetMaxDropDownItems(4);
+
+    CComboBox::AddSelectedCallback(
+                   m_pIComboBox, this, &TComboBoxDemo::OnSelected);
+
+/////////   ComboBox2
+    CComboBox::New(L"cb", ComboBoxStyle_DropDown|ComboBoxStyle_DropDownList,
+                    80, 100, 75, 50, m_pMainForm,&m_pIComboBox2);
+
+    m_pIComboBox2->InsertItem(0, L"123");
+//    m_pIComboBox2->InsertItem(0, L"456");
+//    m_pIComboBox2->InsertItem(0, L"789");
+//    m_pIComboBox2->InsertItem(0, L"890");
+
+///////////////  Exit Button
+    CButton::New(L"Exit", 0, 0, 0, 80, 30, m_pMainForm,&m_pIBtnClose);
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 this, &TComboBoxDemo::OnClose);
+
+    m_pMainForm->Show();
+
+    return NOERROR;
+}
+
+ECode TComboBoxDemo::OnSelected(
+    /* [in] */ PInterface pIObject,
+    Int32 nIndex)
+{
+    WStringBuf_<128> esString;
+    m_pIComboBox->GetText(&esString);
+    printf("CComboBoxDemo OnSelect:nIndex = %d, text = %S\n",
+        nIndex, (wchar_t*)esString );
+    m_pIComboBox->RemoveAllItems();
+    m_pIComboBox->InsertItem(0, L"1111111");
+    m_pIComboBox->InsertItem(0, L"2222222");
+    m_pIComboBox->InsertItem(0, L"3333333");
+    m_pIComboBox->InsertItem(0, L"4444444");
+    m_pIComboBox->InsertItem(0, L"5555555");
+    m_pIComboBox->InsertItem(0, L"6666666");
+    m_pIComboBox->InsertItem(0, L"1111111");
+    m_pIComboBox->InsertItem(0, L"2222222");
+    m_pIComboBox->InsertItem(0, L"3333333");
+    m_pIComboBox->InsertItem(0, L"4444444");
+    m_pIComboBox->InsertItem(0, L"5555555");
+    m_pIComboBox->InsertItem(0, L"6666666");
+    m_pIComboBox->SetMaxDropDownItems(8);
+    return NOERROR;
+}
+
+ECode TComboBoxDemo::OnClose(
+    /* [in] */ PInterface pIObject)
+{
+    m_pMainForm->Close();
+    return NOERROR;
+}
+
+ECode TComboBoxDemo::Quit()
+{
+    return NOERROR;
+}
+
+ECode TComboBoxDemo::Terminate()
+{
+    return NOERROR;
+}
+
+ECode TComboBoxDemo::Activate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TComboBoxDemo::Deactivate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TComboBoxDemo::IsActivated(
+    /* [out] */ Boolean * pActivated)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TComboBoxDemo::Snooze()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TComboBoxDemo::Wakeup()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TComboBoxDemo::GetName(
+    WStringBuf * name)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+
+</pre>
+
+<h3> combobox.car </h3>
+<pre class = "code">
+module
+{
+    importlib("elcontrols.dll");
+
+    applet TComboBoxDemo {}
+}
+</pre>
+
+<h3> sources </h3>
+<pre class = "code">
+TARGET_NAME= combobox
+TARGET_TYPE= dll
+
+SOURCES= \
+    combobox.car \
+    TComboBoxDemo.cpp \
+
+LIBRARIES = $(XDK_USER_LIB)\ElCRuntime.lib     $(XDK_LIB_PATH)\elastos.lib \
+</pre>
+<script>footer("KoreTide")</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzByteBuf\Operator">operator</sample>
+    <volume> COMMON DATA STRUCTURE </volume>
+    <interface> EzByteBuf   </interface>
+    <method> operator datatypes </method>
+
+    <description>
+        <para>Types conversion operator. Currently the converting types that Elastos supports include: converting EzByteBuf to wchar_t * pointer or char *.</para>
+    </description>
+
+    <syntax>
+        <method_name> operator char* </method_name>
+        <NoArguments/>
+    </syntax>
+
+    <syntax>
+        <method_name> operator wchar_t* </method_name>
+    </syntax>
+
+    <return>
+        <para>Returns the necessary data type converted from the data stored in EzByteBuf, remaining content.</para>
+    </return>
+
+    <remarks>
+        <para>After converting EzByteBuf type objects to type char * or wchar_t * pointers, we can use them to visit the memory blocks. It can enhance the efficiency, but we should take care of the size of buffer and not beyond its capacity, when stored data to the buffer by pointers. After the change of available data length by pointers, we must call function SetUsed to reset the value. These affect efficiency.</para>
+    </remarks>
+
+<example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzByteBuf_<200> buf;
+
+    buf.Copy("Hello world!", 12);
+    printf("operator (char*): %s\n", (char*)buf);
+    wprintf(L"operator (wchar_t*): %S\n", (wchar_t*)buf);
+
+    return 0;
+}
+]]></pre></example>
+
+<result><![CDATA[
+operator (char*): Hello world!
+operator (wchar_t*): Hello world!
+]]></result>
+
+</manpage>

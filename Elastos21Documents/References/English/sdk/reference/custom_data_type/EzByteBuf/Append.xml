@@ -1,0 +1,81 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzByteBuf\Append">append</sample>
+    <volume> COMMON DATA STRUCTURE </volume>
+    <interface> EzByteBuf   </interface>
+    <method> Append </method>
+
+    <description>
+        <para> Appends a substring with specified length to the string of this EzByteBuf object's end.</para>
+    </description>
+
+    <syntax>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const void* </param_type>
+            <param_name> p </param_name>
+            <param_note>
+                <para> Pointer to the string to be appended  </para>
+            </param_note>
+        </api_param>
+
+        <api_param>
+            <param_type> int  </param_type>
+            <param_name> n </param_name>
+            <param_note>
+                <para> The number of bytes to be appended </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Return the number of bytes that actually appended</para>
+    </return>
+
+    <remarks>
+        <para>After appending, if the result string's total length beyond the max length of the buffer of EzByteBuf object, the part out of buffer will be cut off.</para>
+        <para>When parameter p equals to 0 (that means the pointer to substring to be appended is NULL), but parameter n unequals to 0 (that means the number of bytes to be appended unequals to 0), it leads to a running error.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzByteBuf_<200> buf;
+
+    buf.Copy("hello", 5);
+    printf("Original: %s\n", (char*)buf);
+
+    buf.Append(" world!", 8);
+    printf("After appending: %s\n", (char*)buf);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+Original: hello
+After appending: hello world!
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Insert </ref_name>
+            <ref_url> Insert </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Copy </ref_name>
+            <ref_url> Copy </ref_url>
+        </reference>
+    </references>
+</manpage>

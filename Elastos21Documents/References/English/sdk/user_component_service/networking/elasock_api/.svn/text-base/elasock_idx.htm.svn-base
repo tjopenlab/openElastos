@@ -1,0 +1,153 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>elasock APIs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Elastos network programming socket（elasock API）</h2>
+    <p>"Elastos" offers a set of socket functions,which is called elasock API.It  comes from BSD socket like winsock.The elasock API supports basic networking communication.See the documentation of each function for details.</p>
+    <p>Elasock is basically compatible with winsock.There are some differences between the error code offered by elasock and by winsock.If elasock error code is needed in programming, then contact tech department for the latest codes and documentation.We will give the error codes in next version. </p>
+
+<table>
+    <thead>
+        <td>Function Name</td><td>Function Description</td>
+    </thead>
+    <tr>
+        <td><a class="style1" href="accept.htm"> accept </a></td><td>Accepts a connection</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="bind.htm"> bind </a></td><td>Bind the local address with the socket.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="closesocket.htm"> closesocket </a></td><td>Close Socket</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="connect.htm"> connect </a></td><td>Establish a connection to the other end of transfering. </td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="gethostbyaddr.htm"> gethostbyaddr </a></td><td>Search host information according to IP address.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="gethostbyname.htm"> gethostbyname </a></td><td>Search host information according to domain name.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="gethostname.htm"> gethostname </a></td><td>Return to the domain name of the local computer.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getpeername.htm"> getpeername </a></td><td>Gets the socket address of the peer to which a socket is connected.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getprotobyname.htm"> getprotobyname </a></td><td>Gets the protocol information according to a protocol name.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getprotobynumber.htm"> getprotobynumber </a></td><td>Retrieves the protocol information according to the protocol number.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getservbyname.htm"> getservbyname </a></td><td>Search host by name and protocol.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getservbyport.htm"> getservbyport </a></td><td>Search host by port number and protocol.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getsockname.htm"> getsockname </a></td><td>This function returns the local address of socket.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getsockopt.htm"> getsockopt </a></td><td>Gets socket options.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="htonl.htm"> htonl </a></td><td>Converts an unsigned long integer from host to network byte order.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="htons.htm"> htons </a></td><td>Converts an unsigned short integer from host to network byte order.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="inet_addr.htm"> inet_addr </a></td><td>Converts an string containing IP dotted address into a proper address for the IN_ADDR structure.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="inet_ntoa.htm"> inet_ntoa </a></td><td>Converts internet network address into a string in an internet standard dotted format.（a.b.c.d）</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="ioctlsocket.htm"> ioctlsocket </a></td><td>Controls the mode of the socket.</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="listen.htm"> listen </a></td><td>将socket置为就绪状态，以监听和等待外来连接</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="ntohl.htm"> ntohl </a></td><td>将无符号长整型数据从网络字节顺序转换成主机字节顺序</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="ntohs.htm"> ntohs </a></td><td>将无符号短整型数据从网络字节顺序转换成主机字节顺序</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="recv.htm"> recv </a></td><td>从套接口接收数据</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="recvfrom.htm"> recvfrom </a></td><td>接收一个数据报并保存源地址</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="select.htm"> select </a></td><td>确定一个或多个socket的状态，如需要则等待</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="send.htm"> send </a></td><td>向已连接套接口发送数据</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="sendto.htm"> sendto </a></td><td>向一指定目的地发送数据</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="setsockopt.htm"> setsockopt </a></td><td>设置一个Socket选项</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="shutdown.htm"> shutdown </a></td><td>禁止在一个套接口上进行数据的接收或发送，但并不释放套接口占用的系统资源</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="socket.htm"> socket </a></td><td>创建套接口</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="WSACleanup.htm"> WSACleanup </a></td><td>终止Winsock.dll的使用</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="WSAGetLastError.htm"> WSAGetLastError </a></td><td>如果最后的操作失败，此函数得到出错的状态</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="WSAStartup.htm"> WSAStartup </a></td><td>此函数通过一个进程开始调用Ws2_32.dll</td>
+    </tr>
+</table>
+
+    <p>elasock API使用了一些特殊的数据结构</p>
+<table>
+    <thead>
+        <td>数据结构名称</td><td>功能描述</td>
+    </thead>
+    <tr>
+        <td><a class="style1" href="data_type\fd_set.htm"> fd_set </a></td><td>该结构体保存一组socket供其他函数使用，例如在select()函数中将需要检查的套接口保存在readfds中</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="data_type\hostent.htm"> hostent </a></td><td>保存主机相关信息的结构体，用于记录主机名、IP地址等信息</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="data_type\in_addr.htm"> in_addr </a></td><td>描述主机地址格式的结构体</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="data_type\linger.htm"> linger </a></td><td>该结构体用于确定closesocket的执行方式，以决定对未发送队列中的数据如何操作</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="data_type\sockaddr.htm"> sockaddr </a></td><td>用以表示套接口地址的结构体</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="data_type\sockaddr_in.htm"> sockaddr_in </a></td><td>TCP/IP协议使用的socket地址结构</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="data_type\WSADATA.htm"> WSADATA </a></td><td>该结构体保存elasock库的有关信息</td>
+    </tr>
+</table>
+
+<script>footer("e_KoreTide")</script>
+</body>
+
+</html>

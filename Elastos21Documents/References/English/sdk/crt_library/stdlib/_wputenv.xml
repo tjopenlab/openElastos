@@ -1,0 +1,118 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\_putenv">_putenv</sample>
+    <title>_putenv, _wputenv</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Creates new environment variable and changes or deletes old environment variable.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_putenv</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>envstring</param_name>
+                <param_note>
+                    <para>Value of the environment variable.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wputenv</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>envstring</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If operation successfull returns 0, otherwise returns -1.</para>
+    </return>
+
+    <remarks>
+        <para>Function _putenv adds new environment variable or changes the value of environment variable that already exists. Environment variable specifies process runtime environment (For example, default path of library that program needs to link to). _wputenv is the double byte version of _putenv. Parameter envstring is a double byte string.</para>
+        <para>Parameter envstring must be pointer to string like "varname=string". Among which, varname is the name of environment variable to be added or modified, string is the value of environment variable. If varname is already part of environment variable, then this environment variable value will be replaced by string. Otherwise new environment variable name and its value will be added into the environment. The user can delete an environment variable by specifying an empty string, i.e. Deletes environment variable by specifying "varname=".</para>
+        <para>Function _putenv only affects environment of the current process. When the current process terminates, the environment restores to caller process level (Under most circumstances it is operating system level).</para>
+        <para>Consider the environment entry point, the following must be noted: </para>
+        <para>·	Do not directly change environment entry point. Uses _wputenv to change the environment entry point. If you want to change _wputenv return value, but not affect environment vector table, then you can use strcpu to obtain the copy of the string.</para>
+        <para>·	Do not free pointers that point to environment entry point, because if it is like that, the environment variable will point to spaces that are already freed. </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_wputenv</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _putenv.cpp: This program uses getenv to retrieve
+ * the LIB environment variable and then uses
+ * _putenv to change it to a new value.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char *libvar;
+
+    /* Get the value of the LIB environment variable. */
+    libvar = getenv(&quot;LIB&quot;);
+
+    if (libvar != NULL)
+        printf(&quot;Original LIB variable is: %s\n&quot;, libvar);
+    else
+       printf(&quot;can not get the enviroment\n&quot;);
+    /* Attempt to change path. Note that this only affects the environment
+     * variable of the current process. The command processor&apos;s environment
+     * is not changed.
+     */
+    _putenv(&quot;LIB=c:\\mylib;c:\\yourlib&quot;);
+
+    /* Get new value. */
+    libvar = getenv(&quot;LIB&quot;);
+
+    if (libvar != NULL)
+        printf(&quot;New LIB variable is: %s\n&quot;, libvar);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Original LIB variable is: C:\progra~1\devstu~1\vc\lib
+New LIB variable is: c:\mylib;c:\yourlib
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>getenv</ref_name>
+            <ref_url>_wgetenv</ref_url>
+        </reference>
+    </references>
+
+</manpage>

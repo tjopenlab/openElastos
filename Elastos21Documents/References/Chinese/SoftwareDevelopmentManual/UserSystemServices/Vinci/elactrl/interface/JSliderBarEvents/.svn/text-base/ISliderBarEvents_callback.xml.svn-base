@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>JSliderBarEvents</interface><method></method>
+    <description>
+        <para>
+            JSliderBarEvents中方法所涉及的回调函数
+        </para>
+    </description>
+    <callback>
+<pre>
+//这里以ValueChanged方法对于IProgressBar控件的操作为例，其他方法同理。
+    //添加该方法回调
+    static  ECode AddValueChangedCallback(
+                    PObject pServerObj,
+                     ECode (*pFunc)( PVoid, IProgressBar *,  Int32,  Int32),
+                     PVoid pUserData=NULL){……}
+    //删除该方法回调
+    static  ECode RemoveValueChangedCallback(
+                    PObject pServerObj,
+                     ECode (*pFunc)( PVoid, IProgressBar *,  Int32,  Int32),
+                     PVoid pUserData=NULL){……}
+
+    template &lt;class T&gt;
+    static  ECode AddValueChangedCallback(
+                PObject pServerObj,
+                T *pThis,
+                 ECode (CARAPICALLTYPE T::*pFunc)(
+                        IProgressBar *,  Int32,  Int32)){……}
+
+    template &lt;class T&gt;
+    static  ECode RemoveValueChangedCallback(
+                    PObject pServerObj,
+                T *pThis,
+                 ECode (CARAPICALLTYPE T::*pFunc)(
+                        IProgressBar *,  Int32,  Int32)){……}
+                        
+    //删除所有回调                    
+    static  ECode RemoveAllCallbacks(PObject pServerObj){……}
+</pre>
+    </callback>
+</manpage>

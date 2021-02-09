@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListView</interface><method> GetAllEnabledIndices </method>
+    <description>
+        <para>
+            获取 ListView 中所有能接收鼠标键盘事件的行的索引值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> BufferOf_&lt;Int32&gt; </param_type>
+                <param_name> indices </param_name>
+                <param_note>
+                    <para>
+<link url="../../../../../../car_technology/fundamental/development_environment/car/data_type/BufferOf.htm">BufferOf_</link>类型，用于获取所有可以接收鼠标键盘事件的行的索引值，不能为 NULL                   </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+    	  清除或者设置某行是否接收鼠标键盘事件，可以通过 <link url="SetItemEnabled.htm">SetItemEnabled</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CListView 类介绍 </ref_name>
+        <ref_url>../../class/ListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListView 接口方法列表</ref_name>
+        <ref_url>../IListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListViewPaint 接口方法列表</ref_name>
+        <ref_url>../IListViewPaint</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetItemEnabled</ref_name>
+        <ref_url>SetItemEnabled</ref_url>
+    </reference>
+</references>
+</manpage>

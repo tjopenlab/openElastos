@@ -1,0 +1,84 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>web_service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>获取Web服务描述</h2>
+        <p>网络服务的发布（实际上就是发布WSDL服务描述文件）通过HTTP协议完成。客户端可通过特定的HTTP&nbsp;URL格式来下载其WSDL文件。所有构件对象的WSDL描述根据其对象实例元数据动态生成。</p>
+        <p>下面看一个例子。首先需要创建一个CAR构件实例并注册为命名服务，如下所示，定义一个加法器CAR构件，该构件实现了接口ICalculator。</p>
+        <pre class="code">
+module calculator
+{
+    interface ICalculator {
+        ECODE Add([in] long a, [in] long b, [out] long* c);
+    }
+
+    class CCalculator {
+        interface ICalculator;
+    }
+}
+</pre>
+        <p>用户通过下面的代码创建出一个该构件的实例并通过EzRegisterService被注册为“calculator”。</p>
+        <pre class="code">
+EzCreateObject((REFCLSID)CLSID_CCalculator, \
+    NULL, CTX_SAME_PROCESS, IID_ICalculator, (void**)&iCalculator);
+EzRegisterService(EZCSTR("calculator"), iCalculator);
+</pre>
+        <p>则按照<b><font color="red">Error!&nbsp;Reference&nbsp;source&nbsp;not&nbsp;found.</font></b>例子注册的SOAP&nbsp;Web服务器后会将该构件实例所对应的WSDL文件发布在HTTP地址<a class="style1" href="http://host/WSStub/calculator/default.wsdl">http://host/WSStub/calculator/default.wsdl</a>；另外，也可以通过<a class="style1" href="http://host/WSStub/calculator/ICalculator.wsdl">http://host/WSStub/calculator/ICalculator.wsdl</a>获取其WSDL文件（注：也可由此看出整个系统是以接口为单位发布其WSDL文档）。WSDL文件内容如下所示：</p>
+        <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;definitions name="calculator"
+    targetNamespace="urn:car-remote-service"
+    xmlns:tns="urn:car-remote-service"
+    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"&gt;
+    &lt;message name="AddReq"&gt;
+        &lt;part name="a" type="xsd:int"/&gt;
+        &lt;part name="b" type="xsd:int"/&gt;
+    &lt;/message&gt;
+    &lt;message name="AddRes"&gt;
+        &lt;part name="result" type="xsd:int"/&gt;
+        &lt;part name="c" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/&gt;
+    &lt;/message&gt;
+    &lt;portType name="CARIfPortType"&gt;
+        &lt;operation name="Add" parameterOrder="a b c"&gt;
+            &lt;input message="tns:AddReq"/&gt;
+            &lt;output message="tns:AddRes"/&gt;
+        &lt;/operation&gt;
+    &lt;/portType&gt;
+    &lt;binding name="calculatorICalculatorBinding" type="tns:CARIfPortType"&gt;
+        &lt;SOAP:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/&gt;
+        &lt;operation name="Add"&gt;
+            &lt;SOAP:operation style="rpc" soapAction=""/&gt;
+            &lt;input&gt;
+                &lt;SOAP:body use="encoded" namespace="urn:car-remote-service" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/&gt;
+            &lt;/input&gt;
+            &lt;output&gt;
+                &lt;SOAP:body use="encoded" namespace="urn:car-remote-service" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/&gt;
+            &lt;/output&gt;
+        &lt;/operation&gt;
+    &lt;/binding&gt;
+    &lt;service name="calculator"&gt;
+    &lt;documentation&gt;Elastos, Inc. generated CAR Web Service definition&lt;/documentation&gt;
+        &lt;port name="CARInterfacePort" binding="tns:calculatorICalculatorBinding"&gt;
+            &lt;SOAP:address location="http://host/WSStub/calculator/ICalculator.car"/&gt;
+        &lt;/port&gt;
+    &lt;/service&gt;
+&lt;/definitions&gt;
+</pre>
+
+<script>footer("chinese")</script>
+</body>
+</html>

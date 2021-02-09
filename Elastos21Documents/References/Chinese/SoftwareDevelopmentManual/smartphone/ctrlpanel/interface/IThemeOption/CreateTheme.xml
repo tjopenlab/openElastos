@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IThemeOption</interface><method> CreateTheme </method>
+    <description>
+        <para>
+            创建一个空的用户自定义主题。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IThemeDataRef * </param_type>
+                <param_name> pThemeData </param_name>
+                <param_note>
+                    <para>
+指向IThemeData指针的指针，用于存放主题中所有参数的ThemeData数据块                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；ppThemeData为空，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            在内存中创建一个新的ThemeData数据块，用于存放参数信息，并没有把该新的主题写入数据库中。
+        </para>
+    </remarks>
+</manpage>

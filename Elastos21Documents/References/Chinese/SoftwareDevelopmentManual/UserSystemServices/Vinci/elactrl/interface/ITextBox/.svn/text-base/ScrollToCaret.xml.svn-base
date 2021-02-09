@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITextBox</interface><method> ScrollToCaret </method>
+    <description>
+        <para>
+            使光标所在位置处的文本可见。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        成功调用此方法能够使光标处于该 TextBox 的可见区域。如果光标位于该控件的可见区域之下，则 ScrollToCaret 方法将把控件的内容一直滚动到光标出现在控件的底部为止。如果光标位于该控件的可见区域之上，则此方法将把控件的内容一直滚动到光标出现在控件的顶部为止。可以在多行文本框中使用此方法，以确保当前文本的输入点位于该控件的可见区域内。
+    </para>
+    <para>
+        如果控件没有焦点，或者光标已经位于该控件的可见区域内，则此方法无效。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTextBox 类介绍</ref_name>
+        <ref_url>../../class/TextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITextBox 接口方法列表</ref_name>
+        <ref_url>../ITextBox</ref_url>
+    </reference>
+</references>
+</manpage>

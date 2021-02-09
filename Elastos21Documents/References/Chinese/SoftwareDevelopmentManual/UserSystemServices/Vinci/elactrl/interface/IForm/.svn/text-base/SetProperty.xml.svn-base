@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> SetProperty </method>
+    <description>
+        <para>
+            设置窗体的属性。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> GrafixObjectProperty </param_type>
+                <param_name> property </param_name>
+                <param_note>
+                    <para>
+窗体属性，详见 <link url="../../datatype/GrafixObjectProperty.htm">GrafixObjectProperty</link> 枚举值</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_CLOSED</td>
+	    	    <td>窗体已经被关闭</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>GrafixObjectProperty_Main 该属性值只能Get得到，而不能调用该方法将窗体属性设置成Main。一般在一个Applet里第一个创建出来的窗体会带上 GrafixObjectProperty_Main 属性。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GrafixObjectProperty枚举值</ref_name>
+        <ref_url>../../datatype/GrafixObjectProperty</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetProperty</ref_name>
+        <ref_url>GetProperty</ref_url>
+    </reference>
+</references>
+</manpage>

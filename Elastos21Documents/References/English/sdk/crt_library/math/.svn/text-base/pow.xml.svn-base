@@ -1,0 +1,120 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\pow">pow</sample>
+    <title> pow</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>The pow function computes the value of x to the exponent y.</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>pow</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>Base floating-point value.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>y</param_name>
+                <param_note>
+                    <para>Exponent floating-point value.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>pow returns the value of x^y. No error message is printed on overflow or underflow.</para>
+        <table>
+            <th>
+               <td>Value of x and y</td>
+               <td>Return Value</td>
+            </th>
+            <tr>
+               <td><![CDATA[x <> 0 and y = 0.0]]></td>
+               <td>1</td>
+            </tr>
+            <tr>
+               <td><![CDATA[x = 0.0 and y = 0.0]]></td>
+               <td>1</td>
+            </tr>
+            <tr>
+               <td><![CDATA[x = 0.0 and y < 0]]></td>
+               <td>INF</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The pow function computes x raised to the power of y. pow does not recognize integer floating-point values greater than 2^64, such as 1.0E100.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>pow</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* pow.cpp:This program uses pow to computes x raised to the power of y
+ */
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+   double x = 2.0, y = 3.0, z;
+
+   z = pow(x, y);
+   printf(&quot;%.1f to the power of %.1f is %.1f\n&quot;, x, y, z);
+
+   return 0;
+}
+</pre>
+    </example>
+<result>
+2.0 to the power of 3.0 is 8.0
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>exp</ref_name>
+            <ref_url>exp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>log</ref_name>
+            <ref_url>log</ref_url>
+        </reference>
+        <reference>
+            <ref_name>log10</ref_name>
+            <ref_url>log10</ref_url>
+        </reference>
+        <reference>
+            <ref_name>sqrt</ref_name>
+            <ref_url>sqrt</ref_url>
+        </reference>
+    </references>
+
+</manpage>

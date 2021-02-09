@@ -1,0 +1,112 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzWCharBuf\EzWCharBuf_Box1">EzByeBuf</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzWCharBuf </interface>
+    <method> 
+    	EzWCharBuf_Box(void *buf, const UINT size, const UINT used) 
+    </method>
+
+    <description>
+        <para>
+        	Creates a EzWCharBuf object using buffer data and specifies its size and used size respectively.
+        </para>
+    </description>
+
+    <syntax>
+        <parameters>
+            <api_param>
+                <param_type>void *</param_type>
+                <param_name> buf </param_name>
+                <param_note>
+                    <para> 
+                    	Source data buffer.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>UINT</param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para> 
+                    	The size of the buffer, the unit is sizeof(wchar_t).
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const UINT</param_type>
+                <param_name> used </param_name>
+                <param_note>
+                    <para>
+                    	The data size of EzWCharBuf.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>
+        	This constructor is recommended to instantiate EzWCharBuf object when the data to be stored is 
+        	already allocated but not initialized.         	
+        </para>
+        <para>
+        	NOTE:- User must release the memory which is pointed by <i>buf</i>.
+        </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+#include <string.h>
+
+int __cdecl main()
+{
+    wchar_t * buf1 = L"Hello world!";
+
+    EzWCharBuf_Box myBuf1(buf1, 12, 12);
+
+    wprintf(L"mybuf1:%s\n", (wchar_t*)myBuf1);
+    wprintf(L"mybuf1 Capacity:%d\n", myBuf1.Capacity());
+    wprintf(L"mybuf1 used:%d\n", myBuf1.Used());
+
+    wchar_t * buf2 = new wchar_t[30];
+    wcscpy(buf2, L"Hello EzWCharBuf_Box!");
+
+    EzWCharBuf_Box myBuf2(buf2, 30, wcslen(buf2));
+    wprintf(L"myBuf2:%s\n", (wchar_t*)myBuf2);
+    wprintf(L"myBuf2 Capacity:%d\n", myBuf2.Capacity());
+    wprintf(L"myBuf2 used:%d\n", myBuf2.Used());
+
+    delete buf2;
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+mybuf1:Hello world!
+mybuf1 Capacity:12
+mybuf1 used:12
+myBuf2:Hello EzWCharBuf_Box!
+myBuf2 Capacity:30
+myBuf2 used:21
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Constructor(memory is not allocated)  </ref_name>
+            <ref_url> EzWCharBuf</ref_url>
+        </reference>
+        <reference>
+            <ref_name> Constructor(memory is allocated)  </ref_name>
+            <ref_url> EzWCharBuf_ </ref_url>
+        </reference>
+    </references>
+</manpage>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\fmod">fmod</sample>
+    <title> fmod</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>计算两个浮点数相除所得的余数。</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>fmod</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>浮点数值</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>y</param_name>
+                <param_note>
+                    <para>浮点数值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>fmod返回x/y所得的余数。如果y的值为0.0，函数返回NaN，关于NaN的详细说明，请参见<link url="../stdio/wprintf.htm">printf</link>文档。</para>
+    </return>
+
+    <remarks>
+        <para>fmod计算两个浮点数x和y相除（x/y）所得的余数f，同样，x = i * y + f，其中i是整数，f拥有与x相同的属性，并且f的绝对值比y的绝对值小。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fmod</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fmod.cpp: This program displays a
+ * floating-point remainder.
+ */
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double w = -10.0, x = 3.0, y = 0.0, z;
+
+    z = fmod(w, x);
+    printf(&quot;The remainder of %.2f / %.2f is %f\n&quot;, w, x, z);
+    z = fmod(x, y);
+    printf(&quot;The remainder of %.2f / %.2f is %f\n&quot;, x, y, z);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The remainder of -10.00 / 3.00 is -1.000000
+The remainder of 3.00 / 0.00 is NaN
+</result>
+
+   
+
+</manpage>

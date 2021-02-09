@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICanvas</interface><method> GetStringSize </method>
+    <description>
+        <para>
+            获取字符串大小。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+字符串。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> count </param_name>
+                <param_note>
+                    <para>
+有效字符数。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IFont*  </param_type>
+                <param_name> font </param_name>
+                <param_note>
+                    <para>
+字体指针。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> StringFormat   </param_type>
+                <param_name> format </param_name>
+                <param_note>
+                    <para>
+<link url="../../datatype/StringFormat.htm">字符串格式。</link></para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+指向Int32型的指针，用于获取字符串宽度，不能为空                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+指向Int32型的指针，用于获取字符串高度，不能为空                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT 。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

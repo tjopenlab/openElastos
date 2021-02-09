@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListBox</interface><method> FindItem </method>
+    <description>
+        <para>
+            从 ListBox 的指定位置处查找和指定文本匹配的列表项。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+查找的文本，不能为空文本</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> startIndex </param_name>
+                <param_note>
+                    <para>
+查找的起始位置，有效值为 0～项数-1</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32* </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+指向 Int32 型的指针，用户获取和指定文本匹配的列表项的索引值，有效值为 0～行数-1 ，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取含有指定文本的行的索引值</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        OUT 参数指针不能为 NULL，否则方法调用将失败。
+    </para>
+    <para>
+        若从指定位置处起有多个列表项的文本和指定的文本匹配，则返回第一个和指定文本匹配的列表项的索引值。若没有和指定文本匹配的列表项，则返回 -1。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CListBox 类介绍</ref_name>
+        <ref_url>../../class/ListBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListBox 接口方法列表</ref_name>
+        <ref_url>../IListBox</ref_url>
+    </reference>
+</references>  
+</manpage>

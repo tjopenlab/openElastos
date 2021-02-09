@@ -1,0 +1,112 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\sscanf">sscanf</sample>
+    <title>sscanf</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Reads formatted data from a string.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>sscanf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>Stored data.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format[, argument]...</param_name>
+                <param_note>
+                    <para>Format-control string （argument:Optional arguments.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>This function returns the number of fields successfully converted and assigned; the return value does not include fields that were read but not assigned. A return value of 0 indicates that no fields were assigned. The return value is EOF for an error or if the end of the string is reached before the first conversion.</para>
+    </return>
+
+    <remarks>
+        <para>The sscanf function reads data from buffer into the location given by each argument. Every argument must be a pointer to a variable with a type that corresponds to a type specifier in format. The format argument controls the interpretation of the input fields and has the same form and function as the format argument for the scanf function; see scanf for a complete description of format. If copying takes place between strings that overlap, the behavior is undefined.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>sscanf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* sscanf.cpp: This program uses sscanf to read data items
+ * from a string named tokenstring, then displays them.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char  tokenstring[] = &quot;15 12 14...&quot;;
+    char  s[81];
+    char  c;
+    int    i;
+    float fp;
+
+    /* Input various data from tokenstring: */
+    sscanf(tokenstring, &quot;%s&quot;, s);
+    sscanf(tokenstring, &quot;%c&quot;, &amp;c);
+    sscanf(tokenstring, &quot;%d&quot;, &amp;i);
+    sscanf(tokenstring, &quot;%f&quot;, &amp;fp);
+
+    
+    printf(&quot;String     = %s\n&quot;, s);
+    printf(&quot;Character = %c\n&quot;, c);
+    printf(&quot;Integer:  = %d\n&quot;, i);
+    printf(&quot;Real:      = %f\n&quot;, fp);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+the data read
+String     = 15
+Character = 1
+Integer:  = 15
+Real:      = 15.000000
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>scanf</ref_name>
+            <ref_url>scanf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<method>CFont::New </method>
+    <description>
+        <para>
+            CFont初始化。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>
+字体名称(目前支持的字体有songti(宋体)，fangti(方体)，heiti(黑体)，kaiti(楷体)，Tahoma和ksphonet,其中前四种为汉字字形)                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>
+字体大小                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> FontStyle  </param_type>
+                <param_name> style </param_name>
+                <param_note>
+                    <para>
+<link url="../../datatype/FontStyle.htm">           字体风格             </link>                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IFont** </param_type>
+                <param_name> font </param_name>
+                <param_note>
+                    <para>
+指向IFont指针的指针。                    </para>
+                </param_note>
+            </api_param>                                                             
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+    	<para>
+    			如果想声明一个宋体字，举例：ec = CFont::New(L"songti", 12, FontStyle_Regular,&amp;pFont);
+    	</para>
+    </remarks>
+</manpage>

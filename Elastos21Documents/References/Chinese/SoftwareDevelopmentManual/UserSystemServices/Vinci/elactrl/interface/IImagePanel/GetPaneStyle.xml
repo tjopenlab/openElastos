@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IImagePanel</interface><method> GetPaneStyle </method>
+    <description>
+        <para>
+            获取指定窗格显示的风格。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+指定窗格的索引值，有效值为   <link url="../../class/CImagePanel/ImagePanelPane_struct.htm">ImagePanelPane</link> 结构体中 index 成员的值</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ImagePanelPaneStyle * </param_type>
+                <param_name> style </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../datatype/ImagePanelPaneStyle.htm">ImagePanelPaneStyle</link> 枚举类型的指针，用于获取指定窗格显示的风格，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        out 参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+    	  每个窗格的索引值并不由系统自行分配，而是需要用户在设置窗格属性的时候，通过设置 ImagePanelPane 结构体成员 index 的值来完成。窗格显示的风格多样，可以象一个 Button 一样；也可以象 CheckBox 那样，允许用户多选；又可以类似 RadioButton，允许用户在互斥的选项中进行选择。用户可以根据需要从中选择一个合适的风格。设置窗格显示的风格可以通过设置 ImagePanlePane 结构体成员 style 的值也可以通过调用 <link url="SetPaneStyle.htm">SetPaneStyle</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CImagePanel 类介绍 </ref_name>
+        <ref_url>../../class/ImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IImagePanel 接口方法列表</ref_name>
+        <ref_url>../IImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetPaneStyle</ref_name>
+        <ref_url>SetPaneStyle</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ImagePanlePane</ref_name>
+        <ref_url>../../class/CImagePanel/ImagePanelPane_struct</ref_url>
+    </reference>
+</references>
+</manpage>

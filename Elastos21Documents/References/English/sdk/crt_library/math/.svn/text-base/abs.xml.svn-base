@@ -1,0 +1,86 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\abs">abs</sample>
+    <title> abs</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>The abs function computes the absolute value of the integer n.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>abs</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>n</param_name>
+                <param_note>
+                    <para>Integer value.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The abs function returns the absolute value of its parameter. There is no error return.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>abs</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* abs.cpp: This program computes and displays
+ * the absolute values of several numbers.
+ */
+
+#include  &lt;stdio.h&gt;
+#include  &lt;math.h&gt;
+#include  &lt;stdlib.h&gt;
+
+int main()
+{
+    int     ix = -4, iy;
+
+    iy = abs(ix);
+    printf(&quot;The absolute value of %d is %d\n&quot;, ix, iy);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The absolute value of -4 is 4
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fabs</ref_name>
+            <ref_url>fabs</ref_url>
+        </reference>
+        <reference>
+            <ref_name>labs</ref_name>
+            <ref_url>labs</ref_url>
+        </reference>
+    </references>
+
+</manpage>

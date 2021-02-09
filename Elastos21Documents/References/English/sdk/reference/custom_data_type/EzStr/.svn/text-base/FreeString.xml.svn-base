@@ -1,0 +1,75 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\ezstr\FreeStr">FreeString</sample>
+    <volume> Common data structure </volume>
+    <interface> EzStr </interface>
+    <method> FreeString </method>
+
+    <description>
+        <para> Releases the memory space that is allocated to a string.</para>
+    </description>
+
+    <syntax>
+        <return_val> static void </return_val>
+        <parameters>
+        <api_param>
+            <param_type>  EzStr&amp; </param_type>
+            <param_name> str </param_name>
+            <param_note>
+                <para> An existing EzStr object. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStr str1 = EzStr::AllocString(L"Hello, world!");
+
+    printf("call AllocString,str1 is: %S\n", (wchar_t*)str1);
+    EzStr::FreeString(str1);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+call AllocString,str1 is: Hello,world!
+]]>
+    </result>
+
+    <references>
+    <reference>
+        <ref_name> AllocString</ref_name>
+        <ref_url> AllocString</ref_url>
+    </reference>
+    <reference>
+        <ref_name> AllocStringLen</ref_name>
+        <ref_url> AllocStringLen</ref_url>
+    </reference>
+    <reference>
+        <ref_name> ReAllocString</ref_name>
+        <ref_url> ReAllocString</ref_url>
+    </reference>
+    <reference>
+        <ref_name> ReAllocStringLen</ref_name>
+        <ref_url> ReAllocStringLen</ref_url>
+    </reference>
+    </references>
+
+</manpage>

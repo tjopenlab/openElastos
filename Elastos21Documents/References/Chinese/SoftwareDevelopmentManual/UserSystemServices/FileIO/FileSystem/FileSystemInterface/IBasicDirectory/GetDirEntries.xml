@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicDirectory</interface><method> GetDirEntries </method>
+    <description>
+        <para>
+            获取当前目录对象中的所有子目录项和文件项信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IEntryNameEnumerator * * </param_type>
+                <param_name> ppDirEntries </param_name>
+                <param_note>
+                    <para>
+指向<link url="../IEntryNameEnumerator.htm">IEntryNameEnumerator</link>接口指针的指针，用于获取当前目录中所有子项的枚举器接口                 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果参数ppDirEntries为NULL，返回E_INVALID_ARGUMENT； </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+    	  <para>
+    	  	  在创建一个对象枚举器后，都会使对象枚举器指向对象集合的第一个对象之前。如果要获取任意一个对象的信息，必须调用<link url="../IEntryNameEnumerator/MoveNext.htm"> MoveNext  </link>方法将对象枚举器后移并指向相应的对象，再调用<link url="../IEntryNameEnumerator/Current.htm">  Current  </link>方法。
+    	  </para>
+        <para>
+            使用时请注意ppDirEntries对象的释放，否则可能造成内存泄漏。释放方式为：ppDirEntries->Release()。
+        </para>
+    </remarks>
+</manpage>

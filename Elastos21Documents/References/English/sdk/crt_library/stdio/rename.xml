@@ -1,0 +1,138 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\rename">rename</sample>
+    <title>rename, wrename </title>
+    <volume>C Run-Time Libaray Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Renames a file or directory. </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>rename</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>oldname</param_name>
+                <param_note>
+                    <para>Pointer to old name. </para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>newname</param_name>
+                <param_note>
+                    <para>Pointer to new name. </para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>wrename</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>oldname</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>newname</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns 0 if it is successful. On an error, the function  returns a nonzero value and sets errno to one of the following values: </para>
+        <table>
+            <th>
+                <td>errno value</td>
+                <td>Description</td>
+            </th>
+	        <tr>
+	    	    <td>EACCES</td>
+                <td>File or directory specified by "newname" already exists or could not be created (invalid path); or "oldname" is a directory and "newname" specifies a different path. </td>
+	        </tr>
+	        <tr>
+	    	    <td> ENOENT</td>
+            	<td>File or path specified by "oldname" not found. </td>
+	        </tr>
+	        <tr>
+	    	    <td>EINVAL</td>
+            	<td>Name contains invalid characters. </td>
+	        </tr>
+	    </table>
+    </return>
+
+    <remarks>
+        <para>The "rename" function renames the file or directory specified by 
+        "oldname" to the name given by "newname". The old name must be the path of 
+        an existing file or directory. The new name must not be the name of an 
+        existing file or directory. You can use "rename" to move a file from one 
+        directory or device to another by giving a different path in the 
+        "newname" argument. However, you cannot use "rename" to move a directory. 
+         Directories can be renamed, but not moved.</para>
+        <para>"wrename" is a wide-character version of "rename"; the arguments 
+        to "wrename" are wide-character strings. "wrename" and "rename" 
+        behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>rename</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wrename</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* rename.cpp: This program attempts to rename a file
+ * named rename.tmp to newname.tmp. For this operation
+ * to succeed, a file named rename.tmp must exist and
+ * a file named newname.tmp must not exist.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int  result;
+    char oldfile[] = &quot;rename.tmp&quot;, newfile[] = &quot;newname.tmp&quot;;
+
+    /* Attempt to rename file: */
+    result = rename(oldfile, newfile);
+    if (result != 0)
+        printf(&quot;Could not rename &apos;%s&apos;\n&quot;, oldfile);
+    else
+        printf(&quot;File &apos;%s&apos; renamed to &apos;%s&apos;\n&quot;, oldfile, newfile);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File &apos;rename.tmp&apos; renamed to &apos;newname.tmp&apos;
+</result>
+
+
+
+</manpage>

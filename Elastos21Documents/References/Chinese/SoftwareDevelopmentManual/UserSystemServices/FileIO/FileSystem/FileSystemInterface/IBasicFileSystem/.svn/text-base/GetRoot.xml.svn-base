@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicFileSystem</interface><method> GetRoot </method>
+    <description>
+        <para>
+            获取文件系统的根目录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IBasicDirectory ** </param_type>
+                <param_name> ppRoot </param_name>
+                <param_note>
+                    <para>
+指向<link url="../IBasicDirectory.htm">IBasicDirectory</link>类型指针的指针，用于获取文件系统根目录                 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果参数ppRoot为NULL，返回E_INVALID_ARGUMENT； </para>
+    <para>如果根文件系统不存在或找不到根目录，返回E_FS_NO_ROOT。 </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            使用时请注意ppRoot对象的释放，否则可能造成内存泄漏。释放方式为：ppRoot->Release()。
+        </para>
+    </remarks>
+</manpage>

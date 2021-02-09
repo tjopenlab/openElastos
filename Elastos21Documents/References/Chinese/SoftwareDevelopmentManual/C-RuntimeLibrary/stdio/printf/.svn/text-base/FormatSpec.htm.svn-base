@@ -1,0 +1,35 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>format格式规范</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>format格式规范</h2>
+    <p>format格式规范由任意个所需的信息段组成，格式如下：</p>
+    <pre class="code">
+%[flags] [width] [.precision] [{h | l | I64 | L}]type
+</pre>
+    <p>每个format格式规范的信息段都是一个单独的字符或者一些特定的格式选项。最简单的format格式规范仅包括一个百分号和一个类型字符，例如：%s。如果百分号后接了一个未在format格式规范中规定的字符，该字符将被复制到stdout中。例如，要显示一个百分号，可以使用%%。</p>
+    <p>可选信息段，出现在type信息段之前，指定了其他格式，具体如下：</p>
+    <p>type</p>
+    <p>必选信息段，确定相关的变量是否是一个字符，一个字符串或者一个数字。（参见<a class="style1" href="../wprintf.htm">printf</a>函数<a class="style1" href="type.htm">Type信息段参数表</a>）</p>
+    <p>flags</p>
+    <p>可选信息段，它控制着符号、空格、小数点、八进制和十六进制前缀的显示方式。（参见<a class="style1" href="flag.htm">flag参数表</a>）一个或多个flag可以在同一个format格式规范中出现</p>
+    <p>width</p>
+    <p>可选信息段，指定最少的输出字符个数。（参见<a class="style1" href="width.htm">width信息段说明</a>）</p>
+    <p>precision</p>
+    <p>可选信息段，指定所有或部分输出区域的最大的字符个数，或者以整数值形式指定所显示数字的最少个数（参见<a class="style1" href="precision.htm">精度对类型的影响</a>）</p>
+    <p>h&nbsp;|&nbsp;l&nbsp;|&nbsp;I64&nbsp;|&nbsp;L</p>
+    <p>可选前缀，用来指定信息段的参数的大小。（参见<a class="style1" href="prefixes.htm">Type可选前缀的说明</a>）</p>
+
+<script>footer("KoreTide")</script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>IHwMgr</interface><method> GetEquipmentClass </method>
+    <description>
+        <para>
+           获取通讯设备设定工作类型。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> PDWORD </param_type>
+                <param_name> equipmentClass </param_name>
+                <param_note>
+                    <para>
+                       保存返回的通讯设备工作类型
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_RESINITFAILED</td>
+	    	    <td>初始化失败</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_NOTREADY</td>
+	    	    <td>通讯模块没有准备好，原因可能是没有被初始化或者连接线接触不良</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_TIMEOUT</td>
+	    	    <td>命令发送后，通讯模块没有及时响应而超时</td>
+	        </tr>
+	         <tr>
+	    	    <td>E_GEN_INTERNAL</td>
+	    	    <td>通讯模块内部错误</td>
+	        </tr>
+	    </table>
+	     <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../telephony_error.htm">telephony_error</link>相关帮助。</para>
+	</return>
+    <remarks>
+		<para>通讯设备工作类型:</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>TAPI_EQUIPCLASS_GSM</td><td>Gsm模式</td>
+    </tr>
+    <tr>
+       <td>TAPI_EQUIPCLASS_CDMA</td><td>CDMA模式</td>
+    </tr>
+    <tr>
+       <td>TAPI_EQUIPCLASS_TDSCDMA</td><td>TDSCDMA</td>
+    </tr>
+    <tr>
+       <td>TAPI_EQUIPCLASS_WCDMA</td><td>WCDMA模式</td>
+    </tr>
+    <tr>
+       <td>TAPI_EQUIPCLASS_UNKNOWN</td><td>未知模式</td>
+    </tr>
+    </table>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IFileMgr</interface><method> Copy </method>
+    <description>
+        <para>
+            复制文件或文件夹。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esDesFile </param_name>
+                <param_note>
+                    <para>
+包含全路径的目的文件或文件夹名（文件夹必须为不存在）                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esSrcFile </param_name>
+                <param_note>
+                    <para>
+包含全路径的源文件或文件夹名                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数无效，返回E_INVALIDARG；如果源路径不正确，返回E_PATH_INVALID_OR_NOT_FOUND。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

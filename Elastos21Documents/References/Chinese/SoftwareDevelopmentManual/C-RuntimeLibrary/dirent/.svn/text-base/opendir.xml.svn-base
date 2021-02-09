@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\direct\opendir">opendir</sample>
+    <title> opendir</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> dirent_idx.htm </routine_idx>
+
+    <description>
+        <para>打开指定参数名的目录</para>
+    </description>
+
+    <syntax>
+        <return_val>DIR *</return_val>
+        <func_name>opendir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char *</param_type>
+                <param_name>dirname</param_name>
+                <param_note>
+                    <para>指定的目录名</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    
+
+    <return>
+        <para>函数返回指向DIR类型对象的指针。如果函数在执行过程中出现错误，函数返回NULL，并将错误号置为下列值：</para>
+        <table>
+            <th>
+                <td>错误号</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>EACCES</td>
+                <td>权限不足</td>
+            </tr>
+            <tr>
+                <td>ENAMETOOLONG</td>
+                <td>目录名过长</td>
+            </tr>
+            <tr>
+                <td>EMFILE</td>
+                <td>已达到进程同时打开的文件数上限</td>
+            </tr>
+            <tr>
+                <td>ENOTDIR</td>
+                <td>参数dirname非真正的目录</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>参数dirname指定的目录不存在，或是参数dirname为一空字符串</td>
+            </tr>
+            <tr>
+                <td>ENOMEM</td>
+                <td>核心内存不足</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para></para>
+        <para></para>
+        <para></para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>opendir</routine_name>
+            <headerfile>dirent.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+    </example>
+
+
+    
+
+</manpage>

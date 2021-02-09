@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <sample url=""></sample>
+    <volume>Elastos网络编程接口（elasock API）</volume>
+    <types>fd_set</types>
+    <routine_idx> ElastosSocketIndex.htm </routine_idx>
+
+    <description>
+        <para>该结构用以保存一组套接口。</para>
+    </description>
+
+    <struct>
+      <struct_member>
+          <mem_type>u_int</mem_type>
+          <mem_name> fd_count </mem_name>
+          <mem_description> 组内的套接口数目 </mem_description>
+      </struct_member>
+      <struct_member>
+          <mem_type> SOCKET </mem_type>
+          <mem_name> fd_array[FD_SETSIZE] </mem_name>
+          <mem_description> 套接口数组 </mem_description>
+      </struct_member>
+    </struct>
+
+    <remarks>
+        <para>调用<link url="../select.htm">select</link>函数时，通过该结构保存待检查的套接口。</para>
+    </remarks>
+    
+</manpage>

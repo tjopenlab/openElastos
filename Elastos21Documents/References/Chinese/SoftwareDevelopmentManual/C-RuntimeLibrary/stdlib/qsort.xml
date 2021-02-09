@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\qsort">qsort</sample>
+    <title> qsort</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>执行快速排序。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>qsort</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>base</param_name>
+                <param_note>
+                    <para>目标数组的起始地址</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>num</param_name>
+                <param_note>
+                    <para>数组元素个数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>width</param_name>
+                <param_note>
+                    <para>元素大小，以字节为单位</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>(__cdecl *compare)(const void *elem1, const void *elem2)</param_name>
+                <param_note>
+                    <para>compare为对elem1和elem2进行比较的比较函数，elem1为指向用于搜索的关键字的指针，elem2为指向与上述关键字比较的数组元素的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para> 函数qsort实现了数组的快速排序算法，数组有num个元素，每个元素width个字节。参数base是指向被排序数组的指针，qsort函数用排序后的结果覆盖此数组。参数compare是一个指向用户提供的，用来比较两个数组元素的函数，该函数的返回值说明两个元素之间的关系。qsort在排序过程中一次或多次调用compare函数，在每次调用时传递两个数组元素的指针给compare函数：</para>
+        <para>compare( (void *) elem1, (void *) elem2 );</para>
+        <para>此函数比较这两个元素，并返回下列值之一：</para>
+        <para>返回值及描述：</para>
+        <table>
+            <th>
+               <td>比较函数的返回值</td>
+               <td>说明</td>
+            </th>
+            <tr>
+               <td>&lt; 0</td>
+               <td>elem1小于elem2</td>
+            </tr>
+            <tr>
+               <td>0</td>
+               <td>elem1等于elem2</td>
+            </tr>
+            <tr>
+               <td>&gt; 0 </td>
+               <td>elem1大于elem2</td>
+            </tr>
+        </table>
+        <para>排序后的数组按照比较函数的定义升序排列。如果要按降序排列，需要反转比较函数中对“大于”和“小于”的判断。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>qsort</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* qsort.cpp: This program reads the command-line
+ * parameters and uses qsort to sort them. It
+ * then displays the sorted arguments.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int __cdecl compare(const void *arg1, const void *arg2)
+{
+    /* Compare all of both strings: */
+    return _stricmp(* (char**) arg1, * (char**) arg2);
+}
+
+int main(int argc, char **argv)
+{
+    int i;
+    /* Eliminate argv[0] from sort: */
+    argv++;
+    argc--;
+
+    /* Sort remaining args using Quicksort algorithm: */
+    qsort((void *)argv, (size_t)argc, sizeof(char *), compare);
+
+    
+    for (i = 0; i &lt; argc; ++i)
+        printf(&quot;%s &quot;, argv[i]);
+    printf(&quot;\n&quot;);
+
+    return 0;
+}
+
+/*
+Input
+    [/$]qsort every good boy deserves favor
+
+Output
+
+     boy deserves every favor good
+*/
+</pre>
+    </example>
+<result>
+sorted list:
+</result>
+
+
+
+</manpage>

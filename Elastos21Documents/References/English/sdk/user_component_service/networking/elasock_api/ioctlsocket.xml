@@ -1,0 +1,94 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>ioctlsocket</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>控制套接口的模式。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>套接口</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>long</param_type>
+                <param_name>cmd</param_name>
+                <param_note>
+                    <para>对套接口s描述的命令</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>u_long *</param_type>
+                <param_name>argp</param_name>
+                <param_note>
+                    <para>指向cmd命令参数的指针</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，返回0；否则返回SOCKET_ERROR，应用程序可调用WSAGetLastError()，获取相应的错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>本函数可以用于任一状态的任一套接口。它用于设置或获取套接口相关的操作参数，而与具体的协议和通讯子系统无关。</para>
+        <para>cmd参数支持下列命令：</para>
+        <para>FIONBIO</para>
+        <para>允许或禁止套接口s的非堵塞模式。argp指向一个无符号长整型，如果允许非阻塞模式则argp值为非零，如禁止非阻塞模式则argp值为零。当创建一个套接口时，默认处于阻塞模式（即非阻塞模式被禁止）。这与BSD套接口是一致的。</para>
+        <para>FIONREAD</para>
+        <para>确定可从套接口读出的数据量大小。argp指向一个无符号长整型，其中保存ioctlsocket()函数的返回值。如果s是SOCKET_STREAM类型套接口，则FIONREAD返回可以在一次recv()中接收的数据量。这通常与套接口中排队的数据总量相同；如果s是SOCK_DGRAM类型套接口，则FIONREAD返回套接口上排队的第一个数据报大小。</para>
+        <para>SIOCATMARK</para>
+        <para>确定是否所有的带外数据都已被读入。这个命令仅用于SOCK_STREAM类型的套接口，且该套接口已被设置为可以在线接收带外数据（SO_OOBINLINE）。如无带外数据等待读入，则该操作返回TRUE真，否则返回FALSE假。下一个recv()或recvfrom()操作将检索“标记”前面的数据。应用程序可用SIOCATMARK操作来确定是否有剩余数据。如果在“紧急”（带外）数据前有常规数据，则按序接收这些数据（请注意，recv()和recvfrom()操作不会在一次调用中混淆常规数据与带外数据）。argp指向一个BOOL型数，ioctlsocket()在其中存入返回值。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>getsockopt</ref_name>
+            <ref_url>getsockopt</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>setsockopt</ref_name>
+            <ref_url>setsockopt</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strlen">strlen</sample>
+    <title>strlen, wcslen</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>获得字符串的长度。</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>strlen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>wcslen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回字符串中字符的个数，不包括结束符NULL。如无返回值则指示错误。</para>
+    </return>
+
+    <remarks>
+        <para>两个函数都返回字符串中字符的个数，不包括结束符NULL。wcslen是strlen的宽字符版本，wcslen的参数是宽字符串。除此之外，与函数strlen一样。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strlen</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcslen</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strlen.cpp:this program use strlength to get the length of string
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buffer[61] = &quot;How long am I?&quot;;
+    int  len;
+    len = strlen(buffer);
+    printf(&quot;&apos;%s&apos; is %d characters long\n&quot;, buffer, len);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+&apos;How long am I?&apos; is 14 characters long
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name> wcscat</ref_name>
+            <ref_url>wcscat</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcscmp </ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcscpy </ref_name>
+            <ref_url>wcscpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url>strrchr</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _strset </ref_name>
+            <ref_url>_strset</ref_url>
+        </reference>
+    </references>
+
+</manpage>

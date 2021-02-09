@@ -1,0 +1,76 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+   
+    <volume>内存管理函数</volume>
+    <title>DzKIoRemap</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>将指定的IO内存地址区域映射到内核虚拟地址空间中去。</para>
+    </description>
+
+    <syntax>
+        <return_val>EXTERN virtaddr_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> physaddr_t </param_type>
+                <param_name> paBase </param_name>
+                <param_note>
+                    <para>[in]所需映射的IO内存地址区域的起始物理地址，必须按页对齐</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> size_t </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>[in]所需映射的IO内存地址区域的大小，必须按页对齐</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> uint_t </param_type>
+                <param_name> protect </param_name>
+                <param_note>
+                    <para>[in]内存保护权限及IO访问类型</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>非NULL值</td><td>函数调用成功，返回映射后的内核虚拟地址空间的起始地址。</td>
+            </tr>
+            <tr>
+                <td>NULL值</td><td>函数调用失败。比如说因为指定的参数无效，或内核虚拟地址空间不足等原因。</td>
+            </tr>
+        </table>
+
+    </return>
+
+    <remarks>
+    	<para>本函数用于将指定的IO内存地址区域映射到内核虚拟地址空间中去。一旦该函数调用成功，就可以通过该函数所返回的内核虚拟地址空间的起始地址来访问指定的IO内存地址区域了。</para>
+    	<para>此外，调用此函数所建立的映射可以通过调用KIoUnmap函数来撤销。</para>
+    	<para>本函数目前仅可被用于设备驱动程序的初始化部分中。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

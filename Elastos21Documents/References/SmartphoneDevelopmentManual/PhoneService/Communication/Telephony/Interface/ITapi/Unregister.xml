@@ -1,0 +1,44 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>ITapi</interface><method> Unregister </method>
+    <description>
+        <para>
+          取消网络注册。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax>
+      <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	         <tr>
+	    	    <td>FAMILY_GEN 类或FAMILY_CME类错误值</td>
+	    	    <td>表示指令发送到通讯模块过程中遇到错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../Telephony_Error.htm">Telephony_Error</link>相关帮助。</para>
+	   </return>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+         <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

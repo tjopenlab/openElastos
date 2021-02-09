@@ -1,0 +1,59 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> diff </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para>Compares two files.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> DIFF</cmd_name>
+        <cmd_param> &lt;from-file&gt;  &lt;to-file&gt;</cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> from-file</param_name>
+        <param_note> File used to compare</param_note>
+    </param>
+    <param>
+        <param_name> to-file</param_name>
+        <param_note> File used to compare</param_note>
+    </param>
+    </parameters>
+     <remarks>
+      <para>The output information including: Line number of the file content, change type: a (append), c (change) and d (delete) and the content of the file.</para>
+        <para>The form is: </para>
+        <para>[line number][change type][line number]</para>
+        <para>&lt; from-file content</para>
+        <para>---</para>
+        <para>&gt; to-file content</para>
+        <para>……</para>
+    </remarks>
+    <examples>
+    <example>
+        <eg_line>diff file1.txt file2.txt   </eg_line>
+        <eg_note> Compares file file1.txt and file2.txt. Output different lines. Outputs the result: </eg_note>
+
+    <eg_result><![CDATA[
+1,2c1,3
+< the
+< file
+---
+> file
+> get
+> right
+]]></eg_result>
+    </example>
+    <example>
+        <eg_note>Of which, 1,2c1,3 represents that the content of first line to the second line of test1.txt and the first line to the third line of test2.txt is different. The following lists different content of the two files.</eg_note>
+    </example>
+    </examples>
+
+</manpage>

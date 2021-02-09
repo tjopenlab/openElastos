@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>parameter标签/控件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+
+<h1>parameter非图形标签/控件参考</h1><!-- doxytag: class="window" -->
+    <p>指定参数名及其默认值以供传递。
+<a href="#_details">更多...</a>
+
+<hr><h2>命名空间</h2>
+http://www.elastos.com/XmlGlue/2.1
+
+<hr><a name="_details"></a><h2>详细描述</h2>
+指定参数名及其默认值，以供传递。
+
+<p><table>
+<tr><td><b>注：</b></td><td>1. 由于parameter标签的命名空间在http://www.elastos.com/XmlGlue/2.1里，而它并不是默认的命名空间，故使用时需要在parameter标签前加http://www.elastos.com/XmlGlue/2.1命名空间的别名"x"加以标示，即x:parameter。</td></tr>
+<tr><td><b></td><td>2. 如需接受参数，应首先使用parameters标签定义参数群组，然后再在群组中设定每个参数的属性。</td></tr>
+<tr><td><b></td><td>3. 由于设置参数的名称（name）及其默认值（default）,用户可以通过引用此参数名从而获取其默认值。常用方法有：1.使用'${parameter_name}'的形式在图形标签中取传入的参数名以设定某个属性值，但属性id除外。具体使用方法请参考<a href="#_example">示例</a>。2.通过<a href="../script_programming/Arguments_Object.html">预定义对象Arguments</a>在脚本中取这些参数值。</td></tr>
+</table>
+
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>属性</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">用于指定参数的名称。同时其属性值不可为已设置的参数。</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>String</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>name = "name"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;x:parameter name="parm1" default="120"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>default</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">用于设置参数的默认值。同时其属性值不可为已设置的参数。</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>string</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>default = "value"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;x:parameter name="parm1" default="120"/&gt;</td></tr>
+</table>
+
+<hr><a name="_example"></a>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>示例</h2></td></tr>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td class="memitem" valign="bottom"><pre>&lt;x:parameters&gt;
+    &lt;x:parameter name="width" default="120"/&gt;
+    &lt;x:parameter name="height" default="40"/&gt;
+    &lt;x:parameter name="caption" default="BTN"/&gt;
+    &lt;x:parameter name="x" default="40"/&gt;
+&lt;/x:parameters&gt;
+
+&lt;form x:id="main" width="240" height="320"&gt;
+        &lt;button x="${x}" width="${width}" height="${height}" caption="${caption}"/&gt;
+&lt;/form&gt;
+</td></tr></table>
+</table>
+
+ <script>footer("chinese")</script>
+ </body>
+</html>

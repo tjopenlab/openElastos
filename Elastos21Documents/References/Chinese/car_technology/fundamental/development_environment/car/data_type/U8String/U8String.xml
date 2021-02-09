@@ -1,0 +1,47 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>U8String</interface>
+    <method> U8String </method>
+
+    <description>
+        <para>构造一个U8String对象，并初始化字符串指针为NULL。   </para>
+        <para>U8String继承自AString类，其包含一指向char *的私有成员变量指针 。 </para>
+
+    </description>
+
+    <syntax_nopara>
+        <apiname>U8String</apiname>
+        <NoArguments/>
+    </syntax_nopara>
+
+
+
+<remarks>
+    <para>值得注意的是：代码中窄串字符的编码是编译器决定的，不一定是UTF8编码。</para>
+    <para> </para>
+    <para>获得UTF8编码可以有以下方法： </para>
+    <para>1.通过AStringBuf::Copy(WString, Encoding_UTF8)。 </para>
+    <para>2.通过U8StringBuf::Copy(WString); </para>
+    <para>3.在文件中存储字符时选择UTF8编码存储，再读取。 </para>
+            
+</remarks>
+<references>
+    <reference>
+        <ref_name>U8String(const char *)</ref_name>
+        <ref_url>U8String2</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>AString()</ref_name>
+        <ref_url>../AString/structure/AString1</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>AString(const char *)</ref_name>
+        <ref_url>../AString/structure/AString2</ref_url>
+    </reference>
+</references>  
+</manpage>

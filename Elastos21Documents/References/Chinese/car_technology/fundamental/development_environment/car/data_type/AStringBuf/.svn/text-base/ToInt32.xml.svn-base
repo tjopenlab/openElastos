@@ -1,0 +1,59 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method> ToInt32 </method>
+
+    <description>
+        <para> 将当前对象的值转换为32位有符号整数。 </para>
+    </description>
+    <syntax_nopara>
+        <return_val> Int32  </return_val>
+        <modifier>const</modifier>
+    </syntax_nopara>
+     <return>
+        <para>AStringBuf对象字符串内容以非数字字符开始，则返回0。</para>
+        <para>AStringBuf对象字符串内容以数字字符开始，返回由开始字符开始直到遇到非数字字符之间的子串对应的32位型数值。</para>
+    </return>
+    <remarks>
+    <para>如果AStringBuf对象包含的字符串指针指向NULL，则返回0。</para>
+    </remarks>
+<example>
+<pre>
+AStringBuf_&lt;20&gt; asbuf;
+asbuf.Copy(("-1"));
+CConsole::WriteLine(asbuf.ToInt32());  //Display : -1
+
+asbuf.SetEmpty();
+asbuf.Copy("abc");
+CConsole::WriteLine(asbuf.ToInt32());  //Display : 0
+	
+asbuf.SetEmpty();
+asbuf.Copy("123abc");	
+CConsole::WriteLine(asbuf.ToInt32());  //Display : 123
+
+asbuf.SetEmpty();
+asbuf.Copy("abc123");	
+CConsole::WriteLine(asbuf.ToInt32());  //Display : 0
+</pre>
+</example> 
+ 
+ 
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::ToInt64 </ref_name>
+        <ref_url>../AStringBuf/ToInt64</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::ToInt32 </ref_name>
+        <ref_url>../WStringBuf/ToInt32</ref_url>
+    </reference>
+</references>
+
+</manpage>

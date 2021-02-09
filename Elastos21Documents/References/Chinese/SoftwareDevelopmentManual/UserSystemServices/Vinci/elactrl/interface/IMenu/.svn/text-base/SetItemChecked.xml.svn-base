@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IMenu</interface><method> SetItemChecked </method>
+    <description>
+        <para>
+            设置指定菜单项是否被选中。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> id </param_name>
+                <param_note>
+                    <para>
+菜单项的 ID</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Boolean </param_type>
+                <param_name> checked </param_name>
+                <param_note>
+                    <para>
+菜单项是否被选中，若为 TRUE，则菜单项被选中；否则为 FALSE</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法的成功调用会为选中的菜单项添加被选中的图标，但并不更改焦点项，也不会弹出子菜单，仅起到选择的功能，允许多选。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CMenu 类介绍 </ref_name>
+        <ref_url>../../class/Menu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IMenu 接口方法列表</ref_name>
+        <ref_url>../IMenu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IsItemChecked</ref_name>
+        <ref_url>IsItemChecked</ref_url>
+    </reference>
+</references>
+</manpage>

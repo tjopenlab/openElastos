@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>图形系统</volume>
+    <types> TextBoxStyle </types>
+    <description>
+        <para>
+            文本框风格。
+        </para>
+    </description>
+<enum> 
+          <enum_member>    <mem_name> TextBoxStyle_MultiLine </mem_name>    <mem_value> 0x00000001 </mem_value>    <mem_description>        文本多行显示    </mem_description>    </enum_member> 
+          <enum_member>    <mem_name> TextBoxStyle_WordWrap </mem_name>    <mem_value> 0x00000002 </mem_value>    <mem_description>        自动换行（文本多行风格下有效）,如果TextBox控件加入TextBoxStyle_WordWrap风格时，特殊字符转行会生效。    </mem_description>    </enum_member>
+          <enum_member>    <mem_name> TextBoxStyle_Readonly </mem_name>    <mem_value> 0x00000004 </mem_value>    <mem_description>        文本只读    </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> TextBoxStyle_Password </mem_name>    <mem_value> 0x00000020 </mem_value>    <mem_description>        密码风格    </mem_description>    </enum_member> 
+          <enum_member>    <mem_name> TextBoxStyle_AutoVScroll </mem_name>    <mem_value> 0x00000008 </mem_value>    <mem_description>        自动垂直滚动    </mem_description>    </enum_member>
+          <enum_member>    <mem_name> TextBoxStyle_AutoHScroll </mem_name>    <mem_value> 0x00000010 </mem_value>    <mem_description>        自动水平滚动    </mem_description>    </enum_member>
+          <enum_member>    <mem_name> TextBoxStyle_HideSelection </mem_name>    <mem_value> 0x00000080 </mem_value>    <mem_description>        选择状态保持    </mem_description>    </enum_member>
+          <enum_member>    <mem_name> TextBoxStyle_Number </mem_name>    <mem_value> 0x00000040 </mem_value>    <mem_description>        数字    </mem_description>    </enum_member> 
+          <enum_member>    <mem_name> TextBoxStyle_AutoSize </mem_name>    <mem_value> 0x00000100 </mem_value>    <mem_description>        自动调整大小    </mem_description>    </enum_member> 
+</enum>
+    <remarks>
+        <para>
+            当用户选择TextBoxStyle_Password风格时，
+            如:   ec = CTextBox::New(L"SL TextBox", TextBoxStyle_Password | ControlStyle_Border,10, 60, 120, 30,  m_pMainForm,&amp;m_pISTextBox);效果则如下图：
+        </para>
+        <img url="images\textbox.jpg">
+        
+        </img>        
+    </remarks>
+</manpage>

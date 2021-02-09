@@ -1,0 +1,364 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> WStringBuf</interface>
+
+    <description>
+        <para>WStringBuf是为了支持构件化编程而设计的数据结构。</para>
+        <para>WStringBuf是继承自<link url= "..\others\CarQuintet.htm">五元组结构体CarQuintet</link>的类。</para>
+        <para>WStringBuf_是继承自WStringBuf的类模板。</para>
+
+    </description>
+
+    <constructs>
+        <construct>
+            <construct_name>WStringBuf</construct_name>
+            <construct_url>WStringBuf/structure/WStringBuf</construct_url>
+            <construct_description>构造一个WStringBuf对象,并指定其字符串长度。</construct_description>
+        </construct>
+        
+        <construct>
+            <construct_name>WStringBuf_&lt;length&gt;</construct_name>
+            <construct_url>WStringBuf/structure/WStringBuf_</construct_url>
+            <construct_description>构造一个WStringBuf对象,并指定其字符串长度。</construct_description>
+        </construct>
+        
+    </constructs>
+
+    <methods>
+        <self> 
+               
+        <method>
+        <method_name>Alloc</method_name>
+        <method_url>WStringBuf/Alloc/index/Alloc</method_url>
+        <m_description>已重载。(在堆上)动态创建 WStringBuf对象。</m_description>
+        </method>
+        
+        <method>
+        <method_name>Append</method_name>
+        <method_url>WStringBuf/Append/index/Append</method_url>
+        <m_description>已重载。在此对象字符串中追加指定字符或字符串。</m_description>
+        </method>
+      
+        <method>
+        <method_name>Compare </method_name>
+        <method_url>WStringBuf/Compare/index/Compare</method_url>
+        <m_description>已重载。对两个指定的WString对象进行比较，并返回一个指示二者在排序顺序中的关系的整数。</m_description>
+         </method>
+          
+        
+        <method>
+        <method_name>Copy </method_name>
+        <method_url>WStringBuf/Copy/index/Copy</method_url>
+        <m_description>已重载。拷贝对象字符串到WStringBuf对象字符串中去。</m_description>
+        </method>       
+        
+        <method>
+        <method_name>Clone</method_name>
+        <method_url>WStringBuf/Clone</method_url>
+        <m_description>获取一个WStringBuf对象的克隆。</m_description>
+        </method>
+        
+        <method>
+        <method_name>Contains </method_name>
+        <method_url>WStringBuf/Contains</method_url>
+        <m_description>返回一个值，该值指示指定的WString字符串是否出现在此对象中。</m_description>
+        </method>
+        
+        <method>
+        <method_name>Concatenate </method_name>
+        <method_url>WStringBuf/Concatenate</method_url>
+        <m_description>在此对象字符串中追加多个WString字符串。</m_description>
+        </method>
+        
+        
+        <method>
+        <method_name>EndWith </method_name>
+        <method_url>WStringBuf/EndWith</method_url>
+        <m_description>确定此对象的末尾是否与指定的字符串匹配。</m_description>
+        </method>  
+        
+        <method>
+        <method_name>EstimateAStringLength </method_name>
+        <method_url>WStringBuf/EstimateAStringLength</method_url>
+        <m_description>估算把当前WStringBuf对象字符串转成AStringBuf的长度。</m_description>
+        </method> 
+        
+        
+        <method>
+        <method_name>Free </method_name>
+        <method_url>WStringBuf/Free</method_url>
+        <m_description>释放由Alloc或Clone方法为WStringBuf对象分配的内存空间。</m_description>
+        </method>
+        
+        
+        <method>
+        <method_name>GetChar </method_name>
+        <method_url>WStringBuf/GetChar</method_url>
+        <m_description>返回此对象字符串中Index位置的字符。</m_description>
+        </method>
+        
+        <method>
+        <method_name>GetCharCount </method_name>
+        <method_url>WStringBuf/GetCharCount</method_url>
+        <m_description>返回此对象字符串所占的字符数。</m_description>
+        </method>
+        
+        <method>
+        <method_name>GetPayload </method_name>
+        <method_url>WStringBuf/GetPayload</method_url>
+        <m_description>返回指向此对象字符串的指针。</m_description>
+        </method>
+        
+        <method>
+        <method_name>GetCapacity </method_name>
+        <method_url>WStringBuf/GetCapacity</method_url>
+        <m_description>返回此对象数据区可容纳的字符个数。</m_description>
+        </method>
+        
+        <method>
+        <method_name>GetLength </method_name>
+        <method_url>WStringBuf/GetLength</method_url>
+        <m_description>返回此对象字符串所占的字符数。</m_description>
+        </method>
+        
+        <method>
+        <method_name>GetAvailableSpace </method_name>
+        <method_url>WStringBuf/GetAvailableSpace</method_url>
+        <m_description>返回此对象剩余可用的字符数。</m_description>
+        </method>
+               
+        <method>
+        <method_name>Insert </method_name>
+        <method_url>WStringBuf/Insert</method_url>
+        <m_description>在此对象中的指定索引位置插入一个指定的WString字符串。</m_description>
+        </method>
+        
+        <method>
+        <method_name>IsNull </method_name>
+        <method_url>WStringBuf/IsNull</method_url>
+        <m_description>判断此对象中指向字符串的指针是否为NULL。</m_description>
+        </method>
+        
+        <method>
+        <method_name>IsEmpty </method_name>
+        <method_url>WStringBuf/IsEmpty</method_url>
+        <m_description>判断此对象的字符串是否为空字符串("")。</m_description>
+        </method>
+        
+        <method>
+        <method_name>IsNullOrEmpty </method_name>
+        <method_url>WStringBuf/IsNullOrEmpty</method_url>
+        <m_description>判断指向此对象的字符串指针是否为NULL或者包含的字符串是否为空字符串("")。</m_description>
+        </method>
+
+        <method>
+        <method_name>IndexOf </method_name>
+        <method_url>WStringBuf/IndexOf/index/IndexOf</method_url>
+        <m_description>已重载。报告指定字符或字符串在此对象中的第一个匹配项的索引。 </m_description>
+        </method> 
+
+        <method>
+        <method_name>IndexOfAny </method_name>
+        <method_url>WStringBuf/IndexOfAny</method_url>
+        <m_description>报告指定字符串中的任意字符在此对象中的第一个匹配项的索引。 </m_description>
+        </method> 
+
+        <method>
+        <method_name>IndexOfChar </method_name>
+        <method_url>WStringBuf/IndexOfChar</method_url>
+        <m_description>报告指定Char32字符在此对象中的第一个匹配项的索引。 </m_description>
+        </method>
+
+        <method>
+        <method_name>IndexOfAnyChar </method_name>
+        <method_url>WStringBuf/IndexOfAnyChar</method_url>
+        <m_description>按是否区分大小写标志和指定的编码格式获得strCharSet中任意一个字符在当前对象字符串中首次出现的索引值。  </m_description>
+        </method>
+
+        <method>        
+        <method_name>LastIndexOf </method_name>
+        <method_url>WStringBuf/LastIndexOf/index/LastIndexOf</method_url>
+        <m_description>已重载。报告指定字符或字符串在此对象中的最后一个匹配项的索引。</m_description>
+        </method>
+
+        <method>
+        <method_name>LastIndexOfAny </method_name>
+        <method_url>WStringBuf/LastIndexOfAny</method_url>
+        <m_description>按是否区分大小写标志返回strCharSet中任意一个字符在当前对象字符串中的最后索引值。 </m_description>
+        </method>
+ 
+        <method>
+        <method_name>LastIndexOfChar </method_name>
+        <method_url>WStringBuf/LastIndexOfChar</method_url>
+        <m_description>报告指定字符在此对象中的最后一个匹配项的索引。</m_description>
+        </method>
+
+        <method>
+        <method_name>LastIndexOfAnyChar </method_name>
+        <method_url>WStringBuf/LastIndexOfAnyChar</method_url>
+        <m_description>按是否区分大小写标志获得strCharSet中任意一个字符在当前对象字符串中最后出现的索引值。 </m_description>
+        </method>
+
+        <method>
+        <method_name>PadRight</method_name>
+        <method_url>WStringBuf/PadRight/index/PadRight</method_url>
+        <m_description>已重载。左对齐此对象中的字符，在右边用空格或指定的字符填充以达到指定的总长度。</m_description>
+        </method>
+        
+        <method>
+        <method_name>PadLeft</method_name>
+        <method_url>WStringBuf/PadLeft/index/PadLeft</method_url>
+        <m_description>已重载。右对齐此对象中的字符，在左边用空格或指定的字符填充以达到指定的总长度。</m_description>
+        </method>
+        
+        <method>
+        <method_name>Replace </method_name>
+        <method_url>WStringBuf/Replace</method_url>
+        <m_description>将此对象的字符串从指定位置开始替换为另一子串。</m_description>
+        </method>
+        
+        <method>
+        <method_name>StartWith </method_name>
+        <method_url> WStringBuf/StartWith</method_url>
+        <m_description>确定此对象的开头是否与指定的字符串匹配。 </m_description>
+        </method> 
+        
+        <method>
+        <method_name>Substring</method_name>
+        <method_url>WStringBuf/SubString/index/SubString</method_url>
+        <m_description>已重载。从此对象检索子字符串。 </m_description>
+        </method>               
+
+        <method>
+        <method_name>SetLength </method_name>
+        <method_url>WStringBuf/SetLength</method_url>
+        <m_description>设置此对象字符串所占的字符数。</m_description>
+        </method>
+   
+        <method>
+        <method_name>SetEmpty </method_name>
+        <method_url>WStringBuf/SetEmpty</method_url>
+        <m_description>设置此对象字符串为空。</m_description>
+        </method>        
+        
+        <method>
+        <method_name>Trim </method_name>
+        <method_url>WStringBuf/Trim</method_url>
+        <m_description>从当前对象移除一组指定字符的所有前导匹配项和尾部匹配项。匹配项包括空白字符、水平制表符、垂直制表符、换页符、回车符和换行符。</m_description>
+        </method> 
+
+        <method>
+        <method_name>TrimStart </method_name>
+        <method_url>WStringBuf/TrimStart</method_url>
+        <m_description>从当前对象移除一组指定字符的所有前导匹配项。匹配项包括空白字符、水平制表符、垂直制表符、换页符、回车符和换行符。</m_description>
+        </method>
+
+        <method>
+        <method_name>TrimEnd </method_name>
+        <method_url>WStringBuf/TrimEnd</method_url>
+        <m_description>从当前对象移除一组指定字符的所有尾部匹配项。匹配项包括空白字符、水平制表符、垂直制表符、换页符、回车符和换行符。</m_description>
+        </method> 
+        
+        <method>
+        <method_name>ToUpperCase </method_name>
+        <method_url>WStringBuf/ToUpperCase</method_url>
+        <m_description>返回此对象转换为大写形式的副本。</m_description>
+        </method> 
+
+        <method>
+        <method_name>ToLowerCase </method_name>
+        <method_url>WStringBuf/ToLowerCase</method_url>
+        <m_description>返回此对象转换为小写形式的副本。</m_description>
+        </method>
+               
+        <method>
+        <method_name>ToInt32 </method_name>
+        <method_url>WStringBuf/ToInt32</method_url>
+        <m_description>将当前对象的值转换为32位有符号整数。 </m_description>
+        </method>
+
+        <method>
+        <method_name>ToInt64 </method_name>
+        <method_url>WStringBuf/ToInt64</method_url>
+        <m_description>将当前对象的值转换为64位有符号整数。 </m_description>
+        </method>         
+ 
+        <method>
+        <method_name>ToBoolean </method_name>
+        <method_url>WStringBuf/ToBoolean</method_url>
+        <m_description>将当前对象的值转换成布尔值。 </m_description>
+        </method>
+
+        <method>
+        <method_name>ToDouble </method_name>
+        <method_url>WStringBuf/ToDouble</method_url>
+        <m_description>将当前对象的值转换为双精度浮点数字。</m_description>
+        </method>
+
+        <method>
+        <method_name>DecodeURL </method_name>
+        <method_url>WStringBuf/DecodeURL</method_url>
+        <m_description>将字符串从 application/x-www-form-urlencoded MIME 格式解码。</m_description>
+        </method>
+        
+                                                                                                                                                                                                                        
+      </self>
+    </methods>
+
+    <operators>
+        <operator>
+            <operator_name>operator WChar *</operator_name>
+            <operator_url>WStringBuf/operator1</operator_url>
+            <operator_description> 类型转换操作符，将WStringBuf对象的字符串转换成WChar *类型。</operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator WString</operator_name>
+            <operator_url>WStringBuf/operator2</operator_url>
+            <operator_description> 类型转换操作符，把WStringBuf对象转换成WString型对象。</operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator []</operator_name>
+            <operator_url>WStringBuf/operator</operator_url>
+            <operator_description> 存取数组元素操作符，用来对WStringBuf对象的数组元素进行存取操作。</operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator <![CDATA[<<]]> </operator_name>
+            <operator_url>WStringBuf/operator3</operator_url>
+            <operator_description> 相当于Append。</operator_description>
+        </operator>
+    </operators>
+
+    <macros>
+        <macro>
+        <macro_name> NULL_WStringBuf </macro_name>
+        <macro_url>WStringBuf/NULL_WSTRINGBUF</macro_url>
+        <macro_description> 构造一个内容为空的WStringBuf对象。</macro_description>
+        </macro>
+        <macro>
+        <macro_name> AUTO_WStringBuf</macro_name>
+        <macro_url>WStringBuf/AUTO_WSTRINGBUF</macro_url>
+        <macro_description> 构造一个大小为n的WStringBuf对象。</macro_description>
+        </macro>
+    </macros>
+    <requirements>
+        <headerfile>
+            <file_name> elastos.h  </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>    
+    <references>
+        <reference>
+            <ref_name> WStringBuf类型定义 </ref_name>
+            <ref_url> ../data_type/WStringBuf/Definition</ref_url>
+        </reference>
+    </references>  
+
+    
+    
+
+</manpage>

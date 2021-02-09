@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>U8StringBuf</interface>
+    <method> ToLowerCase </method>
+
+    <description>
+        <para> 按UTF-8编码格式返回此对象转换为小写形式的副本。</para>
+    </description>
+    <syntax>
+        <return_val> U8StringBuf &amp;  </return_val>
+      
+    </syntax>
+    <return>
+        <para>返回U8StringBuf对象的引用</para>
+    </return>
+    <remarks>
+       <para> 如果U8StringBuf对象包含的字符串指针指向NULL，返回的U8StringBuf对象包含的字符串指针指向NULL。 </para>
+    </remarks>
+<example>
+<pre>
+U8StringBuf_&lt;20&gt; u8sbuf;
+u8sbuf.Copy("Hello World!");
+CConsole::WriteLine(u8sbuf.ToLowerCase());  //Display : "hello world!"
+</pre>
+</example> 
+
+ 
+</manpage>

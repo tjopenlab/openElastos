@@ -1,0 +1,66 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+	<sample url="dma_routines\AllocDmaPage">AllocDmaPage</sample>
+	<volume>DMA Routines</volume>
+	<title>AllocDmaPage</title>
+	<routine_idx> ../../dma_routines.htm </routine_idx>
+	
+	<description>
+		<para>Allocates a DMA memory page.</para>
+	</description>
+	
+	<syntax>
+		<return_val>virtaddr_t</return_val>
+		<NoArguments/>
+	</syntax>
+	
+	<return>
+		<table>
+			<th>
+				<td>Return Value</td><td>Description</td>
+			</th>
+			<tr>
+				<td>0</td><td>Allocation fails, not enough memory.</td>
+			</tr>
+			<tr>
+				<td>non 0 value</td><td>Allocation successful, return value is DMA page address (virtual address).</td>
+			</tr>
+		</table>
+	</return>
+	
+	<remarks>
+		<para>This function is used to allocate a DMA memory page. Once successfully allocated DMA memory page, driver can access DMA data transfer through the DMA pages.</para>
+	</remarks>
+	
+	<requirements>
+		<system>
+			<system_name>
+				Elastos 2.0 or later.
+			</system_name>
+		</system>
+		<headerfile>
+			<file_name>dma.h</file_name>
+		</headerfile>
+	</requirements>
+	
+	<references>
+		<reference>
+			<ref_name>AllocDmaPages</ref_name>
+			<ref_url>AllocDmaPages</ref_url>
+		</reference>
+		<reference>
+			<ref_name>FreeDmaPage</ref_name>
+			<ref_url>FreeDmaPage</ref_url>
+		</reference>
+		<reference>
+			<ref_name>FreeDmaPages</ref_name>
+			<ref_url>FreeDmaPages</ref_url>
+		</reference>
+	</references>
+</manpage>

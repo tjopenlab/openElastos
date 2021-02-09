@@ -1,0 +1,50 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzByteBuf\IsNull">IsNull</sample>
+    <volume> COMMON DATA STRUCTURE </volume>
+    <interface> EzByteBuf </interface>
+    <method> IsNull </method>
+
+    <description>
+        <para> Indicates whether an EzByteBuf object is NULL. </para>
+    </description>
+
+    <return>
+        <para>If the current EzByteBuf object is NULL, returns TRUE; otherwise returns FALSE.</para>
+    </return>
+    <syntax>
+        <return_val> BOOL </return_val>
+        <NoArguments/>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzByteBuf_<100> buf;
+
+    if (!buf.IsNull()) {
+        printf("buf's value is not NULL.\n");
+    } else {
+        printf("buf's value is NULL.\n");
+    }
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+buf's value is not NULL.
+]]>
+    </result>
+
+</manpage>

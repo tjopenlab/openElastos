@@ -1,0 +1,79 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Elastos Database: TImgPanel.h源文件</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+
+
+
+<h1>TImgPanel.h</h1><div class="fragment"><pre class="fragment">
+ <span class="preprocessor">#ifndef __TImgPanel_H__</span>
+ <span class="preprocessor"></span><span class="preprocessor">#define __TImgPanel_H__</span>
+ <span class="preprocessor"></span>
+ <span class="preprocessor">#include "_TImgPanel.h"</span>
+ 
+ CarClass(TImgPanel)
+ {
+ <span class="keyword">public</span>:
+     TImgPanel();
+     ~TImgPanel();
+ 
+     CARAPI Main(
+         <span class="comment">/* [in] */</span> <span class="keyword">const</span> BufferOf&lt;WString&gt; &amp; argcv);
+ 
+     CARAPI OnStylusPressed(
+         <span class="comment">/* [in] */</span> PInterface pIObject,
+        <span class="comment">/* [in] */</span>  Int32 x,
+        <span class="comment">/* [in] */</span>  Int32 y,
+        <span class="comment">/* [in] */</span>  Int64 timestamp);
+ 
+     CARAPI OnPaneClick(
+         <span class="comment">/* [in] */</span> PInterface pIObject,
+         <span class="comment">/* [in] */</span> Int32 nIndex);
+ 
+     CARAPI OnPaneClick2(
+         <span class="comment">/* [in] */</span> PInterface pIObject,
+         <span class="comment">/* [in] */</span> Int32 nIndex);
+ 
+     CARAPI OnClose(
+         <span class="comment">/* [in] */</span> PInterface pIObject);
+ 
+     CARAPI Quit();
+ 
+     CARAPI Terminate();
+ 
+     CARAPI Activate();
+ 
+     CARAPI Deactivate();
+ 
+     CARAPI IsActivated(
+         <span class="comment">/* [out] */</span> Boolean * pActivated);
+ 
+     CARAPI Snooze();
+ 
+     CARAPI Wakeup();
+ 
+     CARAPI GetName(
+         <span class="comment">/* [out] */</span> WStringBuf * pName);
+ 
+     <span class="keywordtype">void</span> Panel3_Init();
+     <span class="keywordtype">void</span> Change(Int32 nIndex);
+     <span class="keywordtype">void</span> ToolGroup(Int32 nIndex);
+     <span class="keywordtype">void</span> SizeGroup(Int32 nIndex);
+ <span class="keyword">private</span>:
+     IForm        * m_pMainForm;
+     IImagePanel  * m_pIImagePanel;
+ 
+     IImagePanel  * m_pIImagePanel2;
+     IImagePanel  * m_pIImagePanel3;
+     IButton      * m_pIBtnClose;
+ 
+     Int32             m_nToolPrev;
+     Int32             m_nChoosePrev;
+ };
+ 
+ <span class="preprocessor">#endif // __TImgPanel_H__</span>
+</pre></div>
+</body>
+</html>

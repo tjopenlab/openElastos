@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>AStringBuf</class>
+    <method> Substring </method>
+
+    <description>
+        <para> 从此对象检索子字符串。子字符串从指定的字符位置开始。</para>
+    </description>
+    <syntax>
+        <return_val> AString </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> start </param_name>
+            <param_note>
+                <para> 开始位置 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>AStringBuf &amp;</param_type>
+            <param_name> sub </param_name>
+            <param_note>
+                <para>保存子字符串的AStringBuf对象 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name>encoding</param_name>
+            <param_default> Encoding_Default</param_default>
+            <param_note>
+                <para> 指定编码格式。参见<link url="../../../others/Encoding.htm">Encoding</link>枚举类型说明。</para>
+            </param_note>
+        </api_param>                  
+        </parameters>        
+    </syntax>
+    <return>
+        <para>返回子字符串。如果源对象包含的字符串指针为NULL或sub AStringBuf对象的m_pBuf指针为NULL， start 小于0 或大于源字符串的长度， 返回的AStringBuf对象包含的字符串指针指向NULL。</para>
+    </return>
+<example>
+<pre>
+AStringBuf_&lt;20&gt; asbuf;
+AStringBuf_&lt;20&gt; assub;
+asbuf.Copy("123456789");  
+CConsole::WriteLine(asbuf);  //Display : "123456789"
+CConsole::WriteLine(asbuf.Substring(2,assub));  //Display : "3456789"
+CConsole::WriteLine(assub);  //Display : "3456789"
+</pre>
+</example> 
+ 
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Substring</ref_name>
+        <ref_url>index/Substring</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Insert</ref_name>
+        <ref_url>../Insert</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Replace</ref_name>
+        <ref_url>../Replace</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Substring</ref_name>
+        <ref_url>../../WStringBuf/Substring/index/Substring</ref_url>
+    </reference>
+</references>
+</manpage>

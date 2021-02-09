@@ -1,0 +1,52 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Device Driver Framework</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Device Description Information And Configuration</h2>
+        <p>Elastos&nbsp;2.0 kernel uses a device name (wide character string type)  and a device number (unsigned integer type) to uniquely identify a specific device instance. Here the "device", can be existing hardware device and also can be virtual device (fake device). Usually, device name identifies device type, device number identifies an instance of this type of device. For example: There exists two serial port device in the system, device name can be "com", the device number is 1 and 2. Thus, device name plus device number "1" uniquely represents the first serial port device. Device name "com" plus device number "2" uniquely represents the second serial port device. Please note: Device name is case sensitive. </p>
+        <p>All device names share the same name space in the system.Hence it must be globally unique. One device name can only uniquely correspond to one driver.The system uses device name to match corresponding driver. Device number that is passed to corresponding driver creation function (about driver creation function, is discussed in the article <a class="style1" href="IDriver_config.htm">"driver interface implementation and configuration"</a>) as parameter. One relatively special device number is DEVICENO_NONE, which represents that this type of device can be directly identified by device name.Device number is not necesary. </p>
+        <p>For system existing device, its information can be put into a global device configuration table statically. Kernel maintains an array <a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/global_var/g_deviceConfigs.htm">g_deviceConfigs</a> with <a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/data_structure/DeviceConfig.htm">struct&nbsp;DeviceConfig</a> as the element type for this global device configuration table. In addition a uint_t type global variable <a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/global_var/g_uNumberOfDeviceConfigs.htm">g_uNumberOfDeviceConfigs</a> is used to specify the size of this array.</p>
+        <p>Under normal conditions, the implementation of g_deviceConfigs and g_uNumberOfDeviceConfigs are located in $Elastos/src/kernel/drivers/arch/board/config/config.cpp .</p>
+        <p>Through standard kernel functionality interface <a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/method/RegisterDevice.htm">RegisterDevice()</a> function, you can dynamically register device information to the system. Cancel device information is done through standard kernel functionality interface <a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/method/UnregisterDevice.htm">UnregisterDevice()</a>.</p>
+        <p>For example, if system statically configures a mouse device and two IDE controller, then a possible implementation of g_deviceConfigs and g_uNumberOfDeviceConfigs are as the following: </p>
+        <pre class="code">
+// config.cpp
+…
+#define DEVICENAME_IDECONTROLLER  L"idecontroller"
+#define DEVICENAME_MOUSE      L"mouse"
+…
+//
+// Device Configurations
+//
+DECL_DATAINIT DeviceConfig g_deviceConfigs[] = {
+  …
+  { DEVICENAME_MOUSE, DEVICENO_NONE, NULL },
+  …
+  { DEVICENAME_IDECONTROLLER, 0, NULL },
+  { DEVICENAME_IDECONTROLLER, 1, NULL },
+  …
+};
+DECL_DATAINIT uint_t g_uNumberOfDeviceConfigs =
+lengthof(g_deviceConfigs);
+</pre>
+        <p>The possible implementation to register a keyboard device dynamically for the system,is as the following: </p>
+        <pre class="code">
+…
+#define DEVICENAME_KEYBOARD    L"keyboard"
+…
+ECODE ec = RegisterDevice(
+    DEVICENAME_KEYBOARD, DEVICENO_NONE, NULL）；
+…
+</pre>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_flushall">_flushall</sample>
+    <title>_flushall</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>清空所有的流，清空所有缓冲区</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_flushall</func_name>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>_flushall函数返回流(包括输入流和输出流)的个数.</para>
+    </return>
+
+    <remarks>
+        <para>默认情况下，_flushall函数将所有与输出流相关的缓冲区内容写入对应的文件中。所有与当前输入流相关的缓冲区内容将被清空（这些缓冲区通常由操作系统维护，操作系统选择恰当时间将这些数据写入磁盘：缓冲区满，流被关闭或一个程序正常终止）。如果一个读操作在调用_fluahall函数后被执行，那么新的数据将从输入文件中被读入缓冲区。所有的流在调用该函数后都保持打开状态。 </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_flushall</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _flushall.C: This program uses _flushall
+ * to flush all open buffers.
+ */
+
+#include &lt;stdio.h&gt;
+
+void main( void )
+{
+   int numflushed;
+
+   numflushed = _flushall();
+   printf( &quot;There were %d streams flushed\n&quot;, numflushed );
+}
+</pre>
+    </example>
+<result>
+There were 0 streams flushed</result>
+
+
+    <references>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fflush</ref_name>
+            <ref_url>fflush</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,53 @@
+<html>
+
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>aop_introduce</title>
+	</head>
+
+	<body>
+		<h2>简介</h2>
+		  <P>Car构件模型的面向方面程序设计技术的基本思想是将方面代码封装为方面构件类，并通过car构件间的聚合技术，动态的将方面构件类和普通构件类编织在一起。</P>
+		  <P>例如，如果我们要使得某个car构件对象具有链表功能，我们可以首先实现一个具有链表功能的方面构件类（aspect）如下：</P>
+<pre class=code>
+......
+interface ILink {
+    Next([out] ILink ** pNext);
+    Prev([out] ILink ** pPrev);
+}
+
+aspect ANode {
+     interface ILink;
+}
+</pre>
+      <P>然后，我们将这个方面构件类聚合到将一个对象中：</P>
+<pre class=code>
+......
+ANode::Attach(pObj);
+
+ILink * pNext=ILink: Probe(pObj);
+while (pNext) {
+   ......
+   pNext->Next(&pNext);
+}
+</pre>
+    <P>这样，pObj所指对象就具有了通过链表进行管理的能力。而这种能力对被聚合的对象来说是透明的，或者说“不知情”。ANode与被聚合的对象基本没有关系，保持着很高的独立性，被聚合对象也不会主动调用ANode。这种情况是aspect的典型用途。</P>
+    <P>由此可见，car的面向方面技术具有这样的技术特点：</P>
+    <h4>1）	基于构件级别</h4>
+    <P>可以将方面封装为单独的构件。</P>
+    <h4>2）	动态编织</h4>
+    <P>进行动态的编织，无需源代码。</P>
+    <P>实现基于构件级别的代码的动态插入，使构件能自由组合、扩展以及实现各种功能，从而使得用户能够在完全不用修改源代码的情况下简单而方便的复用多个CAR构件类，生成一个具有多个CAR构件类所有接口实现的新构件类。</P>
+    <P>CAR的面向方面程序设计技术主要包括包括方面封装技术以及方面拼装技术。</P>
+<pre>
+
+
+
+
+
+</pre>
+	</body>
+
+</html>

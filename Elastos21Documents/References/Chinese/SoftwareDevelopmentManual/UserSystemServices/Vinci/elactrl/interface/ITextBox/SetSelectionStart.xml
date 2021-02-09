@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITextBox</interface><method> SetSelectionStart </method>
+    <description>
+        <para>
+            设置选中文本的起始位置。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> position </param_name>
+                <param_note>
+                    <para>
+选中文本的起始位置</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+    	  该方法的成功调用会清除原选中文本的选中状态。选中指定的文本除了通过鼠标选中外，还可以通过该方法设置选中文本的起始位置后再通过 <link url="SetSelectionLength.htm">SetSelectionLength</link> 方法设置选中文本的长度来实现。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTextBox 类介绍</ref_name>
+        <ref_url>../../class/TextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITextBox 接口方法列表</ref_name>
+        <ref_url>../ITextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetSelectionStart</ref_name>
+        <ref_url>GetSelectionStart</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetSelectionLength</ref_name>
+        <ref_url>SetSelectionLength</ref_url>
+    </reference>
+</references>
+</manpage>

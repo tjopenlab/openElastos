@@ -1,0 +1,71 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+<manpage>
+<volume>Thread and Scheduling</volume>
+<interface>IThread</interface><method> GetFinishCode </method>
+    <description>
+        <para>
+			Gets the thread finish code (return value).
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT*  </param_type>
+                <param_name> pFinishCode </param_name>
+                <param_note>
+                    <para>
+                    	Pointer to the exit code for the thread.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value</td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>S_OK</td>
+		<td>0x00000000</td>
+		<td>Function succeeds in getting the thread finish code.</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALIDARG</td>
+		<td>0x80070057</td>
+		<td>Invalid argument(s).</td>
+		</tr>
+		<tr>
+		<td>E_FAIL</td>
+		<td>0x80004005</td>
+		<td>The thread is still running.</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+        	If <i>pFinishCode</i> is NULL, the return value is E_INVALIDARG. If the thread is not finished yet, 
+        	method returns E_FAIL. If thread exits abnormally (i.e. Abort), the obtained thread finish code is E_FAIL.
+	    	This method gets the code which is returned from the associated thread's exit.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

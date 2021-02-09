@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: IParameterMetaData接口参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>IParameterMetaData接口参考</h1><!-- doxytag: class="IParameterMetaData" -->该接口用于从一个PreparedStatement对象获取关于其参数类型和属性的信息描述。
+<a href="#_details">更多...</a>
+<p>
+<code>import &quot;<a class="el" href="database_8car-source.html">database.car</a>&quot;;</code>
+<p>
+
+<p>
+<a href="interface_i_parameter_meta_data-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_parameter_meta_data.html#2df58b3fa88f80af1cec896f485f6cbd">GetParameterCount</a> ([out] Int32 * count)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取PreparedStatement对象中的参数数量，该对象含有ParameterMetaData对象的参数信息的描述。  <a href="#2df58b3fa88f80af1cec896f485f6cbd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_parameter_meta_data.html#615efcd6ed67e0eaf8de58e9f39c22ce">GetParameterIndex</a> ([in] WString name,[out] Int32 * index)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取指定名字的参数索引值。  <a href="#615efcd6ed67e0eaf8de58e9f39c22ce"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_parameter_meta_data.html#7e8447eea7108fe9b8c2b7ae29ced4ea">GetParameterName</a> ([in] Int32 index,[out] WStringBuf * name)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取预处理语句中指定索引的参数的参数名。 ":AAA"、""或"$VVV"形式的参数将返回":AAA" or "@AAA" or "$VVV"形式的字符串。 换句话说，前面的":"、"$"或"@"被当作名字的一部分被包含。 "?"或"?NNN"类型的参数没有名字。  <a href="#7e8447eea7108fe9b8c2b7ae29ced4ea"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+该接口用于从一个PreparedStatement对象获取关于其参数类型和属性的信息描述。
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l01299">1299</a>行定义。</p>
+<hr><h2>成员函数文档</h2>
+<a class="anchor" name="2df58b3fa88f80af1cec896f485f6cbd"></a><!-- doxytag: member="IParameterMetaData::GetParameterCount" ref="2df58b3fa88f80af1cec896f485f6cbd" args="([out] Int32 *count)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IParameterMetaData::GetParameterCount           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>count</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取PreparedStatement对象中的参数数量，该对象含有ParameterMetaData对象的参数信息的描述。
+<p>
+当参数为":AAA" or "?"形式,则会将其转化成以1开始的连续增长的数值， 因此该函数的返回值是参数编号。 然而，如果有个参数名出现多次，则这些参数将被赋予相同的数值，所以这种情况下的返回值为具有唯一名字的参数数量。 如果参数的形式为"?NNN"(NNN是一个整型数值)，则接口的返回为最大的参数索引。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>count</em>&nbsp;</td><td>- 参数数量。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="615efcd6ed67e0eaf8de58e9f39c22ce"></a><!-- doxytag: member="IParameterMetaData::GetParameterIndex" ref="615efcd6ed67e0eaf8de58e9f39c22ce" args="([in] WString name,[out] Int32 *index)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IParameterMetaData::GetParameterIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>index</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取指定名字的参数索引值。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>esName</em>&nbsp;</td><td>- 参数名 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>index</em>&nbsp;</td><td>- 参数索引值，第一个参数的索引值为1. 如果一个参数名出线多次，则全部被赋予同一个数值。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="7e8447eea7108fe9b8c2b7ae29ced4ea"></a><!-- doxytag: member="IParameterMetaData::GetParameterName" ref="7e8447eea7108fe9b8c2b7ae29ced4ea" args="([in] Int32 index,[out] WStringBuf * name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IParameterMetaData::GetParameterName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>name</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取预处理语句中指定索引的参数的参数名。 ":AAA"、""或"$VVV"形式的参数将返回":AAA" or "@AAA" or "$VVV"形式的字符串。 换句话说，前面的":"、"$"或"@"被当作名字的一部分被包含。 "?"或"?NNN"类型的参数没有名字。
+<p>
+第一个参数的索引为1.<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>index</em>&nbsp;</td><td>- 参数的索引，第一个参数的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>- 参数名。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<hr>该接口的文档由以下文件生成：<ul>
+<li><a class="el" href="database_8car-source.html">database.car</a></ul>
+<script>footer("chinese")</script>
+</body>
+</html>

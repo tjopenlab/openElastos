@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    
+    <volume> 常用数据结构 </volume>
+    <interface>BufferOf</interface>
+    <method>Clone </method>
+
+    <description>
+        <para>获取一个BufferOf对象的深拷贝，即在堆上复制BufferOf数组。</para>
+    </description>
+    <syntax_nopara>
+        <return_val>BufferOf *  </return_val>
+        <modifier>const</modifier>
+        <NoArguments/>
+    </syntax_nopara>
+     <return>
+        <para>返回一个指向BufferOf对象的指针。</para>
+    </return>
+    <remarks>
+        <para>本函数会调用函数malloc为要拷贝的BufferOf分配内存，然后把源对象的内容拷贝到分配的内存中。</para>
+    </remarks>
+    <remarks>
+        <para> 在使用Clone函数创建BufferOf数组后，一定要调用BufferOf::Free来释放这些对象所占用的内存空间。 </para>
+    </remarks>
+<example>
+<pre>
+BufferOf&lt;Int8&gt; *MyArray = BufferOf&lt;Int8&gt;::Alloc(16);
+MyArray->SetUsed(10);
+BufferOf&lt;Int8&gt; *MyArray1 = MyArray->Clone();
+CConsole::WriteLine(MyArray1->GetCapacity());  //Display : 16
+CConsole::WriteLine(MyArray1->GetUsed());  //Display : 10
+CConsole::WriteLine(MyArray1->GetAvailableSpace());  //Display : 6    	
+BufferOf&lt;Int8&gt;::Free(MyArray);
+BufferOf&lt;Int8&gt;::Free(MyArray1);
+</pre>
+</example>
+
+
+<references>
+    <reference>
+        <ref_name>BufferOf</ref_name>
+        <ref_url>../BufferOf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>BufferOf::Free </ref_name>
+        <ref_url>Free</ref_url>
+    </reference>
+</references> 
+
+
+</manpage>

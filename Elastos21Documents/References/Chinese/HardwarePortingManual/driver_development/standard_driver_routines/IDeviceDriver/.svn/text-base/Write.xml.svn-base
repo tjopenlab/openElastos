@@ -1,0 +1,85 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>标准驱动程序</volume>
+<interface>IDeviceDriver</interface><method> Write  </method>
+    <description>
+        <para>
+            向设备写数据。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int64  </param_type>
+                <param_name> buffer  </param_name>
+                <param_note>
+                    <para>
+                        写入设备的偏移值，本参数对于存储类设备（如硬盘）来说，跟扇区相关
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> MemoryBuf </param_type>
+                <param_name> bytesWritten  </param_name>
+                <param_note>
+                    <para>
+                        要写入设备的数据缓冲区
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32*  </param_type>
+                <param_name> pNumberOfBytesWritten  </param_name>
+                <param_note>
+                    <para>
+                        实际写入设备的数据的大小的指针
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IEvent**  </param_type>
+                <param_name> ppCompletionEvent </param_name>
+                <param_note>
+                    <para>
+                        指向一个IEvent接口指针变量，用来存放所获取的操作同步事件对象的接口指针。参见IEvent接口。当本方法被实现为异步调用时，本操作同步事件对象可以被用来进行调用间同步。目前本参数尚未被支持。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值 </td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>方法调用成功</td>
+            </tr>
+            <para>参见<link url="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+        </table>
+        <para>参见<link url="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>
+            本方法将data中的数据写进设备偏移值为offset的地方。
+            调用成功，返回NOERROR。
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+</manpage>

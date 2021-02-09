@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_mktemp">_mktemp</sample>
+    <title> _mktemp</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>创建一个唯一的文件名。</para>
+    </description>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <func_name>_mktemp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char *</param_type>
+                <param_name>template</param_name>
+                <param_note>
+                    <para>文件名样式</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_mktemp函数返回一个指向修改模板的指针。如果该模板不正确，或无法创建由模板template指定的更多的唯一文件，则返回NULL。</para>
+    </return>
+
+    <remarks>
+        <para>函数通过修改参数template，创建一个唯一的文件名。在当前的运行时系统中，_mktemp函数依据多字节代码页，自动处理多字节字符串参数，作为适当的多字节字符序列。</para>
+        <para>参数template的形式为：baseXXXXXX；其中base是指定新文件名的一部分，每一个‘X’都是一个占位符。在template中，每个占位符必须使用大写的‘X’。_mktemp保留base，并按照字母排列顺序替换base随后的第一个‘X’（first trailing X）。_mktemp提供一个五位数（five-digit）替换XXXXXX中的后5个占位符‘X’，这五位数是识别该进程，或者是在多线程程序中的某线程的一个唯一的数字。</para>
+        <para>每次成功的调用_mktemp函数都修改template。在同一个进程或线程中，随后调用_mktemp函数，使用相同的参数template，_mktemp将检查该文件名与前面调用时返回的文件名是否匹配。如果相对于前次调用返回的结果，该文件不存在，则返回该文件名；如果与前面所有调用返回的结果比较，该文件已经存在，_mktemp将按照从‘a’到‘z’的次序检索到没有使用的字母，创建一个新的文件名。</para>
+        <para>例如：如果base为fn，_mktemp提供的五位数（five-digit）为12345，则返回的第一个名字为：</para>
+        <para>fna12345</para>
+        <para>如果这个名字已经用于创建文件FNA12345，并且该文件仍旧存在，那么，在同一进程或线程中调用将返回：</para>
+        <para>fnb12345</para>
+        <para>如果FNA12345不存在，则下一个返回仍旧是：</para>
+        <para>fna12345</para>
+        <para>_mktemp最多可以根据指定的base以及临时数字，创建26个唯一文件名。因此，在这个例子中，FNZ12345是最后一个_mktemp可以创建的唯一的一个文件名。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_mktemp</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _mktemp.cpp: The program uses _mktemp to create
+ * five unique filenames. It opens each filename
+ * to ensure that the next name is unique.
+ */
+
+#include &lt;io.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+char *tempplate = &quot;fnXXXXXX&quot;;
+char *result;
+char names[5][9] = {NULL};
+
+int main()
+{
+    int i;
+    FILE *fp;
+
+    for (i = 0; i &lt; 5; i++) {
+        strcpy(names[i], tempplate);
+        /* Attempt to find a unique filename: */
+        result = _mktemp(names[i]);
+        if (result == NULL)
+            printf(&quot;Problem creating the template&quot;);
+        else {
+            if ((fp = fopen(result, &quot;w&quot;)) != NULL)
+                printf(&quot;Unique filename is %s\n&quot;, result);
+            else
+                printf(&quot;Cannot open %s\n&quot;, result);
+            fclose(fp);
+        }
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Unique filename is fna13408
+Unique filename is fnb13408
+Unique filename is fnc13408
+Unique filename is fnd13408
+Unique filename is fne13408
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>_wopen</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_read</ref_name>
+            <ref_url>_read</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\ispunct">ispunct iswpunct</sample>
+    <title>ispunct iswpunct</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>判断一个字符是否为标点符号。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>ispunct</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>待判断的字符</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>iswpunct</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+              
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果c是一个非空格字符或isalnum不为真的字符,则ispunct返回一个非0值。如果c是一个非空格宽字符或iswalnum不为真的宽字符的可打印字符的宽字符,则iswpunct返回一个非0值。如果c不满足这个测试条件则函数返回0。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>ispunct</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>iswpunct</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ispunct.cpp: This program uses ispunct to verify c
+ * whether it is a punctuation character.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+{
+    int c = 36;
+    if (ispunct(c)) {
+        printf(&quot;it is a punctuation character.\n&quot;);
+    }
+    else {
+        printf(&quot;it is not a punctuation character.\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+it is a punctuation character.
+</result>
+
+
+
+</manpage>

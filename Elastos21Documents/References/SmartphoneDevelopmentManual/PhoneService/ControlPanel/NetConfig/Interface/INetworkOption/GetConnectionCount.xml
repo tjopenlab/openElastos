@@ -1,0 +1,53 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>INetworkOption</interface><method> GetConnectionCount </method>
+    <description>
+        <para>
+           获得当前已经存储的网络配置的总数
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pnCount </param_name>
+                <param_note>
+                    <para>
+                       指向INT类型的指针，用于返回的网络配置的总数
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述 </td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功 </td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误 </td>
+	        </tr>
+	        <tr>
+	    	    <td>数据库错误码 </td>
+	    	    <td>数据库操作错误 </td>
+	        </tr>
+	    </table>
+</return>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.1》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

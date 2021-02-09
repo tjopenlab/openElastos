@@ -1,0 +1,69 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="time\Delay">Delay</sample>
+    <volume>Thread and Scheduling</volume>
+    <title>Delay</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>Makes the current thread delay for a specific time. </para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> uint_t </param_type>
+                <param_name> uMicroseconds </param_name>
+                <param_note>
+                    <para>The specified time span to delay, in microseconds. </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<para>None </para>
+    </return>
+
+    <remarks>
+        <para>
+            If the actual delay time has exceeded the specified time, the current thread will stop delaying and return 
+            from the function. While in delay, the thread will keep running and will not give up the processor. 
+        </para>
+        <para>
+        	As the kernel is preemptive, the thread could be prempted by other threads. So the acutal 
+        	execution time of the thread may be more than the specified time. This depends on the actual thread 
+        	scheduling. 
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>Sleep</ref_name>
+            <ref_url>Sleep</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Sleep</ref_name>
+            <ref_url>SleepTicks</ref_url>
+        </reference>
+    </references>
+  
+
+</manpage>

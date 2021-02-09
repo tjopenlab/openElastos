@@ -1,0 +1,125 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Directory Object Interface</volume>
+<interface>IBasicDirectory</interface><method> CreateFile </method>
+    <description>
+        <para>
+        	Creates a file in the current directory object.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>
+						The name of the file to be created. <i>name</i> must be the file name and should not 
+						include path separator '/'.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum FileAccessMode </param_type>
+                <param_name> cmode </param_name>
+                <param_note>
+                    <para>
+						The  access mode of the file to be created.
+                            FileAccessMode_Read means the file is readable;
+        	                FileAccessMode_Write means the file is writable;
+                            FileAccessMode_ReadWrite means the file is readable and writable.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> BOOL </param_type>
+                <param_name> bExclusive </param_name>
+                <param_note>
+                    <para>
+						If <i>bExclusive</i> is set as TRUE and the file exists, function returns E_FAIL with 
+						<i>piBasicFile</i> as NULL. If <i>bExclusive</i> is set as FALSE and file exists,
+						function returns NO_ERROR with <i>piBasicFile</i> as the interface pointer to the existing
+						file object.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IBasicFile** </param_type>
+                <param_name> piBasicFile </param_name>
+                <param_note>
+                    <para>
+						Returns interface pointer to the newly created file object if the function succeeds, 
+						otherwise NULL.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value </td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>S_OK</td>
+		        <td>Function succeeds in creating new file.</td>
+	        </tr>
+	        <tr>
+		        <td>E_INVALIDARG</td>
+		        <td>Parameter name is NULL or parameter piBasicFile is NULL.</td>
+	        </tr>
+	        <tr>
+		        <td>E_OUTOFMEMORY</td>
+	    	    <td>Not enough memory, file object creation fails.</td>
+	        </tr>
+	        <tr>
+	    	    <td>ECODE_FROM_ERRNO(ENOENT)</td>
+	    	    <td>Directory pointed to by directory pointer does not exist.</td>
+	        </tr>
+	        <tr>
+	    	    <td>ECODE_FROM_ERRNO(EEXIST)</td>
+	    	    <td>When parameter bExclusive is TRUE, file or directory with the same name exists.</td>
+	        </tr>
+	        <tr>
+	    	    <td>ECODE_FROM_ERRNO(EISDIR)</td>
+	    	    <td>When bExclusive is FALSE, directory with the same name exists.</td>
+	        </tr>
+	        <tr>
+	    	    <td>ECODE_FROM_ERRNO(EINVAL)</td>
+	    	    <td>Illegal character(s) in file name.</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../../reference/basic_data_type/hresult.htm">ECODE</link> related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			Release <i>piBasicFile</i> by calling piBasicFile->Release(); to avoid memory leak.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

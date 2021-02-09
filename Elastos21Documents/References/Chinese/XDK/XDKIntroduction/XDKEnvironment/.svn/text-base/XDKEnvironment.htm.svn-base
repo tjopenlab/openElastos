@@ -1,0 +1,59 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>XDK的编译环境</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>XDK的开发环境</h2>
+        <p>Elastos本身并不提供编译器，在不同的编译环境使用的是不同的编译器和相关工具。GNU ARM编译工具链是XDK平台上基于ARM的默认编译工具（我们对部分工具进行了修改），而Microsoft的Visual C++(MSVC)则是XDK平台上基于X86的默认编译器。在XDK平台上基于ARM和X86 CPU也可以使用MinGW的GNU C(C++)编译器。</p>
+	<h3>XDK的开发环境说明</h3>
+	<p>XDK提供了不同的编译环境，并提供与编译环境相对应的快捷方式（参见：<a class="style1" href= "..\XDKStruture\Devkit\misc\misc.htm#misc">shortcuts目录结构</a>），用户可以通过打开不同的快捷方式来选择相应的编译工具、运行平台和目标板卡的开发环境：使用GNU的开发环境、使用EVC的开发环境和使用MSVC的开发环境。</p>
+	<h3>定义当前的开发环境</h3>
+	<p>XDK通过配置环境来设置环境特征:不同的快捷方式确定了相应的编译工具集和宿主操作系统，快捷方式启动的设置环境的批处理通过环境变量确定选取某个配置文件，配置文件中设置所需开发环境的具体特征，配置文件目录在XDK\DevKit\misc\config下，任何一个具体的环境都由相应的配置文件对应</p>
+	<p>配置文件通过以下环境变量设置特征：</p>
+	  <ul>
+	  <li>XDK_TARGET_PLATFORM
+    <li>XDK_TARGET_CPU
+    <li>XDK_COMPILER
+    <li>XDK_TARGET_BOARD
+    <li>XDK_TARGET_FORMAT
+    <li>XDK_TARGET_PRODUCT
+  </ul>
+<p>注：编译等操作产生的镜像目录和Targets目录就是根据这些环境变量建立的</p>
+<h3>DDK/PDK/SDK</h3>
+<p>三种开发环境均使用WINDOWS命令行窗口（DOS-BOX),通过相应的快捷方式图标执行指定的批处理文件来设置开发环境。默认打开的开发环境是DDK，可以通过chv.bat进行其他环境的切换.</p>
+
+	<p>用户可以通过2种途径改变XDK的版本：</p>
+	<ul>
+	  <li>直接修改usr.bat（在DevKit\misc目录下）中设置的环境变量值相应的值来来修改默认的打开方式，如下
+	  <p>set XDK_VERSION=dbg</p>
+    <p>   set XDK_PACKAGE=ddk
+</p>
+	  <li>通过chv.bat进行版本间的自动切换，通过指定的参数切换到相应的版本,环境，产品以及板卡
+	  <li>如果是切换到产品，则会有默认的板卡相对应，如果是切换到板卡，环境工具chv则会自动搜索是哪个产品下的板卡，自动切换到相应产品的相应板卡
+	  <li>可以通过chv,chv /?,chv -?查看具体可切换信息
+	 <p>开发环境间的切换命令chv.bat</p>
+    <ol>
+    <li> chv dbg/opt/pre/rls
+    <li> chv ddk/pdk/sdk
+    <li> chv Product1
+    <li> chv Board1
+   </ol>
+	  </ul>
+	  <p><b>注:</b>其中dbg,opt,pre,rls是XDK4种编译版本。</p>
+	  <ul>
+	  <li>dbg：没有优化，包含调试信息。
+	  <li>opt：全局优化，包含调试信息。
+	  <li>pre：定制优化，包含调试信息。
+	  <li>rls：全局优化，不包含调试信息。
+	  </ul>
+	  <p>一般开发只需要使用dbg 和 rls版本。</p>
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_chmod">_chmod</sample>
+    <title> _chmod, _wchmod </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>修改文件的权限。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_chmod</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>指向文件名的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+                <param_note>
+                    <para>设定的权限</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wchmod</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果文件的权限已经设定，则返回0；如果文件不存在或者与给定的权限不一致，则返回-1，此时，错误号被设置为ENOENT，表示没有找到相匹配的文件。</para>
+    </return>
+
+    <remarks>
+        <para>_chmod函数通过文件名改变文件的权限。文件权限决定文件是可读还是可写的。pmode是由一个或两个下列常量（定义在fcntl.h中）或其组合形成的整数表达式:</para>
+        <table>
+    	    <th>
+    	        <td>参数值</td>
+    	        <td>描述</td>
+    	    </th>
+            <tr>
+                <td>_S_IREAD</td>
+                <td>只允许读</td>
+            </tr>
+            <tr>
+                <td>_S_IWRITE</td>
+                <td>只允许写（效果上相当于允许读和写）</td>
+            </tr>
+            <tr>
+                <td>_S_IREAD | _S_IWRITE</td>
+                <td>允许读和写</td>
+            </tr>
+   	    </table>
+   	    <para>当给出两个常量时，使用位逻辑运算符或操作符（|）将它们连在一起。在Elastos中，所有文件都是可读的，故“只允许写”并不真正生效；所以_S_IWRITE和_S_IREAD | _S_IWRITE实际上是等效的。</para>
+        <para>_wchmod是_chmod的宽字节形式。_wchmod函数的filename参数是一个宽字符串。其它方面_wchmod与_chmod一样。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_chmod</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wchmod</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _chmod.cpp: This program uses _chmod to
+ * change the mode of a file to read-only.
+ * It then attempts to modify the file.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;fcntl.h&gt;
+
+
+int main()
+{
+    /* Make file read-only: */
+    if (_chmod(&quot;_chmod.exe&quot;, _S_IREAD) == -1)
+        perror(&quot;File not found\n&quot;);
+    else
+        printf(&quot;Mode changed to read-only\n&quot;);
+
+    /* Change back to read/write: */
+    if (_chmod(&quot;_chmod.exe&quot;, _S_IWRITE) == -1)
+        perror(&quot;File not found\n&quot;);
+    else
+        printf(&quot;Mode changed to read/write\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Mode changed to read-only
+Mode changed to read/write
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_open</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_access</ref_name>
+            <ref_url>_waccess</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_creat</ref_name>
+            <ref_url>_wcreat</ref_url>
+        </reference>
+    </references>
+
+</manpage>

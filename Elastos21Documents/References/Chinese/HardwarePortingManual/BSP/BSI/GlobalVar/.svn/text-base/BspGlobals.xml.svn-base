@@ -1,0 +1,117 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>板卡支持接口</volume>
+    <types>BspGlobals</types>
+
+    <description>
+        <para> 板卡支持包定义的，提供给内核使用的全局变量 </para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type>char *</mem_type>
+            <mem_name>szCpuDescription</mem_name>
+            <mem_description>指向一个包含特定处理器描述信息的字符串的指针</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>char *</mem_type>
+            <mem_name>szBoardDescription</mem_name>
+            <mem_description>指向一个包含特定板卡描述信息的字符串的指针</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>physaddr_t</mem_type>
+            <mem_name>paKernelPhysBase</mem_name>
+            <mem_description>内核所使用的物理内存基地址</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>physaddr_t</mem_type>
+            <mem_name>paKernelImagePhysBase</mem_name>
+            <mem_description>内核映像文件所占用的物理内存基地址</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>MemoryZone *</mem_type>
+            <mem_name>pMemoryZones</mem_name>
+            <mem_description>指向物理内存区数组的指针，具体参见<a class="style1" href="../data_structure/MemoryRegion.htm">MemoryZone</a>结构</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t</mem_type>
+            <mem_name>uNumberOfMemoryZones</mem_name>
+            <mem_description>物理内存区的总数，即为<a class="style1" href="pMemoryZones.htm">pMemoryZones</a>数组的有效长度</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>MemoryHole *</mem_type>
+            <mem_name>pMemoryHoles</mem_name>
+            <mem_description>指向物理内存空洞区数组的指针，具体参见<a class="style1" href="../data_structure/MemoryRegion.htm">MemoryHole</a>结构</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t</mem_type>
+            <mem_name>uNumberOfMemoryHoles</mem_name>
+            <mem_description>物理内存空洞区的总数，即为memoryHoles数组的有效长度</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t</mem_type>
+            <mem_name>uDmaPreferredZoneNo</mem_name>
+            <mem_description>DMA首选的物理内存区号，当为了使用DMA传输数据而需要分配物理内存的时候，将优先从此变量所指定的物理内存区中分配</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t</mem_type>
+            <mem_name>uKernelPreferredZoneNo</mem_name>
+            <mem_description>内核首选的物理内存区号，当内核本身需要分配物理内存的时候，将优先从此变量所指定的物理内存区中分配</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t</mem_type>
+            <mem_name>uUserPreferredZoneNo</mem_name>
+            <mem_description>用户首选的物理内存区号，当用户进程需要分配物理内存的时候，将优先从此变量所指定的物理内存区中分配</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>MemoryRegion</mem_type>
+            <mem_name>regionOfInitStack</mem_name>
+            <mem_description>初始化栈所在的物理内存区域，具体参见<a class="style1" href="../data_structure/MemoryRegion.htm">MemoryRegion</a>结构</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>BootModule *</mem_type>
+            <mem_name>pBootModules</mem_name>
+            <mem_description>指向引导模块数组的指针，具体参见<a class="style1" href="../data_structure/BootModule.htm">BootModule</a>结构</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t</mem_type>
+            <mem_name>uNumberOfBootModules</mem_name>
+            <mem_description>引导模块的总数，即为pBootModules所指向的引导模块数组的有效长度</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>MemoryRegion</mem_type>
+            <mem_name>regionOfBootModules</mem_name>
+            <mem_description>引导模块所占的物理内存区域</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>char *</mem_type>
+            <mem_name>szBootCommandLine</mem_name>
+            <mem_description>指向系统引导命令行字符串指针，该字符串包含了内核定义的可设置的系统引导参数，如果不包含任何系统引导参数，该szBootComandLine可以为NULL</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint32_t</mem_type>
+            <mem_name>uIrqBase</mem_name>
+            <mem_description>中断请求的中断向量基值，目前此变量仅在x86硬件平台上有效</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t</mem_type>
+            <mem_name>uNumberOfIrqs</mem_name>
+            <mem_description>板卡所支持的中断请求的总数</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>irq_t</mem_type>
+            <mem_name>irqOfPIT</mem_name>
+            <mem_description>定时器的中断号</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>ipl_t</mem_type>
+            <mem_name>iplOfPIT</mem_name>
+            <mem_description>定时器的中断优先级</mem_description>
+        </struct_member>
+                                
+              
+        
+    </struct>
+</manpage>

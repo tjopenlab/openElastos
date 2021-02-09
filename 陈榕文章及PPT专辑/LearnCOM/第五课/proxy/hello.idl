@@ -1,0 +1,14 @@
+import "oaidl.idl";
+
+[ object, uuid(a714fb6b-63c2-4996-b6e6-88dbb78d56aa) ]
+interface IHello : IUnknown
+{   
+    HRESULT Hello([in] BSTR inStr, [out] BSTR * outStr);
+}
+
+[ uuid(a714fb6c-63c2-4996-b6e6-88dbb78d56aa) ]
+coclass CHello {
+    interface IHello;
+}
+cpp_quote("EXTERN_C const CLSID CLSID_CHello;")
+

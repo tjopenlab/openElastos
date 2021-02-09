@@ -1,0 +1,42 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Time</volume>
+<interface>Timer</interface><method> GetResidualTicks </method>
+    <description>
+        <para>
+            Gets the remaining time before the Timer object times-out.
+        </para>
+    </description>
+    <syntax>
+        <return_val> uint_t </return_val>
+        <NoArguments/>
+    </syntax>
+
+	<return>
+	    <para>
+	    	Remaining time before the Timer object times-out, in ticks.
+	    </para>
+    </return>
+
+	<remarks>
+		<para>
+			This member function is used to get the remaining time before the Timer object times-out. Before invoking 
+			<b>GetSurplusTicks</b>, we must make sure that Timer object is cancelled, otherwise, it may cause 
+			unpredictable results. At this moment, if the Timer time-out period is not expired,then it returns the 
+			remaining time before the Timer object times-out. If the timer is already timed-out, this method returns 
+			zero.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

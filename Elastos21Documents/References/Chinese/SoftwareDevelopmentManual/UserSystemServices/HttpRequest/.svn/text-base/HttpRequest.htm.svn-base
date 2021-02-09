@@ -1,0 +1,42 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>HttpRequest</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>HttpRequest</b></h2></center>
+<small><p><b>头文件：</b>HttpRequest.h
+<p><b>程序库：</b>HttpRequest.dll
+（<b>备注：</b>当在 CAR 文件中通过 <a class="doxygen" href="../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a> 引入 HttpRequest.dll 时，则无需在源文件中添加“include &lt;HttpRequest.h&gt;”该句；若 HttpRequest.dll 是在 sources 文件中引入的，则需要在源文件中添加“include &lt;HttpRequest.h&gt;”该句。有关更多信息请参考：<a class="doxygen" href="../../../../../car_technology/car.htm">CAR 编程入门</a>）</small>
+<hr size="1">
+<h4><li><b>详细描述：</b></h3>
+    <p>HttpRequest 提供了客户端同服务器通过 HTTP(Hypertext Transfer Protocol) 协议发送或接收 数据的一套 API。客户端可以通过 HttpRequest 对象向 HTTP 服务器发送请求。HttpRequest 的用处是可以在页面已加载后从服务器请求数据、在页面已加载后从服务器接收数据、在后台向服务器发送数据。
+<p>HttpRequest 对象把一个 HTTP 请求发送到服务器所经历的必要过程：1. 创建 HttpRequest 对象；2. 初始化该对象（<a class="doxygen" href="interface/IHttpRequest/Open.htm">Open</a>）；3. 发送 HTTP 请求（<a class="doxygen" href="interface/IHttpRequest/Send.htm">Send</a>）。客户端通过 Get 方法从服务器接收响应数据。
+<p>HttpRequest 与服务器通信有两种方式：同步方式和异步方式。<!--同步方式的调用非常简单，但是仅仅适用于数据量非常少的场合。如果数据量很大，会造成用户界面很长一段时间的停顿，这当然会损害 Web 应用的可用性。为了不影响可用性，应用中一般都使用异步方式来与服务器通信。-->通过 <a class="doxygen" href="interface/IHttpRequestEx/Open.htm">Open</a> 方法或 <a class="doxygen" href="interface/IHttpRequestEx/OpenW.htm">OpenW</a> 方法的第三个参数可以设置同步和异步方式。
+<p>响应数据的接收可以通过 <a class="doxygen" href="interface/IHttpRequest/GetResponseBody.htm">GetResponseBody</a>、<a class="doxygen" href="interface/IHttpRequest/GetResponseText.htm">GetResponseText</a> 或 <a class="doxygen" href="interface/IHttpRequest/GetResponseStream.htm">GetResponseStream</a> 方法，若用户通过 <a class="doxygen" href="interface/IHttpRequestEx/SetResponseStream.htm">SetResponseStream</a> 方法设置了保存响应数据的文件，则之前的三个方法的调用将失效。
+<hr size="1">
+<h4><li><b>CHttpRequest 类封装图：</b></font></h4>
+<center> <img src="image/CHttpRequest.jpg"> </center>
+        <p>如图所示，JHTTPRequestEvents 为回调事件接口。具体 Callbak 机制的介绍，详见 Elastos 编程入门中 Callback 这节。
+        <p>当使用 <a class="doxygen" href="CHttpRequest/CHttpRequest_New.htm">New</a> 方法创建了一个 HttpRequest 对象后，可以获得 <a class="doxygen" href="interface/IHttpRequest.htm">IHttpRequest</a> 接口指针，通过该接口指针用户可以调用接口内的方法实现客户端与服务器端间的通讯。<a class="doxygen" href="interface/IHttpRequestEx.htm">IHttpRequestEx</a> 接口可以通过 IHttpRequest 接口 probe 出，用于发送宽串格式数据。
+
+<hr size="1">
+<h4><li><b>构造函数：</b></font></h4>
+<ul><table>
+<thead><td>名称</td><td class="memitem">说明</td></thead>
+<tr><td><a class="doxygen" href="CHttpRequest/CHttpRequest_New.htm">CHttpRequest::New</as></td><td>创建一个 HttpRequest 对象</td></tr>
+</table></ul>
+<h4><li><b><a class="doxygen" href="interface/IHttpRequest.htm">IHttpRequest 接口方法列表</a></b></font></h4>
+<h4><li><b><a class="doxygen" href="interface/IHttpRequestEx.htm">IHttpRequestEx 接口方法列表</a></b></font></h4>
+<h4><li><b><a class="doxygen" href="interface/HttpRequestEvents.htm">HttpRequest 回调事件列表</a></b></font></h4>
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

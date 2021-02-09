@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>Elastos网络编程接口（elasock API）</volume>
+    <types>in_addr</types>
+    <routine_idx> ElastosSocketIndex.htm </routine_idx>
+
+    <description>
+        <para>该结构体用以描述主机地址格式。</para>
+    </description>
+
+    <struct>
+        <embeded_struct>
+            <embeded_struct_name>S_un</embeded_struct_name>
+            <embeded_struct_type>union</embeded_struct_type>
+            <embeded_struct_member>
+                <mem_type>struct { u_char s_b1, s_b2, s_b3, s_b4; }</mem_type>
+                <mem_name>S_un_b</mem_name>
+                <mem_description>4个u_char型数据表示的主机地址格式</mem_description>
+            </embeded_struct_member>
+            <embeded_struct_member>
+                <mem_type>struct { u_short s_w1,s_w2; }</mem_type>
+                <mem_name>S_un_w</mem_name>
+                <mem_description>2个u_shorts型数据表示的主机地址格式</mem_description>
+            </embeded_struct_member>
+            <embeded_struct_member>
+                <mem_type>u_long</mem_type>
+                <mem_name>S_addr</mem_name>
+                <mem_description>1个u_long型数据表示的主机地址格式</mem_description>
+            </embeded_struct_member>
+        </embeded_struct>
+    </struct>
+</manpage>

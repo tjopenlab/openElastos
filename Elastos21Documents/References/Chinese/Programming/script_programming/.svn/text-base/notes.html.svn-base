@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>XmlGlue:XmlGlue</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="Script_Language.html"><span>XmlGlue支持的脚本语言</span></a></li>
+    <li class="current"><a href="XmlGlue_CAR.html"><span>脚本中的CAR构件及其使用</span></a></li>
+    <li><a href="XmlGlue_Globals.html"><span>预定义对象</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="XmlGlue_CAR.html"><span>脚本中的CAR构件类型</span></a></li>
+    <li><a href="CAR_usage.HTML"><span>CAR构件在脚本中的使用</span></a></li>
+    <li ><a href="method_usage.html"><span>在脚本中使用构件函数</span></a></li>
+    <li class="current"><a href="notes.html"><span>脚本编程中的注意事项</span></a></li>
+  </ul>
+</div>
+<h1>脚本编程中的注意事项</h1>
+<p>
+<html>
+<head>
+<title>脚本编程中的注意事项</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<h2>在脚本中使用枚举类型</h2>
+<p>当在脚本中使用枚举类型的参数时，请先确认已通过manifest.xml的<a href="../xml_programming/module.html">module</a>标签加载该枚举类型所在的构件模块xxx.dll。再通过脚本中此构件模块的变量名(ModuleName)，枚举类型名，成员变量名的组合就可以使用枚举类型了。特殊地，对于Elastso系统构件：ElGrafix,ElControls,用户不必在manifest.xml中声明这两个模块，可在脚本中直接使用它们各自的别名（alias
+	)：Grafix,Controls。具体使用如下。
+<p>若其中枚举类型定义如下：
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>
+enum EnumName {
+	EnumName_Member1&nbsp;Value1
+	EnumName_Member2&nbsp;Value2
+	…
+}
+</td></tr></table>
+<p>如使用图形控件构件ElControls中Bounds枚举类型的参数，可以按如下方法使用。
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>
+value=Controls.Bounds.X
+</td></tr></table>	
+<p>即对于函数中的枚举类型参数，可以将此参数的值写成ModuleName.EnumName.Member1，即<i>脚本中构件模块的别名.枚举类型名.成员变量名</i>。
+<p>
+</body>
+</html>
+ <script>footer("chinese")</script>
+
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\isalpha">isalpha</sample>
+    <title>isalpha iswalpha</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>判断一个字符是否为字母（A – Z 或 a – z）。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>isalpha</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>需要判断的字符</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>iswalpha</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                
+            </func_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>如果c在A-Z或a-z的范围内,则isalpha返回一个非0值。iswalpha仅对于iswupper或iswlower为真的宽字符,(也就是,对于iswcntrl,iswdigit,iswpunct或iswspace都不为真的定义集之一的任何字符)返回非0值。如果c不满足这个测试条件则函数返回0。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>isalpha</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>iswalpha</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* isalpha.cpp: This program uses isalpha to verify c
+ * whether it is an alphabetic letter(A – Z or a – z).
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+{
+    int c = 67;
+    if (isalpha(c)) {
+        printf(&quot;the character is an alphabetic letter !\n&quot;);
+    }
+    else {
+        printf(&quot;the character is not an alphabetic letter !\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+the character is an alphabetic letter !
+</result>
+
+
+
+</manpage>

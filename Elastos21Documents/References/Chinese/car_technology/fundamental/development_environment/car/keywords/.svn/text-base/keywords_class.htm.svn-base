@@ -1,0 +1,57 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--class </title>
+</head>
+
+<body>
+	<h2>class</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于在构件中定义普通构件类。 </p>
+	
+	    <b>语法 </b>
+	    	<p><b>class</b> ClassName ClassBody;  </p>
+	    <b>使用说明 </b>
+	        <p>1.类名必须以字母“C”开头。 </p>
+	        <p>2.构件类的定义中，包括<a class= "style1" href= "keywords_constructor.htm">constructor</a>方法声明、<a class= "style1" href= "keywords_coalesce.htm">coalesce</a>方法声明、<a class= "style1" href= "keywords_filtering.htm">filtering</a>方法声明以及接口声明<a class= "style1" href= "keywords_interface.htm">interface</a>。 </p>
+	        <p>3.在一个car构件中，可以定义若干类，但类中必须至少声明一个接口。 </p>
+	        <p>4.在car中类的定义包括五种，除了普通类外，另外四种分别是：<a class= "style1" href= "keywords_aspect.htm">aspect类</a>、<a class= "style1" href= "keywords_context.htm">context类</a>、<a class= "style1" href= "keywords_generic.htm">generic类</a>和<a class= "style1" href= "keywords_applet.htm">applet类</a>。 </p>
+	        <p>5.普通类可以使用关键字<a class= "style1" href= "keywords_inherits.htm">inherits</a>继承其他普通类，但被继承的基类必须包含虚接口<a class= "style1" href= "keywords_virtual.htm">virtual</a>。如果要继承由<a class= "style1" href= "keywords_generic.htm">generic</a>关键字定义的泛类，需使用关键字<a class= "style1" href= "keywords_substitutes.htm">substitutes</a>。 </p>
+	        <p>6.类可以具有属性，类属性对类起修饰作用。类属性在class关键字前用[]标注。详细情况请参见<a class= "style1" href= "..\attribute.htm">CAR属性关键字</a>。 </p>
+	    
+	    <b>使用范例 </b>
+<pre class= code>
+module 
+{
+    interface IFoo {
+        Foo();
+    }
+
+    interface IBar {
+        Bar();
+    }
+
+    <b>class</b> CFoo {
+        virtual interface IFoo;
+    }
+
+    <b>class</b> CBar inherits CFoo{
+        interface IFoo;
+        interface IBar;        
+    }
+}
+
+</pre>
+	        <p>上述示例定义了两个接口IFoo和IBar，定义了两个类CFoo和CBar。类CFoo声明了虚接口IFoo，类CBar继承自CFoo，CFoo和CBar都声明了接口IFoo，该接口在两个类中可以具有各自不同的实现。 </p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

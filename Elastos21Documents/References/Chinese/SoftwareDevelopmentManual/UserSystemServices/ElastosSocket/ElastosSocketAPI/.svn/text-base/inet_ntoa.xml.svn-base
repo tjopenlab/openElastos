@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API</volume>
+    <title>inet_ntoa</title>
+    <routine_idx>ElastosSocketIndex.htm</routine_idx>
+
+    <description>
+        <para>将网络地址转换为点间隔形式的字符串（a.b.c.d）。</para>
+    </description>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <parameters>
+            <api_param>
+                <param_type>struct in_addr</param_type>
+                <param_name>in</param_name>
+                <param_note>
+                    <para>[in]记录Internet主机地址的结构</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，返回一字符串指针，指向"."符号间隔的地址（a.b.c.d）；否则返回空指针。</para>
+    </return>
+
+    <remarks>
+        <para>函数将in参数表示的Internet地址结构转换成“.”间隔形式的字符串，如"a.b.c.d"。函数返回值存放在Elastos套接口分配的内存中。应用程序不承担任何内存分配的工作。在同一进程内，下一个套接口调用可能改变其中的数据。因此，在此之前应对所需数据进行复制。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>inet_addr</ref_name>
+            <ref_url>inet_addr</ref_url>
+        </reference>
+        <reference>
+            <ref_name>in_addr</ref_name>
+            <ref_url>DataType\in_addr</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

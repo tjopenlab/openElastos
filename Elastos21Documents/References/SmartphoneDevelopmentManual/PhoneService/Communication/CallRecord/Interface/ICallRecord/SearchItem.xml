@@ -1,0 +1,69 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通话记录</volume>
+<interface>ICallRecord</interface><method> SearchItem </method>
+    <description>
+        <para>
+         枚举指定类型呼叫的所有通话记录
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum CallType </param_type>
+                <param_name> eCallType </param_name>
+                <param_note>
+                    <para>
+                    指定要查找的通话记录的类型。支持CT_ALL,表示取得所有纪录，并按照时间排序
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IObjectEnumeratorRef * </param_type>
+                <param_name> ppEnum </param_name>
+                <param_note>
+                    <para>
+                    查询到的通话记录对象枚举器指针
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT </td>
+	    	    <td>参数错误 </td>
+	        </tr>
+	        <tr>
+	    	    <td>E_DB_INTERNAL_ERROR </td>
+	    	    <td>数据库错误 </td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>、<link url="../../../../../QuickReference/DBError.htm">E_DB_INTERNAL_ERROR</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para> 用户通过该接口方法，查询到的结果枚举器，通过调用枚举器的MoveNext方法遍历记录，通过枚举器的Current方法得到一条记录的各项数据 </para>
+	    <para> 遍历排序按照时间倒序排序。ppEnum为IObjectEnumerator语义,其中的Reset方法没有实现,其余方法的返回值和IObjectEnumerator完全一致。 </para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

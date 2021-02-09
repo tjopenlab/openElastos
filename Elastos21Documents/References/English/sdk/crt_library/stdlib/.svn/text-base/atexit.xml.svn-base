@@ -1,0 +1,113 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\atexit">atexit</sample>
+    <title> atexit </title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Processes the specified function at exit.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>atexit</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void</param_type>
+                <param_name>(__cdecl *func)(void)</param_name>
+                <param_note>
+                    <para>Function to be called.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>atexit returns 0 if successful or a nonzero value if an error occurs.</para>
+    </return>
+
+    <remarks>
+        <para>The atexit function is passed the address of a function (func) to be called when the program terminates normally. Successive calls to atexit create a register of functions that are executed in LIFO (last-in-first-out) order. The functions passed to atexit cannot take parameters. atexit and _onexit use the heap to hold the register of functions. Thus, the number of functions that can be registered is limited only by heap memory.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>atexit</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* atexit.cpp: This program pushes four functions onto
+ * the stack of functions to be executed when atexit
+ * is called. When the program exits, these programs
+ * are executed on a &quot;last in, first out&quot; basis.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+void __cdecl fn1()
+{
+    printf(&quot;next.\n&quot;);
+}
+
+void __cdecl fn2()
+{
+    printf(&quot;executed &quot;);
+}
+
+void __cdecl fn3()
+{
+    printf(&quot;is &quot;);
+}
+
+void __cdecl fn4()
+{
+    printf(&quot;This &quot;);
+}
+
+int main()
+{
+    atexit(fn1);
+    atexit(fn2);
+    atexit(fn3);
+    atexit(fn4);
+    printf(&quot;This is executed first.\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+This is executed first.
+This is executed next.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>abort</ref_name>
+            <ref_url>abort</ref_url>
+        </reference>
+        <reference>
+            <ref_name>exit</ref_name>
+            <ref_url>exit</ref_url>
+        </reference>
+    </references>
+
+</manpage>

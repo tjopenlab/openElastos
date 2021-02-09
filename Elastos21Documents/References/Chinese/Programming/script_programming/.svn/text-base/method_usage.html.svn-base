@@ -1,0 +1,82 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=gb2312">
+<title>XmlGlue:XmlGlue</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="Script_Language.html"><span>XmlGlue支持的脚本语言</span></a></li>
+    <li class="current"><a href="XmlGlue_CAR.html"><span>脚本中的CAR构件及其使用</span></a></li>
+    <li><a href="XmlGlue_Globals.html"><span>预定义对象</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="XmlGlue_CAR.html"><span>脚本中的CAR构件类型</span></a></li>
+    <li><a href="CAR_usage.HTML"><span>CAR构件在脚本中的使用</span></a></li>
+    <li class="current"><a href="method_usage.html"><span>在脚本中使用构件函数</span></a></li>
+    <li><a href="notes.html"><span>脚本编程中的注意事项</span></a></li>
+  </ul>
+</div>
+<h1>在脚本中使用构件函数</h1>
+<p>
+<html>
+<head>
+<title>在脚本中使用构件函数</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<h2>在脚本中使用构件函数</h2>
+<p>所谓构件函数，是CAR构件中构件类的接口方法。在CAR构件中有两种接口：一种是普通接口或非回调接口(Interface);另一种是回调接口(callback interface)。非回调接口中定义的函数称为非回调函数，而回调接口中定义的函数则称为回调函数。</p>
+<p>因此，在脚本中的构件函数分为非回调函数和回调函数。非回调函数即是通常意义上的方法，直接通过对象名就能调用该对象的方法。回调函数对应着一个个的特定事件，如按下鼠标（StylusPressed），按下键盘（KeyDown 
+）等，用以响应图形界面中的用户交互动作。下面来介绍脚本中两类函数的用法。</p>
+
+<h3>在脚本中使用非回调函数</h3>
+<p>脚本中，构件的非回调函数的使用，跟一般对象方法的使用无差别，直接通过构件类对象直接调用。</p>
+<p>与构件的种类相一致，脚本中的构件类对象相应分为三类，一类是<b>在脚本中通过加载构件映像模块和实例化(CreateObject)构件类而创建的构件类对象</b>,第二类是<b>在xml程序中用标签控件构件：ElControls创建的标签类对象</b>，第三类为<b>用户自定义CAR构件类对象</b>。对于在xml程序中创建的标签类对象，对象的名字一般就是系统标签x:id标识的名字。</p>
+<h3>在脚本中使用回调函数</h3>
+<p>在XmlGlue中，用户与界面的交互，是通过一种事件驱动机制来完成，即回调机制。而对回调机制的使用，即注册事件处理程序和编写事件逻辑处理程序，前者可以为可执行语句或在脚本中的实现的函数名，当其为可执行语句时可以在XML编程中注册到相应的事件上，或在脚本代码中以函数的形式注册到相应的事件上；后者为该事件处理程序的逻辑实现，须以函数的形式在嵌入的脚本中实现。另外，若注册事件处理程序为可执行语句时，在xml代码中注册事件程序和编写事件逻辑处理程序这两个操作一步完成。
+<p>当事件处理程序为函数时，使用方法是：在XML编程中我们可以先进行事件的注册，然后再在脚本中实现事件的逻辑处理程序；或在脚本中我们必须先实现事件的逻辑处理程序，再将此函数注册到相应的事件上。以下我们只讲述后一种使用方法。</p>
+<p>脚本中，编写事件处理函数，与其他的函数编写没有太多的区别。函数的注册过程也非常的简单，可以通过如下的例子来了解如何注册，其main.xgl源代码如下：</p>
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>1 &lt;?xml version="1.0" encoding="utf-8"?&gt;
+2 &lt;x:elastos xmlns:x="http://www.elastos.com/XmlGlue/2.1"
+3     xmlns="http://www.elastos.com/XmlGlue/Widgets"&gt;
+4     &lt;form x:id="main"  x="10" width="320" height="480" visible="true"&gt;
+5          &lt;label x:id="over" text="My First Widget" style="ButtonStyle:Center ControlStyle:Transparent" x="85" y="50" width="150" height="30" /&gt;    
+6          &lt;button x:id="exitbutton" style="ButtonStyle:Center ButtonStyle:Top ControlStyle:Focused" caption="Start" x="85" y="100" width="150" height="30"/&gt;
+7     &lt;/form&gt;
+8 
+9     &lt;x:script&gt;
+10     &lt;![CDATA[
+11        exitbutton.stylusPressed = 
+12         function()
+13 	        if exitbutton.text == "Start" then
+14 	            over.text="Hello World!"
+15                   exitbutton.text="Quit"        	
+16 	        elseif exitbutton.text == "Quit" then	
+17 	            main:Close() 
+18 	        end
+19 	  end           
+20     ]]&gt;
+21     &lt;/x:script&gt;
+22 &lt;/x:elastos&gt;
+</td></tr></table>
+<p>上面这个例子中用户通过点击窗口中的"Start"按钮后，原先的标签标题由"My First Widget"更名为"Hello World!"，按钮的文本由“Start”更新为“Quit”，若再按此按钮将退出应用程序。</p>
+<p>在源代码的Lua脚本编程部分中，第11-20行的作用是以函数的形式注册按钮上鼠标按下的事件处理程序。第13-15行为当首次按这个按钮的逻辑代码，第16-18行为当此按钮的文本更名为“Quit"后的逻辑处理代码。stylusPressed是回调函数，即事件，function是注册的事件处理函数。</p>
+<h4>在脚本中编写回调函数的事件处理函数</h4>
+<p>在上面的例子中，stylusPressed是被注册的回调函数，function是注册的事件处理函数。那么如何在脚本中编写事件处理函数呢？</p>
+<p>事件处理函数的参数须与事件回调函数的参数一致，但不可以显式的在参数列表中列出，用户仅可以使用<a href="Event_Object.html">预定义对象Event</a>来在具体实现中隐式地使用相关参数。如上面的例子中，回调函数stylusPressed原型为:StylusPressed[in] Int32 x,[in] Int32 y,[in] Int64 timestamp)我们没有使用到任何参数，如果我们要使用其中的参数x，我们可以在其实现代码中这样使用Event.x。在脚本语言中要用脚本的非显式类型，在回调过程中，参数转化由XmlGlue编程模型的脚本引擎来处理。</p>
+<p>同时如果在脚本中使用并注册事件处理函数，那应该先编写事件处理函数的实现代码，然后再将其注册给相应的回调函数，例如上面的例子。</p>
+<p>关于构件ElControls中回调接口、非回调接口的介绍请参考<a href="../../SoftwareDevelopmentManual/UserSystemServices/Vinci/elactrl.htm">图形控件构件ElControl开发参考</a>，同时对于回调接口也可以参考Elastos脚本编程中XML编程文档中的图形标签/控件列表中各标签控件的事件部分。
+<p>关于构件ElGrafix中非回调接口的介绍请参考绘图构件：<a href="../../SoftwareDevelopmentManual/UserSystemServices/Vinci/graphics.htm">绘图构件ElGrafix开发参考</a>。
+</body>
+</html>
+ <script>footer("chinese")</script>
+</body>
+</html>

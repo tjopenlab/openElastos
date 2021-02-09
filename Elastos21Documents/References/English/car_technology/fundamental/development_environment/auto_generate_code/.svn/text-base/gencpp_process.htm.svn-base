@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Automatic Generation Of Code Framework</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Internal Process Of Component Source Code Framework Generation</h2>
+    <p>When using emake&nbsp;hello.car command, emake.bat receives the parameter "hello.car", it finds that this is a CAR file, then it executes gen_src series command.</p>
+    <p>gen_src including the following commands: </p>
+    <ul>
+    <li><pre class="code">
+carc -c hello.cls hello.car
+</pre>
+    <p>This command generates corresponding compressed resource library hello.cls under current directory according to hello.car. Here mentioned resource library is definition that provides interface, class, method, struct, enumeration.</p>
+    <li><pre class="code">
+cls2src -f hello.cls
+</pre>
+    <p>This command generates corresponding source code framework according to information provided by hello.cls, which is CHello.h, CHello.cpp, sources here.</p>
+    <li><pre class="code">
+if exist hello.cls del /f hello.cls
+</pre>
+    <p>This command deletes all temporary hello.cls from the current working directory during compilation. So when emake&nbsp;hello.car command finishes executing, you cannot see hello.cls in current directory using dir command but the generated source code CHello.h,CHello.cpp, sources and original hello.car file.</p>
+    </ul>
+    <p>The following code is in the generated CHello.h file: </p>
+    <pre class="code">
+#include "_CHello.h"
+
+class CHello : public _CHello
+{
+	……
+}
+</pre>
+    <p>We can see that class CHello inherits _CHello class.This class is defined in _CHello.h header file. Actually _CHello.h does not exist. In the compilation phase that follows, _CHello.h is first generated and therefore CHello.h can be compiled and correctly executed.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

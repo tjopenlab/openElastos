@@ -1,0 +1,84 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>Mutex</interface><method> TryLock </method>
+    <description>
+        <para>
+            Attempts to get Mutex Lock object.
+        </para>
+    </description>
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> uint_t </param_type>
+                <param_name> uTicks</param_name>
+                <param_note>
+                    <para>
+                       Specifies a time delay, the unit is tick. If <i>uTicks</i> is zero, the function returns at once.
+                       If Mutex object is obtained, returns S_OK, otherwise returns S_TIMED_OUT.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+
+    	<table>
+            <th>
+                <td>Return Value</td>
+                <td>Hex Value</td>
+                <td>Description</td>
+            </th>
+             <tr>
+                <td>S_OK</td>
+                <td>0x00000000</td>
+                <td> Function succeeds in attempting to get Mutex Lock object. </td>
+            </tr>
+            <tr>
+                <td>S_TIMED_OUT</td>
+                <td>0x00060003</td>
+                <td> 
+                	Wait time exceeds specified time-out period; i.e, the current thread cannot get the
+                	mutex object within the time-out period. 
+                </td>
+            </tr>
+            <tr>
+                <td>S_INTERRUPTED</td>
+                <td>0x00060014</td>
+                <td>Interrupted while waiting for Mutex object.</td>
+            </tr>
+
+        </table>
+        <para>References <link url="/sdk/hresult.htm">ECODE</link> related help for details.</para>
+	</return>
+
+	<remarks>
+		<para>
+           		This function is used for attempting to get Mutex Lock object. If Mutex Lock object has been
+           		occupied by another thread, the calling thread will get into waiting state till it succeeds
+           		in occupying the Mutex Lock object. If the waiting time is over, the calling thread will
+           		finish waiting and return S_TIMED_OUT. If <i>uTicks</i> is 0, this member function returns immediately.
+           		If the calling thread occupies the Mutex object, it will return S_OK, otherwise it will return 
+           		S_TIMED_OUT. If Mutex Lock object does not have any ownership, the calling thread will occupy the 
+           		Mutex Lock object, and the function will return at once. If the calling thread occupies the Mutex 
+           		Lock object, the function will return too. The calling thread should call the <link url="Unlock.htm">
+           		Mutex::Unlock</link> function accordingly to release the Mutex Lock object. Thread 
+           		can be interrupted while waiting for mutex object.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\_rotl">_rotl</sample>
+    <title> _rotl，_rotr</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>将数值向左循环移位（_rotl）或向右循环移位（_rotr）。</para>
+    </description>
+
+    <syntax>
+        <return_val>unsigned int</return_val>
+        <func_name>_rotl</func_name>
+        <parameters>
+            <func_param>
+                <param_type>unsigned int</param_type>
+                <param_name>value</param_name>
+                <param_note>
+                    <para>要循环移位的无符号整数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>shift</param_name>
+                <param_note>
+                    <para>要移动的位数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>unsigned int</return_val>
+        <func_name>_rotr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>unsigned int</param_type>
+                <param_name>value</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>shift</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_rotl返回循环左移后的数值，无错误返回值。</para>
+        <para>_rotr返回循环右移后的数值，无错误返回值。</para>
+    </return>
+
+    <remarks>
+        <para>_rotl和_rotr函数将无符号整数value循环移动shift位。_rotl向左移动，_rotr向右移动，两个函数都是循环移位。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_rotl</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_rotr</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _rotl.cpp: This program uses _rotr and _rotl with
+ * different shift values to rotate an integer.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    unsigned val = 0x0fd93;
+    printf(&quot;0x%4.4x rotated left three times is 0x%4.4x\n&quot;,
+              val, _rotl(val, 3));
+    printf(&quot;0x%4.4x rotated right four times is 0x%4.4x\n&quot;,
+              val, _rotr(val, 4));
+    return 0;
+}
+</pre>
+    </example>
+<result>
+0xfd93 rotated left three times is 0x7ec98
+0xfd93 rotated right four times is 0x30000fd9
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>_lrotl</ref_name>
+            <ref_url>_lrotl</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_lrotr</ref_name>
+            <ref_url>_lrotl</ref_url>
+        </reference>
+    </references>
+
+</manpage>

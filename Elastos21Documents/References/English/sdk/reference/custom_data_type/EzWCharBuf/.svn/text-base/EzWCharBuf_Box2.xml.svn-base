@@ -1,0 +1,79 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzWCharBuf\EzWCharBuf_Box2">EzByeBuf</sample>
+    <volume> Common Data Structure</volume>
+    <interface> EzWCharBuf </interface>
+    <method> EzWCharBuf_Box(void *buf, const UINT size) </method>
+
+    <description>
+        <para>
+        	Creates a EzWCharBuf object using buffer data and initializes both its size and used size with <i>size</i>.
+        </para>
+    </description>
+
+    <syntax>
+        <parameters>
+            <api_param>
+                <param_type>void *</param_type>
+                <param_name> buf </param_name>
+                <param_note>
+                    <para> Source data buffer.</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const UINT</param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para> The size of the buffer, the unit is sizeof(wchar_t).</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>
+        	This constructor is recommended to instantiate EzWCharBuf object, when the data to be stored is 
+        	already allocated and initialized.
+        </para>
+        <para>
+        	NOTE:- User must release the memory which is pointed by <i>buf</i>.
+        </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    wchar_t * buf = L"Hello world!";
+
+    EzByteBuf_Box myBuf(buf, 12);
+
+    wprintf(L"myBuf:%s\n", (wchar_t *)myBuf);
+    wprintf(L"myBuf Capacity:%d\n", myBuf.Capacity());
+    wprintf(L"myBuf used:%d\n", myBuf.Used());
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+myBuf:Hello world!
+myBuf Capacity:12
+myBuf used:12
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Constructor(memory is allocated)  </ref_name>
+            <ref_url> EzWCharBuf_ </ref_url>
+        </reference>
+    </references>
+</manpage>

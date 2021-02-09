@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> SetText </method>
+    <description>
+        <para>
+            设置控件的文本信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> Text </param_name>
+                <param_note>
+                    <para>
+                       文本信息，设置的字符串不能为空
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        控件的文本信息同样可以在创建该控件时通过 caption 参数指定。
+    </para>
+    <para>
+        该方法的成功调用将触发 <link url="../JControlEvents/TextChanged.htm">TextChanged</link> 事件。
+    </para>
+    <para>
+        在TextBox中，此方法设置的文本不受 <link url="../ITextBox/SetFilterChars.htm">SetFilterChars</link> 函数设置的字符限制。
+    </para>
+</remarks>
+ <references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetText</ref_name>
+        <ref_url>GetText</ref_url>
+    </reference>
+</references>  
+</manpage>

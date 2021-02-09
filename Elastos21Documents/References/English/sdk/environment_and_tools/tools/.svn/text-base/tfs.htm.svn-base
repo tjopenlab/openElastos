@@ -1,0 +1,162 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>TFTP File System Introduction</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>TFTP File System Introduction</h2>
+    <p>This article will mainly discuss the following issues: </p>
+    <ul>
+        <li><a class="style1" href="#tftp">TFTP File System and Elastos Operating System</a>
+        <li><a class="style1" href="#summarize">TFTP File System Introduction</a>
+        <li><a class="style1" href="#config">TFTP File System Configuration</a>
+    </ul>
+
+    <A NAME="tftp"></A>
+    <h3>TFTP File System and Elastos Operating System</h3>
+        <p>
+        	Elastos operating system supports TFTP file system (TFS). As the following diagram shows, Elastos
+        	file system provides basic file system interface for Elastos operating system. Elastos
+        	also provides system service to the file system. Elastos file system has a virtual file system
+        	framework, vfs. Other file systems are mounted under vfs. For example tftpfs, msdos etc.
+        </p>
+        <center><img src="images/tfs.jpg"></center>
+        <center>Diagram 1: TFTP file system and Elastos operating system</center>
+
+    <A NAME="summarize"></A>
+    <h3>TFTP File System Introduction</h3>
+        <p>
+        	Client machines use TFS to access files and directories located on other host (server) machines that
+        	run on Elastos operating system. They communicate through TFTP file trasfer protocol. In order to
+        	use TFS, TFTP service program needs to be run on server side. Suppose Elastos.SDK installation directory
+        	is D:\Elastos.SDK, TFTP service program will make D:\Elastos.SDK\obj\gnu_x86.dbg\bin (If it is under x86
+        	DEBUG version) as TFTP output root directory.
+        </p>
+        <p>
+        	Once TFS is running, operations on client side is equivalent to operations on server side TFTP output
+        	root directory. If one of the directories is operated from client, server side TFTP output root directory
+        	can see the corresponding changes. Client side can do <i>create</i>, <i>read</i>, <i>execute</i> or
+        	<i>modify</i> operations on files under server side TFTP output root directory. <font color="red">They cannot delete files
+        	nor they can add or delete subdirectories.</font>
+
+        </p>
+        <p>
+        	User can directly modify TFTP output root directory on server, for example add directory, delete file
+        	etc. However, if they are any changes made then the user needs to run <a class="style1" href=
+        	"tfs_filesys/mktfs.htm">mktfs</a> to make sure TFS content is synchronized with server side. TFS browses
+        	output directory content according to _tfsindex file (The content of _tfsindex is file listing of the
+        	directory where it is located.) in server side output directory. If user directly adds files or directories
+        	under server side output directory but does not update _tfsindex file, he will not be able to operate on
+        	those newly added files or directories on the client side. The mktfs tool provided by Elastos system is
+        	used to create or update the above _tfsindex file.It also generates the _tfsdirindex file (File used to
+        	record attributes of _tfsindex file). Elastos.SDK installation program and compile command will
+        	automatically run mktfs. So even if the contents of output root directory do not change after those two programs were executed,
+        	then the user need not run mktfs again.
+        </p>
+        <p>
+        	Client communicates with server through network, so TFS read/write speed is related with network load.
+        	When the network is down, TFS operation will fail due to network timeout.
+        </p>
+        <p>
+        	Elastos booted from the network installs TFS as the root file system by default. After Elastos.SDK is installed, boot Elastos
+        	operating system from the network. Then
+            all operations on the root file system are operations on /bin directory of the client machine.
+        </p>
+        <p>
+        	In order to let TFS run normally, first we need to make sure the client machine TCP/IP network is
+        	properly configured, and we should use commands such as <a class="style1" href="network/ping.htm">ping</a>
+        	to check the network connection between client and server.
+        </p>
+
+    <A NAME="config"></A>
+    <h3>TFTP File System Configuration</h3>
+        <p>TFTP file system configuration steps are as follows: </p>
+        <p><b>1. Modify tfs.cfg file.</b></p>
+        <p>Write client and server IP address into tfs.cfg file under Elastos.SDK\src\config. For example: </p>
+        <pre class="code">
+SERVER_IP:192.168.1.31
+CLIENT_IP:192.168.2.31
+		</pre>
+        <p><b>2. Modify mkpkg.cfg file.</b></p>
+        <p>
+        	mkpkg.cfg file is stored in Elastos.SDK\src\config directory, the detailed content is displayed as
+        	the following. If you want to use tfs file system you must include the items marked red color.
+        </p>
+        <pre class="code">
+#==========================================================
+# Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+#==========================================================
+
+TARGET = %ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\elastos.img
+
+BIAS = 0x80000000
+
+ALIGN = 0x1000
+
+FILES = \
+    %SYSTEM_BIN_PATH%\kernel.exe \
+    %SYSTEM_BIN_PATH%\elastos.dll \
+    %ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\elacrt.dll \
+    %ELASTOS_ROOT%\src\config\startup.cfg \
+    %ELASTOS_ROOT%\src\config\resolv.cfg \
+    <font color="blue">%ELASTOS_ROOT%\src\config\drv.cfg \</font>
+    <font color="red">%ELASTOS_ROOT%\src\config\tfs.cfg \
+    %ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\vfs.dll \
+    %ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\mount.exe \
+    %ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\ifconfig.exe \</font>
+    <font color="blue">%ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\tcpip.dll \
+    %ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\route.exe \
+    %ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\ezregsvr.exe \</font>
+    <font color="red">%ELASTOS_ROOT%\src\config\services.cfg \</font>
+    %ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\elacmd.exe \
+
+COMMANDLINE =
+</pre>
+        <p>
+        	The above items marked blue is the content of the network part, those are the pre requirements for
+        	using tfs. If you want to run tfs file system you also need to include the contents marked red in color.
+        	Out of those files vfs.dll includes tfs file system. mount.exe is used to install tfs file system.
+        	ezregsvr.exe and services.cfg is used to register file system and network service correspondingly.
+        </p>
+        <p><b>3. Modify startup.cfg file.</b></p>
+        <p>
+        	startup.cfg file is also stored in Elastos.SDK\src\config directory, as the following.
+        	The red marking items are required contents of tfs.
+        </p>
+        <pre class="code">
+<font color="red">ezregsvr.exe services.cfg &</font>
+<font color="red">ifconfig.exe lo0 127.0.0.1 netmask 255.255.248.0</font>
+<font color="red">ifconfig.exe eth0 192.168.2.31 netmask 255.255.248.0 broadcast 192.168.7.255</font>
+route.exe add default 192.168.0.1
+<font color="red">mount.exe -t tftpfs -d / -s TFTP</font>
+elacmd.exe
+reboot 1
+		</pre>
+        <p>
+        	Out of those above<a class="style1" href="shell/Ezregsvr.htm">ezregsvr.exe</a> is the first to run as
+        	background program. <a class="style1" href="shell/Mount.htm">mount.exe</a> is the file system
+        	installation program.
+        </p>
+        <p><b>4. Run mkpkg command, starts client side (single board computer) Elastos.</b></p>
+        <p>The interface after booting is as follows: </p>
+        <pre class="code">
+[/ $]
+
+
+</pre>
+        <p>
+        	The user can input file system related command after [/ $], for example <a class="style1"
+        	href="shell/Dir.htm">dir</a>, <a class="style1" href="shell/Type.htm">type</a> etc. See
+        	<a class="style1" href="shell.htm">Shell Command Related Documentation</a> for details.
+        </p>
+
+<script>footer("english")</script>
+</body>
+</html>

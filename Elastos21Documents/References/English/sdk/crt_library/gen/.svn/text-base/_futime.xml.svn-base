@@ -1,0 +1,112 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\gen\_futime">_futime</sample>
+    <title>_futime</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> gen_idx.htm </routine_idx>
+
+    <description>
+        <para>Sets the file last access and modification times by file handle.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_futime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>File descriptor  to open file.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+        <parameters>
+            <func_param>
+                <param_type>struct _timeb*</param_type>
+                <param_name>filetime</param_name>
+                <param_note>
+                    <para>Pointer to structure containing new modification date.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_futime returns 0 if successful. If an error occurs, this function returns -1 and errno number is set to EBADF, indicating an invalid file descriptor.</para>
+    </return>
+
+    <remarks>
+        <para>The _futime function sets the modification date and the last access time on the open file associated with file descriptor. If times is a NULL parameter,then the modification time is set to the current local time. Otherwise, times must point to a structure of type _utimbuf.</para>
+        <para>_futime is identical to _utime, except that its argument is the handle to an open file, rather than the name of a file or a path to a file.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_futime</routine_name>
+            <headerfile>utime.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0.</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _futime.cpp: This program uses _futime to set the
+ * file-modification time to the current time.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;utime.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+
+int main()
+{
+    int hFile;
+
+    hFile = _open(&quot;_futime.exe&quot;, _O_RDWR, _S_IREAD | _S_IWRITE);
+    if (-1 == hFile) {
+        printf(&quot;_open error.\n&quot;);
+        return 1;
+    }
+
+    if (_futime(hFile, NULL) == -1)
+        printf(&quot;_futime failed.\n&quot;);
+    else
+        printf(&quot;File time modified.\n&quot;);
+
+    _close(hFile);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File time modified.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_ftime</ref_name>
+            <ref_url>../stdtime/_ftime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_utime</ref_name>
+            <ref_url>_utime</ref_url>
+        </reference>
+    </references>
+
+</manpage>

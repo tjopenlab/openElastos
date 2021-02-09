@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>中断管理</volume>
+    <title>DzEnableIrq</title>
+    <routine_idx> ../interrupt_management.htm </routine_idx>
+
+    <description>
+        <para>使能已被禁用的硬件中断。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> irq_t</param_type>
+                <param_name> irq </param_name>
+                <param_note>
+                    <para>被使能的硬件中断的中断号</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本函数使能已被禁用的硬件中断。对于处于激活状态的硬件中断可以通过调用<link url="DzDisableIrq.htm">DzDisableIrq</link>函数进行禁用，从而使系统不再对其进行响应，直到通过调用DzEnableIrq函数成功使能该硬件中断为止，系统才将恢复对其的响应。使能处于未激活状态的硬件中断将不会产生任何结果，但使能一个未被禁用的硬件中断将产生未定义的行为。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>DzDisableIrq</ref_name>
+            <ref_url>DzDisableIrq</ref_url>
+        </reference>
+    </references>
+
+</manpage>

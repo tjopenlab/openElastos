@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strstr">strstr</sample>
+    <title> strstr, wcsstr</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>搜索子串。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strstr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>被查找的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strCharSet</param_name>
+                <param_note>
+                    <para>以NULL结尾的指定字符串</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>wcsstr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>strCharSet</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回一个指针，指向strCharSet在string中第一次出现的位置，如果string中没有出现strCharSet则返回NULL。如果strCharSet指定字符串的长度为0，则指针指向string。</para>
+    </return>
+
+    <remarks>
+        <para>wcsstr是strstr的宽字节版本，它返回一个wchar_t *的字符串。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strstr</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcsstr</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+//strstr.cpp:this program returns a pointer to the first occurrence of strCharSet in string
+ 
+
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+char str[] =    &quot;lazy&quot;;
+char string[] = &quot;The quick brown dog jumps over the lazy fox&quot;;
+char fmt1[] =   &quot;         1         2         3         4         5&quot;;
+char fmt2[] =   &quot;12345678901234567890123456789012345678901234567890&quot;;
+
+int main()
+{
+    char *pdest;
+    int  result;
+    printf(&quot;String to be searched:\n\t%s\n&quot;, string);
+    printf(&quot;\t%s\n\t%s\n\n&quot;, fmt1, fmt2);
+    pdest = strstr(string, str);
+    result = pdest - string + 1;
+    if (pdest != NULL)
+        printf(&quot;%s found at position %d\n\n&quot;, str, result);
+    else
+        printf(&quot;%s not found\n&quot;, str);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Output
+
+String to be searched:
+The quick brown dog jumps over the lazy fox
+1         2         3         4         5
+12345678901234567890123456789012345678901234567890
+
+lazy found at position 36
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcscmp</ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcschr</ref_name>
+            <ref_url>wcschr</ref_url>
+        </reference>
+    </references>
+
+</manpage>

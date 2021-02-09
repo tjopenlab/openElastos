@@ -1,0 +1,96 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\time">time</sample>
+    <title> time </title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>Gets the system time.</para>
+    </description>
+
+    <syntax>
+        <return_val>time_t</return_val>
+        <func_name>time</func_name>
+        <parameters>
+            <func_param>
+                <param_type>time_t *</param_type>
+                <param_name>timer</param_name>
+                <param_note>
+                    <para>Storage location for time.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>time returns the time in elapsed seconds. There is no error return.</para>
+    </return>
+
+    <remarks>
+        <para>The time function returns the number of seconds elapsed since midnight (00:00:00), January 1, 1970, coordinated universal time, according to the system clock. The return value is stored in the location given by timer. This parameter may be NULL, in which case the return value is not stored.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>time</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* time.cpp: This program uses time to get the system time.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+    time_t timer;
+
+    time(&amp;timer);
+    printf(&quot;Long_time:%d\n&quot;, timer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Long_time:    100129494
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>ctime</ref_name>
+            <ref_url>ctime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_ftime</ref_name>
+            <ref_url>_ftime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>localtime</ref_name>
+            <ref_url>localtime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wasctime</ref_name>
+            <ref_url>_wasctime</ref_url>
+        </reference>
+    </references>
+
+</manpage>

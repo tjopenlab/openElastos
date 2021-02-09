@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method> EndWith </method>
+
+    <description>
+        <para> 确定此对象的末尾是否与指定的字符串匹配。</para>
+    </description>
+    <syntax>
+        <return_val> Boolean </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const AString &amp;</param_type>
+            <param_name> substr </param_name>
+            <param_note>
+                <para> 待查找的子串 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive</param_default>
+            <param_note>
+                <para> 是否区分大小写标志。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。  </para>
+            </param_note>
+        </api_param> 
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name> encoding  </param_name>
+            <param_default> Encoding_Default</param_default>
+            <param_note>
+                <para> 字符编码方式。参见<link url="../../others/Encoding.htm">Encoding</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>                 
+        </parameters>        
+    </syntax>
+    <return>
+        <para>若以指定字符串结尾，返回TRUE。否则返回FALSE。</para>
+    </return>
+    
+    <remarks>
+        <para>若子串为空串，则返回True。</para>
+        <para>如果源对象或substr包含的字符串指针为空则返回FALSE。</para>
+    </remarks>
+<example>
+<pre>
+AStringBuf_&lt;20&gt; asbuf;  
+asbuf.Copy("abcd");
+AString as1 = "cd";
+AString as2 = "CD";
+CConsole::WriteLine(asbuf.EndWith(as1));  //Display : True 
+CConsole::WriteLine(asbuf.EndWith(as2));  //Display : False
+CConsole::WriteLine(asbuf.EndWith(as2, StringCase_Insensitive));  //Display : True
+</pre>
+</example>
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::StartWith </ref_name>
+        <ref_url>../AStringBuf/StartWith</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::EndWith </ref_name>
+        <ref_url>../WStringBuf/EndWith</ref_url>
+    </reference>
+</references>
+ 
+</manpage>

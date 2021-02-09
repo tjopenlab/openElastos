@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    
+    <volume>内存管理函数</volume>
+    <title>DzRemapDiscontinuousKernelPages</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>将DzAllocDiscontinuousKernelPages分配出来的内存，映射到当前进程的用户地址空间里去。 </para>
+    </description>
+
+    <syntax>
+        <return_val>virtaddr_t</return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> virtaddr_t</param_type>
+                <param_name> va </param_name>
+                <param_note>
+                    <para>需映射的内存的地址</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> uint_t</param_type>
+                <param_name> uPages </param_name>
+                <param_note>
+                    <para>需映射的内存的页数</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> int_t</param_type>
+                <param_name> protect </param_name>
+                <param_note>
+                    <para>映射保护权限</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+ <para>如果映射成功，则返回一个当前进程的用户地址空间里的地址；如果失败，则返回NULL。 </para>
+    </return>
+
+    <remarks>
+        <para>调用 DzUnmapDiscontinuousKernelPages 来取消 DzRemapDiscontinuousKernelPages 建立的映射。 </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+</manpage>

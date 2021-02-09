@@ -1,0 +1,80 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>UDF</volume>
+    <title>sqlite3_create_function(sqlite3_create_function16)</title>
+
+    <description>
+        <para>向数据库中添加自定义的SQL函数</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type> sqlite3 * </param_type>
+                <param_name> db </param_name>
+                <param_note>
+                    <para>数据库名，表示将函数添加到此数据库中。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>  const char * </param_type>
+                <param_name> zFunctionName </param_name>
+                <param_note>
+                    <para>要创建的函数名，长度不得超过255个字节。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> int </param_type>
+                <param_name> nArg </param_name>
+                <param_note>
+                    <para>用户自定义函数的参数个数。如果该值为负数，则代表函数参数个数可以为任意个。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> int </param_type>
+                <param_name> eTextRep </param_name>
+                <param_note>
+                    <para>表示传入参数的编码形式，可以是UTF-8, UTF-16le, 或 UTF-16be 。SQLite3 允许同一个自定义函数有多种不同的编码参数的版本，数据库引擎会自动选择转换参数编码个数最少的版本使用。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> void * </param_type>
+                <param_name> pApp </param_name>
+                <param_note>
+                    <para>任意的指针，可以供用户自定义函数的实现使用；在用户自定义函数的实现中，可以通过sqlite3_user_data()函数来获得并存取该指针。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> void </param_type>
+                <param_name> (*xFunc)(sqlite3_context*,int,sqlite3_value**) </param_name>
+                <param_note>
+                    <para>见xFinal的含义。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> void </param_type>
+                <param_name> (*xStep)(sqlite3_context*,int,sqlite3_value**) </param_name>
+                <param_note>
+                    <para>见xFinal的含义。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> void </param_type>
+                <param_name> (*xFinal)(sqlite3_context*) </param_name>
+                <param_note>
+                    <para>xFunc、xStep、xFinal三者组合指向SQL函数的实现。普通的函数只需要设置 xFunc 参数，而把 xStep 和 xFinal 设为NULL。 聚合函数则需要设置 xStep 和 xFinal 参数，然后把 xFunc 设为NULL.</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+    	<para>如果要向数据库中添加一个用户自定义的SQL函数，则要将xFunc设置为用户所实现的自定义函数的函数名，将xStep和xFinal设置为NULL。由xFunc参数的声明可以看出，用户自定义函数的参数类型必须为：sqlite3_context*, int, sqlite3_value**。具体见示例程序。</para>
+        <para>sqlite3_create_function16( )和sqlite3_create_function( )两个函数都用于向数据库中添加SQL函数，所不同的仅在于自定义的函数名(即第二个参数)：前者要求是UTF-16编码,而后者要求是UTF-8编码。</para>
+        <para>在程序中使用该函数，需包含头文件：sqlite3ext.h</para>
+    </remarks>
+
+</manpage>

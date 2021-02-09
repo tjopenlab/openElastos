@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\mbtowc">mbtowc</sample>
+    <title>mbtowc</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>转换多字节字符为相应的宽字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>mbtowc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>wchar</param_name>
+                <param_note>
+                    <para>宽字符地址（wchar_t类型）</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char* </param_type>
+                <param_name>mbchar</param_name>
+                <param_note>
+                    <para>多字节字符字节序列的地址</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>要检查的字节数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果mbchar不为NULL而且mbchar所指向的对象形成有效的多字节字符，mbtowc就返回以字节为单位的多字节字符的长度。如果mbchar为NULL，或者mbchar指向一个宽结束符（L'\0')，函数返回0。如果mbchar指向的对象在第一个count字节的字符范围内不能形成有效的多字节字符，mbtowc就返回-1。</para>
+    </return>
+
+    <remarks>
+        <para>如果mbchar不为NULL，mbtowc函数就转换mbchar指向的小于或等于count个字节的字符为相应的宽字符。如果wchar不为NULL，mbtowc就存储结果的宽字符到wchar中。mbtowc不检查超过MB_CUR_MAX的字节。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>mbchar</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* mbtowc.cpp: illustrates the behavior of the mbtowc function
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int i;
+    wchar_t *pwc = (wchar_t *)malloc(sizeof(wchar_t));
+
+    printf(&quot;Convert multibyte character back to a wide &quot;
+            &quot;character:\n&quot;);
+    i = mbtowc(pwc, &quot;    aaaa&quot;, 1);
+    printf(&quot;\tBytes converted: %u\n&quot;, i);
+    printf(&quot;\tWide character: %x\n\n&quot;, pwc);
+
+    printf(&quot;Attempt to convert when target is NULL\n&quot;);
+    printf(&quot;\tReturns the length of the multibyte character:\n&quot;);
+    i = mbtowc(NULL, &quot;   aaaa&quot;, 1);
+    printf(&quot;\tLength of multibyte character: %u\n\n&quot;, i);
+
+    printf(&quot;Attempt to convert a NULL pointer to a&quot;);
+    printf(&quot; wide character:\n&quot;);
+    i = mbtowc(pwc, NULL, 1);
+    printf(&quot;\tBytes converted: %u\n\n&quot;, i);
+
+    printf(&quot;Attempt to convert a Zero-count to a&quot;);
+    printf(&quot; wide character:\n&quot;);
+    i = mbtowc(pwc, &quot;aaaa&quot;, 0);
+    printf(&quot;\tBytes converted: %u\n&quot;, i);
+
+    free(pwc);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Convert multibyte character back to a wide character:
+Bytes converted: 1
+Wide character: 10540
+
+Attempt to convert when target is NULL
+Returns the length of the multibyte character:
+Length of multibyte character: 1
+
+Attempt to convert a NULL pointer to a wide character:
+Bytes converted: 0
+
+Attempt to convert a Zero-count to a wide character:
+Bytes converted: 0
+</result>
+
+
+    <references>
+        <reference>
+            <ref_name>mblen</ref_name>
+            <ref_url>mblen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcstombs</ref_name>
+            <ref_url>wcstombs</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wctomb</ref_name>
+            <ref_url>wctomb</ref_url>
+        </reference>
+    </references>
+
+</manpage>

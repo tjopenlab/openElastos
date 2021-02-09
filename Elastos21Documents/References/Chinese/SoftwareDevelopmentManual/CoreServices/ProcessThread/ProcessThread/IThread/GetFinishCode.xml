@@ -1,0 +1,66 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IThread\GetExitCode">GetQuitCode</sample>
+<volume>线程</volume>
+<interface>IThread</interface><method> GetQuitCode </method>
+    <description>
+        <para>
+    		获取线程的结束的状态码（返回值）。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> QuitCode * </param_type>
+                <param_name> pQuitCode  </param_name>
+                <param_note>
+                    <para>
+						QuitCode的指针，用于获取线程结束代码,不能为空
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值</td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取线程结束代码</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_THREAD_NOT_STOPPED</td>
+	    	    <td>线程还没退出</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remark>
+        <para>如果指定的线程没有终止，返回E_THREAD_NOT_STOPPED。</para>
+        <para>如果线程已经终止，那么这个值可能是下列几个值：</para>
+        <para>1. 由<link url="../Function/CThread/Quit.htm">CThread::Quit</link>方法指定。 </para>
+        <para>2. 线程函数return的返回值。 </para>
+        <para>3. 线程所属的进程的返回值。 </para>
+    </remark>
+
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

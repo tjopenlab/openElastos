@@ -1,0 +1,37 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--version</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>version</h2>
+    <p>This attribute is used to identify component or class version. The syntax is: version(N), the N is unsigned integer or floating point number. For example: </p>
+    <pre class="code">
+[
+    <b>version(1.2)</b>, uuid(579d31c2-2669-46d0-a736-cc676de0b346),  //version of component Demo is 1.2
+    uunm(http://www.koretide.com/car/VersionDemo.dll)
+]
+component VersionDemo
+{
+    [uuid(239c2a99-46e0-4be3-9b8a-c5431a385147)]
+    interface IInterface {
+        ECODE Func([in] int i);
+    }
+    [<b>version(1.0)</b>, uuid(2507576e-75e3-4b86-80bc-84c24c282c63)]  //version of class CClass is 1.0
+    class CClass {
+        interface IInterface;
+    }
+}
+</pre>
+    <p>In sample component VersionDemo, the version number of component VersionDemo is 1.2 and the version number of class CClass is 1.0 .</p>
+    <p>This attribute is optional.</p>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

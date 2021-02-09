@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> tmc工具</title>
+    <volume>XDK常用工具</volume>
+
+    <description>
+        <para>手机控制台，以及进行PC端和手机之间文件传输或烧写的工具。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> tmc </cmd_name>
+        <cmd_param></cmd_param>
+    </syntax>
+    <remarks>
+        <para>如果发现在PC上不能运行，请先安装.Net framework 2.0。</para>
+        <para>对于第一次使用TMC的用户，如果TMC的comcons没有任何反应，请检查PC上是否安装了USB驱动。</para>
+<para>用法示例</para>
+        <para>烧写操作系统映象文件</para>
+        <para>1)	准备烧写要使用的映象文件(img文件)及分区文件(ima文件)，通过将手机设为U盘的功能将文件拷贝到SD卡中。</para>
+        <para>2)	打开tmc，进入comcons窗口。</para>
+        <para>3)	同时按住手机*键与#键，连接主机USB线，comcons窗口提示： Waiting remote host send command。</para>
+        <para>4)	选择tmc的loader菜单，单击BurnToDoc或BurnToRAM功能(见图2-6)，在弹出的浏览窗口中选择burn.img文件，并在CAUTION窗口中选择”OK”(见图2-7)，则映象文件就会被烧入手机。</para>
+        <img url="images/tmc1.jpg"></img>
+        <para>图2-6</para>
+        <img url="images/tmc2.jpg"></img>
+        <para>图2-7</para>
+        <para>注：BurnToRAM和BurnToDoc命令的区别在于BurnToRAM是将映象文件烧入手机内存中，手机一旦断电，烧入的映象文件也随之丢失；BurnToDoc是将映象文件烧入手机硬盘中，其不会因为手机断电而丢失。</para>
+        <para>烧写手机应用程序</para>
+        <para>1)	在tmc的comcons窗口中选择应用程序所要烧入的分区(C盘为系统盘，用户不可将应用程序烧入该盘，否则comcons会报错“ERROR! Transfer file is stop”)。</para>
+        <para>2)	选择tmc的File菜单(见图2-8)，单击Files命令，在弹出的浏览窗口中选择要烧写的文件后，目标文件会显示在tmc的文件列表中，再单击Trans File命令，则所选文件会被烧入手机(见图2-9)。</para>
+        <img url="images/tmc3.jpg"></img>
+        <para>图2-8</para>
+        <img url="images/tmc4.jpg"></img>
+        <para>图2-9</para>
+        <para>烧写文件夹。</para>
+        <para>1)	单击File菜单中的Trans Folder命令，在弹出的浏览窗口中选择要烧写的文件夹后。</para>
+        <para>2)	目标文件夹及其包括的文件会显示在tmc的文件列表中(见图2-10)，点”OK”，则所选文件夹会被烧入手机。</para>
+        <img url="images/tmc5.jpg"></img>
+        <para>图2-10</para>
+    </remarks>
+
+
+</manpage>

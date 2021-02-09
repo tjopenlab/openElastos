@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicDirectory</interface><method> DeleteFile </method>
+    <description>
+        <para>
+            在当前目录对象中删除一个文件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> filename </param_name>
+                <param_note>
+                    <para>
+删除的文件名                   </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果参数filename未分配内存，或filename为空字符串，或filename出现限制字符（详见备注），或filename超过256个字符，返回E_INVALID_ARGUMENT； </para>
+    <para>如果目标文件只读，返回E_FS_NO_PERMISSION； </para>
+    <para>如果目标文件接口指针的引用计数非0，返回E_FS_FILE_BUSY； </para>
+    <para>如果目标文件对象不存在，返回E_FS_NO_SUCH_FILE； </para>
+    <para>如果指定删除的是个目录，返回E_FS_IS_DIRECTORY。 </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+<remarks>
+	  <para>该方法只能在当前目录对象中删除一个文件，参数filename的限制字符为：‘ &lt;  ’、‘ &gt; ’、‘ / ’、‘ \\ ’、‘ ? ’、‘ * ’、‘ \" ’、‘ | ’、‘ : ’。 </para>
+	  <para>要成功删除指定文件，还必须保证所有用户已经释放了它的接口指针，释放一个接口可以调用Release方法。 </para>
+</remarks>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

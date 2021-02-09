@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITrackBar</interface><method> SetPageStep </method>
+    <description>
+        <para>
+            设置点击追踪条空白处要移动的距离。（大距离）
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> step </param_name>
+                <param_note>
+                    <para>
+移动的距离，有效值要小于或等于 (Maxmum - Minimum) 的值</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+    	  PageStep 是用户点击追踪条空白区域时，滑块移动的距离，默认值为 20。可以考虑将 PageStep 值设置为 Height 值的百分比（对于垂直方向的跟踪条），或者设置为 Width 值的百分比（对于水平方向的跟踪条）。这将保持跟踪条移动的距离与其大小成比例。
+    </para>
+    <para>
+    	  若设置的 PageStep 小于 SingleStep，则会自动将 SingleStep 的值更改为 PageStep 的值。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTrackBar 类介绍 </ref_name>
+        <ref_url>../../class/TrackBar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITrackBar 接口方法列表</ref_name>
+        <ref_url>../ITrackBar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetPageStep</ref_name>
+        <ref_url>GetPageStep</ref_url>
+    </reference>
+</references>
+</manpage>

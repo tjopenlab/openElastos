@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> CaptureStylus </method>
+    <description>
+        <para>
+            捕获鼠标事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        调用该方法前先确保该控件是可以接收鼠标键盘事件的，若该控件不能接受鼠标键盘事件，则设置它抢鼠标事件将无效。
+    </para>
+    <para>
+        该方法是针对一个 Form 内的控件，当控件已捕获鼠标时，它接收鼠标输入，不论光标是否在其边框内。
+    </para>
+    <para>
+        只有前景窗口能够捕获鼠标。当背景窗口试图捕获鼠标时，窗口只接收鼠标光标位于该窗口的可见部分时发生的鼠标事件的消息。此外，即使前景窗口已经捕获鼠标，用户仍可以单击另一个窗口，将它带到前景。在全局范围内设置捕获鼠标事件的 Form 可以通过 <link url="../IForm/GrabStylus.htm">GrabStylus</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>UncaptureStylus</ref_name>
+        <ref_url>UncaptureStylus</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GrabStylus</ref_name>
+        <ref_url>../IForm/GrabStylus</ref_url>
+    </reference>
+</references>
+</manpage>

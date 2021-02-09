@@ -1,0 +1,30 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR构件的点击运行机制</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>点击运行在WAP浏览器中的应用示例</h2>
+    <ol>
+    <li>如图一所示，在桌面上存在多个主题：通信、设置、助手、游戏、网络、附件等，图中关注的主题或信息用红色表示。点击“网络”图标，可以看到一些与网络相关的应用程序，如图二所示。其中的“浏览器”就是WAP浏览器。
+        <center><img src="images/picture1.jpg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/picture2.jpg"></center>
+    <li>图三是WAP浏览器的简化界面，通过URL编辑框可以输入WAP网站的地址，例如wap.koretide.com.cn。浏览器就会显示网站的内容，其中包括一些在线新闻、网络游戏等。通过选择“游戏”主题，浏览器可以显示一个类似于图四的页面，页面的内容显示了一些网络游戏程序的简单信息。</br>
+        在图四中，如果我们对分形游戏这个主题感兴趣，点击“分形游戏”或其相应图标，系统自动依照相关规则在网络中查寻相关构件，自动进行安全性验证。如果通过验证，则自动下载并即时运行，此时浏览器中的内容如图四所示，此游戏动态演示了美丽的分形变化图。
+        <center><img src="images/picture3.jpg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/picture4.jpg"></center>
+    <li>作为示例，这里较为详细地阐述从“点击”到“运行”的整个过程。在通常情况下，为了考虑网络的安全性，我们可以在浏览器中配置相关的选项，希望在整个过程中给出相关的提示，并通过人为确认之后才执行。例如，在图四到图七之间的各图中，系统给出了相关的确认信息。于是，当点击图四中的“分形游戏”图标时，网页会显示该游戏的相关信息（如图五所示），并且提供给用户一个“下载运行”的文本链接。用户点击“下载运行”链接，浏览器就会自动下载对应的CAR构件 （DLL模块形式的可执行程序），下载的界面如图六所示，用户可以了解下载的进度，也可以中途取消下载。
+        <center><img src="images/picture5.jpg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/picture6.jpg"></center>
+    <li>下载结束后，浏览器会弹出另外一个对话框，如图七所示，询问用户是否加载运行下载的构件，如果用户点击“确定”按钮，则该CAR构件就会被浏览器HOST加载运行，图八就是运行“分形游戏”构件时所呈现的美丽分形图。
+        <center><img src="images/picture7.jpg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/picture8.jpg"></center>
+    <li>最后，当构件运行结束或者用户中止运行之后，界面则回到“点击”事件发生时的浏览器的界面（图四），系统则需要根据浏览器的相关配置决定是否在某个目录中保留一段时间或者立即删除下载的构件。
+    </ol>
+
+<script>footer("chinese")</script>
+</body>
+
+</html>

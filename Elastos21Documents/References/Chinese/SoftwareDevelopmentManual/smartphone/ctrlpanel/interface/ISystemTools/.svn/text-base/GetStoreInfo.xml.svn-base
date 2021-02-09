@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISystemTools</interface><method> GetStoreInfo </method>
+    <description>
+        <para>
+            查看存储设备的容量信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> nPhoneUseSpace </param_name>
+                <param_note>
+                    <para>
+指向INT类型的指针，用于返回的手机的已用空间                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> nPhoneFreeSpace </param_name>
+                <param_note>
+                    <para>
+指向INT类型的指针，用于返回的手机的未用空间                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> nCardUseSpace </param_name>
+                <param_note>
+                    <para>
+指向INT类型的指针，用于返回的用户存储卡的已用空间                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> nCardFreeSpace </param_name>
+                <param_note>
+                    <para>
+指向INT类型的指针，用于返回的用户存储卡的未用空间                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；nPhoneUseSpace或nPhoneFreeSpace或nCardUseSpace或nCardFreeSpace为空，返回E_INVALIDARG时；环境变量出错，返回E_INVALID_ENVIRONMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,39 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+
+    <volume> 常用数据结构 </volume>
+    <interface>U8StringBuf</interface>
+    <method>Clone </method>
+
+    <description>
+        <para>获取一个U8StringBuf对象的克隆</para>
+    </description>
+    <syntax_nopara>
+        <return_val>U8StringBuf *  </return_val>
+        <modifier>const</modifier>
+        <NoArguments/>
+    </syntax_nopara>
+
+   <return>
+        <para>返回指向U8StringBuf对象的指针。</para>
+    </return>
+    <remarks>
+        <para>本函数会调用函数malloc为要拷贝的U8StringBuf分配内存，然后把源对象的内容拷贝到分配的内存中。</para>
+    </remarks>
+
+<example>
+<pre>
+char *pstr="1234";
+U8StringBuf buf(pstr,20);
+U8StringBuf * u8sbuf;
+u8sbuf = buf.Clone();
+CConsole::WriteLine(u8sbuf->GetCapacity());  //Display : 19
+CConsole::WriteLine(u8sbuf->GetLength());  //Display : 4
+U8StringBuf::Free(u8sbuf);
+</pre>
+</example>
+
+
+</manpage>

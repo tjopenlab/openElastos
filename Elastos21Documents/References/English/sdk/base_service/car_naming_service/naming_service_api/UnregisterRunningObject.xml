@@ -1,0 +1,115 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\UnregisterRunningObject">UnregisterRunningObject </sample>
+    <volume>System API</volume>
+    <title>CSystem::UnregisterRunningObject</title>
+    <routine_idx> ..\naming_service_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	Unregisters the named service.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_name>CSystem::UnregisterRunningObject</api_name>
+            <api_param>
+                <param_type> WString</param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>
+                    	[in] Specifies the name of the service,which should not be NULL.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in unregistering the named service.</td>
+            </tr>
+            <tr>
+                <td>E_INVALIDARG</td>
+                <td>Invalid argument(s)</td>
+            </tr>
+            <tr>
+                <td>E_NOT_EXIST</td>
+                <td>The specified service does not exist.</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_OPERATION</td>
+                <td>Invalid operation</td>
+            </tr>
+            <tr>
+                <td>E_PROCESS_ALREADY_EXITED</td>
+                <td> Specified process has already exited.</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>insufficent memory</td>
+            </tr>
+            <tr>
+                <td>E_NOT_ENOUGH_ADDRESS_SPACE</td>
+                <td>There is no enough address space</td>
+            </tr>
+        </table>
+        <para>See <link url="/sdk/reference/basic_data_type/hresult.htm">ECODE</link> related help for more details.</para>
+    </return>
+
+    <remarks>
+        <para>
+        	The service can only be unregistered by the process which registered it, otherwise the function will fail.
+        	For example, if process <b>A</b> register a service named <b>MyService</b>, then only <b>A</b> can
+        	unregister <b>MyService</b> by calling <b>CSystem::UnregisterRunningObject</b>(EZCSTR("MyService")).
+        </para>
+        <para>
+        	<link url="FindRunningObject.htm">CSystem::FindRunningObject</link> can not get the service interface, if it is called after
+         	a call to this function.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+
+    <references>
+    <reference>
+        <ref_name>CSystem::RegisterRunningObject</ref_name>
+        <ref_url>RegisterRunningObject </ref_url>
+    </reference>
+    <reference>
+        <ref_name>CSystem::FindRunningObject</ref_name>
+        <ref_url> FindRunningObject </ref_url>
+    </reference>
+    <reference>
+        <ref_name>CSystem::WaitForRunningObject</ref_name>
+        <ref_url>WaitForRunningObject</ref_url>
+    </reference>
+    </references>
+
+</manpage>

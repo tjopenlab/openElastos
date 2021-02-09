@@ -1,0 +1,77 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\new">new</sample>
+    <volume>Operator</volume>
+    <method>delete</method>
+    <title>delete</title>
+    <routine_idx> ../operator.htm </routine_idx>
+
+    <description>
+        <para>
+        	Releases dynamically created kernel object or kernel object array.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val> void </return_val>
+        <method_name> operator delete </method_name>
+        <parameters>
+            <api_param>
+                <param_type> void * </param_type>
+                <param_name> pv </param_name>
+                <param_note>
+                    <para>
+                    	Specified starting address of the released kernel object or kernel object array
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> void </return_val>
+        <method_name> operator delete [] </method_name>
+        <parameters>
+            <api_param>
+                <param_type> void * </param_type>
+                <param_name> pv </param_name>
+            </api_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para> 
+        	None 
+        </para>
+    </return>
+
+    <remarks>
+    	<para>
+    		This operator is used to release kernel object or kernel object array created by the <link url="new.htm">
+    		new</link> operator. Attempts to release null pointer or invalid pointer (Pointer to kernel object or 
+    		kernel object array that is not created by the <link url="new.htm">new</link> operator.), causes an 
+    		unpredictable error.  
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>new</ref_name>
+            <ref_url>new</ref_url>
+        </reference>
+    </references>
+</manpage>

@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+
+    <volume>CConsole类函数</volume>
+
+    <interface>CConsole</interface><method> Write </method>
+    <description>
+        <para>将字符串写入系统控制台标准输出设备，不回车换行。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> AChar/WChar/Byte/Float/AString/WString </param_type>
+                <param_name> value </param_name>
+                <param_note>
+                    <para>(写法1参数)要写入输出设备的数据，可以是AChar, WChar, Byte, Float, AString, WString等CAR数据类型</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Int8/Int16/Int32/Int64/Double</param_type>
+                <param_name> value </param_name>
+                <param_note>
+                    <para>(写法2参数)要写入输出设备的数据，可以是Int8, Int16, Int32, Int64, Double,等CAR数据类型</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Flag32 </param_type>
+                <param_name> fmt = 0 </param_name>
+                <param_note>
+                    <para>(写法2参数)字符输出格式，参见<link url= "../../../../car_technology/fundamental/development_environment/car/others/NumberFormatFlag.htm" >_NumberFormat</link>枚举类型。 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回NOERROR。</para>
+    </return>
+
+    <remarks>
+        <para>函数WriteLine将指定的数据写入标准输出流。不跟行结束符"\n"</para>
+        <para>如果输出数据为Boolean型，当值为“真”时，输出“True”，当值为“假”时，输出“False”。</para>        
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统  
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

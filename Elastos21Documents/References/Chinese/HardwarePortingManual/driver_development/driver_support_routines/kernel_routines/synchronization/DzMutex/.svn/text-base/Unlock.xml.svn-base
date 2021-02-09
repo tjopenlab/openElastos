@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>同步</volume>
+<interface>DzMutex</interface><method> Unlock </method>
+    <description>
+        <para>释放已占有的互斥体对象。</para>
+    </description>
+    <syntax_nopara>
+        <return_val>void</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>当前线程必须是互斥体对象的属主。如果当前线程并未占有互斥体对象，调用本成员函数将会导致未定义的行为。</para>
+        <para>互斥体对象是递归的。这意味着一个已经占有互斥体对象的线程可以再次成功地获取本互斥体对象，但是需要成功调用与已经成功调用的<link url="Lock.htm">DzMutex::Lock</link>方法和<link url="TryLock.htm">DzMutex::TryLock</link>方法次数之和相同次数的DzMutex::Unlock方法才能最终释放本互斥体对象。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

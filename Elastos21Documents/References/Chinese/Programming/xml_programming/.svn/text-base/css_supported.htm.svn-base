@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>XmlGlue支持的CSS</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li class="current"><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+	<ul>
+		<li><a href="intro_css.htm"><span>CSS介绍</span></a></li>
+		<li class="current"><a href="css_supported.htm"><span>XmlGlue支持的CSS</span></a></li>
+	</ul>
+</div>		
+
+<h2>概览</h2><!-- doxytag: class="window" -->
+<p>在使用XmlGlue技术进行Elastos脚本编程中，XmlGlue也对CSS技术提供一定的支持以利于更好的进行布局设计。在<a href="intro_css.htm">CSS基础</a>中我们介绍CSS的一般规则，以下将对介绍XmlGlue对CSS支持的相关规则。
+<h2>XmlGlue支持的CSS的规则</h2>
+<h3>XmlGlue支持的CSS的语法</h3>
+<left><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>
+StyleSheet ::= { Rule }
+Rule ::= Selector '{' { Declaration ';' } [ Declaration [';'] ] '}'
+Selector ::= Element | '.' Class | '#' Id | Element '.' Class | { Selector ',' } [ Selector [,] ]
+Declaration ::= Property ':' Value
+Property ::= [A-Za-z][A-Za-z-]*
+Value ::= [^;]+
+Element ::= [A-Za-z_][A-Za-z0-9_]*
+Class ::= [A-Za-z_][A-Za-z0-9_]*
+Id ::= [A-Za-z_][A-Za-z0-9_]*
+</td></tr></table>
+<P>其中<b>Selector</b>代表选择符，<b>Element</b>代表视图文件(.xgl)中标签元素，如button。在CSS中对应的引用形式为“元素名”，如button;<b>Class</b>代表视图文件中标签元素的类名，形式为“x:Class=类名”,在CSS中对应的引用形式为“.类名”;<b>Id</b>代表视图文件中标签元素对应的标识符，形式为“x:id=标识符”,在CSS中对应的引用形式为"#标识符”;<b>Declaration</b>为某个选择符的规则，一般由键值对组成，即属性（Property）和属性值（Value）组成，且在CSS中的使用形式为“Property:Value”。
+<h3>XmlGlue支持的CSS规则</h3>	
+<p>结合以上的语法，较之一般的CSS规则，XmlGlue支持的CSS规则归纳如下：
+<ol>
+	<li>样式表中每一个条目由选择符（selector）和对应的规则组成，选择符可以是视图文件中的标签元素名称（Element）,也可以是类（x：class）、标识符（x:id）、元素.类（Element.Class)、基于以上选择符的多个选择符（即群组选择符）等。</li>
+	<li>仅支持外部样式表，且外部样式表与视图文件间呈多对多的关系，即允许多个外部样式表用于同一个视图文件及同一个外部样式表用于多个视图文件。在视图文件加载css表的方法如下：		
+			<left><table border="0" cellpadding="0" cellspacing="0">
+			<tr><td class="memitem" valign="bottom"><pre>
+&lt;?xml-stylesheet type="text/css" href="CSS FILE PATH"?&gt;
+</td></tr></table></left>
+<p>CSS FILE PATH代表CSS文件的相对于当前项目根目录的路径。
+<li>若用户在视图文件中定义了基于某个选择符与CSS文件中相同的属性，则此时相关属性及其值取自视图文件的相关属性。
+</ol>
+<h2>样式规则的属性（Property）</h2>
+<p>任何样式规则的内容由属性及其属性值组成。XmlGlue支持的CSS的样式规则的属性有两类：<b>Elastos图形系统中的控件皮肤相关的属性</b>和<b>Elastos图形系统中的控件的一些公共属性</b>。
+<p>具体而言，控件皮肤的相关属性包括skin及其子属性url,style,region，即指定皮肤的图片路径、显示风格及布局。
+<h3>Elastos图形系统中的控件皮肤相关的属性</h3>
+<p>skin是控件或控件中某个元素的皮肤，这里的皮肤由图片提供,有关skin的属性值由url,style,region组成的描述字符串提供。
+<table width="120%">
+  <tr><th><b>Skin相关的属性</b></th><th><b>描述</b></th><th><b>适用的控件</b></th></tr>
+  <tr><td class="indexvalue" width="14%">skin</td><td class="indexvalue" width="13%">整个控件的皮肤。</td><td class="indexvalue" width="15%">button。</td></tr>
+  <tr><td class="indexvalue">skin-active</td><td class="indexvalue">控件的激活元素。</td><td class="indexvalue">calendar,dateTimePicker,comboBix,ipAddress,label,numericSpin,radioButton,textBox,trackBar。需注意的是，当使用此属性时，请确认以上控件的风格（style）为相应的箭头风格。</td></tr>
+  <tr><td class="indexvalue">skin-activeBar</td><td class="indexvalue">控件的激活项元素。</td><td class="indexvalue">stackPanel,listBox,listView,menu,subMenu。</td></tr>
+  <tr><td class="indexvalue">skin-arrow</td><td class="indexvalue">控件的箭头元素。</td><td class="indexvalue">button,calendar,dateTimePicker,comboBix,label,menu,subMenu,numericSpin。需注意的是，当使用此属性时，请确认以上控件的风格（style）为相应的箭头风格。</td></tr>
+  <tr><td class="indexvalue">skin-background</td><td class="indexvalue">控件的背景元素。</td><td class="indexvalue">calendar,checkBox,comboBox,stackPanel,dateTimePicker,ipAddress,label,listBox,listView,menu,subMenu,numeriSpin,panel,pictureBox,progressBar,radioButton,tabControl,textBox,trackBar。</td></tr>
+  <tr><td class="indexvalue">skin-border</td><td class="indexvalue">控件的边界元素。</td><td class="indexvalue">calendar,checkBox,comboBox,stackPanel,dateTimePicker,ipAddress,label,listBox,listView,menu,subMenu,numeriSpin,panel,pictureBox,progressBar,radioButton,tabControl,textBox,trackBar。</td></tr>
+  <tr><td class="indexvalue">skin-box</td><td class="indexvalue">控件的框元素。</td><td class="indexvalue">checkBox。</td></tr>
+  <tr><td class="indexvalue">skin-hTrack </td><td class="indexvalue">控件的水平跟踪项元素。</td><td class="indexvalue">scrollBar,trackBar。 </td></tr>
+  <tr><td class="indexvalue">skin-hThumb </td><td class="indexvalue">控件的水平滑块项元素。</td><td class="indexvalue">scrollBar,trackBar。 </td></tr>
+  <tr><td class="indexvalue">skin-hMidThumb  </td><td class="indexvalue">控件的水平滑块中间元素。</td><td class="indexvalue">scrollBar。 </td></tr>
+  <tr><td class="indexvalue">skin-scrollArrow   </td><td class="indexvalue">控件的水平滚动箭头元素。</td><td class="indexvalue">tabControl。 </td></tr>
+  <tr><td class="indexvalue">skin-sizeBox   </td><td class="indexvalue">控件的滚动框体元素。</td><td class="indexvalue">scrollBar。 </td></tr>
+  <tr><td class="indexvalue">skin-tab   </td><td class="indexvalue">控件的选项卡元素。</td><td class="indexvalue">tabControl。 </td></tr>
+  <tr><td class="indexvalue">skin-vTrack</td><td class="indexvalue">控件的垂直跟踪项元素。</td><td class="indexvalue">trackBar。 </td></tr>   <tr><td class="indexvalue">skin-vThumb</td><td class="indexvalue">控件的垂直滑块元素。</td><td class="indexvalue">trackBar。 </td></tr>
+</table>
+<p>url,是指定图片的相对于当前项目根目录的路径。使用形式为:url(PICTURE RELEATIVE PATH)。	
+<p>style，是指定已设置皮肤的显示风格，备选值及其描述如下表所示。
+	<table>
+  <tr><td><b>显示风格</b></td><td><b>描述</b></td></tr>
+  <tr><td class="indexvalue">Stretch</td><td class="indexvalue">拉伸</td></tr>
+  <tr><td class="indexvalue">StretchHorizontal</td><td class="indexvalue">横向拉伸。</td></tr>
+  <tr><td class="indexvalue">StretchVertical</td><td class="indexvalue">纵向拉伸。</td></tr>
+  <tr><td class="indexvalue">Tile</td><td class="indexvalue">平铺。</td></tr>
+  <tr><td class="indexvalue">CenterMiddle</td><td class="indexvalue">水平垂直居中。</td></tr>
+  <tr><td class="indexvalue">TrueSize </td><td class="indexvalue">原始大小。 </td></tr>
+</table>
+<p>region，是指定图片在控件中的显示区域。需指定其左边距（left），右边距（right),顶部距离（top),底部距离（bottom)，对应的数据类型均为整型。
+ <h3>控件的一些公共属性</h3>
+ <p>XmlGlue对Elastos图形系统的控件的一些公共属性提供CSS支持，这些公共属性有：控件显示文本的字体（font),控件的背景图片(backgroundImage)，控件的显示风格（control-style)
+ <ul>
+ 	 <li>控件显示文本的字体（font)：
+ 	 	<p>字体的属性值由字体名称（name),字体大小（size),字体风格（style)组成，默认值分别为songti、16、Regular。其中name的值可为：songti(宋体)、fangti(方体)、heiti(黑体)、kaiti(楷体)，Tahoma、ksphonet,前4种字体名称适用于汉字，后2种则适用于英文。style可以为：Regular(常规）,Bold（加粗）,Italic（斜体）,Strikeout（删除线）,Outline（下滑线)。
+ 	 <li>控件的背景图片（backgroundImage):
+ 	 	<p>通过过指定所引用的图片资源的相对路径（relative path）设定控件的背景图片。
+ 	 <li>控件的显示风格（control-style）：
+ 	 	<p>支持组件的一个或多个风格。若有多个风格，各风格之间用空隔隔开。
+ </ul>
+ <h2>相关示例</h2>
+ <p>以下是CSS示例代码，且相关选择符已在xgl文件中存在。
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>
+#main /*refer to some control with pre-declaration x:id="main" in xml context in a file with an extension .xgl. */
+{
+    control-style: dialogFrame;
+    font:
+        /* font-name */heiti, /* size */10, italic underline;
+}
+checkBox, .red/*  it demonstrates selector-group(multi-selector) is supported.Between them,in this case,".red" refer to some control with pre-declaration x:class="red" in a view file prefixing .xgl. */
+{
+    skin-background: url(images/background.png), Stretch, region(4, 4, 6, 6);/* it demonstrates control skin supported,for which you must specify the related value to-URL,STTYLE,REGION separately.
+    skin-border: url(images/border.png), Stretch, region(4, 4, 6, 6);
+    skin-box: url(images/CheckBox.PNG),centerMiddle,region(0,0,0,0);
+    font: ksphonet,regular;/*it demonstrates font attribute of control text  supported.To do this,you should specify  the values in relation to-NAME,SIZE,STYLE.By default,SIZE is 16,which this case adopts*/
+}
+
+listBox, comboBox, radioButton
+{
+    skin-background: url(images/background.png), Stretch, region(4, 4, 6, 6);
+    skin-border: url(images/border.png), Stretch, region(4, 4, 6, 6);
+    control-style: sort/*ListBoxStyle_Sort for listBox and ComboBoxStyle_Sort for comboBox*/
+        noSelection/*ListBoxStyle_NoSelection*/ autoSize /*ListBoxStyle_AutoSize*/
+}
+</td></tr></table>	 				
+ 	<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IGrafixMain</interface><method> SetDefaultInputMethod </method>
+    <description>
+        <para>
+            设置默认输入法。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> editorName </param_name>
+                <param_note>
+                    <para>
+输入法名称。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> methodName </param_name>
+                <param_note>
+                    <para>
+输入法类型。                    </para>
+                </param_note>
+            </api_param>            
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统              </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElControls.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+<remarks>
+<para>editorName空，methodName空：去除输入法;</para>
+<para>editorName空，methodName有值：将当前输入法的类型改成methodName</para>
+<para>editorName有值，methodName空：将当前输入法编辑器设为editorName，类型为默认</para>
+<para>editorName有值，methodName有值：设置为指定的输入法</para>
+</remarks>    
+</manpage>

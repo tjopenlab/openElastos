@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="time\TimeRoutine">TimerRoutine</sample>
+    <volume>Time</volume>
+    <title>TimerRoutine</title>
+    <routine_idx> ../../time.htm </routine_idx>
+
+    <description>
+        <para>Timer callback routine.</para>
+    </description>
+
+    <syntax>
+        <return_val>void CDECL</return_val>
+        <parameters>
+            <api_param>
+                <param_type> void * </param_type>
+                <param_name> pvParameter </param_name>
+                <param_note>
+                    <para>Pointer to additional information. By using this parameter, timer callback routine can obtain additional information passed in when constructing timer object. See <link url="..\Timer\Timer.htm">Timer::Timer()</link>.</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>This function is a timer callback routine passed in when constructing the timer object. After the timer object starts and runs specified time delay (i.e. timer object timeout), the system invokes this callback routine once.</para>
+        <para>Timer callback routine is invoked in system context. So, similar to driver bottom half, this function cannot access any process context.It can only be used to execute system jobs, also timer callback routine must be executed as soon as possible. We can assume: Rules and restrictions for driver bottom half would also fit for timer callback routine. Also, timer callback routine has a lower priority than any interrupt.If there is no interrupt to be processed in the system, then the kernel invokes all timer callback routines that are timed out as soon as possible.</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or latter.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+    </references>
+
+    <example>
+    </example>
+
+</manpage>

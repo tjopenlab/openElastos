@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_strupr">_strupr</sample>
+    <title>_strupr,_wcsupr</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>将字符串中的小写字母转换成大写字母。</para>
+    </description>
+    
+   
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>_strupr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_wcsupr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>每个函数都返回指向转换后的字符串的指针，因为转换是在同一个位置进行的，所以函数返回的指针与作为参数的字符串指针是相同的。无返回值则指示出错。</para>
+    </return>
+
+    <remarks>
+        <para>函数_strupr将字符串当中的所有小写英文字母转换成大写字母，其它字符不受影响。_wcsupr是_strupr的宽字符版本，_wcsupr的参数是宽字符串。除此之外，与函数_strupr一样。</para>
+    </remarks>
+
+    <requirements>
+       
+        <routine>
+            <routine_name>_strupr</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        
+        <routine>
+            <routine_name>_wcsupr</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _strupr.cpp: This program uses _strupr to create
+ * uppercase copies of a mixed-case string.
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    char string[100] = &quot;The String to End All Strings!&quot;;
+
+    printf("Mixed: %s\n", string);      
+
+    _strupr(string);
+      
+    printf("Upper: %s\n", string);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+Mixed: The String to End All Strings!
+Upper: THE STRING TO END ALL STRINGS!
+</result>
+
+
+    <references>
+        <reference>
+            <ref_name>_strlwr</ref_name>
+            <ref_url>_strlwr</ref_url>
+        </reference>
+    </references>
+
+</manpage>

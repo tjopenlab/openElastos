@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strncat">strncat</sample>
+    <title> strncat, wcsncat</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>在目标字符串的末尾追加制定个数的源字符串的字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strncat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strDest</param_name>
+                <param_note>
+                    <para>被追加的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strSource</param_name>
+                <param_note>
+                    <para>用来追加的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>要追加的字符的个数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>wcsncat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>strDest</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>strSource</param_name>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>两个函数都返回指向目标字符串的指针，如无返回值则指示错误。</para>
+    </return>
+
+    <remarks>
+        <para>函数strncat将strSource的前count个（小于或等于count）字符追加到目标字符串strDest的末尾。strSource的第一个字符覆盖strDest的结束符NULL。 </para>
+        <para>如果在strSource串中，第count个字符之前，有NULL字符，那么函数strncat追加到strDest串尾的，是strSource串中第一个NULL字符前的所有字符。 </para>
+        <para>如果count值大于strSource串的长度，追加时以strSource串的长度代替count。结果字符串以NULL结尾。 </para>
+        <para>在两个串的重叠部分进行的串拷贝，操作未定义。 </para>
+        <para>函数wcsncat是函数strncat的宽字符版本。函数wcsncat的参数和返回值，都是宽字符串，除此之外，和函数strncat一样。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strncat</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcsncat</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strncat.cpp:this program use strncat to appends, at most, the first count characters of suffix to string
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[80] = &quot;This is the initial string!&quot;;
+    char suffix[] = &quot; extra text to add to the string...&quot;;
+    /* Combine strings with no more than 19 characters of suffix: */
+    printf(&quot;Before: %s\n&quot;, string);
+    strncat(string, suffix, 19);
+    printf(&quot;After:  %s\n&quot;, string);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Before: This is the initial string!
+After:  This is the initial string! extra text to add
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcscat</ref_name>
+            <ref_url>wcscat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcsncpy</ref_name>
+            <ref_url>wcsncpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strspn </ref_name>
+            <ref_url>strspn</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strcspn </ref_name>
+            <ref_url>strcspn</ref_url>
+        </reference>
+    </references>
+
+</manpage>

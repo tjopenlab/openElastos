@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IFileMgrEvent</interface><method> FileOperated </method>
+    <description>
+        <para>
+            获取当前文件或文件夹操作的回调函数。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> OPERATION_TYPE </param_type>
+                <param_name> ActionCode </param_name>
+                <param_note>
+                    <para>
+<link url="../../datatype/tagOPERATION_TYPE.htm">OPERATION_TYPE</link>枚举类型，用于保存文件管理器引擎正在进行的操作的动作编码                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esInfo </param_name>
+                <param_note>
+                    <para>
+传输附加的操作信息                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            当执行Move、Remove、Copy、GetSize、GetItemCountInDir命令对任何文件或文件夹进行操作时触发回调，通知当前引擎进行的操作动作和附加的操作信息。
+        </para>
+    </remarks>
+</manpage>

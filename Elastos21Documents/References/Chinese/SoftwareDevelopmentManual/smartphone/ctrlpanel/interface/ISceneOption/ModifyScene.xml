@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISceneOption</interface><method> ModifyScene </method>
+    <description>
+        <para>
+            根据传入的情景模式名esSceneName来修改情景模式。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ISceneDataRef </param_type>
+                <param_name> pSceneData </param_name>
+                <param_note>
+                    <para>
+存放情景模式中所有参数的数据模块                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esOldSceneName </param_name>
+                <param_note>
+                    <para>
+修改前情景模式的名字                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            pSceneData和esSceneName为空或者esSceneName的长度为0，返回E_INVALIDARG；读取环境变量（数据库名）失败，返回E_INVALID_ENVIRONMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            需要修改的配置的参数在pSceneData内存块中，修改后结果保存在数据库中。
+        </para>
+    </remarks>
+</manpage>

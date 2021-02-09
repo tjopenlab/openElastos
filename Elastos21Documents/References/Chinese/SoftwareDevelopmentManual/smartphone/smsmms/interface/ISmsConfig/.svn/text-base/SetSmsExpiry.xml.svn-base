@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>短信彩信引擎</volume>
+<interface>ISmsConfig</interface><method> SetSmsExpiry </method>
+    <description>
+        <para>
+            设置短信的过期时间。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nExpiry </param_name>
+                <param_note>
+                    <para>
+短信的过期时间，单位小时                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回S_OK；如果有参数无效，则方法调用失败，并返回E_INVALIDARG；如果没有初始化彩信合成模块，则方法调用失败，并返回E_MMS_NOINIT；E_MMS_RECORDNOTFOUND，方法调用失败，失败原因是没有找到记录。</para><para>            更多返回值，参见            <link url="../../sms_error.htm">            短信彩信返回值            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elatype.h、stdlib.h、mmsdef.h、mmstype.h、</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElDatabase.lib、elastos.lib、ElCRuntime.lib、ElUtilities.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            过期时间是指短信在服务中心存储的时间期限。
+        </para>
+    </remarks>
+</manpage>

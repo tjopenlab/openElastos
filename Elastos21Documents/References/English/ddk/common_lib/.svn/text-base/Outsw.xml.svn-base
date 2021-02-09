@@ -1,0 +1,135 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="practical_routines\Outsw">Outsw</sample>
+    <volume>Common Library</volume>
+    <title>Outsw</title>
+    <routine_idx> ../common_library.htm </routine_idx>
+
+    <description>
+        <para>
+        	Outputs data with specified size to the specified 16-bit I/O port.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> ioport_t </param_type>
+                <param_name> port </param_name>
+                <param_note>
+                    <para>
+                    	The address of the specified 16-bit I/O port.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+
+        <parameters>
+            <api_param>
+            	<param_inout>[out]</param_inout>
+                <param_type> const void * </param_type>
+                <param_name> buffer </param_name>
+                <param_note>
+                    <para>
+                    	The first address of the buffer which outputs data.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> size_t </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>
+                    	Size of output data, the unit is byte.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+
+    </syntax>
+    <return>
+	    <NoReturnValue/>
+	</return>
+
+
+    <remarks> 
+       <para>
+	       This function is to output data with specified size to the specified 16-bit I/O port, two bytes each time,
+	       until the specified size of data has been output. The behavior of this function is undefined if the specified 
+	       output data size is not exactly divisible by 2.
+       </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>Inb</ref_name>
+            <ref_url>Inb</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Inl</ref_name>
+            <ref_url>Inl</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Inw</ref_name>
+            <ref_url>Inw</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Insb</ref_name>
+            <ref_url>Insb</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Insl</ref_name>
+            <ref_url>Insl</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Insw</ref_name>
+            <ref_url>Insw</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Outb</ref_name>
+            <ref_url>Outb</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Outl</ref_name>
+            <ref_url>Outl</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Outw</ref_name>
+            <ref_url>Outw</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Outsb</ref_name>
+            <ref_url>Outsb</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Outsl</ref_name>
+            <ref_url>Outsl</ref_url>
+        </reference>
+    </references>
+
+
+</manpage>

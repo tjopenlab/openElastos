@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> UngrabKey </method>
+    <description>
+        <para>
+            取消捕获特定的键值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> keyCode </param_name>
+                <param_note>
+                    <para>
+取消需捕获的键值                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_CLOSED</td>
+	    	    <td>窗体已关闭</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+            一旦按键捕获成功，该键一直发给当前捕获窗口，其他窗口将不能收到该按键，直到调用该方法取消捕获，或者捕获窗口被关闭。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GrabKey</ref_name>
+        <ref_url>GrabKey</ref_url>
+    </reference>
+</references>
+</manpage>

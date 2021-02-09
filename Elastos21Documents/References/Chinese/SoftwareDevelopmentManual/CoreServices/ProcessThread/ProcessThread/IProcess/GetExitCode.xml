@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\Exit">GetExitCode</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> GetExitCode </method>
+    <description>
+        <para>
+            获取IProcess接口指向的进程退出状态码。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ExitCode * </param_type>
+                <param_name> pExitCode </param_name>
+                <param_note>
+                    <para>
+						ExitCode类型指针，用于获取进程的退出状态码，不能为空。
+                    </para>
+                </param_note>
+            </api_param>
+
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取进程的返回值</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_PROCESS_NOT_EXITED</td>
+	    	    <td>进程未退出</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>如果进程退出，那么进程的退出码有可能是以下几种情况：</para>
+	    <para>1. <link url="../Function/CProcess/Exit.htm">CProcess::Exit()</link>方法指定的ExitCode值。 </para>
+	    <para>2. main()函数中return语句返回的整型值。 </para>
+	    <para>3. CRT的exit函数退出进程时指定的返回值。 </para>
+	    <para>返回值的选择取决于应用程序的具体实现。一般情况下，正常退出时应该返回零。</para>
+		   <para>如果进程还没退出，可以通过<link url="WaitForExit.htm">IProcess::WaitForExit()</link>等待进程退出。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

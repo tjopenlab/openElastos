@@ -1,0 +1,90 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzSleep"> EzSleep </sample>
+    <volume>Process And Thread</volume>
+    <title>CThread::Sleep</title>
+    <routine_idx> ...\thread_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	Makes the current thread sleep for the specified interval.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Millisecond </param_type>
+                <param_name> ms </param_name>
+                <param_note>
+                    <para>
+                    	[in] Specifies the time, in milliseconds, for which to sleep.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> WaitResult *</param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in making the current thread sleep for the specified interval.</td>
+            </tr>
+            <tr>
+                <td>WaitResult_Interrupted</td>
+                <td>Interrupted by other thread</td>
+            </tr>
+        </table>
+        <para>See <link url="../../hresult.htm">ECODE</link> related help for more details.</para>
+    </return>
+
+    <remarks>
+        <para>
+        	Calling the function will make the thread sleep. When the specified interval elapsed, the thread will be 
+        	woken up by the operating system.
+        </para>
+        <para>
+        	When parameter <i>ms</i> is 0, the thread gaves up time slice ownership to any ready thread with the same priority.If no ready thread with the same priority exists, the function will return imediately, the thread will continue execution. If <i>ms</i> is INFINITE, the calling thread will sleep forever.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+    </requirements>
+
+    <references>
+    <reference>
+        <ref_name>CThread::Yield</ref_name>
+        <ref_url>EzYield</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CThread::Delay</ref_name>
+        <ref_url>EzDelay</ref_url>
+    </reference>
+    </references>
+
+</manpage>

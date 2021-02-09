@@ -1,0 +1,1227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: IResultSet接口参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>IResultSet接口参考</h1><!-- doxytag: class="IResultSet" -->对数据库进行执行一条查询语句的操作通常会创建一个代表数据库查询结果集的数据表。
+<a href="#_details">更多...</a>
+<p>
+<code>import &quot;<a class="el" href="database_8car-source.html">database.car</a>&quot;;</code>
+<p>
+
+<p>
+<a href="interface_i_result_set-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#418d8e70d418355e0dc91df4c2ceabac">Close</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">立即释放当前ResultSet对象的数据库资源，而不是等待其自动被关闭时才释放。  <a href="#418d8e70d418355e0dc91df4c2ceabac"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#d284495fc45b608ffdf77f714e900bd0">IsClosed</a> ([out] Boolean *closed)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检查ResultSet对象是否已被关闭。  <a href="#d284495fc45b608ffdf77f714e900bd0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#e028dfa154e05d90b665fc983dfe66b5">GetBlobColumnSizeByIndex</a> ([in] Int32 column,[out] Int32 *size)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检索当前ResultSet对象当前行指定索引的列的Blob类型数据大小。  <a href="#e028dfa154e05d90b665fc983dfe66b5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#e9283dbefd3743aa4670e4f256e393ba">GetBlobColumnSizeByName</a> ([in] WString column,[out] Int32 *size)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检索当前ResultSet对象当前行指定列名的列的Blob类型数据大小。  <a href="#e9283dbefd3743aa4670e4f256e393ba"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#bd226729a5c32929371dbf84048ef818">GetBlobColumnByIndex</a> ([in] Int32 column,[out] BufferOf&lt;Byte&gt; * value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检索当前ResultSet对象当前行指定索引的列的Blob类型数据。  <a href="#bd226729a5c32929371dbf84048ef818"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#4fcf3c912052fb7a8fd996ea64be89bf">GetBlobColumnByName</a> ([in] WString column,[out] BufferOf&lt;Byte&gt; * value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检索当前ResultSet对象当前行指定名字的列的Blob类型数据。  <a href="#4fcf3c912052fb7a8fd996ea64be89bf"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#bcb8c02e2b4f9f8ac0ee71ff0fd444b2">GetBooleanColumnByIndex</a> ([in] Int32 column,[out] Boolean *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检索当前ResultSet对象当前行指定索引的列的Boolean类型数据。  <a href="#bcb8c02e2b4f9f8ac0ee71ff0fd444b2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#57e1f1430d7d7657571f1725e18bdcdb">GetBooleanColumnByName</a> ([in] WString column,[out] Boolean *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检索当前ResultSet对象当前行指定名字的列的Boolean类型数据。  <a href="#57e1f1430d7d7657571f1725e18bdcdb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#dd705eb0b29dc6f9d12abc2487f881a1">GetByteColumnByIndex</a> ([in] Int32 column,[out] Byte *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检索当前ResultSet对象当前行指定索引的列的Byte类型数据。  <a href="#dd705eb0b29dc6f9d12abc2487f881a1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#1161e4d1dfe29d07031c92169faa8e44">GetByteColumnByName</a> ([in] WString column,[out] Byte *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检索当前ResultSet对象当前行指定名字的列的Byte类型数据。  <a href="#1161e4d1dfe29d07031c92169faa8e44"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#1119917f12f9810f3998cfef0279e84a">GetDateTimeColumnAsStringByIndex</a> ([in] Int32 column,[out] WStringBuf * value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检索当前ResultSet对象当前行指定索引的列的时间类型数据。  <a href="#1119917f12f9810f3998cfef0279e84a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#991d4dd64a78a5ed3a7f8bb80d4d1da5">GetDateTimeColumnAsStringByName</a> ([in] WString column,[out] WStringBuf * value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检索当前ResultSet对象当前行指定名字的列的时间类型数据。  <a href="#991d4dd64a78a5ed3a7f8bb80d4d1da5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#a1effb53dc5fc9a35b7ddd6feee11ff9">GetDateTimeColumnByIndex</a> ([in] Int32 column,[out] DateTime *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定索引的列的DateTime类型数据。  <a href="#a1effb53dc5fc9a35b7ddd6feee11ff9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#e6f4a4dce6b0a4216d18c4f8d5df795e">GetDateTimeColumnByName</a> ([in] WString column,[out] DateTime *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定名字的列的DateTime类型数据。  <a href="#e6f4a4dce6b0a4216d18c4f8d5df795e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#8ad9df221b9d964f28246d5898303776">GetDoubleColumnByIndex</a> ([in] Int32 column,[out] Double *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定索引的列的Double类型数据。  <a href="#8ad9df221b9d964f28246d5898303776"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#9b9064031c66490eef56a88ec9d527f2">GetDoubleColumnByName</a> ([in] WString column,[out] Double *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定名字的列的Double类型数据。  <a href="#9b9064031c66490eef56a88ec9d527f2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#b3545ffa6dcdd7c4ffc6f5566171c27d">GetInt32ColumnByIndex</a> ([in] Int32 column,[out] Int32 *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定索引的列的Int32类型数据。  <a href="#b3545ffa6dcdd7c4ffc6f5566171c27d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#fc9374fe397887d336ebfa10631530b5">GetInt32ColumnByName</a> ([in] WString column,[out] Int32 *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定名字的列的Int32类型数据。  <a href="#fc9374fe397887d336ebfa10631530b5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#027c2dc7ef2f46a8c13e5d2a4794a93b">GetInt64ColumnByIndex</a> ([in] Int32 column,[out] Int64 *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定索引的列的Int64类型数据。  <a href="#027c2dc7ef2f46a8c13e5d2a4794a93b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#39d7436c8813a2daf37132343bda68bb">GetInt64ColumnByName</a> ([in] WString column,[out] Int64 *value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定名字的列的Int64类型数据。  <a href="#39d7436c8813a2daf37132343bda68bb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#28fc70d01ee6813e12a2ea88a9f94fa9">GetStringColumnSizeByIndex</a> ([in] Int32 column,[out] Int32 *size)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定索引的列的String类型数据大小。  <a href="#28fc70d01ee6813e12a2ea88a9f94fa9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#8d04e68bc0d3d7b76504f04d10cff0ce">GetStringColumnSizeByName</a> ([in] WString column,[out] Int32 *size)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定名字的列的String类型数据大小。  <a href="#8d04e68bc0d3d7b76504f04d10cff0ce"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#3027181174fa81656967e185a5215eeb">GetStringColumnByIndex</a> ([in] Int32 column,[out] WStringBuf * value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定索引的列的String类型数据。  <a href="#3027181174fa81656967e185a5215eeb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#c27bff9e859f1e13308a95ad1c06a46b">GetStringColumnByName</a> ([in] WString column,[out] WStringBuf * value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象当前行指定名字的列的String类型数据。  <a href="#c27bff9e859f1e13308a95ad1c06a46b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#c9c06de8fa9111395920590cbc9567e1">Next</a> ([out] Boolean *rowValid)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将指针从当前位置下移一行。 ResultSet指针最初位于第一行之前， 第一次调用该方法将使第一行成为当前行，第二次调用将使第二行成为当前行，以此类推。  <a href="#c9c06de8fa9111395920590cbc9567e1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#1b0d2b940ccf08a56416ab95ec072450">GetErrorCode</a> ([out] ECode *code)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象报告的最近的错误码。  <a href="#1b0d2b940ccf08a56416ab95ec072450"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#3314ded00783c9cf42f1bee639070b44">GetErrorMessage</a> ([out] WStringBuf * message)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前ResultSet对象报告的最近的错误信息。  <a href="#3314ded00783c9cf42f1bee639070b44"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#c0e5254076db62b14035544e40d9eea1">GetMetaData</a> ([out] <a class="el" href="interface_i_result_set_meta_data.html">IResultSetMetaData</a> **metadata)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取包含当前ResultSet对象的列的编号，类型和属性信息的ResultSetMetaData对象。  <a href="#c0e5254076db62b14035544e40d9eea1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html#e1b33a256ecbf0d002f4eb365170c11a">Reset</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将ResultSet对象重置为其最初状态，准备重新执行。  <a href="#e1b33a256ecbf0d002f4eb365170c11a"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+对数据库进行执行一条查询语句的操作通常会创建一个代表数据库查询结果集的数据表。
+<p>
+一个ResultSet对象会维护一个指向当前行的指针。 最初，该指针将指向第一行之前。 Next方法将该指针移动到下一行，因为该方法在 ResultSet 对象中没有下一行时返回 false， 所以可以在 while 循环中使用它来迭代结果集。<p>
+一个默认的ResultSet对象有一个只向前移动的指针， 因此，只能迭代它一次，并且只能按从第一行到最后一行的顺序进行。<p>
+ResultSet接口提供了GetBoolean, getInt32, 等从当前行检索列值的获取信息的方法。 这些方法可以通过列的索引编号或列名来检索值。 一般地，使用列的索引将更有效。 列从1开始编号，为了获得更大的可移植性，每个列应该只读取一次。<p>
+对于获取信息的方法来说，数据库试图将数据转换成这些方法中指定ElaDB数据类型的数据， 并返回适当的ElaDB值。 下表列出了在ResultSet接口中的这些方法中，被用到的允许从SQL类型到供 ResultSet 获取方法使用的 ElaDB 类型的映射关系。<p>
+<html>
+<body>
+     <table border=3>
+		<thead>
+			<td align=center><b>Internal Type</b></td>
+			<td align=center><b>Requested Type</b></td>
+			<td align=center><b>Conversion</b></td>
+		</thead>
+		<tr align=center>
+			<td>NULL</td>
+			<td>INTEGER</td>
+			<td>Result is 0</td>
+		</tr>
+			<tr align=center>
+			<td>NULL</td>
+			<td>Float</td>
+			<td>Result is 0.0</td>
+		</tr>
+		<tr align=center>
+			<td>NULL</td>
+			<td>TEXT</td>
+			<td>Result is an empty string</td>
+		</tr>
+		<tr align=center>
+			<td>NULL</td>
+			<td>BLOB</td>
+			<td>Result is a zero-length BLOB</td>
+		</tr>
+		<tr align=center>
+			<td>INTEGER</td>
+			<td>Float</td>
+			<td>Convert from integer to FLOAT</td>
+		</tr>
+		<tr align=center>
+			<td>INTEGER</td>
+			<td>TEXT</td>
+			<td>ASCII rendering of the integer</td>
+		</tr>
+		<tr align=center>
+			<td>INTEGER</td>
+			<td>BLOB</td>
+			<td>Same as for INTEGER->TEXT</td>
+		</tr>
+		<tr align=center>
+			<td>Float</td>
+			<td>INTEGER</td>
+			<td>Convert from FLOAT to integer</td>
+		</tr>
+		<tr align=center>
+			<td>Float</td>
+			<td>TEXT</td>
+			<td>ASCII rendering of the FLOAT</td>
+		</tr>
+		<tr align=center>
+			<td>Float</td>
+			<td>BLOB</td>
+			<td>Same as FLOAT->TEXT</td>
+		</tr>
+		<tr align=center>
+			<td>TEXT</td>
+			<td>INTEGER</td>
+			<td>Use atoi()</td>
+		</tr>
+		<tr align=center>
+			<td>TEXT</td>
+			<td>Float</td>
+			<td>Use atof(</td>
+		</tr>
+		<tr align=center>
+			<td>TEXT</td>
+			<td>BLOB</td>
+			<td>No change</td>
+		</tr>
+		<tr align=center>
+			<td>BLOB</td>
+			<td>INTEGER</td>
+			<td>Convert to TEXT then use atoi()</td>
+		</tr>
+		<tr align=center>
+			<td>BLOB</td>
+			<td>Float</td>
+			<td>Convert to TEXT then use atof()</td>
+		</tr>
+		<tr align=center>
+			<td>BLOB</td>
+			<td>TEXT</td>
+			<td>Add a \000 terminator if needed</td>
+		</tr>
+
+	</table>
+	</body>
+	</html>
+<p>
+当生成 ResultSet 对象的 Statement 对象关闭、重新执行或用来从多个结果的序列检索下一个结果时， ResultSet 对象会自动关闭。<p>
+ResultSet 对象的列的编号、类型和属性由 IResultSet接口的GetMetaData方法返回的 ResulSetMetaData 对象提供。 <dl compact><dt><b>示例: </b></dt><dd>
+
+<p>
+<a class="el" href="_close_8cpp-example.html#_a3">Close.cpp</a>及<a class="el" href="_get_result_8cpp-example.html#_a3">GetResult.cpp</a>.</dl>
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00987">987</a>行定义。</p>
+<hr><h2>成员函数文档</h2>
+<a class="anchor" name="418d8e70d418355e0dc91df4c2ceabac"></a><!-- doxytag: member="IResultSet::Close" ref="418d8e70d418355e0dc91df4c2ceabac" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::Close           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+立即释放当前ResultSet对象的数据库资源，而不是等待其自动被关闭时才释放。
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="d284495fc45b608ffdf77f714e900bd0"></a><!-- doxytag: member="IResultSet::IsClosed" ref="d284495fc45b608ffdf77f714e900bd0" args="([out] Boolean *closed)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::IsClosed           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Boolean *&nbsp;</td>
+          <td class="paramname"> <em>closed</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检查ResultSet对象是否已被关闭。
+<p>
+当对一个数据库对象调用Close()方法，或发生了致命错误时该数据库对象将被关闭。 仅当Cloas()方法被调用后，此方法才会返回 true.<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>closed</em>&nbsp;</td><td>- 如果数据库对象已被关闭则返回true； 否则返回false. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e028dfa154e05d90b665fc983dfe66b5"></a><!-- doxytag: member="IResultSet::GetBlobColumnSizeByIndex" ref="e028dfa154e05d90b665fc983dfe66b5" args="([in] Int32 column,[out] Int32 *size)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetBlobColumnSizeByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>size</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检索当前ResultSet对象当前行指定索引的列的Blob类型数据大小。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列名,如：第一列是1，第二列为2。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>size</em>&nbsp;</td><td>- 数据大小。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e9283dbefd3743aa4670e4f256e393ba"></a><!-- doxytag: member="IResultSet::GetBlobColumnSizeByName" ref="e9283dbefd3743aa4670e4f256e393ba" args="([in] WString column,[out] Int32 *size)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetBlobColumnSizeByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>size</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检索当前ResultSet对象当前行指定列名的列的Blob类型数据大小。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列名 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>size</em>&nbsp;</td><td>- 数据大小。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="bd226729a5c32929371dbf84048ef818"></a><!-- doxytag: member="IResultSet::GetBlobColumnByIndex" ref="bd226729a5c32929371dbf84048ef818" args="([in] Int32 column,[out] BufferOf_&lt; Byte &gt; value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetBlobColumnByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] BufferOf&lt;Byte&gt; * &nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检索当前ResultSet对象当前行指定索引的列的Blob类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，结果集最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="4fcf3c912052fb7a8fd996ea64be89bf"></a><!-- doxytag: member="IResultSet::GetBlobColumnByName" ref="4fcf3c912052fb7a8fd996ea64be89bf" args="([in] WString column,[out] BufferOf_&lt; Byte &gt; value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetBlobColumnByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] BufferOf&lt;Byte&gt; * &nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检索当前ResultSet对象当前行指定名字的列的Blob类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的名字。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="bcb8c02e2b4f9f8ac0ee71ff0fd444b2"></a><!-- doxytag: member="IResultSet::GetBooleanColumnByIndex" ref="bcb8c02e2b4f9f8ac0ee71ff0fd444b2" args="([in] Int32 column,[out] Boolean *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetBooleanColumnByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Boolean *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检索当前ResultSet对象当前行指定索引的列的Boolean类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，结果集最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="57e1f1430d7d7657571f1725e18bdcdb"></a><!-- doxytag: member="IResultSet::GetBooleanColumnByName" ref="57e1f1430d7d7657571f1725e18bdcdb" args="([in] WString column,[out] Boolean *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetBooleanColumnByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Boolean *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检索当前ResultSet对象当前行指定名字的列的Boolean类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的名字。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="dd705eb0b29dc6f9d12abc2487f881a1"></a><!-- doxytag: member="IResultSet::GetByteColumnByIndex" ref="dd705eb0b29dc6f9d12abc2487f881a1" args="([in] Int32 column,[out] Byte *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetByteColumnByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Byte *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检索当前ResultSet对象当前行指定索引的列的Byte类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，结果集最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1161e4d1dfe29d07031c92169faa8e44"></a><!-- doxytag: member="IResultSet::GetByteColumnByName" ref="1161e4d1dfe29d07031c92169faa8e44" args="([in] WString column,[out] Byte *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetByteColumnByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Byte *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检索当前ResultSet对象当前行指定名字的列的Byte类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的名字。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1119917f12f9810f3998cfef0279e84a"></a><!-- doxytag: member="IResultSet::GetDateTimeColumnAsStringByIndex" ref="1119917f12f9810f3998cfef0279e84a" args="([in] Int32 column,[out] WStringBuf_&lt; MAX_DATA_TIME &gt; value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetDateTimeColumnAsStringByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检索当前ResultSet对象当前行指定索引的列的时间类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，结果集最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="991d4dd64a78a5ed3a7f8bb80d4d1da5"></a><!-- doxytag: member="IResultSet::GetDateTimeColumnAsStringByName" ref="991d4dd64a78a5ed3a7f8bb80d4d1da5" args="([in] WString column,[out] WStringBuf_&lt; MAX_DATA_TIME &gt; value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetDateTimeColumnAsStringByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检索当前ResultSet对象当前行指定名字的列的时间类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的名字。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="a1effb53dc5fc9a35b7ddd6feee11ff9"></a><!-- doxytag: member="IResultSet::GetDateTimeColumnByIndex" ref="a1effb53dc5fc9a35b7ddd6feee11ff9" args="([in] Int32 column,[out] DateTime *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetDateTimeColumnByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] DateTime *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定索引的列的DateTime类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，结果集最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e6f4a4dce6b0a4216d18c4f8d5df795e"></a><!-- doxytag: member="IResultSet::GetDateTimeColumnByName" ref="e6f4a4dce6b0a4216d18c4f8d5df795e" args="([in] WString column,[out] DateTime *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetDateTimeColumnByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] DateTime *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定名字的列的DateTime类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的名字。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="8ad9df221b9d964f28246d5898303776"></a><!-- doxytag: member="IResultSet::GetDoubleColumnByIndex" ref="8ad9df221b9d964f28246d5898303776" args="([in] Int32 column,[out] Double *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetDoubleColumnByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Double *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定索引的列的Double类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，结果集最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="9b9064031c66490eef56a88ec9d527f2"></a><!-- doxytag: member="IResultSet::GetDoubleColumnByName" ref="9b9064031c66490eef56a88ec9d527f2" args="([in] WString column,[out] Double *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetDoubleColumnByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Double *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定名字的列的Double类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的名字。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="b3545ffa6dcdd7c4ffc6f5566171c27d"></a><!-- doxytag: member="IResultSet::GetInt32ColumnByIndex" ref="b3545ffa6dcdd7c4ffc6f5566171c27d" args="([in] Int32 column,[out] Int32 *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetInt32ColumnByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定索引的列的Int32类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，结果集最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="fc9374fe397887d336ebfa10631530b5"></a><!-- doxytag: member="IResultSet::GetInt32ColumnByName" ref="fc9374fe397887d336ebfa10631530b5" args="([in] WString column,[out] Int32 *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetInt32ColumnByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定名字的列的Int32类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的名字。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="027c2dc7ef2f46a8c13e5d2a4794a93b"></a><!-- doxytag: member="IResultSet::GetInt64ColumnByIndex" ref="027c2dc7ef2f46a8c13e5d2a4794a93b" args="([in] Int32 column,[out] Int64 *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetInt64ColumnByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int64 *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定索引的列的Int64类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，结果集最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="39d7436c8813a2daf37132343bda68bb"></a><!-- doxytag: member="IResultSet::GetInt64ColumnByName" ref="39d7436c8813a2daf37132343bda68bb" args="([in] WString column,[out] Int64 *value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetInt64ColumnByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int64 *&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定名字的列的Int64类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的名字。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="28fc70d01ee6813e12a2ea88a9f94fa9"></a><!-- doxytag: member="IResultSet::GetStringColumnSizeByIndex" ref="28fc70d01ee6813e12a2ea88a9f94fa9" args="([in] Int32 column,[out] Int32 *size)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetStringColumnSizeByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>size</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定索引的列的String类型数据大小。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引, 结果集最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>size</em>&nbsp;</td><td>- 数据大小, 0不包括在内。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="8d04e68bc0d3d7b76504f04d10cff0ce"></a><!-- doxytag: member="IResultSet::GetStringColumnSizeByName" ref="8d04e68bc0d3d7b76504f04d10cff0ce" args="([in] WString column,[out] Int32 *size)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetStringColumnSizeByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>size</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定名字的列的String类型数据大小。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列名 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>size</em>&nbsp;</td><td>- 数据大小, 0不包括在内。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3027181174fa81656967e185a5215eeb"></a><!-- doxytag: member="IResultSet::GetStringColumnByIndex" ref="3027181174fa81656967e185a5215eeb" args="([in] Int32 column,[out] WStringBuf_&lt;&gt; value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetStringColumnByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定索引的列的String类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，结果集最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_get_result_8cpp-example.html#a6">GetResult.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="c27bff9e859f1e13308a95ad1c06a46b"></a><!-- doxytag: member="IResultSet::GetStringColumnByName" ref="c27bff9e859f1e13308a95ad1c06a46b" args="([in] WString column,[out] WStringBuf_&lt;&gt; value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetStringColumnByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象当前行指定名字的列的String类型数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的名字。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 获取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="c9c06de8fa9111395920590cbc9567e1"></a><!-- doxytag: member="IResultSet::Next" ref="c9c06de8fa9111395920590cbc9567e1" args="([out] Boolean *rowValid)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::Next           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Boolean *&nbsp;</td>
+          <td class="paramname"> <em>rowValid</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将指针从当前位置下移一行。 ResultSet指针最初位于第一行之前， 第一次调用该方法将使第一行成为当前行，第二次调用将使第二行成为当前行，以此类推。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>rowValid</em>&nbsp;</td><td>- 当前行有效则返回true; 没有其他行则返回false. </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_get_result_8cpp-example.html#a5">GetResult.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="1b0d2b940ccf08a56416ab95ec072450"></a><!-- doxytag: member="IResultSet::GetErrorCode" ref="1b0d2b940ccf08a56416ab95ec072450" args="([out] ECode *code)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetErrorCode           </td>
+          <td>(</td>
+          <td class="paramtype">[out] ECode *&nbsp;</td>
+          <td class="paramname"> <em>code</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象报告的最近的错误码。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>code</em>&nbsp;</td><td>- 错误码； 当前语句没有发生错误则返回NOERROR. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3314ded00783c9cf42f1bee639070b44"></a><!-- doxytag: member="IResultSet::GetErrorMessage" ref="3314ded00783c9cf42f1bee639070b44" args="([out] WStringBuf_&lt; MAX_ERROR_MESSAGE &gt; message)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetErrorMessage           </td>
+          <td>(</td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>message</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前ResultSet对象报告的最近的错误信息。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>message</em>&nbsp;</td><td>- 错误信息; 当前语句没有发生错误则返回空串。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="c0e5254076db62b14035544e40d9eea1"></a><!-- doxytag: member="IResultSet::GetMetaData" ref="c0e5254076db62b14035544e40d9eea1" args="([out] IResultSetMetaData **metadata)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::GetMetaData           </td>
+          <td>(</td>
+          <td class="paramtype">[out] <a class="el" href="interface_i_result_set_meta_data.html">IResultSetMetaData</a> **&nbsp;</td>
+          <td class="paramname"> <em>metadata</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取包含当前ResultSet对象的列的编号，类型和属性信息的ResultSetMetaData对象。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>metadata</em>&nbsp;</td><td>- ResultSet对象的列的描述信息。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e1b33a256ecbf0d002f4eb365170c11a"></a><!-- doxytag: member="IResultSet::Reset" ref="e1b33a256ecbf0d002f4eb365170c11a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSet::Reset           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将ResultSet对象重置为其最初状态，准备重新执行。
+<p>
+
+</div>
+</div><p>
+<hr>该接口的文档由以下文件生成：<ul>
+<li><a class="el" href="database_8car-source.html">database.car</a></ul>
+<script>footer("chinese")</script>
+</body>
+</html>

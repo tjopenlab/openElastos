@@ -1,0 +1,66 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzWCharBuf\Alloc">alloc</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzWCharBuf </interface>
+    <method> AllocWCharBuf </method>
+
+    <description>
+        <para> Allocates new memory blocks of specified size for the EzWCharBuf object.</para>
+    </description>
+
+    <syntax>
+        <return_val> static EzWCharBuf</return_val>
+        <parameters>
+        <api_param>
+            <param_type>UINT</param_type>
+            <param_name> cb </param_name>
+            <param_note>
+                <para> The number of Unicode characters to be allocated. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para> Returns a pointer to the EzWCharBuf variable or EZWCHARBUF_NULL if allocation fails. </para>
+    </return>
+
+    <remarks>
+        <para> Needs to call the <link url="FreeWCharBuf.htm">FreeWCharBuf</link> method to release memory blocks allocated by this method.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzWCharBuf mybuf = EzWCharBuf::AllocWCharBuf(20);
+
+    mybuf.Copy(L"hello!",7);
+    wprintf(L"AllocWCharBuf:%s\n",(wchar_t*)mybuf);
+    EzWCharBuf::FreeWCharBuf(mybuf);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+AllocWCharBuf:hello!
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> AllocWCharBufLen </ref_name>
+            <ref_url> AllocWCharBufLen </ref_url>
+        </reference>
+    </references>
+
+</manpage>

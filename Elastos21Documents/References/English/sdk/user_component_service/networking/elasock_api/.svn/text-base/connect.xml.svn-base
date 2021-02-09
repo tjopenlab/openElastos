@@ -1,0 +1,106 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>connect</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>与网络另一端的套接口建立连接。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>未连接的套接口。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const struct sockaddr*</param_type>
+                <param_name>name</param_name>
+                <param_note>
+                    <para>网络另一端套接口的地址。该地址中的端口号不能为0。用户需要保证地址中的网络地址字段（TCP/IP协议中为IP地址）的有效性，elasock 2.0 不对网络地址的内容进行检查。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>namelen</param_name>
+                <param_note>
+                    <para>name结构的长度。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>程序执行成功返回0；否则返回SOCKET_ERROR错误，调用WSAGetLastError()可获取相应的错误代码。</para>
+        <para>对于非阻塞套接口，连接企图不会被立即执行。在这种情况下，函数将返回SOCKET_ERROR。此时可调用select()检查套接口是否可写或可读，以确定连接请求是否完成。而在连接完成之前，继续对该套接口调用connect()将返回WSAEALREADY错误；如果连接正在进行过程中，调用connect的具体返回值将取决于具体函数实现。因此，不推荐应用程序用多次调用connect()的方法来检查连接是否完成；否则应用程序需要处理返回值，以确保程序的健壮性。</para>
+        <para>如果返回值表明连接企图失败，应用程序可以再次对同一套接口调用connect。</para>
+    </return>
+
+    <remarks>
+        <para>本函数用于与指定目标进行连接。s参数指定一个未连接的数据报或流类套接口。如果套接口未被绑定，系统将给套接口赋上唯一的值，并设置套接口为已捆绑。</para>
+        <para>对于字节流套接口（SOCK_STREAM），与外部主机的连接将通过name变量（套接口的地址，详见bind和sockaddr）进行。在socket()调用成功之后，套接口就可以进行数据的发送和接收了。用户需要保证地址中的网络地址字段（TCP/IP协议中为IP地址）有效，elasock 2.0 不对网络地址的内容进行检查。对已激活的连接进行重新连连将产生WSAEISCONN错误。</para>
+        <para>对于字节流非阻塞套接口，连接并不会被立即完成，调用connect将返回SOCKET_ERROR。实际上这时候连接操作仍在继续进行。如果最终执行成功，客户调用select()函数可以在writefds组内找到该套接口。</para>
+        <para>对于数据报套接口（SOCK_DGRAM），conncet()操作仅建立一个缺省目标地址，以供send()和recv()函数使用。来自该目标地址之外的数据报将被丢弃。即便在连接已经建立的情况下也可以通过调用conncet()改变缺省目标地址，此时接收队列里的数据报将被丢弃。若name成员中的所有地址域全为零，connect()将返回错误。</para>
+        <para>无连接套接口的name变量可以取值为任何类型的地址，包括广播地址。</para>
+        <para>当连接发生中断时，应该丢弃原套接口，并建立新的套接口。若已连接套接口产生故障，应用程序也需要丢弃原套接口并新建套接口，以保证应用程序能够继续执行。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>accept</ref_name>
+            <ref_url>accept</ref_url>
+        </reference>
+        <reference>
+            <ref_name>bind</ref_name>
+            <ref_url>bind</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getsockname</ref_name>
+            <ref_url>getsockname</ref_url>
+        </reference>
+        <reference>
+            <ref_name>recv</ref_name>
+            <ref_url>recv</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>select</ref_name>
+            <ref_url>select</ref_url>
+        </reference>
+        <reference>
+            <ref_name>send</ref_name>
+            <ref_url>send</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

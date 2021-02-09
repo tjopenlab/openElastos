@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+  
+    <volume> 常用数据结构 </volume>
+    <class>BufferOf</class>
+    <method> Copy </method>
+
+    <description>
+        <para> 将T类型数组数组复制到当前BufferOf数组中，并指定拷贝元素个数。</para>
+    </description>
+
+    <syntax>
+        <return_val> BufferOf &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const T *</param_type>
+            <param_name>pBuf </param_name>
+            <param_note>
+                <para> 源数组 </para>
+            </param_note>
+        </api_param>
+
+        <api_param>
+            <param_type> Int32  </param_type>
+            <param_name> n </param_name>
+            <param_note>
+                <para> 元素个数 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回当前BufferOf对象引用。</para>
+    </return>
+    <remarks>
+        <para>超过BufferOf对象可用的长度会被省略掉。 </para>
+    </remarks>
+
+<example>
+<pre>
+BufferOf_&lt;Int8,4&gt; MyArray;
+Int8 p[] = {1,2,3,4};
+
+MyArray.Copy(p,4);
+
+CConsole::WriteLine(MyArray[0]);  //Display : 1
+CConsole::WriteLine(MyArray[1]);  //Display : 2
+CConsole::WriteLine(MyArray[2]);  //Display : 3
+CConsole::WriteLine(MyArray[3]);  //Display : 4
+</pre>
+</example>
+   
+
+<references>
+    <reference>
+        <ref_name>BufferOf</ref_name>
+        <ref_url>../../BufferOf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>BufferOf::Copy </ref_name>
+        <ref_url>index/Copy</ref_url>
+    </reference>
+
+</references>
+
+    
+
+
+
+
+</manpage>

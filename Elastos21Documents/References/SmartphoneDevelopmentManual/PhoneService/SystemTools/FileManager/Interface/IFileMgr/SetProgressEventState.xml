@@ -1,0 +1,57 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>文件管理器</volume>
+<interface>IFileMgr</interface><method> SetProgressEventState </method>
+    <description>
+        <para>
+        设置监视进度事件的状态
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> BOOL </param_type>
+                <param_name> bState </param_name>
+                <param_note>
+                    <para>开关功能，用于设置监视动作进度事件的状态。
+TURE表示开始监视、FALSE表示关闭监视
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nActionType </param_name>
+                <param_note>
+                    <para>设置用户将要监视动作的类型
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

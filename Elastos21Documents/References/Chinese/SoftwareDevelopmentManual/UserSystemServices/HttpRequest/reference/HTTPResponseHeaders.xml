@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+    <manpage>
+    <volume>HTTPResponseHeaders</volume>
+    <types> HTTP 应答头概述 </types>
+    <description>
+        <para>
+            Web 服务器的 HTTP 应答一般由以下几项构成：一个状态行，一个或多个应答头，一个空行，内容文档。设置 HTTP 应答头往往和设置状态行中的状态代码结合起来。例如，有好几个表示“文档位置已经改变”的状态代码都伴随着一个 Location 头，而401（Unauthorized）状态代码则必须伴随一个 WWW-Authenticate 头。然而，即使在没有设置特殊含义的状态代码时，指定应答头也是很有用的。应答头可以用来完成：设置 Cookie，指定修改日期，指示浏览器按照指定的间隔刷新页面，声明文档的长度以便利用持久HTTP连接，……等等许多其他任务。最常见应答头见下表：
+        </para>
+    </description>
+    <other>
+        <table>
+        	  <th>
+        	      <td>应答头名</td>
+        	      <td>描述</td>
+        	  </th>
+        	  <tr>
+        	      <td>Allow</td>
+        	      <td>服务器支持哪些请求方法（如GET、POST等）。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Content-Encoding</td>
+        	      <td>文档的编码（Encode）方法。只有在解码之后才可以得到 Content-Type 头指定的内容类型。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Content-Length</td>
+        	      <td>表示内容长度。只有当浏览器使用持久 HTTP 连接时才需要这个数据。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Content-Type</td>
+        	      <td>表示后面的文档属于什么 MIME 类型。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Date</td>
+        	      <td>当前的 GMT 时间。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Expires</td>
+        	      <td>应该在什么时候认为文档已经过期，从而不再缓存它。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Last-Modified</td>
+        	      <td>文档的最后改动时间。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Location</td>
+        	      <td>表示客户应当到哪里去提取文档。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Refresh</td>
+        	      <td>表示浏览器应该在多少时间之后刷新文档，以秒计。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Server</td>
+        	      <td>服务器名字。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Set-Cookie</td>
+        	      <td>设置和页面关联的 Cookie。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>WWW-Authenticate</td>
+        	      <td>客户应该在 Authorization 头中提供什么类型的授权信息，在包含401（Unauthorized）状态行的应答中这个头是必需的。</td>
+        	  </tr>
+        </table>
+    </other>
+</manpage>

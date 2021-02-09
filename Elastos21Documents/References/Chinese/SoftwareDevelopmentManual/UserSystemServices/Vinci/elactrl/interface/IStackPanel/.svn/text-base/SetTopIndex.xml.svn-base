@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IStackPanel</interface><method> SetTopIndex </method>
+    <description>
+        <para>
+            设置 StackPanel 内第一个可见控件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+第一个可见控件的索引值</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法的调用有可能出现指定控件不在首行显示或者 StackPanel 显示无变化的情况。例如，当前 StackPanel 有10个控件，且一屏可以显示7个控件，若此时设置 TopIndex 为 5，则第一个可见控件为第四个，因为要保证 StackPanel 一屏仍可以显示7个控件，此时调用 GetTopIndex 方法得到的 TopIndex 的值为3，并不是之前设置的5。又若当前 StackPanel 有5个控件，且一屏可以显示7个，在这种情况下设置 TopIndex 为3，则 StackPanel的显示无变化，同时调用 GetTopIndex 方法得到的 TopIndex 的值为0。
+    </para>
+    <para>
+        注意：该方法的调用在 StackPanel 显示风格为 List 的情况下才有意义。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CStackPanel 类介绍 </ref_name>
+        <ref_url>../../class/StackPanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IStackPanel 接口方法列表</ref_name>
+        <ref_url>../IStackPanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetTopIndex</ref_name>
+        <ref_url>GetTopIndex</ref_url>
+    </reference>
+</references>
+</manpage>

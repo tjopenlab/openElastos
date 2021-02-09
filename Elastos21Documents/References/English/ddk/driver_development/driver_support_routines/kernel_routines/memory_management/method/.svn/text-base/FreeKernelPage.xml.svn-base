@@ -1,0 +1,74 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\FreeKernelPage">FreeKernelPage</sample>
+    <volume>Memory Management Methods</volume>
+    <title>FreeKernelPage</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>
+        	Frees an allocated kernel page.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> virtaddr_t</param_type>
+                <param_name> va </param_name>
+                <param_note>
+                    <para>
+                    	Specified starting address (virtual address) of kernel page to be freed.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para> 
+        	This method releases continuous kernel pages allocated by the <link url="AllocKernelPage.htm">
+        	AllocKernelPage</link>. Attempts to free invalid kernel page (pages that were not allocated by the 
+        	<link url="AllocKernelPage.htm">AllocKernelPage</link> method will cause unpredictable error. 
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>AllocKernelPage</ref_name>
+            <ref_url>AllocKernelPage</ref_url>
+        </reference>
+        <reference>
+            <ref_name>AllocKernelPages</ref_name>
+            <ref_url>AllocKernelPages</ref_url>
+        </reference>
+        <reference>
+            <ref_name>FreeKernelPages</ref_name>
+            <ref_url>FreeKernelPages</ref_url>
+        </reference>
+    </references>
+
+</manpage>

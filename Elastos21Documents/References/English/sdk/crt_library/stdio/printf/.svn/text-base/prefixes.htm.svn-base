@@ -1,0 +1,219 @@
+<html>
+<head>
+<title>The Optional Prefixes to Type</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>The Optional Prefixes to Type</h2>
+    <p>The optional prefixes to type: h, l, and L, specify the “size” of argument (long or short, single-byte character or wide character, depending upon the type specifier that they modify). These type-specifier prefixes are used with type characters in <a class="style1" href="../wprintf.htm">printf functions or wprintf functions</a> to specify interpretation of arguments, as shown in the following table. These prefixes are Microsoft extensions and are not ANSI-compatible. </p>
+    <p><b>Remarks: </b>When type is char, these h, l, and L prefixes are Microsoft extensions.</p>
+    <p>Size Prefixes for printf and wprintf Format-Type Specifiers</p>
+    <table>
+        <thead>
+            <td>Type To Specify</td><td>Use Prefix</td><td>With Type Specifier</td>
+        </thead>
+        <tr>
+            <td>
+                long int
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                d, i, o, x, or X
+            </td>
+        </tr>
+        <tr>
+            <td>
+                long unsigned int
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                u
+            </td>
+        </tr>
+        <tr>
+            <td>
+                short int
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                d, i, o, x, or X
+            </td>
+        </tr>
+        <tr>
+            <td>
+                short unsigned int
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                u
+            </td>
+        </tr>
+        <tr>
+            <td>
+                __int64
+            </td>
+            <td>
+                I64
+            </td>
+            <td>
+                d, i, o, u, x, or X
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Single-byte character with printf functions
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                c or C
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Single-byte character with wprintf functions
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                c or C
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Wide character with printf functions
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                c or C
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Wide character with wprintf functions
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                c or C
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Single-byte – character string with printf functions
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                s or S
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Single-byte – character string with wprintf functions
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                s or S
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Wide-character string with printf functions
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                s or S
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Wide-character string with wprintf functions
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                s or S
+            </td>
+        </tr>
+    </table>
+    <p>Thus to print single-byte or wide-characters with printf functions and wprintf functions, use format specifiers as follows.</p>
+    <table>
+        <thead>
+            <td>To Print Character As</td>
+            <td>Use Function</td>
+            <td>With Format Specifier</td>
+        </thead>
+        <tr>
+            <td>
+                single byte
+            </td>
+            <td>
+                printf
+            </td>
+            <td>
+                c, hc, or hC
+            </td>
+        </tr>
+        <tr>
+            <td>
+                single byte
+            </td>
+            <td>
+                wprintf
+            </td>
+            <td>
+                c, hc, or hC
+            </td>
+        </tr>
+        <tr>
+            <td>
+                wide
+            </td>
+            <td>
+                wprintf
+            </td>
+            <td>
+                c, lc, or lC
+            </td>
+        </tr>
+        <tr>
+            <td>
+                wide
+            </td>
+            <td>
+                printf
+            </td>
+            <td>
+                c, lc, or lC
+            </td>
+        </tr>
+    </table>
+    <P>To print strings with printf functions and wprintf functions, use the prefixes h and l analogously with format type-specifiers s and S.</P>
+
+<script>footer("english")</script>
+</body>
+
+</html>

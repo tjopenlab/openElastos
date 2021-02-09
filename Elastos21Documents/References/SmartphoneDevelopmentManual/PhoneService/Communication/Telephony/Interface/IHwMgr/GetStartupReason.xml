@@ -1,0 +1,109 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>IHwMgr</interface><method> GetStartupReason </method>
+    <description>
+        <para>
+          查询通讯模块启动原因。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> PDWORD </param_type>
+                <param_name> pdwReason </param_name>
+                <param_note>
+                    <para>
+                       指向DWORD类型的指针，用于表示启动原因
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> LPTAPITIME </param_type>
+                <param_name> pttWakeupTime </param_name>
+                <param_note>
+                    <para>
+                      指向<link url="../DataType\System\TAPITIME.htm">TAPITIME</link>类型的指针，用于表示启动时间
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_RESINITFAILED</td>
+	    	    <td>初始化失败</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_NOTREADY</td>
+	    	    <td>通讯模块没有准备好，原因可能是没有被初始化或者连接线接触不良</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_TIMEOUT</td>
+	    	    <td>命令发送后，通讯模块没有及时响应而超时</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_INTERNAL</td>
+	    	    <td>通讯模块内部错误</td>
+	        </tr>
+	    </table>
+	     <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../telephony_error.htm">telephony_error</link>相关帮助。</para>
+	  </return>
+    <remarks>
+		<para>启动原因定义如下：</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>SI_STARTUPREASON_NORMAL</td><td>正常启动</td>
+    </tr>
+    <tr>
+       <td>SI_STARTUPREASON_WAKEUP</td><td>唤醒启动</td>
+    </tr>
+    <tr>
+       <td>SI_STARTUPREASON_WATCHDOG</td><td>电子狗启动</td>
+    </tr>
+    <tr>
+       <td>SI_STARTUPREASON_PLUGIN</td><td>电源插入启动</td>
+    </tr>
+    <tr>
+       <td>SI_STARTUPREASON_RESTART</td><td>重启</td>
+    </tr>
+    <tr>
+       <td>SI_STARTUPREASON_ERROR</td><td>错误启动</td>
+    </tr>
+    <tr>
+       <td>SI_STARTUPREASON_UNKNOWN</td><td>未知原因</td>
+    </tr>
+    </table>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

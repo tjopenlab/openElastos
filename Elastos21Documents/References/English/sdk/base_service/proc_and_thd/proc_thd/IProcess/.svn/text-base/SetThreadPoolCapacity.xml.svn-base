@@ -1,0 +1,75 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IProcess</interface><method> SetThreadPoolCapacity </method>
+    <description>
+        <para>
+			Sets the maximum number of threads that the thread pool can hold. Each process has a thread pool. 
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> Capacity </param_name>
+                <param_note>
+                    <para>
+						The capacity of thread pool which is to be set.
+                    </para>
+                </param_note>
+            </api_param>           
+        </parameters>
+    </syntax>
+	
+	<return>
+	<table>            
+	    <th>            
+		<td>Return Value </td>            
+		<td>Hex Value</td>
+		<td>Description</td>            
+	    </th>            
+	    <tr>            
+		<td>NOERROR</td>            
+		<td>0x00000000</td>
+		<td>Function succeeds in setting the maximum number of threads.</td>            
+	    </tr>            	   
+	</table>
+	<para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>           	            	
+   </return>
+
+	<remarks>
+		<para>
+			The thread pool is created when the process is created. There is only one thread pool per process.
+		</para>
+		<para>
+			A thread in the pool spends a great deal of time in the sleeping state, waiting for an event to occur. When 
+			a process asks for a task, one thread in the pool will wake up, and carry out the task. Thread pooling 
+			enables you to use threads more efficiently by providing your application with a pool of worker threads 
+			that are managed by the system.
+		</para>
+		<para>
+			If a process needs a thread to run, it will find an idle one in thread pool at first. If there is no idle 
+			thread, then system will create a new one, and supplies it to the process. After a thread completes execution, 
+			it is returned to the thread pool and wait for new task, if the number of threads in thread pool has not 
+			reached its capacity; otherwise, it is destroyed.
+		</para>
+		<para>
+			The max number of threads in the thread pool is limited by pool capacity. The default value is 3, but how 
+			many threads in thread pool at one time depends on the actual runtime situation.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.            
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,134 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CarAndCpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+	<h3> CAR文件源代码： </h3>
+	<p>CAR文件与C++代码存在怎样的对应关系呢？下面将通过一个具体的例子讲述这种关系。</p>
+	<p>下面是foobar.car文件源代码：</p>
+    <pre class=code>
+module car.elastos.com/native/foobar.dll
+{
+    interface IFoo {
+        Foo([in]Int32 x);
+    }
+ 
+    interface IBar {
+        Bar([in]Float y, [in]WString ws);
+    }
+ 
+    class CFooBar {
+        interface IFoo;
+        interface IBar;
+    }
+}
+</pre>
+    <p>可以看到，该car文件定义了两个接口IFoo和IBar和一个构件类CFooBar,并且该构件类实现这两个接口。</p>
+<h3> 编译CAR文件自动生成的c++文件</h3>
+    <p>进入XDK环境，输入命令<b>emake foobar.car</b>编译foobar.car，便可生成基本的代码框架。如图2-6所示：</p>
+    <center><img src="Create_CarDemo\images\foobar.JPG"/></center>
+    <center>图2-6  输入emake foobar.car后的结果</center>
+
+<h5> 生成的CFooBar.h文件：</h5>
+<pre class=code>
+#ifndef __CFOOBAR_H__
+#define __CFOOBAR_H__
+
+
+#include "_CFooBar.h"
+
+CarClass(CFooBar)
+{
+public:
+    CARAPI Foo(
+        /* [in] */ Int32 x);
+
+    CARAPI Bar(
+        /* [in] */ Float y,
+        /* [in] */ WString ws);
+
+private:
+    // TODO: Add your private member variables here.
+};
+
+#endif // __CFOOBAR_H__
+ </pre>
+
+    <h5> 生成的CFooBar.cpp文件：</h5>
+    <pre class=code>
+#include "CFooBar.h"
+#include "_CFooBar.cpp"
+
+ECode CFooBar::Foo(
+    /* [in] */ Int32 x)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode CFooBar::Bar(
+    /* [in] */ Float y,
+    /* [in] */ WString ws)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+</pre>
+
+<h5> CAR文件与自动代码框架的对应关系：</h5>
+    <p>car文件中定义的每个类都会对应生成一个该类的.h和.cpp文件： </p>
+    <p>其中，.h文件中包含了该构件类中需要实现的所有接口（回调接口除外）方法的声明；.cpp文件则包含了这些方法的实现框架。在默认情况下，方法返回E_NOT_IMPLEMENTED，表示方法都未实现。 </p>
+    <p>在头文件中可以添加构件类的私有方法，并在C++文件中添加其的具体实现。</p>
+    <p> 总之，自动代码框架为构件类自动生成了其接口方法的代码框架，只需填入实现代码即可。</p>
+
+    <h3> 调用CAR构件的C++文件源代码：</h3>
+<p> 编译上述car文件后，会生成foobar.dll,下面的代码是用C++实现调用该dll。</p>
+    <pre class=code>
+#include "foobar.h"
+using namespace Elastos;
+
+ECode ElastosMain(const BufferOf&lt;WString&gt; & args) 
+{
+    ECode ec;
+    Int32 x = 0;
+    Float y = 0;
+    WString ws;
+    IBar* pBar;
+    IFoo* pFoo;
+                                 //CFooBar在foobar.car文件中定义，其New方法由后台代码框架默认实现。
+    ec = CFooBar::New(&pBar);    //创建一个CFooBar对象，得到其接口指针pBar
+
+    pBar->Bar(y, ws);            //通过接口pBar调用其Bar方法。此方法需填充前台代码框架实现。
+
+    pFoo = IFoo::Probe(pBar);    //通过IBar接口查询处IFoo接口。
+
+    pFoo->Foo(x);                //通过接口pFoo调用其Foo方法。此方法需填充前台代码框架实现。
+
+    pBar->Release();             //释放CFooBar对象的接口指针。
+
+    CApplet::Finish(AppletFinish_ASAP);  //结束当前主线程的消息循环。
+
+    return NOERROR;
+}
+  </pre>
+<h5> C++文件与CAR文件的对应关系：</h5>
+
+<p>1.	C++文件中的CFooBar来自于CAR文件中定义的构件类CFooBar；</p>
+<p>2.	C++文件中的接口指针pFoo来自于CAR文件中定义的构件接口IFoo；</p>
+<p>3.	C++文件中的接口指针pBar来自于CAR文件中定义的构件接口IBar；</p>
+<p>4.	New方法与Probe方法均由系统默认实现，客户端可以直接使用。</p>
+
+
+<h3> 参考备注 </h3>
+<p>请参考<a class= "style1" href= "data_type.htm">car数据类型</a>。 <p>
+<p>请参考<a class= "style1" href= "keyword.htm">car关键字</a>。 <p>
+</body>
+</html>

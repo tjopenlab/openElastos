@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\AStringBuf\opt_eval">opertor=</sample>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method> operator [] </method>
+
+    <description>
+        <para>存取数组元素操作符，用来对AStringBuf对象的数组元素进行存取操作。</para>
+    </description>
+
+    <syntax>
+        <return_val> AChar&amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type> Int32 </param_type>
+            <param_name> index </param_name>
+            <param_note>
+                <para> AStringBuf对象字符串索引值 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        </syntax>
+     <syntax>
+        <return_val> const AChar&amp; </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type> Int32 </param_type>
+            <param_name> index </param_name>
+            <param_note>
+                <para> </para>
+            </param_note>
+        </api_param>
+        </parameters>
+     </syntax>
+        
+        
+
+    <return>
+    <para>返回AStringBuf字符串中对应字符</para>
+    </return>
+<example>
+<pre>
+AStringBuf_&lt;20&gt; asbuf;
+asbuf.Copy("123456");
+AChar ch1 = asbuf[1];
+CConsole::WriteLine(ch1); \\Display : 2
+</pre>
+</example>
+    
+ <references>
+     <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::GetChar </ref_name>
+        <ref_url>GetChar</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>WStringBuf::operator []</ref_name>
+        <ref_url>../WStringBuf/operator</ref_url>
+    </reference>
+</references>       
+ 
+</manpage>

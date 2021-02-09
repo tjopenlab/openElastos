@@ -1,0 +1,113 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzCreateNamedMutex">EzCreateNamedMutex</sample>
+    <volume>Synchronization</volume>
+    <title>CMutex::New</title>
+    <routine_idx> ..\..\synchronization.htm </routine_idx>
+
+    <description>
+        <para>
+        	Creates a named mutex lock object.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> name</param_name>
+                <param_note>
+                    <para>
+                    	[in]The name of the mutex lock object.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> IMutex ** </param_type>
+                <param_name> ppMutex </param_name>
+                <param_note>
+                    <para>
+                    	[out] Pointer to interface pointer to the mutex lock object,it will acquire the interface pointer to the created mutex lock object if the function succeeds.
+                    </para>
+                </param_note>
+           </api_param>
+        <api_param>
+                <param_type> Boolean * </param_type>
+                <param_name>pAlreadyExists </param_name>
+                <param_note>
+                    <para>
+                    	[out]Specified whether the specified Mutex object already existed.Ignore the pemeter if it is null
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	
+    	<table>
+            <th>
+                <td>Return Value</td>
+                <td>Description</td>
+            </th>
+			<tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in creating a named mutex lock object.</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>Invalid argument(s)</td>
+            </tr>
+            <tr>
+                <td>E_SERVICE_NAME_TOO_LONG</td>
+                <td>The specified service name is beyong the confines(256 characters)</td>
+            </tr>
+            <tr>
+                <td>E_ALREADY_EXIST</td>
+                <td>A non-Mutex object already existed ,whose name is the same as the Mutex one</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>Insufficient memory</td>
+            </tr>
+        </table>
+        <para>
+        	References <link url="/sdk/reference/basic_data_type/hresult.htm"> ECODE </link> Correlative help
+        </para>
+    </return>
+
+    <remarks>
+    	<para>
+    		Other processes can access and use this object through the name specified by <i>esName</i> and by 
+    		<link url="../../../car_naming_service/naming_service_api/EzFindService.htm">EzFindService</link> function
+    	</para>
+    	<para>
+    	    Parameter ppMutex can be NULL.
+    	</para>
+    	<para>
+    	    Please see <link url="../IMutex.htm">IMutex</link> interface for details.
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                 Windows 2000 or later; Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

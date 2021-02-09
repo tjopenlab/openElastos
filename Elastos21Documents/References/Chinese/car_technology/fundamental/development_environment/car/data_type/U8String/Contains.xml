@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>U8String</interface>
+    <method> Contains </method>
+
+    <description>
+        <para>返回一个值，该值指示指定的U8String对象是否出现在此字符串中。</para>
+    </description>
+    <syntax>
+        <return_val> Boolean </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const U8String &amp;</param_type>
+            <param_name> substr </param_name>
+            <param_note>
+                <para> 要查找的U8String对象。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive </param_default>
+            <param_note>
+                <para> 大小写标示符。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。</para>
+            </param_note>
+        </api_param>
+
+        </parameters>
+    </syntax>
+    <return>
+        <para>1.如果substr参数出现在此字符串中，或者substr为空字符串 ("")，则为TURE；否则为FALSE。</para>
+        <para>2.如果此字符串或substr参数中包含的字符串指针为NULL，那返回FALSE。</para>
+    </return>
+<example>
+<pre>
+U8String u8s1("AsDf");
+U8String u8s2("As");
+U8String u8s3("as");
+CConsole::WriteLine(u8s1.Contains(u8s2));  //Display : Ture
+CConsole::WriteLine(u8s1.Contains(u8s3));  //Display : False
+</pre>
+</example>
+
+
+</manpage>

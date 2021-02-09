@@ -1,0 +1,69 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/structuremanual.xsl"?>
+
+<manpage>
+    
+    <volume> 常用数据结构 </volume>
+    <class>BufferOf</class>
+    <function>BufferOf</function>
+
+    <description>
+        <para> 在栈中构造一个BufferOf对象, 设置数组长度，并用源数组中的数据初始化。</para>
+    </description>
+
+    <syntax>
+        <apiname>BufferOf</apiname>
+        <parameters>
+        <api_param>
+            <param_type><i>T</i> *</param_type>
+            <param_name>pBuf </param_name>
+            <param_note>
+                <para>T 类型数组 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name>capacity </param_name>
+            <param_note>
+                <para>BufferOf数组长度 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+<remarks>
+<para>
+构造的BufferOf数组的已使用长度默认设置为数组的最大长度。 
+</para>
+</remarks>
+
+<example>
+<pre>
+AChar acarray[4]={'a','s','d','f'};
+BufferOf&lt;AChar&gt; myArray2(acarray,4);
+AChar *pch=myArray2.GetPayload();
+CConsole::WriteLine(pch[0]);  //Display : ‘a’
+CConsole::WriteLine(pch[1]);  //Display : ‘s’
+CConsole::WriteLine(pch[2]);  //Display : ‘d’
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>BufferOf</ref_name>
+        <ref_url>../../BufferOf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>BufferOf::BufferOfBufferOf_&lt; T,Int32 SIZE&gt;  </ref_name>
+        <ref_url>BufferOf_</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>BufferOf::BufferOf(T *,Int32,Int32) </ref_name>
+        <ref_url>BufferOf_Box1</ref_url>
+    </reference>
+</references> 
+</manpage>

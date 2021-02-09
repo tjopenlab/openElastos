@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>MemoryBuf</class>
+    <method>Compare</method>
+
+    <description>
+        <para>与的指定五元组对象中的数据比较。</para>
+    </description>
+    <syntax>
+        <return_val>Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+            <api_param>
+                <param_type>const PCarQuintet </param_type>
+                <param_name>pCq </param_name>
+                <param_note>
+                    <para>指向五元组对象的指针。参见<link url="../../../others/CarQuintet.htm">CarQuintet</link>五元组结构体定义。  </para>
+                </param_note>
+            </api_param>  
+         </parameters>          
+    </syntax>  
+    
+   <return>
+        <para>函数返回值表明MemoryBuf对象buffer和无元组对象中字节值的位序关系。具体含义如下表所示： </para>
+        <table border="1" width="100%" >
+	<tr>
+		<td>返回值</td>
+		<td>　含义</td>
+	</tr>
+	<tr>
+		<td>&lt; 0　</td>
+		<td>　MemoryBuf对象buffer字节值小于五元组对象的字节值或源对象的Used小于目标对象的Used
+。</td>
+	</tr>
+	<tr>
+		<td>= 0　</td>
+		<td>　MemoryBuf对象buffer字节值等于五元组对象的字节值或源对象的Used等于目标对象的Used
+。</td>
+	</tr>
+	<tr>
+		<td>&gt;0　</td>
+		<td>　MemoryBuf对象buffer字节值大于五元组对象的字节值或源对象的Used大于目标对象的Used。
+。</td>
+	</tr>
+   </table>
+    </return>
+    <remarks>
+         <para>1.如果指向五元组对象内存块的指针和指向MemoryBuf对象内存块的指针相等，返回值为0。</para>
+         <para>2.如果指向MemoryBuf对象内存块的指针为NULL,则返回值为-2。</para>
+         <para>3.如果指向五元组对象内存块的指针为NULL,则返回值为2。 </para>
+    </remarks>
+ 
+<references>
+    <reference>
+        <ref_name>MemoryBuf</ref_name>
+        <ref_url>../../MemoryBuf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>MemoryBuf::Compare </ref_name>
+        <ref_url>index/Compare</ref_url>
+    </reference>
+</references>
+</manpage>

@@ -1,0 +1,1585 @@
+<html>
+<head>
+<title>基本系统服务C/C++函数对照表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h1>Elastos21&amp;&amp;20基本系统服务API函数对照表</h1>
+
+<h2>基本CAR函数</h2>
+
+<p>　</p>
+
+<table width="947" border="1" id="table1">
+    <thead>
+        <td width="256">函数名称</td>
+        <td width="487">C语言对应函数</td>
+        <td width="182">2.0对应函数</td>
+    </thead>
+    <tr>
+        <td width="232">
+            CProcess::FreeUnusedModules</a>
+        </td>
+             <td width="487">
+           CProcess_FreeUnusedModules(TRUE);        
+         </td>
+        <td width="182">
+                <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+				EzFreeUnusedComponents</span></td>
+        
+    </tr>
+    <tr>
+        <td colspan =3>
+            释放当前没在使用的构件DLL</td>
+    </tr>
+    <tr>
+        <td width="256">
+            CSystem::FindRunningObject</a>
+            
+        </td>
+        <td width="487">
+            _CObject_CreateInstance(rclsid, pContext, riid, ppObj);</td>
+        <td width="182">
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzCreateObject</span></td>
+
+    </tr>
+    <tr>
+        <td colspan =3>
+            实例化一个对象
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CObject::Compare</a>
+        </td>
+        <td width="487">
+            _CObject_Compare(pObjectA, pObjectB);
+        </td>
+         <td width="182">
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzCompareObjects</span></td>
+
+    </tr>
+    <tr>
+        <td colspan =3>
+            比较两个对象</td>
+    </tr>
+    <tr>
+        <td width="256">
+            CObject::ReleaseAtProcessExit</a>
+        </td>
+        <td width="487">
+            _CObject_ReleaseAtProcessExit(pObject);
+        </td>
+        <td width="182">
+            　</td>
+
+    </tr>
+    <tr>
+        <td colspan =3>
+            当进程退出时释放对象</td>
+    </tr>
+    <tr>
+        <td width="256">
+            CObject::EnterContext
+        </td>
+        <td width="487">
+            _CObject_EnterContext(pObject, pContext);
+        </td>
+        <td width="182">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			_EzEnterContext</span>();</td>
+
+    </tr>
+    <tr>
+        <td colspan =3>
+            对象进入context语境</td>
+    </tr>
+<tr>
+        <td width="256">
+            CObject::LeaveContext&nbsp;
+        </td>
+        <td width="487">
+            _CObject_LeaveContext(pObject, pContext);</td>
+        <td width="182">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			_EzLeaveContext</span>();</td>
+
+    </tr>
+    <tr>
+        <td colspan =3>
+            对象离开context语境</td>
+    </tr>
+<tr>
+        <td width="256">
+            CObject::AttachAspect
+        </td>
+        <td width="487">
+            _CObject_AttachAspect(pAggregator, pAspect);
+        </td>
+        <td width="182">
+            　</td>
+
+    </tr>
+    <tr>
+        <td colspan =3>
+            对象与指定的Aspect聚合</td>
+    </tr>
+<tr>
+        <td width="256">
+            CObject::DetachAspect</td>
+        <td width="487">
+            _CObject_DetachAspect(pAggregator, rAspectClsid);&nbsp;
+        </td>
+        <td width="182">
+            　</td>
+
+    </tr>
+    <tr>
+        <td colspan =3>
+            对象与指定的Aspect分离 </td>
+    </tr>
+
+</table>
+
+<h2>命名服务</h2>
+
+<table width="945" border="1">
+    <thead>
+        <td width="256">函数名称</td>
+        <td width="489">C语言对应函数</td>
+        <td width="178">2.0对应函数</td>
+    </thead>
+    <tr>
+        <td width="256">
+            CSystem::RegisterRunningObject</a>
+        </td>
+        <td width="489">
+            _CSystem_RegisterRunningObject(name, pRunningObject);
+        </td>
+        <td width="178">
+                EzRegisterService();
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan =3>
+            向操作系统注册命名服务接口
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CObject::CreateInstance
+            
+        </td>
+        <td width="489">
+            _CSystem_FindRunningObject(name, ppRunningObject);
+        </td>
+        <td width="178">
+            EzFindService();
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan =3>
+            获取指定名字的服务接口
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CSystem::WaitForRunningObject</a>
+        </td>
+        <td width="489">
+            _CSystem_WaitForRunningObject(name, timeout, pResult);
+        </td>
+         <td width="178">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzWaitForService</span>();
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan =3>
+            等待指定的命名服务被注册
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CSystem::UnregisterRunningObject</a>
+        </td>
+        <td width="489">
+            _CSystem_UnregisterRunningObject(name);
+        </td>
+        <td width="178">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzUnregisterServic</span>();
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan =3>
+            取消已注册的命名服务
+        </td>
+    </tr>
+</table>
+
+<h2>内存管理</h2>
+
+<table border="1" width="944">
+    <thead>
+        <td width="256">函数名称</td>
+        <td width="490">C语言对应函数</td>
+        <td width="177">2.0对应函数</td>
+    </thead>
+    <tr>
+        <td width="248">
+            CProcess::FlushInstructionCache</a>
+        </td>
+        <td>
+            _CProcess_FlushInstructionCache(baseAddr, size);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			&nbsp;EzFlushInstructionCache</span>();</td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            刷出当前进程所对应的指令缓存
+        </td>
+    </tr>
+    <tr>
+        <td width="248">
+            CVirtualMemory::IoRemap</a>
+        </td>
+        <td>
+            _CVirtualMemory_IoRemap<p>(virtualAddr,size,physicalAddr,flags,</p>
+			<p>protection,pVirtualAddr)</td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzIoRemap</span>()</td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            将指定的IO地址段映射到进程虚存段上
+        </td>
+    </tr>
+    <tr>
+        <td width="248">
+            CVirtualMemory::Alloc</a>
+        </td>
+        <td>
+            _CVirtualMemory_Alloc(baseAddr, size, flags, protection, pBaseAddr);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzTaskMemAlloc</span>();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            分配一个虚存块
+        </td>
+    </tr>
+    <tr>
+        <td width="248">
+            CVirtualMemory::CheckProtection</a>
+        </td>
+        <td>
+            _CVirtualMemory_CheckProtection(address, protection, pIsValid);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzMemoryCheck</span>();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            检查对指定的虚存地址是否具有指定的访问权限
+        </td>
+    </tr>
+    <tr>
+        <td width="248">
+            CVirtualMemory::Commit</a>
+        </td>
+        <td>
+            _CVirtualMemory_Commit(address);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzMemoryCommit</span>();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            要求系统提交指定虚存的物理内存
+        </td>
+    </tr>
+    <tr>
+        <td width="248">
+            CVirtualMemory::Free</a>
+        </td>
+        <td>
+            _CVirtualMemory_Free(baseAddr, size);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzMemoryFree</span>();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            释放指定的虚存块
+        </td>
+    </tr>
+    <tr>
+        <td width="248">
+            CVirtualMemory::SetProtection</a>
+        </td>
+        <td>
+            _CVirtualMemory_SetProtection(baseAddr, size, protection);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzMemoryProtect</span>();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            改变指定虚存的保护权限
+        </td>
+    </tr>
+    <tr>
+        <td width="248">
+            CVirtualMemory::Query</a>
+        </td>
+        <td>
+            _CVirtualMemory_Query(address, pBaseAddr, pSize);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzMemoryQuery</span>();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            查询指定地址所在虚拟内存块的信息
+        </td>
+    </tr>
+</table>
+
+<h2>进程</h2>
+    <table border="1" width="944">
+    <thead>
+        <td width="256">函数名称</td><td width="479">C语言对应函数</td>
+    	<td width="187">2.0对应函数</td>
+    </thead>
+    <tr>
+        <td width="256">
+            CProcess::New</a>
+        </td>
+        <td width="479">
+            _CProcess_NewUnstarted(ppProcess);
+        </td>
+        <td width="187">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateProcessObject（）;</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建一个新进程对象
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CProcess::New</a>
+        </td>
+        <td>
+            _CProcess_New(name, args, ppProcess);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateProcess（）;</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建一个新进程
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CProcess::Exit</a>
+        </td>
+        <td>
+            _CProcess_Exit(exitCode);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			&nbsp;EzExitProcess（）;</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            退出当前进程
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CProcess::AtExit</a>
+        </td>
+        <td>
+            _CProcess_AtExit(pEntry, pUserData);
+        </td>
+        <td>
+            没有对应</td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            退出当前进程
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CProcess::GetCurrent</a>
+        </td>
+        <td>
+            _CProcess_GetCurrent(ppCurrentProcess);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetCurrentProcess（）;</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获取当前进程接口IProcess的指针
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CSystem::GetAllProcesses</a>
+        </td>
+        <td>
+            _CSystem_GetAllProcesses(ppProcesses);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetProcesses（）;</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获取系统中所有进程的枚举器
+        </td>
+    </tr>
+</table>
+
+<h2>线程</h2>
+    <table border="1" width="943">
+    <thead>
+        <td width="254">函数名称</td><td width="480">C语言对应函数</td>
+    	<td width="187">2.0函数名称</td>
+    </thead>
+    <tr>
+        <td width="254">
+            CThread::New</a>
+        </td>
+        <td width="480">
+            _CThread_New(pEntry, pArg, flags, ppThread);
+        </td>
+        <td width="187">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateThread(...)</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建一个新线程
+        </td>
+    </tr>
+    <tr>
+        <td width="254">
+            CThread::Delay</a>
+        </td>
+        <td>
+            _CThread_Delay(us);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzDelay(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            使当前线程进入忙等待
+        </td>
+    </tr>
+    <tr>
+        <td width="254">
+            CThread::Quit</a>
+        </td>
+        <td>
+            _CThread_Quit(quitCode);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzExitThread</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            退出当前线程
+        </td>
+    </tr>
+    <tr>
+        <td width="254">
+            CThread::AtQuit</a>
+        </td>
+        <td>
+            _CThread_AtQuit(pEntry, pUserData);
+        </td>
+        <td>
+            没有对应</td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            退出当前线程
+        </td>
+    </tr>
+    <tr>
+        <td width="254">
+            CThread::RequestToQuit</a>
+        </td>
+        <td>
+            _CThread_RequestToQuit(quitCode);
+        </td>
+        <td>
+            没有对应</td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            请求退出当前线程
+        </td>
+    <tr>
+        <td width="254">
+            CThread::GetCurrent</a>
+        </td>
+        <td>
+            _CThread_GetCurrent(ppCurrentThread);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			&nbsp;EzGetCurrentThread(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获取当前线程接口的IThread指针
+        </td>
+    </tr>
+    <tr>
+        <td width="254">
+            CThread::Sleep</a>
+        </td>
+        <td>
+            _CThread_Sleep(ms, pResult);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			&nbsp;EzSleep(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            使当前线程进入睡眠状态
+        </td>
+    </tr>
+    <tr>
+        <td width="254">
+            CThread::Yield</a>
+        </td>
+        <td>
+            _CThread_Yield();
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzYield();</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            主动放弃当前线程的调度权
+        </td>
+    </tr>
+</table>
+
+<h2>ThreadLocalStorage（Thread Local Storage）</h2>
+
+    <table border="1" width="943">
+    <thead>
+        <td width="256">函数名称</td><td width="480">C语言对应函数</td>
+    	<td width="185">2.0函数名称</td>
+    </thead>
+    <tr>
+        <td width="256">
+            CThread::AcquireLocalSlot</a>
+        </td>
+        <td width="480">
+            _CThread_AcquireLocalSlot(slotType, pSlotIndex);
+        </td>
+        <td width="185">
+            　</td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            分配一个ThreadLocalStorage index（Thread Local Storage索引号）
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CThread::GetLocalMemory</a>
+        </td>
+        <td width="480">
+            _CThread_GetLocalMemory(slotIndex, ppMemory);
+        </td>
+        <td width="185">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			&nbsp;EzGetThreadLocalMem(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            根据指定的ThreadLocalStorage索引号，获取调用线程的相应tls槽（slot）中存储的数据（堆内存指针）
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CThread::GetLocalObject</a>
+        </td>
+        <td>
+            _CThread_GetLocalObject(slotIndex, ppObj);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzSetThreadLocalObj(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            根据指定的ThreadLocalStorage索引号，获取调用线程的相应tls槽（slot）中存储的数据（构件对象指针）
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CThread::GetLocalValue</a>
+        </td>
+        <td>
+            _CThread_GetLocalValue(slotIndex, pValue);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetThreadLocalValue(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            根据指定的ThreadLocalStorage索引号，获取调用线程的相应tls槽（slot）中存储的数据（立即数指针）
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CThread::RelinquishLocalSlot</a>
+        </td>
+        <td>
+            _CThread_RelinquishLocalSlot(slotIndex);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzRelinquishThreadLocalSlot();</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            释放一个ThreadLocalStorage索引号，使该索引号可以被重用，并回收堆内存/释放构件对象
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CThread::SetLocalMemory</a>
+        </td>
+        <td>
+            _CThread_SetLocalMemory(slotIndex, pMemory);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzSetThreadLocalMem(...); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            通过指定的ThreadLocalStorage索引号，将某个值（堆内存指针）存储在调用线程中对应的私有tls槽（slot）中
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CThread::SetLocalObject</a>
+        </td>
+        <td>
+            _CThread_SetLocalObject(slotIndex, pObject);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzSetThreadLocalObj(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+             通过指定的ThreadLocalStorage索引号，将某个值（构件对象指针）存储在调用线程中对应的私有tls槽（slot）中
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CThread::SetLocalValue</a>
+        </td>
+        <td>
+            _CThread_SetLocalValue(slotIndex, value);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			&nbsp;EzGetThreadLocalValue(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            通过指定的ThreadLocalStorage索引号，将某个值（立即数指针）存储在调用线程中对应的私有tls槽（slot）中
+        </td>
+    </tr>
+
+</table>
+
+<h2>同步</h2>
+<table border="1" width="943">
+    <thead>
+        <td width="255">函数名称</td><td width="471">C语言对应函数</td>
+    	<td width="181">2.0函数名称</td>
+    </thead>
+    <tr>
+        <td width="255">
+            CCondition::New</a>
+        </td>
+        <td width="471">
+            _CCondition_New(ppCondition);
+        </td>
+        <td width="181">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateCondition(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建条件变量对象
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CCondition::New</a>
+        </td>
+        <td width="471">
+            _CCondition_NewWithName(name, ppCondition, pAlreadyExists);
+        </td>
+        <td width="181">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateNamedCondition(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建命名条件变量对象
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CEvent::New</a>
+        </td>
+        <td width="471">
+            _CEvent_New(manualReset, initialState, ppEvent);
+        </td>
+        <td width="181">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateEvent(...); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建事件同步对象
+        </td>
+    </tr>
+        <tr>
+        <td width="255">
+            CEvent::New</a>
+        </td>
+        <td>
+            _CEvent_NewWithName(name, manualReset, initialState, ppEvent, pAlreadyExists);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			&nbsp;EzCreateNamedEvent(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建命名事件同步对象
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CMutex::New</a>
+        </td>
+        <td>
+            _CMutex_New(ppMutex);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateMutex(...); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建互斥锁对象
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CMutex::New</a>
+        </td>
+        <td>
+            _CMutex_NewWithName(name, ppMutex, pAlreadyExists);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateNamedMutex(...); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建命名互斥锁对象
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CReaderWriterLock::New</a>
+        </td>
+        <td>
+            _CReaderWriterLock_New(ppRWLock);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateReaderWriterLock(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建读写锁对象
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CReaderWriterLock::New</a>
+        </td>
+        <td>
+            _CReaderWriterLock_NewWithName(name, ppRWLock, pAlreadyExists);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateNamedReaderWriterLock(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建命名读写锁对象
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CEvent::TryWaitForAnyEvent</a>
+        </td>
+        <td>
+            _CEvent_TryWaitForAnyEvent(&events, timeout, pResult, pIndex, pState);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzTryWaitForAnyEvent(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            尝试在指定时间间隔内同时等待多个事件对象
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CEvent::WaitForAnyEvent</a>
+        </td>
+        <td>
+            _CEvent_WaitForAnyEvent(&events, pResult, pIndex, pState);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzWaitForAnyEvent(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            同时等待多个事件对象
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CCriticalSection::Terminate</a>
+        </td>
+        <td>
+            _CCriticalSection_Terminate(*pCriticalSection);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzDeleteCriticalSection</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            删除临界区，释放相关资源
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CCriticalSection::Enter
+        </td>
+        <td>
+            _CCriticalSection_Enter(*pCriticalSection);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzEnterCriticalSection</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            以阻塞方式，进入临界区
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CCriticalSection::Initialize
+        </td>
+        <td>
+            _CCriticalSection_Initialize(*pCriticalSection);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzInitializeCriticalSection</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            初始化临界区
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CCriticalSection::TryEnter
+        </td>
+        <td>
+            _CCriticalSection_TryEnter(*pCriticalSection,*pEntered);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzTryEnterCriticalSection</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            以非阻塞方式，进入临界区
+        </td>
+    </tr>
+   <tr>
+        <td width="255">
+            CCriticalSection::Leave
+        </td>
+        <td>
+            _CCriticalSection_Leave(*pCriticalSection);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzLeaveCriticalSection</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            离开临界区
+        </td>
+    </tr>
+</table>
+
+<h2>其它系统服务</h2>
+<table border="1" width="941">
+    <thead>
+        <td width="257">函数名称</td><td width="469">C语言对应函数</td>
+    	<td width="193">2.0函数名称</td>
+    </thead>
+    <tr>
+        <td width="257">
+            CSystem::DebugPrint
+        </td>
+        <td width="469">
+            _CSystem_DebugPrint(message);
+        </td>
+        <td width="193">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzDebugPrint(...); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            输出打印信息到控制台
+        </td>
+    </tr>
+    <tr>
+        <td width="257">
+            CSystem::GetGlobalMemorySizes
+        </td>
+        <td>
+            _CSystem_GetGlobalMemorySizes<p>(pTotalPhysicalMemorySize,</p>
+			<p>pAvailablePhysicalMemorySize);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			&nbsp;EzGetGlobalMemorySizes(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获取系统总的物理内存以及当前可用的物理内存。
+        </td>
+    </tr>
+    <tr>
+        <td width="257">
+            CSystem::GetElapsedTime
+        </td>
+        <td>
+            _CSystem_GetElapsedTime(pTime);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetElapsedTime(...); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获取系统自启动以来流逝的总时间（以毫秒为单位）
+        </td>
+    </tr>
+    <tr>
+        <td width="257">
+            CSystem::GetIdleTime
+        </td>
+        <td>
+            _CSystem_GetIdleTime(pTime);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetIdleTime(...); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获取系统处于空闲状态的总时间（以毫秒为单位）
+        </td>
+    </tr>
+   <tr>
+        <td width="257">
+            CSystem::GetMachineTime
+        </td>
+        <td>
+            _CSystem_GetMachineTime(pMachineTime);
+        </td>
+        <td>
+            　</td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            以微秒的精度获取当前的系统标准时间（UTC）
+        </td>
+    </tr>
+    <tr>
+        <td width="257">
+            CSystem::SetMachineTime
+        </td>
+        <td>
+            _CSystem_SetMachineTime(machineTime);
+        </td>
+        <td>
+            　</td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            设置当前的系统标准时间（UTC）
+        </td>
+    </tr>
+    <tr>
+        <td width="257">
+            CSystem::Reboot
+        </td>
+        <td>
+            _CSystem_Reboot();
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzReboot();</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            重新启动机器
+        </td>
+    </tr>
+    <tr>
+        <td width="257">
+            CProfile::GetInt32
+        </td>
+        <td>
+            _CProfile_GetInt32(appName, keyName, pValue);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetProfileInt(...); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获得整型的配置文件elastos.cfg 中指定section段里的关键字的值
+        </td>
+    </tr>
+    <tr>
+        <td width="257">
+            CProfile::GetAString
+        </td>
+        <td>
+            _CProfile_GetAString<p>(appName, keyName, pReturnedString);
+        </td>
+        <td>
+            没有对应</td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获得字符串格式的配置文件elastos.cfg 中指定section段里的关键字的值
+        </td>
+    </tr>
+    <tr>
+        <td width="257">
+            CProfile::GetWString
+        </td>
+        <td>
+            _CProfile_GetWString<p>(appName, keyName, pReturnedString);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetProfileString(...);&nbsp; </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获得字符串格式的配置文件elastos.cfg 中指定section段里的关键字的值
+        </td>
+    </tr>
+</table>
+
+<h2>错误返回机制</h2>
+
+<table border="1" width="940">
+    <thead>
+        <td width="258">函数名称</td><td width="468">C语言对应函数</td>
+    	<td width="192">2.0函数名称</td>
+    </thead>
+    <tr>
+        <td width="258">
+            CErrorReport::SetWString
+        </td>
+        <td>
+            _CErrorReport_SetWString(string);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzSetErrorString(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            根据传入的宽字符串，设置错误报告信息
+        </td>
+    </tr>
+    <tr>
+        <td width="258">
+            CErrorReport::SetAString
+        </td>
+        <td>
+            _CErrorReport_SetAString(string);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			&nbsp;EzSetErrorStringA(...); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            根据传入的 ASCII 字符串，设置错误报告信息
+        </td>
+    </tr>
+    <tr>
+        <td width="258">
+            CErrorReport::SetUrl
+        </td>
+        <td>
+            _CErrorReport_SetUrl(url);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzSetErrorUrl(...); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            根据传入的 URL ，设置错误报告信息
+        </td>
+    </tr>
+    <tr>
+        <td width="258">
+            CErrorReport::GetWString
+        </td>
+        <td>
+            _CErrorReport_GetWString();
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetErrorString(); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3 height="22">
+            获取错误报告信息
+        </td>
+    </tr>
+    <tr>
+        <td width="258">
+            CErrorReport::GetAString
+        </td>
+        <td>
+            _CErrorReport_GetAString();
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetErrorStringA(); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获取错误报告信息
+        </td>
+    </tr>
+    <tr>
+        <td width="258">
+            CErrorReport::GetUrl
+        </td>
+        <td>
+            _CErrorReport_GetUrl();
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetErrorUrl(); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获取错误报告的URL
+        </td>
+    </tr>
+</table>
+
+<h2>可执行文件和模块</h2>
+<table border="1" width="939">
+    <thead>
+        <td width="256">函数名称</td><td width="469">C语言对应函数</td>
+    	<td width="192">2.0函数名称</td>
+    </thead>
+    <tr>
+        <td width="256">
+            CModule::GetCurrent
+        </td>
+        <td>
+            _CModule_GetCurrent(ppModule);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetCurrentModule(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            获取当前进程装载的映像模块
+        </td>
+    </tr>
+    <tr>
+        <td width="256">
+            CModule::Load
+        </td>
+        <td>
+            _CModule_Load(name, flags, ppModule);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzLoadModule(...)</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            在当前进程中装载映像模块
+        </td>
+    </tr>
+</table>
+
+<h2>内存共享</h2>
+
+<table border="1" width="938">
+    <thead>
+        <td width="256">函数名称</td><td width="470">C语言对应函数</td>
+    	<td width="190">2.0函数名称</td>
+    </thead>
+    <tr>
+        <td width="256">
+            CSharedMemory::New
+        </td>
+        <td>
+            _CSharedMemory_New(name, size, commit, ppSharedMemory, pAlreadyExists);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzCreateSharedMemory</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            创建共享内存
+        </td>
+    </tr>
+</table>
+
+<h2>堆内存</h2>
+
+<table border="1" width="940">
+    <thead>
+        <td width="255">函数名称</td><td width="472">C语言对应函数</td>
+    	<td width="191">2.0函数名称</td>
+    </thead>
+    <tr>
+        <td width="255">
+            CMemoryHeap::Alloc
+        </td>
+        <td width="472">
+            _CMemoryHeap_Alloc(size, zeroMemory);
+        </td>
+        <td width="191">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzTaskMemAlloc(...); </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            分配一块内存。
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CMemoryHeap::Realloc
+        </td>
+        <td width="472">
+            _CMemoryHeap_Realloc(pMemory, size);
+        </td>
+        <td width="191">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzTaskMemRealloc(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            重新分配内存的大小。
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CMemoryHeap::Free
+        </td>
+        <td width="472">
+            _CMemoryHeap_Free(pMemory);
+        </td>
+        <td width="191">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzTaskMemFree(...);</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            释放此前由CMemoryHeap::Alloc或CMemoryHeap::Realloc函数调用分配的内存块。
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CMemoryHeap::Trim
+        </td>
+        <td width="472">
+            _CMemoryHeap_Trim(pad);
+        </td>
+        <td width="191">
+            　</td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            缩减用户堆，向系统返还物理内存。
+        </td>
+    </tr>
+    <tr>
+        <td width="255">
+            CMemoryHeap::GetStatistics
+        </td>
+        <td>
+            _CMemoryHeap_GetStatistics(pInUseBytes, pSystemBytes, pMaxSystemBytes);
+        </td>
+        <td>
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzTaskMemStats</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            返回当前用户堆状态。
+        </td>
+    </tr>
+</table>
+
+<h2>CAR反射函数</h2>
+
+<table border="1" width="939">
+    <thead>
+        <td width="253">函数名称</td><td width="474">C语言对应函数</td>
+    	<td width="190">2.0函数名称</td>
+    </thead>
+
+    <tr>
+        <td width="253">
+            <!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireModuleInfo.htm">CReflector::AcquireModuleInfo</a>-->
+            CReflector::AcquireModuleInfo
+        </td>
+        <td width="474">
+            _CReflector_AcquireModuleInfo(name, ppModuleInfo);
+        </td>
+        <td width="190">
+            <span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzAcquireModuleInfo(...);&nbsp; </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            从模块的文件名中获得ModuleInfo
+        </td>
+    </tr>
+    <!--
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireIntrinsicTypeInfo.htm">CReflector::AcquireIntrinsicTypeInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireIntrinsicTypeInfo(intrinsicType, ppIntrinsicTypeInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的     中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireEnumInfo.htm">CReflector::AcquireEnumInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireEnumInfo(name, &itemNames, &itemValues, ppEnumInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的     中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireCppVectorInfo.htm">CReflector::AcquireCppVectorInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireCppVectorInfo(pElementTypeInfo, length, ppCppVectorInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的    中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireStructInfo.htm">CReflector::AcquireStructInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireStructInfo(name, &fieldNames, &fieldTypeInfos, ppStructInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的    中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireCarArrayInfo.htm">CReflector::AcquireCarArrayInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireCarArrayInfo(pElementTypeInfo, ppCarArrayInfo);
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan =2>
+            从模块的    中获得
+        </td>
+    </tr>
+    -->
+    <tr>
+        <td width="253">
+            <!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CObject\ReflectClassInfo.htm">CObject::ReflectClassInfo</a>-->
+            CObject::ReflectClassInfo
+        </td>
+        <td width="474">
+            _CObject_ReflectClassInfo(pObj, piClassInfo);
+        </td>
+        <td width="190">
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzReflectClassInfo()</span></td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            从构件对象指针中获得IClassInfo
+        </td>
+    </tr>
+    <tr>
+        <td width="253">
+            <!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CObject\ReflectInterfaceInfo.htm">CObject::ReflectInterfaceInfo</a>-->
+            CObject::ReflectInterfaceInfo
+        </td>
+        <td width="474">
+            _CObject_ReflectInterfaceInfo(pObj, piInterfaceInfo);
+        </td>
+        <td width="190">
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzReflectInterfaceInfo</span><span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">(...);&nbsp; </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            从构件对象指针中获得IInterfaceInfo
+        </td>
+    </tr>
+    <tr>
+        <td width="253">
+            <!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CObject\ReflectModuleInfo.htm">CObject::ReflectModuleInfo</a>-->
+            CObject::ReflectModuleInfo
+        </td>
+        <td width="474">
+            _CObject_ReflectModuleInfo(pObj, piModuleInfo);
+        </td>
+        <td width="190">
+            <span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzReflectModuleInfo</span><span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">(...);&nbsp; </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan =3>
+            从构件对象指针中获得IModuleInfo
+        </td>
+    </tr>
+</table>
+
+<script>footer("chinese")</script>
+</body>
+</html>

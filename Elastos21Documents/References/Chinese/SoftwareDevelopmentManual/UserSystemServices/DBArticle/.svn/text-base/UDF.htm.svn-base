@@ -1,0 +1,47 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>用户自定义函数(UDF)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h3>什么是UDF</h3>
+    <p>用户定义函数(UDF)是一种采用C或C++实现的SQL扩展函数，它可以在SQL语句中使用，是用户为执行自定义的功能和常用的任务而设计的。UDF 允许程序员模块化一个数据库应用程序，并将其嵌入到数据库以增强数据库自身的功能，还能帮助用户完成SQL语言不能处理的功能以及查询、更新数据库的操作。</p>
+    <p>下面，首先介绍UDF的概念、在和欣数据库中使用UDF的一般方法以及将要用到的几个函数，然后演示一个在和欣数据库中应用了Trigger + UDF方式来处理数据库的示例程序。</p>
+    <p>用户如果想在和欣数据库中使用自定义的UDF，可以将UDF包含在一个外部库中，然后在主程序中载入此外部库，这样就可以在数据库主程序中使用该UDF，用户也可以修改这个外部库中的UDF来实现各种不同的外部处理，而主程序也可以专注于自己的核心逻辑，一些无关的外部行为可以通过UDF来实现。下面，将介绍在和欣数据库中如何使用外部UDF。</p>
+    <p>首先，介绍创建用户自定义的SQL函数的方法。用户如果想让数据库使用自定义的函数，则必须将自定义函数创建为SQL函数，可以使用<a href="UDF\CreFunc.htm">sqlite3_create_function()</a>或<a href=UDF\CreFunc.htm>sqlite3_create_function16()</a>函数来创建用户自定义SQL函数。</p>
+    <p>定义好UDF后，还需要将UDF载入到数据库主程序中，请参见<a href="../DataBase/interface_i_database.html#c14c327a5f8bc0cc533f721d2d79cc81">LoadUserExtension()</a>函数的描述。</p>
+    <h3>UDF代码框架</h3>
+    <p>用户可以按照一定的代码框架定义UDF：</p>
+    <pre class=code>
+udf.cpp:
+#include &lt;sqlite3ext.h&gt;
+
+SQLITE_EXTENSION_INIT1
+//UDF的实现程序，注意参数的形式必须如此
+<b>static void udfFunc(sqlite3_context *p, int nArg, sqlite3_value **apArg)
+{
+//用户自定义函数的实现程序
+… …
+}</b>
+
+extern "C"
+//外部库的入口
+int sqlite3_extension_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines *pApi)
+{
+SQLITE_EXTENSION_INIT2(pApi);
+//创建UDF
+    <b>int rc = sqlite3_create_function(db, "udf", -1, SQLITE_UTF16, 0, udfFunc, 0, 0);</b>
+    return rc;
+}
+</pre>
+    <p>这段程序可以看做一个编写UDF的模板，用户只要根据实际需要实现粗体字部分，其他部分予以保留即可。其中，SQLITE_EXTENSION_INIT1和SQLITE_EXTENSION_INIT2是sqlite3ext.h头文件中的宏定义，用户在编写自己的UDF时，只要将其保留即可。</p>
+<script>footer("chinese")</script>
+</body>
+</html>
+

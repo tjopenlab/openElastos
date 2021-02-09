@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>    <manpage>
+    <volume>文件系统接口</volume>
+    <interface> IAbsoluteIO </interface>
+    <description>
+        <para>
+            输入输出接口。
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Read</method_name>
+        <method_url>IAbsoluteIO\Read</method_url>
+    <m_description>
+            从文件对象的特定偏移处读取一定数目的数据，把读取到的数据拷贝到缓冲区中。
+    </m_description>
+    </method>
+    <method>
+        <method_name>Write</method_name>
+        <method_url>IAbsoluteIO\Write</method_url>
+    <m_description>
+            把要缓冲区中的数据写入文件对象，并且返回实际写入的数据的长度。
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetSize</method_name>
+        <method_url>IAbsoluteIO\GetSize</method_url>
+    <m_description>
+            获取文件对象的长度。
+    </m_description>
+    </method>
+    <method>
+        <method_name>SetSize</method_name>
+        <method_url>IAbsoluteIO\SetSize</method_url>
+    <m_description>
+            设置文件对象的长度。
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetOptimalBlockSize</method_name>
+        <method_url>IAbsoluteIO\GetOptimalBlockSize</method_url>
+    <m_description>
+            获取优化分配的块大小。
+    </m_description>
+    </method>
+</self>
+    </methods>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+    	  <para>由于IBasicDirectory指针无法通过Probe得到IAbsoluteIO的指针，因此IAbsoluteIO接口的方法都不能作用于目录对象。</para>
+    </remarks>
+</manpage>

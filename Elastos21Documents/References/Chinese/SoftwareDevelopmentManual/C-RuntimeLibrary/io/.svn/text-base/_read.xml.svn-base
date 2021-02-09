@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_read">_read</sample>
+    <title> _read</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>从一个文件中读取数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_read</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>文件的句柄</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>数据的存储位置</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>unsigned int</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>字节数的最大值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>read 返回读取字节的数目，如果文件中剩下的字节数小于count，返回值会比count小。</para>
+        <para>如果函数试图在文件的结尾开始读数据，则返回0；如果文件句柄是无效的，或者文件没有打开，或者文件被锁定，则函数返回-1并设置错误号为EBADF。</para>
+    </return>
+
+    <remarks>
+        <para>read函数从handle对应的文件中读取最多count字节的内容到缓冲区。</para>
+        <para>读操作开始于给定文件的文件指针的当前位置。读完后，文件指针指向下一个未读的字符。如果以文本方式打开文件，当读到CTRL+Z字符（文件结束标识符）时终止。可用_lseek 清除文件结束标识符。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_read</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _read.cpp: This program opens a file named
+ * _read.cpp and tries to read 60,000 bytes from
+ * that file using _read. It then displays the
+ * actual number of bytes read from READ.C.
+ */
+
+#include &lt;fcntl.h&gt;        /* Needed only for _O_RDWR definition */
+#include &lt;io.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+char buffer[60000];
+
+int main()
+{
+    int fh;
+    unsigned int nbytes = 60000, bytesread;
+
+    /* Open file for input: */
+    if ((fh = _open(&quot;_read.exe&quot;, _O_RDONLY)) == -1) {
+        perror(&quot;open failed on input file&quot;);
+        exit(1);
+    }
+
+    /* Read in input: */
+    if ((bytesread = _read(fh, buffer, nbytes)) &lt;= 0)
+        perror(&quot;Problem reading file&quot;);
+    else
+        printf(&quot;Read %u bytes from file\n&quot;, bytesread);
+
+    _close(fh);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Read 6152 bytes from file
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>_wopen</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wcreat</ref_name>
+            <ref_url>_wcreat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_write</ref_name>
+            <ref_url>_write</ref_url>
+        </reference>
+    </references>
+
+</manpage>

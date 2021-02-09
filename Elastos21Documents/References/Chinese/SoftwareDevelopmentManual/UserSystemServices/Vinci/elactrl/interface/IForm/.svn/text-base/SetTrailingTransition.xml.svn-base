@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> SetTrailingTransition </method>
+    <description>
+        <para>
+            设置窗口消失时的动画。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> TransitionEffect </param_type>
+                <param_name> effect </param_name>
+                <param_note>
+                    <para>
+动画效果，祥见 <link url="../../datatype/TransitionEffect.htm">TransitionEffect</link> 枚举类型</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> offsetX </param_name>
+                <param_note>
+                    <para>
+Form左上角横坐标起始到最终位置的偏移量（相对于屏幕左上角）
+         </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> offsetY </param_name>
+                <param_note>
+                    <para>
+Form左上角纵坐标起始到最终位置的偏移量（相对于屏幕左上角）</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> opacity </param_name>
+                <param_note>
+                    <para>
+动画开始或结束时的不透明度                  </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Millisecond32 </param_type>
+                <param_name> duration </param_name>
+                <param_note>
+                    <para>
+动画过程所用的时间                  </para>
+                </param_note>
+            </api_param>                                                
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_CLOSED</td>
+	    	    <td>窗体已关闭</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetTrailingTransition   </ref_name>
+        <ref_url>GetTrailingTransition</ref_url>
+    </reference>
+    <reference>
+        <ref_name>TransitionEffect</ref_name>
+        <ref_url>../../datatype/TransitionEffect</ref_url>
+    </reference>
+</references>
+</manpage>

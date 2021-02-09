@@ -1,0 +1,286 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Program Debugger</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+    <h2>GDB Basic Command Set (2)</h2>
+        <h4>Displays the source code</h4>
+            <p><a name="list"></a>GDB can use the list command to print source code of debugged programs.</p>
+            <table>
+                <thead>
+                    <td>Command Format</td>
+                    <td>Functionality Description</td>
+                </thead>
+                <tr>
+                    <td>list&nbsp;&lt;linenum&gt;</td>
+                    <td>Displays source code close to the line <i>linenum</i>.</td>
+                </tr>
+                <tr>
+                    <td>list&nbsp;&lt;function&gt;</td>
+                    <td>Displays source code of function with the name <i>function</i>.</td>
+                </tr>
+                <tr>
+                    <td>list</td>
+                    <td>Displays source code after the current line.</td>
+                </tr>
+                <tr>
+                    <td>list&nbsp;-</td>
+                    <td>Displays source code before the current line.</td>
+                </tr>
+            </table>
+
+        <h4>Commands That Sets Break Point</h4>
+            <p><b>break Command</b></p>
+            <p>
+            	<a name="break"></a><b>break</b> is a break point command. There are many ways to set break point 
+            	using it. The following are some common ways to set break point: </p>
+            <table>
+                <thead>
+                    <td>Command Format</td>
+                    <td>Function Description</td>
+                </thead>
+                <tr>
+                    <td>break&nbsp;&lt;function&gt;</td>
+                    <td>
+                    	Stops the program just before it enters the specified function. In C++ one can use 
+                    	class::function or function(type,type) format to specify the function name.
+                    </td>
+                </tr>
+                <tr>
+                    <td>break&nbsp;&lt;linenum&gt;</td>
+                    <td>Stops the program just before it executes the specified line.</td>
+                </tr>
+                <tr>
+                    <td>break&nbsp;+offset</br>break&nbsp;-offset</td>
+                    <td>
+                    	Stops the program before (after) the current line offset number of lines, offset is a 
+                    	natural number.
+                    </td>
+                </tr>
+                <tr>
+                    <td>break&nbsp;filename:linenum </td>
+                    <td>Stops at the source file <i>filename</i> line <i>linenum</i>.</td>
+                </tr>
+                <tr>
+                    <td>break&nbsp;filename:function </td>
+                    <td>Stops at the function entry point function of source file mentioned by <i>filename</i>.</td>
+                </tr>
+                <tr>
+                    <td>break&nbsp;*address</td>
+                    <td>Stops at memory address that specified program is running.</td>
+                </tr>
+                <tr>
+                    <td>break</td>
+                    <td>If no argument, it means to stop at the next instruction.</td>
+                </tr>
+            </table>
+
+        <h4>Break Point Maintenance Command</h4>
+            <p><a name="clear"></a><b>clear Command</b></p>
+            <table>
+                <thead>
+                    <td>Command Format</td>
+                    <td>Function Description</td>
+                </thead>
+                <tr>
+                    <td>clear</td>
+                    <td>Clears all defined break point.</td>
+                </tr>
+                <tr>
+                    <td>clear&nbsp;&lt;function&gt;</br>clear &lt;filename:function&gt;</td>
+                    <td>Clears all break points in the function.</td>
+                </tr>
+                <tr>
+                    <td>clear&nbsp;&lt;linenum&gt;</br>clear&nbsp;&lt;filename:linenum&gt;</td>
+                    <td>Clears all break points set on specified line.</td>
+                </tr>
+            </table>
+
+            <p><a name="delete"></a><b>delete Command</b></p>
+            <p>
+            	delete&nbsp;[breakpoints]&nbsp;[range...]</br>Deletes the specified break point, abbrivate command 
+            	is d. <i>breakpoints</i> is the break point number, range is the break point range. If no break point is 
+            	specified, it means delete all break points.
+            </p>
+
+            <p><a name="disable"></a><b>disable Command</b></p>
+            <p>
+            	A better method than deleting the break point is to disable the break point. Once a break point 
+            	is disabled, GDB will not delete it, when you need to use the break point again, you can use the 
+            	enable command to resume its function.
+            </P>
+            <p>
+            	disable&nbsp;[breakpoints]&nbsp;[range...]</br>Disables the specified break point, abbrivate command 
+            	is dis. <i>breakpoints</i> is the break point number. If nothing is specified, it means all the break 
+            	points are disabled.
+            </p>
+
+            <p><a name="enable"></a><b>enable Command</b></p>
+            <table>
+                <thead>
+                    <td>Command Format</td>
+                    <td>Functionality Description</td>
+                </thead>
+                <tr>
+                    <td>enable&nbsp;[breakpoints]&nbsp;[range...]</td>
+                    <td>Enables the specified break point, <i>breakpoints</i> is the break point number.</td>
+                <tr>
+                <tr>
+                    <td>enable&nbsp;[breakpoints]&nbsp;once&nbsp;range...</td>
+                    <td>
+                    	Enables the specified break point once, after the program terminates, the break point will be 
+                    	automatically disabled by GDB.
+                    </td>
+                </tr>
+                <tr>
+                    <td>enable&nbsp;[breakpoints]&nbsp;delete&nbsp;range...</td>
+                    <td>
+                    	Enables the specified break point once, when the program terminates, the break point will be 
+                    	automatically deleted by GDB. 
+                    </td>
+                </tr>
+            </table>
+
+        <h4>Checks Function Call Stack Information</h4>
+            <p><a name="breaktrace"></a>GDB uses the breaktrace (bt) command to check function call stack information.</p>
+            <table>
+                <thead>
+                    <td>Command Format</td>
+                    <td>Functionality Description</td>
+                </thead>
+                <tr>
+                    <td>bt</td>
+                    <td>Prints all information of the current function call stack.</td>
+                </tr>
+                <!-- <tr>
+                    <td>bt&nbsp;&lt;n&gt;</td>
+                    <td>
+                    	n is a positive integer, it means only print out information of the first n layer from the 
+                    	top of the stack.
+                    </td>
+                </tr>
+                <tr>
+                    <td>bt&nbsp;&lt;-n&gt; </td>
+                    <td>
+                    	-n is a negative integer, it means only print out information of the first n layer from the 
+                    	top of the stack.
+                    </td>
+                </tr> -->
+            </table>
+
+        <h4>Checks The Run-Time Data</h4>
+            <p>
+            	<a name="print"></a>When debugging the program, if the program is terminated, you can use the print 
+            	command (abbrivated p), to check the run-time data of the current program. The format of print command 
+            	is: /br>print&nbsp;&lt;expr&gt;</br>print&nbsp;/&lt;f&gt;&nbsp;&lt;expr&gt;
+            </p>
+            <p>
+            	&lt;expr&gt; is the expression of the programming language you are debugging (GDB can debug a variety 
+            	of programming languanges). &lt;f&gt; is output format, for example, if the expression needs to output 
+            	using hexadecimal format, then it should be /x.
+            </p>
+            <p>
+            	Usually, GDB will output variable value according to variable type, you can also define GDB output 
+            	format according to requirement. The data display format of GDB is as the following: 
+            </p>
+            <p>
+            	x&nbsp;&nbsp; displays variable using hexdecimal format. </br>d&nbsp;&nbsp; displays variable using 
+            	decimal format.</br>u&nbsp;&nbsp; displays unsigned integer variable using hexdecimal format.
+            	</br>o&nbsp;&nbsp; displays variable using oct format. </br>t&nbsp;&nbsp; displays variable by using 
+            	binary format.</br>a&nbsp;&nbsp; displays variable by using hexdecimal format.</br>c&nbsp;&nbsp; 
+            	displays variable by using character format.</br>f&nbsp;&nbsp; displays varible by using floating 
+            	point number format.
+            </p>
+            <p>Examples: </p>
+                <pre class="code">
+					(gdb) p i
+					$21 = 101
+					
+					(gdb) p/a i
+					$22 = 0x65
+					
+					(gdb) p/c i
+					$23 = 101 'e'
+					
+					(gdb) p/f i
+					$24 = 1.41531145e-43
+					
+					(gdb) p/x i
+					$25 = 0x65
+					
+					(gdb) p/t i
+					$26 = 1100101
+				</pre>
+
+       <h4>Examine Memory</h4>
+            <p>
+            	<a name="examine"></a>GDB provides examine command (abbrivate to x) to check values in memory address. 
+            	The format of x command is: x/&lt;n/f/u&gt;&nbsp;&lt;addr&gt;
+            </p>
+            <p>
+            	<i>n, f, u</i> are optional parameters. <i>n</i> is a positive integer, it represents the displayed 
+            	memory size. i.e. displays <i>n</i> addresses size of content after the current address. <i>f</i> 
+            	represents format of the display, see <a class="style1" href="gdb_command2.htm#print">print</a> 
+            	command. If the address pointed to is string, the format could be <i>s</i>. If address is instruction 
+            	address, then the format could be <i>i</i>. &lt;addr&gt; represents a memory address.
+            </p>
+            <p>
+            	<i>n/f/u</i> three parameters can be used together. Fore example, command x/3uh, 0x54320 means reads 
+            	starting from memory address 0x54320, h read unit is double byte, 3 represents 3 units, <i>u</i> 
+            	represents displays in hexdecimal format.
+            </p>
+
+      <h4>Checks Program Related Information</h4>
+        <p><a name="info"></a>info, displays various information related to program.</p>
+        <table>
+            <thead>
+                <td>Command Format</td>
+                <td>Functionality Description</td>
+            </thead>
+            <tr>
+                <td>info&nbsp;breakpoints&nbsp;[n] </td>
+                <td>Checks break point information, n is the break point number.</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;registers</td>
+                <td>Checks registers. (except floating point register)</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;all-registers</td>
+                <td>Checks all register information. (including floating point register)</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;registers&nbsp;&lt;regname ...&gt;</td>
+                <td>Checks specified register information.</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;source</td>
+                <td>Checks the current source program information.</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;args</td>
+                <td>Checks the current function parameter.</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;var</td>
+                <td>Displays all global and static variable name.</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;local</td>
+                <td>Displays all local variables values of the current function.</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;stack</td>
+                <td>Displays the current function stack.</td>
+            </tr>
+        </table>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>GetResponseText (IHttpRequest)</volume>
+<interface>IHttpRequest</interface><method> GetResponseText </method>
+    <description>
+        <para>
+            以文本字符串形式获取从服务器返回的响应数据。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> U8StringBuf_&lt;&gt; </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+U8StringBuf_&lt;&gt; 类型，用于获取从服务器返回的响应数据，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION</td>
+	    	    <td>无效操作</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	      只有在 HTTP 请求状态为 <link url="../../datatype/ReadState.htm">ReadState_COMPLETED</link> 下调用该方法才有意义，否则将得到空字符串。若响应包含了为响应体指定字符编码的头部，就使用该编码，否则，默认使用 Unicode UTF-8 编码格式。
+	  </para>
+	  <para>
+	      若用户在 <link url="Send.htm">Send</link> 方法前调用了 <link url="../IHttpRequestEx/SetResponseStream.htm">SetResponseStream</link> 方法，则 HttpRequest 对象在接收到服务器端返回的响应数据后会自动将这些数据保存到用户指定的文件中，此时再在 Send 方法后调用该方法将无效并返回错误。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CHttpRequest 类介绍 </ref_name>
+        <ref_url>../../HttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IHttpRequest 接口方法列表</ref_name>
+        <ref_url>../IHttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetResponseStream</ref_name>
+        <ref_url>../IHttpRequestEx/SetResponseStream</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetResponseBody</ref_name>
+        <ref_url>GetResponseBody</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetResponseStream</ref_name>
+        <ref_url>GetResponseStream</ref_url>
+    </reference>
+</references>
+</manpage>

@@ -1,0 +1,260 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>“Elastos”内存泄漏自动监测工具</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+</head>
+
+<body>
+<h2>“Elastos”内存泄漏自动监测工具</h2>
+    <p>内存泄漏问题的危害性很大，严重的情况会使整个操作系统瘫痪，但同时，内存泄漏又是很难查找的问题。“Elastos”操作系统提供了的内存泄漏自动监测工具memtrace，你可以通过它完善地解决内存泄漏，释放未分配的内存，及重复释放同一内存等问题。</p>
+
+    <h3>开发者必备知识：</h3>
+        <p>要求读者会使用调试工具<a class="style1" href="../../../../resource_debug_kits/gdb/gdb.htm">GDB</a>。</p>
+
+    <h3>memtrace的基本功能 </h3>
+        <p>memtrace工具可以在程序结束时，列出全部没有释放的内存块，和分配索引号等信息。利用这些信息可以查出源程序中分配这些内存的语句。</p>
+        <p>在程序释放内存时还会报告溢出的内存段。</p>
+        <p>在程序运行过程中，如果用无效指针去释放一块并没有分配的内存，或者程序中重复释放了内存，内存泄漏自动监测工具都会用assert报警，使程序进入调试状态。</p>
+        <p>DEBUG版的“Elastos”操作系统默认就具有内存泄漏自动监测功能。为了运行效率，RELEASE版的"Elastos"操作系统默认不具备这一功能。</p>
+
+    <h3>memtrace的使用方法 </h3>
+        <ul>
+            <li><a class="style1" href="#memleak">检查内存泄漏问题</a>
+            <li><a class="style1" href="#freemem">解决程序中释放未分配的内存，及重复释放同一内存的问题</a>
+            <li><a class="style1" href="#overflow">检查内存溢出的问题</a>
+        </ul>
+
+<A NAME="memleak"></A>
+        <h4>检查内存泄漏问题</h4>
+        <p>用户程序不需要做任何改动，就可以利用操作系统的内存泄漏自动监测功能。</p>
+        <p>下面通过一个实例，介绍怎样查找内存泄漏。下例程序是一个有内存泄漏问题的程序MemLeakDemo。源程序代码如下：</p>
+        <p>MemLeakDemo.cpp文件内容</p>
+        <pre class="code">
+// MemLeakDemo.cpp
+// 此程序分配一次内存不释放。在 DEBUG 版下运行时
+// 内存泄漏自动监测系统可以检查出内存泄漏。并能
+// 用memtrace定位到源程序的位置。
+
+
+#include &lt;elastos.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char *buf = NULL;
+
+    buf = (char*)malloc(100);
+    strcpy(buf, "Hello,world!");
+    printf("%s\n", buf);
+    //free(buf);
+
+    return 0;
+}
+
+</pre>
+        <p>souces文件内容</p>
+<pre class="code">
+
+TARGET_NAME = MemLeakDemo
+TARGET_TYPE = exe
+
+SOURCES = \
+	  MemLeakDemo.cpp \
+
+LIBRARIES = $(XDK_LIB_PATH)\elastos.lib
+LIBRARIES += $(XDK_LIB_PATH)\ELCRuntime.lib
+
+</pre>
+        <p>在ElastossXDK环境下编译MemLeakDemo程序，生成可执行文件MemLeakDemo.exe。在DEBUG版和RELEASE版的"Elastos"系统上运行MemLeakDemo.exe文件。</p>
+
+        <p>屏幕显示如下（<font color=blue>蓝色</font>为键盘输入）：</p>
+        <pre class="code">
+
+[E:/] <font color="blue">MemLeakDemo.exe</font>
+Hello,world!
+
+<b>
+***********Memory Leak Detected Report***********
+
+-------------------------------------------------
+
+index = 0x20    address = 0x40004b0c    size=100
+Total memory leaks: 1
+Use "memtrace -v" to show detailed report, "memtrace -d" to debug leaks.
+
+-------------------------------------------------
+
+*************************************************
+
+</b>
+
+[E:/]
+
+</pre>
+        <p> 此处有一个内存块泄漏，其中<b>“</b><b>index = 0x20    address = 0x40004b0c    size=100</b><b>”</b>分别为未释放内存块的索引、地址、大小（以十六进制或十进制显示）。其中内存块的大小会比要求分配的大小要大，这是因为需要保存相关信息。</p>
+        <p>监测工具还列出了内存泄漏的数目。并提示使用“memtrace -v”或“memtrace -d”命令进一步调试内存泄漏。</p>
+        <ul>
+            <li><b>“memtrace -v”命令</b>
+                <p>memtrace&nbsp;-v&nbsp;ProgramName&nbsp;[ProgramArgument]</p>
+                <pre class="code">
+[E:/] <font color="blue">memtrace -v MemLeakDemo.exe</font>
+
+<b>
+Hello,world!
+
+***********Memory Leak Detected Report***********
+
+-------------------------------------------------
+
+index = 0x20    address = 0x40004b0c    size=100
+Total memory leaks: 1
+Use "memtrace -v" to show detailed report, "memtrace -d" to debug leaks.
+
+-------------------------------------------------
+
+*************************************************
+</b>
+[E:/]
+</pre>
+
+        <p></p>
+
+            <li><b>“memtrace -d”命令</b>
+                <p>memtrace&nbsp;-d&nbsp;index=&nbsp;[address=]&nbsp;ProgramName&nbsp;[PrgogramArgument]</p>
+                <p>其中index是内存泄漏的索引号， 如果用户需要调试内存溢出的话，还可输入内存地址给address。</p>
+                <pre class="code">
+[E:/] <font color="blue">memtrace -d index=0x20 MemLeakdemo.exe</font>
+
+<b>
+******************************************************
+
+Stop at: index = 0x20
+
+The debugger gdb may offer what you want, start it up!
+
+******************************************************
+
+</b>
+User debugger!
+
+Program Fault. Debug Or Terminate[D/T]?
+
+</pre>
+                <p>输入D，进入调试状态</p>
+                <p>在Windows 2000端启动GDB（可参看<a class="style1" href="../../../../resource_debug_kits/gdb/gdb.htm">调试工具GDB</a>），如图4-12：</p>
+                <center><img src="images\memtrace1.jpg"></center>
+                <center>图4-12</center>
+                <p> 程序停在了内存监测处，查看pRequestHeapBlock值的方法见图4-13：</p>
+                <center><img src="images\memtrace2.jpg"></center>
+                <center>图4-13</center>
+                <p>此值和内存监测报告中的address = 0x40004b0c相同，再看函数栈（图4-14）：</p>
+                <center><img src="images\memtrace3.jpg"></center>
+                <center>图4-14</center>
+                <p>逐层向上看，其中调用了malloc函数导致此次内存的分配的，正是我们代码中main函数这行：<br>
+                buf = (char*)malloc(100); <br>
+                也就是说正是此处malloc内存没有释放，对应去free这块内存（就是代码中注释掉的free(buf)），便解决了这个内存泄露。</p>
+
+<A NAME="freemem"></A>
+        <h4>解决程序中释放未分配的内存，及重复释放同一内存的问题</h4>
+        <p>另一功能是解决程序中释放未分配的内存，及重复释放同一内存的问题。sources文件与上例类似, cpp文件如下:</p>
+        <pre class="code">
+// 此程序释放两次已分配的内存块。在 DEBUG 版或RELEASE版下
+// 运行时，内存泄漏自动监测系统可以检查释放出错
+
+#include &lt;elastos.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char *buf = NULL;
+
+    buf = (char*)malloc(100);
+    strcpy(buf, "Hello,world!");
+    printf("%s\n", buf);
+    free(buf);
+    free(buf);
+
+    return 0;
+}
+
+</pre>
+        <p>编译此程序并运行，屏幕显示如下（<font color=blue>蓝色</font>为键盘输入）：</p>
+        <p>在"Elastos"端：</p>
+        <pre class="code">
+Hello,world!
+<b>ERROR:</b> Freeing an invalid memory block, or freeing a valid block twice will caus
+e this error.
+
+User debugger!
+
+<b>Program Fault. Debug Or Terminate[D/T]?</b>
+
+</pre>
+        <p>输入D，进入调试状态</p>
+        <p>在Windows 2000端，见图4-15：</p>
+        <center><img src="images\memtrace4.jpg"></center>
+        <center>图4-15</center>
+        <p>通过函数调用栈窗口，我们可找到重复释放内存的地方。</p>
+
+    <A NAME="overflow"></A>
+    <h4>检查内存溢出的问题</h4>
+        <p>程序运行时，如果某段内存发生了溢出，内存监测工具会检测出溢出的内存，并在程序结束后报告溢出信息。sources文件与上例类似, cpp文件如下:</p>
+        <pre class="code">
+// 此程序buf在第二次memset时，buf指向的内存块发生了溢出,
+
+#include &lt;elastos.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char *buf = NULL;
+
+    buf = (char*)malloc(100);
+    memset(buf, 0, 100);
+    memset(buf, 0, 102);
+
+    strcpy(buf, "Hello,world!");
+    printf("%s\n", buf);
+    free(buf);
+
+    return 0;
+}
+</pre>
+        <p>上面程序中buf被分配了100个字节，第二次memset的时候多初始化了2个字节，内存发生了溢出，内存检测报告如下：</p>
+        <pre class="code">
+<b>
+Hello,world!
+
+
+ERROR: Heap block "32" at 0x40004b0c overrun!
+
+User debugger!
+
+Program Fault. Debug Or Terminate[D/T]?
+</b>
+
+</pre>
+        <p>输入D，进入调试状态</p>
+        <p>在windows2000端启动GDB，见图4-16：</p>
+        <center><img src="images\memtrace5.jpg"></center>
+        <center>图4-16</center>
+        <p>可以看到代码停在free(buf);处，表明该内存曾经写溢出。</p>
+        <p>检查代码中所有读写buf的位置，找到越界使用的地方。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

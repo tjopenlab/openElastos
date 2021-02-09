@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>generic_use</title>
+	</head>
+	
+	<body>
+		<h2>调用DLL</h2>
+		  <P>对于使用构件PickCarrier.dll的用户来说，每当其需要调用电话构件类的服务时，只需创建一个GCarrier泛类对象，使用该对象提供的通用方法进行电话通信，而无需关心自己创建的对象是否与底层设备相匹配，因为泛类对象内部已为用户实现了此功能，即根据用户底层设备的具体特征(判断是GSM手机还是CDMA手机)来创建相对应的对象(CGSMCarrier或CCDMACarrier)。</P>
+		  <P>客户端在PickCarrierDemo目录下调用PickCarrier.dll步骤如下：</P>
+		<h3>1.编写客户端实现文件</h3>
+		  <P>(1)用户要将所引用到的dll信息包括到实现文件中去。</P>
+		  <P>(2)编写ElastosMain()。该函数流程为创建电话泛类对象new()--->调用电话功能GetName()、Connect()和Disconnect()--->释放对象。</P>
+		  <P>PickCarrierDemo.cpp文件</P>
+<pre class= code>
+#include &lt;elastos.h&gt;
+#include "PickCarrier.h"                     //包含所使用的dll信息
+
+using namespace Elastos;
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    ICarrier* pCarrier = NULL;
+
+    ECode ec = GCarrier::New(&pCarrier);    //创建泛类对象，将接口指针赋给pCarrier
+    if (FAILED(ec)) {
+        CConsole::WriteLine("Sorry, no carrier available!");
+        return ec;
+    }
+
+    WStringBuf_<40> name;
+    pCarrier->GetName(&name);               //通过pCarrier调用GCarrier的接口方法，实则是调用了CGSMCarrier或CCDMACarrier的GetName()
+    CConsole::WriteLine(name);
+
+    pCarrier->Connect();
+
+    // do something...
+
+    pCarrier->Disconnect();
+
+    pCarrier->Release();                    //释放pCarrier接口指针
+    CProcess::Exit(0);                      //退出当前进程
+
+    return NOERROR;
+}
+</pre>
+    <h4>备注</h4>
+    <P>虽然泛类向用户屏蔽了其创建的具体对象的信息，用户可通过GetName()等方法获知自己具体使用的是哪种对象，并调用该对象提供的其它接口服务(如DoSomethingWithGSM()或DoSomethingWithCDMA())。</P>
+		<h3>2.编写客户端sources文件</h3>
+			<P>(1)添加目标程序名以及程序类型。</P>
+		  <P>(2)添加所引用到的动态链接库以及编译所要用到的源文件。</P>
+		  <P>(3)添加库文件</P>
+		  <P>sources文件</P>
+<pre class=code>
+TARGET_NAME= PickCarrierDemo
+TARGET_TYPE= exe
+
+IMPORTS = PickCarrier.dll
+
+SOURCES= PickCarrierDemo.cpp \
+
+ELASTOS_LIBS= elastos.lib
+</pre>
+		<h3>screen out</h3>
+<pre class=code>
+China Mobile
+GSM carrier connected!
+GSM carrier disconnected!
+</pre>
+		
+	</body>
+</html>

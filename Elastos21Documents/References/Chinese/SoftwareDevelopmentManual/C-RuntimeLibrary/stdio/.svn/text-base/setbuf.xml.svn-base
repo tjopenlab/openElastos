@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\setbuf">setbuf</sample>
+    <title>setbuf</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>控制文件流的缓冲区。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>setbuf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>指向分配给用户的缓冲区的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>setbuf函数控制文件流的缓冲区。stream必须指向一个打开的文件，且该文件没被读写。如果buffer为NULL，文件流将释放缓冲区；如果不为NULL，buffer将指向一个BUFSIZ长度的字符数组，其中BUFSIZ在STDIO.H中定义。要为文件流分配用户指定的缓冲区来代替系统默认分配的缓冲区，就必须使用I/0缓冲。stderr流默认地无缓冲区，但你也可以用setbuf给stderr分配缓冲区。</para>
+        <para>setbuf已经被setvbuf代替，setvbuf是编写新代码的首选函数。setbuf保留了与旧代码的兼容。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>setbuf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* setbuf.cpp: This program first opens files named DATA1 and
+ * DATA2. Then it uses setbuf to give DATA1 a user-assigned
+ * buffer and to change DATA2 so that it has no buffer.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buf[BUFSIZ] = &quot;&quot;;
+    FILE *stream1 = NULL, *stream2 = NULL;
+
+    if (((stream1 = fopen(&quot;data1&quot;, &quot;a&quot;)) != NULL) &amp;&amp;
+         ((stream2 = fopen(&quot;data2&quot;, &quot;w&quot;)) != NULL)) {
+        /* &quot;stream1&quot; uses user-assigned buffer: */
+        setbuf(stream1, buf);
+        printf(&quot;stream1 set to user-defined buffer at: %.8X\n&quot;, buf);
+
+        /* &quot;stream2&quot; is unbuffered                  */
+        setbuf(stream2, NULL);
+        printf(&quot;stream2 buffering disabled\n&quot;);
+        _fcloseall();
+    }
+    else
+        printf(&quot;open files error!!!&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+stream1 set to user-defined buffer at: 1FFFF94C
+stream2 buffering disabled
+</result>
+
+   
+
+    <references>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fopen</ref_name>
+            <ref_url>_wfopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>setvbuf</ref_name>
+            <ref_url>setvbuf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

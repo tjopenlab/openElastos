@@ -1,0 +1,134 @@
+
+<html>
+<head>
+	<title>Operating Systems FAQ :: Text Screens</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="text_mode">How do I output to the text screen?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Working on the assumption that you are in protected
+        mode and not using the BIOS to do screen writes, you will
+        have to do screen writes direct to &quot;video&quot;
+        memory yourself.
+<P>This is quite easy to do, the text
+        screen video memory for colour monitors resides at
+        0xB8000, and for monochrome monitors it is at address
+        0xB0000.</P>
+<P>Text mode memory takes two bytes for every
+        &quot;character&quot; on the screen. It consists of a
+        colour byte and an actual ASCII value. so ABCD is stored
+        as</P>
+<P>'A', colourforA<BR>
+'B', colourforB<BR>
+'C', colourforC<BR>
+'D', colourforD<BR>
+</P>
+<P>For colour video cards, you have 16kb of text video
+        memory to use, and since 80x25 mode (80x25x2==4000 bytes
+        per screen) does not use all 16kb, you have what is known
+        as 'pages' and in 80x25 screen mode you have 8 display
+        pages to use.</P>
+<P>When you print to any other page than 0, it will not
+        appear on screen until that page is &quot;enabled&quot;
+        or &quot;copied&quot; into the page 0 memory space.</P>
+<P>If you have a pointer to video memory and want to
+        write a string, here is how you might do it;</P>
+		<PRE>
+
+	/* note this example will always write to the top
+	   line of the screen */
+	void write_string(int colour, char *string)
+	{
+		char *video=(char*)0xB8000;
+		while(*string!=0)
+		{
+			*video=*string;
+			string++;
+			video++;
+			*video=colour;
+			video++;
+		}
+	}
+		</PRE>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="detect_text_screen">How do I detect if I have a colour or monochrome video card?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Detecting if you have a colour or monochrome video
+        card is trivial. You can use the values stored in the
+        BIOS data segment to determine this.
+<P>Here is some C
+        source example of how I do it.</P>
+		<PRE>
+
+	/* video card mono/colour detection by Dark Fiber
+	 * returns 0=mono, 1=colour
+	 */
+	int detect_video_type(void)
+	{
+		int rc;
+		char c=(*(USHORT*)0x410&amp;0x30
+
+		/* C can be 0x00 or 0x20 for colour, 0x30 for mono
+		if(c==0x30)
+			rc=0;	// mono
+		else
+			rc=1;	// colour
+
+		return rc;
+	}
+        </PRE>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="moving_cursor">How do I move the cursor when I print?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Without access to bios calls and functions, moving
+        the cursor requires using video hardware control. Lucky
+        for us it is a simple procedure.
+<P>Note, this quick
+        example ASSUMES 80x25 screen mode.</P>
+		<PRE>
+
+	/* void update_cursor(int row, int col)
+	 * by Dark Fiber
+	 */
+	void update_cursor(int row, int col)
+	{
+		USHORT	position=(row*80) + col;
+
+		// cursor LOW port to vga INDEX register
+		outb(0x3D4, 0x0F);
+		outb(0x3D5, (UCHAR)(position&amp;0xFF));
+		// cursor HIGH port to vga INDEX register
+		outb(0x3D4, 0x0E);
+		outb(0x3D5, (UCHAR)((position&gt;&gt;8)&amp;0xFF));
+	}
+
+        </PRE>
+		</TD>
+	</TR>
+</TABLE>
+
+
+
+</body>
+</html>

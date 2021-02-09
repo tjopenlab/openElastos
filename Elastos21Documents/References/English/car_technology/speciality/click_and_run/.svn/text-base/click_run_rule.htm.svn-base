@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Component Click And Run Mechanism</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>CAR Component Click And Run Mechanism Management Rules</h2>
+    <p>The system uses several rules in the process of CAR component click and run, they are path searching, security verification, version management, clearing and maintenance. We will intruduce them one by one in the following description.</p>
+    <h4>Path searching rules</h4>
+        <p>The default path searching rule includes "specified path searching rule" and "nearest path searching rule". When the click event occurred, if the user specified the local/remote URL address of the component, the system will search the component at the address directly, if the component exists, download it. If the user did not specify the address of the component that some application needed, or there is not the component in the specified address, or there is not a fit version of the component, then the system will use the nearest path searching rule to search the component in the local machine first. If there is a fit version component, download it. If there it does not exists, search for it in the LAN. If it is still not found, search it in the Internet.</p>
+    <h4>Security verification rules</h4>
+        <p>When the system queried some component is ready to be downloaded, it is needed to make a security verification, this includes "Checks if the component was licensed by the developer" and "Checks to see if the functions of the component adapt to the current system context". The license signature and security verifying information of the component exists in the component's self-description area. It will be downloaded if passed the verification, otherwise it cannot be downloaded.</p>
+    <h4>Version control rules</h4>
+        <p>Version control is very important in the process of component searching and downloading, loading and running, unloading and cleaning. See <a class="style1" href="../version/about_version.htm">"CAR component version control"</a> for reference. The CAR component uses four level version organizing method, they are primary version number, secondary version number, generating number and modification number. The five rules of the component version management are primary version compatibility rule, default newest rule, same whole version rule, sharing first copy rule and independent version rule.</p>
+    <h4>Cleaning and maintenance rules</h4>
+        <p>When the component finishes the correlative function or the user stops the service, the system will do some cleaning to the just run CAR component. It is decided that whether to unload the component, whether maintain the component, maintain it in the temporary directory or others, how long to keep the component according to the current (default or custom) configuration.</p>
+    <p>In a word, the feature, event and rule of the CAR component click and run are concluded as the following: </p>
+    <table>
+        <thead>
+            <td>Basic feature</td>
+            <td>Process event</td>
+            <td>Management rule</td>
+        </thead>
+        <tr>
+            <td>On demand</td>
+            <td>Click event</td>
+            <td>Path searching</td>
+        </tr>
+       <tr>
+            <td>Load and play</td>
+            <td>Download</td>
+            <td>Security verification rules</td>
+        </tr>
+        <tr>
+            <td>User transparency</td>
+            <td>Execution event</td>
+            <td>Version control rules</td>
+        </tr>
+        <tr>
+            <td>Network universal</td>
+            <td>Clean event</td>
+            <td>Clean and maintenance rules</td>
+        </tr>
+    </table>
+
+<script>footer("english")</script>
+</body>
+
+</html>

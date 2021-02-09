@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISocketEx</interface><method> GetSockOpt </method>
+    <description>
+        <para>
+            获取套接口选项。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT32 </param_type>
+                <param_name> Level </param_name>
+                <param_note>
+                    <para>
+设置套接口选项的级别                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> optName </param_name>
+                <param_note>
+                    <para>
+指定要获取的套接口选项                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> optSize </param_name>
+                <param_note>
+                    <para>
+该缓冲区存放被指定的选项的对应值。其大小有选项对应值的类型来定                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzByteBuf </param_type>
+                <param_name> ebbOptVal </param_name>
+                <param_note>
+                    <para>
+该缓冲区存放被指定的选项的对应值。其大小有选项对应值的类型来定。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> pError </param_name>
+                <param_note>
+                    <para>
+指向int型的指针，用于当函数执行发生错误时获取其错误返回值，该返回值参见<link url="../SocketWSA.htm">网络接口错误返回值</link>文档                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果方法调用成功，但逻辑错误，则返回S_FALSE。</para><para>            更多返回值，参见            <link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECODE            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            参数Level取值如下：</para><para>            <table>            <th>            <td>            取值            </td>            <td>            数值            </td>            <td>            描述            </td>            </th>            <tr>            <td>            SOL_SOCKET            </td>            <td>            0xffff            </td>            <td>            基本套接口            </td>            </tr>            <tr>            <td>            IPPROTO_TCP            </td>            <td>            6            </td>            <td>            TCP套接口            </td>            </tr>            <tr>            <td>            IPPROTO_IP            </td>            <td>            0            </td>            <td>            IPv4套接口            </td>            </tr>            </table></para><para>            参数ebbOptVal大小有选项对应值的类型来定，主要的选项和对应值的类型如下：</para><para>            Level ＝SOL_SOCKET</para><para>            <table>            <th>            <td>            值            </td>            <td>            类型            </td>            <td>            描述            </td>            </th>            <tr>            <td>            SO_BROADCAST            </td>            <td>            BOOL            </td>            <td>            套接口是否可以发送广播信息            </td>            </tr>            <tr>            <td>            SO_KEEPALIVE            </td>            <td>            BOOL            </td>            <td>            发送保活信息            </td>            </tr>            <tr>            <td>            SO_LINGER            </td>            <td>            struct linger            </td>            <td>            套接口当前linger选项            </td>            </tr>            <tr>            <td>            SO_OOBINLINE            </td>            <td>            BOOL            </td>            <td>            在数据流中接收带外数据            </td>            </tr>            <tr>            <td>            SO_REUSEADDR            </td>            <td>            BOOL            </td>            <td>            允许套接口和一个已在使用中的地址绑定            </td>            </tr>            <tr>            <td>            SO_TYPE            </td>            <td>            int            </td>            <td>            套接口类型（如SOCK_STREAM）,该选项不能设置            </td>            </tr>            <tr>            <td>            SO_SNDBUF            </td>            <td>            int            </td>            <td>            指定接收缓冲区大小            </td>            </tr>            <tr>            <td>            SO_RCVBUF            </td>            <td>            int            </td>            <td>            指定接收缓冲区大小            </td>            </tr>            <tr>            <td>            SO_RCVLOWAT            </td>            <td>            int            </td>            <td>            接收缓冲区低潮限度（对select产生影响）            </td>            </tr>            <tr>            <td>            SO_SNDLOWAT            </td>            <td>            int            </td>            <td>            发送缓冲区低潮限度（对select产生影响）            </td>            </tr>            <tr>            <td>            SO_SNDTIMEO            </td>            <td>            struct timeval            </td>            <td>            发送超时            </td>            </tr>            <tr>            <td>            SO_RCVTIMEO            </td>            <td>            struct timeval            </td>            <td>            接收超时            </td>            </tr>            </table></para><para>            Level ＝IPPROTO_TCP</para><para>            <table>            <th>            <td>            值            </td>            <td>            类型            </td>            <td>            描述            </td>            </th>            <tr>            <td>            TCP_NODELAY            </td>            <td>            BOOL            </td>            <td>            禁止发送合并的Nagle算法            </td>            </tr>            <tr>            <td>            TCP_MAXSEG            </td>            <td>            int            </td>            <td>            获取TCP最大分节的大小            </td>            </tr>            </table></para><para>            Level ＝IPPROTO_IP</para><para>            <table>            <th>            <td>            值            </td>            <td>            类型            </td>            <td>            描述            </td>            </th>            <tr>            <td>            IP_MULTICAST_IF            </td>            <td>            struct in_addr            </td>            <td>            多播数据报的本地接口            </td>            </tr>            <tr>            <td>            IP_MULTICAST_TTL            </td>            <td>            UINT8            </td>            <td>            多播数据报的存在时间（TTL）            </td>            </tr>            <tr>            <td>            IP_MULTICAST_LOOP            </td>            <td>            UINT8            </td>            <td>            允许或禁止多播数据报的回馈            </td>            </tr>            </table>
+        </para>
+    </remarks>
+</manpage>

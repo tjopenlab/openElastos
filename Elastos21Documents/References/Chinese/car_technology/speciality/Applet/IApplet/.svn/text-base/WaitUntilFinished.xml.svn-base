@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> IApplet接口方法介绍 </volume>
+    <interface>IApplet</interface>
+    <method> WaitUntilFinished </method>
+
+    <description>
+        <para>等待applet主线程结束退出。</para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>[in] Millisecond </param_type>
+            <param_name>ms </param_name>
+            <param_note>
+                <para>
+                等待线程结束的时间，单位为毫秒
+                </para>
+            </param_note>
+             </api_param>
+             <api_param>
+            <param_type>[out] WaitResult * </param_type>
+            <param_name>result </param_name>
+            <param_note>
+                <para>
+        指向<link url="../../../../SoftwareDevelopmentManual/CoreServices/DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址，可以为空。如果成功等待线程结束，则返回WaitResult_OK；如果在指定时间内线程还没退出，等待超时，则返回WaitResult_TimedOut；如果等待被打断，则返回WaitResult_Interrupted
+ </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <remarks>
+        <para>虽然applet的Finish方法表示其已经结束消息循环，不再处理消息，并准备退出。但是由于Finish是一个异步的callback事件，用户收到此消息时并不能确定applet此时处于何种状态。 </para>
+        <para>此时可以使用IApplet::WaitUntilFinished方法，用于等待applet主线程结束退出。 </para>
+        <para>如果用户在自己的applet或者process里创建了applet，需要在自己的applet或者process退出之前确定所创建的子applet已经退出。就如同创建了子线程要保证其先于自己结束退出一样，其用法与IThread::Join用法同。 </para>
+
+    </remarks>
+<references>
+        <reference>
+            <ref_name>IApplet::Finish()</ref_name>
+            <ref_url> Finish</ref_url>
+        </reference>
+        <reference>
+            <ref_name>IThread::Join()</ref_name>
+            <ref_url>../../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/ProcessThread/IThread/Join</ref_url>
+        </reference>
+    </references>
+</manpage>

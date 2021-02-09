@@ -1,0 +1,78 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\EzMemory"> CVirtualMemory::CheckProtection </sample>
+    <volume>虚拟内存管理</volume>
+    <title>CVirtualMemory::CheckProtection</title>
+    <routine_idx>../VirtualMemoryManagement.htm</routine_idx>
+
+    <description>
+        <para>检查对指定的虚存地址是否具有指定的访问权限。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name> address </param_name>
+                <param_note>
+                    <para>[in]指定的虚存地址</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemoryProtection </param_type>
+                <param_name> protection </param_name>
+                <param_note>
+                    <para>[in]指定的虚存块访问权限，参见数据结构中的<link url="../../DataStructure/MemProtect.htm">MemoryProtection</link>枚举类型说明。</para>
+                </param_note>
+           </api_param>
+<api_param>
+                <param_type> Boolean </param_type>
+                <param_name> *pIsValid </param_name>
+                <param_note>
+                    <para>[out]pIsValid是指向一个Boolean类型变量的指针。该Boolean类型变量用于接收此次调用<link url="CheckProtection.htm">CVirtualMemory::CheckProtection</link>的结果,指向为true表示指定的虚存地址具有指定的访问权限，为false表示指定的虚存地址有效，但其不具备指定的访问权限</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>虚存地址具有指定的访问权限</td>
+            </tr>
+            <tr>
+                <td>E_ACCESS_DENIED</td><td>指定的虚存地址无效</td>
+            </tr>
+
+        </table>
+        <para>参见<link url="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+    <para><link url="CheckProtection.htm">CVirtualMemory::CheckProtection</link>用来检查用户对指定的虚存地址是否具有指定的访问权限。对于内核运行地址，只在内核态下是可以访问的，如果用户用EzMemoryCheck函数检查， 则返回结果表明用户不可访问内核运行地址。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

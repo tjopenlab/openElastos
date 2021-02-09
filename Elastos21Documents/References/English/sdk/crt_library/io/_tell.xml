@@ -1,0 +1,123 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_tell">_tell</sample>
+    <title> _tell, _telli64</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>Gets current file pointer position.</para>
+    </description>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>_tell</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>File descriptor.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>__int64</return_val>
+        <func_name>_telli64</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Return value is the offset of current file pointer position relative to the beginning of file. If function returns -1L it means error and errno is set to EBADF; EBADF means parameter is not a valid file descriptor. Devices that don't allow search (ex. printer) returns not defined value.</para>
+    </return>
+
+    <remarks>
+        <para>_tell function gets the current position of handle parameter associated file pointer and returns offset of current positon relative to the beginning of the file. The return value of _telli64 function is 64-bit integer.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_tell</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility> Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_telli64</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility> Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _tell.cpp: This program uses _tell to tell the
+ * file pointer position after a file read.
+ */
+
+#include &lt;io.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;fcntl.h&gt;
+
+int main()
+{
+    int  fh;
+    int pos;
+    char buffer[500];
+
+    if ((fh = _open(&quot;_tell.exe&quot;, _O_RDONLY )) == -1)
+        printf(&quot;problem open the file !\n&quot;);
+    else {
+        printf(&quot;open the file success!\n&quot;);
+        if ((_read(fh, buffer, 500)) != 0) {
+            printf(&quot;read the file success\n&quot; );
+            pos = _tell(fh);
+            if (pos)
+                printf(&quot;Current file position is: %d\n&quot;, pos);
+            else
+                printf(&quot;problem Current file position is: %d\n&quot;, pos);
+        }
+        else
+            printf(&quot;problem read the file.\n&quot;);
+        _close(fh);
+    }
+    return 0;
+}
+</pre>
+    </example>
+<result>
+open the file success!
+read the file success
+Current file position is: 500
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>ftell</ref_name>
+            <ref_url>..\stdio\ftell</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_lseek</ref_name>
+            <ref_url>_lseeki64</ref_url>
+        </reference>
+    </references>
+
+</manpage>

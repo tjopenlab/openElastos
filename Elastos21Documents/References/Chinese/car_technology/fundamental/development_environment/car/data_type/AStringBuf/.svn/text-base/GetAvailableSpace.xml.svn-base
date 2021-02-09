@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method>GetAvailableSpace</method>
+
+    <description>
+        <para>返回此对象剩余可用的字符数。</para>
+    </description>
+    <syntax_nopara>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+	<para>返回当前AStringBuf对象剩余可用的字符数</para>	
+    </return>
+<example>
+<pre>
+AStringBuf_&lt;10&gt; asbuf;  
+asbuf.Copy("a");
+CConsole::WriteLine(asbuf.GetCapacity()); //Display : 10
+CConsole::WriteLine(asbuf.GetLength()); //Display : 1
+CConsole::WriteLine(asbuf.GetAvailableSpace()); //Display : 9
+
+asbuf.SetEmpty();
+asbuf.Copy("中");
+CConsole::WriteLine(asbuf.GetCapacity()); //Display : 10
+CConsole::WriteLine(asbuf.GetLength()); //Display : 2
+CConsole::WriteLine(asbuf.GetAvailableSpace()); //Display : 8
+</pre>
+</example>
+ <references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::GetLength</ref_name>
+        <ref_url>../AStringBuf/GetLength</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::GetCapacity</ref_name>
+        <ref_url>../AStringBuf/GetCapacity</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::GetAvailableSpace</ref_name>
+        <ref_url>../WStringBuf/GetAvailableSpace</ref_url>
+    </reference>
+</references>   
+    
+</manpage>

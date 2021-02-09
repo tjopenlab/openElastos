@@ -1,0 +1,31 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>自动生成代码框架</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<h2>编译客户端程序内部过程</h2>
+    <p>使用emake&nbsp;-v可以看到编译客户端程序的内部过程。</p>
+    <p>先用mkimport工具处理客户端程序，将client.cpp中的“#import&nbsp;&lt;hello.dll&gt;”替换为#include&nbsp;“~_hello_~.h”，在镜像目录中产生了新的client.cpp文件，根据hello.dll构件中的信息生成头文件“~_hello_~.h”，同时生成client.imp文件。</p>
+    <pre class="code">
+mkimport -o client.imp -c client.cpp …\client.cpp
+</pre>
+    <p><font color="red"><b>注意：</b>客户端和构件中头文件都定义和实现了智能指针的代码，但实际使用的是客户端头文件“~_hello_~.h”中实现智能指针。</font></p>
+    <p>然后用gcc工具编译镜像目录中的client.cpp，生成client.o。</p>
+    <pre class="code">
+gcc  … -o client.o client.cpp …
+</pre>
+    <p>接着生成hello_c.def文件，其中只有一个出口函数mainCRTStartup。</p>
+    <p>再用ld链接生成hello_c.exe，同时生成hello_c.map文件记录hello_c.exe中的链接信息。</p>
+    <pre class="code">
+ld  … -Map hello_c.map -d hello_c.def …-o hello_c.exe
+</pre>
+    <p>最后最后用gcc产生了depend.mk文件，该文件记录了镜像目录中的client.cpp文件对其他程序的依赖关系。</p>
+
+<body><script>footer("chinese")</script>
+</body>
+</html>

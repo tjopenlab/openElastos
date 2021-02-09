@@ -1,0 +1,65 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Thread and Scheduling</volume>
+<interface>IThread</interface><method> GetId </method>
+    <description>
+        <para>
+			Obtains the thread ID.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT *  </param_type>
+                <param_name> pTid </param_name>
+                <param_note>
+                    <para>
+                    	Pointer to INT, used to get the thread identifier.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value </td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>S_OK</td>
+		<td>0x00000000</td>
+		<td>Function succeeds in obtaining the thread ID.</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALIDARG</td>
+		<td>0x80070057</td>
+		<td>Invalid argument(s)</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+        	The thread ID is used to identify a thread in the system uniquely when the thread is running. After the 
+        	thread is finished, the thread identifier is reused by the system to identify other unrelated thread. 
+        	If pTid is NULL, then return value is E_INVALIDARG.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

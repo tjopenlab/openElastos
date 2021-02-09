@@ -1,0 +1,302 @@
+<html>
+
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>aggregate_release</title>
+	</head>
+
+	<body>
+		<h2>编写DLL </h2>
+		  <P>实际生产中，每部下线的手机在出厂前都需经过质量检验，并被贴上标有各项功能测试结果的质检标签。工厂工作人员根据质检结果决定是否将该部手机推向市场销售还是返厂维修。而手机的消费者也能通过手机的质检标签查看该部手机各项功能的测试结果。</P>
+		  <P>对应以上生活实例，我们模拟出以下构件示例。在Phone.dll中，构件类C28Phone和CGingkoPhone为两款手机类型，它们对外都提供了IPhone和ITestReport接口服务。手机用户可通过IPhone接口调用手机的Call()通话功能以及Sendsms()短信功能；通过ITestReport接口的Report()查看该部手机的测试报告。方面构件类AAutoChecking是独立于任何一个手机类的用于质量测试的通用功能类，其对外提供ICheckingPhone接口服务。每部手机在下线后需动态聚合该方面构件类，调用ICheckingPhone接口的CheckCall()和CheckSms()方法测试手机的通话与短信功能，并返回测试结果。当完成了质检后，再动态拆卸该方面构件类，进入下一个生产环节。</P>
+		  <P>实现Phone.dll的步骤如下：</P>
+		  <P>为了统一管理编写和调用，可以先建一个CheckingPhone目录，在此目录下再分别建一个Phone和Check目录，在Phone目录下实现如何编写一个Phone.dll的例子，在Check目录下实现如何调用该DLL。</P>
+		<h3>1.编写car文件</h3>
+		  <P>Phone.car文件</P>
+<pre class = code>
+module www.elastos.com/CAR/Phone.dll
+{
+    interface IPhone {
+        Call([in] WString number);
+        Sendsms([in] WString number, [in] WString text);
+    }
+
+    interface ITestReport {
+        Report([in] Boolean result1, [in] Boolean result2 );
+    }
+
+    class CC28Phone {
+        interface IPhone;
+        interface ITestReport;
+    }
+
+    class CGingkoPhone {
+        interface IPhone;
+        interface ITestReport;
+    }
+
+
+    interface ICheckingPhone {
+        CheckCall([out] Boolean* result);
+        CheckSms([out] Boolean* result);
+    }
+
+    aspect AAutoChecking {
+        interface ICheckingPhone;
+    }
+}
+</pre>
+    <h3>2.emake Building.car文件</h3>
+      <p>对car文件进行编译后，在生成的代码框架中主要包括以下这些文件： </p>
+      <p><a href= "code/C28Phone_h.htm">C28Phone.h</a></p>
+      <p><a href= "code/C28Phone_cpp.htm">C28Phone.cpp</a> </p>
+      <p><a href= "code/CGingkoPhone_h.htm">CGingkoPhone.h</a></p>
+      <p><a href= "code/CGingkoPhone_cpp.htm">CGingkoPhone.cpp</a> </p>
+      <p><a href= "code/AAutoChecking_h.htm">AAutoChecking.h</a></p>
+      <p><a href= "code/AAutoChecking_cpp.htm">AAutoChecking.cpp</a> </p>
+      <p><a href= "code/sources.htm">sources </a></p>
+    <h3>3.为构件类实现文件添加代码</h3>
+		  <p>注:下述代码片断中粗体部分是自动生成的代码，非粗体部分是用户添加的代码。</p>
+      <P>添加实现代码的步骤如下：</P>
+      <P>(1)实现C28Phone的接口方法</P>
+      <P>Call()功能：输入number(电话号码)，显示正在拨通指定号码。</P>
+      <P>Sendsms()功能：输入number(电话号码)和text(短信内容)，显示正在发送文字到指定号码。</P>
+      <P>Report()功能：接收传入的通话功能测试结果result1 与短信功能测试结果result2，显示手机(由型号m_type与ID号m_no标识)的质检报告。</P>
+      <P>C28Phone.cpp文件</P>
+<pre class= code><B>
+#include "C28Phone.h"
+#include "_C28Phone.cpp"</B>
+
+
+<B>ECode C28Phone::Call(
+    /* [in] */ WString number)
+{</B>
+    WStringBuf_<100> out;
+
+    out << "Calling No: " << number;
+    CConsole::WriteLine(out);
+
+    return NOERROR;
+<B>}</B>
+
+<B>ECode C28Phone::Sendsms(
+    /* [in] */ WString number,
+    /* [in] */ WString text)
+{</B>
+    WStringBuf_<100> out;
+
+    out << "Texting message : " << text << " to No: " << number;
+    CConsole::WriteLine(out);
+
+    return NOERROR;
+<B>}</B>
+
+<B>ECode C28Phone::Report(
+    /* [in] */ Boolean result1,
+    /* [in] */ Boolean result2)
+{</B>
+    WString m_type = L"C28";                                            //手机型号
+    WString m_no = L"081219AC";                                         //手机ID号
+
+    WStringBuf_<100> out;
+
+    out << m_type << "--" << m_no << "  Test Report:";
+    CConsole::WriteLine(out);
+    
+    if (result1 == TRUE) {                                              //输出通话功能检测报告
+        CConsole::WriteLine("Calling function is OK!");
+    }
+    else {
+    	  CConsole::WriteLine("Something wrong with the calling function.");
+    }
+
+    
+    if (result2 == TRUE) {                                               //输出短信功能检测报告
+        CConsole::WriteLine("Texting function is OK!");
+    }
+    else {
+    	  CConsole::WriteLine("Something wrong with the texting function.");
+    }
+    return NOERROR;
+<B>}</B>
+</pre>
+      <P>(2)实现C28Phone的接口方法</P>
+      <P>CGingkoPhone.cpp文件</P>
+<pre class=code><B>
+#include "CGingkoPhone.h"
+#include "_CGingkoPhone.cpp"</B>
+
+
+<B>ECode CGingkoPhone::Call(
+    /* [in] */ WString number)
+{</B>
+    WStringBuf_<100> out;
+
+    out << "Calling No: " << number;
+    CConsole::WriteLine(out);
+
+    return NOERROR;
+<B>}</B>
+
+<B>ECode CGingkoPhone::Sendsms(
+    /* [in] */ WString number,
+    /* [in] */ WString text)
+{</B>
+    WStringBuf_<100> out;
+
+    out << "Texting message : " << text << " to No: " << number;
+    CConsole::WriteLine(out);
+
+    return NOERROR;
+<B>}</B>
+
+<B>ECode CGingkoPhone::Report(
+    /* [in] */ Boolean result1,
+    /* [in] */ Boolean result2)
+{</B>
+    WString m_type = L"Gingko";                                            //手机型号
+    WString m_no = L"081219BF";                                            //手机ID号
+
+    WStringBuf_<100> out;
+
+    out << m_type << "--" << m_no << "  Test Report:";
+    CConsole::WriteLine(out);
+    
+    if (result1 == TRUE) {                                                 //输出通话功能检测报告
+        CConsole::WriteLine("Calling function is OK!");
+    }
+    else {
+    	  CConsole::WriteLine("Something wrong with the calling function.");
+    }
+
+    
+    if (result2 == TRUE) {                                                  //输出短信功能检测报告
+        CConsole::WriteLine("Texting function is OK!");
+    }
+    else {
+    	  CConsole::WriteLine("Something wrong with the texting function.");
+    }
+    return NOERROR;
+<B>}</B>
+</pre>      
+      <P>(3)实现AAutoChecking的接口方法</P>
+      <P>在AAutoChecking.h文件中添入类函数以及私有变量声明。</P>      
+      <P>AAutoChecking.h文件</P>         
+<pre class=code><B>
+#ifndef __AAUTOCHECKING_H__
+#define __AAUTOCHECKING_H__
+
+#include "_AAutoChecking.h"
+
+CarClass(AAutoChecking)
+{
+public:
+    CARAPI CheckCall(
+        /* [out] */ Boolean * pResult);
+
+    CARAPI CheckSms(
+        /* [out] */ Boolean * pResult);</B>
+
+    CARAPI OnAspectAttaching(
+        /* [in] */ PInterface pObject);
+
+    AAutoChecking() : m_pPhone(NULL) {}
+
+    virtual ~AAutoChecking() { if (m_pPhone) m_pPhone->Release(); }
+
+<B>private:</B>
+    IPhone* m_pPhone;
+<B>};
+
+#endif // __AAUTOCHECKING_H__</B>
+</pre>
+      <P>在AAutoChecking.cpp文件中添入类函数实现代码。</P>
+      <P>重载虚函数OnAspectAttaching()，使能在AAutoChecking中调用手机对象接口指针。</P>
+      <P>CheckCall()功能：通过调用接口IPhone的Call()方法检测手机通话功能，并返回检测结果。</P> 
+      <P>CheckSms()功能：通过调用接口IPhone的CheckSms()方法检测手机短信功能，并返回检测结果。</P> 
+      <P>AAutoChecking.cpp文件</P>
+<pre class=code><B>
+#include "AAutoChecking.h"
+#include "_AAutoChecking.cpp"</B>
+
+#include &lt;stdlib.h&gt;                                                    //srand()包含于此头文件       
+#include &lt;time.h&gt;                                                      //time()包含于此头文件                       
+                      
+ECode AAutoChecking::OnAspectAttaching(                                //重载OnAspectAttaching函数
+    /* [in] */ PInterface pObject)
+{
+    m_pPhone = IPhone::Probe(pObject);
+    if (m_pPhone == NULL) return E_NO_INTERFACE;
+
+    m_pPhone->AddRef();
+    return NOERROR;
+}
+
+<B>ECode AAutoChecking::CheckCall(
+    /* [out] */ Boolean * pResult)
+{</B>
+    CConsole::WriteLine("Testing the phone's call function...");
+
+    m_pPhone->Call(L"13915468598");                                    //测试手机通话功能
+
+    srand(time(NULL));
+    Int32 i = rand() % 10;                                             //随机得到一个数作为通话检测结果
+
+    if (i &lt;= 5) {
+        *pResult = TRUE;
+    }
+    else {
+        *pResult = FALSE;
+    }
+
+    return NOERROR;
+<B>}</B>
+
+<B>ECode AAutoChecking::CheckSms(
+    /* [out] */ Boolean * pResult)
+{</B>
+    CConsole::WriteLine("Testing the phone's texting function...");
+
+    m_pPhone->Sendsms(L"13915468598",L"'What a wonderful world!'");    //测试手机短信功能
+                                                                       
+    srand(time(NULL));                                                 
+    Int32 i = rand() % 10;                                             //随机得到一个数作为短信检测结果
+
+    if (i &lt;= 5) {
+        *pResult = TRUE;
+    }
+    else {
+        *pResult = FALSE;
+    }
+
+    return NOERROR;
+<B>}</B>
+</pre>          
+    <h3>4.修改sources文件</h3>
+      <P>本例中因使用了srand()和time()函数，所以需要添加ElCRuntime.lib。</P>
+<pre class=code>
+TARGET_NAME= Phone
+TARGET_TYPE= dll
+
+SOURCES=Phone.car
+SOURCES+=C28Phone.cpp
+SOURCES+=CGingkoPhone.cpp
+SOURCES+=AAutoChecking.cpp
+
+ELASTOS_LIBS= elastos.lib
+ELASTOS_LIBS+= ELCRuntime.lib
+</pre>
+    <h3>5.生成相应的dll</h3>
+      <P>进入正确的XDK目录，emake后会在对应镜像目录中生成构件Phone.dll。</P>
+<pre>
+
+
+
+
+
+</pre>
+	</body>
+
+</html>

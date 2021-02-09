@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\FreeUnusedModules">CProcess::FreeUnusedModules</sample>
+    <volume>进程</volume>
+    <title>CProcess::FreeUnusedModules</title>
+    <routine_idx>../../../Process.htm</routine_idx>
+
+    <description>
+        <para>释放当前没在使用的构件DLL。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <NoArguments/>
+    </syntax>
+
+    <remarks>
+        <para>应用程序可以周期性地调用本函数去释放资源。可以在一些idle线程中调用本函数。由构件平台装载起来的构件DLL，如果当前没有在使用，将被自动释放。</para>
+        <para>本函数会在内部调用构件DLL所实现并导出的DllCanUnloadNow函数。</para>
+        <para>本函数不能释放用<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/Module/Function/CModule/Load.htm">CModule::Load</link>装载起来的DLL。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CObject::Compare</ref_name>
+        <ref_url>..\..\..\..\CARServices\BasicCAR\CObject\Compare</ref_url>
+    </reference>
+    </references>
+
+</manpage>

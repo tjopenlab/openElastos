@@ -1,0 +1,98 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\perror">perror</sample>
+    <title>perror</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Prints an error message.</para>
+	
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>perror</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>String message to print.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>The perror function prints an error message, string is printed first, followed by a colon, then by the system error message for the last library call that produced the error and finally by a newline character. If string is a null pointer or a pointer to a null string, perror prints only the system error message.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>perror</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* perror.cpp: This program attempts to open a file which doesn&apos;t exist,
+ * then attempts to use sqrt to calculates the square root of a negative.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main()
+{
+    FILE *fp;  //file pointer
+    double x = 10;
+    double y;
+    //f:\file.txt doesn&apos;t exist.
+    fp = fopen(&quot;U:\\file.txt&quot;, &quot;w&quot;);
+    if (fp == NULL) {
+        perror(&quot;perror says open the file failed&quot;);
+    }
+    else {
+        perror(&quot;perror says open file no error&quot;);
+        fclose(fp);
+    }
+    //the sqrt&apos;s argument is minor to zero
+    y = sqrt(x);
+    perror(&quot;The argument of the funtion is out of domian&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+perror says open the file failed:No such file of directory
+The argument of the function is out of domian:Domain error
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>strerror</ref_name>
+            <ref_url>..\string\strerror</ref_url>
+        </reference>
+    </references>
+
+</manpage>

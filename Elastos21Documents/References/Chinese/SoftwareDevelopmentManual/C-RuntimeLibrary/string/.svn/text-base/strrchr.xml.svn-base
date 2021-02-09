@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strrchr">strrchr</sample>
+    <title> strrchr, wcsrchr</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>在字符串中，查找某个字符最后一次出现的位置。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strrchr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>要查找的字符</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>wcsrchr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数strrchr返回指针，指向参数c在字符串string中最后一次出现的位置；如果没有找到指定字符，返回NULL。</para>
+    </return>
+
+    <remarks>
+        <para>终结符在搜索范围内。函数wcsrchr是strrchr的宽字符版本。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strrchr</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcsrchr</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+//strrchr.cpp: This program reads characters from
+//本程序查找字符 &apos;r&apos; 在字符串中最后出现的位置。
+//
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int  ch = &apos;r&apos;;
+char string[] = &quot;The quick brown dog jumps over the lazy fox&quot;;
+char fmt1[] = &quot;         1         2         3         4         5&quot;;
+char fmt2[] = &quot;12345678901234567890123456789012345678901234567890&quot;;
+
+int main()
+{
+    char *pdest;
+    int result;
+    printf(&quot;String to be searched:\n\t\t%s\n&quot;, string);
+    printf(&quot;\t\t%s\n\t\t%s\n\n&quot;, fmt1, fmt2);
+
+    printf(&quot;Search char:\t%c\n&quot;, ch);
+    pdest = strrchr(string, ch);
+    result = pdest - string + 1;
+    if (pdest != NULL)
+        printf(&quot;Result:\tlast %c found at position %d\n\n&quot;, ch, result);
+    else
+        printf(&quot;Result:\t%c not found\n&quot;,ch);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+String to be searched:
+The quick brown dog jumps over the lazy fox
+1         2         3         4         5
+12345678901234567890123456789012345678901234567890
+
+Search char:    r
+Result: last r found at position 30
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_wcsnicmp</ref_name>
+            <ref_url>_wcsnicmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strcspn </ref_name>
+            <ref_url>strcspn</ref_url>
+        </reference>
+        <reference>
+            <ref_name>strpbrk</ref_name>
+            <ref_url>strpbrk</ref_url>
+        </reference>
+        <reference>
+            <ref_name>strchr</ref_name>
+            <ref_url>wcschr</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strspn </ref_name>
+            <ref_url>strspn</ref_url>
+        </reference>
+    </references>
+
+</manpage>

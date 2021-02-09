@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> SetKeyPreview </method>
+    <description>
+        <para>
+            设置 Form 是否在按键事件传递到具有焦点的控件前，接收按键事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Boolean </param_type>
+                <param_name> keyPreview </param_name>
+                <param_note>
+                    <para>
+若为 true ，则先将键盘事件发给 Form，再发给焦点控件；否则窗体上当前具有焦点的控件接收按键事件                </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        只有在active状态的 Form 可以调用该方法。当 keyPreview 设置为 true 时，Form将接收所有按键事件，在 Form 的事件处理程序处理完该击键后，
+        然后将该击键分配给具有焦点的控件。
+    </para>
+    <para>
+    	  可以使用此方法处理应用程序中的大部分击键事件，并可以处理击键事件或调用适当的控件来处理击键事件。
+    	  例如，当应用程序使用功能键时，可能希望在窗体级别处理这些击键，而不是为可能接收击键事件的每个控件编写代码。
+    </para>
+    <para>
+    	  如果窗体没有可见或启用的控件，则该窗体自动接收所有键盘事件。
+    </para>
+    <para>
+    	  注意，可以对窗体上的控件进行编程，以取消它所接收的任何击键。由于控件从不向窗体发送这些击键，
+    	  因此无论 KeyPreview 为何种设置，窗体永远都无法看到它们。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IsKeyPreview</ref_name>
+        <ref_url>IsKeyPreview</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetStylusPreview</ref_name>
+        <ref_url>SetStylusPreview</ref_url>
+    </reference>
+</references>
+</manpage>

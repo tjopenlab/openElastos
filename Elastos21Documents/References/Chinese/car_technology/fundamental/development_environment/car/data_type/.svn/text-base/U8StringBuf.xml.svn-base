@@ -1,0 +1,244 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> U8StringBuf</interface>
+
+    <description>
+        <para>U8StringBuf是为了使用UTF-8编码操作而设计的数据结构。</para>
+        <para>U8StringBuf是继承自<link url= "AStringBuf.htm">AStringBuf</link>的类。</para>
+        <para>U8StringBuf_是继承自U8StringBuf的类模板。</para>
+        <para>以下只列出比AStringBuf多出的方法，其它请参考AStringBuf。</para>
+    </description>
+
+    <constructs>
+        <construct>
+            <construct_name>U8StringBuf</construct_name>
+            <construct_url>U8StringBuf/U8StringBuf</construct_url>
+            <construct_description>构造一个U8StringBuf对象,并指定其字符串长度。</construct_description>
+        </construct>
+        
+        <construct>
+            <construct_name>U8StringBuf_&lt;length&gt;</construct_name>
+            <construct_url>U8StringBuf/U8StringBuf_</construct_url>
+            <construct_description>构造一个U8StringBuf对象,并指定其字符串长度。</construct_description>
+        </construct>
+        
+    </constructs>
+
+    <methods>
+        <self>
+               
+        <method>
+        <method_name>EstimateWStringLength </method_name>
+        <method_url> U8StringBuf/EstimateWStringLength</method_url>
+        <m_description>估算把当前U8StringBuf对象字符串转成WStringBuf的长度。 </m_description>
+        </method> 
+
+        <method>
+        <method_name>GetCharCount </method_name>
+        <method_url> U8StringBuf/GetCharCount</method_url>
+        <m_description>返回此对象字符串所占的字符数。</m_description>
+        </method>
+        
+        <method>
+        <method_name>GetChar </method_name>
+        <method_url> U8StringBuf/GetChar</method_url>
+        <m_description>返回此对象字符串中Index位置的字符。</m_description>
+        </method>
+
+        <method>
+        <method_name>Contains </method_name>
+        <method_url> U8StringBuf/Contains</method_url>
+        <m_description>返回一个值，该值指示指定的U8String字符串是否出现在此对象中。 </m_description>
+        </method>
+        
+        <method>
+        <method_name>StartWith </method_name>
+        <method_url> U8StringBuf/StartWith</method_url>
+        <m_description>确定此对象的开头是否与指定的字符串匹配。 </m_description>
+        </method> 
+
+        <method>
+        <method_name>EndWith </method_name>
+        <method_url> U8StringBuf/EndWith</method_url>
+        <m_description>确定此对象的末尾是否与指定的字符串匹配。</m_description>
+        </method>  
+        
+        <method>
+        <method_name>IndexOf </method_name>
+        <method_url>U8StringBuf/IndexOf</method_url>
+        <m_description>已重载。报告指定字符或字符串在此对象中的第一个匹配项的索引。 </m_description>
+        </method>
+        
+        <method>        
+        <method_name>IndexOf </method_name>
+        <method_url>U8StringBuf/IndexOf2</method_url>
+        <m_description>已重载。报告指定字符或字符串在此对象中的最后一个匹配项的索引。</m_description>
+        </method>
+                
+        <method>
+        <method_name>IndexOfAny </method_name>
+        <method_url> U8StringBuf/IndexOfAny</method_url>
+        <m_description>报告指定字符串中的任意字符在此对象中的第一个匹配项的索引。 </m_description>
+        </method> 
+        
+        <method>
+        <method_name>IndexOfChar </method_name>
+        <method_url> U8StringBuf/IndexOfChar</method_url>
+        <m_description>报告指定Char32字符在此对象中的第一个匹配项的索引。 </m_description>
+        </method>
+
+        <method>
+        <method_name>IndexOfAnyChar </method_name>
+        <method_url>U8StringBuf/IndexOfAnyChar</method_url>
+        <m_description>报告指定Char32字符在此对象中的第一个匹配项的索引。 </m_description>
+        </method>
+        
+        <method>        
+        <method_name>LastIndexOf </method_name>
+        <method_url>U8StringBuf/LastIndexOf</method_url>
+        <m_description>已重载。报告指定字符或字符串在此对象中的最后一个匹配项的索引。</m_description>
+        </method>
+        
+        <method>        
+        <method_name>LastIndexOf </method_name>
+        <method_url>U8StringBuf/LastIndexOf2</method_url>
+        <m_description>已重载。报告指定字符或字符串在此对象中的最后一个匹配项的索引。</m_description>
+        </method>
+        
+        <method>
+        <method_name>LastIndexOfAny </method_name>
+        <method_url> U8StringBuf/LastIndexOfAny</method_url>
+        <m_description>按是否区分大小写标志返回strCharSet中任意一个字符在当前对象字符串中的最后索引值。 </m_description>
+        </method>
+
+        <method>
+        <method_name>LastIndexOfChar </method_name>
+        <method_url> U8StringBuf/LastIndexOfChar</method_url>
+        <m_description>报告指定字符在此对象中的最后一个匹配项的索引。</m_description>
+        </method>
+        
+        <method>
+        <method_name>LastIndexOfAnyChar </method_name>
+        <method_url>U8StringBuf/LastIndexOfAnyChar</method_url>
+        <m_description>按是否区分大小写标志和指定的编码格式获得strCharSet中任意一个字符在当前对象字符串中最后出现的索引值。 </m_description>
+        </method>
+       
+        <method>
+        <method_name>Substring</method_name>
+        <method_url>U8StringBuf/SubString</method_url>
+        <m_description>已重载。从此对象检索子字符串。 </m_description>
+        </method>      
+       
+        <method>
+        <method_name>Substring</method_name>
+        <method_url> U8StringBuf/SubString2</method_url>
+        <m_description>已重载。从此对象检索子字符串。 </m_description>
+        </method>    
+        
+        <method>
+        <method_name>ToUpperCase </method_name>
+        <method_url> U8StringBuf/ToUpperCase</method_url>
+        <m_description>返回此对象转换为大写形式的副本。</m_description>
+        </method> 
+        <method>
+        <method_name>ToLowerCase </method_name>
+        <method_url> U8StringBuf/ToLowerCase</method_url>
+        <m_description>返回此对象转换为小写形式的副本。</m_description>
+        </method>
+        
+        <method>
+        <method_name>Append</method_name>
+        <method_url>U8StringBuf/Append/Append1</method_url>
+        <m_description>已重载。在此对象字符串中追加指定字符或字符串。</m_description>
+        </method>
+        
+        <method>
+        <method_name>Copy</method_name>
+        <method_url>U8StringBuf/Copy1</method_url>
+        <m_description>已重载。拷贝对象字符串到U8StringBuf对象字符串中去。</m_description>
+        </method>
+        
+        <method>
+        <method_name>Copy</method_name>
+        <method_url>U8StringBuf/Copy2</method_url>
+        <m_description>已重载。拷贝对象字符串到U8StringBuf对象字符串中去。</m_description>
+        </method>
+        
+        <method>
+        <method_name>Copy</method_name>
+        <method_url>U8StringBuf/Copy3</method_url>
+        <m_description>已重载。拷贝对象字符串到U8StringBuf对象字符串中去。</m_description>
+        </method>
+
+        <method>
+        <method_name>Compare</method_name>
+        <method_url>U8StringBuf/Compare1</method_url>
+        <m_description>已重载。对两个指定的U8StringBuf对象进行比较，并返回一个指示二者在排序顺序中的关系的整数。 </m_description>
+         </method>
+
+        <method>
+        <method_name>Compare</method_name>
+        <method_url> U8StringBuf/Compare2</method_url>
+        <m_description>已重载。对两个指定的U8StringBuf对象进行比较，并返回一个指示二者在排序顺序中的关系的整数。 </m_description>
+         </method>
+        
+        <method>
+        <method_name>Clone</method_name>
+        <method_url> U8StringBuf/Clone</method_url>
+        <m_description>获取一个U8StringBuf对象的克隆。</m_description>
+        </method>         
+         
+
+        <method>
+        <method_name>Alloc</method_name>
+        <method_url> U8StringBuf/Alloc1</method_url>
+        <m_description>已重载。(在堆上)动态创建 U8StringBuf对象。</m_description>
+        </method>
+
+        <method>
+        <method_name>Alloc</method_name>
+        <method_url> U8StringBuf/Alloc2</method_url>
+        <m_description>已重载。(在堆上)动态创建 U8StringBuf对象。</m_description>
+        </method>
+
+        <method>
+        <method_name>EncodeURL </method_name>
+        <method_url> U8StringBuf/EncodeURL</method_url>
+        <m_description>在此对象字符串中追加多个U8String字符串。</m_description>
+        </method>
+                               
+      </self>
+    </methods>
+
+    <operators>
+
+        <operator>
+            <operator_name>operator U8String</operator_name>
+            <operator_url>U8StringBuf/operator/operator_U8String</operator_url>
+            <operator_description> 类型转换操作符，把U8StringBuf对象转换成U8String型对象。</operator_description>
+        </operator>
+
+        <operator>
+            <operator_name>operator <![CDATA[<<]]> </operator_name>
+            <operator_url>U8StringBuf/operator/operator</operator_url>
+            <operator_description> 相当于Append。</operator_description>
+        </operator>
+    </operators>
+
+
+    <requirements>
+        <headerfile>
+            <file_name> elastos.h  </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    
+    
+
+</manpage>

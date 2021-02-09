@@ -1,0 +1,42 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>时间</volume>
+<interface>DzTimer</interface><method> Restart </method>
+    <description>
+        <para>
+            重新启动定时器对象。
+        </para>
+    </description>
+    <syntax>
+        <return_val> void </return_val>
+        <parameters>
+            <api_param>
+                <param_type> uint_t  </param_type>
+                <param_name> uRelativeDueTicks  </param_name>
+                <param_note>
+                    <para>
+                        指定相对到期时间，单位为tick。此参数必须大于零。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本成员函数用于以指定的相对到期时间重新启动定时器对象。调用本成员函数前必须确保定时器对象已经运行到期或是被取消运行了，否则将导致未知错误。一个典型用法是在定时器回调函数中调用此成员函数。</para>
+        <para>本成员函数既可用于驱动程序的上半部分，也可用于驱动程序下半部分或是定时器回调函数中。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

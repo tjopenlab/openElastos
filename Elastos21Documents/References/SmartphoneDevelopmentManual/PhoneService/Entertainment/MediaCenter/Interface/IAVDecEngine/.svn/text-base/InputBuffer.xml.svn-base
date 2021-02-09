@@ -1,0 +1,117 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心引擎</volume>
+<interface>IAVDecEngine</interface><method> InputBuffer </method>
+    <description>
+        <para>
+          提供指定的包含音频或视频的缓冲区进行播放。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzByteBuf </param_type>
+                <param_name> ebbBuffer </param_name>
+                <param_note>
+                    <para>
+                     待播放的数据所存储的缓冲区
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> wsExt </param_name>
+                <param_note>
+                    <para>
+                 缓冲区数据的原始文件格式的文件后缀
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pnWidth </param_name>
+                <param_note>
+                    <para>
+                   指向INT型指针，用于表示视频的原始宽度，不能为空
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pnHeight </param_name>
+                <param_note>
+                    <para>
+                    指向INT型指针，用于表示视频的原始高度，不能为空
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> unSampleSize </param_name>
+                <param_note>
+                    <para>
+                    音频数据样本大小。该参数可以设为0，代表在音频数据中包含该信息
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> unSampleRate </param_name>
+                <param_note>
+                    <para>
+                   音频数据的采样率。该参数可以设为0，代表在音频数据中包含该信息
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> unChannelCount </param_name>
+                <param_note>
+                    <para>
+                音频数据的声道数。该参数可以设为0，代表在音频数据中包含该信息
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td> E_INVALID_ARGUMENT </td>
+	    	    <td>参数错误   </td>
+	        </tr>
+	        <tr>
+	    	    <td>媒体中心引擎错误码 </td>
+	    	    <td> New输入缓冲区协议构件失败或者调用Input失败 </td>
+	        </tr>
+	    </table>
+	   <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../MediaCenter_Error.htm">MediaCenter_Error</link>相关帮助。</para>
+    </return>
+    <remarks>
+       <para> 如果输入的是一段没有文件头的纯音频数据，那么就需要调用者提供相应的一些信息，包括样本大小、采样率和声道数等一些参数。如果传入的这三个参数都为0的话，那么就暗示缓冲区中的数据包含了文件头，需要从文件头读取，如果三个参数不为0的话，则采用这三个参数做为该段音频buffer的音频参数，同时对buffer中的音频数据以纯数据进行编码（无文件头）。</para>
+       <para> 目前使用Buffer的情况大概有两种：一种是直接输入的就是PCM数据，是不需要进行解码，可以直接送往声卡进行播放的，另外一种是从文件中读取到的数据，是包括文件头的一个完整的文件数据，需要调用Format和Decoder去拆分文件和解码。对于这两种数据，我们将在解码引擎控制器内部进行分支处理。</para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+
+    </requirements>
+</manpage>

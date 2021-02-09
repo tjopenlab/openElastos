@@ -1,0 +1,54 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBlacklist</interface><method> DeleteEntryById </method>
+    <description>
+        <para>
+             根据给定的黑名单记录ID，删除查找到的记录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nId </param_name>
+                <param_note>
+                    <para>
+                          输入的黑名单记录ID
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT </td>
+	    	    <td>参数错误 </td>
+	        </tr>
+	        <tr>
+	    	    <td>数据库错误码 </td>
+	    	    <td>数据库错误 </td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../../../../../QuickReference/DBError.htm">数据库错误码</link>相关帮助。</para>
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

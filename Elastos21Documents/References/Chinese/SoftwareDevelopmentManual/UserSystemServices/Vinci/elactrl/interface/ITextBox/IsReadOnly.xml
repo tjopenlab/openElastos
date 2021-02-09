@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITextBox</interface><method> IsReadOnly </method>
+    <description>
+        <para>
+            判断 TextBox 是否只读。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Boolean* </param_type>
+                <param_name> readOnly </param_name>
+                <param_note>
+                    <para>
+指向 Boolean 型的指针，用于获取 TextBox 的只读状态，若 TextBox 是只读的，则为 TRUE，否则为 FALSE。不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        默认情况下 TextBox 处于非只读的状态。当 TextBox 不可读时，用户不能在运行时更改控件的内容，但仍可以在代码中通过 <link url="InsertTextObject.htm">InsertTextObject</link>、<link url="SetTextObject.htm">SetTextObject</link>、<link url="AppendText.htm">AppendText</link> 或 <link url="../IControl/SetText.htm">SetText</link> 等方法改变 TextBox 内显示的内容。设置 TextBox 中的文本是否只读可以通过 <link url="SetReadOnly.htm">SetReadOnly</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTextBox 类介绍</ref_name>
+        <ref_url>../../class/TextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITextBox 接口方法列表</ref_name>
+        <ref_url>../ITextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetReadOnly</ref_name>
+        <ref_url>SetReadOnly</ref_url>
+    </reference>
+</references>
+</manpage>

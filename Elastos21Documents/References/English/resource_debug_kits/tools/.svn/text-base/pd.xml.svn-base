@@ -1,0 +1,70 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> pd </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para> Switches between directories.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> PD  </cmd_name>
+        <cmd_param> -?|dir|~|~r|~d|bin|inc|lib </cmd_param>
+    </syntax>
+    <parameters>
+        <param>
+            <param_name> -? </param_name>
+            <param_note> Displays help information </param_note>
+        </param>
+        <param>
+            <param_name> dir </param_name>
+            <param_note> Directory name</param_note>
+        </param>
+        <param>
+            <param_name>  ~ </param_name>
+            <param_note> When running in DEBUG version development environment, this command is equivalent to pd ~d. When running in RELEASE version development environment, this command is equivalent to pd ~r .</param_note>
+        </param>
+        <param>
+            <param_name>  No parameter </param_name>
+            <param_note> Pops stack to the directory before push stack</param_note>
+        </param>
+        <param>
+            <param_name>  ~r </param_name>
+            <param_note> Switches to (push stack) Elastos RLS version obj (or mirror) directory</param_note>
+        </param>
+        <param>
+            <param_name>  ~d </param_name>
+            <param_note> Switches to (push stack) Elastos DBG version obj (or mirror) directory</param_note>
+        </param>
+        <param>
+            <param_name>  bin </param_name>
+            <param_note> Switches to (push stack) bin directory</param_note>
+        </param>
+        <param>
+            <param_name>  inc </param_name>
+            <param_note> Switches to (push stack) inc directory</param_note>
+        </param>
+        <param>
+            <param_name>  lib </param_name>
+            <param_note> Switches to (push stack) lib directory</param_note>
+        </param>
+    </parameters>
+
+    <examples>
+        <example>
+            <eg_line>pd bin  </eg_line>
+            <eg_note> Switches to (push stack) BIN directory.</eg_note>
+        </example>
+        <example>
+            <eg_line>pd </eg_line>
+            <eg_note>Pop stack to directory before push stack.</eg_note>
+        </example>
+    </examples>
+
+</manpage>

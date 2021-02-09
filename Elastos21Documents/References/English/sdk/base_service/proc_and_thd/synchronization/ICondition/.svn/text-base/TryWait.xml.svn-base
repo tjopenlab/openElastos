@@ -1,0 +1,115 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface </volume>
+<interface>ICondition</interface><method> TryWait </method>
+    <description>
+        <para>
+        	The calling thread uses the method to try to wait for the <b>Condition</b> object.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IMutex * </param_type>
+                <param_name> pMutex </param_name>
+                <param_note>
+                    <para>
+						A pointer to a mutex object. <i>pMutex</i> can not be NULL. The calling thread must own the mutex 
+						object by calling <link url="../IMutex/Lock.htm">IMutex::Lock</link> method or 
+						<link url="../IMutex/TryLock.htm">IMutex::TryLock</link> method only once.
+				    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+       <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Millisecond </param_type>
+                <param_name> timeout</param_name>
+                <param_note>
+                    <para>
+			 			Specifies a maximum waiting time, in milliseconds. <i>msTimeout</i> should not be zero.
+                    </para>
+                </param_note>
+            </api_param>
+        <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult* </param_type>
+                <param_name>pResult</param_name>
+                <param_note>
+                    <para>
+			 			
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	
+	<table>
+	    <th>
+		<td>Return Value </td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>NOERROR</td>
+		<td>0x00000000</td>
+		<td>Function succeeds in trying to wait for the <b>Condition</b> object.</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALID_ARGUMENT</td>
+		<td>0x00060003</td>
+		<td>Invalid argument(s)</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALID_OPERATION</td>
+		<td>0x00060014</td>
+		<td>Invalid operation</td>
+	    </tr>
+	   <tr>
+		<td>E_NOT_OWNER</td>
+		<td>0x80060090</td>
+		<td>Function call failed. Thread is not the owner of the mutex object passed in.</td>
+	    </tr>
+	</table>
+   		    <para>See <link url="..\..\..\..\reference\basic_data_type\hresult.htm">ECODE</link> for related help.</para> 
+    </return>
+
+	<remarks>
+		<para>
+			The calling thread uses the method to try to wait for the <b>Condition</b> object and releases the 
+			owned mutex object atomically. 
+		</para>
+		<para>
+			If the time is out, the calling thread 
+			returns immediately. The calling thread must be the owner of mutex object the parameter 
+			<i>pMutex</i> points to, and only one invocation of <link url="../IMutex/Lock.htm">IMutex::Lock</link> 
+			method or <link url="../IMutex/TryLock.htm">IMutex::TryLock</link> method was issued when
+			obtaining this mutex object.
+		</para>
+		<para>
+			The calling thread will wait until the waiting time is out 
+			or other thread calling the <link url="Pulse.htm">ICondition::Pulse</link> method or 
+			<link url="PulseAll.htm">ICondition::PulseAll</link> method. 
+		</para>
+		<para>
+			The method will own the mutex object again before return.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

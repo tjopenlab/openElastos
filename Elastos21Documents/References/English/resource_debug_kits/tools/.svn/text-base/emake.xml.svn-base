@@ -1,0 +1,80 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> emake </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para>Elastos.SDK development environment integrated compilation tool, recursive compilation of the current directory and its subdirectory.If compiles CAR file, file extension should be specified.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> EMAKE </cmd_name>
+        <cmd_param> [-? | -v | all | clean |clobber| carfile.car] ["release=1"] </cmd_param>
+    </syntax>
+
+    <parameters>
+    <param>
+        <param_name> -?   </param_name>
+        <param_note> Displays help information </param_note>
+    </param>
+    <param>
+        <param_name> -v   </param_name>
+        <param_note> Displays detail information when compiling </param_note>
+    </param>
+    <param>
+        <param_name> -all  </param_name>
+        <param_note> Recursively compile all files in current directory and its subdirectories (by default) </param_note>
+    </param>
+    <param>
+        <param_name> clean  </param_name>
+        <param_note> Deletes mirror directory of the current directory under the target tree </param_note>
+    </param>
+    <param>
+        <param_name>  clobber </param_name>
+        <param_note> Deletes the whole target tree of the current compilation environment </param_note>
+    </param>
+    <param>
+        <param_name> carfile.car   </param_name>
+        <param_note>Compiles car file, generates cpp file </param_note>
+    </param>
+    <param>
+        <param_name> "release=1"   </param_name>
+        <param_note> Force compile RELEASE version target file</param_note>
+    </param>
+    </parameters>
+    <remarks>
+        <para>emake compilation process:If dirs file exists in directory to be compiled A, then emake will recursively compile various subdirectories in A according to order specified by dirs file.If sources file exists in directory A, then files under directory A is compiled according to sources file. Otherwise no operation is done to files under directory A. After finishing tasks specified in sources, if there exists makefile.inc file under directory A, then tasks specified by makefile.inc is finished. During compilation, once emake find any error, compilation will stop.</para>
+        <para>Please reference application development related documentations for dirs, sources, makefile.inc.</para>
+        <para>If there exists file named "makefile" in directory to be compiled A, emake will ignore dirs and sources file in this directory and try to finish tasks in makefile.</para>
+        <para>Please see Microsoft nmake and makefile related documentations for makefile related help.</para>
+    </remarks>
+
+    <examples>
+        <example>
+            <eg_line>emake </eg_line>
+            <eg_note>Recursively compile current directory and subdirectory.</eg_note>
+        </example>
+        <example>
+            <eg_line>emake clean</eg_line>
+            <eg_note>Cleans mirror directory of current directory.</eg_note>
+        </example>
+    </examples>
+
+    <references>
+        <reference>
+            <ref_name> make program description file </ref_name>
+            <ref_url> ../../sdk/development_guides/makefile </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Elastos.SDK complete installation content </ref_name>
+            <ref_url> ../../sdk/setup_and_administration/sdk_setup/sdk_content</ref_url>
+        </reference>
+    </references>
+
+</manpage>

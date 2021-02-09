@@ -1,0 +1,592 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Form标签/控件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li class="current"><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li class="current"><a href="annotated.html"><span>图形标签(控件)列表</span></a></li>
+    <li><a href="attribute.html"><span>图形标签通用属性</span></a></li>
+    <li><a href="event.html"><span>图形标签通用事件</span></a></li>
+    <li><a href="genstyle_8car.html"><span>图形标签通用风格</span></a></li>
+  </ul>
+</div>
+<h1>form标签/控件参考</h1><!-- doxytag: class="window" -->窗口对象，可作为其它对象的容器。
+<a href="#_details">更多...</a>
+
+<hr><h2>命名空间</h2>
+http://www.elastos.com/XmlGlue/Widgets
+
+<hr><a name="_details"></a><h2>详细描述</h2>
+窗口控件，所有控件对象必须在这个容器内。
+<p>
+可以在 XML 中将其它对象置于框体之内，也可以使用 Lua 来将其它对象放到框体之内。框体移动之后，所有子视图也会移动。
+
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>属性</h2></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>stackingRank</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置当前窗口优先级，<a href="StackingRank.html">StackingRank</a>枚举数据类型，使用形式为：枚举名:枚举值。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>StackingRank</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>stackingRank = "StackingRank:Normal"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;form x:id="main" x="0" y="0" width="240" height="320" stackingRank="StackingRank:Normal"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>property</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置窗体属性，<a href="GrafixObjectProperty.html">GrafixObjectProperty</a>枚举数据类型，使用形式为：枚举名:枚举值。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>GrafixObjectProperty</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>property = "GrafixObjectProperty:None"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;form x:id="main" x="0" y="0" width="240" height="320" property="GrafixObjectProperty:None"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>opacity</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置窗口的不透明度，值越大越不透明，取值范围为0x00 ~ 0xFF 。 </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><b>注：</b>对于form的style属性设置为AlphaChannel时有效 。 </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>opacity = "0xa8"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;form x:id="main" x="0" y="0" width="240" height="320" opacity="0xa8"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>keyPreview</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置form是否侦听键盘事件，若为TRUE则form侦听键盘事件，否则为FALSE。 </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Boolean</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>keyPreview = "true"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;form x:id="main" x="0" y="0" width="240" height="320" keyPreview="true"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>stylusPreview </b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置form是否侦听鼠标事件，若为TRUE则form侦听鼠标事件，否则为FALSE。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Boolean</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>stylusPreview = "true"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;form x:id="main" x="0" y="0" width="240" height="320" stylusPreview="true"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><h3>其他属性：见<a class="el" href="attribute.html">通用属性</a></h3></td></tr>
+</table>
+
+<hr><h2>事件</h2>
+<p>
+<b>注：</b>在xml部分注册回调事件时，可以写一个具体的执行语句，也可以写在脚本中定义的事件处理函数。
+   若在xml部分注册回调事件时，给该回调事件写了一个具体的执行语句，之后又在脚本中定义了该事件的事件处理函数，则触发该事件后会直接调用事件处理函数而忽略xml部分的具体的执行语句。
+   具体在xml部分注册回调事件的方法，可参照如下代码，示例中为form注册了一个closed事件。
+<table border="0" cellpadding="0" cellspacing="10">
+<tr><td class="memitem" valign="bottom">
+    &lt;form x:id="main" x="0" y="0" width="240" height="320" <font color=red>closed="print('Closed')"</font>/&gt;（事件发生时，若脚本中没有另外定义事件处理函数，执行该可执行语句）
+</td></tr>
+<tr><td class="memitem" valign="bottom">
+    &lt;form x:id="main" x="0" y="0" width="240" height="320" <font color=red>closed="onclosed()"</font>/&gt;（事件发生时，执行事件处理函数）
+</td></tr>
+</table>
+<p>
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">activated</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当form被激活后，产生activated事件，同时activated指定的事件处理函数会被调用。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">activated = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.activated = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" activated="on_activated()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_activated() {
+...
+...
+}
+main.activated = on_activated
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+	
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">deactivated</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当form失去焦点时，产生deactivated事件，同时deactivated指定的事件处理函数会被调用。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">deactivated = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.deactivated = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" deactivated="on_deactivated()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_deactivated() {
+...
+...
+}
+main.deactivated = on_deactivated
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">closed</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当form被关闭时，产生closed事件，同时closed指定的事件处理函数会被调用。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">closed = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.closed = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" closed="on_closed()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_closed() {
+...
+...
+}
+main.closed = on_closed
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">userEvent</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+用户自定义事件。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">userEvent = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.userEvent = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" userEvent="on_userEvent()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_userEvent() {
+...
+...
+}
+main.userEvent = on_userEvent
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">imeOpen</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+在可输入控件中触发输入法事件。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">imeOpen = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.imeOpen = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" imeOpen="on_imeOpen()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_imeOpen() {
+...
+...
+}
+main.imeOpen = on_imeOpen
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">imeClose</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当可输入控件中输入法被关闭，产生imeClose事件，同时imeClose指定的事件处理函数会被调用。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">imeClose = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.imeClose = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" imeClose="on_imeClose()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_imeClose() {
+...
+...
+}
+main.imeClose = on_imeClose
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">imeChanged </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当可输入控件中输入法被改变，产生imeChanged事件，同时imeChanged指定的事件处理函数会被调用。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">imeChanged = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.imeChanged = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" imeChanged="on_imeChanged()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_imeChanged() {
+...
+...
+}
+main.imeChanged = on_imeChanged
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">imeTextChanged</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当可输入控件中输入法文本被改变，产生imeTextChanged事件，同时imeTextChanged指定的事件处理函数会被调用。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">imeTextChanged = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.imeTextChanged = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" imeTextChanged="on_imeTextChanged()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_imeTextChanged() {
+...
+...
+}
+main.imeTextChanged = on_imeTextChanged
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">languageChanged</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当form的语言被改变后，产生languageChanged事件，同时languageChanged指定的事件处理函数会被调用。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">languageChanged = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.languageChanged = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" languageChanged="on_languageChanged()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_languageChanged() {
+...
+...
+}
+main.languageChanged = on_languageChanged
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">skinChanged</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当form的皮肤被改变后，产生skinChanged事件，同时skinChanged指定的事件处理函数会被调用。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">skinChanged = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.skinChanged = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" skinChanged="on_skinChanged()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_skinChanged() {
+...
+...
+}
+main.skinChanged = on_skinChanged
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">timer</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当<a href="../../SoftwareDevelopmentManual/UserSystemServices/Vinci/elactrl/interface/IForm/SetTimer.htm">SetTimer</a>函数指定的时间间隔到期后，产生timer事件，用户注册的事件处理函数会被调用。注意：该事件暂时不能在xml标签部分注册，只能通过脚本编程为Form注册，具体可参考示例。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.timer = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_timer() {
+...
+...
+}
+main:SetTimer(1, 2000)
+main.timer = on_timer
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">orientationChanged</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当屏幕方向发生改变后，产生orientationChanged事件，同时orientationChanged指定的事件处理函数会被调用。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">orientationChanged = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.orientationChanged = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" orientationChanged="on_orientationChanged()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_orientationChanged() {
+...
+...
+}
+main.orientationChanged = on_orientationChanged
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">exposed</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当form被exposed后，产生exposed事件，同时exposed指定的事件处理函数会被调用。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">exposed = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.exposed = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" exposed="on_exposed()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_exposed() {
+...
+...
+}
+main.exposed = on_exposed
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">coveredUp</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当form消失后，产生coveredUp事件，同时coveredUp指定的事件处理函数会被调用。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">coveredUp = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.coveredUp = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;form x:id="main" x="0" y="0" width="240" height="320" coveredUp="on_coveredUp()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_coveredUp() {
+...
+...
+}
+main.coveredUp = on_coveredUp
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a><!-- doxytag: member="IDatabase::IsClosed" ref="80f8bf3a49657380380f1cf7ba46dec0" args="([out] Boolean *closed)" -->
+<b>其他事件</b>: 见<a class="el" href="event.html">通用事件</a>
+
+<hr><h2>form控件风格</h2>
+<div class="memitem">
+<dl compact><dt><b>枚举值: </b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><em>AlphaChannel = 0x00000001,</em>&nbsp;</td><td>Form按照某个透明度整体透明，透明度通过Form的SetOpacity设置。 </td></tr>
+    <tr><td valign="top"><em>LayeredAlphaChannel = 0x00000040,</em>&nbsp;</td><td>层透明。加了此属性后，可以将下面层的内容透出来。</td></tr>
+    <tr><td valign="top"><em>PixelAlphaChannel = 0x00000080,</em>&nbsp;</td><td>Form按照绘制时所带的透明度信息进行透明，如果绘制的内容是半透明的，则半透明透出下面的内容。用此风格时，需同时添加Transparent风格，否则将会不清除之前画的内容，产生重影。建议在窗口内各数据透明度不同的情况下使用该风格，否则将使刷新速度变慢。 </td></tr>
+    <tr><td valign="top"><em>StickyBuffer = 0x00000002,</em>&nbsp;</td><td>只有在此风格下，才能拿到form所对应的buffer缓冲区。即可以通过IBitmapBuf的LockBitmap拿到BitmapBuf的值。 </td></tr>
+    <tr><td valign="top"><em>NoActivation = 0x00000004,</em>&nbsp;</td><td>窗口不抢焦点，将收不到键盘事件、OnActivated、OnDeactivated事件。 </td></tr>
+    <tr><td valign="top"><em>DialogFrame = 0x00000100,</em>&nbsp;</td><td>窗口显示Dialog的背景。</td></tr>
+  </table>
+</dl>
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a>
+<b>其他风格</b>：见<a class="el" href="genstyle_8car.html">通用风格</a></td></tr>
+</div>
+<p>
+<b>注：</b>控件风格允许配合使用，例如将form的风格设置成具有焦点并按某个透明度值整体透明，可以这样：
+<center><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+    &lt;form ... style="FormStyle:AlphaChannel ControlStyle:Focused" .../&gt;
+</td></tr></table></center>
+枚举名:枚举值的形式表示，且大小写敏感，不同风格间用空格分开。也可以将两种风格的枚举值作或运算，得到的结果赋给style，例如FormStyle:AlphaChannel = 0x00000001，ControlStyle:Focused = 0x00400000，将两者进行或运算得0x00400001，于是style="0x00400001"。建议采用第一种写法，清晰明了。
+
+ <script>footer("chinese")</script>
+</body>
+</html>

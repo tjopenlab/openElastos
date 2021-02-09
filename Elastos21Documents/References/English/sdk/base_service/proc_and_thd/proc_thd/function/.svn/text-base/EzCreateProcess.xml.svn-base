@@ -1,0 +1,137 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzCreateProcess"> EzCreateProcess </sample>
+    <volume>System API</volume>
+    <title>CProcess::New</title>
+    <routine_idx> ..\process_idx.htm </routine_idx>
+
+    <description>
+        <para>Creates a new process.</para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type>WString</param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>
+                    	[in] The name of the new process, which should not be an empty charactor string.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> WString</param_type>
+                <param_name> args </param_name>
+                <param_note>
+                    <para>
+                    	[in] The process startup parameter, which can be an empty charactor string.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> IProcess **</param_type>
+                <param_name> ppProcess </param_name>
+                <param_note>
+                    <para>
+                    	[out] Interface pointer to the process object, if the function succeeds.
+					</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return> 
+    
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+             <tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in creating a new process.</td>
+            </tr>
+            <tr>
+                <td>E_INVALIDARG</td>
+                <td>Invalid argument(s)</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>Insufficient memory</td>
+            </tr>
+            <tr>
+                <td>E_BAD_FILE_FORMAT</td><td>Not PE（Portable Executable)file </td>
+            </tr>
+            <tr>
+                <td>E_NOT_ENOUGH_ADDRESS_SPACE</td><td>No enough address space</td>
+            </tr>
+        </table>
+        <para>See <link url="/sdk/hresult.htm">ECODE </link> related help for more details.</para>
+    </return>
+
+    <remarks>
+        <para>
+        	Even if <i>esName</i> specified file is not executable (i.e. The file does not exist, the file is not of 
+        	executable type, or the file is not executable because certain resources are missing), after 
+        	<b>EzCreateProcess</b> method is called to start the process, the process will immediately terminate because 
+        	load <i>esName</i> specified file failed.
+        </para>
+        <para>
+        	This function creates a process object and makes it running as well. <i>ppProcess</i> can be set as NULL if 
+        	process object methods are not needed.
+        </para>
+        <para>
+        	Process created by using this method can be terminated by using the <link url="EzExitProcess.htm">
+        	CProcess::Exit</link> method.
+        </para>
+        <para>
+        	If object of this process is no longer used, the <b>IProcess</b> interface method Release should be invoked to 
+        	release the pointer of this object. When the reference count of this process decreased to 0, corresponding 
+        	process object will be cleared at once.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+    
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name>CProcess::New</ref_name>
+        <ref_url>EzCreateProcessObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CSystem::GetAllProcesses</ref_name>
+        <ref_url>EzGetProcesses</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CProcess::GetCurrent</ref_name>
+        <ref_url>EzGetCurrentProcess</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CProcess::Exit</ref_name>
+        <ref_url>EzExitProcess</ref_url>
+    </reference>
+    </references>
+
+</manpage>

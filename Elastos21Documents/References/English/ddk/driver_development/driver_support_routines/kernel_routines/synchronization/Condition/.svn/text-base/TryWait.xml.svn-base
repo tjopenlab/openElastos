@@ -1,0 +1,96 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>Condition</interface><method> TryWait </method>
+    <description>
+        <para>
+            Tries to make the calling thread wait on the <b>Condition</b> object.
+        </para>
+    </description>
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> Mutex * </param_type>
+                <param_name> pMutex</param_name>
+                <param_note>
+                    <para>
+                        A pointer to a mutex object. <i>pMutex</i> can not be NULL. The calling thread must own the 
+                        mutex object pointed by <i>pMutex</i> and should call <link url="../Mutex/Lock.htm">
+                        Mutex::Lock</link> method or <link url="../Mutex/TryLock.htm">Mutex::TryLock</link> 
+                        method only once before getting the mutex.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> uint_t  </param_type>
+                <param_name> uTicks </param_name>
+                <param_note>
+                    <para>
+                        Specifies a maximum waiting time, in ticks. <i>uTicks</i> should not be zero.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+
+    	<table>
+            <th>
+                <td>Return Value</td>
+                <td>Hex Value</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>S_OK</td>
+                <td>0x00000000</td>
+                <td>Function succeeds in attempting to make the calling thread wait on the Condition object.</td>
+            </tr>
+
+            <tr>
+		        <td>S_TIMED_OUT</td>
+		        <td>0x00060003</td>
+		        <td>Timed out while waiting on the Condition object.</td>
+	        </tr>
+
+            <tr>
+                <td>S_INTERRUPTED</td>
+                <td>0x00060014</td>
+                <td>The thread is interrupted while waiting.</td>
+            </tr>
+
+        </table>
+        <para>See <link url="/sdk/hresult.htm">ECODE</link> for related help.</para>
+	</return>
+
+	<remarks>
+		<para>
+            The calling thread uses this method to wait for the Condition object and releases the owned mutex object
+            in an atomic step. As long as the method is not timed-out, the calling thread will keep on waiting and 
+            will not return until other threads call the member function <link url="Pulse.htm">Condition::Pulse</link> 
+            or <link url="PulseAll.htm">Condition::PulseAll</link> to wake it up. If specified time-out has reached, 
+            the calling thread would immediately stop waiting and return. After the calling thread has been woken up, 
+            <b>TryWait</b> will own the mutex again before return.
+		</para>
+		<para>
+        	The thread can be interrupted while waiting for the Condition object.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,158 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\bsearch">bsearch</sample>
+    <title> bsearch</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Performs a binary search of a sorted array.</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <func_name>bsearch</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>key</param_name>
+                <param_note>
+                    <para>Object to search for.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>base</param_name>
+                <param_note>
+                    <para>Pointer to base of search data.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>num</param_name>
+                <param_note>
+                    <para>Number of elements.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>width</param_name>
+                <param_note>
+                    <para>Width of elements.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>(__cdecl * compare)(const void * elem1, const void * elem2)</param_name>
+                <param_note>
+                    <para>Function that compares two elements: elem1 and elem2.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>bsearch returns a pointer to an occurrence of key in the array pointed to by base. If key is not found, the function returns NULL. If the array is not in ascending sort order or contains duplicate records with identical keys, then the result is unpredictable.</para>
+    </return>
+
+    <remarks>
+        <para>The bsearch function performs a binary search of a sorted array of num elements, each of width bytes in size. The base value is a pointer to the base of the array to be searched, and key is the value being sought. The compare parameter is a pointer to a user-supplied routine that compares two array elements and returns a value specifying their relationship. bsearch calls the compare routine one or more times during the search, passing pointers to two array elements on each call. The compare routine compares the elements, then returns one of the following values:</para>
+        <table>
+            <th>
+               <td>Value Returned by compare Routine</td>
+               <td>Description</td>
+            </th>
+            <tr>
+               <td><![CDATA[< 0]]></td>
+               <td>elem1 less than elem2.</td>
+            </tr>
+            <tr>
+               <td>0</td>
+               <td>elem1 equal to elem2.</td>
+            </tr>
+            <tr>
+               <td><![CDATA[> 0]]></td>
+               <td>elem1 greater than elem2.</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>bsearch</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* bsearch.cpp: This program reads the command-line
+ * parameters, sorting them with qsort, and then
+ * uses bsearch to find the word &quot;cat.&quot;
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+
+int __cdecl compare(const void *arg1, const void *arg2)
+{
+    /* Compare all of both strings: */
+    return _stricmp(*(char **)arg1, *(char **)arg2);
+}
+
+int main(int argc, char **argv)
+{
+    char **result;
+    char *key = &quot;cat&quot;;
+    int i;
+
+    /* Sort using Quicksort algorithm: */
+
+    qsort((void *)argv, (size_t)argc, sizeof(char *), compare);
+
+    for (i = 1; i &lt; argc; ++i)     
+        printf(&quot;%s &quot;, argv[i]);
+
+
+    /* Find the word &quot;cat&quot; using a binary search algorithm: */
+    result = (char **)bsearch((char *) &amp;key, (char *)(argv + 1), argc - 1,
+            sizeof(char *), compare);
+
+    if (result)
+        printf(&quot;\n%s found at %X\n&quot;, *result, result);
+    else
+        printf(&quot;\nCat not found!\n&quot;);
+
+    return 0;
+}
+
+/*
+Input
+    [/$] bsearch dog pig horse cat human rat cow goat
+
+Output
+    cat cow dog goat horse human pig rat
+    cat found at 1FFFFDA0
+*/
+</pre>
+    </example>
+<result>
+sorted list
+</result>
+
+
+
+</manpage>

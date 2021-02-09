@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_access">_waccess</sample>
+    <title> _access, _waccess </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>测定文件的访问权限。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_access</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>path</param_name>
+                <param_note>
+                    <para>指向文件或者目录的路径的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>mode</param_name>
+                <param_note>
+                    <para>设定的权限</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_waccess</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>path</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>mode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果文件的权限与给定的权限相符，则返回0，如果文件不存在或者与给定的权限不一致，则返回-1。此时，错误号被设置为如下的常量之一：</para>
+        <table>
+    	    <th>
+    	        <td>错误号</td>
+    	        <td>描述</td>
+    	    </th>
+            <tr>
+                <td>EACCES</td>
+                <td>文件的共享模式不允许指定的操作</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>指定文件或路径不存在</td>
+            </tr>
+   	    </table>
+    </return>
+
+    <remarks>
+        <para>当输入为文件时，_access函数用以确定指定的文件是否存在，并且该文件可以使用由mode指定的模式进行访问。当输入为目录时，_access函数只能确定指定的目录是否存在。</para>
+    	<table>
+    	    <th>
+    		    <td>模式参数值</td>
+            	<td>检查文件属性</td>
+    	    </th>
+    	    <tr>
+    		    <td>00</td>
+            	<td>文件存在</td>
+    	    </tr>
+    	    <tr>
+    		    <td>02</td>
+            	<td>写权限</td>
+    	    </tr>
+    	    <tr>
+    		    <td>04</td>
+            	<td>读权限</td>
+    	    </tr>
+    	    <tr>
+    		    <td>06</td>
+            	<td>读写权限</td>
+    	    </tr>
+       	</table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_access</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_waccess</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _access.cpp: This example uses _access to check the
+ * file named &quot;_access.exe&quot; to see if it exists and if
+ * reading is allowed.
+ */
+
+#include  &lt;io.h&gt;
+#include  &lt;stdio.h&gt;
+#include  &lt;stdlib.h&gt;
+
+int main()
+{
+    /* Check for existence */
+    if ((_access(&quot;_access.exe&quot;, 0)) != -1) {
+        printf(&quot;File _access.exe exists\n&quot;);
+        /* Check for Read permission */
+        if ((_access(&quot;_access.exe&quot;, 4)) != -1)
+            printf(&quot;File _access.exe has read permission\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File _access.exe exists
+File _access.exe has read permission
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_wopen</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

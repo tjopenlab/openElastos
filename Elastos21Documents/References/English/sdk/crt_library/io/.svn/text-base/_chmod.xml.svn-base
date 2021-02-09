@@ -1,0 +1,151 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_chmod">_chmod</sample>
+    <title> _chmod, _wchmod </title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>Changes the file-permission settings.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_chmod</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>Pointer to the name of existing file.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+                <param_note>
+                    <para>Permission setting for file.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wchmod</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns 0 if the permission setting is successfully changed. A return value of -1 indicates that the specified file could not be found or the given permission disagreed, in which case the number of error is set to ENOENT. </para>
+    </return>
+
+    <remarks>
+        <para>The _chmod function changes the permission setting of the file specified by filename. The permission setting controls read and write access to the file. The integer expression pmode contains one or both of the following manifest constants, defined in fcntl.h: </para>
+        <table>
+    	    <th>
+    	        <td>Parameter Constant</td>
+    	        <td>Description</td>
+    	    </th>
+            <tr>
+                <td>_S_IREAD</td>
+                <td>Writing permitted.</td>
+            </tr>
+            <tr>
+                <td>_S_IWRITE</td>
+                <td>Reading permitted.(Actually, it is equal to _S_IREAD | _S_IWRITE)</td>
+            </tr>
+            <tr>
+                <td>_S_IREAD | _S_IWRITE</td>
+                <td>Reading and writing permitted.</td>
+            </tr>
+   	    </table>
+   	    <para>When both constants are given, they are joined with the bitwise-OR operator ( | ). In elastos, all files are read-only; it is not possible to give write-only permission. Thus the modes _S_IWRITE and _S_IREAD | _S_IWRITE are equivalent.</para>
+        <para>_wchmod is a wide-character version of _chmod. The filename parameter to _wchmod is a wide-character string. _wchmod and _chmod behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_chmod</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wchmod</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _chmod.cpp: This program uses _chmod to
+ * change the mode of a file to read-only.
+ * It then attempts to modify the file.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;fcntl.h&gt;
+
+
+int main()
+{
+    /* Make file read-only: */
+    if (_chmod(&quot;_chmod.exe&quot;, _S_IREAD) == -1)
+        perror(&quot;File not found\n&quot;);
+    else
+        printf(&quot;Mode changed to read-only\n&quot;);
+
+    /* Change back to read/write: */
+    if (_chmod(&quot;_chmod.exe&quot;, _S_IWRITE) == -1)
+        perror(&quot;File not found\n&quot;);
+    else
+        printf(&quot;Mode changed to read/write\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Mode changed to read-only
+Mode changed to read/write
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_open</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_access</ref_name>
+            <ref_url>_waccess</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_creat</ref_name>
+            <ref_url>_wcreat</ref_url>
+        </reference>
+    </references>
+
+</manpage>

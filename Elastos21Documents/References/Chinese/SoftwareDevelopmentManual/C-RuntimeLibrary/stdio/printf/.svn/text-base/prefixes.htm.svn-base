@@ -1,0 +1,223 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Type可选前缀的说明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>Type可选前缀的说明</h2>
+    <p>type的可选前缀：h，l，和L，指定信息段的大小（长整型还是短整型，单字节字符还是宽字符，使用它们对type进行更改）。在<a class="style1" href="../wprintf.htm">printf和wprintf函数</a>中使用这些type的前缀来指定信息段的类型，如下表所示，这些前缀是微软的扩展而不与ANSI兼容。</p>
+    <p><b>备注：</b>当使用type&nbsp;char数据类型时，前缀h，l和L是微软扩展</p>
+    <p>与printf和wprintf函数格式化type参数同时使用的size前缀</p>
+    <table>
+        <thead>
+            <td>类型</td><td>使用的前缀</td><td>同时使用的type参数</td>
+        </thead>
+        <tr>
+            <td>
+                长整型
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                d, i, o, x, or X
+            </td>
+        </tr>
+        <tr>
+            <td>
+                无符号长整型
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                u
+            </td>
+        </tr>
+        <tr>
+            <td>
+                短整型
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                d, i, o, x, or X
+            </td>
+        </tr>
+        <tr>
+            <td>
+                无符号短整型
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                u
+            </td>
+        </tr>
+        <tr>
+            <td>
+                __int64型
+            </td>
+            <td>
+                I64
+            </td>
+            <td>
+                d, i, o, u, x, or X
+            </td>
+        </tr>
+        <tr>
+            <td>
+                printf函数使用的单字节字符
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                c或C
+            </td>
+        </tr>
+        <tr>
+            <td>
+                wprintf函数使用的单字节字符
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                c或C
+            </td>
+        </tr>
+        <tr>
+            <td>
+                printf函数使用的宽字符
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                c或C
+            </td>
+        </tr>
+        <tr>
+            <td>
+                wprintf函数使用的宽字符
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                c或C
+            </td>
+        </tr>
+        <tr>
+            <td>
+                printf函数使用的单字节字符串
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                s或S
+            </td>
+        </tr>
+        <tr>
+            <td>
+                wprintf函数使用的单字节字符串
+            </td>
+            <td>
+                h
+            </td>
+            <td>
+                s或S
+            </td>
+        </tr>
+        <tr>
+            <td>
+                printf函数使用的宽字符串
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                s或S
+            </td>
+        </tr>
+        <tr>
+            <td>
+                wprintf函数使用的宽字符串
+            </td>
+            <td>
+                l
+            </td>
+            <td>
+                s或S
+            </td>
+        </tr>
+    </table>
+    <p>因此调用printf或wprintf函数显示单字节或宽字符，使用以下的格式化参数：</p>
+    <table>
+        <thead>
+            <td>显示格式</td>
+            <td>使用函数</td>
+            <td>格式化参数</td>
+        </thead>
+        <tr>
+            <td>
+                单字节
+            </td>
+            <td>
+                printf
+            </td>
+            <td>
+                c, hc, or hC
+            </td>
+        </tr>
+        <tr>
+            <td>
+                单字节
+            </td>
+            <td>
+                wprintf
+            </td>
+            <td>
+                C, hc, or hC
+            </td>
+        </tr>
+        <tr>
+            <td>
+                宽字符
+            </td>
+            <td>
+                wprintf
+            </td>
+            <td>
+                c, lc, or lC
+            </td>
+        </tr>
+        <tr>
+            <td>
+                宽字符
+            </td>
+            <td>
+                printf
+            </td>
+            <td>
+                C, lc, or lC
+            </td>
+        </tr>
+    </table>
+    <P>调用printf或wprintf函数显示字符串，使用前缀h和l，方法与格式化type参数s和S类似</P>
+
+<script>footer("KoreTide")</script>
+</body>
+
+</html>

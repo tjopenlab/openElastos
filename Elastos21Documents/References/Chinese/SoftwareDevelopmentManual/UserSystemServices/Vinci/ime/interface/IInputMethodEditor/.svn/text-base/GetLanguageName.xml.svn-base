@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IInputMethodEditor</interface><method> GetLanguageName </method>
+    <description>
+        <para>
+           获取输入法类型所对应的语言。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> methodName </param_name>
+                <param_note>
+                    <para>
+输入法类型。                    </para>
+                </param_note>
+            </api_param>        
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf_&lt;MAX_INPUT_METHOD_STRING_LENGTH&gt; </param_type>
+                <param_name> languageName </param_name>
+                <param_note>
+                    <para>
+所对应的语言。                    </para>
+                </param_note>
+            </api_param>
+       </parameters>
+    </syntax>
+
+<return>
+    <para>
+               如果成功，返回NOERROR；如果没有相应的类型，或languageName为空，返回E_INVALID_ARGUMENT；如果其他失败，返回E_FAIL </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统             </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElControls.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib </lib_name>
+        </library>
+    </requirements>
+    <remarks>
+          <para>输入法类型对应的语言，如“拼音”、“笔划”对应的是“Chinese”，“字母abc”对应的是“English”。</para>
+    </remarks>
+</manpage>

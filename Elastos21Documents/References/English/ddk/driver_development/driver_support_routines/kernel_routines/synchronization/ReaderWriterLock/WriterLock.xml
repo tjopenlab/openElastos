@@ -1,0 +1,64 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="../../../../../../xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>ReaderWriterLock</interface><method> WriterLock </method>
+    <description>
+        <para>
+            Acquires the writer lock.
+        </para>
+    </description>
+    <syntax>
+        <return_val>ECODE</return_val>
+        <NoArguments/>
+    </syntax>
+
+	<return>
+	    <table>
+    	    <th>
+    		<td>Return Value </td>
+    		<td>Hex Value</td>
+    		<td>Description</td>
+    	    </th>
+    	    <tr>
+    		<td>S_OK</td>
+    		<td>0x00000000</td>
+    		<td>Function succeeds in acquiring the writer lock.</td>
+    	    </tr>
+
+    	    <tr>
+    		<td>S_INTERRUPTED</td>
+    		<td>0x00060014</td>
+    		<td>The waiting of the calling thread is interrupted</td>
+    	    </tr>
+    	</table>
+	</return>
+
+	<remarks>
+        <para>
+        	This method is used to acquire the ReaderWriterLock object as a writer. If the calling thread cannot
+        	acquire a writer lock (In case, the ReaderWriterLock object is acquired by one or more readers), it
+        	will enter the waiting state, until the writer lock of the ReaderWriterLock object is acquired, and
+        	the method returns successfully. If no other threads acquire the ReaderWriterLock object, the
+        	calling thread will acquire it as a writer successfully, and the method returns immediately. If the
+        	calling thread has already acquired the ReaderWriterLock object as a reader or writer, the method
+        	will fail and cause unknown errors. The waiting of the calling thread can be interrupted.
+		</para>
+
+		<para> 
+			The reader or writer threads of the ReaderWriterLock object can not call this method, otherwise, 
+			will get unpredictable results.
+        </para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

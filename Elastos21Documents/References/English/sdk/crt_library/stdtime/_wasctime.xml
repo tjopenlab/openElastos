@@ -1,0 +1,153 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\_wasctime">_wasctime</sample>
+    <title> _wasctime </title>
+    <volume>C Run-time Library Functions</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>Converts a tm time structure to a character string.</para>
+    </description>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_wasctime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const struct tm*</param_type>
+                <param_name>timeptr</param_name>
+                <param_note>
+                    <para>Time/date structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_wasctime returns a pointer to the wide-character string result. There is no error return value.</para>
+    </return>
+
+    <remarks>
+        <para>_wasctime converts a tm time structure to a character string.Usually gets a pointer to system time with time.tm data struture is defined in "time.h".</para>
+        <para>Description about tm data structure:</para>
+        <table>
+            <th>
+               <td>timeptr Field</td>
+               <td>Value</td>
+            </th>
+            <tr>
+               <td>tm_sec</td>
+               <td>Seconds after minute (0 – 59).</td>
+            </tr>
+            <tr>
+               <td>tm_min</td>
+               <td>Minutes after hour (0 – 59).</td>
+            </tr>
+            <tr>
+               <td>tm_hour</td>
+               <td>Hours since midnight (0 – 23).</td>
+            </tr>
+            <tr>
+               <td>tm_mday</td>
+               <td>Day of month (1 – 31).</td>
+            </tr>
+            <tr>
+               <td>tm_mon</td>
+               <td>Month (0 – 11; January = 0).</td>
+            </tr>
+            <tr>
+               <td>tm_year</td>
+               <td>Year (current year minus 1900).</td>
+            </tr>
+            <tr>
+               <td>tm_wday</td>
+               <td>Day of week (0 – 6; Sunday = 0).</td>
+            </tr>
+            <tr>
+               <td>tm_yday</td>
+               <td>Day of year (0 – 365; January 1 = 0).</td>
+            </tr>
+            <tr>
+               <td>tm_isdst</td>
+               <td>Positive if daylight saving time is in effect; 0 if daylight saving time is not in effect; negative if status of daylight saving time is unknown. 
+               </td>
+            </tr>
+        </table>
+        <para>The converted character string is also adjusted according to the local time zone settings. See the time and localtime functions for information on configuring the local time and the _tzset function for details about defining the time zone environment and global variables. </para>
+        <para>The string result produced by _wasctime contains exactly 26 characters and has the form Wed Jan 02 02:03:55 1980\n\0. A 24-hour clock is used. All fields have a constant width. The newline character and the null character occupy the last two positions of the string. _wasctime uses a single, statically allocated buffer to hold the return string. Each call to this function destroys the result of the previous call.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_wasctime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* wasctime.cpp: This program places the system time
+ * in the long integer aclock, translates it into the
+ * structure newtime and then converts it to string
+ * form for output, using the asctime function.
+ */
+
+#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;
+
+struct tm *newtime;
+time_t aclock;
+
+int main()
+{
+    time_t timer;
+    static struct tm *timeptr;
+    wchar_t *string;
+
+    time(&amp;timer);
+    timeptr = localtime(&amp;timer);
+    string = _wasctime(timeptr);
+
+    wprintf(L&quot;The current date and time are: %s&quot;, string);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The current date and time are: Sun May 01 20:27:01 1994
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>ctime</ref_name>
+            <ref_url>ctime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_ftime</ref_name>
+            <ref_url>_ftime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>localtime</ref_name>
+            <ref_url>localtime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>time</ref_name>
+            <ref_url>time</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,90 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="practical_routines\kprintf">kprintf</sample>
+    <volume>Practical Routines</volume>
+    <title>kprintf</title>
+    <routine_idx> ../practical_routines.htm </routine_idx>
+
+    <description>
+        <para>
+        	Print formatted string to the kernel console. 
+        </para>
+    </description>
+
+    <remarkview>
+        int kprintf( const char *format [, argument]... );
+    </remarkview>
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> const char *</param_type>
+                <param_name> format </param_name>
+                <param_note>
+                    <para>
+                        Format control string.
+                    </para>
+                </param_note>
+                <optional_arguments><need_note/></optional_arguments>
+            </api_param>
+        </parameters>
+
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>Return Value </td><td>Description </td>
+            </th>
+            <tr>
+                <td>Non-negative </td> 
+                <td>Function succeeds in returning the number of characters printed. </td>
+            </tr>
+            <tr>
+                <td>Negative </td> 
+                <td>Function fails. </td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>
+        	The <b>kprintf</b> function formats and prints a series of characters and values to the kernel 
+        	console. If arguments follow the format string, the format string must contain specifications 
+        	that determine the output format for the arguments.
+        </para>
+        <para>
+        	The format argument consists of ordinary characters, escape sequences, and <link url="FormatSpec.htm">
+        	format specifications</link> (if arguments follow format).
+        </para>
+        <para>
+        	Format specifications always begin with a percent sign (%) and are read left to right. When 
+        	<b>kprintf</b> encounters the first format specification (if any), it converts the value of 
+        	the first argument after format and outputs it accordingly. The second format specification 
+        	causes the second argument to be converted and output, and so on. If there are more arguments 
+        	than there are format specifications, the extra arguments are ignored. The results are undefined 
+        	if there are not enough arguments for all the format specifications.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                 Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+
+
+</manpage>

@@ -1,0 +1,47 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>   
+    <volume> 常用数据结构 </volume>
+    <interface>BufferOf</interface>
+    <method>Free</method>
+
+    <description>
+        <para>删除由Alloc或Clone在堆上创建的BufferOf对象，并释放其所占内存空间。</para>
+    </description>
+
+    <syntax>
+        <return_val>static void </return_val>
+        <parameters>
+        <api_param>
+            <param_type>BufferOf&lt;T &gt; *</param_type>
+            <param_name>pArray </param_name>
+            <param_note>
+                <para> 源BufferOf数组 </para>
+            </param_note>
+        </api_param>     
+        </parameters>
+  </syntax>
+
+    <remarks>
+        <para> 在使用<link url="Alloc/index/Alloc.htm">Alloc</link>或<link url="Clone.htm">Clone</link>函数创建BufferOf数组后，一定要调用这个函数来释放这些对象所占用的内存空间。 </para>
+        <para> 创建在栈上的BufferOf数组不需要使用这个函数来释放其所占用的内存。 </para>
+    </remarks>
+
+<example>
+<pre>
+请参见：<link url="Append/AppendEx.htm">BufferOf::Append </link>
+</pre>
+</example>
+    
+
+
+<references>
+    <reference>
+        <ref_name>BufferOf</ref_name>
+        <ref_url>../BufferOf</ref_url>
+    </reference>
+
+</references> 
+
+</manpage>

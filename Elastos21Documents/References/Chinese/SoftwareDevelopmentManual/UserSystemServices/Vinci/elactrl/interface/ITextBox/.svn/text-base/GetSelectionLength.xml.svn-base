@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITextBox</interface><method> GetSelectionLength </method>
+    <description>
+        <para>
+            获取选中文本的长度。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> length </param_name>
+                <param_note>
+                    <para>
+指向 Int32 型的指针，用于获取选中文本的长度，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        若 TextBox 中 SelectionStart 所指示的位置之后的剩余文本小于 SelectionLength 属性的值，则 SelectionLength 属性的值会自动减小。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTextBox 类介绍</ref_name>
+        <ref_url>../../class/TextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITextBox 接口方法列表</ref_name>
+        <ref_url>../ITextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetSelectionLength</ref_name>
+        <ref_url>SetSelectionLength</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetSelectionStart</ref_name>
+        <ref_url>SetSelectionStart</ref_url>
+    </reference>
+</references>
+</manpage>

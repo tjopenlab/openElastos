@@ -1,0 +1,220 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR基本关键字</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>CAR基本关键字</h2>
+    <p>关键字也称保留字。它是预先定义好的表示符，这些表示符对CAR编译程序有着特殊的含义。下面对CAR中几个主要关键字的含义和表示方法一一进行介绍。 </p>
+    <p>下面对CAR中所支持的各关键字的含义及其表示方法进行介绍。</p>
+    <ul>
+    <li>用于定义构件的关键字:
+        <table>
+            <thead>
+                <td>基本关键字</td>
+                <td>描述</td>
+            </thead>
+    		<tr>
+                <td><a class="style1" href="./keywords/keywords_module.htm">module</a></td>
+                <td>用于指定.dll形式的构件。</td>
+            </tr>
+	    	<tr>
+                <td><a class="style1" href="./keywords/keywords_library.htm">library</a></td>
+                <td>用于指定.lib形式的构件。</td>
+            </tr>
+        </table>
+        <p></p>
+    <li>用于定义接口的关键字：
+        <table>
+            <thead>
+                <td>基本关键字</td>
+                <td>描述</td>
+            </thead>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_interface.htm">interface</a></td>
+                <td>用于定义或声明一个接口。</td>
+            </tr>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_callback.htm">callbacks</a></td>
+                <td>用于定义或声明一个异步回调接口。</td>
+            </tr>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_delegate.htm">delegates</a></td>
+                <td>用于定义或声明一个同步回调接口。</td>
+            </tr>            
+        </table>
+
+    <li><a name="interface"></a>用于定义类的关键字：
+        <table>
+            <thead>
+                <td>基本关键字</td>
+                <td>描述</td>
+            </thead>
+                <tr>
+                    <td><a class="style1" href="./keywords/keywords_class.htm">class</a></td>
+                    <td>用于定义一个普通构件类。</td>
+                </tr>
+		        <tr>
+                    <td><a class="style1" href="./keywords/keywords_generic.htm">generic</a></td>
+                    <td>用于定义一个泛类。</td>
+                </tr>
+                <tr>
+                    <td><a class="style1" href="./keywords/keywords_applet.htm">applet</a></td>
+                    <td>用于定义一个applet类。</td>
+                </tr>
+		        <tr>
+                    <td><a class="style1" href="./keywords/keywords_aspect.htm">aspect</a></td>
+                    <td>用于定义一个方面构件类。</td>
+                </tr>
+	    	    <tr>
+                    <td><a class="style1" href="./keywords/keywords_context.htm">context</a></td>
+                    <td>用于定义一个语境类。</td>
+                </tr>
+        </table>
+    <li><a name="para"></a>用于继承的关键字：
+        <table>
+            <thead>
+                <td>基本关键字</td>
+                <td>描述</td>
+            </thead>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_inherits.htm">inherits</a></td>
+                <td>用于表示普通类class继承普通类class。</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_extends.htm">extends</a></td>
+                <td>表示接口interface继承接口interface。 </td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_final.htm">final</a></td>
+                <td>用于修饰普通构件类class，表示该类不允许被继承。 </td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_substitutes.htm">substitutes</a></td>
+                <td>用于表示普通类class继承泛类generic。</td>
+            </tr>
+        </table>
+    <li><a name="para"></a>用于修饰接口的关键字：
+        <table>
+            <thead>
+                <td>基本关键字</td>
+                <td>描述</td>
+            </thead>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_virtual.htm">virtual</a></td>
+                <td>用于修饰interface,表示声明虚接口。</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_asynchronous.htm">asynchronous</a></td>
+                <td>用于修饰interface,表明被修饰的interface的接口的方法将被异步方式调用</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_privileged.htm">privileged</a></td>
+                <td>用于修饰interface,并只能用于aspect中，指定其接口只能在聚合和解聚合的时候可见。</td>
+            </tr>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_filtering.htm">filtering</a></td>
+                <td>用于修饰callbacks接口，表示子类过滤基类所触发的回调事件。</td>
+            </tr>
+        </table>
+        
+    <li><a name="para"></a>用于修饰类的关键字：
+        <table>
+            <thead>
+                <td>基本关键字</td>
+                <td>描述</td>
+            </thead>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_singleton.htm">singleton</a></td>
+                <td>用于表示该类只能创建出唯一的对象。</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_aggregates.htm">aggregates</a></td>
+                <td>表示被修饰的构件类创建对象时将自动聚合该属性中列举的方面构件对象。 </td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_pertainsto.htm">pertainsto</a></td>
+                <td>用于修饰语境构件类context，表示该语境构件类拥有该属性中列举的方面构件类。 </td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_affiliates.htm">affiliates</a></td>
+                <td>用于修饰方面构件类aspect，表示被修饰的方面构件类只能被该属性中列举的非方面构件类聚合。</td>
+            </tr>
+        </table>
+    <li><a name="para"></a>用于定义数据结构的关键字：
+        <table>
+            <thead>
+                <td>基本关键字</td>
+                <td>描述</td>
+            </thead>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_const.htm">const</a></td>
+                <td>用于定义int类型的常量。</td>
+            </tr>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_enum.htm">enum</a></td>
+                <td>用于定义枚举类型，使用方法与其在C语言中用法基本相同。</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_struct.htm">struct</a></td>
+                <td>用于定义结构体，其使用方法与在C语言中用法基本相同。</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./keywords/keywords_typedef.htm">typedef</a></td>
+                <td>用于定义类型，其使用方法与在C语言中用法基本相同。</td>
+            </tr>
+        </table>
+    <li><a name="para"></a>用于合并构件的关键字：
+        <table>
+            <thead>
+                <td>基本关键字</td>
+                <td>描述</td>
+            </thead>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_merge.htm">merge</a></td>
+                <td>用于在本构件中合并用到的其它构件(.car文件)。</td>
+            </tr>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_mergelib.htm">mergelib</a></td>
+                <td>用于在本构件中合并用到的其它构件（.dll或者.cls文件）中被当前构件的定义引用到的部分。</td>
+            </tr>
+	    	<tr>
+                <td><a class="style1" href="./keywords/keywords_import.htm">import</a></td>
+                <td>指定本构件中用到的其它构件（.car文件）。</td>
+            </tr>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_importlib.htm">importlib</a></td>
+                <td>指定本构件中用到的其它构件（.dll或者.cls）。</td>
+            </tr>
+        </table>
+    <li><a name="para"></a>其它关键字：
+        <table>
+            <thead>
+                <td>基本关键字</td>
+                <td>描述</td>
+            </thead>
+	    	<tr>
+                <td><a class="style1" href="./keywords/keywords_constructor.htm">constructor</a></td>
+                <td>用于在类中定义构造函数。</td>
+            </tr>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_pragma.htm">pragma</a></td>
+                <td>禁止或允许显示CAR编译器给出的警告信息。</td>
+            </tr>
+		    <tr>
+                <td><a class="style1" href="./keywords/keywords_coalesce.htm">coalesce</a></td>
+                <td>用于在类中修饰callbacks接口方法，表示合并同类回调事件。</td>
+            </tr>
+        </table>
+
+<script>footer("chinese")</script>
+</body>
+</html>

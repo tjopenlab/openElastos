@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+    <manpage>
+    <volume>HTTPRequestHeaders</volume>
+    <types> HTTP 请求头概述 </types>
+    <description>
+        <para>
+            HTTP客户程序（例如浏览器），向服务器发送请求的时候必须指明请求类型（一般是GET或者POST）。如有必要，客户程序还可以选择发送其他的请求头。大多数请求头并不是必需的，但 Content-Length 除外。对于POST请求来说 Content-Length 必须出现。最常见请求头见下表：
+        </para>
+    </description>
+    <other>
+        <table>
+        	  <th>
+        	      <td>请求头名</td>
+        	      <td>描述</td>
+        	  </th>
+        	  <tr>
+        	      <td>Accept</td>
+        	      <td>浏览器可接受的MIME类型。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Accept-Charset</td>
+        	      <td>浏览器可接受的字符集。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Accept-Encoding</td>
+        	      <td>浏览器能够进行解码的数据编码方式。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Accept-Language</td>
+        	      <td>浏览器所希望的语言种类，当服务器能够提供一种以上的语言版本时要用到。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Authorization</td>
+        	      <td>授权信息，通常出现在对服务器发送的WWW-Authenticate头的应答中。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Connection</td>
+        	      <td>表示是否需要持久连接。如果服务器端看到这里的值为“Keep-Alive”，或者看到请求使用的是HTTP 1.1（HTTP 1.1默认进行持久连接），它就可以利用持久连接的优点，当页面包含多个元素时（例如Applet，图片），显著地减少下载所需要的时间。要实现这一点，服务器需要在应答中发送一个Content-Length头，最简单的实现方法是：先把内容写入 ByteArrayOutputStream，然后在正式写出内容之前计算它的大小。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Content-Length</td>
+        	      <td>表示请求消息正文的长度。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Cookie</td>
+        	      <td>这是最重要的请求头信息之一。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>From</td>
+        	      <td>请求发送者的email地址，由一些特殊的Web客户程序使用，浏览器不会用到它。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Host</td>
+        	      <td>初始URL中的主机和端口。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>If-Modified-Since</td>
+        	      <td>只有当所请求的内容在指定的日期之后又经过修改才返回它，否则返回304“Not Modified”应答。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Pragma</td>
+        	      <td>指定“no-cache”值表示服务器必须返回一个刷新后的文档，即使它是代理服务器而且已经有了页面的本地拷贝。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>Referer</td>
+        	      <td>包含一个URL，用户从该URL代表的页面出发访问当前请求的页面。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>User-Agent</td>
+        	      <td>浏览器类型，如果服务器返回的内容与浏览器类型有关则该值非常有用。</td>
+        	  </tr>
+        	  <tr>
+        	      <td>UA-Pixels</td>
+        	      <td>UA-Color，UA-OS，UA-CPU：由于某些浏览器所发送的非标准的请求头，表示屏幕大小、颜色深度、操作系统和CPU类型。</td>
+        	  </tr>
+        </table>
+    </other>
+</manpage>

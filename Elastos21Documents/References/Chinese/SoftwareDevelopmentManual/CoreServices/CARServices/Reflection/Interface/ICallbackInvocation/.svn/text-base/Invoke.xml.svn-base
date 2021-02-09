@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+    <sample url=""></sample>
+<volume>ICallbackInvocation接口函数</volume>
+<Interface>ICallbackInvocation</Interface><method> Invoke </method>
+    <description>
+        <para>
+            该方法由用户自定义，当包含该ICallbackInvocation接口的代理被触发时，会回调此方法。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> PVoid </param_type>
+                <param_name> targetObject </param_name>
+                <param_note>
+                    <para>
+                      用户自定义信息的对象指针
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> PVoid </param_type>
+                <param_name> targetMethod </param_name>
+                <param_note>
+                    <para>
+                       用户自定义信息的函数指针
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ICallbackArgumentList * </param_type>
+                <param_name> callbackArgumentList </param_name>
+                <param_note>
+                    <para>
+                      ICallbackArgumentList类型接口指针，含有回调函数的参数值。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+<remarks>
+        <para>该方法由用户实现。</para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+    </requirements>
+</manpage>

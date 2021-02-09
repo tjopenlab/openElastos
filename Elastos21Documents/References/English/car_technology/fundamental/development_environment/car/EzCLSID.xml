@@ -1,0 +1,35 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/custom_type.xsl"?>
+
+<manpage>
+    <volume></volume>
+    <types>EzCLSID</types>
+    <volume>CAR Supported Data Type</volume>
+    <title>EzCLSID</title>
+
+    <description>
+        <para> CAR class identifier,identifies a specified CAR class uniquely. </para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type>CLSID</mem_type>
+            <mem_name>clsid </mem_name>
+            <mem_description>CLSID struct</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>WCHAR *</mem_type>
+            <mem_name> uunm </mem_name>
+            <mem_description>Address of CAR component in the Internet, for example: http://www.koretide.com.cn/car/hello.dll</mem_description>
+        </struct_member>
+    </struct>
+
+    <remarks>
+        <para>EzCLSID is the extension of CLSID. EzCLSID struct includes <link url="attributes/attributes_uunm.htm">uunm</link> information.</para>
+        <para>Note: In CAR, when using EzCLSID struct as interface parameter, usually we use it to create object.We use CLSID as parameter, since CLSID struct does not include uunm information. When running component on Elastos, there is no way to find the location of the component and to create object successfully.</para>
+    </remarks>
+</manpage>

@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>U8String</interface>
+    <method> ToUpperCase </method>
+
+    <description>
+        <para> 返回此U8String转换为大写形式的副本。 </para>
+    </description>
+    <syntax>
+        <return_val> U8String </return_val>
+        <parameters>
+        <api_param>
+            <param_type>U8StringBuf &amp;</param_type>
+            <param_name> upper </param_name>
+            <param_note>
+                <para> 保存子字符串的U8StringBuf对象。 </para>
+            </param_note>
+        </api_param>
+
+        </parameters>        
+    </syntax>
+    <return>
+        <para>大写形式的U8String。 </para>
+    </return>
+    
+    <remarks>
+        <para>若实例或sub包含的字符串指针为NULL，返回的U8String对象包含的字符串指针指向NULL。 </para>
+    </remarks>
+
+<example>
+<pre>
+U8String u8s("HELLOhexIN");
+U8StringBuf_&lt;40&gt; u8sbuf;
+CConsole::WriteLine(u8s.ToUpperCase(u8sbuf));  //Display : "HELLOHEXIN"
+CConsole::WriteLine(u8s);  //Display : "HELLOhexIN"
+</pre>
+</example>
+   
+ 
+</manpage>

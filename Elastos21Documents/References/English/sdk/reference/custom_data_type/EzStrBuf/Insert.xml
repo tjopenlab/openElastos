@@ -1,0 +1,100 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzStrBuf\insert">Insert</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzStrBuf  </interface>
+    <method> Insert </method>
+
+    <description>
+        <para> Inserts a specified string into the current string buffer. The inserted string can be either EzStr or wchar_t. </para>
+    </description>
+
+    <syntax>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> int </param_type>
+            <param_name> offset </param_name>
+            <param_note>
+                <para> The offset from the beginning position of EzStrBuf object to the insert position. The offset value range: greater than or equal to 0 and less than or equal to the length of existing string in the EzStrBuf buffer. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const EzStr&amp; </param_type>
+            <param_name> ezstr </param_name>
+            <param_note>
+                <para> An existing EzStr object. This ezstr value must not be EZSTR_NULl; otherwise an error is occured. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> int </param_type>
+            <param_name> offset </param_name>
+        </api_param>
+        </parameters>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> wchar_t * </param_type>
+            <param_name> wstr </param_name>
+            <param_note>
+                <para> The pointer pointing to a wchar_t string. This wstr value must not be null; otherwise an error is occured. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If insertion is successful, then it returns the number of characters actually inserted. If the value of offset parameter is less than 0 or greater than the length of existing string in the EzStrBuf object, then insertion fails and returns 0. </para>
+    </return>
+
+    <remarks>
+        <para>After Insertion, if the length of the string exceeds EzStrBuf object's maximum buffer size, then the rest is truncated. </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStrBuf_<20> myStr;
+    myStr.Copy(L"Great Wall");
+
+    myStr.Insert(5, L"est");
+    printf("The content of the string is \"%S\".\n", (wchar_t *)myStr);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+The content of the string is "Greatest Wall".
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name> Append </ref_name>
+            <ref_url> Append </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Copy </ref_name>
+            <ref_url> Copy </ref_url>
+        </reference>
+    </references>
+
+</manpage>

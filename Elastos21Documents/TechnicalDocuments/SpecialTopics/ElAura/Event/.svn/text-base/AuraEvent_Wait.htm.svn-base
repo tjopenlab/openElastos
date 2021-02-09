@@ -1,0 +1,96 @@
+<HTML>
+<HEAD>
+<TITLE>
+AuraEvent_Wait
+</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<h3>
+AuraEvent_Wait
+</h3>
+<p></p>
+</div>
+<p>
+         	Waits for the event object to notify.
+        </p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">
+AURA_API AuraEvent_Wait
+
+            (</TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD>/*[out]*/<font class="datatype">WaitResult *</font></TD>
+<TD class="param">pResult<span style="color:black; font-size:110%">,</span></TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD>/*[out]*/<font class="datatype">EventState *</font></TD>
+<TD class="param">pState</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">)
+                    
+                ;</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<h4>Parameters</h4>
+<DL><DT class="param" style="color:#222222;margin-left:42">pState</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+						Pointer to a DWORD, to store the notification state. The state is specified when calling 
+						the IEvent::Notify</a> method. <i>pState</i>
+ can be NULL to ignore 
+						the state. This value is valid only if the event object is in notified state.
+                    <BR /><BR />
+</font></DD>
+</DL>
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return Value</TD>
+<TD class="cell">Hex Value</TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">0x00000000</TD>
+<TD class="cell">Function succeeds in making the event object to wait.</TD>
+</TR>
+<TR><TD class="cell">E_INVALID_ARGUMENT</TD>
+<TD class="cell">0x00060014</TD>
+<TD class="cell">Invalid arguument(s).</TD>
+</TR>
+</table></p>
+<p>　</p>
+<h4>Remarks</h4>
+<p>
+			This function makes the event object to wait till it become the notified state. If the 
+			event object is in cleared state, the calling thread will be blocked until the event object 
+			makes a notification. If the event object is in notified state, the method will return 
+			successfully, and if the event object is auto cleared, the event object will become cleared 
+			state. If the event object is manual cleared, the event object will keep the notified state. 
+			The calling thread can be interrupted while waiting.
+		</p>
+<h4>Requirements</h4>
+<p>
+<table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>
+Windows 2000 or later; Elastos 2.0 or later.
+</td>
+<td></td>
+</tr>
+</table></p>
+<script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>

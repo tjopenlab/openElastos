@@ -1,0 +1,41 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+
+<volume>线程与调度</volume>
+    <title>DzYield</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>使当前线程主动放弃处理器。</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>void</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本函数用于使当前线程主动放弃处理器。与Sleep函数不同的是，本函数不会导致调用线程睡眠或阻塞。当前线程调用本函数，将放弃它的剩余时间片，并将处理器让给其它具有相等线程优先级的就绪线程。如果系统中没有其他具有相等线程优先级的就绪线程，本函数会立即返回，调用线程将继续运行。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+
+
+</manpage>
+

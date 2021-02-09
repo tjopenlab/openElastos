@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心</volume>
+<interface>IAVDecEngine</interface><method> SetDisplayRect </method>
+    <description>
+        <para>
+            设置视频的显示区域。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nDisplayLeft </param_name>
+                <param_note>
+                    <para>
+指定视频显示区域的左边界                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nDisplayTop </param_name>
+                <param_note>
+                    <para>
+指定视频显示区域的上边界                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nDisplayRight </param_name>
+                <param_note>
+                    <para>
+指定视频显示区域的右边界                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nDisplayBottom </param_name>
+                <param_note>
+                    <para>
+指定视频显示区域的下边界                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功时，返回 S_OK 。当该媒体文件不存在视频流或者视频流不被支持时，返回 S_FALSE。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            如果指定的边界值超过了屏幕支持的范围，那么将自动的将该边界设置在屏幕支持的范围内。
+        </para>
+    </remarks>
+</manpage>

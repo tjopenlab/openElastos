@@ -1,0 +1,100 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Standard Driver Routine</volume>
+<interface>IDriver</interface><method> Control  </method>
+    <description>
+        <para>
+            Send command to device and retrieve status information.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT  </param_type>
+                <param_name> nControlCode </param_name>
+                <param_note>
+                    <para>
+						The control code that will be sent to device.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzByteBuf  </param_type>
+                <param_name> ebbInData  </param_name>
+                <param_note>
+                    <para>
+						The control data that will be sent to device.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzByteBuf  </param_type>
+                <param_name> ebbOutData </param_name>
+                <param_note>
+                    <para>
+						The result or status returned from the device.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IEvent**  </param_type>
+                <param_name> ppCompletionEvent </param_name>
+                <param_note>
+                    <para>
+                        The <b>IEvent</b> interface of the operation result.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+		<table>
+		    <th>
+				<td>Return Value</td>
+				<td>Hex Value</td>
+				<td>Description</td>
+		    </th>
+		    <tr>
+				<td>S_OK</td>
+				<td>0x00000000</td>
+				<td>Function succeeds in sending command to device and retrieve status information.</td>
+		    </tr>
+		    <tr>
+				<td>E_FAIL</td>
+				<td>0x80004005</td>
+				<td>Unspecified error</td>
+		    </tr>
+		</table>
+    </return>
+
+	<remarks>
+		<para>
+            This method send <i>nControlCode</i> command to device and the return value is in <i>ebbOutData</i>.
+            If the function succeeds, S_OK is returned, if it fails, E_FAIL is returned.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

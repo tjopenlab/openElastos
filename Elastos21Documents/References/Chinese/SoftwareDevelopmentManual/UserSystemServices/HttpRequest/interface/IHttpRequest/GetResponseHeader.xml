@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>GetResponseHeader (IHttpRequest)</volume>
+<interface>IHttpRequest</interface><method> GetResponseHeader </method>
+    <description>
+        <para>
+            从响应数据中获取指定的 HTTP 头的信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> U8String </param_type>
+                <param_name> header </param_name>
+                <param_note>
+                    <para>
+头名称，不需要带冒号，不能为 NULL 或空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> U8StringBuf_&lt;&gt; </param_type>
+                <param_name> headerValue </param_name>
+                <param_note>
+                    <para>
+U8StringBuf_&lt;&gt;类型，用于获取指定头的值，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_DOES_NOT_EXIST</td>
+	    	    <td>指定头的值不存在</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	      当 <link url="Send.htm">Send</link> 方法成功调用后方可调用该方法。例如，服务器返回的文档类型为 "text/xml", 则通过该方法获取头 "Content-Type" 的值为字符串 "text/xml"。可以通过 <link url="GetAllResponseHeaders.htm">GetAllResponseHeaders</link> 方法获取完整的 HTTP 应答头信息。有关更多 HTTP 应答头信息可参考：<link url="../../reference/HTTPResponseHeaders.htm">HTTP 应答头概述</link>。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CHttpRequest 类介绍 </ref_name>
+        <ref_url>../../HttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IHttpRequest 接口方法列表</ref_name>
+        <ref_url>../IHttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Send</ref_name>
+        <ref_url>Send</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetAllResponseHeaders</ref_name>
+        <ref_url>GetAllResponseHeaders</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ReadState</ref_name>
+        <ref_url>../../datatype/ReadState</ref_url>
+    </reference>
+</references>
+</manpage>

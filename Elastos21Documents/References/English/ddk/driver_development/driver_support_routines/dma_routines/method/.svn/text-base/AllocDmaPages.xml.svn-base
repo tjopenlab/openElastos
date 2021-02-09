@@ -1,0 +1,74 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+	<sample url="dma_routines\AllocDmaPages">AllocDmaPages</sample>
+	<volume>DMA Routines</volume>
+	<title>AllocDmaPages</title>
+	<routine_idx> ../../dma_routines.htm </routine_idx>
+	
+	<description>
+		<para>Allocates specified number of DMA memory pages.</para>
+	</description>
+	
+	<syntax>
+		<return_val>virtaddr_t </return_val>
+		<parameters>
+			<api_param>
+				<param_type> uint_t </param_type>
+				<param_name> uOrder </param_name>
+				<param_note>
+					<para>Log to the base 2 of allocated continuous physical pages, i.e. 2^uOrder continuous physical pages are allocated. The maximum value of uOrder cannot exceed the value specified by the c_uMaxOrder constant.</para>
+				</param_note>
+			</api_param>
+		</parameters>
+	</syntax>
+	
+	<return>
+		<table>
+			<th>
+				<td>Return Value</td><td>Description</td>
+			</th>
+			<tr>
+				<td>0</td><td>Allocation fails, not enough memory.</td>
+			</tr>
+			<tr>
+				<td>non 0 value</td><td>Allocation successful, returns starting address (virtual address) of DMA pages.</td>
+			</tr>
+		</table>
+	</return>
+	
+	<remarks>
+		<para>This function is used to allocate specified number of DMA memory pages. Once DMA memory pages are successfully allocated, driver can access DMA data transfer through these pages.</para>
+	</remarks>
+	
+	<requirements>
+		<system>
+			<system_name>
+				Elastos 2.0 or later.
+			</system_name>
+		</system>
+		<headerfile>
+			<file_name>dma.h</file_name>
+		</headerfile>
+	</requirements>
+	
+	<references>
+		<reference>
+			<ref_name>AllocDmaPage</ref_name>
+			<ref_url>AllocDmaPage</ref_url>
+		</reference>
+		<reference>
+			<ref_name>FreeDmaPage</ref_name>
+			<ref_url>FreeDmaPage</ref_url>
+		</reference>
+		<reference>
+			<ref_name>FreeDmaPages</ref_name>
+			<ref_url>FreeDmaPages</ref_url>
+		</reference>
+	</references>
+</manpage>

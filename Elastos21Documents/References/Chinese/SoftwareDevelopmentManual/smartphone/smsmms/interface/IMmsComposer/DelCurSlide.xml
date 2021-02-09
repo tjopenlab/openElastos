@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>短信彩信引擎</volume>
+<interface>IMmsComposer</interface><method> DelCurSlide </method>
+    <description>
+        <para>
+            删除当前页面及其包含的媒体资源信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <NoArguments/>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回S_OK；如果未初始化，则方法调用失败，并返回E_MMS_NOINIT。</para><para>            更多返回值，参见            <link url="../../sms_error.htm">            短信彩信返回值            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>elatype.h、stdlib.h、mmsdef.h、mmstype.h、CMmsComposer.h、_CMmsComposer.h</dll_name>
+        </dll>
+        <library>
+            <lib_name>ElDatabase.lib、elastos.lib、ElCRuntime.lib、ElUtilities.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            删除该页面以后，自动回到该页的下一个页面，如果该页就是最后一个页面，则回到该页的前驱页面，前驱页面为空，则停在第一个空白页面。
+        </para>
+    </remarks>
+</manpage>

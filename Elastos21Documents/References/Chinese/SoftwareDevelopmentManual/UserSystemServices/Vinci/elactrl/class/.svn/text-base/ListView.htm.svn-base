@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>ListView</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>ListView</b></h2></center>
+<small><p><b>头文件：</b>ElControls.h
+<p><b>程序库：</b>ElControls.dll
+（<b>备注：</b>当在 CAR 文件中通过 <a class="doxygen" href="../../../../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a> 引入 ElControls.dll 时，则无需在源文件中添加“include &lt;ElControls.h&gt;”该句；若 ElControls.dll 是在 sources 文件中引入的，则需要在源文件中添加“include &lt;ElControls.h&gt;”该句。有关更多信息请参考：<a class="doxygen" href="../../../../../car_technology/car.htm">CAR 编程入门</a>）</small>
+<hr size="1">
+<h4><li><b>详细描述：</b></h3>
+    <p>ListView 控件显示一个项列表，这些项带有项文本和图标（可选）来标识项的类型，用户可从中选择需要选中的项。图标的设置可参考：<a class="doxygen" href="../reference/SetBackgroundImage.htm">如何设置控件所显示的图像</a>
+  <p>列表中的项可以以三种视图显示，分别是小图标、详细信息以及九宫格。ListView 的行由 item 控制 ，列则由 column 控制，通过<a class="doxygen" href="CListView/CListView_New.htm">构造函数</a>创建了一个 ListView 对象后，需要先调用 <a class="doxygen" href="../interface/IListView/InsertColumn.htm">InsertColumn</a> 或 <a class="doxygen" href="../interface/IListView/AddColumn.htm">AddColumn</a> 方法创建列表视图的列信息（使用上述两个方法相当于为 ListView 创建列模版，任何数据信息，包括文本和图标不会在这个时候添加到 ListView 中），然后方可调用 <a class="doxygen" href="../interface/IListView/InsertItem.htm">InsertItem</a> 或 <a class="doxygen" href="../interface/IListView/InsertItem.htm">AddItem</a> 方法为列表视图插入行，同时行信息将显示在插入行的第一列，该行后续列的信息可以通过 <a class="doxygen" href="../interface/IListView/SetItem.htm">SetItem</a> 方法设置。如果 item 总数超出可以显示的项数，则自动向 ListView 控件添加滚动条。如果 Column 总数超出可以显示的范围，则需要通过使用 <a class="doxygen" href="../datatype/ControlStyle.htm">ControlStyle_HScroll</a> 风格，方可显示超出显示范围的列。
+    <p>ListView 内列表项显示字体的风格受 <a class="doxygen" href="../../graphics/class/CFont.htm">Font</a> 控制，通过调用 <a class="doxygen" href="../interface/IListView/SetColumnFont.htm">SetColumnFont</a>方法可以实现字体的改变。有关更多信息请参考：<a class="doxygen" href="../reference/SetText.htm">如何设置控件所显示的文本</a>。 
+    <p><b>注意：</b>ListView 必须放在一个 <a class="doxygen" href="Form.htm">Form</a> 内，或者 ListView 的 parent 控件在一个 Form 内。
+<hr size="1">
+<h4><li><b>CListView类封装图：</b></font></h4>
+<center> <img src="images/CListView.jpg"> </center>
+        <p>如图所示，JControlEvents（通用回调事件接口）、JListViewEvents 为回调事件接口，用户可以通过 AddXXXCallback 的方法为 ListView 注册回调事件，当该 XXX 事件发生时，相应的回调处理函数会被调用。当销毁一个对象前，需要调用 RemoveXXXCallback 取消该事件。具体 Callbak 机制的介绍，详见 Elastos 编程入门中 Callback 这节。
+        <p>当使用 <a class="doxygen" href="CListView/CListView_New.htm">New</a> 方法创建了一个 ListView 对象后，可以获得 <a class="doxygen" href="../interface/IListView.htm">IListView</a> 接口指针，通过该接口指针用户可以调用接口内的方法对 ListView 进行一系列操作，IListViewPaint 接口可以通过IListView 接口 Probe 得到，更多内容可以参考：对象生命周期管理。
+
+<hr size="1">
+<h4><li><b>构造函数：</b></font></h4>
+<table>
+<thead><td>名称</td><td class="memitem">说明</td></thead>
+<tr><td><a class="doxygen" href="CListView/CListView_New.htm">CListView::New</as></td><td>创建一个 ListView 对象</td></tr>
+</table>
+<h4><li><b><a class="doxygen" href="../interface/IListView.htm">IListView 接口方法列表</a></b></font></h4>
+<ul><p><b>注：</b>IListView 接口继承于 <a class="doxygen" href="../interface/IControl.htm">IControl</a> 接口。</ul>
+
+<h4><li><b><a class="doxygen" href="../interface/JListViewEvents.htm">ListView 回调事件列表</a></b></font></h4>
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+	<head>
+		<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+		<title>CarClass定义</title>
+	</head>
+
+	<body>
+		<h3>CarClass定义 </h3>
+        <pre class= code>
+#define CarClass(name)      class name : public _##name
+        </pre>
+    <h3>使用说明 </h3>
+        <p>1.在.car文件中声明一个CHello类，如下所示： </p>
+        <pre class =code>
+module www.elastos.com/car/HelloDemo.dll
+{
+    interface IHello{
+        Hello();
+    }
+    class <b>CHello</b>{
+        interface IHello;
+    }
+} 
+        	
+        </pre>        
+        <p>2. 在.car文件编译之后会生成<b>CHello.h</b>的头文件，头文件中有如下定义: </p>
+        <pre class =code>
+#ifndef __CHELLO_H__
+#define __CHELLO_H__
+#include "_CHello.h"
+
+<b>CarClass(CHello)     //在编译时被替换为：class CHello:public _CHello</b> 
+{
+public:
+      CARAPI Hello();
+private:
+      // TODO: Add your private member variables here.
+};
+#endif // __CHELLO_H__
+ 	
+        </pre>
+	</body>
+		
+</html>

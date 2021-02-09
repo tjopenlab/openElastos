@@ -1,0 +1,63 @@
+   <!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>I/O Interface</volume>
+<interface>IAbsoluteIO</interface><method> GetSize </method>
+    <description>
+        <para>
+        	Gets the size of the file object.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UINT* </param_type>
+                <param_name> pSize </param_name>
+                <param_note>
+                    <para>
+						The size of the file.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value </td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>S_OK</td>
+		        <td>Function succeeds in getting the size of the file.</td>
+	        </tr>
+	        <tr>
+		        <td>E_INVALIDARG</td>
+		        <td>Parameter pSize is NULL.</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			IBasicDirectory pointer cannot get IAbsoluteIO pointer by QueryInterface, so it is not meaningful 
+			to get the size of the directory. Other methods of IAbsoluteIO interface like <b>SetSize, Read, 
+			Write</b> etc cannot be used on directory object.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

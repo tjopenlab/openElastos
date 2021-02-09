@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_memicmp">_memicmp</sample>
+    <title> _memicmp</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>比较两个缓冲区中的字符（忽略大小写）。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_memicmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>buf1</param_name>
+                <param_note>
+                    <para>第一个缓冲区</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>buf2</param_name>
+                <param_note>
+                    <para>第二个缓冲区</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>unsigned int</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>字符的个数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+     
+   
+
+
+    <return>
+        <para>返回值显示两个缓冲区的关系。</para>
+        <table>
+            <th>
+                <td>返回值</td>
+                <td>buf1与buf2前count个字节，字符之间的关系</td>
+            </th>
+            <tr>
+                <td>&lt; 0</td>
+                <td>buf1小于buf2</td></tr>
+            <tr>
+                <td>0</td>
+                <td>buf1与buf2相同</td></tr>
+            <tr>
+                <td>&gt; 0</td>
+                <td>buf1大于buf2</td></tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>函数_memicmp对buf1和buf2两个缓冲区的前count个字符逐字节进行比较，比较不区分大小写。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_memicmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+     </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _memicmp.cpp: This program uses _memicmp to compare
+ * the first 29 letters of the strings named first and
+ * second without regard to the case of the letters.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    int result;
+    char first[] = &quot;Those Who Will Not Learn from History&quot;;
+    char second[] = &quot;THOSE WHO WILL NOT LEARN FROM their mistakes&quot;;
+    /* Note that the 29th character is right here ^ */
+
+    printf(&quot;Compare &apos;%.29s&apos; to &apos;%.29s&apos;\n&quot;, first, second);
+    result = _memicmp(first, second, 29);
+    if (result &lt; 0)
+        printf(&quot;First is less than second.\n&quot;);
+    else if (result == 0)
+        printf(&quot;First is equal to second.\n&quot;);
+    else if (result &gt; 0)
+        printf(&quot;First is greater than second.\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Compare &apos;Those Who Will Not Learn from&apos; to &apos;THOSE WHO WILL NOT LEARN FROM&apos;
+First is equal to second.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>memcmp</ref_name>
+            <ref_url>memcmp</ref_url>
+        </reference>
+    </references>
+
+</manpage>

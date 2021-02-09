@@ -1,0 +1,92 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_unlink">_unlink</sample>
+    <title>_unlink, _wunlink</title>
+    <volume>C Run-Time Library</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Deletes files.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_unlink</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>Pointer to the name of file to be deleted.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wunlink</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns 0 if successful. Otherwise, returns -1. When the file is read only, cannot find file or path or specified parameter filename is directory name or file is in use, this function fails.</para>
+    </return>
+
+    <remarks>
+        <para>Function _unlink deletes file specified by filename. _wunlink is the wide character version of _unlink. _wunlink's parameter filename is a wide character string. Besides that, the two functions are identical.All file descriptors of current file must be closed before deleting file.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_unlink</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wunlink</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _unlink.cpp: This program uses _unlink to delete UNLINK.OBJ. */
+
+#include &lt;io.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    if (_unlink(&quot;unlink.obj&quot;) == -1)
+        printf(&quot;Could not delete &apos;UNLINK.OBJ&apos;\n&quot;);
+    else
+        printf(&quot;Deleted &apos;UNLINK.OBJ&apos;\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Deleted &apos;UNLINK.OBJ&apos;
+</result>
+
+    
+
+</manpage>

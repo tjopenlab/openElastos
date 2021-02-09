@@ -1,0 +1,98 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\iscsym">iscsym</sample>
+    <title>iscsym</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>iscsym returns a non-zero value if c is a letter, underscore, or digit.otherwise ,it returns 0.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>iscsym</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Input integer</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>iscsym returns a non-zero value if c satisfies the test condition.otherwise,it returns 0.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>iscsym</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* iscsym.cpp: This program uses iscsym to verify c
+ * whether it is an english character, UnderLine Character or Number.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+
+   {
+    int c = &apos;a&apos;;
+    if(iscsym(c))
+        printf(&quot;%c is an English character, UnderLine Character or Number! \n&quot;,c);
+    else
+        printf(&quot;%c is not an English character,  UnderLine Character and Number!\n&quot;,c);
+    
+    c = &apos;_&apos;;
+    if(iscsym(c))
+        printf(&quot;%c is an English character, UnderLine Character or Number! \n&quot;,c);
+    else
+        printf(&quot;%c is not an English character,  UnderLine Character and Number!\n&quot;,c);
+
+    c = &apos;1&apos;;
+    if(iscsym(c))
+        printf(&quot;%c is an English character, UnderLine Character or Number! \n&quot;,c);
+    else
+        printf(&quot;%c is not an English character,  UnderLine Character and Number!\n&quot;,c);
+
+    c = &apos;?&apos;;
+    if(iscsym(c))
+        printf(&quot;%c is an English character, UnderLine Character or Number! \n&quot;,c);
+    else
+        printf(&quot;%c is not an English character, UnderLine Character and Number!\n&quot;,c);
+        
+    return 0;
+
+}
+</pre>
+    </example>
+<result>
+a is an English character, UnderLine Character or Number!
+_ is an English character, UnderLine Character or Number!
+1 is an English character, UnderLine Character or Number!
+? is not an English character,  UnderLine Character and Number!
+</result>
+
+
+
+</manpage>

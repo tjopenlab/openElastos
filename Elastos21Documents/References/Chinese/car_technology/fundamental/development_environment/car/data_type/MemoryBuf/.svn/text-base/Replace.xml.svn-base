@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    
+    
+    <volume> 常用数据结构 </volume>
+    <interface>MemoryBuf</interface>
+    <method> Replace </method>
+
+    <description>
+        <para> 用源buffer中字节值替换MemoryBuf对象从指定位置开始的buffer中的字节值。</para>
+    </description>
+
+    <syntax>
+        <return_val> MemoryBuf &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> offset </param_name>
+            <param_note>
+                <para> 开始替换位置。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>const Byte*</param_type>
+            <param_name> pBuf </param_name>
+            <param_note>
+                <para> 指向源buffer的指针。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> n </param_name>
+            <param_note>
+                <para> 替换字节数。 </para>
+            </param_note>
+        </api_param>                
+        </parameters>
+    </syntax>
+    
+    <return>
+        <para>返回指向MemoryBuf对象指针。</para>
+    </return>
+    <remarks>     
+      <para>1.当pBuf指针为空时，Replace无效。</para>
+      <para>2.n&lt;=0或offset大于当前对象的buffer的已使用大小，Replace无效。</para>
+      <para>3.n大于MemoryBuf对象buffer总大小时，多余部分不予考虑,MemoryBuf对象buffer已使用大小为buffer总大小。</para>
+   </remarks> 
+
+
+<references>
+    <reference>
+        <ref_name>MemoryBuf</ref_name>
+        <ref_url>../MemoryBuf</ref_url>
+    </reference>
+</references>
+  
+
+</manpage>

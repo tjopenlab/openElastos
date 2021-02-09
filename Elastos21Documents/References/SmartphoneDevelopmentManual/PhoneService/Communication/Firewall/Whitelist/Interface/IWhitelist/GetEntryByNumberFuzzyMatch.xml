@@ -1,0 +1,98 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBlacklist</interface><method> GetEntryByNumberFuzzyMatch </method>
+    <description>
+        <para>
+              根据给定的白名单内容，返回查找到的记录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> wsPattern </param_name>
+                <param_note>
+                    <para>
+                          电话号码
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nPatternType </param_name>
+                <param_note>
+                    <para>
+                          区别电话号码还是email，这里只接受电话号码
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nBlockType </param_name>
+                <param_note>
+                    <para>
+                          来电还是信息
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IObjectEnumerator ** </param_type>
+                <param_name> ppEnum </param_name>
+                <param_note>
+                    <para>
+                          返回的白名单对象枚举器接口指针
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT </td>
+	    	    <td>参数错误 </td>
+	        </tr>
+	        <tr>
+	    	    <td>数据库错误码 </td>
+	    	    <td>数据库错误 </td>
+        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../../QuickReference/ECode.htm">ECode</link>和 <link url="../../../../../../QuickReference/DBError.htm">数据库错误码 </link>相关帮助。 </para>
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            该方法所使用的匹配算法如下：
+        </para>
+        <para>
+            1.如果号码小于7位,使用精确匹配;
+        </para>
+        <para>
+            2.如果号码大于等于7位,小于等于12位,按照实际号码位数,由多向少匹配[12位][*(后11位) ||*(后10位) || *(后9位) || *(后8位) || *(后7位)];
+        </para>
+        <para>
+            3.号码大于12位,高位截断,按照第二条规则处理
+        </para>
+    </remarks>
+</manpage>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>XmlGlue:XmlGlue</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="Script_Language.html"><span>XmlGlue支持的脚本语言</span></a></li>
+    <li class="current"><a href="XmlGlue_CAR.html"><span>脚本中的CAR构件及其使用</span></a></li>
+    <li><a href="XmlGlue_Globals.html"><span>预定义对象</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="XmlGlue_CAR.html"><span>脚本中的CAR构件类型</span></a></li>
+    <li class="current"><a href="CAR_usage.html"><span>CAR构件在脚本中的使用</span></a></li>
+    <li><a href="method_usage.html"><span>在脚本中使用构件函数</span></a></li>
+    <li><a href="notes.html"><span>脚本编程中的注意事项</span></a></li>
+  </ul>
+</div>
+<h1>CAR构件在脚本中的使用</h1>
+<p>
+<html>
+<head>
+<title>CAR构件在脚本中的使用</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<h2>CAR构件在脚本中的使用</h2>
+<p>在前一章节中我们已经了解到XmlGlue为我们提供强大的构件支持，那么在脚本中该如何使用它们呢？</p>
+<p>这里要分两种情况对待，对于ElGrafix.dll、ElControls.dll，用户可以直接在脚本中使用它们的别名Grafix和Controls；而对于其他构件，如用户自定义的CAR构件等，首先是加载构件映像模块，然后实例化构件中的构件类，再用构件对象就可以调用其中的方法进行使用。</p>
+<p>这里只介绍非标签控件构件的使用。</p>
+<h3>构件映像模块的加载</h3>
+<p>鉴于以上的说明，对于系统构件，如ElGrafix.dll、ElControls.dll默认已加载，且别名分别为Grafix和Controls，用户在脚本中可直接使用其别名获取CAR构件映像模块;对于用户自定义的CAR构件映像模块的加载，则是先通过manifest.xml文件中使用<a href="../xml_programming/module.html">module</a>标签指定,再使用其别名（alias)获取CAR构件映像模块。
+
+<h3>构件类的实例化</h3>
+<p>所谓构件类，是指在CAR构件中定义的类（class）。实例化构件类，就是对已加载的构件映像参照其中相关构件类的构造函数，调用XmlGlue中的方法CreateObject来实现。在Lua中，以实例化图形构件ElGrafix中的图片类（CImage）为例，其格式可以有一下两种，但结果都是一样：</p>
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>
+ image=Grafix.CImage：CreateObject({filePath = "images/puzzle4x4.png"},
+            {format = 4});
+ image=Grafix.image：CreateObject（{filePath = "images/puzzle4x4.png"},
+            {format = 4});
+</td></tr></table>
+<p>其中，表达式右边的image是实例化的对象的名字。参数filePath用于指定图片资源的位置。参数format用于指定图片格式,其数值类型为枚举类型,此处为4，即png格式。</p>
+<p>CreateObject方法要求必须用构件类的相关构造函数中的相应参数，并以{<i>键值对</i>}的形式显示的初始化各参数，同时多个{<i>键值对</i>}之间以","分隔。若此构件类的相关构造函数无参数，则{<i>键值对</i>}内容为空。
+<p>当实例化构件类后，就可以相应类的接口方法了。如上面的例子，用实例化的对象的名字：image就可以调用图片类（CImage）中的方法了。</p>
+<p><b><font color=red>注意</font></b>：
+<ol>
+   <li>对于具体的构件类，其实例化方法CreateObject用到的参数与该构件类的构造函数的入参保持一致（包括参数名，参数的数值类型），同时对于同一构件类的不同的构造函数提供的参数将创建不同的构件类对象。
+   <li>构件类至少有一个构造函数，并参照该对象的第一个构造函数的相关的入参来创建该对象。
+</ol>
+<p>对于图形构件：ElControls，我们也可以在脚本通过同样的方法来创建某个控件对象(Form控件除外）。如下例所示。
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>
+ECode CLabel::Constructor ( 
+ /*[in]*/ WString  caption , 
+ /*[in]*/ Int32  style , 
+ /*[in]*/ Int32  x , 
+ /*[in]*/ Int32  y , 
+ /*[in]*/ Int32  width , 
+ /*[in]*/ Int32  height , 
+ /*[in]*/ IControl *  parent , 
+ /*[out]*/ ILabel**  label  
+) ; 
+
+
+</td></tr></table>
+<p>其中入参parent为父亲控件指针。
+<p>按照其构造函数的定义，在脚本中创建此控件	
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+&lt;x:elastos xmlns:x="http://www.elastos.com/XmlGlue/2.1"
+    xmlns="http://www.elastos.com/XmlGlue/Widgets"&gt;
+      &lt;form x:id="main"  x="10" width="220" height="300" visible="true"&gt;
+          &lt;textBox x:id="mytextBox"  x="80" y="20" width="100" height="40"/&gt;
+      &lt;/form&gt;
+      &lt;x:script&gt;
+      &lt;![CDATA[
+
+          label = Controls.label:CreateObject({caption = "姓名"},
+                                                {style = elcontrols.LabelStyle.Center},
+                                                {x = 10},
+                                                {y = 10},
+                                                {width = 50},
+                                                {height = 50},
+                                                {parent = main})
+
+      ]]&gt;
+      &lt;/x:script&gt;    
+&lt;/x:elastos&gt;       
+</td></tr></table>
+<p>按照其构造函数的定义，在脚本中创建此控件对象如上代码所示。此处设定parent为其容器控件form的属性x:id的值，其中form为用XML标签创建的窗口对象。当然若父控件为在脚本中创建的对象，再在脚本中创建此控件的子控件时，则子控件的相应的parent参数可以为脚本中相应的父控件的对象名。
+
+<p>关于控件构件ElControl、绘图构件ElGrafix各构件类的的构造函数请参考本资料大全中的<b>Elastos开发手册&gt;基本系统构件&gt;图形系统&gt;控件（绘图）</b>各类的构造函数部分。
+</body>
+</html>
+ <script>footer("chinese")</script>
+
+
+</body>
+</html>

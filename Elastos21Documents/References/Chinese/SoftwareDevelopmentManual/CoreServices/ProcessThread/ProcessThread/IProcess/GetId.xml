@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\GetId">GetId</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> GetId </method>
+    <description>
+        <para>
+           获取IProcess接口所指向进程的ID号。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ProcessId * </param_type>
+                <param_name> pPid </param_name>
+                <param_note>
+                    <para>
+						 ProcessId型的指针，用于获取进程标识，不能为空。
+                    </para>
+                </param_note>
+            </api_param>
+
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取进程ID</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		   进程ID用于唯一标识系统中的进程。在进程运行时，进程ID全局唯一；进程结束后，进程ID可能会被系统重新用作标识其它不相干的进程。一般情况下，进程ID并没有被广泛地使用，取而代之的是进程接口指针。
+		</para>
+
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>照相摄像引擎模块</volume>
+<interface>ICamera</interface><method> Start </method>
+    <description>
+        <para>
+            启动相机进入预览或摄像模式。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> CamMode </param_type>
+                <param_name> eCamMode </param_name>
+                <param_note>
+                    <para>
+数码相机启动的模式（预览或摄像）                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果方法调用失败，返回E_FAIL；如果参数无效，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>camera.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib，ElCRuntime.lib</lib_name>
+        </library>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>Stop</ref_name>
+            <ref_url>Stop</ref_url>
+        </reference>
+    </references>
+</manpage>

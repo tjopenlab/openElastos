@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> 常用数据结构 </volume>
+    <class>U8StringBuf</class>
+    <method> Copy </method>
+
+    <description>
+        <para> 将U8String对象字符串拷贝到当前U8StringBuf对象字符串中。</para>
+    </description>
+
+   
+    <syntax>
+        <return_val> U8StringBuf &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type> U8String &amp;</param_type>
+            <param_name>as</param_name>
+            <param_note>
+                <para> U8String对象 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type> Int32 </param_type>
+            <param_name>len </param_name>
+            <param_note>
+                <para> 指定的长度 </para>
+            </param_note>
+        </api_param>
+        
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回U8StringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>超过U8StringBuf对象可用的长度会被省略掉。 </para>
+    </remarks>
+<example>
+<pre>
+U8StringBuf_&lt;5&gt; u8sbuf;
+U8String as="123";
+u8sbuf.Copy(as, 2);
+CConsole::WriteLine(u8sbuf);  //Display : "12"
+u8sbuf.Copy("abcd", 1);
+CConsole::WriteLine(u8sbuf);  //Display : "a"	
+</pre>
+</example>
+ <references>
+    <reference>
+        <ref_name>U8StringBuf::Copy</ref_name>
+        <ref_url>Copy2</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>U8StringBuf::Copy</ref_name>
+        <ref_url>Copy1</ref_url>
+    </reference>
+</references>   
+
+     
+</manpage>

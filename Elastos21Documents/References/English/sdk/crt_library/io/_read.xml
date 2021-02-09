@@ -1,0 +1,127 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_read">_read</sample>
+    <title> _read</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>Reads data from a file.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_read</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>File descriptor.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>Data storage location.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>unsigned int</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Maximum number of bytes.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_read returns the number of bytes read, which may be less than count.if there are fewer than count bytes left in the file or if the file was opened in text mode, in which case each carriage return - linefeed (CR-LF) pair is replaced with a single linefeed character. Only the single linefeed character is counted in the return value. The replacement does not affect the file pointer.</para>
+        <para>If the function tries to read at end of file, it returns 0. If the handle is invalid,the file is not open for reading or the file is locked,then the function returns -1 and sets errno to EBADF.</para>
+    </return>
+
+    <remarks>
+        <para>The _read function reads a maximum of count bytes into buffer from the file associated with handle. The read operation begins at the current position of the file pointer associated with the given file. After the read operation, the file pointer points to the next unread character.</para>
+        <para>If the file was opened in text mode, the read terminates when _read encounters a CTRL+Z character, which is treated as an end-of-file indicator. Use _lseek to clear the end-of-file indicator.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_read</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _read.cpp: This program opens a file named
+ * _read.cpp and tries to read 60,000 bytes from
+ * that file using _read. It then displays the
+ * actual number of bytes read from READ.C.
+ */
+
+#include &lt;fcntl.h&gt;        /* Needed only for _O_RDWR definition */
+#include &lt;io.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+char buffer[60000];
+
+int main()
+{
+    int fh;
+    unsigned int nbytes = 60000, bytesread;
+
+    /* Open file for input: */
+    if ((fh = _open(&quot;_read.exe&quot;, _O_RDONLY)) == -1) {
+        perror(&quot;open failed on input file&quot;);
+        exit(1);
+    }
+
+    /* Read in input: */
+    if ((bytesread = _read(fh, buffer, nbytes)) &lt;= 0)
+        perror(&quot;Problem reading file&quot;);
+    else
+        printf(&quot;Read %u bytes from file\n&quot;, bytesread);
+
+    _close(fh);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Read 6152 bytes from file
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_wopen</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wcreat</ref_name>
+            <ref_url>_wcreat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_write</ref_name>
+            <ref_url>_write</ref_url>
+        </reference>
+    </references>
+
+</manpage>

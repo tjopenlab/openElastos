@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+
+    <volume>线程与调度</volume>
+    <title>DzDelay</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>使当前线程延迟一段指定的时间。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Microsecond </param_type>
+                <param_name> us </param_name>
+                <param_note>
+                    <para>指定一个期望的延迟时间长度，单位为微秒</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本函数使当前线程延迟一段指定的时间。如果实际延迟的时间超过所指定的时间，当前线程就会结束延迟，从本函数中返回。在延迟期间，线程将一直保持运行状态，并且不会主动放弃处理器。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>DzSleep</ref_name>
+            <ref_url>DzSleep</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzSleep(uint_t, WaitResult*)</ref_name>
+            <ref_url>DzSleepTicks</ref_url>
+        </reference>
+    </references>
+
+
+</manpage>

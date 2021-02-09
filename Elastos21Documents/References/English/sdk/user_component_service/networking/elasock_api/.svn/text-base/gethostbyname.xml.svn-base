@@ -1,0 +1,73 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>gethostbyname</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>返回主机名的相关主机信息。</para>
+    </description>
+
+    <syntax>
+        <return_val>struct hostent *</return_val>
+        <parameters>
+            <api_param>
+                <param_type>const char*</param_type>
+                <param_name>name</param_name>
+                <param_note>
+                    <para>指向主机名的指针。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果程序运行成功，返回一个指向hostent结构的指针；否则，返回一个空指针，应用程序可通过WSAGetLastError()获得具体的错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>gethostbyname()返回一个指向hostent结构的指针。该结构含有所需的主机地址数据</para>
+        <para>应用程序不能试图修改这个结构，或者试图释放该结构。此外，每个线程仅有一份该结构的拷贝，因此，在该结构被elasock函数再次使用之前，需要将所需的信息拷贝下来。</para>
+        <para>gethostbyname()不能识别传送给它的IP地址串，它会把IP地址串当作主机名进行处理。因此，如果需要处理IP地址串，必须先通过inet_addr()把地址串转换为IP地址，然后调用gethostbyaddrr()来获得hostent结构。</para>
+        <para>应用程序可以通过调用gethostname()获得gethostbyname()所需的主机名。</para>
+        <para>《和欣 2.0》暂不支持主机多名和多址。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>gethostbyaddr</ref_name>
+            <ref_url>gethostbyaddr</ref_url>
+        </reference>
+        <reference>
+            <ref_name>inet_ntoa</ref_name>
+            <ref_url>inet_ntoa</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

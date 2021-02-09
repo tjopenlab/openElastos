@@ -1,0 +1,62 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>照相摄像</volume>
+<interface>ICamera</interface><method> GetFrame </method>
+    <description>
+        <para>
+          获取存放帧数据buffer的指针及帧Id，当引擎数据帧准备好时会通过回调通知上层用户调用此函数取帧。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> void ** </param_type>
+                <param_name> ppFramesBuf </param_name>
+                <param_note>
+                    <para>
+                      指向数据帧缓冲取的指针
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> nFrameId </param_name>
+                <param_note>
+                    <para>
+                      指向帧Id的指针（照相则表示拍照张数）
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION</td>
+	    	    <td>操作无效（数据帧未准备好）</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+	    <para></para>
+    </return>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

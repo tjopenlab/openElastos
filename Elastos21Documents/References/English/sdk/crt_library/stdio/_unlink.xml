@@ -1,0 +1,68 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_wunlink">_wunlink</sample>
+    <title>_unlink, _wunlink</title>
+    <volume>C Run-Time Library Functions</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Deletes a file. </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_unlink</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>Name of file to remove.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wunlink</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns 0 if successful. Otherwise, the function returns –1, which means the path specifies a read-only file, or the file or path is not found, or the path specified is a directory or the file is used by another program.</para>
+    </return>
+
+    <remarks>
+        <para>The _unlink function deletes the file specified by filename. The _wunlink function is a wide-character version of _unlink. The filename argument to _wunlink is a wide-character string. These functions behave identically otherwise. Before the file is deleted, all handles to the file must be closed.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_unlink</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wunlink</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example></example>
+
+
+
+</manpage>

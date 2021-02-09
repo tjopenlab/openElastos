@@ -1,0 +1,87 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\AllocPage">AllocPage</sample>
+    <volume>Memory Management Methods</volume>
+    <title>AllocPage</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>
+        	Allocates a physical page.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>physaddr_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> uint_t</param_type>
+                <param_name> uPreferredZoneNo </param_name>
+                <param_note>
+                    <para>
+                    	Specified preferred physical memory zone number. Method will allocate memory from this 
+                    	physical memory zone first.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>INVALID_PAGE_ADDRESS</td>
+                <td>Allocation fails, insufficient physical memory</td>
+            </tr>
+            <tr>
+                <td>Not INVALID_PAGE_ADDRESS</td>
+                <td>Allocation successful, returns the starting address (physical address) of the first physical page</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+    	<para>
+    		This method is used to allocate a physical page, it gets the page from physical memory specified by 
+    		<i>uPreferredZoneNo</i> first.
+    	</para>
+    	<para>
+    		Actually AllocPage(uPreferredZoneNo) is equivalent to AllocPages(0, uPreferredZoneNo).
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>FreePage</ref_name>
+            <ref_url>FreePage</ref_url>
+        </reference>
+        <reference>
+            <ref_name>FreePages</ref_name>
+            <ref_url>FreePages</ref_url>
+        </reference>
+        <reference>
+            <ref_name>AllocPages</ref_name>
+            <ref_url>AllocPages</ref_url>
+        </reference>
+    </references>
+</manpage>

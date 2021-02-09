@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\wcstombs">wcstombs</sample>
+    <title>wcstombs</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>将一个宽字符序列转换成对应的一个多字节字符序列。</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>wcstombs</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>mbstr</param_name>
+                <param_note>
+                    <para>指向多字节字符序列的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>wcstr</param_name>
+                <param_note>
+                    <para>指向宽字符序列的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>能够被存入的多字节输出字符串的最大字节数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果wcstombs成功转换了多字节字符串，它返回写入多字节输出字符串的字节数，不包括用来终止的结束符（如果有的话）。如果参量mbstr为NULL，wcstombs返回目的字符串需要的尺寸。如果wcstombs遇到一个并不能被转化为多字节字符的宽字符，它返回转型为size_t类型的-1。</para>
+    </return>
+
+    <remarks>
+        <para>wcstombs函数转换由wcstr指向的宽字符字符串到对应的多字节字符串，并将结果存入mbstr数组。参量count指明了能够被存入的多字节输出字符串的最大字节数（即：mbstr的大小）。通常，在转化一个宽字符字符串时并不知道到底需要多少字节。某些宽字符在输出字符串中只需一个字节，其它的则需要两个字节。如果在多字节输出字符串中对应在输入字符串中的每一个宽字符都有两个字节（包括宽字符NULL），结果保证会被填好。</para>
+        <para>如果wcstombs遇到一个宽字符结束符（L'\0'），无论是在count出现之前或count出现时，函数都会将之转化成一个8位0并停止。所以仅当在转换过程中wcstombs遇到了一个宽字符结束符，由mbstr所指的多字符字串才是以结束符结尾的。如果由mbstr和wcstr所指向的序列有重叠，wcstombs的行为是不确定的。</para>
+        <para>如果mbstr参量为NULL，wcstombs返回目的字符串所需的尺寸。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>wcstombs</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* wcstombs.cpp: this program use wcstombs to converts the multibyte string */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    int i;
+    char    pmbhello[13];
+    wchar_t *pwchello = L&quot;Hello,world!&quot;;
+
+    printf(&quot;Convert to multibyte string:%S\n&quot;, pwchello);
+    i = wcstombs(pmbhello, pwchello, 13);
+    printf(&quot;\tCharacters converted: %d\n&quot;, i);
+    printf(&quot;\tmultibyte character: %s\n\n&quot;, pmbhello);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Convert to multibyte string:Hello,world!
+Characters converted: 12
+multibyte character: Hello,world!
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>mbstowcs</ref_name>
+            <ref_url>mbstowcs</ref_url>
+        </reference>
+    </references>
+
+</manpage>

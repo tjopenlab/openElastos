@@ -1,0 +1,94 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>程序调试工具</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+    <h2>GDB基本命令集（一）</h2>
+        <p>GDB的命令有很多，本文档只介绍调试运行中程序的基本命令。<font color="red"><b>需要注意的是，不是所有的GDB命令在Elastos的STUB上都有效。</b></font></p>
+    <h4>GDB基本命令列表</h4>
+    <p>本文将GDB的基本命令总结成如下列表。要详细了解一些GDB常用命令的用法请参见<a class="style1" href="gdb_command2.htm">GDB基本命令集（二）</a>。</p>
+    <table>
+        <thead>
+            <td>命令名称</td>
+            <td>功能</td>
+        </thead>
+        <tr>
+            <td><a class="style1" href="gdb_command2.htm#break">break</a></td>
+            <td>设置断点命令，使程序执行到断点处被挂起</td>
+        </tr>
+        <tr>
+            <td><a class="style1" href="gdb_command2.htm#breaktrace">breaktrace(bt)</a></td>
+            <td>查看当前函数栈信息</td>
+        </tr>
+        <tr>
+            <td><a class="style1" href="gdb_command2.htm#clear">clear</a></td>
+            <td>清除指定的断点</td>
+        </tr>
+        <tr>
+            <td><a class="style1" href="gdb_command2.htm#delete">delete</a></td>
+            <td>删除指定的断点</td>
+        </tr>
+        <tr>
+            <td><a class="style1" href="gdb_command2.htm#disable">disable</a></td>
+            <td>使指定的断点失去作用</td>
+        </tr>
+        <tr>
+            <td>disassemble</td>
+            <td>查看源程序的当前执行时的机器码</td>
+        </tr>
+        <tr>
+            <td><a class="style1" href="gdb_command2.htm#enable">enable</a></td>
+            <td>恢复指定的断点功能</td>
+        </tr>
+        <tr>
+            <td><a class="style1" href="gdb_command2.htm#examine">examine(x)</a></td>
+            <td>查看内存中的值</td>
+        </tr>
+        <tr>
+            <td>finish</td>
+            <td>运行程序，直到当前函数完成返回，并打印函数返回时的堆栈地址和返回值及参数值等信息</td>
+        </tr>
+        <tr>
+            <td><a class="style1" href="gdb_command2.htm#info">info</a></td>
+            <td>显示与程序有关的各种信息</td>
+        </tr>
+        <tr>
+            <td>kill</td>
+            <td>退出当前运行的程序，终止调试，但在宿主机上的GDB不退出</td>
+        </tr>
+        <tr>
+            <td><a class="style1" href="gdb_command2.htm#list">list</a></td>
+            <td>显示程序的源代码 </td>
+        </tr>
+        <tr>
+            <td>next</td>
+            <td>单步跟踪，但不进入调用函数内部</td>
+        </tr>
+        <tr>
+            <td><a class="style1" href="gdb_command2.htm#print">print(p)</a></td>
+            <td>显示变量或表达式的值</td>
+        </tr>
+        <tr>
+            <td>quit</td>
+            <td>退出当前运行的程序，终止调试，在宿主机上的GDB也退出</td>
+        </tr>
+        <tr>
+            <td>step</td>
+            <td>单步跟踪，进入调用函数内部</td>
+        </tr>
+        <tr>
+            <td>until(u)</td>
+            <td>结束当前循环 </td>
+        </tr>
+    </table>
+
+
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\direct\_chdir">_chdir</sample>
+    <title> _chdir, _wchdir</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> dir_idx.htm </routine_idx>
+
+    <description>
+        <para>改变当前的工作目录。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_chdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>dirname</param_name>
+                <param_note>
+                    <para>新的工作目录路径</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wchdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>dirname</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果成功则函数返回0，如果失败则函数返回-1。如果指定的路径没有找到，则errno被设置为ENOENT；若dirname为NULL且运行继续的话则errno被设置为EINVAL并且函数的返回值为-1。</para>
+    </return>
+
+    <remarks>
+            <para> _chdir可以将当前工作目录改变为dirname所指定的目录。dirname参数必须表明一个已经存在的目录。这个函数可以将当前工作目录改变为任何驱动器下的目录，而且如果在dirname中指定了新的驱动器，则默认驱动器也会相应改变。例如，如果A是默认驱动器而\BIN是当前工作目录，下面的调用会改变当前工作目录为驱动器C，并建立C作为新的默认驱动器：</para>
+            <para> _chdir("c:\\temp"); </para>
+            <para> 当在路径中使用反斜杠符“\”时，必须使用双反斜杠“\\”来表示单一的“\”。 </para>
+            <para> _wchdir是_chdir的宽字节版本；_wchdir中的dirname参数是宽字节字符串，除此外两者一样。 </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_chdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wchdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _chdir.cpp: This program uses the _chdir function to verify
+ * that a given directory exists.
+ */
+
+#include &lt;direct.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    if (_chdir(&quot;\\Elastos21&quot;))
+       printf(&quot;Unable to locate the directory: %s\n&quot;, &quot;\\Elastos21&quot;);
+    else
+       printf(&quot;this directory: %s exists\n&quot;, &quot;\\Elastos21&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+this directory: \Elastos21 exists
+</result>
+
+    
+
+</manpage>

@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>stackPanel标签/控件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li class="current"><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li class="current"><a href="annotated.html"><span>图形标签(控件)列表</span></a></li>
+    <li><a href="attribute.html"><span>图形标签通用属性</span></a></li>
+    <li><a href="event.html"><span>图形标签通用事件</span></a></li>
+    <li><a href="genstyle_8car.html"><span>图形标签通用风格</span></a></li>
+  </ul>
+</div>
+<h1>stackPanel标签/控件参考</h1><!-- doxytag: class="window" -->
+    面板，和<a href="class_panel.html">panel</a>类似都可以作为其它控件的容器。
+<a href="#_details">更多...</a>
+
+<hr><h2>命名空间</h2>
+http://www.elastos.com/XmlGlue/Widgets
+
+<hr><a name="_details"></a><h2>详细描述</h2>
+面板，和panel类似都可以作为其它控件(form除外）的容器。只是在panel里的控件布局是任意的，控件坐标由用户给定；而在stackPanel里，控件作为一项按照顺序或者九宫格的方式插入其中，控件所占空间位置固定。同时系统会自动为每个控件按顺序添加索引值index，例如，第一个插入的控件的index值为0，第二个插入的控件的index值为1，依此类推。
+<p><b>注：</b>用户可以在标签或脚本中在stackPanel内添加子控件。根据用户的需要，1.如果用户要要实现其显示风格中有List或Grid风格，无论在标签或脚本中创建了其子控件，用户还需要在脚本代码中调用AddItem或InsertItem方法将子控件添加至stackPanel中。2.若不调用这两个方法之一，含所创建的子控件的stackPanel整体将不会呈现List或Grid风格，即使已设置这二者之一的风格也将失效。
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>属性</h2></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>viewStyle</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置stackPanel内控件显示风格，<a href="StackPanelStyle.html">StackPanelStyle</a>枚举数据类型，使用形式为：枚举名:枚举值。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>StackPanelStyle</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>viewStyle="StackPanelStyle:List"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;stackPanel x:id="mystackPanel" x="0" y="0" width="240" height="320" viewStyle="StackPanelStyle:List"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><h3>其他属性：见<a class="el" href="attribute.html">通用属性</a>（该标签不具有”caption”属性）</h3></td></tr>
+</table>
+
+<hr><h2>事件</h2>
+
+<p>
+<b>注：</b>在xml部分注册回调事件时，可以写一个具体的执行语句，也可以写在脚本中定义的事件处理函数。
+   若在xml部分注册回调事件时，给该回调事件写了一个具体的执行语句，之后又在脚本中定义了该事件的事件处理函数，则触发该事件后会直接调用事件处理函数而忽略xml部分的具体的执行语句。
+   具体在xml部分注册回调事件的方法，可参照如下代码，示例中为stackPanel注册了一个appearing事件。
+<table border="0" cellpadding="0" cellspacing="10">
+<tr><td class="memitem" valign="bottom">
+    &lt;stackPanel x:id="mystackPanel" x="0" y="0" width="240" height="320" <font color=red>appearing="print('appearing')"</font>/&gt;（事件发生时，若脚本中没有另外定义事件处理函数，执行该可执行语句）
+</td></tr>
+<tr><td class="memitem" valign="bottom">
+    &lt;stackPanel x:id="mystackPanel" x="0" y="0" width="240" height="320" <font color=red>appearing="on_appearing()"</font>/&gt;（事件发生时，执行事件处理函数）
+</td></tr>
+</table>
+
+<p>
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">appearing</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当stackPanel中某个控件即将显示时，产生appearing事件。同时appearing指定的事件处理程序将被执行。要调用<a href="../../SoftwareDevelopmentManual/UserSystemServices/Vinci/elactrl/interface/IStackPanel/AddItem.htm">AddItem</a>或<a href="../../SoftwareDevelopmentManual/UserSystemServices/Vinci/elactrl/interface/IStackPanel/InsertItem.htm">InsertItem</a>可触发此事件。   
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">                                                               
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">appearing = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.appearing = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;stackPanel x:id="mystackPanel" x="0" y="0" width="240" height="320" appearing="on_appearing()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_appearing() 
+    ...
+    ...
+end
+mystackPanel.appearing= on_appearing
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">disappearing</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当stackPanel中某个控件即将消失时，产生disappearing事件。同时disappearing指定的事件处理程序将被执行。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">disappearing = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script:Lua]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.disappearing = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;stackPanel x:id="mystackPanel" x="0" y="0" width="240" height="320" disappearing="on_disappearing()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script:Lua]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_disappearing()
+    ...
+    ...
+end
+mystackPanel.disappearing = on_disappearing
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a><!-- doxytag: member="IDatabase::IsClosed" ref="80f8bf3a49657380380f1cf7ba46dec0" args="([out] Boolean *closed)" -->
+<b>其他事件</b>: 见<a class="el" href="event.html">通用事件</a>
+
+<hr><h2>控件风格</h2>
+<div class="memitem">
+<dl compact><dt><b>枚举值: </b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><em>List = 0x00000000,</em>&nbsp;</td><td>列表风格。 </td></tr>
+    <tr><td valign="top"><em>Grid = 0x00000001,</em>&nbsp;</td><td>九宫格风格。</td></tr>
+  </table>
+</dl>
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a>
+<b>其他风格</b>：见<a class="el" href="genstyle_8car.html">通用风格</a></td></tr>
+</div>
+<p>
+<b>注：</b>控件风格允许配合使用，例如将stackPanel的风格设置成具有焦点并以列表形式放置控件，可以这样：
+<center><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+    &lt;stackPanel ... style="StackPanelStyle:List ControlStyle:Focused" .../&gt;
+</td></tr></table></center>
+枚举名:枚举值的形式表示，且大小写敏感，不同风格间用空格分开。也可以将两种风格的枚举值作或运算，得到的结果赋给style，例如StackPanelStyle:List = 0x00000000，ControlStyle:Focused = 0x00400000，将两者进行或运算得0x00400000，于是style="0x00400000"。建议采用第一种写法，清晰明了。
+
+ <script>footer("chinese")</script>
+</body>
+</html>

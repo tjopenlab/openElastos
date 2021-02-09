@@ -1,0 +1,111 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>环境概述</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>DDK开发环境目录结构介绍</h2>
+        <h3>DDK的代码树结构</h3>
+        <center><img src="images/tree.jpg"></center>
+        <center>图一：DDK代码树结构</center>
+        <h3>各目录及子目录内容说明</h3>
+            <table>
+                <thead>
+                    <td>目录</td>
+                    <td>内容</td>
+                </thead>
+                                <tr>
+                    <td>build</td>
+                    <td>开发工具、开发环境 </td>
+                </tr>
+                <tr>
+                    <td>build\misc</td>
+                    <td>开发环境的快捷方式图标、环境初始化脚本及通用makefile的目录</td>
+                </tr>
+                <tr>
+                    <td>build\shortcuts</td>
+                    <td>开发环境的快捷方式</td>
+                </tr>
+                <tr>
+                    <td>build\tools</td>
+                    <td>开发工具，包括一些脚本和编译工具</td>
+                </tr>
+                <tr>
+                    <td>Extern</td>
+                    <td>Gnu和微软的编译工具</td>
+                </tr>
+                <tr>
+                    <td>Extern\EvcSDK.arm</td>
+                    <td>Evc提供的arm编译工具</td>
+                </tr><tr>
+                    <td>Extern\EvcSDK.mips</td>
+                    <td>Evc提供的mips编译工具</td>
+                </tr><tr>
+                    <td>Extern\GnuSDK.arm</td>
+                    <td>Gnu提供的arm编译工具</td>
+                </tr><tr>
+                    <td>Extern\GnuSDK.mips</td>
+                    <td>Gnu提供的mips编译工具</td>
+                </tr><tr>
+                    <td>Extern\GnuSDK.x86</td>
+                    <td>Gnu提供的x86编译工具</td>
+                </tr><tr>
+                    <td>Extern\IntelSDK.arm</td>
+                    <td>Intel提供的arm编译工具</td>
+                </tr><tr>
+                    <td>Extern\MsvcSDK.x86</td>
+                    <td>Msvc提供的x86编译工具</td>
+                </tr>
+                <tr>
+                    <td>src</td>
+                    <td>源程序目录</td>
+                </tr>
+                <tr>
+                    <td>src\elastos</td>
+                    <td>Elastos的库，或者说是用户与内核之间很薄的接口层实现代码</td>
+                </tr>
+                <tr>
+                    <td>src\kernel</td>
+                    <td>内核的主要实现代码包括驱动代码</td>
+                </tr>
+                <tr>
+                    <td>src\libpub</td>
+                    <td>内核与用户的公共库的实现代码</td>
+                </tr>
+                <tr>
+                    <td>obj</td>
+                    <td>目标镜像目录 </td>
+                </tr>
+                <tr>
+                    <td>system</td>
+                    <td>Elastos系统导出头文件（EXPORT_SYSTEM_HEADERS）和部分提供给SDK使用的生成库</td>
+                </tr>
+                <tr>
+                    <td>system\xxxx_xxx</td>
+                    <td>存放部分提供给SDK使用的生成库的目录  </td>
+                </tr>
+                <tr>
+                    <td>inc</td>
+                    <td>存放导出头文件的目录  </td>
+                </tr>
+         </table>
+         <h4>备注：</h4>
+         <ul>
+            <li>GNU提供的arm、mips和x86的开发工具是来自MinGW的，Elastos2.0的DDK只是把必须用到的工具和各种库文件放在extern下，没有用到的并没有放在里面，也就是说，extern下面存放的是GNU开发工具的一个子集。这些工具中，与x86有关的工具版本是3.4.4，而mips和arm工具的版本则相对比较低。如果用户需要使用更新的版本或者添加其他一些工具和库文件的话，请根据自身情况在遵守相关版权约定的条件下添加或修改。
+            <li>在Elastos2.0的DDK和SDK开发环境中，所有公共的编译规则都遵循misc目录下的makefile.gnu。tools目录中存放的是一些开发工具，在工具后使用参数“？”、“/？”或“-/？”可以查看该工具的具体用法。
+         </ul>
+         <p><font color="red"><b>注意：</b></font></p>
+         <ol>
+            <li>build下面提供的工具主要是用于辅助开发的，里面有少数工具需要默认路径，一般都把默认盘符指定为D盘了。如果用户在安装的时候，选择了其他盘符（例如E盘或者其他盘）就需要自己手动修改一些参数。这些工具主要是指Elastos\build\misc目录下各个编译环境的快捷方式，如果指定的盘符不是D盘的话，就需要修改*.lnk文件属性标签“Shortcut” 选项中的“target”参数。
+            <li>在开发窗口中使用“z”命令编译全部模块的时候，事实上“z”就是调用了_arm.bat或者_mips.bat或者_x86.bat这些批处理，用户可以执行这些批处理来自动编译所有指定的模块并生成kernel.exe和elastos.dll。
+            <li>因为Elastos2.0的编译结果是放在镜像目录obj下的，所以用户应该保证用于编译的磁盘有足够的空间，否则将引起编译错误，这种错误的提示信息是由编译器检测并且发出的。
+         </ol>
+<script>footer("chinese")</script>
+</body>
+</html>

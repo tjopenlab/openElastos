@@ -1,0 +1,132 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\vsprintf">vsprintf</sample>
+    <title> vsprintf, vswprintf</title>
+    <volume>C Run-Time Library Functions</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes formatted output using a pointer to a list of arguments.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>vsprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>Storage location for output.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format</param_name>
+                <param_note>
+                    <para>Format specification.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+                <param_note>
+                    <para>Pointer to list of arguments.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>vswprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format</param_name>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>vsprintf and vswprintf return the number of characters written, not including the terminating null character or a negative value if an output error occurs.</para>
+    </return>
+
+    <remarks>
+        <para>Each of these functions takes a pointer to an argument list, then formats and writes the given data to the memory pointed to by buffer.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>vsprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>vswprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* vsprintf.cpp:this program write lines to a buffer*/
+
+#include &lt;stdio.h&gt;
+
+void __cdecl test(char* first, ...);
+
+int main()
+{
+    char buffer[] = &quot;world&quot;;
+    test(&quot;hello %s&quot;, buffer);
+
+    return 0;
+
+}
+
+void __cdecl test(char * first, ...)
+{
+    char writeBuf[550];
+    va_list marker;
+
+    va_start(marker, first);
+    vsprintf(writeBuf, first, (unsigned char*)marker);
+    va_end(marker);
+    printf(&quot;%s\n&quot;, writeBuf);
+}
+</pre>
+    </example>
+<result>
+hello world
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>swprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

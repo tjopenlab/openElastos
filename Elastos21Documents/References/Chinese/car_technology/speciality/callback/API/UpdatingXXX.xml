@@ -1,0 +1,26 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+     <volume> Callbacks相关API </volume>
+    <method>UpdatingXXX</method>
+    <description>
+        <para>清除消息队列中未被处理XXX事件，并插入此次XXX消息。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+    </syntax>
+    <example> 
+    <pre class="codeview">
+    Callback::FooEvent(1);
+    Callback::FooEvent(2);
+    Callback::FooEvent(3);
+    Callback::UpdatingFooEvent(4); 
+      </pre>
+      <para>上述示例中，假如前三次的FooEvent事件激发后还在消息队列中未被处理，当调用UpdatingFooEvent(4)时会将消息队列中FooEvent事件清除（即FooEvent(1), FooEvent(2), FooEvent(3)），再向队列中加入一个FooEvent(4)消息。  </para>
+
+     </example>
+
+     
+</manpage>

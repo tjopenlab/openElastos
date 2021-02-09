@@ -1,0 +1,165 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\printf">printf</sample>
+    <title> printf, wprintf</title>
+    <volume>C Run-Time Library Functions</volume>
+  	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Print formatted output to the standard output stream.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>printf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format[, argument]...</param_name>
+                <param_note>
+                    <para>Format control (argument is optional)</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>wprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format[, argument]...</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns the number of characters printed or a negative value if an error occurs.</para>
+    </return>
+
+    <remarks>
+        <para>The printf function formats and prints a series of characters and values to the standard output stream, stdout. If arguments follow the format string, then the format string must contain specifications that determine the output format for the arguments. printf and fprintf behave identically except that printf writes output to stdout rather than to a destination of type FILE. wprintf is a wide-character version of printf; format is a wide-character string. wprintf and printf behave identically otherwise.</para>
+        <para>The format is a character string which contains ordinary characters, which are simply copied to standard output, character escape sequences, which are converted and copied to the standard output and <link url="printf/FormatSpec.htm">format specifications</link>, each of which causes printing of the next successive argument.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>printf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* printf.cpp: This program uses the printf and wprintf functions
+ * to produce formatted output.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char    ch = &apos;h&apos;, *string = &quot;computer&quot;;
+    int     count = -9234;
+    double fp = 251.7366;
+    wchar_t wch = L&apos;w&apos;, *wstring = L&quot;Unicode&quot;;
+
+    /* Display integers. */
+    printf(&quot;Integer formats:\n&quot;
+              &quot;\tDecimal: %d  Justified: %.6d  Unsigned: %u\n&quot;,
+              count, count, count, count);
+
+    printf(&quot;Decimal %d as:\n\tHex: %Xh  C hex: 0x%x  Octal: %o\n&quot;,
+                count, count, count, count);
+
+    /* Display in different radixes. */
+    printf(&quot;Digits 10 equal:\n\tHex: %i  Octal: %i  Decimal: %i\n&quot;,
+                0x10, 010, 10);
+
+    /* Display characters. */
+
+    printf(&quot;Characters in field (1):\n%10c%5hc%5C%5lc\n&quot;, ch, ch, wch, wch);
+    wprintf(L&quot;Characters in field (2):\n%10C%5hc%5c%5lc\n&quot;, ch, ch, wch, wch);
+
+    /* Display strings. */
+
+    printf(&quot;Strings in field (1):\n%25s\n%25.4hs\n\t%S%25.3ls\n&quot;,
+    string, string, wstring, wstring);
+    wprintf(L&quot;Strings in field (2):\n%25S\n%25.4hs\n\t%s%25.3ls\n&quot;,
+         string, string, wstring, wstring);
+
+    /* Display real numbers. */
+    printf(&quot;Real numbers:\n\t%f %.2f %e %E\n&quot;, fp, fp, fp, fp);
+
+    /* Display pointer. */
+    printf(&quot;\nAddress as:\t%p\n&quot;, &amp;count);
+
+    /* Count characters printed. */
+    printf(&quot;\nDisplay to here:\n&quot;);
+    printf(&quot;1234567890123456%n78901234567890\n&quot;, &amp;count);
+    printf(&quot;\tNumber displayed: %d\n\n&quot;, count);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Integer formats:
+Decimal: -9234  Justified: -009234  Unsigned: 4294958062
+Decimal -9234 as:
+Hex: FFFFDBEEh  C hex: 0xffffdbee  Octal: 37777755756
+Digits 10 equal:
+Hex: 16  Octal: 8  Decimal: 10
+Characters in field (1):
+h    h    w    w
+Characters in field (2):
+h    h    w    w
+Strings in field (1):
+computer
+comp
+Unicode                      Uni
+Strings in field (2):
+computer
+comp
+Unicode                      Uni
+Real numbers:
+251.736600 251.74 2.517366e+002 2.517366E+002
+
+Address as:     0x1ffffd48
+
+Display to here:
+123456789012345678901234567890
+Number displayed: 16
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fwprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>swprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

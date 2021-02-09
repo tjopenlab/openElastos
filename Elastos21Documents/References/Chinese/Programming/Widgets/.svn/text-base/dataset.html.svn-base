@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Elastos Widgets:标签/控件列表</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>基于XmlGlue编程模型下的Widgets开发介绍</span></a></li>
+    <li><a href="flow.html"><span>Widgets开发流程</span></a></li>
+    <li class="current"><a href="flow.html"><span>Widgets开发专题介绍</span></a></li>
+    <li><a href="sample.html"><span>Widgets开发示例</span></a></li>
+  </ul>
+</div>
+<div class="tabs">  
+  <ul>
+    <li class="current"><a href="dataset.html"><span>数据集(dataset)的使用</span></a></li>
+    <li><a href="locale.html"><span>多语言(locale)的使用</span></a></li>
+  </ul>  
+</div>
+
+<h1>数据集(dataset)的使用</h1>
+<p>引入数据集(dataset)，可以方便用户读取其他文件中的相关数据，并通过绑定相关的图形控件以显示数据信息。
+<h2>◆ 支持的数据集的类型</h2>
+<p>XmlGlue支持的数据集的类型(type)有两类：1.<b>database，即数据库型</b>。2.<b>enumerator,即枚举型</b>。其中database型对应的数据文件类型为db;enumerator型通过CAR构件中的相关获取数据的方法获得数据，一般为"Getxxx"，同时用户还必须先通过标签创建其中构件类。
+<h2>◆ 创建数据集对象</h2>
+<p>在这一步，用户需指定创建的数据集对象的类型;database或enumerator，及其他相关信息。具体请见示例。
+<h2>◆	绑定的图形控件</h2>
+<p>当创建了以上两种类型数据集对象后，用户还必须与listView或comboBox或listBox控件及其相关标签绑定，以实现对数据的读操作及显示数据信息。具体而言，对于databasse型，用户可以先通过sql标签并执行select语句进行数据过滤，再绑定至这些图形控件上以显示已过滤的相关数据。对于enumerator型数据，用户先用xml标签创建相关CAR构件的构件类，再使用dataset标签指定构件中获取相关数据的接口方法，最后绑定至这些图形控件上，实现以枚举的方式显示已获得的数据。关于这些图形控件的用法请参考XmlGlue中的XML编程的相关部分。
+
+<h2>◆	示例</h2>
+<ul>
+   <li>database型。
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+<pre>  
+1 &lt;?xml version="1.0" encoding="utf-8"?&gt;
+2 &lt;x:elastos xmlns:x="http://www.elastos.com/XmlGlue/2.1"
+3    xmlns="http://www.elastos.com/XmlGlue/Widgets"&gt;
+4    &lt;x:dataset type="database" x:id="db1" database="asset/wt.db"&gt;
+5        &lt;x:sql&gt;
+6        &lt;![CDATA[
+7            select * from t1 where col2 < 1000000;
+8        ]]&gt;
+9        &lt;/x:sql&gt;
+10    &lt;/x:dataset&gt;
+11
+12    &lt;form x:id="main" width="240" height="320"&gt;
+13        &lt;listBox width="240" height="200" y="80"
+14            style="ControlStyle:Border ControlStyle:Transparent ListBoxStyle:Loop"&gt;
+15            &lt;data source="db1"&gt;
+16                &lt;item text="col1"/&gt;
+17            &lt;/data&gt;
+18        &lt;/listBox&gt;
+19    &lt;/form&gt;
+20 &lt;/x:elastos&gt;
+</td></tr></table>
+<p>在以上的例子中，第4行创建一个database型的数据集,其中database属性声明了数据库文件wt.db的相对路径。同时在wt.db文件中，创建了一张有多个字段的数据表t1，且已成功插入多条记录。其中第一和第二个字段分别为col1,col2。第5至第9行使用select语句检索出t1中所有col2的值小于1000000的记录。第15-17行将已检索出的记录绑定至listBox并显示已检索出的记录的col1字段。
+   <li>enumerator型
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+<pre>  
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;widget&gt;
+    &lt;settings&gt;
+        &lt;setting name="defaultScriptLanguage" value="lua"/&gt;
+    &lt;/settings&gt;
+    &lt;modules&gt;
+        &lt;module name="myenum.dll" alias="myenum"/&gt;
+    &lt;/modules&gt;
+&lt;/widget&gt;
+</td></tr></table>
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+<pre>   	
+1 &lt;?xml version="1.0" encoding="utf-8"?&gt;
+2
+3 &lt;x:elastos xmlns:x="http://www.elastos.com/XmlGlue/2.1"
+4    xmlns="http://www.elastos.com/XmlGlue/Widgets"&gt;
+5    &lt;userModule:allFoo xmlns:userModule="myenum" MYGOD="123" x:id="mye"/&gt;
+6    &lt;x:dataset type="enumerator" enumerator="AllFoos" x:id="enum1" object="mye"/&gt;
+7
+8    &lt;form x:id="main" width="240" height="320"&gt;
+9        &lt;listBox width="240" height="200" y="80"
+10            style="ControlStyle:Border ControlStyle:Transparent ListBoxStyle:Loop"&gt;
+11            &lt;data source="enum1" max="2"&gt;
+12                &lt;item text="Name"/&gt;
+13            &lt;/data&gt;
+14    &lt;/form&gt;
+15 &lt;/x:elastos&gt;
+</td></tr></table>
+<p>在这个例子中，当前项目使用的构件信息在manifest.xml中注册，映像模块的名称为"myenum.dll",对应的别名(alias)为"myenum"。第5行创建了的构件类AllFoo对象,且指定其id为"mye"，而AllFoo在刚已注册的构件映像模块为myenum.dll对应的源文件myenum.car中声明为Class类型。此时因allFoo是一个用户自定义的CAR构件，其对应的命名空间xmlns需显示地使用userModule及当前构件类对应的映像构件模块的别名来进行定义，本例中如xmlns:userModule="myenum"所示，myenum为在manifest.xml文件中为构件映像模块myenum.dll定义的一个别名（alias）。第6行则创建了enumerator型的数据集，其中属性enumrator指定了获取数据源的接口方法GetAllFoos,此处简写为"AllFoos"。属性object指定绑定的构件类对象，此处指定第5行已创建的构件类allFoo的id属性值。第11至第13行则将已创建的数据集对象绑定至listBox上，并通过GetName方法获取name的信息并显示出来，此处我们只要指定text的值为Name即可达到此目的。其中source属性指定了数据来源，一般为已创建的dataset对象的id。
+</ul>   
+<script>footer("chinese")</script>
+</body>
+</html>

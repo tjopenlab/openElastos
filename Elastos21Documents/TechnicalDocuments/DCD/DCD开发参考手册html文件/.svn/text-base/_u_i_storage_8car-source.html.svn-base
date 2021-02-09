@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Kortide DCD API: UIStorage.car源文件</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="main.html"><span>首页</span></a></li>
+    <li><a href="annotated.html"><span>类</span></a></li>
+    <li class="current"><a href="files.html"><span>文件</span></a></li>
+  </ul>
+</div>
+<h1>UIStorage.car</h1><a href="_u_i_storage_8car.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00004"></a><a class="code" href="struct_____d_c_d_storage_channel_info.html">00004</a>     <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_____d_c_d_storage_channel_info.html" title="读取永久储存信息的结构体定义.">__DCDStorageChannelInfo</a> {
+<a name="l00005"></a><a class="code" href="struct_____d_c_d_storage_channel_info.html#d66ffc23e081f1a7bc74df7e6145132a">00005</a>                         <a class="code" href="dcdenum_8car.html#a55c825970107ffb49428d8d1cf480b3" title="宽窄串的定义，如果平台支持宽串，则定义：typedef wchar_t DcdChar...">DcdChar</a> <a class="code" href="struct_____d_c_d_storage_channel_info.html#d66ffc23e081f1a7bc74df7e6145132a">szChannelName</a>[60];
+<a name="l00006"></a><a class="code" href="struct_____d_c_d_storage_channel_info.html#8c73a25422df16b4d4d3c527693455ca">00006</a>                         <span class="keywordtype">int</span> <a class="code" href="struct_____d_c_d_storage_channel_info.html#8c73a25422df16b4d4d3c527693455ca">nItemCount</a>;
+<a name="l00007"></a>00007         } <a class="code" href="struct_____d_c_d_storage_channel_info.html" title="读取永久储存信息的结构体定义.">DCDStorageChannelInfo</a>, *<a class="code" href="struct_____d_c_d_storage_channel_info.html" title="读取永久储存信息的结构体定义.">PDCDStorageChannelInfo</a>;
+<a name="l00008"></a>00008 
+<a name="l00015"></a>00015     <span class="keywordtype">int</span> <a class="code" href="_u_i_storage_8car.html#d0dc3815c8f3f1ab6de77c26aa251373" title="设置永久保存的存储位置.">DCDSetStorageDir</a>(
+<a name="l00016"></a>00016                 DCDStoreDevice nDevice
+<a name="l00017"></a>00017                 );
+<a name="l00018"></a>00018 
+<a name="l00025"></a>00025     <a class="code" href="dcdenum_8car.html#a9c0a0b2f6a4660ca7cb028e26feb8ca" title="内核对象的句柄，根据平台的支持亦可定义：typedef unsigned long...">Handle</a> <a class="code" href="_u_i_storage_8car.html#e882bfa6af97298000c0bb3df08cd65e" title="打开存储.">DCDStorageOpen</a>();
+<a name="l00026"></a>00026 
+<a name="l00033"></a>00033     <span class="keywordtype">void</span> <a class="code" href="_u_i_storage_8car.html#a2dea8ed72c4385c7c52d12294eb2b14" title="关闭存储.">DCDStorageClose</a>(
+<a name="l00034"></a>00034                 <a class="code" href="dcdenum_8car.html#a9c0a0b2f6a4660ca7cb028e26feb8ca" title="内核对象的句柄，根据平台的支持亦可定义：typedef unsigned long...">Handle</a> hStorage
+<a name="l00035"></a>00035                 );
+<a name="l00036"></a>00036 
+<a name="l00045"></a>00045     <span class="keywordtype">int</span> <a class="code" href="_u_i_storage_8car.html#a618daed2a111d3c3e6a214d01fdfcec" title="保存一个条目.">DCDStorageSave</a>(
+<a name="l00046"></a>00046                 <a class="code" href="dcdenum_8car.html#a9c0a0b2f6a4660ca7cb028e26feb8ca" title="内核对象的句柄，根据平台的支持亦可定义：typedef unsigned long...">Handle</a> hStorage,
+<a name="l00047"></a>00047                 <a class="code" href="dcdenum_8car.html#a55c825970107ffb49428d8d1cf480b3" title="宽窄串的定义，如果平台支持宽串，则定义：typedef wchar_t DcdChar...">DcdChar</a> *pChannelName,
+<a name="l00048"></a>00048                 <a class="code" href="struct_____d_c_d_item.html" title="频道项定义">DCDItem</a> *pItem
+<a name="l00049"></a>00049                 );
+<a name="l00050"></a>00050 
+<a name="l00059"></a>00059     <span class="keywordtype">int</span> <a class="code" href="_u_i_storage_8car.html#60bc5d20cb8e6e7a98486f9b443931e9" title="删除一个条目.">DCDStorageDelete</a>(
+<a name="l00060"></a>00060                 <a class="code" href="dcdenum_8car.html#a9c0a0b2f6a4660ca7cb028e26feb8ca" title="内核对象的句柄，根据平台的支持亦可定义：typedef unsigned long...">Handle</a> hStorage,
+<a name="l00061"></a>00061                 <a class="code" href="dcdenum_8car.html#a55c825970107ffb49428d8d1cf480b3" title="宽窄串的定义，如果平台支持宽串，则定义：typedef wchar_t DcdChar...">DcdChar</a> *pChannelName,
+<a name="l00062"></a>00062                 <a class="code" href="dcdenum_8car.html#a55c825970107ffb49428d8d1cf480b3" title="宽窄串的定义，如果平台支持宽串，则定义：typedef wchar_t DcdChar...">DcdChar</a> *pItemID
+<a name="l00063"></a>00063                 );
+<a name="l00064"></a>00064 
+<a name="l00073"></a>00073     <span class="keywordtype">int</span> <a class="code" href="_u_i_storage_8car.html#dc1142996846d9454599e1c6194b807a" title="得到存储频道的信息.">DCDStorageGetChannelInfo</a>(
+<a name="l00074"></a>00074                 <a class="code" href="dcdenum_8car.html#a9c0a0b2f6a4660ca7cb028e26feb8ca" title="内核对象的句柄，根据平台的支持亦可定义：typedef unsigned long...">Handle</a> hStorage,
+<a name="l00075"></a>00075                 <span class="keywordtype">int</span> *pCount,
+<a name="l00076"></a>00076                 PDCDStorageChannelInfo **pInfo
+<a name="l00077"></a>00077                 );
+<a name="l00078"></a>00078 
+<a name="l00088"></a>00088     <span class="keywordtype">int</span> <a class="code" href="_u_i_storage_8car.html#1c87da2e2b5ad76f2965f51ca80f8115" title="得到存储频道的频道项信息.">DCDStorageGetItem</a>(
+<a name="l00089"></a>00089                 <a class="code" href="dcdenum_8car.html#a9c0a0b2f6a4660ca7cb028e26feb8ca" title="内核对象的句柄，根据平台的支持亦可定义：typedef unsigned long...">Handle</a> hStorage,
+<a name="l00090"></a>00090                 <a class="code" href="dcdenum_8car.html#a55c825970107ffb49428d8d1cf480b3" title="宽窄串的定义，如果平台支持宽串，则定义：typedef wchar_t DcdChar...">DcdChar</a> *pChannelName,
+<a name="l00091"></a>00091                 <span class="keywordtype">int</span> nIdex,
+<a name="l00092"></a>00092                 <a class="code" href="struct_____d_c_d_item.html" title="频道项定义">DCDItem</a> **ppItem
+<a name="l00093"></a>00093                 );
+<a name="l00094"></a>00094 
+<a name="l00102"></a>00102     <span class="keywordtype">void</span> <a class="code" href="_u_i_storage_8car.html#18968ef458d2e59e01b0ee13e7274c4d" title="释放频道数组内存.">FreeChannelInfos</a>(
+<a name="l00103"></a>00103                 PDCDStorageChannelInfo *pInfo,
+<a name="l00104"></a>00104                 <span class="keywordtype">int</span> nCount
+<a name="l00105"></a>00105                 );
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated at Thu Mar 27 11:35:55 2008 for Kortide DCD API by&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
+</body>
+</html>

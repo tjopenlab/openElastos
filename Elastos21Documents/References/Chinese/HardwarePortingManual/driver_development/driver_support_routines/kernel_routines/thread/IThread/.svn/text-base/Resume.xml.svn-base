@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+
+<volume>线程与调度</volume>
+<interface>IThread</interface><method> Resume  </method>
+    <description>
+        <para>
+             唤醒线程。
+        </para>
+    </description>
+    <syntax_nopara>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值 </td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>成功唤醒线程或减少线程被挂起的次数</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_OPERATION</td>
+                <td>线程未进入挂起状态</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>
+            本方法用于唤醒挂起的线程。
+        </para>
+        <para>
+            如果线程未进入挂起状态，或者线程未启动，已结束，方法将返回E_INVALID_OPERATION。如果本线程被挂起多次，方法将减少线程被挂起的次数，而不做真正的唤醒。
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

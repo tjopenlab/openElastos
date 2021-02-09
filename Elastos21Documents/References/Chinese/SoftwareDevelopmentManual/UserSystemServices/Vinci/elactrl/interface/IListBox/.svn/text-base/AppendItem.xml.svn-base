@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListBox</interface><method> AppendItem </method>
+    <description>
+        <para>
+            插入到控件的末尾，并返回其索引值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> wsItemText </param_name>
+                <param_note>
+                    <para>
+选项文本                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IImage * </param_type>
+                <param_name> pIImage </param_name>
+                <param_note>
+                    <para>
+指向<link url="../../../graphics/interface/IImage.htm">IImage</link>接口的指针，用于插入行的图片                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> pCurrentIndex </param_name>
+                <param_note>
+                    <para>
+指向当前行的行索引，可以为空                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT；如果内存分配不成功，则返回E_OUT_OF_MEMORY。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.1》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElControls.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

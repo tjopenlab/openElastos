@@ -1,0 +1,112 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_com_interface\IProcess\live"> CProcess::New </sample>
+    <volume>进程</volume>
+    <title>CProcess::New</title>
+    <routine_idx>../../../Process.htm</routine_idx>
+
+    <description>
+        <para>创建一个进程。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString</param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>[in] WString类型变量表示需要执行的模块，不能为空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> WString</param_type>
+                <param_name> args </param_name>
+                <param_note>
+                    <para>[in] 进程启动参数，可以为空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> IProcess** </param_type>
+                <param_name> ppProcess </param_name>
+                <param_note>
+                    <para>[out] IProcess类型的指针的指针，用于获取进程对象的接口</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_FILE_NOT_FOUND</td><td>指定的模块名不存在</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+            <tr>
+                <td>E_BAD_FILE_FORMAT</td><td>装载的不是PE（Portable Executable）文件</td>
+            </tr>
+            <tr>
+                <td>E_NOT_ENOUGH_ADDRESS_SPACE</td><td>地址空间不足</td>
+            </tr>
+
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>如果name指定的文件不可执行（即该文件不存在，或者为非可执行文件类型，或者因缺少某些资源而导致该文件不可执行），调用<link url="New.htm">CProcess::New</link>函数启动进程后，进程会因加载name指定的文件失败而立即结束。</para>
+        <para>与<link url="NewUnstarted.htm">CProcess::New(IProcess ** ppProcess)</link>不同的是，本函数除了创建出进程对象外，还创建出实际运行的进程。当调用者不需要使用进程对象的方法时，可以把参数ppProcess置为空。</para>
+        <para><link url="Exit.htm">CProcess::Exit</link>方法可以用来结束当前进程的运行。</para>
+        <para>如果不再使用该进程对象，需要调用IProcess的Release方法释放该对象指针。当该进程的引用计数降为0，相关的进程对象就会被立即清除。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+               Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+       <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CProcess::New</ref_name>
+        <ref_url> New</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CSystem::GetAllProcesses</ref_name>
+        <ref_url> ../CSystem/GetAllProcesses</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CProcess::GetCurrent</ref_name>
+        <ref_url> GetCurrent</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CProcess::Exit</ref_name>
+        <ref_url> Exit</ref_url>
+    </reference>
+    </references>
+
+</manpage>

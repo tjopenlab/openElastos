@@ -1,0 +1,93 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/structuremanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\EzArray\EzArray_Box1">EzArray_Box</sample>
+    <volume> Common Data Structures </volume>
+    <function>template&lt;T&gt; EzArray::EzArray_Box(T *pArray, size_t SIZE, size_t used)</function>
+
+    <description>
+        <para> 
+            Initialize an EzArray object with T type array, and sets the size and used size respectively.
+        </para>
+    </description>
+
+    <syntax>
+        <apiname>EzArray_Box</apiname>
+        <parameters>
+        <api_param>
+            <param_type>T *</param_type>
+            <param_name>pArray </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>
+                    Source T type array 
+                </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>size_t</param_type>
+            <param_name>SIZE </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>
+                    The size of source T type array. 
+                </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>size_t</param_type>
+            <param_name>used </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>
+                    The size of the used data of <b>EzArray</b> which is to be set, the unit is sizeof(T).
+                </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>
+            EzArray_Box is a template class, and a subclass of EzArray. Template parameter T specifies the type of the 
+            array elements.
+        </para>
+        <para>
+            This constructor creates EzArray object and allocate memory in stack, so no need to call
+            <link url="../Dispose.htm">Dispose</link> to release memory.
+        </para>
+        <para>
+            if the space of the data to be stored is allocated, but not initialized, it is recommended to
+            construct EzArray object by this function.
+        </para>
+        <para>
+            Note: 1. It is the user's responsibility to release the memory of <i>pArray</i>.
+            2. The size of the parameter SIZE cannot be more than the number of the elements of source T type
+            array, or it will cause unpredictable results.
+        </para>
+    </remarks>
+
+    <example></example>
+
+
+    <references>
+        <reference>
+            <ref_name> Constructor (T type array) 2 </ref_name>
+            <ref_url> EzArray_Box2 </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Copy Constructor </ref_name>
+            <ref_url> EzArray_Box3 </ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\mblen">mblen</sample>
+    <title>mblen</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>返回多字节字符的长度以确定其有效性。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>mblen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>mbstr</param_name>
+                <param_note>
+                    <para>多字节字符字节序列的地址</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>要检查的字节数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果mbstr不为NULL，mblen就返回以字节为单位的多字节字符的长度。如果mbstr为NULL，或者mbstr指向一个宽结束符(L'\0')，mblen返回0。如果mbstr指向的对象在count指定字符范围内不能形成有效的多字节字符，mblen就返回-1。</para>
+    </return>
+
+    <remarks>
+        <para>如果mbstr是一个有效的多字节字符，mblen就返回以字节为单位的mbstr的长度。mblen检查mbstr中小于或等于count个字节的字符，但最多不超过MB_CUR_MAX个字节。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>mblen</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* mblen.cpp:this program use mblen to display the length of multibyte
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int     i;
+    char    *pmbc = (char *)malloc(sizeof(char));
+
+
+    i = mblen(pmbc, 0);
+    printf(&quot;Length in bytes of multibyte character %x: %u\n&quot;, pmbc, i);
+    free(pmbc);
+
+    pmbc = NULL;
+    i = mblen(pmbc, 1);
+    printf(&quot;Length in bytes of NULL multibyte character %x: %u\n&quot;, pmbc, i);
+
+    i = mblen(&quot;   aaaa&quot;, 1);
+    printf(&quot;Length in bytes of multibyte character: %u\n&quot;, i);
+
+    return 0;
+
+}
+</pre>
+    </example>
+<result>
+Length in bytes of multibyte character 10540: 0
+Length in bytes of NULL multibyte character 0: 0
+Length in bytes of multibyte character: 1
+</result>
+
+
+
+
+
+</manpage>

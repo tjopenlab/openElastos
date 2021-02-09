@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\frexp">frexp</sample>
+    <title>frexp</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>获取double类型的尾数和指数。</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>frexp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>输入的值</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int *</param_type>
+                <param_name>expptr</param_name>
+                <param_note>
+                    <para>获取的x的指数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回尾数。如果x为0，则尾数和指数全为0，无错误返回值。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>frexp</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+    
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* frexp.cpp: This program uses frexp to breaks a double-point number into a normalized fraction and an integral power of 2. It stores the integer exponent in the int object pointed to by exp.
+.
+ */
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+      {
+        double x;
+        int expptr;
+        
+        x=frexp(64.0,&amp;expptr);
+        printf(&quot;64.0=%.2f*2^%d&quot;,x,expptr);
+        
+        return 0;
+      }
+</pre>
+    </example>
+<result>
+64.0=0.50*2^7
+</result>
+    
+</manpage>

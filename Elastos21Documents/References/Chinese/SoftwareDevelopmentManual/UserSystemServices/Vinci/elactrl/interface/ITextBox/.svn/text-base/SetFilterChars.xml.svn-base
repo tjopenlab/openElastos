@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITextBox</interface><method> SetFilterChars </method>
+    <description>
+        <para>
+            设置 TextBox 是否接受指定的字符的输入。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> chars </param_name>
+                <param_note>
+                    <para>
+需要过滤或接受输入的字符串</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Boolean </param_type>
+                <param_name> accepted </param_name>
+                <param_note>
+                    <para>
+若为 TRUE，则 TextBox 只接受这些字符的输入；若为 FALSE，则 TextBox 不能接受这些字符的输入</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_CONTROL_STYLE_NOT_SUPPORT</td>
+	    	    <td>控件风格不支持</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        当 TextBox 使用了 <link url="../../datatype/TextBoxStyle.htm">TextBoxStyle_Number</link> 风格，即该 TextBox 只能接受 0～9 数字的输入，则不能为控件设置过滤字符，调用该方法将失败。
+    </para>
+    <para>
+        成功调用该方法为 TextBox 设置了过滤字符后，只是限制了这些字符通过键盘输入到 TextBox，但仍可以在代码中通过 <link url="InsertTextObject.htm">InsertTextObject</link>、<link url="SetTextObject.htm">SetTextObject</link>、<link url="AppendText.htm">AppendText</link> 或 <link url="../IControl/SetText.htm">SetText</link> 方法，使控件内显示过滤字符。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTextBox 类介绍</ref_name>
+        <ref_url>../../class/TextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITextBox 接口方法列表</ref_name>
+        <ref_url>../ITextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetFilterChars</ref_name>
+        <ref_url>GetFilterChars</ref_url>
+    </reference>
+</references>
+</manpage>

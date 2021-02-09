@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\user_com_interface\elasock\sam01\server">accept</sample>
+    <volume>elasock API</volume>
+    <title>accept</title>
+    <routine_idx>ElastosSocketIndex.htm</routine_idx>
+
+    <description>
+        <para>接受一次连接。</para>
+    </description>
+
+    <syntax>
+        <return_val>SOCKET</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>[in]套接口描述字，该套接口已通过listen()设置为监听连接状态。连接由<link url="listen.htm">listen</link>函数所返回的套接口建立。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>struct sockaddr*</param_type>
+                <param_name>addr</param_name>
+                <param_note>
+                    <para>[in]（可选）指向缓冲区的指针，该缓冲区用于从通讯层接收通讯端的地址。addr参数的实际格式由套接口创建时的地址族确定。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int*</param_type>
+                <param_name>addrlen</param_name>
+                <param_note>
+                    <para>[in,out]（可选）指向整型变量的指针，该变量用于标明addr缓冲区的大小。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>程序执行成功时返回与远端主机连接的套接口描述字；否则返回INVALID_SOCKET错误。调用<link url="WSAGetLastError.htm">WSAGetLastError</link>函数，可以得到具体的错误信息。</para>
+        <para>elasock并不判断addrlen指向的内容，也不返回远端套接口名字长度，但是如果指向的值是一个较大的数将导致不可预见的错误。建议用sizeof(SOCKADDR)给addrlen指向的变量赋值。</para>
+    </return>
+
+    <remarks>
+        <para>本函数从套接口s的待连接队列中抽取第一个连接，创建一个与s同类的新套接口并返回该套接口的描述字。新创建的套接口将负责处理实际的连接过程，它不含监听标记。</para>
+        <para>如果待连接队列为空，且套接口为阻塞方式，accept()将阻塞调用进程直至新的连接到来。如果套接口为非阻塞方式且无待处理连接，accept()将返回WSAEWOULDBLOCK错误。成功调用accept()返回的套接口不能用于接受新的连接，原监听套接口仍然可用。</para>
+        <para>addr为一个返回参数，用于填写连接对方的地址。addr参数的实际格式由地址族决定。elasock并不判断addrlen指向的内容，也不返回远端套接口名字长度，但是如果指向的值是一个较大的数将导致不可预见的错误。建议用sizeof(SOCKADDR)给addrlen指向的变量赋值。</para>
+        <para>accept用于字节流套接口（SOCK_STREAM）。如果addr与addrlen中有一个为NULL，将不返回连接对方的地址。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>bind</ref_name>
+            <ref_url>bind</ref_url>
+        </reference>
+        <reference>
+            <ref_name>connect</ref_name>
+            <ref_url>connect</ref_url>
+        </reference>
+        <reference>
+            <ref_name>listen</ref_name>
+            <ref_url>listen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>select</ref_name>
+            <ref_url>select</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

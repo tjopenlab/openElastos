@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<TITLE>AuraModule_Load</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<H3>AuraModule_Load</H3>
+<p>
+        	Loads a module image in the current process.
+        </p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="4" class="datatype">AURA_API AuraModule_Load(
+        </TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">WString</TD>
+<TD class="param">esName<span style="color:black; font-size:110%">,</span></TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">ModuleLoadFlags</TD>
+<TD class="param">flags<span style="color:black; font-size:110%">,</span></TD>
+</TR>
+<TR valign="top">
+<TD width="8%" height="20"></TD>
+<TD class="datatype" height="20">IModule **</TD>
+<TD class="param" height="20">ppModule</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">);</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<H4>Parameters</H4>
+<DL><DT class="param" style="color:#222222;margin-left:42">esName</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+                    	[in] The name of the module image. If NULL, the function returns E_INVALIDARG.
+                    <BR /><BR />
+</font></DD>
+<DT class="param" style="color:#222222;margin-left:42">flags</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+                    	[in] Load flag. Not implemented.
+                    <BR /><BR />
+</font></DD>
+<DT class="param" style="color:#222222;margin-left:42">ppModule</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+                    	[out] If the function suceeds,  contains a pointer to the interface of 
+                    	the loaded module object. If NULL, the function returns E_INVALIDARG.
+                    <BR /><BR />
+</font></DD>
+</DL>
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return Value</TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">Function succeeds in loading a module image in the current process.</TD>
+</TR>
+<TR><TD class="cell">E_INVALID_ARGUMENT</TD>
+<TD class="cell">Invalid argument</TD>
+</TR>
+<TR><TD class="cell">E_OUT_OF_MEMORY</TD>
+<TD class="cell">Insufficient memory</TD>
+</TR>
+<TR><TD class="cell">E_NOT_ENOUGH_ADDRESS_SPACE</TD>
+<TD class="cell">Insufficient address space</TD>
+</TR>
+<TR><TD class="cell">E_FILE_NOT_FOUND</TD>
+<TD class="cell">The file is not found</TD>
+</TR>
+<TR><TD class="cell">E_BAD_FILE_FORMAT</TD>
+<TD class="cell">The module is not Portable Executable file </TD>
+</TR>
+</table></p>
+<p>　</p>
+<h4>Remarks</h4>
+<p>
+        	The moduleName is the file name of the module. It must be the full name and is case-sensitive.
+        </p>
+<p>
+        	The module loaded by <b>EzLoadModule</b>
+ is not global and inheritable. The module object can only 
+        	be used in the calling process.
+        </p>
+<h4>Requirements</h4>
+<p><table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>Windows 2000 or later; Elastos 2.0 or later.</td>
+<td></td>
+</tr>
+</table></p>
+<p><script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>
+

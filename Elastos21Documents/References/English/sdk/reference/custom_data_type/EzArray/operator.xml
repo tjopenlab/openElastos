@@ -1,0 +1,77 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\operator">operator</sample>
+    <volume> Common data structure </volume>
+    <interface> EzArray </interface>
+    <method>operator []</method>
+
+    <description>
+        <para>Accessing array element operator of EzArray object is used to access array elements.</para>
+    </description>
+    <syntax>
+        <return_val> T&amp;</return_val>
+        <parameters>
+        <api_param>
+
+            <param_type> int </param_type>
+            <param_name> idx </param_name>
+            <param_note>
+                <para> Array elements suffix.</para>
+            </param_note>
+
+        </api_param>
+
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>const T&amp;</return_val>
+        <parameters>
+        <api_param>
+            <param_type> int </param_type>
+            <param_name> idx </param_name>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns corresponding elements of array.</para>
+    </return>
+
+    <example><pre><![CDATA[
+#include <EzArray.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+    EzArray<int> MyArray = EzArray<int>::CreateObject(10);
+
+    int i;
+    for (i = 0; i < 10; i++)
+        MyArray[i] = i;
+
+    for (i = 0; i < 10; i++){
+        if (i == 5)
+            printf("\n");
+        printf("MyArray[%d]=%d   ", MyArray[i], MyArray[i]);
+    }
+
+    MyArray.Dispose();
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+MyArray[0]=0   MyArray[1]=1   MyArray[2]=2   MyArray[3]=3   MyArray[4]=4
+MyArray[5]=5   MyArray[6]=6   MyArray[7]=7   MyArray[8]=8   MyArray[9]=9
+]]>
+    </result>
+
+</manpage>

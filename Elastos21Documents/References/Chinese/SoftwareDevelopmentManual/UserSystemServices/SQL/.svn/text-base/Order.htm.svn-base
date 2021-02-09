@@ -1,0 +1,215 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>排序数据 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h3>排序数据 </h3>
+    <p>为了明确地排序用SELECT语句检索出的数据，可使用ORDER BY子句。ORDER BY子句取一个或多个列的名字，据此对输出进行排序。请看下面的例子： </p>
+    <p>SELECT prod_name </p>
+    <p>FROM Products</p>
+    <p>ORDER BY prod_name;</p>
+    <p>Output:</p>
+    <p>prod_name</p>
+	<p>--------------------</p>
+	<p>12 inch teddy bear</p>
+	<p>18 inch teddy bear</p>
+	<p>8 inch teddy bear</p>
+	<p>Bird bean bag toy</p>
+	<p>Fish bean bag toy</p>
+	<p>King doll</p>
+	<p>Queen doll</p>
+	<p>Rabbit bean bag toy</p>
+	<p>Raggedy Ann</p>
+<h3>按多个列排序 </h3>
+    <p>经常需要按不止一个列进行数据排序。例如，如果要显示雇员清单，可能希望按姓和名排序（首先按姓排序，然后在每个姓中再按名排序）。如果多个雇员具有相同的姓，这样做很有用。为了按多个列排序，简单指定列名，列名之间用逗号分开即可（就像选择多个列时所做的那样）。下面的代码检索3个列，并按其中两个列对结果进行排序——首先按价格，然后再按名称排序。 </p>
+    <p>SELECT prod_id,prod_price,prod_name </p>
+    <p>FROM Products</p>
+    <p>ORDER BY prod_price,prod_name;</p>
+    <p>Output:</p>
+    <table>
+    	<thead>
+    	<td>prod_id</td>
+		<td>prod_price</td>
+		<td>prod_name</td>
+    	</thead>
+    	<tr>
+    		<td>BNBG02</td>
+    		<td>3.4900</td>
+    		<td>Bird bean bag toy</td>
+    	</tr>
+    	<tr>
+    		<td>BNBG01</td>
+    		<td>3.4900</td>
+    		<td>Fish bean bag toy</td>
+    	</tr>
+    	<tr>
+    		<td>BNBG03</td>
+    		<td>3.4900</td>
+    		<td>Rabbit bean bag toy</td>
+    	</tr>
+    	<tr>
+    		<td>RGAN01</td>
+    		<td>4.9900</td>
+    		<td>Raggedy Ann</td>
+    	</tr>
+    	<tr>
+    		<td>BR01</td>
+    		<td>5.9900</td>
+    		<td>8 inch teddy bear</td>
+    	</tr>
+    	<tr>
+    		<td>BR02</td>
+    		<td>8.9900</td>
+    		<td>12 inch teddy bear</td>
+    	</tr>
+    	<tr>
+    		<td>RYL01</td>
+    		<td>9.4900</td>
+    		<td>King doll</td>
+    	</tr>
+    	<tr>
+    		<td>RYL02</td>
+    		<td>9.4900</td>
+    		<td>Queen doll</td>
+    	</tr>
+		<tr>
+    		<td>BR03</td>
+    		<td>11.9900</td>
+    		<td>18 inch teddy bear</td>
+    	</tr>
+    </table>
+    <p>重要的是理解在按多个列排序时，排序的顺序完全按所规定的进行。换句话说，对于上述例子中的输出，仅在多个行具有相同的prod_price值时才对产品按prod_name进行排序。如果prod_price列中所有的值都是唯一的，则不会按prod_name排序。 </p>
+<h3>按列位置排序 </h3>
+    <p>除了能用列名指出排序顺序外，ORDER BY还支持按相对列位置进行排序。理解这个内容的最好办法是看一个例子： </p>
+    <p>SELECT prod_name,prod_id,prod_price </p>
+    <p>FROM Products</p>
+    <p>ORDER BY 2,3;</p>
+    <p>正如所见，这里的输出与上面的查询相同。不同之处在于ORDER BY子句。SELECT清单中指定的是选择列的相对位置而不是列名。ORDER BY 2表示按SELECT清单中第二个列，prod_name列进行排序。ORDER BY 2，3表示先按prod_price，再按prod_name进行排序。 </p>
+    <p>此技术的主要好处在于不用重新输入列名。但它也有缺点。首先，不明确给出列名增加了错用列名排序的可能性。其次，在对SELECT清单进行更改时容易错误地对数据进行排序（忘记对ORDER BY子句做相应的改动）。最后，如果进行排序的列不在SELECT清单中，显然不能使用这项技术。 </p>
+<h3>指定排序方向 </h3>
+    <p>数据排序不限于升序排序（从A到Z）。这只是默认的排序顺序，还可以使用ORDER BY子句以降序（从Z到A）顺序排序。为了进行降序排序，必须指定DESC关键字。下面的例子按价格以降序排序产品（最贵的排在最前面）： </p>
+    <p>SELECT prod_id,prod_price,prod_name</p>
+    <p>FROM Products</p>
+    <p>ORDER BY prod_price DESC;</p>
+    <p>Output:</p>
+    <table>
+    	<thead>
+    	<td>prod_id</td>
+		<td>prod_price</td>
+		<td>prod_name</td>
+    	</thead>
+    	<tr>
+    		<td>BR03</td>
+    		<td>11.9900</td>
+    		<td>18 inch teddy bear</td>
+    	</tr>
+    	<tr>
+    		<td>RYL02</td>
+    		<td>9.4900</td>
+    		<td>Queen doll</td>
+    	</tr>
+    	<tr>
+    		<td>RYL01</td>
+    		<td>9.4900</td>
+    		<td>King doll</td>
+    	</tr>
+    	<tr>
+    		<td>BR02</td>
+    		<td>8.9900</td>
+    		<td>12 inch teddy bear</td>
+    	</tr>
+    	<tr>
+    		<td>BR01</td>
+    		<td>5.9900</td>
+    		<td>8 inch teddy bear</td>
+    	</tr>
+    	<tr>
+    		<td>RGAN01</td>
+    		<td>4.9900</td>
+    		<td>Raggedy Ann</td>
+    	</tr>
+    	<tr>
+    		<td>BNBG03</td>
+    		<td>3.4900</td>
+    		<td>Rabbit bean bag toy</td>
+    	</tr>
+    	<tr>
+    		<td>BNBG01</td>
+    		<td>3.4900</td>
+    		<td>Fish bean bag toy</td>
+    	</tr>
+		<tr>
+    		<td>BNBG02</td>
+    		<td>3.4900</td>
+    		<td>Bird bean bag toy</td>
+    	</tr>
+    </table>
+    <p>但是，如果打算用多个列排序怎么办？下面的例子以降序排序产品（最贵的在最前面），然后再对产品名排序： </p>
+    <p>SELECT prod_name,prod_id,prod_price </p>
+    <p>FROM Products</p>
+    <p>ORDER BY prod_price DESC,prod_name;</p>
+    <p>Output:</p>
+    <table>
+    	<thead>
+    	<td>prod_id</td>
+		<td>prod_price</td>
+		<td>prod_name</td>
+    	</thead>
+    	<tr>
+    		<td>BR03</td>
+    		<td>11.9900</td>
+    		<td>18 inch teddy bear</td>
+    	</tr>
+    	<tr>
+    		<td>RYL01</td>
+    		<td>9.4900</td>
+    		<td>King doll</td>
+    	</tr>
+    	<tr>
+    		<td>RYL02</td>
+    		<td>9.4900</td>
+    		<td>Queen doll</td>
+    	</tr>
+    	<tr>
+    		<td>BR02</td>
+    		<td>8.9900</td>
+    		<td>12 inch teddy bear</td>
+    	</tr>
+    	<tr>
+    		<td>BR01</td>
+    		<td>5.9900</td>
+    		<td>8 inch teddy bear</td>
+    	</tr>
+    	<tr>
+    		<td>RGAN01</td>
+    		<td>4.9900</td>
+    		<td>Raggedy Ann</td>
+    	</tr>
+    	<tr>
+    		<td>BNBG02</td>
+    		<td>3.4900</td>
+    		<td>Bird bean bag toy</td>
+    	</tr>
+    	<tr>
+    		<td>BNBG01</td>
+    		<td>3.4900</td>
+    		<td>Fish bean bag toy</td>
+    	</tr>
+		<tr>
+    		<td>BNBG03</td>
+    		<td>3.4900</td>
+    		<td>Rabbit bean bag toy</td>
+    	</tr>
+    </table>
+    <p>DESC关键字只应用到直接位于其前面的列名。在上例中，只对prod_price列指定DESC，对prod_name列不指定。因此，prod_price列以降序排序，而prod_name列（在每个价格内）仍然按标准的升序排序。 </p>
+<script>footer("chinese")</script>
+</body>
+</html>
+

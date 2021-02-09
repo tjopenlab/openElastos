@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface </volume>
+<interface>IReaderWriterLock</interface><method> DowngradeFromWriter </method>
+    <description>
+        <para>
+         	Downgrades the acquired writer lock to reader lock.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value </td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>NOERROR</td>
+		<td>Function succeeds in downgrading the acquired writer lock to reader lock.</td>
+	    </tr>
+	    <tr>
+		<td>E_READER_LOCKS_TOO_MANY </td>
+		<td>Function call failed. The calling thread has not acquired the ReaderWriterLock object as a writer.</td>
+	    </tr>
+	<tr>
+		<td>E_NOT_WRITER </td>
+		<td>Function call failed. The calling thread has not acquired the ReaderWriterLock object as a writer.</td>
+	    </tr>
+	</table>
+   <para>See <link url="..\..\..\..\reference\basic_data_type\hresult.htm">ECODE</link> for related help.</para> 
+</return>
+
+	<remarks>
+		<para>
+			This function is used to downgrade the acquired writer lock to reader lock (downgrades the 
+			calling thread that has acquired the ReaderWriterLock object as a writer, to the one that acquires 
+			the ReaderWriterLock object as a reader). The waiting of the calling thread will not occur during the downgrading process. The function will fail if the calling thread has not acquired the ReaderWriterLock object as a writer.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

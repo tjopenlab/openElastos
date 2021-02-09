@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fgetpos">fgetpos</sample>
+    <title> fgetpos</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>获取文件位置指示器（stream-position indicator）的内容。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fgetpos</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>fpos_t*</param_type>
+                <param_name>pos</param_name>
+                <param_note>
+                    <para>位置指示器存储器</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果成功，返回0。否则返回非零值。</para>
+    </return>
+
+    <remarks>
+        <para>fgetpos获取文件指针指向的文件位置指示器的当前值，并将其存储在pos所指向的对象里。这样，以后的fsetpos函数可以使用存储在pos中的信息，将stream的文件位置指示器重新设置为上一次调用fgetpos时得到的值。pos值存储为内部数据格式，而且只能被fgetpos和fsetpos使用。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fgetpos</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fgetpos.cpp: This program opens a file and reads
+ * bytes at several different locations.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE    *stream;
+    fpos_t pos;
+    char    buffer[20];
+
+    if ((stream = fopen(&quot;fgetpos.exe&quot;, &quot;rb&quot;)) == NULL)
+        printf(&quot;Trouble opening file\n&quot;);
+    else {
+        /* Read some data and then check the position. */
+        fread(buffer, sizeof(char), 10, stream);
+        if (fgetpos(stream, &amp;pos) != 0)
+            printf(&quot;fgetpos error&quot;);
+        else {
+            fread(buffer, sizeof(char), 10, stream);
+            printf(&quot;10 bytes at byte %ld: %.10s\n&quot;, pos, buffer);
+        }
+
+        /* Set a new position and read more data */
+        pos = 140;
+        if (fsetpos(stream, &amp;pos) != 0)
+            perror(&quot;fsetpos error&quot;);
+
+        fread(buffer, sizeof(char), 10, stream);
+        printf(&quot;10 bytes at byte %ld: %.10s\n&quot;, pos, buffer);
+        fclose(stream);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+10 bytes at byte 10: (null)
+10 bytes at byte 140: (null)
+</result>
+
+   
+    <references>
+        <reference>
+            <ref_name>fsetpos</ref_name>
+            <ref_url>fsetpos</ref_url>
+        </reference>
+    </references>
+
+</manpage>

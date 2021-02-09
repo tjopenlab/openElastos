@@ -1,0 +1,109 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\feof">feof</sample>
+    <title> feof</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>The function feof() tests the end-of-tile indicator for the stream pointed to by stream, returning non-zero if it is set.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>feof</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The feof function returns a nonzero value after the first read operation that attempts to read past the end of the file. It returns 0 if the current position is not end of file. There is no error return.</para>
+    </return>
+
+    <remarks>
+        <para>The feof routine determines whether the end of stream has been reached. When end of file is reached, read operations return an end-of-file indicator until the stream is closed or until rewind or fseek is called against it.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>feof</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* feof.cpp: This program uses feof to indicate when
+ * it reaches the end of the file feof.cpp. It also
+ * checks for errors with ferror.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    int  count, total = 0;
+    char buffer[100];
+    FILE *stream;
+
+    if ((stream = fopen(&quot;feof.exe&quot;, &quot;r&quot;)) == NULL) {
+        printf(&quot;problem open the file!\n&quot;);
+        return 1;
+    }
+
+    /* Cycle until end of file reached: */
+    while (!feof(stream)) {
+        /* Attempt to read in 10 bytes: */
+        count = fread(buffer, sizeof(char), 100, stream);
+        if (ferror(stream)) {
+            perror(&quot;Read error&quot;);
+            break;
+        }
+
+        /* Total up actual bytes read */
+        total += count;
+    }
+    printf(&quot;Number of bytes read = %d\n&quot;, total);
+    fclose(stream);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Number of bytes read = 41086
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>rewind</ref_name>
+            <ref_url>rewind</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fseek</ref_name>
+            <ref_url>fseek</ref_url>
+        </reference>
+    </references>
+
+</manpage>

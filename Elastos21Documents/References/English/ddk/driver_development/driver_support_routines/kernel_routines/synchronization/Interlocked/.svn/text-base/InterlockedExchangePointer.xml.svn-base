@@ -1,0 +1,72 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<method> InterlockedExchangePointer </method>
+    <description>
+        <para>
+            The <b>InterlockedExchangePointer</b> function atomically exchanges a pair of values.
+            The function prevents more than one thread from using the same variable simultaneously.
+        </para>
+    </description>
+    <syntax>
+        <return_val>PVOID</return_val>
+        <parameters>
+            <api_param>
+                <param_type> PVOID * </param_type>
+                <param_name> Target </param_name>
+                <param_note>
+                    <para>
+                        Pointer to the pointer of the value to exchange. The function sets the value to <i>Value</i>.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+
+        <parameters>
+            <api_param>
+                <param_type> PVOID </param_type>
+                <param_name> Value </param_name>
+                <param_note>
+                    <para>
+                        Specifies a new value for <i>Target</i>.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <para>Initial value pointed by <i>Target</i>.</para>
+    </return>
+
+	<remarks>
+		<para>
+            The Interlocked functions provide a simple mechanism for synchronizing access
+            to a variable that is shared by multiple threads. The threads of different
+            processes can use this mechanism if the variable is in shared memory.
+        </para>
+        <para>
+            The parameters are 32 bits and must be aligned on 32-bit boundaries; otherwise,
+            this function will fail on multiprocessor x86 systems and any non-x86 systems.
+		</para>
+		<para>
+		    If you are exchanging pointer values, this function supersedes the
+		    <link url="InterlockedExchange.htm">InterlockedExchange</link> function.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>

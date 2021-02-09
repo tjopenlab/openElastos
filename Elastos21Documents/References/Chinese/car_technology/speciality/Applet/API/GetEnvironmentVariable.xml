@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> CApplet相关API介绍 </volume>
+    <interface>CApplet</interface>
+    <method> GetEnvironmentVariable </method>
+
+    <description>
+        <para>获取当前applet的环境变量  </para>
+    </description>
+
+    <syntax>
+        <return_val>STATIC CARAPI</return_val>
+        <parameters>
+        <api_param>
+            <param_type>WString</param_type>
+            <param_name>name</param_name>
+
+            <param_note>
+                <para>环境变量的名称，name长度不能超过127 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>WStringBuf *</param_type>
+            <param_name>value</param_name>
+            <param_note>
+                <para>环境变量的值, value长度不能超过511   </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+  <remarks>
+        <para>如果设置了当前applet的环境变量<link url="SetEnvironmentVariable.htm" >SetEnvironmentVariable</link>，可通过此函数来获取其值。 </para>
+
+    </remarks>
+</manpage>

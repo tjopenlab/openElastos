@@ -1,0 +1,36 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Device Driver Framework</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+    <h2>Service Using Device Driver</h2>
+    <p>When system successfully creates a driver instance, it registers <a class="style1" href="../driver_development/standard_driver_routines/IDriver.htm">IDriver</a> interface of this driver instance through Elastos&nbsp;2.0&nbsp;Service mechanism. Registered service name is "device:DeviceNameDeviceNo" (EzStr type), of which "DeviceName" section must be replaced by corresponding device name of this driver instance. "DeviceNo" section must be replaced by corresponding device number (in decimal format) of this driver instance. When the device number is DEVICENO_NONE, registered service name directly is "device:DeviceName" and there is no "DeviceNo" section. For example to a certain mouse device, its device name is "mouse", device number is DEVICENO_NONE and hence its service name is "device:mouse". To the second serial port device, its device name is "com", device number is 2 and hence its service name is "device:com2". Note that service name is also case sensitive.</p>
+    <p>Hence, client program can search service provided by specified device driver instance through Elastos&nbsp;2.0&nbsp;Service mechanism. If driver service interface IDriver can be obtained, one can request device I/O service through RWC method of IDriver. Use the mouse driver in article <a class="style1" href="IDriver_config.htm">"driver interface implementation and configuration"</a> as an example.Client program can also be implemented as the following: </p>
+    <pre class="code">
+…
+IDriver *pDriver;
+ECODE ec = EzFindService(
+    EZCSTR("device:mouse"), (IUnknown **)&pDriver);
+if (FAILED(ec)) {
+    // Error handling
+}
+…
+ec = pDriver->Read(…); // Reads mouse input
+if (FAILED(ec)) {
+    // Error handling
+}
+…
+// Communication finished, releases interface
+pDriver->Release();
+…
+</pre>
+<body>
+
+<script>footer("english")</script>
+</body>
+</html>

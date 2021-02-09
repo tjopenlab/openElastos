@@ -1,0 +1,46 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>CAR的错误返回机制</volume>
+    <title>CErrorReport::GetUrl</title>
+
+    <description>
+        <para>获取错误报告信息。</para>
+    </description>
+
+    <syntax>
+        <return_val>AString</return_val>
+        <return_name>GetUrl</return_name>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+    	<para>返回值是指向错误报告信息字符串的指针。</para>
+    </return>
+
+    <remarks>
+    	<para>当调用接口方法返回E_ERROR_URL时，可以使用本函数来获取具体的错误信息，其它情况调用本函数将无任何意义。</para>
+    </remarks>
+
+    <requirements>       
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+    <reference>
+        <ref_name> CErrorReport::SetUrl </ref_name>
+        <ref_url>SetUrl</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CErrorReport的API与错误值对应关系表 </ref_name>
+        <ref_url>Compare</ref_url>
+    </reference>
+    </references>
+
+</manpage>

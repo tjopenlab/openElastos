@@ -1,0 +1,209 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR中的数据类型</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</head>
+
+<body>
+<h2 align="left">系统函数</h2>
+
+    <h3 align="left">系统函数对比表</h3>
+    <p align="left">下表列出系统函数分别在2.0和2.1上的对比以及在其它语言中的映射：</p>
+
+
+    <table class="MsoNormalTable" border="1" cellpadding="0" style="width: 771px" id="table1">
+		<thead>
+			<tr>
+				<td style="width:232px;padding:.75pt">
+				<p class="MsoNormal" align="left">2.1</td>
+				<td style="width:178px;padding:.75pt">
+				<p class="MsoNormal" align="left"><span lang="EN-US">2.0</span></td>
+				<td style="padding:.75pt .75pt .75pt .75pt" width="339">
+				<p class="MsoNormal" align="left"><span lang="EN-US">C++</span>数据类型</td>
+			</tr>
+		</thead>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">CSystem::DebugPrint</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size:10.5pt;font-family:&quot;Times New Roman&quot;">
+			EzDebugPrint(...); </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33" width="339">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">_CSystem_DebugPrint(message); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="28">
+			<p align="left">输出打印信息到控制台</td>
+		</tr>
+		<tr style="height: 13.2pt">
+			<td style="padding:.75pt;" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">CSystem::GetGlobalMemorySizes </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt;height:13.2pt">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetGlobalMemorySizes(...);</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt;height:13.2pt" width="339">
+			<p class="MsoNormal"><span lang="EN-US">_CSystem_GetGlobalMemorySizes</span></p>
+			<p><span lang="EN-US">(pTotalPhysicalMemorySize,</span></p>
+			<p><span lang="EN-US">pAvailablePhysicalMemorySize); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="32">
+			<p align="left">获取系统总的物理内存以及当前可用的物理内存。</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US">CSystem::GetElapsedTime </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="31">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">
+			E</span><span lang="EN-US" style="font-size:10.5pt;font-family:&quot;Times New Roman&quot;">EzGetElapsedTime(...);
+			</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="31" width="339">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">_CSystem_GetElapsedTime(pTime); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="31">
+			<p align="left">获取系统自启动以来流逝的总时间（以毫秒为单位）</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US">CSystem::GetIdleTime </span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+		<p class="MsoNormal" align="left">
+		<span lang="EN-US" style="font-size:10.5pt;font-family:&quot;Times New Roman&quot;">
+		EzGetIdleTime(...); </span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="33" width="339">
+		<p class="MsoNormal" align="left">
+		<span lang="EN-US">_CSystem_GetIdleTime(pTime); </span></td>
+		</tr>
+		<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="35">
+		<p class="MsoNormal" align="left">获取系统处于空闲状态的总时间（以毫秒为单位）</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">CSystem::GetMachineTime </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">EzGetSystemTime</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32" width="339">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">_CSystem_GetMachineTime(pMachineTime); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38" colspan="2">
+			<p align="left">以微秒的精度获取当前的系统标准时间（<span lang="EN-US">UTC</span>）</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US">CSystem::SetMachineTime </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38">
+			<p align="left">
+			<span lang="EN-US">EzSetSystemTime</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38" width="339">
+			<p align="left">
+			<span lang="EN-US">_CSystem_SetMachineTime(machineTime); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="37" colspan="2">
+			<p align="left">设置当前的系统标准时间（<span lang="EN-US">UTC</span>）</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="66" rowspan="2">
+			<p align="left">
+			<span lang="EN-US">CSystem::Reboot </span>
+			</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p align="left">
+			<span lang="EN-US" style="font-size:10.5pt;font-family:&quot;Times New Roman&quot;">
+			EzReboot();</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33" width="339">
+			<p align="left">
+			<span lang="EN-US">_CSystem_Reboot(); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33" colspan="2">
+			<p align="left">重新启动机器</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="61" rowspan="2">
+			<p align="left">
+			<span lang="EN-US">CProfile::GetInt32</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="26">
+			<p align="left">
+			<span lang="EN-US" style="font-size:10.5pt;font-family:&quot;Times New Roman&quot;">
+			EzGetProfileInt(...); </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="26" width="339">
+			<p align="left">
+			<span lang="EN-US">_CProfile_GetInt32(appName, keyName, pValue);
+			</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32" colspan="2">
+			<p align="left">获得整型的配置文件<span lang="EN-US">elastos.cfg </span>中指定<span lang="EN-US">section</span>段里的关键字的值 </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="70" rowspan="2">
+			<p align="left">
+			<span lang="EN-US">CProfile::GetAString </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="34" width="180">
+			<p align="left">没有对应</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="34" width="341">
+			<p class="MsoNormal" align="left"><span lang="EN-US">_CProfile_GetAString</span></p>
+			<p><span lang="EN-US">(appName, keyName, pReturnedString); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32" colspan="2" width="521">
+			<p align="left">获得字符串格式的配置文件<span lang="EN-US">elastos.cfg </span>中指定<span lang="EN-US">section</span>段里的关键字的值 </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="83" rowspan="2">
+			<p align="left">
+			<span lang="EN-US">CProfile::GetWString </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="39" width="181">
+			<p align="left">
+			<span lang="EN-US" style="font-size:10.5pt;font-family:&quot;Times New Roman&quot;">
+			EzGetProfileString(...);&nbsp; </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="39" width="341">
+			<p class="MsoNormal" align="left"><span lang="EN-US">_CProfile_GetWString</span></p>
+			<p><span lang="EN-US">(appName, keyName, pReturnedString); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="42" colspan="2" width="522">
+			<p align="left">获得字符串格式的配置文件<span lang="EN-US">elastos.cfg </span>中指定<span lang="EN-US">section</span>段里的关键字的值 </td>
+		</tr>
+		</table>
+
+
+<p>　</p>
+
+
+<p>　</p>
+
+
+    </body>
+</html>

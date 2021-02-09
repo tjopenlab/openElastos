@@ -1,0 +1,130 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\vprintf">vprintf</sample>
+    <title>vprintf, vwprintf </title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes formatted output to stdout using a pointer to a list of arguments.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>vprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format</param_name>
+                <param_note>
+                    <para>Format specification.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+                <param_note>
+                    <para>Pointer to list of arguments.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>vwprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format</param_name>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>vprintf and vwprintf return the number of characters written, not including the terminating null character or a negative value if an output error occurs.</para>
+    </return>
+
+    <remarks>
+        <para>Each of these functions takes a pointer to an argument list, then formats and writes the given data to stdout.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>vprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>vwprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* vprintf.cpp:this program display a line to screen*/
+
+#include &lt;stdio.h&gt;
+
+void __cdecl test(char *, ...);
+
+int main(int argc, char** argv)
+{
+    test(&quot;Hello,world! %s\n&quot;, &quot;This is Elastos!&quot;);
+
+    return 0;
+}
+
+void __cdecl test(char *first, ...)
+{
+    int result = 0;
+    va_list parglist;
+
+    va_start(parglist, first);
+    result = vprintf(first, parglist);
+    va_end(parglist);
+}
+</pre>
+    </example>
+<result>
+Hello, world! This is Elastos!
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>printf</ref_name>
+            <ref_url>wprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>sprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>vsprintf</ref_name>
+            <ref_url>vswprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

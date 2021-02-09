@@ -1,0 +1,199 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>getsockopt</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>获取套接口选项。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>套接口</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>level</param_name>
+                <param_note>
+                    <para>设置套接口选项的级别：SOL_SOCKET, IPPROTO_TCP, 和IPPROTO_IP</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>optname</param_name>
+                <param_note>
+                    <para>指定要获取的套接口选项</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>char *</param_type>
+                <param_name>optval</param_name>
+                <param_note>
+                    <para>指向返回所需套接口选项值的缓冲区的指针</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int *</param_type>
+                <param_name>optlen</param_name>
+                <param_note>
+                    <para>指向optval缓冲区大小的指针</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，返回0；当程序执行失败时，返回SOCKET_ERROR，调用WSAGetLastError()，可以获取具体的错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>getsockopt函数用于获取任意类型、任意状态套接口选项的当前值，并把结果存入optval。选项可以存在于不同的协议级别上。设置这些选项将影响套接口的操作，诸如包的路由、带外数据的传输等。</para>
+        <para>被指定的选项对应值存放在optval缓冲区中。optlen是一个指向初始时缓冲区的长度的指针，调用返回时它指向缓冲区的实际大小。例如，SO_LINGER选项，该值对应struct linger结构的大小，对于大多数其它选项而言，对应一个整型数的大小。</para>
+        <para>如果未进行setsockopt()调用，则getsockopt()返回系统缺省值。</para>
+        <para>getsockopt()支持下列选项。其中“类型”栏指出了optval所指向的值的类型。</para>
+        <para>level = SOL_SOCKET</para>  ]
+        <table>
+            <th>
+                <td>值</td><td>类型</td><td>描述</td>
+            </th>
+            <tr>
+                <td>SO_BROADCAST</td><td>BOOL</td><td>套接口是否可以发送广播信息</td>
+            </tr>
+            <tr>
+                <td>SO_KEEPALIVE</td><td>BOOL</td><td>发送保活信息</td>
+            </tr>
+            <tr>
+                <td>SO_LINGER</td><td>struct linger</td><td>套接口当前linger选项</td>
+            </tr>
+            <tr>
+                <td>SO_OOBINLINE</td><td>BOOL</td><td>在数据流中接收带外数据</td>
+            </tr>
+            <tr>
+                <td>SO_REUSEADDR</td><td>BOOL</td><td>允许套接口和一个已在使用中的地址绑定</td>
+            </tr>
+            <tr>
+                <td>SO_TYPE</td><td>int</td><td>套接口类型（如SOCK_STREAM）,该选项不能设置</td>
+            </tr>
+            <tr>
+                <td>SO_SNDBUF</td><td>int</td><td>指定发送缓冲区大小</td>
+            </tr>
+            <tr>
+                <td>SO_RCVBUF</td><td>int</td><td>指定接收缓冲区大小</td>
+            </tr>
+            <tr>
+                <td>SO_RCVLOWAT</td><td>int</td><td>接收缓冲区低潮限度</td>
+            </tr>
+            <tr>
+                <td>SO_SNDLOWAT</td><td>int</td><td>发送缓冲区低潮限度</td>
+            </tr>
+            <tr>
+                <td>SO_SNDTIMEO</td><td>struct timeval</td><td>发送超时</td>
+            </tr>
+            <tr>
+                <td>SO_RCVTIMEO</td><td>struct timeval</td><td>接收超时</td>
+            </tr>
+        </table>
+        <para>level = IPPROTO_TCP</para>
+        <table>
+            <th>
+                <td>值</td><td>类型</td><td>描述</td>
+            </th>
+            <tr>
+                <td>TCP_NODELAY</td><td>BOOL</td><td>禁止发送合并的Nagle算法</td>
+            </tr>
+            <tr>
+                <td>TCP_MAXSEG</td><td>int</td><td>获取TCP最大分节的大小</td>
+            </tr>
+        </table>
+        <para>level = IPPROTO_IP</para>
+        <table>
+            <th>
+                <td>值</td><td>类型</td><td>描述</td>
+            </th>
+            <tr>
+                <td>IP_MULTICAST_IF</td><td>struct in_addr</td><td>多播数据报的本地接口</td>
+            </tr>
+            <tr>
+                <td>IP_MULTICAST_TTL</td><td>UINT8</td><td>多播数据报的存在时间（TTL）</td>
+            </tr>
+            <tr>
+                <td>IP_MULTICAST_LOOP</td><td>UINT8</td><td>允许或禁止多播数据报的回馈</td>
+            </tr>
+        </table>
+        <para>getsockopt()暂时不不支持的选项有：</para>
+        <table>
+            <th>
+                <td>值</td><td>类型</td><td>描述</td>
+            </th>
+            <tr>
+                <td>SO_ACCEPTCONN</td><td>BOOL</td><td>套接口正在监听</td>
+            </tr>
+            <tr>
+                <td>IP_MULTICAST_IF</td><td>struct in_addr</td><td>发出多播数据的本地接口</td>
+            </tr>
+            <tr>
+                <td>SO_DONTLINGER</td><td>BOOL</td><td>若为真，则SO_LINGER选项被禁止</td>
+            </tr>
+            <tr>
+                <td>IP_MULTICAST_TTL</td><td>UINT8</td><td>多播数据报的存在时间</td>
+            </tr>
+            <tr>
+                <td>IP_MULTICAST_LOOP</td><td>UINT8</td><td>发送多播数据报时套接口的状态呈循环的行为</td>
+            </tr>
+        </table>
+        <para>调用getsockopt函数时，如果传入的参数是一个不被支持的套接口选项，将产生错误，错误值是WSAENOPROTOOPT。可以通过WSAGetLastError得到该值。</para>
+        <para>SO_KEEPALIVE</para>
+        <para>通过打开SO_KEEPALIVE选项，应用程序可以请求TCP/IP服务提供者打开使用“保持活动”数据包功能。对于“保持活动”功能，不同的socket可能有不同的实现，但都应遵守RFC1122“Internet主机要求－通讯层”中第4.2.3.6节的规范。如果有关连接由于“保持活动”而失效，则任何正在进行的对该套接口的调用都将以WSAENETRESET错误返回，后续的任何调用将以WSAENOTCONN错误返回。</para>
+        <para>SO_LINGER</para>
+        <para>当出现下述情况时，可以考虑设置SO_LINGER选项：套接口上有排队的待发送数据，且已执行closesocket()调用。参见closesocket()函数中关于SO_LINGER选项对closesocket()函数语义的影响。应用程序通过获取一个linger结构来获得当前的行为。</para>
+        <para>SO_REUSEADDR</para>
+        <para>在默认情况下，套接口不能同一个正在使用的本地地址绑定在一起。但在少数情况下，仍有必要以这种方式，来实现对一个地址的重复使用。由于每个连接都是通过它的本地及远程地址的组合，独一无二的被标识出来的，所以只要远程地址不同的两个套接口被绑定到相同的本地地址是可以的。如果需要将某个正被其他套接口使用的地址绑定到另一个套接口上，应用程序应该在绑定前设置SO_REUSEADDR选项来通知系统。该选项仅在绑定的时候被解释。设置或者重置该选项不会影响已绑定的套接口。</para>
+        <para>TCP_NODELAY</para>
+        <para>该选项禁止Nagle算法。在RFC 896中指出Nagle算法对于减少主机发出的零碎小数据包非常有效。Nagle算法通过将未确认的数据存入缓冲区直到蓄足一个包一起发送的方法，来减少主机发送的零碎小数据包的数目。这样对于大多数应用程序可以提高系统性能，但对于某些应用来说，这种算法将严重降低系统性能。所以TCP_NODELAY可用来将此算法关闭。应用程序编写者只有在确切了解它的效果并确实需要的情况下，才设置TCP_NODELAY选项。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>setsockopt</ref_name>
+            <ref_url>setsockopt</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

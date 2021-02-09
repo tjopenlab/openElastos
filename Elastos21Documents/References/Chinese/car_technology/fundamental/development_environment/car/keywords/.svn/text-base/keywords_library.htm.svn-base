@@ -1,0 +1,48 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--library</title>
+
+</head>
+
+<body>
+	<h2>library </h2>
+	    <b>含义 </b>
+	        <p>此关键字用于指定生成静态链接库.lib形式的car构件。  </p>
+	
+	    <b>语法 </b>
+	    	<p><b>library</b> UUNM LibraryBody </p>
+	    <b>使用说明 </b>
+ 	        <p>1.其中UUNM为该构件模块的全球唯一名字，包括URL路径和lib名字。 </p>
+ 	        <p>2.在一个CAR文件中必须包含且只能包含一个<a class="style1" href= "keywords_module.htm">module</a>或library定义，其中可以定义若干构件类和接口。library中可以只定义接口，不定义实现类。 </p>
+ 	        <p>3.如不指定UUNM，则默认的lib名由car文件名加上.lib后缀构成，并且构件名不能和该构件的类名重复。 </p>
+ 	        <p>4.构件名必须和car文件名一致。 </p>
+ 	        <p>5.不允许定义一个空的library，即不含任何的类，接口和方法。 </p>	        
+	    <b>使用范例 </b>
+            <pre class= code>
+<b>library</b> www.elastos.com/car/LibraryDemo.lib
+{
+    interface IFoo {
+        Foo([in] Int32 num);
+    }
+    
+    interface IBar {
+        Bar();
+    }
+}
+
+</pre>
+	        <p> 示例中，定义了一个构件LibraryDemo。该构件中定义了接口IFoo和接口IBar。 </p>
+        <b>与module的区别</b>
+	        <p> <a class="style1" href= "keywords_module.htm">module</a>指定生成dll形式的car构件，library指定生成lib形式的car构件。并且module中必须定义具体的类，而library中则可以只定义接口，然后在其它module中实现。</p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+</body>
+</html>

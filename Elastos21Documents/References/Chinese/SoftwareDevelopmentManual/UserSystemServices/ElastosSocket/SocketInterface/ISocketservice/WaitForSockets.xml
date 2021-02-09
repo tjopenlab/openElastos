@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISocketService</interface><method> WaitForSockets </method>
+    <description>
+        <para>
+            轮询不同socket接口，等待请求的事件发生。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzArray&lt;IObject *&gt; </param_type>
+                <param_name> ezSockets </param_name>
+                <param_note>
+                    <para>
+ISocket接口指针数组首地址                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzArray&lt;BYTE&gt; </param_type>
+                <param_name> ezEventRequests </param_name>
+                <param_note>
+                    <para>
+请求方式数组，元数与ISocket接口指针数组一一对应                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzArray&lt;BYTE&gt; </param_type>
+                <param_name> ezEventResponse </param_name>
+                <param_note>
+                    <para>
+应答方式数组                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> tv_sec </param_name>
+                <param_note>
+                    <para>
+等待超时时间，单位为秒                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> tv_usec </param_name>
+                <param_note>
+                    <para>
+等待超时时间，单位为微秒                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> pError </param_name>
+                <param_note>
+                    <para>
+指向int型的指针，用于当函数执行发生错误时获取其错误返回值，该返回值参见<link url="../SocketWSA.htm">网络接口错误返回值</link>文档                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果等待时间超时，则返回S_TIMED_OUT；如果方法调用成功，但超时返回，则返回S_TIMED_OUT。</para><para>            更多返回值，参见            <link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECODE            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+</manpage>

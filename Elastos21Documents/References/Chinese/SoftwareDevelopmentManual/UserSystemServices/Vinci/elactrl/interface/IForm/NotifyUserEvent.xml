@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> NotifyUserEvent </method>
+    <description>
+        <para>
+            不能丢弃的事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> event </param_name>
+                <param_note>
+                    <para>
+用户事件ID。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> param1 </param_name>
+                <param_note>
+                    <para>
+用户自定义数据。                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> param2 </param_name>
+                <param_note>
+                    <para>
+用户自定义数据。                   </para>
+                </param_note>
+            </api_param>            
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果窗口已关闭，则返回E_CONTROL_NO_WINDOW。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统             </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElControls.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+<remarks>
+        <para>
+            NotifyUserEvent是通过队列来分发消息，对于重要的、不能被丢弃的消息，应使用此方法而不能使用NotifyDiscardableUserEvent。如：ec = m_pMainForm->NotifyUserEvent(USEREVENT_SHOWFORM, 0, 0);
+            此处USEREVENT_SHOWFORM定义为showform事件ID。
+        </para>
+</remarks>    
+</manpage>

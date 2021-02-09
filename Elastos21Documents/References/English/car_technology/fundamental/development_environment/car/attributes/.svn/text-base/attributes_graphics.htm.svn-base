@@ -1,0 +1,40 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--graphics</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>graphics</h2>
+    <p>This attribute can only modify component. It means this component is an executable component.You can use <a class="style1" href="../../../../environment/use_elastos/elastos_tools/commands/elahost.htm">elahost</a> to start and then the program enters graphics mode. When executing this component, the system provides a main window (CForm)and client program can add controls to the main window. For example: </p>
+    <pre class="code">
+[
+    uuid(3dfb2ac1-dedc-427a-ba2a-1753d862a6bc), <b>graphics</b>,
+    uunm(http://www.koretide.com/car/samples/GraphicsDemo.dll)
+]
+component GraphicsDemo
+{
+    ……
+    [uuid(79686359-190f-4476-bc0a-51803af60865), main]
+    class CClass { }
+    ……
+}
+</pre>
+    <p>In sample component GraphicsDemo, component GraphicsDemo has graphics attribute, which means this component is an executable component. You can use elahost to start and enters the graphics mode. Class CClass with <a class="style1" href="attributes_main.htm">main</a> attribute is the program entry point of executing this component.</p>
+    <p>If component has this attribute, then the client program can invoke <a class="style1" href="../inline_func/MyMainForm.htm">MyMainForm</a> method to obtain the class smart pointer <a class="style1" href="../../../graphics/elactrl/class/CFormRef.htm">CFormRef</a>.This pointer points to the main window object. This object can invoke methods in all interfaces of class <a class="style1" href="../../../graphics/elactrl/class/CForm.htm">CForm</a>. If you want to exit user program, you need to invoke <a class="style1" href="../../../graphics/elactrl/interface/IForm/Close.htm">Close</a> method; the syntax is: MyMainForm().Close() .</p>
+    <p>Under this graphics mode, the user can use key combination Ctrl+Space to switch between Chinese and English text input mode. Under Chinese input mode you can use pinyin input method.</p>
+    <ul><b>Remarks: </b>The difference between this attribute and <a class="style1" href="attributes_graphics(lite).htm">graphics(lite)</a> attribute: After executing component using this attribute and enters graphics mode,the system provides a main window (CForm).A client program can add control to the main window.Thus the client program can <a class="style1" href="../../../../../userguide/use_sdk/graphics/dev_gdi/use_control.htm">Write applications that uses control</a>. When using graphics(lite) attribute and enters the graphics mode, you can only perform draw graphics operations, but cannot add any control. Please see <a class="style1" href="../../../../../userguide/use_sdk/graphics/dev_gdi/nonuse_control.htm">Writing applications that does not use controls</a> for details.</ul>
+    <ol><font color="red"><b>Note: </b>
+        <li>In a component, this attribute is mutually exclusive with the <a class="style1" href="attributes_graphics(lite).htm">graphics(lite)</a> attribute and <a class="style1" href="attributes_console.htm">console</a> attribute.
+        <li>When component has this attribute, there must exists a class in the component that has the main attribute and there can be only one of the class that has the main attribute. It means that this class is the program entry point of this executable component.Otherwise it cannot pass compilation.</font>
+    </ol>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

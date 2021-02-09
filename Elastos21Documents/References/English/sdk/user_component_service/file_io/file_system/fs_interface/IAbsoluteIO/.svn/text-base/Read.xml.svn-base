@@ -1,0 +1,95 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>I/O Interface</volume>
+<interface>IAbsoluteIO</interface><method> Read </method>
+    <description>
+        <para>
+       		Reads data from the specified offset of the file object and copies it to the buffer.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> offset </param_name>
+                <param_note>
+                    <para>
+						Starts to read the offset of the data, which means the length from the begining of 
+						the file object, in bytes (starting from 0).
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> toRead </param_name>
+                <param_note>
+                    <para>
+						The number of bytes which is going to be read from the file object.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzByteBuf </param_type>
+                <param_name> ezbBuf </param_name>
+                <param_note>
+                    <para>
+						The buffer which holds the data to be returned.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value </td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>S_OK</td>
+		        <td>Function succeeds in reading.</td>
+	        </tr>
+	        <tr>
+		        <td>E_INVALIDARG</td>
+		        <td>Parameter ezbBuf is NULL.</td>
+	        </tr>
+	        <tr>
+		        <td>ECODE_FROM_ERRNO(EINVAL)</td>
+		        <td>offset is less than 0, or greater than the file size; toRead is less than 0, or greater than 0x7fffffff, or over the size of ezbBuf (Capacity).</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			1. The value of <i>offset, toRead and ezbBuf</i> should be declared or allocated.
+		</para>
+		<para>
+        	2. Used() of  EzByteBuf return the data size actually read. You can know if it has read the 
+        	end of the file by comparing the value  of ezbBuf.Used() is = toRead.= means it is not read 
+        	the end of the file yet;if ezbBuf.Used() is less than toRead, that means it has read the end of the file.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

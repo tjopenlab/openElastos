@@ -1,0 +1,85 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>文件管理器</volume>
+<interface>IFileMgr</interface><method> GetFreeSpace </method>
+    <description>
+        <para>
+        文件系统的总大小和剩余空间大小
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> wsPartitionName </param_name>
+                <param_note>
+                    <para>指定的分区名称
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UINT64 * </param_type>
+                <param_name> pu64Totlwsize </param_name>
+                <param_note>
+                    <para>分区总空间大小
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UINT64 * </param_type>
+                <param_name> pu64Frewsize </param_name>
+                <param_note>
+                    <para>分区剩余空间大小
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>wsPartitionName为空或者第一个元素不是字母或pu64TotleSize与pu64FreeSize均为空</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_NOT_EXIST</td>
+	    	    <td>不存在该分区</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_DOES_NOT_EXIST</td>
+	    	    <td>不存在该分区</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_OUT_OF_MEMORY</td>
+	    	    <td>内存不足</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_FILESYS_NOROOT</td>
+	    	    <td>找不到文件系统根返回</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_NOT_IMPLEMENTED</td>
+	    	    <td>所查询分区不支持该查询操作返回</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

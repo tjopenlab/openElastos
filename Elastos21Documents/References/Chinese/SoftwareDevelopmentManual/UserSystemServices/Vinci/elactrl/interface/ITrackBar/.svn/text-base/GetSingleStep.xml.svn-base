@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITrackBar</interface><method> GetSingleStep </method>
+    <description>
+        <para>
+            获取点击追踪条箭头要移动的距离。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32* </param_type>
+                <param_name> step </param_name>
+                <param_note>
+                    <para>
+指向 Int32 型的指针，用于获取点击箭头，滑块移动的距离；不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+    	  SingleStep 是用户点击上下箭头时，滑块移动的距离，默认值为 10。设置 SingleStep 可以通过 <link url="SetSingleStep.htm">SetSingleStep</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTrackBar 类介绍 </ref_name>
+        <ref_url>../../class/TrackBar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITrackBar 接口方法列表</ref_name>
+        <ref_url>../ITrackBar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetSingleStep</ref_name>
+        <ref_url>SetSingleStep</ref_url>
+    </reference>
+</references>
+</manpage>

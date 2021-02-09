@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> CaptureKey </method>
+    <description>
+        <para>
+            为控件设置需要捕获的键值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> keyCode </param_name>
+                <param_note>
+                    <para>
+按键值，该值必须为 vkey.h 中所定义的值</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_CONTROL_NO_OPERATION</td>
+	    	    <td>该控件不能进行此操作</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法是针对一个 Form 内的控件，若某个控件设置了 capturekey，则该键被按下的事件都将发送给此控件，即使它并不是焦点控件，此时若将其它控件的 capturekey 设置为该键值都会失败，除非捕获该键值的控件取消捕获，取消捕获某个键值可以通过 <link url="UncaptureKey.htm">UncaptureKey</link> 方法。在全局范围内设置不同 Form 需要捕获的键值可以通过 <link url="../IForm/GrabKey.htm">GrabKey</link> 方法。
+    </para>
+    <para>
+        默认情况下，一个 Form 内的焦点控件会捕获所有的键值，若非焦点控件想捕获某个键值，需要先取消当前焦点控件对该键值的捕获，方能成功调用该方法捕获此键值。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>UncaptureKey</ref_name>
+        <ref_url>UncaptureKey</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GrabKey</ref_name>
+        <ref_url>../IForm/GrabKey</ref_url>
+    </reference>
+</references>
+</manpage>

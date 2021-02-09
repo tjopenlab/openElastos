@@ -1,0 +1,34 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+<manpage>
+<volume>电话控制</volume>
+<interface>ISettingActs</interface><method>OnGetAutoAnswerIncomingCallState</method>
+    <description>
+        <para>
+            获取自动接听的状态。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+        <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> BOOL* </param_type>
+                <param_name> pbState </param_name>
+                <param_note>
+                    <para>指向BOOL型的指针，用于获取自动接听的状态。如果参数pbState为TRUE，表示打开自动接听功能，否则表示关闭自动接听功能</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>方法调用成功时，返回S_OK。</para>
+</return>
+    <requirements>
+        <system>
+            <system_name>《Elastos 2.0》或更高版本</system_name>
+        </system>
+    </requirements>
+
+</manpage>

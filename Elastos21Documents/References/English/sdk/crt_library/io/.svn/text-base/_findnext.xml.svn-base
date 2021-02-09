@@ -1,0 +1,119 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_findnext">_findnext</sample>
+    <title> _findnext, _wfindnext</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>Continues searching the next matching file for filespec parameter information of _findfirst function, modify content of fileinfo struct.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_findnext</func_name>
+        <parameters>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>Search handle of last _findfirst function call.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>struct _finddata_t*</param_type>
+                <param_name>fileinfo</param_name>
+                <param_note>
+                    <para>File information buffer.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wfindfnext</func_name>
+        <parameters>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>handle</param_name>
+            </func_param>
+            <func_param>
+                <param_type>struct _wfinddata_t*</param_type>
+                <param_name>fileinfo</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If _findnext is successful, 0 is returned. Otherwise, -1 will be returned, error number is set to ENOENT, represents no matching file was found.</para>
+        <para>When finished calling <link url="_findfirst.htm">_findfirst</link> function or _findnext function, <link url="_findclose.htm">_findclose</link> function must be called. This will release the resources used by calling functions _findfirst and _findnext.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>_findnext</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>_findfirst</ref_name>
+            <ref_url>_findfirst</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_findclose</ref_name>
+            <ref_url>_findclose</ref_url>
+        </reference>
+    </references>
+<example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* findnxt.cpp: This program uses _findnext to find the next name after
+ * _findfirst, and then display the attrib of fileinfo structure
+ * contents accordingly.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;io.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+    long hFile;
+    struct _finddata_t fileinf;;
+
+    /* Find first _find??.exe file in current directory */
+    if ((hFile = _findfirst(&quot;find*.*&quot;, &amp;fileinf)) == -1L)
+        printf(&quot;No find*.exe files in current directory!\n&quot;);
+    else {
+        do {
+            printf((fileinf.attrib &amp; _A_RDONLY) ? &quot; Y  &quot; : &quot; N  &quot;);
+            printf((fileinf.attrib &amp; _A_SYSTEM) ? &quot; Y  &quot; : &quot; N  &quot;);
+            printf((fileinf.attrib &amp; _A_HIDDEN) ? &quot; Y  &quot; : &quot; N  &quot;);
+            printf((fileinf.attrib &amp; _A_ARCH)   ? &quot; Y  &quot; : &quot; N  &quot;);
+            printf(&quot; %s\n&quot;, fileinf.name);
+        } while (_findnext(hFile, &amp;fileinf) == 0);
+        _findclose(hFile);
+    }
+
+    return 0;
+}
+</pre>
+</example>
+<result>
+N   N   N   N   findcls.exe
+N   N   N   N   findfst.exe
+N   N   N   N   findnxt.exe
+</result>
+</manpage>

@@ -1,0 +1,401 @@
+
+<html>
+<head>
+	<title>Operating Systems FAQ :: Linkers</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="linkers">Linkers</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Traditionally, you can't get far without a linker, and thats a fact.
+		<p>Linkers are important tools in the production of an Operating System.
+		<p>They come in many flavours sizes shapes and formats. Some are flexable
+		and some are not.
+		<p>There are important considerations to make when using a linker.
+		<ul>
+			<li><a href="#l1_1">Does it support the output formats I require?</a>
+			<li><a href="#l1_2">Does it support the input formats I'm using?</a>
+			<li><a href="#l1_3">Can I specify address ranges for code and data?</a>
+			<li><a href="#l1_4">Can I produce flat binary files?</a>
+			<li><a href="#l1_5">Can it handle 32bit code?</a>
+		</ul>
+		
+		
+		<p><a name="l1_1"><b>Does it support the output formats I require</b></a>
+		<p>Some linkers only support one kind of output file format, others support
+		every kind of format know to exist. Formats are often not proprietory, having
+		specifications available means if you wish to use Win32/PE file format, you are
+		not required to use Microsoft's Linker.
+				
+		<p><a name="l1_2"><b>Does it support the input formats I'm using?</b></a>
+		<p>This can be important if your going to mix files around.  For example,
+		stock DJGPP distribution works with COFF files, and if you link in a
+		TASM assembled OBJ/OMF file, DJGPP(LD) will not recognised it.
+		<p>This is usually of less a concern than the other requirements.
+		
+		<p><a name="l1_3"><b>Can I specify address ranges for code and data?</b></a>
+		<p>This can be very, very important!  Especially if you want to product
+		flat binary files. (Like an unrelocated kernel image).  You need to be able
+		to specify where the code starts and sometimes where the data begins.
+		
+		<p><a name="l1_4"><b>Can I produce flat binary files?</b></a>
+		<p>As with the above option, this can be important, even if you only
+		need to use it a couple of times.				
+		
+		<p><a name-"l1_5"><b>Can it handle 32bit code?</b></a>
+		<p>You might think this a redundant question in the age of &quot;32bit&quot;
+		but there are many custom linkers out there that can't handle 32bit object
+		files.
+		</TD>
+	</TR>
+</TABLE>
+
+<p>&nbsp;
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="linkers_jloc">Linkers :: JLoc</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>JLoc is written by John Fines.
+		<p>
+		<pre>
+&quot;This program is a linker/locator for use when you need more
+control over placement of sections within the image, than a standard
+linker provides.&quot;
+		</pre>
+		<p>JLoc can be tricky to use for first timers. Carefull reading of
+		the documentation is required. Its not a get-up-and-go linker
+		like all the other linkers. JLoc _requires_ you to write a custome
+		script for each &quot;executable&quot; image you want to link.
+		<p>JLoc gives you flexibility over HOW the object files are linked,
+		regarding loaded addresses and so-forth.
+		<p>JLoc can be obtained here, 
+		<a href="http://www.erols.com/johnfine/">http://www.erols.com/johnfine/</a>
+		
+		<p>needs more review!!
+		
+		<p><b>Pros</b>
+		<ul>
+			<li>Supports OMF/OBJ, DJGPP/COFF
+			<li>Supports 32bit code
+			<li>Supports flat binary file generation
+			<li>Handles library files (OMF/OBJ)
+			<li>OMF/OBJ debugging information
+			<li>Free
+		</ul>
+		
+		<p><b>Cons</b>
+		<ul>
+			<li>Does not support any output file formats other than flat binary and DOS/COM
+			<li>Confusing to use for beginners
+			<li>Can't create shared libraries
+		</ul>
+		</TD>
+	</TR>
+</table>
+
+<p>&nbsp;
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="linkers_alink">Linkers :: ALink</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>ALink (Anthony's Linker) was written as a companion to NASM, its aim
+		to provide a Free linker that supports Nasm's output formats and support
+		some of the more popular executable formats.
+		<p>ALink can be obtained here, 
+		<a href="http://www.geocities.com/SiliconValley/Network/4311/index.html">http://www.geocities.com/SiliconValley/Network/4311/index.html</a>
+		
+		<p>need more of a review!!
+		
+		<p><b>Pros</b>
+		<ul>
+			<li>Its Free
+			<li>Supports input formats OMF/OBJ, Win32/COFF Objects
+			<li>Supports output as DOS/COM, DOS/EXE, Win32/PE
+			<li>Can build Win32/PE DLL files
+			<li>Can set the code address
+			<li>Suppots .LIB (OBJ) Library files
+		</ul>
+		
+		<p><b>Cons</b>
+		<ul>
+			<li>Doesnt support flat binary images
+			<li>Strips debugging information
+			<li>Can't create shared libraries
+		</ul>
+		
+		</TD>
+	</TR>
+</table>
+
+<p>&nbsp;
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="linkers_ld">Linkers :: LD (GNU)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>LD, the King of linkers.  Supports more input and output formats than
+		any other linker in existance.  Also the most flexable of the listed linkers.
+		Supports custom linking via scripts.  Its advanced featers are hard to
+		use if you dont know what you are doing.
+		<p>LD has the most going for it in terms of functionality compared to the
+		other linkers (Thats _my_ opinion anyway...) but lacking OMF/OBJ support
+		is a BIG omission.
+		<p>This description is based on the LD sources, that can compile to support
+		all formats. Please be aware that the LD that comes with DJGPP is very limited
+		in its output formats (DJGPP/COFF, A.Out, flat binary) and so to with the LD that
+		is part of Linux etc.
+
+		
+		<p><b>Pros</b>
+		<ul>
+			<li>Supports most known input formats (Elf, DJGPP/COFF, Win32/COFF, A.Out, etc)
+			<li>Supports most known output formats (Elf, Win32/PE, A.Out, COFF, etc)
+			<li>Supports creation of shared libraries
+			<li>Can create flat binary files
+			<li>Can specify code/data addresses
+			<li>Supports DWARF and ECOFF and STABS debugging information
+			<li>Its Free
+		</ul>
+		
+		<p><b>Cons</b>
+		<ul>
+			<li>Does not support OMF/OBJ file format
+			<li>Can get complex writing custom linking scripts
+			<li>Can't create shared libraries
+		</ul>				
+		</TD>
+	</TR>
+</table>
+
+
+<p>&nbsp;
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="linkers_tlink">Linkers :: TLink / TLink32 (Borland)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>TLink is the linker that comes with Borland C and their assembler TASM.
+		The difference between TLink and TLink32 is that TLink32 creates ONLY
+		Win32/PE (and DLL) files where as TLink creates Dos and Win16 files.
+		<p><b>Pros</b>
+		<ul>
+			<li>Supports Win32/COFF and OMF/OBJ
+			<li>Has support for libraries
+			<li>Supports creating Win32/PE files and DLL's
+			<li>Supports OMF/OBJ (and DWARF?) debugging information
+		</ul>
+		
+		<p><b>Cons</b>
+		<ul>
+			<li>Lacking in both input and output fileformats
+			<li>Can't create flat binary images
+			<li>Can't create shared libraries
+		</ul>
+		</TD>
+	</TR>
+</table>
+
+<p>&nbsp;
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="linkers_link">Linkers :: Link / NLink (Microsoft)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>There are really three fundamentally different linkers.
+<p>
+Versions 1.x through 3.x can only produce DOS output.  Technically, the
+_really_ early ones can only produce .com files, and IIRC, starting with
+2.x they can also produce .exe files.
+<p>
+Starting with version 4.x, MS Link can also produce NE format output files.
+These accept OMF/OBJ format with some MS extensions.
+<p>
+Starting with version 6.x, MS link can produce only PE format output files.
+<p>
+These accept either COFF/PE or 32-bit OMF/OBJ format object files and
+produce (only) PE files as output.  They support a few things missing from
+the Borland linker such as the ability to specify the entry point.  Debug
+formats supported include COFF and CodeView.
+<p>
+Here I should note that I'm listing only the relatively mainstream versions
+of MS link.  They've also produced versions that produce various other
+formats of output, mostly for OS/2 and/or Windows 3.x VxDs (e.g. LE and LX
+format).
+		</TD>
+	</TR>
+</table>
+
+<p>&nbsp;
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="linkers_val">Linkers :: VAL</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>VALink is an old old linker that has been floating around for ages.
+		It is showing its age quite well.
+		<p><b>There exists an Enhnaced VALink that needs a review!</b>
+		<p><b>Pros</b>
+		<ul>
+			<li>Its free
+			<li>Supports makeing DOS/EXE files.
+		</ul>
+		
+		<p><b>Cons</b>
+		<ul>
+			<li>Can ONLY handle 16bit code.
+		</ul>
+	
+		</TD>
+	</TR>
+</table>
+
+
+<p>&nbsp;
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="linkers_wlink">Linkers :: WLink (Watcom Linker)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>WLink is the linker that comes with Watcom C/C++. Supports a wide
+		range of options and is flexable to a degree.
+		<p>But it can be quite braindead at times and its support for generating
+		ELF files is broken and seriously flawed.
+		<p><b>Pros</b>
+		<ul>
+			<li>Supports range of input formats, OMF/OBJ, Win32/COFF, ELF
+			<li>Supports library files
+			<li>Supports many output file formats from EXE, LE, Win32/PE,
+			Novell NLM files, Pharlap files, QNX, OS2, etc.
+			<li>Handles setting code offset address
+			<li>Supports Watcom, Codeview and Dward debugging information
+		</ul>
+		
+		<p><b>Cons</b>
+		<ul>
+			<li>ELF output is broken
+			<li>Cant do flat binary files
+		</ul>
+		</TD>
+	</TR>
+</table>
+
+<p>&nbsp;
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="linkers_comp">Comparisson</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+		<table border="1" cellspacing="1" cellpadding="4" nowrap>
+			<tr>
+				<th nowrap>Name</th>
+				<th nowrap>Input</th>
+				<th nowrap>Output</th>
+				<th>Flat Binary Images</th>
+				<th nowrap>Set Code<br>Address</th>
+				<th nowrap>Library<br>Support</th>
+				<th>Supports Debug Info</th>
+				<th>32bit Code</th>
+			</tr>
+
+			<tr>
+				<td>JLoc</td>
+				<td align="CENTER">OMF/OBJ</td>
+				<td align="CENTER">DOS/COM</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">N</td>
+				<td align="CENTER">OMF/OBJ</td>
+				<td align="CENTER">Y</td>
+			</tr>
+			
+			<tr>
+				<td>ALink</td>
+				<td align="CENTER">OMF/OBJ<br>Win32/COFF<br>DJGPP/COFF</td>
+				<td align="CENTER">DOS/COM<br>DOS/EXE<br>Win32/PE<br>Win32/DLL</td>
+				<td align="CENTER">N</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">N</td>
+				<td align="CENTER">Y</td>
+			</tr>
+			
+			<tr>
+				<td>LD</td>
+				<td align="CENTER">OMF/OBJ<br>OMF/COFF<br>DJGPP/COFF<br>Win32/COFF<br>A.OUT<br>ELF</td>
+				<td align="CENTER">ELF<br>A.OUT<br>Win32/PE<br>Win32/DLL<br>+more</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">ECOFF<br>DWARF<br>STABS</td>
+				<td align="CENTER">Y</td>
+			</tr>
+			
+			<tr>
+				<td>Tlink<br>Tlink32</td>
+				<td align="CENTER">OMF/OBJ<br>Win32/COFF</td>
+				<td align="CENTER">DOS/EXE<br>DOS/COM<br>Win32/DLL<br>Win32/PE</td>
+				<td align="CENTER">N</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">OMF/OBJ</td>
+				<td align="CENTER">Y</td>
+			</tr>
+			
+			<tr>
+				<td>Link<br>NLink</td>
+				<td align="CENTER">OMF/OBJ, Win32/COFF</td>
+				<td align="CENTER">DOS/EXE<br>DOS/COM<BR>Win32/PE<br>Win32/DLL<br>LE</td>
+				<td align="CENTER">N</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">CODEVIEW<br>DWARF</td>
+				<td align="CENTER">Y</td>
+			</tr>
+			
+			<tr>
+				<td>Val</td>
+				<td align="CENTER">OMF/OBJ</td>
+				<td align="CENTER">DOS/EXE</td>
+				<td align="CENTER">N</td>
+				<td align="CENTER">N</td>
+				<td align="CENTER">N</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">N</td>
+			</tr>
+			
+			<tr>
+				<td>Wlink</td>
+				<td align="CENTER">OMF/OBJ<br>Win32/COFF<br>ELF</td>
+				<td align="CENTER">DOS/EXE<br>DOS/COM<br>LE<br>ELF<br>Win32/PE<br>Win32/DLL<br>Pharlap<br>Novell NLM<br>Causeway<br>QNX</td>
+				<td align="CENTER">N</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">Y</td>
+				<td align="CENTER">WATCOM<br>CODEVIEW<br>DWARF</td>
+				<td align="CENTER">Y</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

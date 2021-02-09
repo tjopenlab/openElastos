@@ -1,0 +1,164 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--filtering </title>
+</head>
+
+<body>
+	<h2>filtering</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于派生类拦截基类抛出的回调事件，从而可以过滤回调事件，有选择的重新抛出、不抛或者抛出修改过的事件。 </p>
+	        <p> 比如有一个CForm的基类，它会抛出Click的事件，又有一个CDialog继承于CForm，当用户创建一个CDialog对象时，可以注册Click事件，对于CForm来说，用户鼠标在Form范围内任何地方的点击事件都会抛出，而使用CDialog的用户则可能只关心点击到button的Click事件，这时就可以利用回调事件的过滤机制拦截掉多余的Click事件。 </p>
+	    <b>语法 </b>
+	    	<p><b>filtering</b> callbacks JInterfaceName;  </p>
+
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IFoo {
+        Foo();
+    }
+
+    callbacks JFooEvents {
+        FooEvent();
+    }
+
+    class CFooBase {
+        virtual interface IFoo;
+        callbacks JFooEvents;
+    }
+
+    class CFoo inherits CFooBase {
+        interface IFoo;
+        <b>filtering</b> callbacks JFooEvents;
+    }
+}
+
+</pre>
+	        <p>上述car文件定义了类CFooBase及其派生类CFoo。类CFoo可以过滤其从CFooBase继承的回调事件。 </p>
+            <p>编译car文件，自动生成代码框架，主要源文件如下：CFooBase.h文件、CFooBase.cpp文件、CFoo.h文件、CFoo.cpp文件。 </p>
+            <p>需要在过滤事件所在的类文件CFoo.h中声明过滤函数： </p>
+<pre class= code>
+<b>virtual CARAPI FooEventFilter(Int32 cFlags);</b>
+</pre>
+	        <p> 添加后CFoo.h文件如下：(其中黑体部分是编译器自动生成的代码框架)</p>
+<pre class= code>
+<b>#ifndef __CFOO_H__
+#define __CFOO_H__
+
+#include "_CFoo.h"
+
+CarClass(CFoo)
+{
+public:
+    CARAPI Foo();</b>
+    
+    virtual CARAPI FooEventFilter(Int32 cFlags);
+<b>
+private:
+    // TODO: Add your private member variables here.
+};
+
+#endif // __CFOO_H__</b>
+
+</pre>
+	        <p>修改CFoo.cpp文件如下： </p>
+<pre class= code>
+<b>#include "CFoo.h"
+#include "_CFoo.cpp"
+
+ECode CFoo::Foo()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("In CFoo::Foo()");
+    Callback::FooEvent();
+    return NOERROR;
+ <b>}</b>
+
+ECode CFoo::FooEventFilter(Int32 cFlags)
+{
+    CConsole::WriteLine(L"CFoo::FooEventFilter");
+
+    Callback::FooEventWithPriority(cFlags);  //激发（具有优先级的）回调
+    CApplet::Finish(AppletFinish_Nice);  
+
+    return NOERROR;
+}
+
+</pre>
+	        <p>修改CFooBase.cpp文件如下： </p>
+<pre class= code>
+<b>#include "CFooBase.h"
+#include "_CFooBase.cpp"
+
+ECode CFooBase::Foo()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("In CFooBase::Foo()\n");
+    Callback::FooEvent();
+    	
+    return NOERROR;
+<b>}</b>
+
+</pre>
+	        <p>客户端实现如下： </p>
+<pre class= code>
+#include "filteringDemo.h"
+using namespace Elastos;
+
+ECode OnFooEvent(PVoid pUserData, PInterface pSender)
+{
+    CConsole::Write("In OnFooEvent ");
+    CFooBase::RemoveAllCallbacks(pSender);
+
+    return NOERROR;
+}
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    IFoo *pFoo = NULL;
+
+    ECode ec = CFoo::New(&pFoo);
+    if (FAILED(ec)) return ec;
+        
+    ec = CFoo::AddFooEventCallback(pFoo, OnFooEvent, NULL);
+
+    if (FAILED(ec)) {
+        pFoo->Release();
+        return ec;
+    }
+
+    pFoo->Foo();
+
+    CObject::ReleaseAtThreadQuit(pFoo);
+
+    return NOERROR;
+}
+
+</pre>
+	        <p> 运行结果如下：</p>
+<pre class= code>
+In CFoo::Foo()
+CFoo::FooEventFilter  //过滤了回调事件
+In OnFooEvent        //filter函数中激发的回调事件
+</pre>
+	        <p> </p>
+	    <b>使用说明 </b>
+	        <p>1. car编译工具并不会根据filter关键字在前台自动生成下述函数框架，需要手动添加。 注意此方法的参数，除第一个参数外其余参数必须与回调方法中声明的参数一致。</p>
+<pre class= code>
+virtual CARAPI FooEventFilter(Int32 cFlags, Int32 id);
+</pre>
+	        <p>2. 当要过滤某个事件时，要将对应事件的filter函数分别在代码框架（.h和.cpp）中声明和实现。Filter函数的声明格式为“回调事件名”+“Filter” 如：回调事件为FooEvent，则过滤函数名为FooEventFilter。 </p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

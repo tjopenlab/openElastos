@@ -1,0 +1,50 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+	<head>
+		<meta http-equiv=Content-Type, content= "text\html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+	<title>Applet_Introduce </title>
+	</head>
+	
+	<body>
+<h2>Applet介绍 </h2>
+    <h3>Applet引入背景</h3>
+    <p>进程是操作系统进行资源分配的基本单元，每一个应用程序被加载到单独的进程中，拥有一个独立的进程空间。这样，进程作为应用程序之间一个独立而安全的边界在很大程度上提高了运行安全，以进程作为应用程序的边界的缺点是降低了性能。随着运行进程数量的增加，操作系统要频繁地在各个进程之间切换，每次都要保存和恢复进程上下文、换进换出内存页面等等，这种代价是显而易见的。 </p>
+    <p>为了减少系统开销，提高运行效率，可以将各个应用程序加载到同一个进程空间里。这需要某种机制能够在同一个进程空间里来为不同的应用程序划分边界，保证应用程序不会互相干扰。但现有的进程和线程模型没有提供这种能力。 </p>
+    <p>CAR技术的Applet机制解决了这一问题。Applet是逻辑上应用程序的载体，当将应用程序实现为一个Applet后，该程序运行时就具有了明确的边界。不同的Applet可以运行在同一个进程空间中，但是却彼此独立，一个Applet不能直接访问另一个Applet的内存空间。每个Applet也可以在单独的进程空间中运行。以Applet来实现应用程序的好处是具有逻辑上的独立性，同时实现上避免了进程间的切换，减小了系统开销。 </p>
+<h3>Applet模型</h3>
+    <p>进程，线程和Applet的关系如图5-7所示：  </p>
+    <center><img src="images\Applet.JPG"/></center>
+    <p> </p>
+        <center>图5-7 进程、线程、Applet的关系</center>
+    <p>如果进程可以被看作由各种资源、访问/执行权限、边界和线程组成的一个运行环境，那么Applet就可以看作是进程的子集，进程内的Applet分享着进程的资源、继承若干访问权限、包含一个或多个专属线程以及Applet之间的边界。  </p>
+
+<h3>Applet使用方法 </h3>
+ 		<p>使用一个Applet的流程： </p>
+		<p>1.创建Applet对象。 </p>
+		<p>2.调用IApplet::Start方法启动Applet。 </p>
+		<p>3.等待Applet结束，或者主动终止Applet。 </p>
+		<p>4.释放Applet，清理资源。 </p>
+		<center> <img src = "images\appletLife.JPG"/> </center>
+		<center>图5-8 Applet生命周期</center>
+		
+<h3>Applet主线程和消息循环 </h3>
+    <p>Applet的主线程就是Applet的消息处理线程，它由IApplet::Start方法创建，被创建之后会调用由用户实现的Main方法，如果Main方法返回NOERROR，则Applet主线程进入消息循环（即回调事件处理循环），否则结束并退出Applet。</p>
+    <p>对Applet的方法调用，会转变为一个个事件，被抛到Applet的消息队列中，最终由Applet的回调线程完成实际的调用，并将结果返回给调用者。 </p>
+    <p>当用户想结束Applet时，可以调用IApplet::Finish方法，这个方法会通知Applet的回调事件处理线程，使之结束回调事件的处理，然后Applet的主线程开始清理资源，准备退出。 </p>
+    <p>无论谁创建Applet，Applet都使用自己的消息处理线程。 Applet内部创建的子线程也都使用该Applet的消息处理线程。它所注册的回调和它的子线程所注册的回调都由Applet的回调线程处理。所有Applet的子线程都继承Applet的回调线程。Singleton是个例外，它和它内部使用的callback是由进程的主线程来处理，因为它的生命周期可能比它所在的Applet还要长。</p>
+
+    <center> <img src = "images\appletNews.JPG"/> </center>
+    		<center>图5-9 Applet消息循环</center>
+<h3>Applet相关接口 </h3>
+    <p>自动代码生成框架为每个Applet类默认实现了IApplet等接口，其中包含若干接口方法供用户调用和实现。此外，每个Applet都有JAppletEvent这个异步回调接口，调用者可以注册回调事件获得Applet相应事件发生时的通知。具体请参见相关接口方法介绍。 </p>
+    <p>1.<a href="CApplet.htm">CApplet和TApplet相关API</a></p>
+    <p>2.<a href="IApplet.htm">IApplet接口方法介绍</a></p>
+    <p>3.<a href="IAppletEvents.htm">JAppletEvent异步回调接口方法介绍</a></p>
+	
+	</body>
+	
+</html>

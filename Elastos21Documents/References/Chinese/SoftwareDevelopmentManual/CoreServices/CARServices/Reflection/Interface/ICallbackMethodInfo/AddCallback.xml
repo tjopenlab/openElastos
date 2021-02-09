@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+    <sample url=""></sample>
+<volume>ICallbackMethodInfo接口函数</volume>
+<Interface>ICallbackMethodInfo</Interface><method> AddCallback </method>
+    <description>
+        <para>
+           注册server的回调代理
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> PInterface </param_type>
+                <param_name> server </param_name>
+                <param_note>
+                    <para>
+                    指定的接口指针
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EventHandler </param_type>
+                <param_name> handler </param_name>
+                <param_note>
+                    <para>
+                    所注册的回调代理
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数server错误</td>
+	        </tr>
+
+	    </table>
+	    <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+<remarks>
+        <para>
+        注册回调代理以后就可以触发该代理，进而调用该代理对应的ICallbackInvocation 接口的Invoke方法，从而实现回调。（可参考<link url="../../../../../../car_technology/speciality/callback/AddXXXCallback.htm">AddXXXCallback</link>）
+        </para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+    </requirements>
+</manpage>

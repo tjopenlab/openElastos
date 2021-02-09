@@ -1,0 +1,114 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>开发程序库</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>开发程序库：LibDemo.lib</h2>
+      <p>本例编写一个提供两个函数的程序库，其他程序可以链接这个lib库，调用其中提供的两个函数，步骤如下：
+      </p>
+      <h3>1、编写3个文件，LibDemo.h,LibDemo.cpp,sources。</h3>
+      <p>LibDemo.h内容如下：</p>
+<pre>
+    	#include &lt;elastos.h&gt;
+
+    	EXTERN_C int Func01(int a, int b);
+    	EXTERN_C int Func02(int a, int b);
+</pre>
+
+      <p>LibDemo.cpp内容如下：</p>
+<pre>
+        #include &lt;elastos.h&gt;
+        #include "LibDemo.h"
+
+        EXTERN_C int Func01(int a, int b)
+        {
+        	return a + b;
+        }
+
+        EXTERN_C int Func02(int a, int b)
+        {
+        	return a - b;
+        }
+</pre>
+      <p>sources文件目标文件类型TARGET_TYPE应该为lib，即TARGET_TYPE = lib, 文件内容如下所示：
+      </p>
+<pre>
+        TARGET_NAME = LibDemo
+        TARGET_TYPE = lib
+
+        EXPORT_LIBRARY = 1
+
+        SOURCES = LibDemo.cpp
+</pre>
+      <p>EXPORT_LIBRARY = 1表示把生成的LibDemo.lib拷贝到%XDK_USER_LIB%目录中，这样其他程序可以方便的找到它，若无此行则lib只在本目录的Targets目录（pd @）中。
+      </p>
+    <h3>2、用emake命令编译生成lib库。</h3>
+    <h3>3、如何调用本lib库。 </h3>
+<p>1, 以如下结构建立目录：</p>
+<pre>
+        LibDemo
+        \---Lib
+</pre>
+<p>2, 将上述3个文件都放在在Lib目录中。</p>
+<p>3, 在LibDemo目录下写exe程序。</p>
+   <p>编写3个文件， LibDemo.cpp，  sources，dirs。</p>
+      <p> LibDemo.cpp文件内容如下：</p>
+<pre>
+        #include &lt;stdio.h&gt;
+        #include "LibDemo.h"
+
+        int main()
+        {
+            int a = 0, b = 1, c = 2;
+
+            a = Func01(b, c);
+            printf("Func01: %d + %d = %d\n", b, c, a);
+
+            a = Func02(b, c);
+            printf("Func02: %d - %d = %d\n", b, c, a);
+
+            return NOERROR;
+        }
+</pre>
+
+      <p>要链接lib库，调用其中函数，必须include该lib库的头文件，来包含其函数定义（如本例中，exe代码中调用了LibDemo.lib中的函数Func01或Func02，则需要在exe代码中include "LibDemo.h"）。</p>
+
+
+      <p>sources文件内容如下：</p>
+        <pre>
+            TARGET_NAME = LibDemo
+            TARGET_TYPE = exe
+
+            INCLUDES += $(MAKEDIR)\Lib;
+
+            SOURCES = LibDemo.cpp
+
+            LIBRARIES = $(XDK_USER_LIB)\LibDemo.lib
+
+            ELASTOS_LIBS = ElCRuntime.lib
+            ELASTOS_LIBS += elastos.lib
+
+        </pre>
+
+      <p>INCLUDES变量的使用，参看<a href='../../XDKIntroduction/XDKmakefile/XDKmakefile.htm'>XDK的makefile</a>一节。<br>
+            LIBRARIES= $(XDK_USER_LIB)\LibDemo.lib指明了将LibDemo.lib链接到本exe程序中。
+     </p>
+
+      <p>dirs文件内容如下：</p>
+        <pre>
+        DIRS = Lib
+        </pre>
+
+<p>4, 编译，执行命令，查看运行结果。如果不知如何编译运行，请去看此前的<a href='HelloExe.htm'> 开发应用程序</a>一节的“编译链接产生目标文件”、“运行可执行程序 hello.exe”这两个步骤。</p>
+
+
+<script>footer("chinese")</script>
+</body>
+</html>

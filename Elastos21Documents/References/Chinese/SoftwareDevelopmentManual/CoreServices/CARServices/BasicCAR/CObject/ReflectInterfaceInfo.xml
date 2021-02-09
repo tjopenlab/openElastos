@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>基本CAR函数</volume>
+    <title>CObject::ReflectInterfaceInfo</title>
+    <routine_idx>../../BasicCAR.htm</routine_idx>
+
+    <description>
+        <para>从构件对象指针中获得IInterfaceInfo。</para>
+    </description>
+
+
+    <syntax>
+        <return_val>ECode</return_val>
+         <api_name>ReflectInterfaceInfo</api_name>
+        <parameters>
+            <api_param>
+                <param_type>/* [in] */ PInterface  </param_type>
+                <param_name> pObj </param_name>
+                <param_note>
+                    <para>指向构件对象的接口指针。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> /* [out] */ IInterfaceInfo ** </param_type>
+                <param_name>piInterfaceInfo </param_name>
+                <param_note>
+                    <para>返回的指向IInterfaceInfo指针的指针。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    
+   <return>
+    <table>
+        <tr>
+          <td>返回值</td>
+          <td>返回值描述</td>
+         </tr>
+         <tr>
+          <td>NOERROR</td>
+          <td>方法调用成功。</td>
+         </tr>
+         <tr>
+          <td>E_INVALID_ARGUMENT </td>
+          <td>参数出错。</td>
+         </tr>
+         <tr>
+          <td>E_NO_INTERFACE</td>
+          <td>找不到构件对象的类信息接口。</td>
+         </tr>
+         <tr>
+          <td>E_DOES_NOT_EXIST</td>
+          <td> 找不到对应Interface的信息。</td>
+         </tr>
+      </table>
+    </return>
+    
+    <requirements>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+   
+</manpage>

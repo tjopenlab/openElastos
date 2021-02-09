@@ -1,0 +1,52 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--interface</title>
+
+</head>
+
+<body>
+	<h2>interface </h2>
+	    <b>含义 </b>
+	        <p>此关键字用于在构件中定义或声明接口。</p>
+	        <p>接口是car构件对象与外界进行交互的唯一途径，客户必须通过接口获得Car构件对象的服务。接口声明了一组方法，car构件对象提供的服务就是其实现的接口中的方法。 </p>
+	    <b>语法 </b>
+	        <p><b>interface</b> InterfaceName [InterfaceBody]; </p>
+	    <b>使用说明 </b>
+	        <p>1.接口名必须以字母"I"开头。  </p>
+	        <p>2.一个构件中可以定义若干接口，接口的定义主要包括接口方法的声明。每个接口中可以声明若干方法。  </p>
+	        <p>3.一个构件中不允许定义不声明任何方法的接口，也不允许定义不声名任何接口的类。  </p>
+	        <p>4.接口具有属性，接口属性对接口起修饰作用。接口属性在interface关键字前用[]标注。详细情况请参见<a class="style1" href= "..\attribute.htm">CAR属性关键字</a>。   </p>
+	        <p>5.接口可以继承<a class="style1" href="keywords_extends.htm">extends</a>其它接口，但是单继承的。  </p>
+	        <p>6.接口是客户程序和类对象之间的桥梁，一个接口定义下来并公布之后，该接口中方法的位置、方法中参数的类型及个数都不能再做更改。 </p>
+	        <p>7.当接口属性中不使用<a class="style1" href= "..\attributes\attributes_local.htm">local属性</a>修饰时，接口方法中的参数类型必须为<a class="style1" href= "..\data_type.htm">CAR支持的数据类型</a>。如果接口参数使用非CAR支持的数据类型，编译时，编译器将自动强制给该接口加上<a class="style1" href= "..\attributes\attributes_local.htm">local属性</a>。这样客户程序与构件程序将无法进行远程通信。 </p>
+	        
+	    <b>使用范例 </b>
+<pre class= code>
+module 
+{
+    <b>interface</b> IFoo {
+        Foo();
+    }
+    <b>interface</b> IBar extends IFoo{
+        Bar();
+    }
+    class CFooBar {
+        <b>interface</b> IBar;
+    }
+}
+
+
+</pre>
+	        <p>上述示例定义了两个接口IFoo和IBar，IFoo接口声明了方法Foo（），IBar接口继承了IFoo接口，并且声明了方法Bar（）。类CFooBar声明了IBar接口，由于IBar继承IFoo，因此类CFooBar需要实现Foo()和Bar()两个方法。</p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+</body>
+</html>

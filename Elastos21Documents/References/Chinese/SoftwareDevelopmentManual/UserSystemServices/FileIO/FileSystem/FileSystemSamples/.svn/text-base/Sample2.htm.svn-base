@@ -1,0 +1,240 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>目录操作范例</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>基本目录操作函数的使用</h2>
+    <p>本程序运用了一些基本的目录操作，包括目录的查找、创建、删除、更名、获取目录结构信息等。</p>
+    <p>在得到Filesys指针后，通过GetRoot可得到根目录指针，再以写方式创建一个目录。Sync之后通过查找找到该目录对象的指针，在其中创建两个子目录sub1和sub2。将sub1重命名为sub3，将sub2删除。此后获取目录的结构信息并输出。正确的结果是：在当前目录中有且只有.，..，sub3三个子目录。</p>
+    <h3>sam002.cpp</h3>
+    <p>下面是sam002.cpp文件在编译链接时的有效内容：</p>
+    <pre class = "code">
+//sam002.cpp
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;elastos.h&gt;
+#include &lt;direct.h&gt;
+#include &lt;ctype.h&gt;
+using namespace Elastos;
+
+#define TFS_SERVICE_NAME    L"filesys"
+
+ECode FindFileService(IBasicFileSystem ** ppFilesys, WStringBuf& wsbServiceName);
+
+ECode main(int argc, char *argv[])
+{
+    WString dirname = L"dir";
+    WString subdir1 = L"sub1";
+    WString subdir2 = L"sub2";
+    WString oldname = L"sub1";
+    WString newname = L"sub3";
+
+    IBasicFileSystem *pFilesys = NULL;
+    IBasicDirectory *pRoot = NULL;
+    IBasicFile *pFile = NULL;
+    IBasicDirectory *pDir = NULL;
+    IEntryNameEnumerator *pList = NULL;
+    Int32 wsize = 0;
+    Int32 size = 0;
+    Int32 time = 0;
+    WStringBuf_<100> wsbServiceName;
+    MemoryBuf_<100> buf;
+    WStringBuf_<1000> DirEntry;
+
+    // Get the IFileSystem pointer
+    ECode ec = FindFileService(&pFilesys, wsbServiceName);
+    if (FAILED(ec)) {
+        printf(">>>>>>>>>>failed to find IBasicFileSystem, ec = 0x%08x\n", ec);
+        return 1;
+    }
+
+    // GetRoot
+    ec = pFilesys->GetRoot(&pRoot);
+    if (FAILED(ec)) {
+        printf("Error in GetRoot! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // CreateDirectory
+    ec = pRoot->CreateDirectory(dirname, FileAccessMode_Write);
+    if (NOERROR == ec) {
+        printf("CreateDirectory: %S (Write) Success.\n", dirname);
+    }
+    else {
+    	  printf("Error in CreateDirectory! ec = 0x%08x\n", ec);
+    	  goto myexit;
+    }
+
+    // Sync
+    ec = pRoot->Sync();
+    if (NOERROR == ec) {
+        printf("Sync success.\n");
+    }
+    else {
+        printf("Error in Sync! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // Lookup for the IBasicFile pointer
+    ec = pFilesys->Lookup(dirname, &pFile);
+    if (FAILED(ec)) {
+        printf("Error in Lookup!, ec = 0x%08x.\n", ec);
+        goto myexit;
+    }
+
+    // Probe to get pDir pointer
+    pDir = IBasicDirectory::Probe(pFile);
+    if (FAILED(ec)) {
+        printf("Probe failed, ec = 0x%08x.\n", ec);
+        goto myexit;
+    }
+    pDir->AddRef();
+
+    // CreateDirectory sub1
+    ec = pDir->CreateDirectory(subdir1, FileAccessMode_Write);
+    if (NOERROR == ec) {
+        printf("CreateDirectory: %S (Write) Success.\n", subdir1);
+    }
+    else {
+    	  printf("Error in CreateDirectory! ec = 0x%08x\n", ec);
+    	  goto myexit;
+    }
+
+    // CreateDirectory sub2
+    ec = pDir->CreateDirectory(subdir2, FileAccessMode_Write);
+    if (NOERROR == ec) {
+        printf("CreateDirectory: %S (Write) Success.\n", subdir2);
+    }
+    else {
+    	  printf("Error in CreateDirectory! ec = 0x%08x\n", ec);
+    	  goto myexit;
+    }
+
+    // Rename
+    ec = pDir->Rename(oldname, pDir, newname);
+    if (NOERROR == ec) {
+        printf("Rename: %S to %S Success.\n", oldname, newname);
+    }
+    else {
+        printf("Error in Rename! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    
+    // DeleteDirectory
+    ec = pDir->DeleteDirectory(subdir2);
+    if (NOERROR == ec) {
+        printf("DeleteDirectory: %S Success.\n", subdir2);
+    }
+    else {
+        printf("Error in DeleteDirectory! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // GetDirEntries
+    ec = pDir->GetDirEntries(&pList);
+    if (NOERROR == ec) {
+        printf("GetDirEntries Success.\n");
+    }
+    else {
+        printf("Error in GetDirEntries! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // Output the IEntryNameEnumerator
+    while (NOERROR == pList->MoveNext()) {
+        ec = pList->Current(&DirEntry);
+        if (SUCCEEDED(ec)) {
+            printf("%S\n", (wchar_t*)DirEntry);
+        }
+        else {
+            goto myexit;
+        }
+    }
+
+myexit:
+	  if (pList) pList->Release();
+	  if (pDir) pDir->Release();
+    if (pFile) pFile->Release();
+    if (pRoot) pRoot->Release();
+    if (pFilesys) pFilesys->Release();
+    return 0;
+}
+
+ECode FindFileService(IBasicFileSystem ** ppFilesys, WStringBuf& wsbServiceName)
+{
+    IDiskManager *pDiskMgr = NULL;
+    wchar_t buffer[_MAX_PATH];
+    WStringBuf_<_MAX_PATH> esbFilesysType;
+    int iDisk;
+    ECode ec = NOERROR;
+    ec = CSystem::FindRunningObject(L"diskmgr", (IInterface **)&pDiskMgr);
+    if (FAILED(ec)) {
+        wprintf(L"Error in find diskmgr, ec = 0x%08x\n", ec);
+        goto exit;
+    }
+
+    _wgetcwd(buffer, _MAX_PATH);
+    iDisk = toupper(buffer[0]) - L'A' + 1;
+
+    ec = pDiskMgr->OpenDisk(iDisk, &esbFilesysType);
+    if (FAILED(ec)) {
+        wprintf(L"Error in OpenDisk, ec = 0x%08x\n", ec);
+        goto exit;
+    }
+
+    wprintf(L"File Service Name: %s\n", (wchar_t *)esbFilesysType);
+    wsbServiceName.Copy(esbFilesysType);
+
+    ec = CSystem::FindRunningObject(esbFilesysType, (IInterface **)ppFilesys);
+
+exit:
+    if (pDiskMgr) pDiskMgr->Release();
+    return ec;
+}
+
+
+    </pre>
+    <p>简述：</p>
+    <p>1. 程序通过FindFileService查找名称为"filesys"的服务，获取IBasicFileSystem的接口指针pFilesys；<br>
+    2. 调用pFilesys的GetRoot方法获取根目录指针pRoot；<br>
+    3. 调用pRoot的CreateDirectory方法在根目录下以可写方式(FileAccessMode_Write)创建dirname所指定的目录；<br>
+    4. 调用pRoot的Sync方法，将结果写入硬盘；<br>
+    5. 调用pFilesys的Lookup方法找到dirname所指定的目录的文件指针pFile；<br>
+    6. 通过Probe转为目录指针pDir；<br>
+    7. 调用pDir的CreateDirectory方法以可写方式创建子目录"sub1"；<br>
+    8. 调用pDir的CreateDirectory方法以可写方式创建子目录"sub2"；<br>
+    9. 调用pDir的Rename方法将子目录"sub1"改名为"sub3"；<br>
+    10. 调用pDir的DeleteDirectory方法删除子目录"sub2"；<br>
+    11. 调用pDir的GetDirEntries方法查看当前的目录结构；<br>
+    12. 输出IEntryNameEnumerator中的记录项；<br>
+    13. 进行适当的Release操作，退出程序。</p>
+
+    <p>运行结果：</p>
+    <pre class="code">
+File Service Name: D:
+CreateDirectory: testdir (Write) Success.
+Sync success.
+CreateDirectory: sub1 (Write) Success.
+CreateDirectory: sub2 (Write) Success.
+Rename: sub1 to sub3 Success.
+DeleteDirectroy: sub2 Success.
+GetDirEntries Success.
+.
+..
+sub3
+</pre>
+
+    <p><b>备注：</b>在程序中加入了错误处理代码，一旦某个操作发生错误或异常，程序就执行资源回收代码段后退出。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

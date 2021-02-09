@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>短信彩信引擎</volume>
+<interface>IElement</interface><method> GetData </method>
+    <description>
+        <para>
+            获取彩信元素数据：文本(ASCII字符)，图像，音频，视频等。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzByteBuf </param_type>
+                <param_name> ezData </param_name>
+                <param_note>
+                    <para>
+元素数据:文本(ASCII字符)，图像，音频，视频等，EzByteBuf类型；                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回S_OK；如果有参数无效，则方法调用失败，并返回E_INVALIDARG。</para><para>            更多返回值，参见            <link url="../../sms_error.htm">            短信彩信返回值            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elatype.h、stdlib.h、mmsdef.h、MessageData.h、CElement.h、_CElement.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElDatabase.lib、elastos.lib、ElCRuntime.lib、ElUtilities.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

@@ -1,0 +1,115 @@
+
+<html>
+<head>
+	<title>Operating Systems FAQ :: DJGPP ELF Files</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="elf_files">Can DJGPP output the ELF file format?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Yes! And its quite simple now. What you will need is
+        a good installation of DJGPP, you will need sed, bison,
+        flex, bash, etc. You will also need to do it from a
+        dosbox inside Windows95/98 etc so you can use long file
+        names.
+		<P>First, download the latest binutils. (I used
+        binutils-2.9.1.tar.gz). You need the plain binutils, not
+        the binutils for Linux, not the binutils for dos, etc,
+        but the plain binutils from any GNU archive site.</P>
+		<P>Once you have downloaded binutils, if you have LESS
+        than 64mb of memory, edit the properties of your dos box
+        and manually enter 65535 into the box provided for EMS
+        memory, XMS memory and DPMI memory (using the selectors
+        in the box will not let you enter 65535 so it must be
+        entered by hand).</P>
+		<P>use DJTARX to unpack the binutils into your root
+        directory (its easier).</P>
+		<PRE>C:
+CD \
+DJTARX \download\binutils-2.9.1.tar.gz
+		</PRE>
+		<P>Once its unpacked you will have to make some very
+        minor modifications to you DJGPP installation (nothing
+        drastic!)</P>
+		<P>Enter into the DJGPP\bin directory and COPY flex.exe
+        lex.exe, bash.exe to sh.exe and make a new directory in
+        your root called \bin and copy sh.exe to \bin\sh.exe</P>
+		<PRE>C:
+CD \
+COPY flex.exe lex.exe
+COPY bash.exe sh.exe
+MD \bin
+COPY \djgpp\bin\bash.exe \bin\sh.exe
+		</PRE>
+		<P>The \bin directory must be on the SAME DRIVE as the
+        one you unpacked binutils onto, which CAN be a different
+        drive to what DJGPP is installed onto.</P>
+		<P>Now enter the binutils directory (cd binutils-2.9.1)
+        and edit the &quot;configure&quot; script.</P>
+		<P>Near the top of the script are three lines that read</P>
+		<P>remove
+		<pre>
+hard_link
+symbolic_link
+		</pre>
+		<P>alter these lines so they read</P>
+		<pre>
+remove=rm
+hard_link=cp
+symbolic_link=cp
+		</pre>
+	<P>Save the modified configure script.</P>
+	<P>Execute the bash shell by typing bash, your prompt
+        should change to &quot;bash$ &quot;.</P>
+	<P>Now you have to setup bash to work with djgpp, enter
+        these commands.</P>
+		<PRE>
+export CC=&quot;c:/djgpp/bin/gcc.exe&quot;
+export LD=&quot;c:/djgpp/bin/ld.exe&quot;
+export BISON=&quot;c:/djgpp/bin/bison.exe&quot;
+export YACC=&quot;c:/djgpp/bin/bison.exe -y&quot;
+		</PRE>
+		<P>Now you are ready to build your new set of ELF utils.
+        First you have to run configure with some options.</P>
+		<P>You can choose what targets you want built into your
+        new set of binutils, myself, I built in all targets, just
+        in case I later need something other than elf (some a.out
+        formats for BSD, etc!).</P>
+		<PRE>./configure --enable-targets=all --with-gnu-as --with-gnu-ld --with-stabs</PRE>
+		<P>After a very long process, if all goes well, you will
+        find no errors, and will be back at the &quot;bash$
+        &quot; prompt ready to build your new utils.</P>
+		<P>Now... some more tinkering... the configure process is
+        not 100%, you have to edit the &quot;libtool&quot; file
+        that's in each directories, bfd/libtool, as/libtool,
+        gprof/libtool, ld/libtool and opcodes/libtool. So exit
+        from bash (&quot;exit&quot;) and use an editor to open
+        those files, and just re-save them (make no
+        modifications, just save). This seems to fix the
+        crlf/lf/cr unix/dos mechanisms that is a bit broken in
+        libtool.</P>
+		<P>Re-enter bash and type &quot;make&quot; and it will
+        build your new utils. If you have enabled all targets the
+        resulting .exe files will be about 6 to 7mb EACH, so
+        strip off the debugging info (strip --strip-all *.exe)
+        and then use the DJP compressor on them and they should
+        come out to about 600 to 900kb each.</P>
+		<P>Alternatively, if you did not want to build all targets
+        you can run configure without the
+        &quot;--enable-targets=all&quot; option and replace with
+        &quot;--target=i386-unknown-elf&quot;.</P>
+		<P>GCC itself does not output ELF/COFF/A.OUT etc files,
+        GCC outputs assembler that gets passed to 'AS' which
+        assembles it to whatever output format is default.</P>
+		</TD>
+	</TR>
+</TABLE>
+
+</body>
+</html>

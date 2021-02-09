@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\time">time</sample>
+    <title> time </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>获得系统当前时间。</para>
+    </description>
+
+    <syntax>
+        <return_val>time_t</return_val>
+        <func_name>time</func_name>
+        <parameters>
+            <func_param>
+                <param_type>time_t *</param_type>
+                <param_name>timer</param_name>
+                <param_note>
+                    <para>指向存储时间的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回以秒为单位的系统时间值，无错误返回。</para>
+    </return>
+
+    <remarks>
+        <para>time()函数获取的是UTC（Coordinated Universal Time，通用协调时间）时间，即从UTC时间1970年1月1日00:00:00开始到当前系统时间所经过的总秒数，返回值保存在timer指针所指的位置中。当不需要保存返回值时，参数可以为NULL。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>time</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* time.cpp: This program uses time to get the system time.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+    time_t timer;
+
+    time(&amp;timer);
+    printf(&quot;Long_time:%d\n&quot;, timer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Long_time:    100129494
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>ctime</ref_name>
+            <ref_url>ctime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_ftime</ref_name>
+            <ref_url>_ftime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>localtime</ref_name>
+            <ref_url>localtime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wasctime</ref_name>
+            <ref_url>_wasctime</ref_url>
+        </reference>
+    </references>
+
+</manpage>

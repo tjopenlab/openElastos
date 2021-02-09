@@ -1,0 +1,45 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>程序调试工具</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<h2>GDB调试工具的启动方法</h2>
+
+    <p><b>启动方式一:目标程序出错后自动进入调试状态</b></p>
+    <p>在Elastos上运行应用程序的可执行文件，如果发生错误，就会产生调试中断。操作系统中的<a class="style1" href="gdb.htm#stub">stub</a>程序接收到中断后，就会在屏幕上显示下列提示，让程序员选择是否调试这一出错的程序</p>
+    <pre class="code">Program Fault. Debug Or Terminate[D/T]?</pre>
+    <p>如果程序员想对出错程序进行调试，选择D。出错线程会立即进入等待状态，stub准备调试信息并同主机交互，开始调试对话。</p>
+    <p>如果程序员不想调试出错程序，选择T。系统结束出错程序，一般情况下会回到命令提示符状态；如果是内核程序出错，则会重启Elastos。</p>
+    <a NAME="gdb">
+    <p>要对出错程序进行调试时，选择D，然后需要在宿主机上启动GDB（使用ElastosXDK提供的命令：<a class="style1" href="../../resource_debug_kits/tools/gdb.htm">gdb</a>）。GDB程序启动后自动做以下几件事： </p>
+    <ul>
+    <li>和目标机上的stub建立通讯。
+    <li>启动gdb&nbsp;insight(gdb的GUI界面)。
+    <li>提示和等待程序员的调试命令。
+    </ul>
+
+    <p><b>启动方式二：在源程序中插入断点中断语句DebugBreak()或使用GCC内联汇编语句。<br>
+    x86单板机上是:ASM("int&nbsp;$3;");，arm手机上是:ASM(".long&nbsp;0xe7fddefe;");，程序运行时遇到此语句就会进入调试状态</b></p>
+    <p>如果希望被调试的应用程序在运行的过程中进入调试状态，可以采取设置中断语句的办法。</p>
+    <p>在源程序中用include包含头文件elastos.h，即#include&nbsp;&lt;elastos.h&gt;，在希望程序中断的地方插入<a class="style1" href="DebugBreak\DebugBreak.htm">DebugBreak()</a>语句，如果采用GCC内联汇编则不用包含此头文件。</p>
+    <p>然后编译链接此源文件，并且在目标机上运行此应用程序的可执行文件。当程序运行到DebugBreak()或GCC内联汇编语句时，屏幕上会显示下列提示：</p>
+    <pre class="code">Program Fault. Debug Or Terminate[D/T]?</pre>
+    <p>输入D，直接进入调试状态。</p>
+    <p>然后，可以在宿主机上启动gdb调试器。gdb程序启动以后的动作同启动方式一中的介绍。</p>
+<!--
+    <p><b>启动方式三：在Elastos的命令行中键入<a class="style1" href="../../xdk/environment_and_tools/tools/shell/debug.xml">debug </a>&lt;可执行文件名&gt; ，使可执行文件一运行就进入调试状态 </b></p>
+    <p>如果希望被调试的应用程序一启动就进入调试状态，而不是等到出错以后再调试，可以采取此方法。</p>
+    <p>用这种方式运行待调试程序时，待调试程序将在用户所写的main函数或wmain函数（如果运行的是exe文件）暂停。如果是可执行的dll文件，将停在加载动态链接库的代码上。屏幕上显示下列提示： </p>
+    <pre class="code">Program Fault. Debug Or Terminate[D/T]?</pre>
+    <p>输入D，直接进入调试状态。</p>
+    <p>然后，可以在宿主机上启动GDB。GDB程序启动以后的动作同启动方式一中的介绍。这种启动调试方式为用户提供了一种方便的途径调试程序。</p>
+-->
+<script>footer("chinese")</script>
+</body>
+</html>

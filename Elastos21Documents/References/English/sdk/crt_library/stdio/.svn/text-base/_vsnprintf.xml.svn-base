@@ -1,0 +1,168 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_vsnprintf">_vsnprintf</sample>
+    <title>_vsnprintf, _vsnwprintf</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes formatted output using a pointer to a list of arguments.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_vsnprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>Storage location for output.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Maximum number of characters to write.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format</param_name>
+                <param_note>
+                    <para>Format specification.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+                <param_note>
+                    <para>Pointer to list of arguments.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_vsnwprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format</param_name>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_vsnprintf and _vsnwprintf return the number of characters written, not including the terminating null character or a negative value if an output error occurs. For _vsnprintf, if the number of bytes to write exceeds buffer, then count bytes are written and –1 is returned.</para>
+    </return>
+
+    <remarks>
+        <para>Each of these functions takes a pointer to an argument list, then formats and writes the given data to the memory pointed to by buffer.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_vsnprintf</routine_name>
+            <headerfile>stdio.h and stdarg.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0 </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_vsnwprintf</routine_name>
+            <headerfile>stdio.h and stdarg.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0 </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* vsnprntf.cpp:the program return the number of characters written*/
+
+#include &lt;stdio.h&gt;
+#include &lt;stdarg.h&gt;
+#define BUFSIZE 500
+#define BUFMAX 100
+
+void __cdecl test(char *buf, ...);
+
+int main(int argc, char *argv[])
+{
+    char buffer[BUFSIZE] = &quot;This is Elastos Of KoreTide Corp!&quot;;
+    char ch = &apos;A&apos;;
+    wchar_t wch = &apos;B&apos;;
+    int i = 9999, j = -999;
+    double x = 987.654321;
+    test(&quot;Hello! %s a good operation system!&quot;, buffer);
+    test(&quot;ch = %4c, wch = %-4d, i = %6d, j = %-10x, x= %10.5e&quot;, \
+        ch, wch, i, j, x);
+
+    return 0;
+}
+
+void __cdecl test(char *buf, ...)
+{
+    char writebuf[BUFSIZE];
+    va_list marker;
+    int result = 0;
+    int k = BUFMAX;
+    va_start(marker, buf);
+    result = _vsnprintf(writebuf, k, buf , marker);
+    va_end(marker);
+    printf(&quot;%s\n&quot;,writebuf);
+    printf(&quot;result = %d\n&quot;,result);
+}
+</pre>
+    </example>
+<result>
+Hello! This is Elastos Of KoreTide Corp! a good operation system!
+result = 65
+ch =    A, wch = 66  , i =   9999, j = fffffc19  , x= 9.87654e+002
+result = 66
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>sprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_snprintf</ref_name>
+            <ref_url>_snprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_snwprintf</ref_name>
+            <ref_url>_snprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

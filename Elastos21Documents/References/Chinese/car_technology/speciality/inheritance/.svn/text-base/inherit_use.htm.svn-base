@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>inherit_use</title>
+	</head>
+	
+	<body>
+		<h2>调用DLL</h2>
+		  <P>对于使用animal.dll的用户来说，他只关心CDog和CCat两个类，并且知道它们都提供两个接口：ISay和IAnimal。用户通过New方法实例化构件对象后，可以使用Probe方法在不同接口之间转换。派生类接口指针即可调用基类已有的实现，也可调用重载了的虚接口方法。</P>
+		  <P>客户端在Sing目录下调用Animal.dll步骤如下：</P>
+		<h3>1.编写客户端实现文件</h3>
+		  <P>(1)用户要将所引用到dll信息包括到实现文件中去。</P>
+		  <P>(2)编写ElastosMain()。该函数流程为：创建派生动物对象new()--->调用基类已有实现GetName()--->调用派生动物重载的接口实现Say()--->释放对象Release()。</P>
+		  <P>client.cpp文件</P>
+<pre class= code>
+#include &lt;elastos.h&gt;
+#include "Animal.h"                                      //包含所使用的dll信息
+
+using namespace Elastos;
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    ECode ec;
+    ISay* pDog = NULL;
+    ISay* pCat = NULL;
+    IAnimal* pAnimal = NULL;
+    
+    ec = CDog::New(&pDog);                               //创建CDog对象，将接口指针赋给pDog
+    if (FAILED(ec)) {
+        CConsole::WriteLine("Can't create CDog\n");
+        return ec;
+    } 
+    
+    ec = CCat::New(&pCat);                               //创建CCat对象，将接口指针赋给pCat
+    if (FAILED(ec)) {                               
+        CConsole::WriteLine("Can't create CCat\n"); 
+        return ec;                                  
+    } 
+    
+    pAnimal = IAnimal::Probe(pDog);                      //通过pDog得到pAniaml接口指针          
+    pAnimal->SetName(L"Dog ");                           //通过pAniaml调用CAnimal已有实现 
+                                                         
+    pDog->Say();                                         //通过pDog调用CDog的接口方法Say()  
+                                                                      
+    pAnimal = IAnimal::Probe(pCat);                      
+    pAnimal->SetName(L"Cat ");                           //通过pAniaml调用CAnimal已有实现
+                                                         
+    pCat->Say();                                         //通过pCat调用CCat的接口方法Say()    
+    pDog->Release();                                     //释放pDog
+    pCat->Release();                                     //释放pCat
+                                                         
+    CProcess::Exit(0);                                   //退出当前进程
+    return NOERROR;
+}
+</pre>
+		  <P>从上面的代码可以看到CAR对应于C++的继承所具有的功能和语义：</P>
+		  <P>(1)基于接口的重载，CDog和CCat重载virtual的ISay接口。</P>
+		  <P>(2)重用基类的实现，CDog和CCat的Say实现里可以调用基类已有的实现“GetName”方法。</P>
+		  <P>(3)多态性，在ElastosMain里可以看到，同样是ISay类型的指针pDog和pCat，调用相同的Say方法，但输出的结果却完全不同。</P>
+		<h3>2.编写客户端sources文件</h3>
+			<P>(1)添加目标程序名以及程序类型。</P>
+		  <P>(2)添加所引用到的动态链接库以及编译所要用到的源文件。</P>
+		  <P>(3)添加库文件</P>
+		  <P>sources文件</P>
+<pre class=code>
+TARGET_NAME= client
+TARGET_TYPE= exe
+
+IMPORTS = Animal.dll
+
+SOURCES= client.cpp
+
+ELASTOS_LIBS= elastos.lib
+</pre>
+		<h3>screen out</h3>
+<pre class=code>
+Dog say : Wang Wang~~~
+
+Cat say : Miao Miao~~~
+</pre>
+
+		
+	</body>
+</html>

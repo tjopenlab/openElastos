@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\bsearch">bsearch</sample>
+    <title> bsearch</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>在有序数组中进行折半查找。</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <func_name>bsearch</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>key</param_name>
+                <param_note>
+                    <para>查找时要匹配的元素</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>base</param_name>
+                <param_note>
+                    <para>指向待查找的数组的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>num</param_name>
+                <param_note>
+                    <para>待查找的数组元素的个数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>width</param_name>
+                <param_note>
+                    <para>数组元素的大小</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>(__cdecl * compare)(const void * elem1, const void * elem2)</param_name>
+                <param_note>
+                    <para>compare为对elem1和elem2进行比较的比较函数，elem1为指向待匹配元素key的指针，elem2为指向数组中要与key进行比较的元素</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数bsearch对base指向的数组进行查找，若在此数组中，找到与key指向的关键字匹配的对象，返回指向该对象的指针，若未找，返回NULL。如果数组不是按照升序排列，或者数组中关键字不止一个，那么结果是不可预见的。</para>
+    </return>
+
+    <remarks>
+        <para>函数bsearch在有序数组中进行折半查找，数组元素个数为num，每个元素为width个字节。指针base的值是所要查找的数组的基地址，key指向所要查找的元素。参数compare是函数指针，指向用户提供的比较函数。比较函数用于比较两个数组元素，其返回值表明数组元素的关系。bsearch在查找过程中一次或多次调用compare函数，在每次调用时传递两个数组元素的指针给compare函数。比较函数对元素进行比较，然后返回以下值之一：</para>
+        <table>
+            <th>
+               <td>比较函数的返回值</td>
+               <td>说明</td>
+            </th>
+            <tr>
+               <td><![CDATA[< 0]]></td>
+               <td>elem1小于elem2</td>
+            </tr>
+            <tr>
+               <td>0</td>
+               <td>elem1等于elem2</td>
+            </tr>
+            <tr>
+               <td><![CDATA[> 0]]></td>
+               <td>elem1大于elem2</td>
+            </tr>
+        </table>
+        <para>函数对参数进行验证，如果参数compare、num或key的值为NULL，或者base为NULL并且num非零，或者width为零，那么函数所对应的无效参数句柄将被调用。如果函数可以继续运行，errno被赋值为EINVAL并且函数返回NULL。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>bsearch</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* bsearch.cpp: This program reads the command-line
+ * parameters, sorting them with qsort, and then
+ * uses bsearch to find the word &quot;cat.&quot;
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+
+int __cdecl compare(const void *arg1, const void *arg2)
+{
+    /* Compare all of both strings: */
+    return _stricmp(*(char **)arg1, *(char **)arg2);
+}
+
+int main(int argc, char **argv)
+{
+    char **result;
+    char *key = &quot;cat&quot;;
+    int i;
+
+    /* Sort using Quicksort algorithm: */
+
+    qsort((void *)argv, (size_t)argc, sizeof(char *), compare);
+
+    for (i = 1; i &lt; argc; ++i)     
+        printf(&quot;%s &quot;, argv[i]);
+
+
+    /* Find the word &quot;cat&quot; using a binary search algorithm: */
+    result = (char **)bsearch((char *) &amp;key, (char *)(argv + 1), argc - 1,
+            sizeof(char *), compare);
+
+    if (result)
+        printf(&quot;\n%s found at %X\n&quot;, *result, result);
+    else
+        printf(&quot;\nCat not found!\n&quot;);
+
+    return 0;
+}
+
+/*
+Input
+    [/$] bsearch dog pig horse cat human rat cow goat
+
+Output
+    cat cow dog goat horse human pig rat
+    cat found at 1FFFFDA0
+*/
+</pre>
+    </example>
+<result>
+sorted list
+</result>
+
+
+
+</manpage>

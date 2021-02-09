@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IScrollBar</interface><method> SetSingleStep </method>
+    <description>
+        <para>
+            设置点击滚动条上下箭头，滑块要移动的距离。（小距离）
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> step </param_name>
+                <param_note>
+                    <para>
+移动的距离</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+    	  SingleStep 是用户点击滚动条上下箭头时，滑块移动的距离，默认值为 1 个像素。可以考虑将 SingleStep 值设置为 Height 值的百分之若干（对于垂直方向的滚动条），或者设置为 Width 值的百分之若干（对于水平方向的滚动条）。这将保持滚动条移动的距离与其大小成比例。
+    </para>
+    <para>
+    	  若设置的 SingleStep 大于 PageStep，则会自动将 SingleStep 的值更改为 PageStep 的值。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CScrollBar 类介绍 </ref_name>
+        <ref_url>../../class/ScrollBar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IScrollBar 接口方法列表</ref_name>
+        <ref_url>../IScrollBar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetSingleStep</ref_name>
+        <ref_url>GetSingleStep</ref_url>
+    </reference>
+</references>
+</manpage>

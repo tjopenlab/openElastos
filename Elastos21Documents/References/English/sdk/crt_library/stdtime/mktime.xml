@@ -1,0 +1,117 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\mktime">mktime</sample>
+    <title>mktime</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>Convert the local time to a calendar value.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>mktime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>hour</param_name>
+            </func_param>
+           <func_param>
+                <param_type>int</param_type>
+                <param_name>minute</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>second</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>month</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>day</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>year</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Integer</para>
+    </return>
+
+    <remarks>
+        <para></para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>mktime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+
+
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;math.h&gt;
+
+
+
+void    main()   
+  {   
+          tm   tmDate   =   {0};   
+          tmDate.tm_mday=31;   
+          tmDate.tm_mon=1;   
+          tmDate.tm_year=106;   
+          time_t   m_time=mktime(&amp;tmDate);   
+         
+          printf(&quot;%d&quot;,tmDate.tm_year) ;
+          printf(&quot;%d&quot;,tmDate.tm_mon) ;
+        
+         
+  }   
+</pre>
+    </example>
+<result>
+
+1061
+</result>
+   <references>
+        <reference>
+            <ref_name>ctime </ref_name>
+            <ref_url>ctime </ref_url>
+        </reference>
+        <reference>
+            <ref_name>localtime</ref_name>
+            <ref_url>localtime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>time</ref_name>
+            <ref_url>time</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wasctime</ref_name>
+            <ref_url>_wasctime</ref_url>
+        </reference>
+    </references>
+
+</manpage>

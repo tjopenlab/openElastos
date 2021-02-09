@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>预定义对象Arguments参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="Script_Language.html"><span>XmlGlue支持的脚本语言</span></a></li>
+    <li><a href="XmlGlue_CAR.html"><span>脚本中的CAR构件及其使用</span></a></li>
+    <li class="current"><a href="XmlGlue_Globals.html"><span>预定义对象</span></a></li>
+  </ul>  
+</div>
+ <div class="tabs"> 
+  <ul>
+    <li><a href="Event_Object.html"><span>预定义对象Event参考</span></a></li>
+    <li><a href="Locale_Object.html"><span>预定义对象Locale参考</span></a></li>
+    <li><a href="LocaleManager_Object.html"><span>预定义对象LocaleManager参考</span></a></li>
+    <li class="current"><a href="Arguments_Object.html"><span>预定义对象Arguments参考</span></a></li>
+    <li><a href="Widget_Object.html"><span>预定义对象Widget参考</span></a></li>
+  </ul>  
+</div>
+<h1>预定义对象Arguments参考</h1>
+<p>
+Arguments,即所加载视图（View）的参数对象。对于一个加载的视图我们可以使用两种方法为其定义多个参数：
+<dl>
+	<li>其一，可以在所加载的视图的代码部分通过parameter标签初始化参数，这些参数可以为widget对象的Load方法加载视图作为传递参数;
+	<li>其二，使用widget对象的Load方法加载视图时初始化的参数。
+</dl>
+<p>一旦定义这两类参数，	用户就可以使用Arguments对象在脚本代码中获取相应的参数的值。
+<p>在视图源文件.xgl的脚本代码中通过Widget对象的<a href="Widget_Object.html">Load</a>方法加载另一个视图并指定并传递了该视图的相关参数值。同时该视图的相关参数及其默认值在所加载视图源文件中通过parameter标签设定的。此时，在所加载视图的脚本代码中，使用Arguments和parameter标签中的参数名就可以获得有关加载视图的相关参数值。需要注意的是对Arguments对象的属性只能进行读操作而不能进行写操作。
+
+如在main.xgl中通过Widget对象的Load方法加载一个视图view2.xgl，同时指定并传递此视图的参数height的值，同时在view2.xgl中通过parameter标签设置了视图view2的参数height及其默认值。此时view的属性height的值为第一种方式设定的参数值，即通过在Load方法指定的height的属性值。此时在view2.xgl的脚本代码中，我们若使用Arguments.height可以获取此视图参数height的值，此值同样为通过Load方法指定的height的属性值。但此时我们不能再对height进行赋值操作。
+<hr><h2>属性</h2>
+<ul>
+<li>一般属性
+	<p>Arguments对象的一般属性即参数名。前已所述，可使用两种方法为视图定义两类参数，这两类参数也正是Arguments对象的属性。
+<p>同时，我们还知道：在实际使用时，通过Load加载视图时可以更改那些通过parameter标签初始化的参数，则在脚本中使用Arguments对象获得的实际参数值会相应变化。这里我们将介绍实际取值的情况如下：
+<p>parameters标签设置了加载视图的参数及其默认值;使用Widget对象的Load方法加载一视图的同时也可指定所加载视图的参数及其值。若二者有相同的参数，则实际所加载的视图的参数值将取自后者指定的参数值;若后者指定的参数没有在parameter标签中指定，则此参数的实际的值取自后者;否则取自前者。
+<li>特殊属性
+	<p>对于每个View的Argument对象上都自动具有一个名为ViewFullPath的参数，代表该View的绝对路径。如果用户已定义同名参数，该参数会覆盖之。
+</ul>		
+<p>最后需要注意的是，对Arguments对象的属性仅支持读操作不支持写操作。如在所加载的视图代码部分，使用Arguments.height就可以得所加载视图的参数height值，但不能对height重新赋值。</p>
+<script>footer("chinese")</script>
+</body>
+</html>

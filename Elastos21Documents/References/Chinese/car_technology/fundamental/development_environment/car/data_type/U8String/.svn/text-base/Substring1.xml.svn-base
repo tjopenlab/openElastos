@@ -1,0 +1,69 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>U8String</class>
+    <method> Substring </method>
+
+    <description>
+        <para> 获得从当前U8String对象字符串开始位置的子字符串。</para>
+    </description>
+    <syntax>
+        <return_val> U8String </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> start </param_name>
+            <param_note>
+                <para> 此实例中子字符串的起始字符位置（从零开始）。  </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>U8StringBuf &amp;</param_type>
+            <param_name> sub  </param_name>
+            <param_note>
+                <para>用于保存子字符串的U8StringBuf对象。 </para>
+            </param_note>
+        </api_param>
+               
+        </parameters>        
+    </syntax>
+   <return>
+        <para>一个U8String对象，它等于此实例中从start开始的子字符串，如果start等于此实例的长度，则为空字符串("")。 </para>
+    </return>
+<remarks>
+	<para>1.索引编号从零开始。 </para>
+	<para>2.若start小于0或大于实例中字符串的长度， 返回的U8String对象包含的字符串指针为NULL。 </para>
+	<para>3.若此实例或sub包含的字符串指针为NULL，返回的U8String对象包含的字符串指针为NULL。 </para>
+	</remarks>
+<example>
+<pre>
+U8String u8s("abcdef");
+U8StringBuf_&lt;10&gt; sub;
+Int32 start = 3;
+u8s.Substring(start,sub);
+CConsole::WriteLine(sub);  //Display : "def"
+</pre>
+</example>
+
+
+<references>
+    <reference>
+        <ref_name>U8String</ref_name>
+        <ref_url>../../U8String</ref_url>
+    </reference>
+    <reference>
+        <ref_name>U8String::Substring</ref_name>
+        <ref_url>index/Substring</ref_url>
+    </reference>
+    <reference>
+        <ref_name>U8String::Trim</ref_name>
+        <ref_url>../Trim</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::Substring </ref_name>
+        <ref_url>../../WString/Substring/index/Substring</ref_url>
+    </reference>
+</references>    
+</manpage>

@@ -1,0 +1,38 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--uunm</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>uunm (Universal Unique Name)</h2>
+    <p>This attribute can only be used to modify component.It identifies the address of this component in the Internet. The syntax is: uunm(http://……/XXX.dll), of which XXX.dll is the name of the component. For example: </p>
+    <pre class="code">
+[
+    version(1.0),uuid(579d31c2-2669-46d0-a736-cc676de0b346),
+    <b>uunm</b>(http://www.koretide.com/car/UunmDemo.dll)
+]
+component UunmDemo
+{
+    ……
+}
+</pre>
+    <p>In sample component UunmDemo, the Internet address of component UunmDemo is http://www.koretide.com/ezcom/UunmDemo.dll .</p>
+    <p>Through specified address in uunm, client program can obtain the latest version of this component on the Internet.</p>
+    <p></p>
+    <p></p>
+    <ol><font color="red"><b>Note: </b>
+        <li>While defining component, you must use uunm attribute in the component attribute.
+        <li>Specified component name (hello.dll) in uunm attribute, CAR file name (hello.car) and the final generated component name,must be kept consistent and even capitalized in the same way. If the writing is incorrect, then this component cannot run.
+        <li>Currently, Elastos 2.0 does not support update component from the network.Client program searches for specified component in the system directory according to the component name in uunm.</font>
+    </ol>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>xml编程一般格式</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li class="current"><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>标签(控件)层次模型</span></a></li>
+    <li class="current"><a href="form.html"><span>一般格式</span></a></li>
+    <li><a href="manifest_introduce.html"><span>manifest配置文件介绍</span></a></li>
+    <li><a href="sax.html"><span>Xml解析器介绍</span></a></li>
+  </ul>
+</div>
+<h1>XmlGlue中XML编程的一般格式</h1>
+<p>在基于XmlGlue开发应用时，至少要用到两类文件。视图文件 (.xgl)和应用配置文件（mainfext.xml),其文件内容为基于XML的内容。以下我们将分别介绍这两类文件进行XML编程的一般格式。
+
+<h2>manifest.xml中XML编程的一般格式</h2>
+<p>该文件为widget应用的配置文件，在其中开发者可以自行定义关于这个widget应用的一些设置信息和描述信息，如默认的脚本语言，多语言包，用户自定义CAR构件。具体格式如下：
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>1  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+2  &lt;widget&gt;
+3     &lt;settings&gt;
+4        &lt;setting name="defaultScriptLanguage" value="lua"/&gt;
+5        &lt;setting name="errorOutput" value="errlog.txt"/&gt;
+6     &lt;/settings&gt;
+7     &lt;languageBundle package="DEMO" path="..\demo"/&gt;
+8     &lt;modules&gt;
+9        &lt;module name="myenum.dll" alias="myenum"/&gt;
+10    &lt;/modules&gt;
+11 &lt;/widget&gt;
+</td></tr></table>
+<p><a href="manifest_introduce.html">更多配置文件信息...</a>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<p><h2>视图文件中XML编程的一般格式</h2>
+<p>视图文件提供了一整套UI设计和脚本实现代码。其中，main.xgl是整个XmlGlue开发的主视图文件或程序入口文件。其他视图文件文件结构相似，实际使用时可以从别的视图加载进来。以下我们将以main.xgl文件内容为例，介绍视图文件内容的一般格式。
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>1 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+2 
+3 &lt;x:elastos xmlns="http://www.elastos.com/XmlGlue/Widgets"
+4          xmlns:x="http://www.elastos.com/XmlGlue/2.1"&gt;
+5 
+6     &lt;form  property/event=STRING&gt;
+7        &lt;parenttag1 property/event= STRING &gt;
+8           &lt;childtag1 property/event= STRING /&gt;
+9          …
+10          &lt;childtagn property/event= STRING /&gt;
+11       &lt;/ parenttag1&gt;
+12        …
+13       &lt;parenttagn property/event= STRING &gt;
+14          &lt;childtag1 property/event= STRING /&gt;
+15             …
+16          &lt;childtagn property/event= STRING /&gt;
+17       &lt;/ parenttagn&gt;
+18        … …
+19 
+20    &lt;/form&gt;
+21
+22    &lt;x:script&gt;
+23    &lt;![CDATA[
+24    … …
+25    ]]&gt;
+26    &lt;/x:script&gt;
+27 &lt;/x:elastos&gt;
+</td></tr></table>
+<p>纵览整个文件，我们可以将这个文件分成三部分：文件头，控件的布局部分和脚本编程部分，
+其中，第一部分主要为声明当前XML版本，编码，及一些系统提供的命名空间，如第1行至第3行所示;第二部分为第6行到第20行，用一对form标签标识出，用户可以在这里添加控件(标签)，并对各个控件进行布局，
+包括控件的位置、大小，风格等等；标签分为父标签(parenttag)和子标签(childtag)，父标签主要包括一些容器控件，
+在这些容器中可以嵌入子标签,关于父标签和子标签及其从属关系，请参见”<a href="index.html">Xml中支持标签的层次模型</a>”
+部分中的层次结构图。第三部分为第22行到26行，用一对script标签标识出，表示这里嵌入了脚本，
+这部分主要是用于控制整个程序的运行及对各个控件的事件做出响应。
+例如：
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>1 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+2 
+3 &lt;x:elastos xmlns="http://www.elastos.com/XmlGlue/Widgets"
+4          xmlns:x="http://www.elastos.com/XmlGlue/2.1"&gt;
+5 
+6     &lt;form x:id="main" x="0" y="0" width="240" height="320"&gt;
+7        &lt;panel x:id="main_panel" x="0" y="0" width="240" height="320"&gt;
+8
+9           &lt;label x:id="date_indicator" caption="20th，Sept." style="Left"
+10                    x="70" y="10" width="180" height="20"/&gt;
+11            … …
+12       &lt;/panel&gt;
+13    &lt;/form&gt;
+14
+15 &lt;x:script&gt;
+16 &lt;![CDATA[
+17 … …
+18 ]]&gt;
+19    &lt;/x:script&gt;
+20 &lt;/x:elastos&gt;
+</td></tr></table>
+<p>下面将详细介绍一下main.xgl文件的一般格式。
+<p><b>◆	文件头:</b>在XML程序的第一行，是XML的文件头，以“&lt;?xml”开头，以“?&gt;”结尾，指明XML版本和字符编码属性。需要指出所有的脚本源代码文件的字符编码（encoding)须指定为UTF-8，这些文件包括视图文件（.xgl），纯脚本源文件（.js或.lua)。例子中文件头：
+<p><center><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</td></tr></table></center>
+	表示版本号是1.0，字符编码为"UTF-8"。
+	
+<p><b>◆	代码主体部分:</b>除文件头之外的其他部分，即是代码的主体部分，以系统标签&lt;elastos&gt;标识主体开头，以标签&lt;/elastos&gt;标识主体结束，在上面的一般格式中，即从第3行开始到最后即为主体部分。&lt;elastos&gt; 是根标签，它包含了所有标签，widget文件必须包括一个&lt;elastos&gt; 标签。
+<p><b>◆	构件模块别名的声明:</b>模块别名的声明，由系统标签xmlns标示。例子中
+<p><center><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>&lt;x:elastos xmlns="http://www.elastos.com/XmlGlue/Widgets"
+        xmlns:x="http://www.elastos.com/XmlGlue/2.1"&gt;</td></tr></table></center>
+<p>即是在通过标签elastos声明主体部分后，将构件模块“ http://www.elastos.com/XmlGlue/2.1”的别名声明为x，故所有定义在构件模块“ http://www.elastos.com/XmlGlue/2.1”下的名称在使用时前面都要加上“x:”用于标示。
+
+<p><b>◆	控件标签的使用<sup><a href="#note1"><font color="red"><b>[注1]</b></font></a></sup>:</b>声明了构件模块的别名后，就可以用声明的别名调用对应构件模块中的标签，布局用户界面。首先通过构件模块声明标签，然后给标签的各属性参数赋值。如例子中：
+<p><center><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>&lt;label x:id="date_indicator" caption="20th，Sept." style="Left"
+        x="70" y="10" width="180" height="20"/&gt;</td></tr></table></center>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label是处于命名空间“http://www.elastos.com/XmlGlue/Widgets”下，其id属性属于别名为“x”的命名空间，故用“x:”加以标示，然后调用系统标签，将实例对象的名字标识为“date_indicator”，之后初始化label的各个属性（这些属性将在后文一一介绍）。
+例子中的
+
+<p><center><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>&lt;form x:id="main" x="0" y="0" width="240" height="320"&gt;
+      &lt;panel x:id="main_panel" x="0" y="0" width="240" height="320"&gt;</td></tr></table></center>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调用了&lt;form&gt;和&lt;panel&gt;标签作为其它对象的容器。注意，布局界面时，在XmlGlue为开发人员提供的标签控件中，只有form、panel、tabPage可以作为容器。其中form可以放入其他的所有标签，包括它自身widget文件必须包括一个&lt;form&gt;标签，panel、tabPage可以放入除form之外的所有标签。
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他的标签使用与之类似。
+
+<p><b>◆	嵌入脚本代码部分<sup><a href="#note2"><font color="red"><b>[注2]</b></font></a></sup>:</b>脚本语言的嵌入，由系统标签script(如第15行)标识，将实际的脚本包装在&lt;![CDATA[…]]&gt;中。
+<p><b>备注</b>
+	<ul>
+		<li><a name="note1"><font color="red"><b>[注1]</b></font></a>:实际开发中开发者可能会进行数据集绑定以及参数传递，为实现这些功能，开发者需要使用相关标签先进行数据集的绑定或参数群组的声明，再使用控件标签，将相关事先获得的数据库文件与相关控件绑定或使用已声明的参数。
+		<li><a name="note2"><font color="red"><b>[注2]</b></font></a>:示例中仅将脚本代码包含中当前的.xgl文件中。当然，用户也可以利用<a href="class_script.html">script标签</a>的src属性指定一个脚本文件（如implementation.lua)，此脚本文件将相关的用户操作界面事件响应等逻辑代码封装在其中。
+ </ul>
+ <script>footer("chinese")</script>
+
+
+</body>
+</html>

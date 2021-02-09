@@ -1,0 +1,28 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>Characteristics Of CAR Component Inheritance Mechanism</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+        <h2>Characteristics Of CAR Component Inheritance Mechanism</h2>
+        <p>Component inheritance mechanism implements characteristics similar to C++ virtual function. C++ language and CAR component inheritance mechanism have equivalent concepts like <a class="style1" href ="basic_concept.htm">base component</a>, <a class="style1" href ="basic_concept.htm">derived component</a>, <a class="style1" href ="basic_concept.htm">virtual interface</a> etc. Base component invokes virtual interface method to move into corresponding derived component interface method to execute. The derived component can directly overload and invoke interface method that is inherited from the base component.</p>
+        <ol>
+            <li>If one of the interfaces of base class (Here refers to component class defined in CAR file and it applies to following base class) is "virtual interface" (CAR interface definition has <a class="style1" href ="basic_concept.htm">virtual</a> attribute), then its derived class that will be able to override all interface methods. Subsequently component level polymorphism can be achieved.
+            <li>Base class is a component and it has the characteristic like encapsulation. It is not necessary for base class to expose its internal structure. 
+            <li>As long as interface of base class does not change, the derived class needs not to be recompiled no matter how we upgrade, update or change its internal structure.
+            <li>It achieves component late binding and it agrees with COM standard.
+            <li>Whenever an interface is defined, it supports  <a class="style1" href ="basic_concept.htm">public</a>, <a class="style1" href ="basic_concept.htm">private</a>, <a class="style1" href ="basic_concept.htm">protected</a> keywords, similar to corresponding C++ keywords, which are used to indicate whether this interface is exposed or provided to derived classes. 
+            <li><font color="red">It supports multiple levels but does not support multiple "inheritance".</font>
+        </ol>
+
+<script>footer("english")</script>
+</body>
+</html>

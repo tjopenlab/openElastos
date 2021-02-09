@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\gets">gets</sample>
+    <title> gets，_getws</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>从标准输入设备中取一行字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>gets</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>输入字符串存储位置的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_getws</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回读取的字符串的指针值。如果返回NULL，表示读取错误或已到文件尾。调用ferror可以检测是哪种错误。</para>
+    </return>
+
+    <remarks>
+        <para>函数gets从标准输入设备中读入一行字符，并把它保存在buffer指定的位置。读入的行由包括第一个换行符('\n')在内的所有字符组成。然后，gets用空字符('\0')替换掉换行符。相反，函数fgets保留换行符。_getws是gets的宽字符版本，_getws的参数和返回值是宽字符串。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>gets</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_getws</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* gets.cpp:this program reads a line from the standard input stream stdin
+            and then display to the screen*/
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char line[81];
+
+    printf(&quot;Input a string: &quot;);
+    gets(line);
+    printf(&quot;The line entered was: %s\n&quot;, line);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Input a string: Hello!
+The line entered was: Hello!
+</result>
+
+    <references>
+        <reference>
+            <ref_name>getwchar</ref_name>
+            <ref_url>getwchar</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fgetws</ref_name>
+            <ref_url>fgetws</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fputws</ref_name>
+            <ref_url>fputws</ref_url>
+        </reference>
+    </references>
+
+</manpage>

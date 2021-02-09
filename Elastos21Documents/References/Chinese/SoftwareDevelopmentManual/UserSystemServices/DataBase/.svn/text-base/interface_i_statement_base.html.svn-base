@@ -1,0 +1,372 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: IStatementBase接口参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>IStatementBase接口参考</h1><!-- doxytag: class="IStatementBase" -->IStatementBase接口
+<a href="#_details">更多...</a>
+<p>
+<code>import &quot;<a class="el" href="database_8car-source.html">database.car</a>&quot;;</code>
+<p>
+<div class="dynheader">
+继承图，类IStatementBase</div>
+<div class="dynsection">
+<p><center><img src="interface_i_statement_base__inherit__graph.png" border="0" usemap="#_i_statement_base__inherit__map" alt="Inheritance graph"></center>
+<map name="_i_statement_base__inherit__map">
+<area shape="rect" href="interface_i_prepared_statement.html" title="Represents接口，该接口用于执行预编译的SQL语句。" alt="" coords="5,80,147,107"><area shape="rect" href="interface_i_statement.html" title="Statement接口，该接口用来执行静态的SQL语句并返回相应的结果集。..." alt="" coords="171,80,256,107"></map>
+<center><font size="2">[<a href="graph_legend.html">图例</a>]</font></center></div>
+
+<p>
+<a href="interface_i_statement_base-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html#d219f9133f1b41f149a0b0f49ccb54f8">Close</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">立即释放当前SQL语句对象的资源，而不是等待该SQL语句被自动关闭时才释放资源。  <a href="#d219f9133f1b41f149a0b0f49ccb54f8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html#3febab42e2ef4d7d11a002b3ae942891">IsClosed</a> ([out] Boolean *closed)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检查当前的SQL语句对象是否被关闭。 如果一个SQL语句对象的close方法被调用或发生某些错误时，该SQL语句对象将会被关闭。 当Close方法已被调用后再调用该方法一定返回true.  <a href="#3febab42e2ef4d7d11a002b3ae942891"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html#615f70d97aa86d683c88a06112035fb4">Cancel</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">终止所有数据库操作并在可能的最早时机返回。[未实现]  <a href="#615f70d97aa86d683c88a06112035fb4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html#056d20668a4203772ee569d974467839">GetQueryTimeout</a> ([out] Millisecond32 *timeout)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取数据库将等待一个Statement对象执行的时间(毫秒)。  <a href="#056d20668a4203772ee569d974467839"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html#e5a9f4badaf8fad27bf06f3b26f578f4">SetQueryTimeout</a> ([in] Millisecond32 timeout)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置数据库等待一个Statement对象执行的时间。  <a href="#e5a9f4badaf8fad27bf06f3b26f578f4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html#c37cd5ae7028e77bee3b4b24a109791d">GetResultSet</a> ([out] <a class="el" href="interface_i_result_set.html">IResultSet</a> **resultSet)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">以 ResultSet 对象的形式检索当前结果。 对于每个结果集，该方法只应调用一次。  <a href="#c37cd5ae7028e77bee3b4b24a109791d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html#cbe6db0492452b09a1cfcf8cae3e28e2">GetDatabase</a> ([out] <a class="el" href="interface_i_database.html">IDatabase</a> **db)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取创建当前语句对象的数据库对象。  <a href="#cbe6db0492452b09a1cfcf8cae3e28e2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html#1b284330b0e6c31859744edcdf3b4f6c">GetUpdateCount</a> ([out] Int32 *rowCount)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">以更新计数的形式检索当前结果。  <a href="#1b284330b0e6c31859744edcdf3b4f6c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html#f5774aa332e733cec386c0b22c4155a1">GetLastInsertRowId</a> ([out] Int64 *rowId)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取数据库中最近插入的记录的rowId。 如果当前语句未发生插入操作则返回0.  <a href="#f5774aa332e733cec386c0b22c4155a1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html#8e720f35771e159832c119f2184d00cd">GetErrorCode</a> ([out] ECode *code)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取在当前数据库Statement对象上产生的错误代码。  <a href="#8e720f35771e159832c119f2184d00cd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html#94acd385aabaaaba3f5d6e240f187443">GetErrorMessage</a> ([out] WStringBuf * message)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前数据库Statement对象的错误信息。  <a href="#94acd385aabaaaba3f5d6e240f187443"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+IStatementBase接口
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00389">389</a>行定义。</p>
+<hr><h2>成员函数文档</h2>
+<a class="anchor" name="d219f9133f1b41f149a0b0f49ccb54f8"></a><!-- doxytag: member="IStatementBase::Close" ref="d219f9133f1b41f149a0b0f49ccb54f8" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatementBase::Close           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+立即释放当前SQL语句对象的资源，而不是等待该SQL语句被自动关闭时才释放资源。
+<p>
+对已关闭的SQL语句对象调用此方法无效。<p>
+当一个SQL语句对象被销毁时，它会被自动关闭。
+</div>
+</div><p>
+<a class="anchor" name="3febab42e2ef4d7d11a002b3ae942891"></a><!-- doxytag: member="IStatementBase::IsClosed" ref="3febab42e2ef4d7d11a002b3ae942891" args="([out] Boolean *closed)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatementBase::IsClosed           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Boolean *&nbsp;</td>
+          <td class="paramname"> <em>closed</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检查当前的SQL语句对象是否被关闭。 如果一个SQL语句对象的close方法被调用或发生某些错误时，该SQL语句对象将会被关闭。 当Close方法已被调用后再调用该方法一定返回true.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>closed</em>&nbsp;</td><td>- 如果当前SQL语句对象已关闭则返回true; 否则返回false. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="615f70d97aa86d683c88a06112035fb4"></a><!-- doxytag: member="IStatementBase::Cancel" ref="615f70d97aa86d683c88a06112035fb4" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatementBase::Cancel           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+终止所有数据库操作并在可能的最早时机返回。[未实现]
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="056d20668a4203772ee569d974467839"></a><!-- doxytag: member="IStatementBase::GetQueryTimeout" ref="056d20668a4203772ee569d974467839" args="([out] Int32 *timeout)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatementBase::GetQueryTimeout           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Millisecond32 *&nbsp;</td>
+          <td class="paramname"> <em>timeout</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取数据库将等待一个Statement对象执行的时间(毫秒)。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>timeout</em>&nbsp;</td><td>- 当前所需等待的查询时间(毫秒) </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e5a9f4badaf8fad27bf06f3b26f578f4"></a><!-- doxytag: member="IStatementBase::SetQueryTimeout" ref="e5a9f4badaf8fad27bf06f3b26f578f4" args="([in] Int32 timeout)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatementBase::SetQueryTimeout           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Millisecond32&nbsp;</td>
+          <td class="paramname"> <em>timeout</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设置数据库等待一个Statement对象执行的时间。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>timeout</em>&nbsp;</td><td>- 需要设定的等待查询时间(毫秒) </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="c37cd5ae7028e77bee3b4b24a109791d"></a><!-- doxytag: member="IStatementBase::GetResultSet" ref="c37cd5ae7028e77bee3b4b24a109791d" args="([out] IResultSet **resultSet)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatementBase::GetResultSet           </td>
+          <td>(</td>
+          <td class="paramtype">[out] <a class="el" href="interface_i_result_set.html">IResultSet</a> **&nbsp;</td>
+          <td class="paramname"> <em>resultSet</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+以 ResultSet 对象的形式检索当前结果。 对于每个结果集，该方法只应调用一次。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>resultSet</em>&nbsp;</td><td>- 以 ResultSet 对象的形式返回当前结果。 如果当前结果为一个更新操作或没有更多的结果产生，则返回NULL. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="cbe6db0492452b09a1cfcf8cae3e28e2"></a><!-- doxytag: member="IStatementBase::GetDatabase" ref="cbe6db0492452b09a1cfcf8cae3e28e2" args="([out] IDatabase **db)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatementBase::GetDatabase           </td>
+          <td>(</td>
+          <td class="paramtype">[out] <a class="el" href="interface_i_database.html">IDatabase</a> **&nbsp;</td>
+          <td class="paramname"> <em>db</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取创建当前语句对象的数据库对象。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>db</em>&nbsp;</td><td>- 创建当前语句对象的数据库对象。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1b284330b0e6c31859744edcdf3b4f6c"></a><!-- doxytag: member="IStatementBase::GetUpdateCount" ref="1b284330b0e6c31859744edcdf3b4f6c" args="([out] Int32 *rowCount)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatementBase::GetUpdateCount           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>rowCount</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+以更新计数的形式检索当前结果。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>rowCount</em>&nbsp;</td><td>- 以更新计数的形式检索当前结果。 如果结果为一个ResultSet对象或没有结果，则返回-1. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="f5774aa332e733cec386c0b22c4155a1"></a><!-- doxytag: member="IStatementBase::GetLastInsertRowId" ref="f5774aa332e733cec386c0b22c4155a1" args="([out] Int64 *rowId)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatementBase::GetLastInsertRowId           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Int64 *&nbsp;</td>
+          <td class="paramname"> <em>rowId</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取数据库中最近插入的记录的rowId。 如果当前语句未发生插入操作则返回0.
+<p>
+表中的每条记录都有唯一的64位带符号整数键"rowId"来标识。 该键可以通过ROWID，OID，或 _ROWID_的列名来访问。 如果表中存在一个'INTEGER PRIMARY KEY'的列，则这个列为行号的另一个别名。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>rowId</em>&nbsp;</td><td>- 新插入记录的rowId； 如果当前语句未发生插入操作则返回0. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="8e720f35771e159832c119f2184d00cd"></a><!-- doxytag: member="IStatementBase::GetErrorCode" ref="8e720f35771e159832c119f2184d00cd" args="([out] ECode *code)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatementBase::GetErrorCode           </td>
+          <td>(</td>
+          <td class="paramtype">[out] ECode *&nbsp;</td>
+          <td class="paramname"> <em>code</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取在当前数据库Statement对象上产生的错误代码。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>code</em>&nbsp;</td><td>- 错误代码; 如果当前语句未发生任何错误则返回NOERROR. </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_get_error_8cpp-example.html#a4">GetError.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="94acd385aabaaaba3f5d6e240f187443"></a><!-- doxytag: member="IStatementBase::GetErrorMessage" ref="94acd385aabaaaba3f5d6e240f187443" args="([out] WStringBuf_&lt; MAX_ERROR_MESSAGE &gt; message)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatementBase::GetErrorMessage           </td>
+          <td>(</td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>message</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前数据库Statement对象的错误信息。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>message</em>&nbsp;</td><td>- 错误信息; 如果当前语句未发生任何错误则返回空串。 </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_get_error_8cpp-example.html#a5">GetError.cpp</a>.</dl>
+</div>
+</div><p>
+<hr>该接口的文档由以下文件生成：<ul>
+<li><a class="el" href="database_8car-source.html">database.car</a></ul>
+<script>footer("chinese")</script>
+</body>
+</html>

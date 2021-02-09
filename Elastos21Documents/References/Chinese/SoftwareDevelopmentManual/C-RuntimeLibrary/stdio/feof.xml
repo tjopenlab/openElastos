@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\feof">feof</sample>
+    <title> feof</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>判断文件流是否具有文件尾（end-of-file）指示器。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>feof</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当前一次读操作试图读取超过文件尾时会设置文件尾（end-of-file）指示器，feof返回非0值。如果文件流不具有文件尾（end-of-file）指示器，feof返回0。此函数没有错误返回值。</para>
+    </return>
+
+    <remarks>
+        <para>feof（可以被当作函数或是宏）用来判断文件流是否具有文件尾（end-of-file）指示器。当到达文件流的结尾时，读操作会为文件流设置文件尾（end-of-file）指示器，直到文件流被关闭，或者rewind、fsetpos或fseek等函数作用于该文件流。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>feof</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* feof.cpp: This program uses feof to indicate when
+ * it reaches the end of the file feof.cpp. It also
+ * checks for errors with ferror.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    int  count, total = 0;
+    char buffer[100];
+    FILE *stream;
+
+    if ((stream = fopen(&quot;feof.exe&quot;, &quot;r&quot;)) == NULL) {
+        printf(&quot;problem open the file!\n&quot;);
+        return 1;
+    }
+
+    /* Cycle until end of file reached: */
+    while (!feof(stream)) {
+        /* Attempt to read in 10 bytes: */
+        count = fread(buffer, sizeof(char), 100, stream);
+        if (ferror(stream)) {
+            perror(&quot;Read error&quot;);
+            break;
+        }
+
+        /* Total up actual bytes read */
+        total += count;
+    }
+    printf(&quot;Number of bytes read = %d\n&quot;, total);
+    fclose(stream);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Number of bytes read = 41086
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>rewind</ref_name>
+            <ref_url>rewind</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fseek</ref_name>
+            <ref_url>fseek</ref_url>
+        </reference>
+    </references>
+
+</manpage>

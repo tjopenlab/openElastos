@@ -1,0 +1,97 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> superexe </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para>Elastos应用开发环境下统一运行或调试具有main属性的CAR构件或widgets应用的宿主程序。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> superexe </cmd_name>
+        <cmd_param> [-?|-Debug|-Hosting][*.dll [args ...]|*.dew [args ...]|Directory [args ...]]</cmd_param>
+    </syntax>
+
+    <parameters>
+    <param>
+        <param_name> -? </param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+    <param>
+        <param_name> -Debug </param_name>
+        <param_note> 调试一个car构件或widgets程序 </param_note>
+    </param>
+    <param>
+        <param_name> -Hosting </param_name>
+        <param_note> 作为domain host运行 </param_note>
+    </param>
+    <param>
+        <param_name> *.dll [args ...]</param_name>
+        <param_note> 运行或调试一个具有main属性的CAR构件 </param_note>
+    </param>
+    <param>
+        <param_name> *.wgt [args ...]</param_name>
+        <param_note> 运行或调试一个widgets程序包 </param_note>
+    </param>
+    <param>
+        <param_name> Directory [args ...] </param_name>
+        <param_note> 运行或调试某路径目录下的widgets程序 </param_note>
+    </param>
+    </parameters>
+    <remarks>
+        <para>Elastos上可执行文件的几种入口规范：</para>
+        <para>1. Elastos平台可执行文件[EXE]入口：</para>
+        <pre>ECode ElastosMain(const BufferOf&lt;WString&gt;&amp; args);</pre>
+        <para>这是Elastos平台上EXE类型的可执行文件的默认入口点函数，args是一个包含启动参数的WStringArray，为了和POSIX特性兼容，第一个参数为可执行文件的PATH，后续依次为用户参数。在ElastosMain执行完成后，会进入线程的事件处理过程，直到用户退出。</para>
+        <para>在ElastosMain返回后,若返回成功则进入事件处理过程，失败则结束进程，该ECode即为进程退出码。</para>
+        <para>如果用户没有在ElastosMain中安装回调处理句柄，那么在ElastosMain返回后进程会退出，ElastosMain的返回值即为进程退出码。</para>
+        <para>2. POSIX 兼容的标准可执行文件[EXE]入口：</para>
+        <pre>
+            int __cdecl main(int argc, char * argv[]);
+        </pre>
+        <pre>
+            int __cdecl _wmain(int argc, wchar_t * wargv[]);
+        </pre>
+        <para>其形态和行为都和POSIX标准兼容。</para>
+        <para>3. 可独立执行的CAR构件[DLL]入口：</para>
+        <para>具有main属性的CAR构件可以被独立的加载运行，如：</para>
+        <pre>
+            [main] class CFooBar {...}
+        </pre>
+        <para>对应会生成包含</para>
+        <pre>
+            ECode CFooBar::Main(const BufferOf&lt;&gt;WString&gt;&amp; args);
+        </pre>
+        <para>的C++代码。这个函数和ElastosMain的原型一致，行为也一致。参数表存在一些差异，第一个参数为该DLL的PATH，而非宿主进程的可执行文件PATH。</para>
+    </remarks>
+
+    <examples>
+        <example>
+            <eg_line>superexe -Debug D:\Elastos21\Elastos\Samples\buttondemo.dll</eg_line>
+            <eg_note>调试一个car构件或widgets程序。</eg_note>
+        </example>
+        <example>
+            <eg_line>superexe -Hosting </eg_line>
+            <eg_note>作为domain host运行。</eg_note>
+        </example>
+        <example>
+            <eg_line>superexe btmaindll.dll </eg_line>
+            <eg_note>执行一个car dll。</eg_note>
+        </example>
+        <example>
+            <eg_line>superexe D:\Elastos21\Elastos\Samples\Dialer.wgt </eg_line>
+            <eg_note>执行一个绝对路径下的widgets程序包。</eg_note>
+        </example>
+        <example>
+            <eg_line>superexe Dialer.wgt </eg_line>
+            <eg_note>执行一个相对路径下的widgets程序包。</eg_note>
+        </example>
+        <example>
+            <eg_line>superexe D:\Elastos21\Elastos\XmlGlue\SampleWidgets\Dialer</eg_line>
+            <eg_note>执行一个绝对路径下的widgets程序。</eg_note>
+        </example>
+    </examples>
+
+</manpage>

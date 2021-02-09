@@ -1,0 +1,112 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>ISimMgr</interface><method> SetMessageState </method>
+    <description>
+        <para>
+          设置SIM卡中短信状态。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwStorage </param_name>
+                <param_note>
+                    <para>
+                       短信存储类型
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwIndex </param_name>
+                <param_note>
+                    <para>
+                        短信序列号
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> SMS_STATE </param_type>
+                <param_name> dwState </param_name>
+                <param_note>
+                    <para>
+                       短信收发状态
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_RESINITFAILED</td>
+	    	    <td>初始化失败</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_NOTREADY</td>
+	    	    <td>通讯模块没有准备好，原因可能是没有被初始化或者连接线接触不良</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_TIMEOUT</td>
+	    	    <td>命令发送后，通讯模块没有及时响应而超时</td>
+	        </tr>
+	         <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	    </table>
+	     <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../Telephony_Error.htm">Telephony_Error</link>相关帮助。</para>
+	</return>
+
+     <remarks>
+		<para>短信收发状态定义如下：</para>
+
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>SMSST_REC_UNREAD</td><td>收到新短信（未读）</td>
+    </tr>
+    <tr>
+       <td>SMSST_REC_READ</td><td>收到已读短信</td>
+    </tr>
+    <tr>
+       <td>SMSST_STO_UNSENT</td><td>存储未读短信</td>
+    </tr>
+    <tr>
+       <td>SMSST_STO_SENT</td><td>存储已发短信</td>
+    </tr>
+    <tr>
+       <td>SMSST_ALL</td><td>所有短信</td>
+    </tr>
+    </table>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

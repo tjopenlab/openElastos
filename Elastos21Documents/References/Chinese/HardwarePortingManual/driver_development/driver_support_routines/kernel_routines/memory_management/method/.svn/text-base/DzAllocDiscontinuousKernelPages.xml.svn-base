@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    
+    <volume>内存管理函数</volume>
+    <title>DzAllocDiscontinuousKernelPages</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>分配指定数目的物理上不连续的内核页 。</para>
+    </description>
+
+    <syntax>
+        <return_val>virtaddr_t</return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> uint_t</param_type>
+                <param_name> uPages </param_name>
+                <param_note>
+                    <para>指定分配的内核页数</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+ <para>如果分配成功，则返回内核地址空间里的起始虚拟地址；如果分配失败，则返回NULL。</para>
+    </return>
+
+    <remarks>
+        <para>内核会将若干块离散的物理内存块，在内核地址空间里映射成一块连续的内存，并返回映射后的虚拟地址。</para>
+        <para>此API跟DzAllocKernelPages不同，DzAllocKernelPages 是将一块连续的物理内存块映射到内核地址空间里去，并返回映射后的虚拟地址。 </para>
+        <para>调用 DzRemapDiscontinuousKernelPages 可以将 DzAllocDiscontinuousKernelPages分配出来的内存映射到当前进程的用户地址空间里去。在内核及用户地址空间里通过不同的地址操作的可能是一块物理内存，所以在必要时，需要由调用者来负责缓存的刷新。</para>
+        <para>调用 DzFreeDiscontinuousKernelPages 来释放DzAllocDiscontinuousKernelPages分配出来的内存。调用前，请确保已经取消由 DzRemapDiscontinuousKernelPages 建立的映射。</para>
+    </remarks>
+
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+</manpage>

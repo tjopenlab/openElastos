@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IImagePanel</interface><method> SetFocusedImage </method>
+    <description>
+        <para>
+            设置图片面板中的窗格在具有焦点且未被选中时的图片。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IImage * </param_type>
+                <param_name> focusedImage </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口的指针，用于设置窗格在具有焦点且未被选中时的图片</para>
+                </param_note>
+            </api_param>                                   
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+    	 控件所表现出的视觉效果是是通过控件处于不同状态的图片的切换来实现的。例如需要产生象 Button 一样被鼠标点击的效果，则需要由一张 Button 处于正常状态的图片和一张 Button 被按下时候的图片。故使用 ImagePanel 模拟控件的某些效果时，需要用户自行指定窗格各个状态的图片。若在一个 ImagePanel 内布局多个控件，则需要将这些控件在相同状态下的图片整合在一起形成一张图片。
+    </para>
+    <para>
+    	 注意：用户必须设置 ImagePanel 内窗格在 Normal 状态下的图片。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CImagePanel 类介绍 </ref_name>
+        <ref_url>../../class/ImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IImagePanel 接口方法列表</ref_name>
+        <ref_url>../IImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetPanelImages</ref_name>
+        <ref_url>GetPanelImages</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetFocusedPressedImage</ref_name>
+        <ref_url>GetFocusedPressedImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetFocusedPressedImage</ref_name>
+        <ref_url>SetFocusedPressedImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetDisabledImage</ref_name>
+        <ref_url>GetDisabledImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetDisabledImage</ref_name>
+        <ref_url>SetDisabledImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetPressedImage</ref_name>
+        <ref_url>GetPressedImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetPressedImage</ref_name>
+        <ref_url>SetPressedImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetNormalImage</ref_name>
+        <ref_url>GetNormalImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetNormalImage</ref_name>
+        <ref_url>SetNormalImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetPanelImages</ref_name>
+        <ref_url>GetPanelImages</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetPanelImages</ref_name>
+        <ref_url>SetPanelImages</ref_url>
+    </reference>
+</references>
+</manpage>

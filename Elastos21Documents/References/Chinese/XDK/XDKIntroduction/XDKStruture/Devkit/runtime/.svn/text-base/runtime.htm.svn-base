@@ -1,0 +1,37 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Devkit的目录结构介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>runtime</h2>
+  <p>runtime目录结构见图2-4：</p>
+  <center><img src="images/runtime.jpg"></center>
+	  <center>图2-4</center>
+  <p>runtime目录包含运行所需的各种文件，包括各种资源文件，系统服务构件等，包括如下五个子目录:</p>
+  <p>Common:</p>
+     <ul>
+    <li>Common/resource:存放Elastos的所有所需资源文件，包括图形系统及其他相关模块的资源文件,根据不同的文件类别分别放置在相应的目录下。
+    <li>Common/config:存放了相关的配置文件。
+    <li>Common/data: 存放i18n等数据文件。
+    </ul>
+	<p>Elastos:</p>
+	<p>Elastos目录下存放Elastos提供系统及相关模块的二进制文件（主要是DLL），现在Elastos暂时提供EVC编译的ARM、MSVC编译的x86、GNU编译的ARM和GNU编译的x86，在这些分类中根据debug和release的版本分别放置相应的文件。</p>
+	<p>在编译过程中，XDK会根据用户开发窗口的环境变量来选择相应的DLL获取相关的元数据等信息，通过XDK_TARGET_CPU和XDK_COMPILER以及XDK_VERSION来确定。</p>
+	<p>Zener:</p>
+	<p>宿主的操作系统为Zener。使用的是Zener的kernel.exe</p>
+	<p>Win32:</p>
+	<p>使用指定x86编译器编译出基于x86指令集的虚拟运行平台（superexe.exe/elastos.dll），该运行平台基于WINDOWS操作系统，以中间件的形式调用WINDOWS提供的API来模拟Elastos操作系统的特性，使运行在该平台上的程序能得到类似于直接运行在Elastos上的模拟效果，在运行过程中可以通过VC进行调试。</p>
+	<p>Linux:</p>
+	<p>其他可扩展的、调用相关操作系统提供的API来模拟Elastos操作系统的特性的操作系统。</p>
+
+    
+<script>footer("chinese")</script>
+</body>
+</html>

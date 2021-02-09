@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\srand">srand</sample>
+    <title> srand </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>设置随机数的起始点。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>srand</func_name>
+        <parameters>
+            <func_param>
+                <param_type>unsigned int</param_type>
+                <param_name>seed</param_name>
+                <param_note>
+                    <para>产生随机数的种子值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>函数srand为产生一系列的伪随机整数设置起始点。重新初始化伪随机数生成器时，用1作种子参数。设置生成器的随机起始点时，用其它值做种子。用函数rand获得产生的伪随机数。在调用函数srand前调用函数rand，产生的伪随机数序列，与以1为种子调用函数srand产生的一样。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>srand</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* srand.cpp: This program seeds the random-number generator
+ * with the time, then displays 10 random integers.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+    int i;
+
+    /* Seed the random-number generator with current time so that
+     * the numbers will be different every time we run.
+     */
+    srand((unsigned)time(NULL));
+
+    /* Display 10 numbers. */
+    for (i = 0;    i &lt; 10;i++)
+        printf(&quot;  %6d\n&quot;, rand());
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+13018
+27308
+3986
+10484
+4469
+11688
+21712
+241
+2406
+1993
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>rand</ref_name>
+            <ref_url>rand</ref_url>
+        </reference>
+    </references>
+
+</manpage>

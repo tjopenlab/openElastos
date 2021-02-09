@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\user_com_interface\elasock\sam03\server">recvfrom</sample>
+    <volume>elasock API</volume>
+    <title>recvfrom</title>
+    <routine_idx>ElastosSocketIndex.htm</routine_idx>
+
+    <description>
+        <para>接收一个数据报并保存源地址。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>[in]已绑定的套接口。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>char *</param_type>
+                <param_name>buf</param_name>
+                <param_note>
+                    <para>[out]接收数据缓冲区。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>len</param_name>
+                <param_note>
+                    <para>[in]缓冲区长度。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>flags</param_name>
+                <param_note>
+                    <para>[in]调用方式标志位，普通方式为0。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>struct sockaddr *</param_type>
+                <param_name>from</param_name>
+                <param_note>
+                    <para>[out]（可选）指针，指向装有源地址（<link url="DataType\sockaddr.htm">sockaddr</link>结构）的缓冲区</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int *</param_type>
+                <param_name>fromlen</param_name>
+                <param_note>
+                    <para>[in,out]（可选）指针，指向from缓冲区的长度值</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>若无错误发生，recvfrom()返回读入的字节数。如果连接已终止将返回0。否则的话，返回SOCKET_ERROR错误，应用程序可通过<link url="WSAGetLastError.htm">WSAGetLastError()</link>获取相应错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>本函数从已连接或未连接套接口上接收数据，并可以记录数据发送源的地址。在此之前套接口的本地地址必须是确定的，对于服务器端，可以显式调用<link url="bind.htm">bind()</link>或者隐式调用<link url="accept.htm">accept()</link>。对于客户端，不鼓励显式调用bind()，客户端程序可以通过<link url="sendto.htm">sendto()</link>来隐式地建立套接口与本地地址的绑定。</para>
+        <para>对SOCK_STREAM类型的套接口来说，本函数将返回所有的有效数据，最大可达缓冲区的大小，并忽略from和fromlen参数。</para>
+        <para>对于数据报套接口，队列中第一个数据报中的数据被解包，但其大小不能超过缓冲区容量。如果数据报长度大于缓冲区容量，缓冲区中将只有数据报的前面部分，<link url="recv.htm">recv()</link>返回已读入缓冲区的字节数，多余部分的数据将被丢弃。</para>
+        <para>对于数据报套接口，若from参数为非空，数据发送源的地址将被复制到相应的SOCKADDR结构中。fromlen所指向的值初始化时为SOCKADDR结构的大小，当调用返回时该值为SOCKADDR结构中地址的实际大小。</para>
+        <para>如果没有数据可读，在阻塞模式下，调用recvfrom()将阻塞套接口并等待数据到来；非阻塞套模式下将将返回SOCKET_ERROR错误。使用<link url="select.htm">select()</link>可以获知何时数据到达。</para>
+        <para>所有经过传输缓冲并接收的数据将被复制到用户给出的缓冲区。如果阻塞套接口无接收数据，程序将阻塞直到数据到达。对于字节流套接口，一次recv()将读取所有已经到来的数据，并尽可能地充满用户给出的缓冲区；当阻塞发生时，如果接收到大于或等于一个字节的数据，或者收到另一端正常关闭连接的信号，阻塞过程都将结束。而对于数据报套接口，每一次recv()调用只处理远端一次<link url="send.htm">send()</link>传送过来的数据；且需要接收到完整的数据报才可以结束阻塞状态，但是允许数据报长度为0。</para>
+        <para>如果字节流套接口的连接对方成功地中止了连接，并且本地已经接收完了所有数据，调用recvfrom()将立即返回已读取0字节。假如连接被强制中止，recvfrom()将返回WSAECONNRESET错误。</para>
+        <para>标志位flags用于设置recv/recvfrom的接收方式，一般情况使用0。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>bind</ref_name>
+            <ref_url>bind</ref_url>
+        </reference>
+        <reference>
+            <ref_name>recv</ref_name>
+            <ref_url>recv</ref_url>
+        </reference>
+        <reference>
+            <ref_name>send</ref_name>
+            <ref_url>send</ref_url>
+        </reference>
+        <reference>
+            <ref_name>select</ref_name>
+            <ref_url>select</ref_url>
+        </reference>
+        <reference>
+            <ref_name>shutdown</ref_name>
+            <ref_url>shutdown</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

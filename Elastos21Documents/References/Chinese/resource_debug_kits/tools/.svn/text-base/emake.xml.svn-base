@@ -1,0 +1,72 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> emake </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para>ElastosXDK开发环境的集成编译工具，递归编译当前目录及子目录。如果是编译CAR文件，需指定文件扩展名。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> EMAKE </cmd_name>
+        <cmd_param> [-? | -v | all | clean |clobber| carfile.car] ["release=1"] </cmd_param>
+    </syntax>
+
+    <parameters>
+    <param>
+        <param_name> -?   </param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+    <param>
+        <param_name> -v   </param_name>
+        <param_note> 编译时显示详细信息 </param_note>
+    </param>
+    <param>
+        <param_name> all  </param_name>
+        <param_note> 递归编译当前目录及子目录中的所有文件（默认） </param_note>
+    </param>
+    <param>
+        <param_name> clean  </param_name>
+        <param_note> 删除当前目录在目标树下的镜像目录 </param_note>
+    </param>
+    <param>
+        <param_name>  clobber </param_name>
+        <param_note> 删除当前编译环境的整个目标树 </param_note>
+    </param>
+    <param>
+        <param_name> carfile.car   </param_name>
+        <param_note>编译car文件，生成cpp文件 </param_note>
+    </param>
+    <param>
+        <param_name> "release=1"   </param_name>
+        <param_note> 强制编译RELEASE版目标文件</param_note>
+    </param>
+    </parameters>
+    <remarks>
+        <para>emake的编译过程：若待编译目录A中存在dirs文件，emake将按dirs文件中列出的顺序，递归编译A中各个子目录；随后，若目录A中存在sources文件，则按sources文件中指定的内容，对目录A下的文件进行编译，否则对目录A下的文件不做任何操作；完成sources中交待的工作后，如果目录A下存在makefile.inc文件，则再完成makefile.inc中交待的工作。在编译过程中，emake一旦发现任何错误，都将停止编译。</para>
+        <para>关于dirs，sources，makefile.inc请参阅开发应用程序部分的有关文档。</para>
+        <para>如果待编译目录A中存在名为“makefile”的文件，emake会忽略该目录中的dirs和sources文件，而去完成makefile中交待的工作。</para>
+        <para>关于makefile请参阅微软nmake及makefile的有关文档。</para>
+    </remarks>
+
+    <examples>
+        <example>
+            <eg_line>emake </eg_line>
+            <eg_note>递归编译当前目录及子目录。</eg_note>
+        </example>
+        <example>
+            <eg_line>emake clean</eg_line>
+            <eg_note>清除当前目录的镜像目录。</eg_note>
+        </example>
+    </examples>
+
+    <references>
+        <reference>
+            <ref_name> ElastosXDK完整安装内容 </ref_name>
+            <ref_url>../../xdk/setup_and_administration/xdk_setup/xdk_content</ref_url>
+        </reference>
+    </references>
+
+</manpage>

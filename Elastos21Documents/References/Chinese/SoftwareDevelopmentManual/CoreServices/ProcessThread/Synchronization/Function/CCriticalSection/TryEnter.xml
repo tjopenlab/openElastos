@@ -1,0 +1,86 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\CriticalSection">CCriticalSection::TryEnter</sample>
+    <volume>临界区</volume>
+    <title>CCriticalSection::TryEnter</title>
+    <routine_idx>../../CriticalSection.htm</routine_idx>
+
+    <description>
+        <para>以非阻塞方式，进入临界区。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Boolean *</param_type>
+                <param_name> pEntered </param_name>
+                <param_note>
+                    <para>[out] 指向Boolean型的指针，用于判断是否可以进入临界段，不能为NULL；如果指向的值为TRUE，则表示可以进入临界段；如果指向的值为FALSE，则表示不可以进入临界段</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功，当前线程是否成功获得临界区可通过参数pEntered了解</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>参数错误</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+       <para>CriticalSection是一种同步对象， 主要用于进程内多线程互斥地使用临界区。</para>
+       <para>在使用临界区对象之前，必须使用<link url="Initialize.htm">CCriticalSection::Initialize</link>初始化临界区对象。</para>
+       <para>为了能够互斥地使用共享资源，线程可以调用本函数或者<link url="Enter.htm">CCriticalSection::Enter</link>获取临界区的使用权。不同的是，本函数不管是否成功地获取了临界区对象的使用权都将立即返回；而EzEnterCriticalSection将一直等待直到线程获得临界区的使用权。</para>
+       <para>进程中的任何线程都可以使用<link url="Terminate.htm">CCriticalSection::Terminate</link>函数删除临界区，临界区一旦删除就不能再用来同步。</para>
+       <para>如果临界区对象在其被占有期间被删除，则等待拥有临界区对象所有权的线程的状态将是未定义的。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CCriticalSection::Terminate </ref_name>
+        <ref_url> Terminate</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::Initialize </ref_name>
+        <ref_url> Initialize</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::Leave </ref_name>
+        <ref_url> Leave</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::Enter </ref_name>
+        <ref_url> Enter</ref_url>
+    </reference>
+    </references>
+
+</manpage>

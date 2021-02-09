@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<TITLE>
+AuraProcess_GetExitCode
+</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<h3>
+AuraProcess_GetExitCode
+</h3>
+<p></p>
+</div>
+<p>
+			Obtains the process exit code (return value).
+        </p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">
+AURA_API AuraProcess_GetExitCode
+
+            (</TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD>/*[out]*/<font class="datatype">ExitCode *</font></TD>
+<TD class="param">pExitCode</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">)
+                    
+                ;</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<h4>Parameters</h4>
+<DL><DT class="param" style="color:#222222;margin-left:42">pExitCode</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+						Pointer to receive the process termination status.
+                    <BR /><BR />
+</font></DD>
+</DL>
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return Value </TD>
+<TD class="cell">Hex Value</TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">Function succeeds in obtaining the process return value.</TD>
+</TR>
+<TR><TD class="cell">E_INVALID_ARGUMENT</TD>
+<TD class="cell">Invalid argument(s)</TD>
+</TR>
+<TR><TD class="cell">E_PROCESS_NOT_EXITED</TD>
+<TD class="cell">The process is not exited yet</TD>
+</TR>
+</table></p>
+
+<h4>Remarks</h4>
+<p>
+			Process return value is the integer value returned by the main() function. Process can also be exited by 
+			using the exit() function in CRT, with some return value. The selection of return value is determined by 
+			the application implementation. Normally, exit without error should return zero.
+		</p>
+
+<p>
+			If the process is not terminated yet, IProcess::WaitForExit can be used to wait for the process to exit.
+		</p>
+<h4>Requirements</h4>
+<p>
+<table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>
+Windows 2000 or later; Elastos.
+</td>
+<td></td>
+</tr>
+</table></p>
+<script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>
+

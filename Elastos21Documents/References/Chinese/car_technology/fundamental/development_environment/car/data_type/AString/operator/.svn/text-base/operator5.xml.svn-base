@@ -1,0 +1,64 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>AString</class>
+    <method>operator = </method>
+
+    <description>
+        <para>赋值操作符。 </para>
+    </description>
+    <syntax>
+        <return_val> void</return_val>
+        <parameters>
+        <api_param>
+            <param_type> const AStringBuf &amp; </param_type>
+            <param_name> asb </param_name>
+            <param_note>
+                <para>右操作数，AStringBuf对象的一个引用。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>将AStringBuf对象的字符串赋给左操作数AString对象。</para>
+     </return>
+<example>
+<pre>
+AString as;
+const char str[] = "abcd";
+as = str;
+CConsole::WriteLine(as);  //Display : "abcd"
+
+char *pChar = (char *)malloc(5 * sizeof(char));
+strcpy(pChar, "1234");
+as = pChar;
+CConsole::WriteLine(as);  //Display : "1234"
+</pre>
+</example>
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::operator =</ref_name>
+        <ref_url> ../operator/index/operator</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::AString </ref_name>
+        <ref_url> ../structure/AString1</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::AString(const char* pch) </ref_name>
+        <ref_url> ../structure/AString2</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::operator =</ref_name>
+        <ref_url> ../../WString/operator/index/operator</ref_url>
+    </reference>
+
+</references>   
+
+</manpage>

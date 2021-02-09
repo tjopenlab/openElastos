@@ -1,0 +1,119 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\_ftime">_ftime</sample>
+    <title>_ftime</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>Gets the current time.</para>
+    </description>
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>_ftime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>struct _timeb*</param_type>
+                <param_name>timeptr</param_name>
+                <param_note>
+                    <para>Pointer to _timeb structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>The _ftime function gets the current local time and stores it in the structure pointed to by timeptr. The _timeb structure is defined in time.h. It contains four fields:</para>
+        <table>
+            <th>
+                <td>Name</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>dstflag</td>
+                <td>Nonzero if daylight savings time is currently in effect for the local time zone. </td></tr>
+            <tr>
+                <td>millitm</td>
+                <td>Fraction of a second in milliseconds.</td></tr>
+            <tr>
+                <td>time</td>
+                <td>Time in seconds since midnight (00:00:00), January 1, 1970, coordinated universal time (UTC).</td></tr>
+            <tr>
+                <td>timezone</td>
+                <td>Difference in minutes, moving westward, between UTC and local time. </td></tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_ftime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _ftime.cpp: This program uses _ftime to obtain the current
+ * time and then stores this time in timebuffer.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;timeb.h&gt;
+
+int main()
+{
+    struct _timeb timebuffer;
+    char *timeline;
+
+    _ftime(&amp;timebuffer);
+    timeline = ctime(&amp; (timebuffer.time));
+
+    printf(&quot;The time is %.19s.%hu %s&quot;, timeline,
+        timebuffer.millitm, &amp;timeline[20]);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The time is Tue Mar 21 15:26:41.341 1995
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>ctime</ref_name>
+            <ref_url>ctime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>localtime</ref_name>
+            <ref_url>localtime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>time</ref_name>
+            <ref_url>time</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wasctime</ref_name>
+            <ref_url>_wasctime</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,42 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--lasttime</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>lasttime</h2>
+    <p>This attribute is used to modify component or class.It marks the last modification time of component or class. The syntax is: lasttime(hh:mm:ss), of which hh represent hour, mm represent minutes, ss represent second. For example: </p>
+    <pre class="code">
+[
+    uuid(00351242-e339-4425-813a-7910ca47a003),
+    uunm(http://www.koretide.com/car/TimeDemo.dll),
+    <b>lasttime</b>(14:55:20)  //the last modification time of component TimeDemo is 14:55:20
+]
+component TimeDemo
+{
+    [uuid(3edf2842-31ce-488a-99ac-30fc025b5076)]
+    interface IInterface {
+        ECODE Func([in] int i);
+    }
+    [
+        uuid(340adc0a-d472-471e-b3eb-e058a56b0b19)
+        <b>lasttime</b>(08:20:20)  //the last modification time of class CClass is 8:20:20
+    ]
+    class CClass {
+        interface IInterface;
+    }
+}
+</pre>
+    <p>In sample component TimeDemo, the last modification time of component TimeDemo is 14:55:20 and the last modification time of class CClass is 8:20:20.</p>
+    <p>This attribute is optional.</p>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

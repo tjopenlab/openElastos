@@ -1,0 +1,84 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IThread\Join">Join</sample>
+<volume>Process And Thread</volume>
+<interface>IThread</interface><method> Join </method>
+    <description>
+        <para>
+			Waits for a thread to exit in a specified time.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Millisecond </param_type>
+                <param_name> ms </param_name>
+                <param_note>
+                    <para>
+			        	The number of milliseconds to wait for thread exit.
+                    </para>
+                </param_note>
+            </api_param>
+           <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>
+			        	
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value</td>
+		        <td>Hex Value</td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>NOERROR</td>
+		        <td>0x00000000</td>
+		        <td>Function succeeds in waiting for a thread to exit in a specified time.</td>
+	        </tr>
+		    <tr>
+		        <td>E_INVALID_OPERATION</td>
+		        <td></td>
+		        <td>The thread has not started yet, the state is ThreadState_Unstarted.</td>
+	        </tr>
+	    </table>
+        <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			The current thread calls this method to wait for the associated thread to exit. The current thread
+			will be put to the waiting list and is woke up after the associated thread terminates or time is out.
+			The current execution thread would wait for the associated thread to exit in specified time. If the
+			associated thread does not exit by the end of the interval because the request to terminate is
+			denied, S_TIMED_OUT is returned to the calling procedure. E_OUTOFMEMORY is returned if something is
+			wrong with the operation of system kernel, which rarely occurs. The largest possible value of a
+			32-bit integer represents infinity on the operating system. When <i>ms</i> equals INFINITE, the current
+			process will wait until the associated process is finished or till it gets interrupted by another
+			thread.
+        </para>
+        
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

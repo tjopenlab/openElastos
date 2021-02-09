@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\ezThread"> CThread::Yield </sample>
+    <volume>线程</volume>
+    <title>CThread::Yield</title>
+    <routine_idx>../../../Thread.htm</routine_idx>
+
+    <description>
+        <para>主动放弃当前线程的调度权。</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>ECode</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+    <para><link url="Yield.htm">CThread::Yield</link>函数会主动放弃当前线程的时间片，其具体操作与线程调度策略相关。在分时调度策略中，<link url="Yield.htm">CThread::Yield</link>函数可能会降低线程的动态优先级；在实时调度策略中，线程通过<link url="Yield.htm">CThread::Yield</link>函数放弃调度权之后，如果系统中还存在与它同一优先级的其它线程，则将等待所有同优先级的线程运行完才能重新获得调度，否则将继续执行。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CThread::Sleep</ref_name>
+        <ref_url> Sleep</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CThread::Delay </ref_name>
+        <ref_url> Delay</ref_url>
+    </reference>
+    </references>
+
+</manpage>

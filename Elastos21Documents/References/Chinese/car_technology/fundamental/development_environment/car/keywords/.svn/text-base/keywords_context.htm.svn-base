@@ -1,0 +1,78 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--context </title>
+</head>
+
+<body>
+	<h2>context</h2>
+	    <b>含义 </b>
+	        <p>此关键字用来定义语境构件类。 </p>
+	
+	    <b>语法 </b>
+	    	<p><b>context</b> contextName contextBody;  </p>
+	    <b>使用说明 </b>
+	        <p>1.语境构件类的命名必须以K开头。 </p>
+	        <p>2.<a class="style1" href= "keywords_aggregates.htm">aggregates</a>和<a class="style1" href= "keywords_pertainsto.htm">pertainsto</a>都可以修饰语境类，并可同时使用，注意它们的使用顺序不能颠倒。格式如下： </p>
+<pre class= code>
+
+context KSchool aggregates AAspect1, pertainsto AAspect2 {
+    ...
+}
+</pre>
+            <p>其中pertainsto属性描述了一个语境的特征，表示进入该语境的对象会聚合这些方面特征。aggregates属性描述了一个语境自身聚合的方面，表示该语境对象本身已经聚合了这些方面。 </p>
+	    <b>使用范例 </b>
+	        <p>例如，学校KSchool是一个语境类，学生AStudent是一个方面类，是学校的方面特征。如果一个普通类CChild对象进入了语境KSchool，就自动聚合了KSchool的特征AStudent，即具有学生AStudent的特征和行为，一旦离开KSchool，CChild对象就脱离了学校不再是学生了，也就不再具有学生的属性和行为。 </p>
+<pre class= code>
+module
+{
+    interface IChild {
+        Play();
+        GetName([out] WStringBuf<10> nameBuf);
+    }
+
+    class CChild {
+        constructor([in] WString name);
+        interface IChild;
+    }
+
+    interface IStudent {
+        Study();
+        GetID([out] Int32* pId);
+    }
+
+    interface IStudentAdmin {
+        SetID([in] Int32 id);
+    }
+
+    aspect AStudent {
+        interface IStudent;
+        privileged interface IStudentAdmin;
+    }
+
+    interface ISchool {
+        Open();
+    }
+
+    <b>context</b> KSchool pertainsto AStudent {
+        interface ISchool;
+    }
+}
+
+</pre>
+	        <p>如果普通对象进入KSchool，就会自动聚合AStudent,可以查询到AStudent的接口，进而使用它们。此示例的完整内容请参见<a class="style1" href= "..\..\..\..\speciality\context\context_write.htm">编写语境类Context</a>和<a class="style1" href= "..\..\..\..\speciality\context\context_use.htm">调用语境类Context</a>。 </p>
+
+        <b>备注 </b>
+            <p>详细内容请参见<a class="style1" href= "..\..\..\..\speciality\context\index.htm">语境类编程</a>。</p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

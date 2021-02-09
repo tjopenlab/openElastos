@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>系统引导数据结构 </volume>
+    <types>multiboot_header</types>
+
+    <description>
+        <para> 内核映像文件的头结构 </para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>magic</mem_name>
+            <mem_description>多重引导头的魔数，它的值必须是0X1BADB002</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>flags</mem_name>
+            <mem_description>标志域，表示了操作系统需要或者期望Boot Loader所具有的一些特性</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>checksum</mem_name>
+            <mem_description>校验和</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>header_addr</mem_name>
+            <mem_description>本结构在物理内存中的首地址</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name> load_addr</mem_name>
+            <mem_description>内核映像文件被加载到物理内存中的起始地址</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>load_end_addr</mem_name>
+            <mem_description>内核映像文件的终止地址</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>bss_end_addr</mem_name>
+            <mem_description>bss的终止地址</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>entry_addr</mem_name>
+            <mem_description>开始执行操作系统的入口的物理地址</mem_description>
+        </struct_member>
+
+    </struct>
+
+</manpage>
+

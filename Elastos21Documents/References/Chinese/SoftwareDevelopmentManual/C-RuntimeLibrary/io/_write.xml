@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_write">_write</sample>
+    <title> _write</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>将数据写到一个文件中。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_write</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>文件的句柄</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>要写入的数据</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>unsigned int</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>要写入的字节数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_write如果运行成功，它返回实际写入的字节数。如果磁盘的剩余空间小于函数要写到磁盘的缓冲区的大小，_write运行失败，不刷空缓冲区的任何内容到磁盘，返回-1。此时错误号被设置为EBADF或ENOSPC。EBADF表明文件句柄无效或文件并非以可写模式打开。ENOSPC表明设备上没有足够剩余空间进行此操作。</para>
+    </return>
+
+    <remarks>
+        <para>_write函数从buffer中写count字节到handle关联的文件中。写操作从给定文件的当前件指针位置开始。如文件是以追加方式打开，写操作从当前文件结尾处开始，文件指针按实际写入字节数增长。</para>
+        <para>当文件以文本方式打开时，_write函数将CTRL+Z作为逻辑上的文件结束符。当向一个设备进行写操作时，_write函数将缓冲区中CTRL+Z作为输出终止。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_write</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _write.cpp: This program opens a file for output
+ * and uses _write to write some bytes to the file.
+ */
+
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;fcntl.h&gt;
+
+char buffer[] = &quot;This is a test of &apos;_write&apos; function&quot;;
+
+int main()
+{
+    int fh;
+    int byteswritten;
+
+    if ((fh = _open(&quot;write.o&quot;, _O_RDWR | _O_CREAT,
+                                         _S_IREAD | _S_IWRITE)) != -1) {
+        if ((byteswritten = _write(fh, buffer, sizeof(buffer))) == -1)
+            perror(&quot;Write failed&quot;);
+        else
+            printf(&quot;Wrote %d bytes to file\n&quot;, byteswritten);
+
+        _close(fh);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Wrote 36 bytes to file
+</result>
+
+   
+
+    <references>
+        <reference>
+            <ref_name>_wopen</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_read</ref_name>
+            <ref_url>_read</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,66 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IReaderWriterLock\TryUpgradeToWriter">TryUpgradeToWriter</sample>
+<volume>同步</volume>
+<interface>IReaderWriterLock</interface><method> TryUpgradeToWriter </method>
+    <description>
+        <para>尝试在指定时间间隔内将已占有的读者锁升级为写者锁。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+              <api_param>
+                  <param_inout>[in]</param_inout>
+                  <param_type> Millisecond  </param_type>
+                  <param_name> timeout </param_name>
+                  <param_note>
+                      <para>指定一个时间间隔，单位是ms。在等待将读者锁升级为写者锁期间，如果等待时间超过指定的时间间隔，调用线程将立即结束等待，并从本方法中返回。如果本参数为零，则本方法将立即返回。此时，如果调用线程将读者锁升级为写者锁了，则返回NOERROR</para>
+                  </param_note>
+              </api_param>
+              <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>指向<link url="../../../DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址，不能为空。如果方法调用成功，调用线程将读者锁升级为写者锁,则返回WaitResult_OK；如果调用线程未能将读者锁升级为写者锁，则返回WaitResult_TIMED_OUT；如果将读者锁升级为写者锁期间被打断，则返回WaitResult_Interrupted</para>
+                </param_note>
+            </api_param>
+          </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值</td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数不正确</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_NOT_READER</td>
+	    	    <td>调用失败，调用线程并未以读者身份占有读写锁对象</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>本方法用于将已占有的读者锁升级为写者锁（即已经以读者身份占有读写锁对象的调用线程升级为以写者身份占有读写锁对象的线程）。如果调用线程不能升级为以写者身份占有读写锁对象的线程（例如：当读写锁对象被一个或多个读者占有时），调用线程将进入等待状态。只要等待时间不超过指定的时间间隔，调用线程将一直处于等待状态，直到将已占有的读者锁升级为写者锁为止，才从本方法中成功返回。如果等待时间超过指定的时间间隔，调用线程将立即结束等待，并从本方法中返回。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

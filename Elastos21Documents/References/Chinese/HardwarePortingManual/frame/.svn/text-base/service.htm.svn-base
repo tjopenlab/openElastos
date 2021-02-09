@@ -1,0 +1,36 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>设备驱动程序框架</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+    <h2>使用设备驱动程序的服务</h2>
+    <p>当系统成功创建出了一个驱动实例，就会通过Elastos&nbsp;Service机制注册此驱动实例的<a class="style1" href="../driver_development/standard_driver_routines/IDeviceDriver.htm">IDeviceDriver</a>接口。被注册的服务名为“device:DeviceNameDeviceNo”（EzStr类型），其中“DeviceName”部分应被替换成此驱动实例所对应的设备名，“DeviceNo”部分应被替换成此驱动实例所对应的设备号（以十进制表示）。当设备号为DEVICENO_NONE时，被注册的服务名直接为“device:DeviceName”，即没有“DeviceNo”部分了。例如对于某鼠标设备，它的设备名为“mouse”、设备号为 DEVICENO_NONE，则其服务名为“device:mouse” ；对于第二个串口设备，它的设备名为“com”；设备号为 2，则其服务名为“device:com2” 。需要注意的是，服务名也是大小写敏感的。</p>
+    <p>因此，客户程序可以通过Elastos&nbsp;Service机制寻找特定的设备驱动实例提供的服务。如果能够获取到驱动程序的服务接口IDeviceDriver，就可以通过IDeviceDriver的RWC方法来请求设备的I/O服务了。以<a class="style1" href="IDeviceDriver_config.htm">“驱动程序接口的实现与配置”</a>一文中所举的鼠标驱动为例，客户程序可以实现如下：</p>
+    <pre class="code">
+…
+IDeviceDriver *pDriver;
+ECODE ec = EzFindService(
+    EZCSTR("device:mouse"), (IUnknown **)&pDriver);
+if (FAILED(ec)) {
+    // 出错处理
+}
+…
+ec = pDriver->Read(…); // 读取鼠标输入
+if (FAILED(ec)) {
+    // 出错处理
+}
+…
+// 通讯完毕，释放接口
+pDriver->Release();
+…
+</pre>
+<body>
+
+<script>footer("chinese")</script>
+</body>
+</html>

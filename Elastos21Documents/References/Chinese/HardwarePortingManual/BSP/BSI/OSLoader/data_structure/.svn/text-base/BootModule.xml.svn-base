@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>系统引导数据结构 </volume>
+    <types>BootModule</types>
+
+    <description>
+        <para> 引导模块结构 </para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type>char </mem_type>
+            <mem_name>szName[c_uMaxLengthOfBootModuleName + 1]</mem_name>
+            <mem_description>引导模块名 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t</mem_type>
+            <mem_name>size</mem_name>
+            <mem_description>引导模块的大小</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>MemoryRegion</mem_type>
+            <mem_name> region </mem_name>
+            <mem_description>引导模块所占的物理内存区域，参见<link url="../../MachineInfo/data_structure/MemoryRegion.htm">MemoryRegion</link>结构。 </mem_description>
+        </struct_member>
+    </struct>
+
+</manpage>
+

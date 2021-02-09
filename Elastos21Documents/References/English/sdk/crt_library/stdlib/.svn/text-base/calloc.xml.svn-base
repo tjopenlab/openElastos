@@ -1,0 +1,89 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\calloc">calloc</sample>
+    <title> calloc</title>
+    <volume>C Run-time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Allocates an array in memory with elements initialized to 0.</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <func_name>calloc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>num</param_name>
+                <param_note>
+                    <para>Number of elements.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>Length in bytes of each element.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>calloc returns a pointer to the allocated space. The storage space pointed to by the return value is guaranteed to be suitably aligned for storage of any type of object. To get a pointer to a type other than void, use a type cast on the return value. </para>
+    </return>
+
+    <remarks>
+        <para>The calloc function allocates storage space for an array of num elements, each of length size bytes. Each element is initialized to 0.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>calloc</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* calloc.cpp: This program uses calloc to allocate space for
+ * 40 long integers. It initializes each element to zero.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    long *buffer;
+
+    buffer = (long *)calloc(40, sizeof(long));
+    if (buffer != NULL)
+        printf(&quot;Allocated 40 long integers\n&quot;);
+    else
+        printf(&quot;Can&apos;t allocate memory\n&quot;);
+    free(buffer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Allocated 40 long integers
+</result>
+
+
+
+</manpage>

@@ -1,0 +1,80 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>内核提供的函数</volume>
+    <title>KrnSetup</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>设置内核</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> physaddr_t</param_type>
+                <param_name> paKernelPhysBase </param_name>
+                <param_note>
+                    <para>内核所使用的物理内存基地址</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> physaddr_t</param_type>
+                <param_name> paKernelImagePhysBase </param_name>
+                <param_note>
+                    <para>内核映像文件所占用的物理内存基地址 </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> physaddr_t</param_type>
+                <param_name> paMemoryMappedIoBase </param_name>
+                <param_note>
+                    <para>内存映射IO所占用的物理内存基地址，当I/O独立编址时为0</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> physaddr_t</param_type>
+                <param_name> paMemoryMappedIoLimit </param_name>
+                <param_note>
+                    <para>内存映射IO所占用的物理内存终止地址，本终止地址本身并不包括在内存映射IO的区域中，当I/O独立编址时为0</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> int</param_type>
+                <param_name> reserved1 </param_name>
+                <param_note>
+                    <para>保留参数1</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> int</param_type>
+                <param_name> reserved2 </param_name>
+                <param_note>
+                    <para>保留参数2</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本函数用来设置内核。设置内核所完成的工作是独立的，并不依赖于板卡支持接口。在引导之后应当尽可能快的调用本函数。设置内核阶段所完成的工作如设置CPU的功能、设置MMU(Minimum Mapping Unit)、设置内存监视结构等，具体工作依赖于特定的硬件平台。调用本函数返回后，内核将处于可初始化的状态。此时，内核所提供的全局变量都将是可用的。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                《Elastos2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>

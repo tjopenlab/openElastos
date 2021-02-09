@@ -1,0 +1,71 @@
+<html>
+	
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title> callback_release</title>	
+	</head>
+
+	<body>
+		<h2>服务端：编写DLL </h2>
+		  <p> 例如：当一座大楼着火了会发出警告通知，大楼中的工作人员听到消息后便纷纷逃出大楼，消防队员听到通知就立刻冲入大楼救火。</p>
+		  <p> 上述事例可以看成一个异步回调模型：大楼CBuilding发生火灾CatchFire()后，向外界抛出回调事件通知，不同的人在接收到这个消息后会有不同的反应，职员Employee会纷纷逃出大楼RunAway()；消防员Fireman会赶去救火RushIntoFire()。</p>
+		  <P>编写Building.dll的步骤如下：</P> 
+		  <P>为了统一管理编写和调用，可以先建一个Building目录，在此目录下再分别建一个server和client目录，在server目录下实现如何编写一个Building.dll的例子，在client目录下实现如何调用该DLL。</P>
+		<h3>1.编写car文件</h3>
+		<p>关于callbacks语法可参考<a class="style1" href= "..\..\fundamental\development_environment\car\keywords\keywords_callback.htm">CAR关键字callbacks</a>。 </p>
+      <P>Building.car文件</P>
+<pre class = code>
+module
+{
+    interface IBuilding {
+        CatchFire();
+    }
+
+    callbacks JFireAlarmRing { //定义异步回调接口
+        EmployeeEvent();     //定义异步回调事件
+        FiremanEvent();      //定义异步回调事件
+    }
+
+    class CBuilding {
+        interface IBuilding;
+        callbacks JFireAlarmRing;    //声明异步回调接口
+    }
+}
+</pre>
+    <h3>2.emake Building.car文件</h3>
+      <p>对car文件进行编译后，在生成的代码框架中主要包括以下这些文件： </p>
+      <p><a href= "code/CBuilding_cpp.htm">CBuilding.h</a></p>
+      <p><a href= "code/CBuilding_h.htm">CBuilding.cpp</a> </p>
+      <p><a href= "code/sources.htm">sources </a></p>
+    <h3>3.实现CBuilding的接口方法</h3>      
+		  <p>注:下述代码片断中粗体部分是自动生成的代码，非粗体部分是用户添加的代码。</p>
+		  <P>当大楼着火时，CBuilding通过接口方法CatchFire()抛出事件EmployeeEvent()和FiremanEvent()。</P>
+		  <P>CBuilding.cpp文件</P>
+<pre class= code><B>
+#include "CBuilding.h"
+#include "_CBuilding.cpp"
+
+ECode CBuilding::CatchFire()</B>
+<B>{</B>
+    CConsole::WriteLine("The building is on fire!");
+
+    Callback::EmployeeEvent();    //激发Employee()回调事件
+    Callback::FiremanEvent();      //激发Fireman()回调事件
+
+    return NOERROR;
+<B>}</B>
+</pre>
+    <h3>4.生成相应的dll</h3>
+      <P>在命令行执行emake命令，生成构件Building.dll。</P>     
+<pre>
+
+
+
+
+
+</pre>
+	</body>
+	
+</html>

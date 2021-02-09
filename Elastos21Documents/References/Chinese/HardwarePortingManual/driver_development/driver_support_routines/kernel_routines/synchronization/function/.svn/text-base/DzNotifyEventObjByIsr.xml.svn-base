@@ -1,0 +1,66 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>同步</volume>
+    <title>DzNotifyEventObjByIsr</title>
+
+    <description>
+        <para>设置事件对象为一个指定的已通知状态。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> IEvent * </param_type>
+                <param_name> pEvent </param_name>
+                <param_note>
+                    <para>[in] 指向一个需要设置的事件对象的指针</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> EventState </param_type>
+                <param_name> state </param_name>
+                <param_note>
+                    <para>[in] 指定一个已通知状态，可由用户自定义的一个非零无符号整数来表示。在默认情况下，state将被设置为SIGNALED</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本函数用于设置事件对象为一个指定的已通知状态，从而唤醒等待着的线程。如果事件对象是自动重置的，则仅唤醒一个等待线程，并且事件对象将被重置为未通知状态；如果事件对象是手动重置的，则唤醒所有等待线程，并且事件对象将保持此已通知状态，直到被<link url="../IEvent/Clear.htm">IEvent::Clear</link>成员函数重置为未通知状态为止。如果没有任何线程在事件对象上等待，本函数仅仅将事件对象设置为指定的已通知状态。 </para>
+        <para>本函数仅可用于驱动程序的下半部分（即中断服务例程中），不可与<link url="../IEvent/Notify.htm">IEvent::Notify</link>混用。</para>
+        <table>
+            <th>
+                <td>预定义通知状态</td>
+                <td>值</td>
+            </th>
+            <tr>
+                <td>SIGNALED</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>UNSIGNALED</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>

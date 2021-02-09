@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\cos">cos cosh</sample>
+    <title> cos</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>计算余弦值。</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>cos</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>角的弧度值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回x的余弦值，如果x大于或等于2^63，或x小于或等于-2^63，函数将产生_TLOSS错误，并返回一个不确定的数。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>cos</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* cos.cpp: This program uses cos to calculates the cosine (cos).
+ */
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double pi = 3.1415926535;
+    double x, y;
+
+    x = pi / 2;
+    y = cos(x);
+    printf(&quot;cos(%f) = %f\n&quot;, x, y);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Tcos(1.570796) = 0.000000
+</result>
+
+
+    <references>
+        <reference>
+            <ref_name>sin</ref_name>
+            <ref_url>sin</ref_url>
+        </reference>
+        <reference>
+            <ref_name>asin</ref_name>
+            <ref_url>asin</ref_url>
+        </reference>
+        <reference>
+            <ref_name>acos</ref_name>
+            <ref_url>acos</ref_url>
+        </reference>
+        <reference>
+            <ref_name>tan</ref_name>
+            <ref_url>tan</ref_url>
+        </reference>
+        <reference>
+            <ref_name>atan</ref_name>
+            <ref_url>atan</ref_url>
+        </reference>
+    </references>
+
+</manpage>

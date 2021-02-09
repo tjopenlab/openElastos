@@ -1,0 +1,63 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\EzArrayCopy_">EzArrayCopy_</sample>
+    <volume> Common data structure </volume>
+    <method>template&lt;class T, size_t SIZE&gt; EzArray_::EzArray_(EzArray_&lt;T, SIZE&gt;&amp;)</method>
+
+    <description>
+        <para> Copy constructor of EzArray gets a deep copy of an EzArray object，namely copying array on stack.
+        </para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type> EzArray_&lt;T, SIZE&gt;&amp;  </param_type>
+            <param_name>src </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>Reference of EzArray objects </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>The copy constructor of EzArray gets a deep copying of an EzArray object，namely copying EzArray array on stack.
+              Do not need to call <b><link url="Dispose.htm">Dispose</link></b> function to release memory.
+        </para>
+    </remarks>
+
+<example><pre><![CDATA[
+#include <stdio.h>
+#include <EzArray.h>
+
+int __cdecl main()
+{
+    EzArray_<int, 50> a;
+    a[12] = 321;
+    EzArray_<int, 50> b(a);
+    printf("b[12] = %d\n", b[12]);
+
+    return 0;
+}
+]]></pre></example>
+
+<result><![CDATA[
+b[12] = 321
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name>  copying Constructor（fleet copying） </ref_name>
+            <ref_url> EzArrayCopy </ref_url>
+        </reference>
+    </references>
+
+</manpage>

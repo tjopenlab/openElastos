@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_com_interface\IModule\GetResourceSection"> CModule::Acquire </sample>
+    <volume>可执行文件和模块</volume>
+    <title>CModule::GetCurrent</title>
+    <routine_idx>../../../Module.htm</routine_idx>
+
+    <description>
+        <para>获取当前进程中模块对象的接口指针。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> IModule ** </param_type>
+                <param_name> ppModule </param_name>
+                <param_note>
+                    <para> [out] 指向当前模块对象的接口指针的指针，不能为空</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>参数为空</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+
+</manpage>

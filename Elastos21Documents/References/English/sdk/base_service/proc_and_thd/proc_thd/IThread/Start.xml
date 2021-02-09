@@ -1,0 +1,58 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Process And Thread</volume>
+<interface>IThread</interface><method> Start </method>
+    <description>
+        <para>
+			Starts execution of the thread from entry point.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters> </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return value </td>
+		        <td>Hex Value</td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>NOERROR</td>
+		        <td>0x00000000</td>
+		        <td>Function succeeds in starting execution of the thread from entry point.</td>
+	        </tr>
+	        <tr>
+		        <td>E_PROCESS_ALREADY_EXITED</td>
+		        <td>0x00000001</td>
+		        <td>The thread has  exited.</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+		    Creates a thread using <link url="../../../mem_management/EzMemoryFree.htm">CThread::New</link>.
+		</para>	
+		<para>
+			When <b>Start</b> is called, the new thread will begin executing at the thread entry, which has been initialized 
+			when the thread is created. When the state of associated thread is ThreadState_Running, then the return value 
+			is S_FALSE;otherwise return NOERROR. Once the associated thread calls the method, it cannot restart with another call of <b>Start</b>.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+		    	Elastos 2.0 or later.
+	        </system_name>
+        </system>
+    </requirements>
+</manpage>

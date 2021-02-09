@@ -1,0 +1,190 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> <i>BufferOf </i></interface>
+
+    <description>       
+        <para>BufferOf是一个继承自<link url= "..\others\CarQuintet.htm">五元组结构体CarQuintet</link>,且具有<link url= "../../../../../SoftwareDevelopmentManual/QuickReference/CustomDataType.htm">自描述数据类型</link>功能的类模板。</para>
+        <para>BufferOf_是一个继承自BufferOf&lt;T&gt;的类模板,BufferOf构造函数和各种方法使用介绍：</para>
+        
+   </description>
+    <constructs>
+        <construct>
+            <construct_name>BufferOf_&lt;T ,size&gt;( )</construct_name>
+            <construct_url>BufferOf/structure/BufferOf_</construct_url>
+            <construct_description>在栈中构造一个BufferOf对象，并指定数组长度和数组元素类型。</construct_description>
+        </construct>
+         <construct>
+            <construct_name>BufferOf( T *, Int32)</construct_name>
+            <construct_url>BufferOf/structure/BufferOf_Box2</construct_url>
+            <construct_description>在栈中构造一个BufferOf对象, 设置数组长度，并用源数组中的数据初始化。</construct_description>
+        </construct>
+        <construct>
+            <construct_name>BufferOf(T *, Int32, Int32)</construct_name>
+            <construct_url>BufferOf/structure/BufferOf_Box1</construct_url>
+            <construct_description>在栈中构造一个BufferOf对象, 设置数组长度和已使用长度，并用源数组中的数据初始化。</construct_description>
+        </construct>
+        
+       
+     </constructs>   
+        
+    <methods>
+      <self>
+
+        <method>
+        <method_name>Alloc</method_name>
+        <method_url>BufferOf/Alloc/index/Alloc</method_url>
+        <m_description> 已重载。(在堆上)动态创建BufferOf对象。</m_description>
+        </method>
+        
+        <method>
+        <method_name>Append</method_name>
+        <method_url>BufferOf/Append/index/Append</method_url>
+        <m_description> 已重载。在BufferOf对象数组中追加数据。</m_description>
+        </method>
+      
+        <method>
+        <method_name>Clone</method_name>
+        <method_url>BufferOf/Clone</method_url>
+        <m_description> 获取一个BufferOf对象的深拷贝，即在堆上复制BufferOf数组。</m_description>
+        </method>
+
+        <method>
+        <method_name>Copy</method_name>
+        <method_url>BufferOf/Copy/index/Copy</method_url>
+        <m_description> 已重载。将指定对象拷贝到当前BufferOf数组。 </m_description>
+        </method>
+
+        <method>
+        <method_name>Free</method_name>
+        <method_url>BufferOf/Free</method_url>
+        <m_description> 删除由Alloc或Clone在堆上创建的BufferOf对象，并释放其所占内存空间。 </m_description>
+        </method> 
+           
+        <method>
+        <method_name>GetAvailableSpace</method_name>
+        <method_url>BufferOf/GetAvailableSpace</method_url>
+        <m_description> 获取当前BufferOf数组可用长度。</m_description>
+        </method>           
+
+        <method>
+        <method_name>GetCapacity</method_name>
+        <method_url>BufferOf/GetCapacity</method_url>
+        <m_description> 获取当前BufferOf数组长度。 </m_description>
+        </method>          
+       
+        <method>
+        <method_name>GetPayload</method_name>
+        <method_url>BufferOf/GetPayload</method_url>
+        <m_description> 返回指向BufferOf对象的数组的指针 。</m_description>
+        </method>
+
+
+        <method>
+        <method_name>GetUsed</method_name>
+        <method_url>BufferOf/GetUsed</method_url>
+        <m_description> 获取数组已使用长度。</m_description>
+        </method>    
+        
+        <method>
+        <method_name>Insert</method_name>
+        <method_url>BufferOf/Insert</method_url>
+        <m_description> 将源数据插入到指定位置。</m_description>
+        </method> 
+        
+        <method>
+        <method_name>IsEmpty</method_name>
+        <method_url>  BufferOf/IsEmpty</method_url>
+        <m_description> 判断BufferOf对象数组是否为空。</m_description>
+        </method>         
+
+         <method>
+        <method_name>IsNull</method_name>
+        <method_url>BufferOf/IsNull</method_url>
+        <m_description> 判断当前指向BufferOf对象数组指针是否为空。</m_description>
+        </method>
+                
+        <method>
+        <method_name>IsNullOrEmpty</method_name>
+        <method_url>BufferOf/IsNullOrEmpty</method_url>
+        <m_description> 判断当前BufferOf对象的指向数据区的指针或者数据区的内容是否为空。</m_description>
+        </method>
+              
+        <method>
+        <method_name>Replace</method_name>
+        <method_url>BufferOf/Replace</method_url>
+        <m_description> 用源数据覆盖指定位置的内容。</m_description>
+        </method>       
+
+        <method>
+        <method_name>SetUsed</method_name>
+        <method_url>BufferOf/SetUsed</method_url>
+        <m_description> 设置已使用数组长度。</m_description>
+        </method>    
+     
+       
+      </self>
+    </methods>
+
+    <operators>
+        <operator>
+            <operator_name>operator[]</operator_name>
+            <operator_url>BufferOf/operator/index/operator</operator_url>
+            <operator_description> 已重载。存取数组元素操作符，用来对数组元素进行存取操作。</operator_description>
+        </operator>
+
+        <operator>
+            <operator_name>operator pCarQuintet </operator_name>
+            <operator_url>BufferOf/operator2</operator_url>
+            <operator_description> 取五元组的指针。</operator_description>
+        </operator>
+        
+       
+    </operators>
+   
+    <macros>
+        <macro>
+        <macro_name> NULL_BUFFEROF&lt;T&gt;  </macro_name>
+        <macro_url>BufferOf/NULL_BUFFEROF</macro_url>
+        <macro_description> 构造一个内容为空的BufferOf&lt;T&gt;对象。  </macro_description>
+        </macro>
+        <macro>
+        <macro_name> AUTO_BUFFEROF(T, n)  </macro_name>
+        <macro_url>BufferOf/AUTO_BUFFEROF</macro_url>
+        <macro_description> 构造一个类型为Ｔ，大小为ｎ的BufferOf对象。  </macro_description>
+        </macro>
+    </macros>  
+    <requirements>
+        <headerfile>
+            <file_name> elastos.h  </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>        
+    <references>
+        <reference>
+            <ref_name> BufferOf类型定义 </ref_name>
+            <ref_url> ../data_type/BufferOf/Definition</ref_url>
+        </reference>
+    </references>    
+        
+        
+</manpage>     
+        
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+
+    

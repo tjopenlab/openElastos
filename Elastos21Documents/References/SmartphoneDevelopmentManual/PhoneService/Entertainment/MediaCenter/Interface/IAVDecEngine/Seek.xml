@@ -1,0 +1,53 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心引擎</volume>
+<interface>IAVDecEngine</interface><method> Seek </method>
+    <description>
+        <para>
+          搜索音频文件的指定位置并从该位置开始播放。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT64 </param_type>
+                <param_name> n64Pts </param_name>
+                <param_note>
+                    <para>
+                     所要搜索的时间，程序中将根据该时间结合文件的播放速率得到该时间戳在文件中的具体位置
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION  </td>
+	    	    <td>文件格式拆分器接口指针为空 </td>
+	        </tr>
+	        <tr>
+	    	    <td>媒体中心引擎错误码  </td>
+	    	    <td>  调用文件分裂器构件的Read_Seek失败时 </td>
+	        </tr>
+	    </table>
+	  <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../MediaCenter_Error.htm">MediaCenter_Error</link>相关帮助。</para>
+    </return>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+
+    </requirements>
+</manpage>

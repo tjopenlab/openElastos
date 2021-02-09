@@ -1,0 +1,58 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+  
+    <volume> 常用数据结构 </volume>
+    <interface>BufferOf</interface>
+    <method> SetUsed </method>
+
+    <description>
+        <para>设置BufferOf数组已使用长度。</para>
+    </description>
+
+    <syntax>
+        <return_val>Int32</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Int32  </param_type>
+                <param_name> used</param_name>
+                <param_note>
+                    <para> 数组已使用长度，单位为sizeof(T)</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回实际设置的数组已使用长度，单位为sizeof(T)。</para>
+    </return>
+
+    <remarks>
+        <para>如果要设置的数组已使用长度超过了数组的范围，数组已使用长度将设置为数组长度。</para>
+        
+    </remarks>
+<example>
+<pre>
+BufferOf&lt;Int8&gt; *MyArray = BufferOf&lt;Int8&gt;::Alloc(16);
+MyArray-&gt;SetUsed(16);
+CConsole::WriteLine((*MyArray).GetCapacity());  //Display : 16
+CConsole::WriteLine((*MyArray).GetAvailableSpace());  //Display : 0
+BufferOf&lt;Int8&gt;::Free(MyArray); 
+</pre>
+</example>    
+
+<references>
+    <reference>
+        <ref_name>BufferOf</ref_name>
+        <ref_url>../BufferOf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>BufferOf::GetUsed </ref_name>
+        <ref_url>GetUsed</ref_url>
+    </reference>
+</references> 
+    
+
+</manpage>

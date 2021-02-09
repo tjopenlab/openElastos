@@ -1,0 +1,79 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\direct\_wmkdir">_wmkdir</sample>
+    <title> _mkdir, _wmkdir</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> dir_idx.htm </routine_idx>
+
+    <description>
+        <para>Creates a new directory.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_mkdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>dirname</param_name>
+                <param_note>
+                    <para>Pointer to path of new directory to be created.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wmkdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>dirname</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns the value 0 if the new directory was created. On an error the function returns -1 and sets errno as follows: </para>
+        <table>
+            <th>
+                <td>Error Number</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>EEXIST</td>
+                <td>Directory not created because dirname is the name of an existing file, directory, or device.</td></tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>Path not found.</td></tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The _mkdir function creates a new directory with the specified dirname. _mkdir can create only one new directory per call, so only the last component of dirname can name a new directory. _mkdir does not translate path delimiters. In Windows NT, both the backslash (\) and the forward slash (/) are valid path delimiters in character string in run-time routines. _wmkdir is a wide-character version of _mkdir; the dirname argument to _wmkdir is a wide-character string. _wmkdir and _mkdir behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_mkdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wmkdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example></example>
+
+
+
+</manpage>

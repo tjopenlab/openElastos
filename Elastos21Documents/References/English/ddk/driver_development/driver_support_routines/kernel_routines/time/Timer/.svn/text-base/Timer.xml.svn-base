@@ -1,0 +1,75 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Time</volume>
+<interface>Timer</interface><method> Timer </method>
+    <description>
+        <para>
+            Timer class constructor.
+        </para>
+    </description>
+    <syntax>
+        <return_val></return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> uint_t  </param_type>
+                <param_name> uRelativeDueTicks  </param_name>
+                <param_note>
+                    <para>
+                        Specifies relative time-out period, in ticks. <i>uRelativeDueTicks</i> must be greater than zero.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> timerroutine_t  </param_type>
+                <param_name> routine </param_name>
+                <param_note>
+                    <para>
+                        Callback routine which points to the <b>Timer</b> object.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> void *  </param_type>
+                <param_name> pvParameter </param_name>
+                <param_note>
+                    <para>
+                        Parameters to be passed into the callback routine.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <para>
+	    	Constructor has no return value.
+	    </para>
+	</return>
+
+	<remarks>
+		<para>
+            Timer class constructor is used to initialize Timer object. Timer object does not become effective 
+            immediately after creation.It needs to invoke <b><link url="Start.htm">Timer::Start</link></b> method to 
+            begin execution.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

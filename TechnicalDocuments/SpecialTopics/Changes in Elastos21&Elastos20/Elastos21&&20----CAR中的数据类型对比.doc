@@ -1,0 +1,870 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR中的数据类型</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Elastos21&amp;&amp;20-CAR中的数据类型对比参考</h2>
+
+    <table border="1" width="788">
+        <thead>
+            <td width="29%">CAR数据类型</td>
+            <td width="28%">2.0CAR数据类型</td>
+            <td>C++数据类型</td>
+            <td width="167">类型描述</td>
+        </thead>
+        <tr>
+            <td>
+                Int8
+            </td>
+            <td>
+                INT</td>
+            <td>
+                Int8
+            </td>
+            <td width="167">
+                8位有符号整数
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Byte
+            </td>
+            <td>
+                UINT</td>
+            <td>
+                Byte
+            </td>
+            <td width="167">
+                8位无符号整数
+            </td>
+        </tr>
+        <tr>
+            <td height="22">
+                Int16
+            </td>
+            <td height="22">
+                SHORT</td>
+            <td height="22">
+                Int16
+            </td>
+            <td width="167" height="22">
+                16位有符号整数
+            </td>
+        </tr>
+        <tr>
+            <td>
+                UInt16
+            </td>
+            <td>
+                USHORT</td>
+            <td>
+                UInt16
+            </td>
+            <td width="167">
+                16位无符号整数
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Int32
+            </td>
+            <td>
+                LONG</td>
+            <td>
+                Int32
+            </td>
+            <td width="167">
+                32位有符号整数
+            </td>
+        </tr>
+        <tr>
+            <td>
+                UInt32
+            </td>
+            <td>
+                ULONG</td>
+            <td>
+                UInt32
+            </td>
+            <td width="167">
+                32位无符号整数
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Int64
+            </td>
+            <td>
+                __int64</td>
+            <td>
+                Int64
+            </td>
+            <td width="167">
+                64位有符号整数
+            </td>
+        </tr>
+        <tr>
+            <td>
+                UInt64
+            </td>
+            <td>
+                没有对应</td>
+            <td>
+                UInt64
+            </td>
+            <td width="167">
+                64位无符号整数
+            </td>
+        </tr>
+                <tr>
+            <td>
+                Float
+            </td>
+            <td>
+                FLOAT</td>
+            <td>
+                Float
+            </td>
+            <td width="167">
+                32位IEEE 浮点数
+            </td>
+        </tr>
+                <tr>
+            <td>
+                Double
+            </td>
+            <td>
+                double</td>
+            <td>
+                Double
+            </td>
+            <td width="167">
+                64位IEEE 浮点数
+            </td>
+        </tr>
+                <tr>
+            <td rowspan="2">
+                Boolean
+            </td>
+            <td>
+                BOOLEAN</td>
+            <td>
+                　</td>
+            <td width="167" rowspan="2">
+                该数据项是8位整数，值为0时表示false，值为1时表示true
+            </td>
+        </tr>
+                <tr>
+            <td>
+                BOOL</td>
+            <td>
+                　</td>
+        </tr>
+                <tr>
+            <td>
+                AChar
+            </td>
+            <td>
+                EzStrBuf</td>
+            <td>
+                AChar
+            </td>
+            <td width="167">
+                存储用户窄字符的数据结构
+            </td>
+        </tr>
+                <tr>
+            <td>
+                WChar
+            </td>
+            <td>
+                EzWCharBuf</td>
+            <td>
+                WChar
+            </td>
+            <td width="167">
+                存储用户宽字符的数据结构
+            </td>
+        </tr>
+                <tr>
+            <td>
+                AString
+            </td>
+            <td>
+                　</td>
+            <td>
+                AString
+            </td>
+            <td width="167">
+                指向一个常量窄字符串的指针,其指针值本身可变，但其指向的字符串不可以改变
+            </td>
+        </tr>
+                <tr>
+            <td>
+                WString
+            </td>
+            <td>
+                　</td>
+            <td>
+                WString
+            </td>
+            <td width="167">
+                指向一个常量宽字符串的指针,其指针值本身可变，但其指向的字符串不可以改变
+            </td>
+        </tr>
+        <tr>
+            <td>
+                AStringBuf_&lt;n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                AStringBuf
+            </td>
+            <td width="167">
+                大小为n的存储用户窄字符串的缓冲区数据结构
+            </td>
+        </tr>
+        <tr>
+            <td>
+                WStringBuf_&lt;n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                WStringBuf
+            </td>
+            <td width="167">
+              大小为n的存储用户宽字符串的缓冲区数据结构
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<AChar>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<AChar>
+            </td>
+            <td width="167">
+              存储用户窄字符的数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;AChar, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<AChar>
+            </td>
+            <td width="167">
+              大小为n的存储用户窄字符的数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<WChar>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<WChar>
+            </td>
+            <td width="167">
+              存储用户宽字符的数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;WChar, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<WChar>
+            </td>
+            <td width="167">
+              大小为n的存储用户宽字符的数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<AString>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<AString>
+            </td>
+            <td width="167">
+              存储用户窄字符串的数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;AString, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<AString>
+            </td>
+            <td width="167">
+              大小为n的存储用户窄字符串的数组
+            </td>
+        </tr>
+            <tr>
+            <td>
+                ArrayOf<WString>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<WString>
+            </td>
+            <td width="167">
+              存储用户宽字符串的数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;WString, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<WString>
+            </td>
+            <td width="167">
+              大小为n的存储用户宽字符串的数组
+            </td>
+        </tr>
+         <tr>
+            <td>
+                ArrayOf<Byte>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Byte>
+            </td>
+            <td width="167">
+              8位无符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;Byte, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Byte>
+            </td>
+            <td width="167">
+              大小为n的8位无符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<Int8>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Int8>
+            </td>
+            <td width="167">
+              8位有符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_<Int8>&lt;n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Int8>
+            </td>
+            <td width="167">
+              大小为n的8位有符号整数数组
+            </td>
+        </tr>
+                <tr>
+            <td>
+                ArrayOf<Int16>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Int16>
+            </td>
+            <td width="167">
+              16位有符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_<Int16>&lt;n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Int16>
+            </td>
+            <td width="167">
+              大小为n的16位有符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<UInt16>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<UInt16>
+            </td>
+            <td width="167">
+              16位无符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;UInt16, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<UInt16>
+            </td>
+            <td width="167">
+              大小为n的16位无符号整数数组
+            </td>
+        </tr>
+                     <tr>
+            <td>
+                ArrayOf<Int32>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Int32>
+            </td>
+            <td width="167">
+              32位有符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_<Int32>&lt;n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Int32>
+            </td>
+            <td width="167">
+              大小为n的32位有符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<UInt32>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<UInt32>
+            </td>
+            <td width="167">
+              32位无符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;UInt32, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<UInt32>
+            </td>
+            <td width="167">
+              大小为n的32位无符号整数数组
+            </td>
+        </tr>
+           <tr>
+            <td>
+                ArrayOf<Int64>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Int64>
+            </td>
+            <td width="167">
+              64位有符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;Int64, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Int64>
+            </td>
+            <td width="167">
+              大小为n的64位有符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<UInt64>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<UInt64>
+            </td>
+            <td width="167">
+              64位无符号整数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;UInt64, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<UInt64>
+            </td>
+            <td width="167">
+              大小为n的64位无符号整数数组
+            </td>
+        </tr>
+                <tr>
+            <td>
+                ArrayOf<Float>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Float>
+            </td>
+            <td width="167">
+              32位IEEE浮点数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;Float, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Float>
+            </td>
+            <td width="167">
+              大小为n的32位IEEE浮点数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<Double>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Double>
+            </td>
+            <td width="167">
+              64位IEEE浮点数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;Double, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<Double>
+            </td>
+            <td width="167">
+              大小为n的64位IEEE浮点数数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<Boolean>
+            </td>
+            <td>
+                　</td>
+            <td>
+                 ArrayOf<Boolean>
+            </td>
+            <td width="167">
+              Boolean(8位整数)数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;Boolean, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                 ArrayOf<Boolean>
+            </td>
+            <td width="167">
+              大小为n的Boolean(8位整数)数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<EMuid>
+            </td>
+            <td>
+                　</td>
+            <td>
+                 ArrayOf<EMuid>
+            </td>
+            <td width="167">
+              EMuid（相当于GUID）数组
+            </td>
+        </tr>
+          <tr>
+            <td>
+                ArrayOf_&lt;EMuid, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                 ArrayOf<EMuid>
+            </td>
+            <td width="167">
+              大小为n的EMuid（相当于GUID）数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<EGuid>
+            </td>
+            <td>
+                　</td>
+            <td>
+                 ArrayOf<EGuid>
+            </td>
+            <td width="167">
+              EGuid（相当于ClassId）数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<EGuid>&lt;n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                 ArrayOf<EGuid>
+            </td>
+            <td width="167">
+              大小为n的EGuid（相当于ClassId）数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf<ECode>
+            </td>
+            <td>
+                　</td>
+            <td>
+                 ArrayOf<ECode>
+            </td>
+            <td width="167">
+              ECode（16位整数）数组
+            </td>
+        </tr>
+          <tr>
+            <td>
+                ArrayOf<ECode>&lt;n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                 ArrayOf<ECode>
+            </td>
+            <td width="167">
+              大小为n的ECode（16位整数）数组
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+                ArrayOf<IObject *>
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<IObject *>
+            </td>
+            <td width="167">
+              构件对象指针数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ArrayOf_&lt;IObject *, n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                ArrayOf<IObject *>
+            </td>
+            <td width="167">
+              大小为n的构件对象指针数组
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                StructArray&lt;T&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                 StructArray&lt;T&gt;
+            </td>
+            <td width="167">
+              结构体为T类型的结构体数组
+            </td>
+        </tr>
+        <tr>
+            <td>
+                StructArray&lt;T,n&gt;
+            </td>
+            <td>
+                　</td>
+            <td>
+                 StructArray&lt;T&gt;
+            </td>
+            <td width="167">
+             结构体为T类型、大小为n的结构体数组
+
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <td>
+                Interface*
+            </td>
+            <td>
+                InterfaceRef</td>
+            <td>
+                Interface*
+            </td>
+            <td width="167">
+              指向接口的指针
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Interface**
+            </td>
+            <td>
+                　</td>
+            <td>
+                Interface**
+            </td>
+            <td width="167">
+              属性为out的指向接口的指针
+            </td>
+        </tr>
+        <tr>
+            <td>
+                GUID
+            </td>
+            <td>
+                GUID</td>
+            <td>
+                GUID
+            </td>
+            <td width="167">
+                全球唯一标识符
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ClassId
+            </td>
+            <td>
+                　</td>
+            <td>
+               ClassId
+            </td>
+            <td width="167">
+                类标识符，用于唯一标识一个特定CAR类
+            </td>
+        </tr>
+        <tr>
+            <td>
+                InterfaceId
+            </td>
+            <td>
+                　</td>
+            <td>
+               InterfaceId
+            </td>
+            <td width="167">
+                接口标识符，用于唯一标识一个特定CAR接口
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ECode
+            </td>
+            <td>
+                ECODE</td>
+            <td>
+              ECode
+            </td>
+            <td width="167">
+               该数据项是32位整数，标准的返回类型
+            </td>
+        </tr>
+        <tr>
+            <td>
+                TypeName*
+            </td>
+            <td>
+                TypeName*
+            </td>
+            <td>
+                TypeName*
+            </td>
+            <td width="167">
+                TypeName是以上类型之一。TypeName*指向该类型的指针
+            </td>
+        </tr>
+        </table>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</body>
+</html>

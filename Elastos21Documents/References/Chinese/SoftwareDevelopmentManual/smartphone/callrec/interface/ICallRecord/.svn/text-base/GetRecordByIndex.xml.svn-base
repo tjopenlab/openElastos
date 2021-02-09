@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICallRecord</interface><method> GetRecordByIndex </method>
+    <description>
+        <para>
+            获取指定类型、序号的电话记录信息，通过接口返回。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nIndex </param_name>
+                <param_note>
+                    <para>
+需要返回某条记录的索引号                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nType </param_name>
+                <param_note>
+                    <para>
+通话记录类型                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ICallRecordItemRef * </param_type>
+                <param_name> ppRecord </param_name>
+                <param_note>
+                    <para>
+指向ICallRecordItem指针的指针，用于返回对应记录对象                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功时，返回S_OK；nIndex为0或者ppItem为空返回E_INVALIDARG；如果没有找到指定记录，返回S_FALSE。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

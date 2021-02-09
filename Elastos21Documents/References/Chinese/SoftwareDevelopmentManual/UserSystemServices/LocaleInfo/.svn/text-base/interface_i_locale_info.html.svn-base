@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>LocaleInfo: ILocaleInfo接口参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>接口</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>ILocaleInfo接口参考</h1><!-- doxytag: class="ILocaleInfo" -->此接口表示本地化信息。  
+<a href="#_details">更多...</a>
+
+
+<p>
+<a href="interface_i_locale_info-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_locale_info.html#2ee925c8ccea906272fbe887a133deee">GetTimeZoneInfo</a> ([out] struct TimeZoneInfo *pTimeZoneInfo)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获得时区信息。  <a href="#2ee925c8ccea906272fbe887a133deee"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_locale_info.html#1c61cee4d066f28572aaae787c36c456">SetTimeZoneInfo</a> ([in] const struct TimeZoneInfo &amp;timeZoneInfo)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置时区信息。  <a href="#1c61cee4d066f28572aaae787c36c456"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_locale_info.html#d3c516f3240a683ae894681c26c95277">GetTimeZoneBias</a> ([out] Int32 *bias,[out] Int32 *isDaylight)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获得时区相对格林尼治时间的偏移值和夏令时设置相关值。  <a href="#d3c516f3240a683ae894681c26c95277"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_locale_info.html#dbe183aff25dbd903f1a607c51b07955">SetLocaleInfo</a> ([in] <a class="el" href="_locale_info_8car.html#fa28026e9df87e816a2afab70324b9c7">LocaleType</a> localeType,[in] AString asValue)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置本地信息。  <a href="#dbe183aff25dbd903f1a607c51b07955"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_locale_info.html#11c9c756eca3a653c21d15cd30ffb835">GetLocaleInfo</a> ([in] <a class="el" href="_locale_info_8car.html#fa28026e9df87e816a2afab70324b9c7">LocaleType</a> localeType,[out] AStringBuf *pasbValue)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获得本地信息。  <a href="#11c9c756eca3a653c21d15cd30ffb835"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+此接口表示本地化信息。 <hr><h2>成员函数文档</h2>
+<a class="anchor" name="2ee925c8ccea906272fbe887a133deee"></a><!-- doxytag: member="ILocaleInfo::GetTimeZoneInfo" ref="2ee925c8ccea906272fbe887a133deee" args="([out] struct TimeZoneInfo *pTimeZoneInfo)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ILocaleInfo::GetTimeZoneInfo           </td>
+          <td>(</td>
+          <td class="paramtype">[out] struct TimeZoneInfo *&nbsp;</td>
+          <td class="paramname"> <em>pTimeZoneInfo</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获得时区信息。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pTimeZoneInfo</em>&nbsp;</td><td>- 返回TimeZoneInfo类型的指针。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>NOERROR</em>&nbsp;</td><td>方法调用成功。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1c61cee4d066f28572aaae787c36c456"></a><!-- doxytag: member="ILocaleInfo::SetTimeZoneInfo" ref="1c61cee4d066f28572aaae787c36c456" args="([in] const struct TimeZoneInfo &amp;timeZoneInfo)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ILocaleInfo::SetTimeZoneInfo           </td>
+          <td>(</td>
+          <td class="paramtype">[in] const struct TimeZoneInfo &amp;&nbsp;</td>
+          <td class="paramname"> <em>timeZoneInfo</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设置时区信息。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>timeZoneInfo</em>&nbsp;</td><td>- 指定所需设置的时区信息。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d3c516f3240a683ae894681c26c95277"></a><!-- doxytag: member="ILocaleInfo::GetTimeZoneBias" ref="d3c516f3240a683ae894681c26c95277" args="([out] Int32 *bias,[out] Int32 *isDaylight)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ILocaleInfo::GetTimeZoneBias           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>bias</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>isDaylight</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获得时区相对格林尼治时间的偏移值和夏令时设置相关值。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>bias</em>&nbsp;</td><td>- 相对格林尼治时间的时区偏移，单位为分钟，如东8区(-480)。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>isDaylight</em>&nbsp;</td><td>- 返回夏令时设置的相关值。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>NOERROR</em>&nbsp;</td><td>方法调用成功。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>备注: </b></dt><dd>
+<p>如果夏令时设置有效则isDaylight返回正值，如果夏令时设置无效则isDaylight返回0，如果夏令时没有设置，则isDaylight返回负值。<p>
+</div>
+</div><p>
+<a class="anchor" name="dbe183aff25dbd903f1a607c51b07955"></a><!-- doxytag: member="ILocaleInfo::SetLocaleInfo" ref="dbe183aff25dbd903f1a607c51b07955" args="([in] LocaleType localeType,[in] AString asValue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ILocaleInfo::SetLocaleInfo           </td>
+          <td>(</td>
+          <td class="paramtype">[in] <a class="el" href="_locale_info_8car.html#fa28026e9df87e816a2afab70324b9c7">LocaleType</a>&nbsp;</td>
+          <td class="paramname"> <em>localeType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] AString&nbsp;</td>
+          <td class="paramname"> <em>asValue</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设置本地信息。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>localeType</em>&nbsp;</td><td>- 指定所需设置的本地类型。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>asValue</em>&nbsp;</td><td>- 用于传递所需设置的本地信息。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="11c9c756eca3a653c21d15cd30ffb835"></a><!-- doxytag: member="ILocaleInfo::GetLocaleInfo" ref="11c9c756eca3a653c21d15cd30ffb835" args="([in] LocaleType localeType,[out] AStringBuf *pasbValue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ILocaleInfo::GetLocaleInfo           </td>
+          <td>(</td>
+          <td class="paramtype">[in] <a class="el" href="_locale_info_8car.html#fa28026e9df87e816a2afab70324b9c7">LocaleType</a>&nbsp;</td>
+          <td class="paramname"> <em>localeType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] AStringBuf *&nbsp;</td>
+          <td class="paramname"> <em>pasbValue</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获得本地信息。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>localeType</em>&nbsp;</td><td>- 指定本地类型。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pasbValue</em>&nbsp;</td><td>- 返回AStringBuf类型的指针值。</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>NOERROR</em>&nbsp;</td><td>方法调用成功。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>E_INVALID_ARGUMENT</em>&nbsp;</td><td>指定的参数无效。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<hr size="1"><address style="text-align: right;"><small>Generated at Sun Sep 28 15:48:06 2008 for LocaleInfo by&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
+</body>
+</html>

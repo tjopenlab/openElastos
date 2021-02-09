@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IInputMethodEditor</interface><method> NotifyCharBeforeCaret </method>
+    <description>
+        <para>
+            通知输入法光标前一字，输入法可以根据此值实现联想等功能。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WChar </param_type>
+                <param_name> ch </param_name>
+                <param_note>
+                    <para>
+光标前一字。                    </para>
+                </param_note>
+            </api_param>
+       </parameters>
+    </syntax>
+
+<return>
+    <para>
+           成功，返回NOERROR；失败，返回E_FAIL。(此方法可以不实现)    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统             </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElControls.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib </lib_name>
+        </library>
+    </requirements>
+</manpage>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IAbsoluteIO</interface><method> GetOptimalBlockSize </method>
+    <description>
+        <para>
+            获取优化分配的块大小。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> pBlockSize </param_name>
+                <param_note>
+                    <para>
+指向Int32类型的指针，用于返回的块大小，不能缺省                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回NOERROR；如果参数pBlockSize为NULL，返回E_INVALID_ARGUMENT。</para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            FAT32下的优化分配块大小一般为4096。
+        </para>
+    </remarks>
+</manpage>

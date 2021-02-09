@@ -1,0 +1,101 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzCreateThread"> EzCreateThread </sample>
+    <volume>System API</volume>
+    <title>EzCreateThread</title>
+    <routine_idx> ..\thread_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	Creates a new thread process.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type>PThreadStartRoutine </param_type>
+                <param_name> pEntry </param_name>
+                <param_note>
+                    <para>
+                    	[in] Pointer to the application-defined function of type PTHREAD_START_ROUTINE, to be executed 
+                    	by the thread, which represents the starting address of the thread.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>PVoid </param_type>
+                <param_name> pArg </param_name>
+                <param_note>
+                    <para>
+                    	[in] Pointer to the parameters used when starting a thread.It can be null
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> ThreadCreationFlags</param_type>
+                <param_name> flags </param_name>
+                <param_note>
+                    <para>
+                    	[in] Optional flag.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> IThread ** </param_type>
+                <param_name> ppThread </param_name>
+                <param_note>
+                    <para>
+                    	[out] Interface pointer to the thread object, if the function succeeds.It can be null.
+					</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>Return value</td><td>Description</td>
+            </th>
+			<tr>
+                <td>NOERROR</td><td>Function succeeds in creating a new thread process. </td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>Invalid argument(s)</td>
+            </tr>
+        </table>
+        <para>References <link url="/sdk/hresult.htm">ECODE</link>Related help for more details.</para>
+    </return>
+
+    <remarks>
+ 
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                 Windows 2000 or later; Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+  <references>
+    <reference>
+        <ref_name>CProcess::New</ref_name>
+        <ref_url>EzCreateProcess</ref_url>
+    </reference>
+  </references>
+</manpage>

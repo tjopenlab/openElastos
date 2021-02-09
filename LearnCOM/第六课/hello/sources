@@ -1,0 +1,23 @@
+TARGET_NAME= hello
+TARGET_TYPE= dll
+SPECIAL_TARGET= regdll
+
+INCLUDES=$(EXTERN_INC);$(EXTERN_INC)\crt;$(MAKEDIR);.
+C_FLAGS=-MD
+
+SOURCES= \
+    hello.def \
+    hello_i.c \
+    hello.rc \
+    hello.cpp \
+    hellocf.cpp \
+
+WIN32_LIBS= \
+    $(EXTERN_LIB)\msvcrt.lib \
+    $(EXTERN_LIB)\uuid.lib \
+    $(EXTERN_LIB)\ole32.lib \
+    $(EXTERN_LIB)\oleaut32.lib \
+    $(EXTERN_LIB)\user32.lib \
+    $(EXTERN_LIB)\advapi32.lib \
+    $(EXTERN_LIB)\kernel32.lib \
+

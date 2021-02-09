@@ -1,0 +1,87 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\ezstr\AllocLen">AllocStringLen</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzStr </interface>
+    <method> AllocStringLen </method>
+
+    <description>
+        <para> Allocates memory space of indicated length for a string, initialized with sz.</para>
+    </description>
+
+    <syntax>
+        <return_val> static EzStr </return_val>
+        <parameters>
+        <api_param>
+            <param_type>const wchar_t *</param_type>
+            <param_name> sz </param_name>
+            <param_note>
+                <para> String of wchar_t type. </para>
+            </param_note>
+        </api_param>
+
+        <api_param>
+            <param_type> int </param_type>
+            <param_name> cch </param_name>
+            <param_note>
+                <para> The number of characters to be allocated.  </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns a pointer which points to the allocated memory space. If it's out of memory, EZSTR_NULL is returned.</para>
+    </return>
+
+    <remarks>
+        <para>If cch is lesser than the actual length of the string, then the substring which is beyond cch is cut off; If cch is 0,then a pointer points to an empty string is returned.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStr str1 = EzStr::AllocStringLen(L"Hello, world!", 6);
+
+    printf("call AllocStringLen when cch=6,str1 is: %S\n", (wchar_t*)str1);
+    EzStr::FreeString(str1);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+call AllocStringLen when cch=6,str1 is: Hello,
+]]>
+    </result>
+
+    <references>
+    <reference>
+        <ref_name> AllocString</ref_name>
+        <ref_url> AllocString</ref_url>
+    </reference>
+    <reference>
+        <ref_name> ReAllocString</ref_name>
+        <ref_url> ReAllocString</ref_url>
+    </reference>
+    <reference>
+        <ref_name> ReAllocStringLen</ref_name>
+        <ref_url> ReAllocStringLen</ref_url>
+    </reference>
+    <reference>
+        <ref_name> FreeString </ref_name>
+        <ref_url> FreeString</ref_url>
+    </reference>
+    </references>
+
+</manpage>

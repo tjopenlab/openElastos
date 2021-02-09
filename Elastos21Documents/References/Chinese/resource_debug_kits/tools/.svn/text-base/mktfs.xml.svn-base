@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> mktfs </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para>递归地创建或删除指定目录及其所有子目录的_index文件。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> MKTFS </cmd_name>
+
+        <cmd_param>[-h] [-d] [dirs] ...</cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name>-h</param_name>
+        <param_note>显示mktfs帮助信息</param_note>
+    </param>
+    <param>
+        <param_name>-d</param_name>
+        <param_note>递归地删除指定目录及其所有子目录的_index文件</param_note>
+    </param>
+    <param>
+        <param_name>dirs</param_name>
+        <param_note>目标目录列表。如果不指定目标路径，则目标目录为默认路径：当前Elastos目标镜像目录的bin目录，如D:\Elastos.SDK\obj\_ix86.dbg\bin</param_note>
+    </param>
+    </parameters>
+
+    <remarks>
+        <para>_index文件的内容是其所在目录的文件列表，它是为TFTP文件系统服务的。</para>
+    </remarks>
+
+    <examples>
+    <example>
+        <eg_line>mktfs D:\Elastos21\XDK\Targets\pdk\win32\x86.msvc.pc.GK100.dbg\samples</eg_line>
+        <eg_note>递归地创建D:\Elastos21\XDK\Targets\pdk\win32\x86.msvc.pc.GK100.dbg\samples目录及其目录下所有子目录的_index文件。</eg_note>
+    </example>
+    <example>
+        <eg_line>mktfs -d D:\Elastos21\XDK\Targets\pdk\win32\x86.msvc.pc.GK100.dbg\samples</eg_line>
+        <eg_note>递归地删除D:\Elastos21\XDK\Targets\pdk\win32\x86.msvc.pc.GK100.dbg\samples目录及其目录下所有子目录的_index文件。</eg_note>
+    </example>
+    <example>
+        <eg_line>mktfs -h</eg_line>
+        <eg_note>显示mktfs的帮助信息。输出结果：</eg_note>
+        <eg_result><![CDATA[
+mktfs: generate/delete index files for specified directories and their sub directories on host machines for Elastos Tftp FS.
+
+usage: mktfs [-h] [-d] [dirs] ...
+       -h   show this message
+       -d   delete index files
+       dirs target directory list.
+            if no direcotry specified, use the default:
+            D:\Elastos21\XDK\Targets\pdk\win32\x86.msvc.pc.Product1.dbg
+]]></eg_result>
+    </example>
+    </examples>
+
+    <references>
+    <reference>
+        <ref_name>TFTP文件系统使用简介</ref_name>
+        <ref_url>../../xdk/environment_and_tools/tools/tfs</ref_url>
+    </reference>
+    </references>
+
+</manpage>

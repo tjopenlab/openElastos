@@ -1,0 +1,126 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzCreateCondition">EzCreateCondition</sample>
+    <volume>Interrupt Management</volume>
+    <title>RegisterIsr</title>
+    <routine_idx> ../interrupt_management.htm </routine_idx>
+
+    <description>
+        <para>
+        	Registers corresponding interrupt service routine for specified hardware interrupt.
+        </para>
+    </description>
+
+    <syntax>
+        <NoReturnValue/>
+        <parameters>
+            <api_param>
+                <param_type> irq_t</param_type>
+                <param_name> irq </param_name>
+                <param_note>
+                    <para>
+                    	Specified hardware interrupt number.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> ipl_t</param_type>
+                <param_name> ipl </param_name>
+                <param_note>
+                    <para>
+                    	Specifies hardware interrupt priority, which must be a number between IPL0 and IPL31, inclusively.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> isr_t</param_type>
+                <param_name> isr </param_name>
+                <param_note>
+                    <para>
+                    	Points to registered interrupt service routine callback method.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> void *</param_type>
+                <param_name> pvDevice </param_name>
+                <param_note>
+                    <para>
+                    	Additional information pointer. When registered interrupt service routine callback method 
+                    	is invoked, this additional information pointer is passed in as a parameter.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<NoReturnValue/>
+    </return>
+
+    <remarks>
+    	<para>
+    		This method registers corresponding interrupt service routine for specified hardware interrupt. After the 
+    		system startup, all the hardware interrupts are in disabled state. Once this interrupt service routine is 
+    		successfully registered, the system will be able to respond to specified hardware interrupt (i.e. Specified 
+    		hardware interrupt will be enabled). When the system respond to this hardware interrupt, the registered 
+    		interrupt service routine will be invoked.
+    	</para>
+    	<para>
+    		If interrupt service routine is already registered with specified hardware interrupt, current registered 
+    		interrupt service routine will overwrite the previously registered one.
+    	</para>
+    	<para>
+    		The same interrupt service routine can be registered for multiple hardware interrupt, when the system 
+    		respond to an arbitrary hardware interrupt, the interrupt service routine will be invoked for processing. 
+    		Therefore, it is possible to reenter this interrupt service routine.
+    	</para>
+    	<para>
+    		The specified hardware interrupt number depends on the specific hardware architecture.
+    	</para>
+    	<para>
+    		Interrupt service routine callback method must be of the following format: 
+    	</para>
+    	<para>
+    		<b>void CDECL XyzIsr(irq_t irq, void *pvDevice, InterruptContext *pContext);</b>
+    	</para>
+    	<para>
+    		Interrupt service routine callback routine accepts three arguments: argument irq is the generated hardware 
+    		interrupt number, this argument allows one interrupt service routine to process several different hardware 
+    		interrupt requests. Argument <i>pDevice</i> is the additional information pointer passed in when registering 
+    		interrupt service routine; the argument type is struct <b>InterruptContext</b>. The details about its 
+    		definition is defined by the actual hardware architecture. In fact, the majority of interrupt service 
+    		routine do not use these arguments.
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>UnregisterIsr</ref_name>
+            <ref_url>UnregisterIsr</ref_url>
+        </reference>
+    </references>
+
+</manpage>

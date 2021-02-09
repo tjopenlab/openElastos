@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+  
+    <volume> 常用数据结构 </volume>
+    <class>BufferOf</class>
+    <method> Copy </method>
+
+    <description>
+        <para>将源BufferOf数组中数据复制到当前BufferOf数组中。</para>
+    </description>
+
+    <syntax>
+        <return_val>BufferOf &amp;</return_val>
+        <parameters>
+        <api_param>
+            <param_type>const BufferOf &lt;T &gt;* </param_type>
+            <param_name>pSrc </param_name>
+            <param_note>
+                <para> 源BufferOf数组 </para>
+            </param_note>
+        </api_param>
+
+        
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回当前BufferOf对象引用。</para>
+    </return>
+    <remarks>
+        <para>超过BufferOf对象可用的长度会被省略掉。 </para>
+    </remarks>
+<example>
+<pre>
+BufferOf_&lt;Int8,4&gt; MyArray;
+BufferOf_&lt;Int8,4&gt; p;
+p.SetUsed(4);
+
+MyArray.Copy(&amp;p);
+
+CConsole::WriteLine(MyArray.GetUsed());  //Display : 4
+CConsole::WriteLine(MyArray.GetAvailableSpace());  //Display : 0
+</pre>
+</example>
+ 
+<references>
+    <reference>
+        <ref_name>BufferOf</ref_name>
+        <ref_url>../../BufferOf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>BufferOf::Copy </ref_name>
+        <ref_url>index/Copy</ref_url>
+    </reference>
+
+</references>
+
+   
+    
+</manpage>

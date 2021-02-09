@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListView</interface><method> SetTopIndex </method>
+    <description>
+        <para>
+            设置 ListView 中第一个可见行的索引值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> topIndex </param_name>
+                <param_note>
+                    <para>
+第一个可见行的索引值，有效值为 0 ～ 行数-1                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+
+<remarks>
+        <para>
+            使用SetTopIndex，可以使 listview 指定的项可见。例如：当前 listview 有30行，且一屏可以显示10行，若设置 TopIndex 为 15，则第16行显示在当前 ListView 的第一行。但是该方法的调用也有可能出现指定行不在首行显示或者 ListView 显示无变化的情况。例如，当前 ListView 有15行，且一屏可以显示10行，若设置 TopIndex 为 10，则第一个可见行为第六行，因为要保证 ListView 的一屏可以显示10行，此时调用  <link url="GetTopIndex.htm">GetTopIndex</link> 方法得到的 TopIndex 的值为5，并不是之前设置的10。又若当前 ListView 有5行，且一屏可以显示10行，在这种情况下设置 TopIndex 为3，则 ListView的显示无变化，同时调用  GetTopIndex 方法得到的 TopIndex 的值为0。
+        </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CListView 类介绍 </ref_name>
+        <ref_url>../../class/ListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListView 接口方法列表</ref_name>
+        <ref_url>../IListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListViewPaint 接口方法列表</ref_name>
+        <ref_url>../IListViewPaint</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetTopIndex</ref_name>
+        <ref_url>GetTopIndex</ref_url>
+    </reference>
+</references>   
+</manpage>

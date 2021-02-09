@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicDirectory</interface><method> Rename </method>
+    <description>
+        <para>
+            将当前目录对象中的文件或子目录重命名，或者移动到另一个目录中。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> oldName </param_name>
+                <param_note>
+                    <para>
+在当前目录中需要改名的文件名或子目录名                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IBasicDirectory * </param_type>
+                <param_name> pNewDir </param_name>
+                <param_note>
+                    <para>
+文件或子目录改名后的新目录的接口指针                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> newName </param_name>
+                <param_note>
+                    <para>
+在新的目录中的新文件名或新目录名                   </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果oldName所代表的文件或目录不存在，返回E_FS_NO_SUCH_FILE； </para>
+    <para>如果参数oldName、newName为空；或参数oldName、newName超过256个字符；或oldName、newName出现限制字符（详见备注）；或将oldName指定的目录改名为其自身的子目录；或参数pNewDir为NULL，返回E_INVALID_ARGUMENT； </para>
+    <para>如果将指定文件或目录改名为目标目录中已存在的文件或目录名，返回E_FS_FILE_EXISTS； </para>
+    <para>如果指定文件正在使用，返回E_FS_FILE_BUSY； </para>
+    <para>如果创建目标文件或目录失败，返回E_FS_NO_PERMISSION； </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+    	  <para>
+    	  	  参数oldName、newName的限制字符为：‘ &lt;  ’、‘ &gt; ’、‘ / ’、‘ \\ ’、‘ ? ’、‘ * ’、‘ \" ’、‘ | ’、‘ : ’。
+    	  </para>
+        <para>
+            要成功移动并重命名文件或目录，必须保证所有用户都释放了它们的接口指针；若把一个目录改名为其自身的子目录，将出错。
+        </para>
+    </remarks>
+</manpage>

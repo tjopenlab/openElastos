@@ -1,0 +1,66 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <volume>Serial Port Method</volume>
+    <title>ReadComPort</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>Reads one byte of data from the serial port.</para>
+    </description>
+
+    <syntax>
+        <return_val>bool_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> ComPort</param_type>
+                <param_name> comPort </param_name>
+                <param_note>
+                    <para>Specifies serial port device; see ComPort enumeration type.</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> uint8_t *</param_type>
+                <param_name> pu8Data </param_name>
+                <param_note>
+                    <para>Points to a variable; it is used to store one byte of data, which is read from the serial port.</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <para>Reads data from serial port successfully; returns TRUE, otherwise returns FALSE.</para>
+    </return>
+
+    <remarks>
+        <para>This method is used to read one byte of data from specified serial port.</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>SetupComPort</ref_name>
+            <ref_url>SetupComPort</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WriteComPort</ref_name>
+            <ref_url>WriteComPort</ref_url>
+        </reference>
+    </references>
+
+</manpage>
+ 

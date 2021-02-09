@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <sample url=""></sample>
+    <volume>Elastos网络编程接口（elasock API）</volume>
+    <types> WSADATA</types>
+
+    <routine_idx> ElastosSocketIndex.htm </routine_idx>
+    <description>
+        <para>该结构保存elasock库的有关信息。</para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> wVersion </mem_name>
+            <mem_description> 提供给用户的elasock版本号，《Elastos》中等于0x0101 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> wHighVersion </mem_name>
+            <mem_description> 当前elasock库的最高版本，通常等于wVersion的值。《Elastos》中为0x0101 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char </mem_type>
+            <mem_name> szDescription </mem_name>
+            <mem_description> 以NULL结尾的ASCCII字符串，记录elasock的描述信息</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char </mem_type>
+            <mem_name> szSystemStatus </mem_name>
+            <mem_description> 以NULL结尾的ASCCII字符串，记录elasock的状态和配置信息</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> iMaxSockets </mem_name>
+            <mem_description> 同时可打开的套接口数，《Elastos》中等于64</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> iMaxUdpDg </mem_name>
+            <mem_description> 数据报的最大长度，《Elastos》中等于65507（不包括UDP头长度）</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char * </mem_type>
+            <mem_name> lpVendorInfo </mem_name>
+            <mem_description>为合作厂商预留的描述字段</mem_description>
+        </struct_member>
+    </struct>
+
+</manpage>

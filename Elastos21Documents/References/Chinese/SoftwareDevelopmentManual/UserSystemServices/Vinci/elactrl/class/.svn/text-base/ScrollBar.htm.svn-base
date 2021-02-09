@@ -1,0 +1,41 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>ScrollBar</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>ScrollBar</b></h2></center>
+<small><p><b>头文件：</b>ElControls.h
+<p><b>程序库：</b>ElControls.dll
+（<b>备注：</b>当在 CAR 文件中通过 <a class="doxygen" href="../../../../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a> 引入 ElControls.dll 时，则无需在源文件中添加“include &lt;ElControls.h&gt;”该句；若 ElControls.dll 是在 sources 文件中引入的，则需要在源文件中添加“include &lt;ElControls.h&gt;”该句。有关更多信息请参考：<a class="doxygen" href="../../../../../car_technology/car.htm">CAR 编程入门</a>）</small>
+<hr size="1">
+<h4><li><b>详细描述：</b></h3>
+<p>滚动条控件。用于在应用程序或控件中水平或垂直滚动，以方便地在较长的项列表或大量信息中转移。多数需要滚动条的控件本身提供滚动条，而不需要该控件。例如，多行的 <a class="doxygen" href="TextBox.htm">TextBox</a> 控件、<a class="doxygen" href="ListBox.htm">ListBox</a> 和 <a class="doxygen" href="Combobox.htm">ComboBox</a> 都是如此。
+<p>可以使用此控件在本身不提供滚动条的容器（如 PictureBox）中实现滚动，或为用户输入数值数据实现滚动。数值数据可以在控件中显示，也可以在代码中使用。Minimum 和 Maximum 属性确定滚动条滚动的范围（像素为单位）。PageStep 属性决定在滚动条之内但在滚动框之外单击的效果。SingleStep 属性确定单击控件各端的滚动箭头的效果。
+<p><b>注意：</b>ScrollBar 必须放在一个 <a class="doxygen" href="Form.htm">Form</a> 内，或者 ScrollBar 的 parent 控件在一个 Form 内。
+<hr size="1">
+<h4><li><b>CScrollBar类封装图：</b></font></h4>
+<center> <img src="images/CScrollBar.jpg"> </center>
+        <p>如图所示，JControlEvents（通用回调事件接口）、JSliderBarEvents 为回调事件接口，用户可以通过 AddXXXCallback 的方法为 ScrollBar 注册回调事件，当该 XXX 事件发生时，相应的回调处理函数会被调用。当销毁一个对象前，需要调用 RemoveXXXCallback 取消该事件。具体 Callbak 机制的介绍，详见 Elastos 编程入门中 Callback 这节。
+        <p>当使用 <a class="doxygen" href="CScrollBar/CScrollBar_New.htm">New</a> 方法创建了一个 ScrollBar 对象后，可以获得 <a class="doxygen" href="../interface/IScrollBar.htm">IScrollBar</a> 接口指针，通过该接口指针用户可以调用接口内的方法对 ScrollBar 进行一系列操作。
+
+<hr size="1">
+<h4><li><b>构造函数：</b></font></h4>
+<table>
+<thead><td>名称</td><td class="memitem">说明</td></thead>
+<tr><td><a class="doxygen" href="CScrollBar/CScrollBar_New.htm">CScrollBar::New</as></td><td>创建一个 ScrollBar 对象</td></tr>
+</table>
+<h4><li><b><a class="doxygen" href="../interface/IScrollBar.htm">IScrollBar 接口方法列表</a></b></font></h4>
+<ul><p><b>注：</b>IScrollBar 接口继承于 <a class="doxygen" href="../interface/ISliderBar.htm">ISliderBar</a> 接口。</ul>
+<h4><li><b><a class="doxygen" href="../interface/ScrollBarEvents.htm">ScrollBar 回调事件列表</a></b></font></h4>
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

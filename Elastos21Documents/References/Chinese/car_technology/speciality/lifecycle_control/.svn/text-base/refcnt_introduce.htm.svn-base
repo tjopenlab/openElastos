@@ -1,0 +1,18 @@
+<html>
+
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>refcnt_introduce</title>
+	</head>
+
+	<body>
+		<h2>引用计数</h2>
+		  <P>对象的<B>引用计数</B>是指该对象被引用的次数。引用计数决定了对象是否是一个无用对象。若引用计数不为0，则表示该对象仍然在被使用，因此不能释放它；若引用计数为0，则表示该对象不再被使用，成为了一个无用对象，因此可以立即释放它。</P>
+		  <P>每个car构件对象都拥有一个引用计数，通过调用对象的AddRef()方法和Release()方法可以分别对对象的引用计数增加1和减少1。开发人员使用car构件对象时，只需正确的调用AddRef()方法和Release()方法即可。</P>
+		  <P>维护car构件对象引用计数的方法AddRef()和Release()声明在IInterface接口中。在car构件中定义的每个接口都默认继承于IInterface接口。因此可以直接在对象暴露出的任何一个接口上调用AddRef()和Release()方法。</P>
+
+	</body>
+
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISceneOption</interface><method> SetToCurScene </method>
+    <description>
+        <para>
+            把所选择的情景模式设置为当前情景模式。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ISceneDataRef </param_type>
+                <param_name> pSceneData </param_name>
+                <param_note>
+                    <para>
+存放情景模式中所有参数的数据模块                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；pSceneData为空，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            所选择的情景模式的配置参数在内存数据块pSceneData中，把这些参数写到配置文件中。
+        </para>
+    </remarks>
+</manpage>

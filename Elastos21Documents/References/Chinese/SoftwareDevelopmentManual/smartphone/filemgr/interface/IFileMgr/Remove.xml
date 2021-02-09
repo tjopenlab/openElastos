@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IFileMgr</interface><method> Remove </method>
+    <description>
+        <para>
+            删除文件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esFileName </param_name>
+                <param_note>
+                    <para>
+包含全路径的文件名                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数无效，返回E_INVALIDARG；如果文件不可删除，返回E_ACCESS_DENIED；如果路径不正确，返回E_PATH_INVALID_OR_NOT_FOUND。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

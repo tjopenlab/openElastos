@@ -1,0 +1,58 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> strings </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para> Screen displays file content.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> STRINGS </cmd_name>
+        <cmd_param>   [-?] [-a][-U][-O][-l &lt;length&gt;]&lt;file list&gt;</cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name>  -?  </param_name>
+        <param_note> Displays help information </param_note>
+    </param>
+    <param>
+        <param_name>  -a  </param_name>
+        <param_note> Adds file name and column comments in each matching file</param_note>
+    </param>
+    <param>
+        <param_name>  -U  </param_name>
+        <param_note> Displays all contents of the file, default parameter</param_note>
+    </param>
+    <param>
+        <param_name>  -O </param_name>
+        <param_note> Displays in the beginning of each line the number of all characters before this line of the current file, in hexdecimal</param_note>
+    </param>
+    <param>
+        <param_name> -l &lt;length&gt; </param_name>
+        <param_note> Only displays lines with character size more than length</param_note>
+    </param>
+    <param>
+        <param_name> &lt;file list&gt; </param_name>
+        <param_note> List of file names to be displayed</param_note>
+    </param>
+    </parameters>
+
+    <examples>
+    <example>
+        <eg_line>strings file.txt </eg_line>
+        <eg_note> Displays content of file.txt file. Outputs the result: </eg_note>
+        <eg_result><![CDATA[
+file.txt:
+This is the file.txt.
+]]></eg_result>
+    </example>
+    </examples>
+
+</manpage>

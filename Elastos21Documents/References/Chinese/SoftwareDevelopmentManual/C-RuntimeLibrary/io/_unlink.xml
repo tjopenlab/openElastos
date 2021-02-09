@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io">_unlink</sample>
+    <title>_unlink, _wunlink</title>
+    <volume>C 运行库函数</volume>
+   	<routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>删除文件。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_unlink</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>指向要删除的文件名的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wunlink</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果删除成功，返回0；否则，返回-1。当文件为只读、文件或路径找不到、给定参数filename为目录名或者文件正在使用时，此函数运行失败。</para>
+    </return>
+
+    <remarks>
+        <para>函数_unlink删除filename指定的文件。_wunlink是_unlink的宽字符版本。_wunlink 的参数filename是宽字符串。除此之外，两函数一样。在删除文件前，所有当前文件的句柄必须关闭。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_unlink</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wunlink</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+/* _unlink.cpp: This program uses _unlink to delete UNLINK.OBJ. */
+
+#include &lt;io.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    if (_unlink("unlink.obj") == -1)
+        printf("Could not delete 'UNLINK.OBJ'\n");
+    else
+        printf("Deleted 'UNLINK.OBJ'\n");
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Deleted 'UNLINK.OBJ'
+</result>
+
+
+</manpage>

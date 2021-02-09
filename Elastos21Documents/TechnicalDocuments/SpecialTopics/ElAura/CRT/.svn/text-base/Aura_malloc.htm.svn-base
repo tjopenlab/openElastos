@@ -1,0 +1,124 @@
+<HTML>
+<HEAD>
+<title>
+Aura_malloc
+</title>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<H3>Aura_malloc</H3>
+</div>
+<p>Allocates memory blocks.</p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">EXTERN_C void * CDECL Aura_malloc
+                    (
+                 </TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">size_t</TD>
+<TD class="param">size</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">);</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<H4>Parameters</H4>
+<DL><DT class="param" style="color:#222222;margin-left:42">size</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">Bytes to allocate.<BR /><BR />
+</font></DD>
+</DL>
+<h4>Return Value</h4>
+<p>malloc function returns a void pointer to the allocated space, or NULL if there is insufficient memory available. To return a pointer to a type other than void, use a type cast on the return value. The storage space pointed to by the return value is guaranteed to be suitably aligned for storage of any type of object. If size is 0, malloc allocates a zero-length item in the heap and returns a valid pointer to that item. Always check the return from malloc, even if the amount of memory requested is small.</p>
+<h4>Remarks</h4>
+<p>The malloc function allocates a memory block of at least size bytes. The block may be larger than size bytes because of space required for alignment and maintenance information.</p>
+<h4>Requirements</h4>
+<table class="methodtbl" cellspacing="0" cellpadding="0">
+<THEAD class="head">
+<TD width="20%" class="cell">
+Routine</TD>
+<TD width="20%" class="cell">
+Required header</TD>
+<TD class="cell">
+Compatibility</TD>
+</THEAD>
+<TR>
+<TD class="cell"><B>malloc</B></TD>
+<TD class="cell">stdlib.h</TD>
+<TD class="cell">ANSI, Windows 2000, Elastos 2.0</TD>
+</TR>
+</table>
+<p></p>
+<table class="methodtbl" cellspacing="0" cellpadding="0">
+<THEAD class="head">
+<TD width="30%" class="cell">
+                Library
+            </TD>
+<TD class="cell">
+                Description
+            </TD>
+</THEAD>
+<TR>
+<TD class="cell">
+                libc.lib
+            </TD>
+<TD class="cell">
+                Single thread static library
+            </TD>
+</TR>
+<TR>
+<TD class="cell">
+                elacrt.lib
+            </TD>
+<TD class="cell">
+                Import library for elacrt.dll
+            </TD>
+</TR>
+</table>
+<h4>Example</h4>
+<p><script>showButton_e()</script></p>
+<pre class="codeview">
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* malloc.cpp:This program allocates memory with
+ * malloc, then frees the memory with free.
+ */
+
+#include &lt;stdlib.h&gt;            /* For _MAX_PATH definition */
+#include &lt;stdio.h&gt;
+#include &lt;malloc.h&gt;
+
+int main()
+{
+    char *string;
+
+    /* Allocate space for a path name */
+    string = (char *)malloc(_MAX_PATH);
+    if (string == NULL)
+        printf("Insufficient memory available\n");
+    else {
+        printf("Memory space allocated for path name\n");
+        free(string);
+        printf("Memory freed\n");
+    }
+
+    return 0;
+}
+</pre>
+<h4>Output</h4>
+<pre class="codeview">Memory space allocated for path name
+Memory freed</pre>
+</DIV>
+</BODY>
+</HTML>
+

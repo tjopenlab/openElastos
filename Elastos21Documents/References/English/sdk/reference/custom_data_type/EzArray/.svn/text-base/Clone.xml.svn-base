@@ -1,0 +1,77 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\Clone">Clone</sample>
+    <volume> Common data structure </volume>
+    <interface> EzArray </interface>
+    <method>Clone </method>
+
+    <description>
+        <para>Gets a copy of EzArray object, namely copying EzArray array on heap.</para>
+    </description>
+    <syntax>
+        <return_val>EzArray&lt;T&gt;</return_val>
+        <NoArguments/>
+    </syntax> 
+     <return>
+        <para>Returns an EzArray object.</para>
+    </return>
+
+    <remarks>
+        <para> The EzArray array on heap may call the function for copying the EzArray array on the stack,but the EzArray array on the stack may not.
+               The EzArray array created by calling the function needs using <b><link url="Dispose.htm">Dispose</link></b> to release memory.
+        </para>
+        <para> When EzArray arrays with  different lengths are using the function, the length of these arrays will take place the length of former array.Refer the sample program.
+        </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <EzArray.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+    EzArray_<int, 50> a;
+    a[12] = 321;
+    EzArray<int> b = EzArray<int>::CreateObject(1);
+    printf("The length of b before clone is %d.\n", b.GetLength());
+    b = a.Clone();
+    printf("The length of b after clone is %d.\n", b.GetLength());
+    printf("b[12] = %d\n", b[12]);
+    EzArray<int> c = EzArray<int>::CreateObject(100);
+    printf("The length of c before clone is %d.\n", c.GetLength());
+    c = a.Clone();
+    printf("The length of c after clone is %d.\n", c.GetLength());
+    printf("c[12] = %d\n", c[12]);
+
+    b.Dispose();
+    c.Dispose();
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+The length of b before clone is 1.
+The length of b after clone is 50.
+b[12] = 321
+The length of c before clone is 100.
+The length of c after clone is 50.
+c[12] = 321
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name> Copy </ref_name>
+            <ref_url> Copy </ref_url>
+        </reference>
+    </references>
+
+</manpage>

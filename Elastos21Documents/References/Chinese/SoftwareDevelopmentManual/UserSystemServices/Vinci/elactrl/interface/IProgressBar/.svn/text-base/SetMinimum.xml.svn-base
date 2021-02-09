@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IProgressBar</interface><method> SetMinimum </method>
+    <description>
+        <para>
+            设置 ProgressBar 控件范围的最小值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> min </param_name>
+                <param_note>
+                    <para>
+控件范围的最小值</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        若设置的 Minimun 属性值大于 Maximum 属性值，方法将调用失败。若设置的 Minimun 属性值比当前进度值大，则会将当前的进度值设置成和 Minimun 属性值相等，并触发 <link url="../JSliderBarEvents/ValueChanged.htm">ValueChanged</link> 事件。Minimum 通常设置为 0。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CProgressBar 类介绍 </ref_name>
+        <ref_url>../../class/ProgressBar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IProgressBar 接口方法列表</ref_name>
+        <ref_url>../IProgressBar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetMinimum</ref_name>
+        <ref_url>GetMinimum</ref_url>
+    </reference>
+</references>
+</manpage>

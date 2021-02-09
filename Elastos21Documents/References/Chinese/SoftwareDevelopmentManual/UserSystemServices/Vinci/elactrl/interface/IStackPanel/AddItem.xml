@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IStackPanel</interface><method> AddItem </method>
+    <description>
+        <para>
+            按顺序为 StackPanel 添加一个控件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+控件的显示高度              </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IControl* </param_type>
+                <param_name> control </param_name>
+                <param_note>
+                    <para>
+添加控件的接口指针                   </para>
+                </param_note>
+            </api_param>             
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32* </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+指向 Int32 型的指针，用于获取添加控件的索引值，可以为 NULL                   </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_OUT_OF_MEMORY</td>
+	    	    <td>没有足够的空间</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法与 <link url="InsertItem.htm">InsertItem</link> 方法类似，都可以用于为 StackPanel 插入一个控件，区别在于 InsertItem 是在指定位置处插入，而 AddItem 是按顺序在末尾插入。注意：插入的控件必须是 StackPanel 的子类，否则方法将调用失败。
+    </para>
+    <para>
+        只有调用了该方法或者 InsertItem 方法为 StackPanel 插入控件，StackPanel 内的控件才能以列表或网格风格显示。否则控件将以用户给定的位置显示。控件显示的高度由参数 height 控制，当 height 取值为-1时，则控件的显示高度为其本身的高度；若 height 的取值低于控件原高度，将自行剪裁显示的内容。在网格风格下显示时，该高度将无效，系统会自动根据 StackPanel 内的行列数计算出控件的高度。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CStackPanel 类介绍 </ref_name>
+        <ref_url>../../class/StackPanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IStackPanel 接口方法列表</ref_name>
+        <ref_url>../IStackPanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>InsertItem</ref_name>
+        <ref_url>InsertItem</ref_url>
+    </reference>
+</references>
+</manpage>

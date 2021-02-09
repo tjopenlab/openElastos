@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>JFormEvents</interface><method> Activated </method>
+    <description>
+        <para>
+            当用代码或者用户激活窗体时触发该事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax>
+
+<remarks>
+    <para>
+        系统中只有一个被激活的窗口。激活状态表现为form可以接收键盘事件。当用户为一个Form注册了Actived回调事件，一旦触发了该事件，用户定义的事件处理函数将被调用。
+        一般当一个 Form 被 show 出来，或者其它 Form 被 hide 或被关闭，都会触发 Activated 事件。
+    </para>
+    <para>
+        有一点需要注意，一旦 Form 的 style 被设置为 FormStyle_NoActivation，
+        则这个 Form 永远也不会被激活，也就是说，它永远也拿不到键盘事件。
+    </para>
+    <para>
+        更多回调事件信息，参见 Callback 机制介绍。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍</ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Form 回调事件列表</ref_name>
+        <ref_url>../JFormEvents</ref_url>
+    </reference>
+</references>    
+</manpage>

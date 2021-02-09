@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>callback_notes</title>
+	</head>
+	
+	<body>
+		<h2>备注</h2>
+		  <P>CAR的事件回调机制实现的是服务器端与客户端间的异步通信，发消息的一方和接收消息的一方被假设在两个不同的线程，彼此没有依赖，唯一可以确定的是“默认情况下接收方按序收到已经发出的事件”。它包含两层含义：1.事件发生的顺序就是接收到的顺序；2.只能收到已经发生的事件，这个“已经”可能很短，也可能很长。我们通过下例来说明这个问题：</P>
+<pre class=code>
+server:
+  interface IClick {
+    Click();
+  }
+  interface IClickEvent {
+    ClickEvent();
+  }
+  class CRadioButton {
+      interface IClick;
+      callback interface IClickEvent;
+  }
+</pre>
+      <P>CRadioButton在使用文档里规定：当click方法被调用时，会抛出一个ClickEvent事件，用户可以通过注册这个事件来获知button被click了。接着这个CRadioButton被用于一个UI界面。</P>
+<pre class=code>
+Client:
+
+ECode OnClick(...)
+{
+    // do sth...
+}
+
+ECode Init()
+{
+  ... ...
+  pIClick->Click();
+  CRadioButton::AddClickEventCallback(pIClick, &OnClick);
+  ... ...
+}
+</pre>
+      <P>当初始化界面时，UI需要设置radio button的初始状态，将某个选项置为选中状态，但这又不属于用户点击，不需要响应OnClick函数，所以，在Init里面先调用Click方法，再注册回调，预期是第一次Click所触发的ClickEvent会被抛弃，然后AddCallback可以收到之后的回调。</P> 
+      <P>如果server是这样实现的话：</P> 
+<pre class=code>
+CRadioButton::Click()
+{
+    .. .. ..
+    Callback::ClickEvent();
+    .. .. ..
+}           
+</pre>
+      <P>那么Init里面所作的假设一点问题都没有，但如果是像下面这样实现的：</P>
+<pre class=code>
+CRadioButton::Click()
+{
+    .. .. ..
+    CThread::New(&WorkerRoutine, this); // create a new thread
+    .. .. ..
+}
+
+ECode WorkerRoutine(...)
+{
+    Sleep(5000); // sleep 5s
+    Callback::ClickEvent();
+}           
+</pre>
+      <P>erver出于某种目的，并没有在Click里直接触发回调，而是创建一个线程，在新线程里先睡5秒再触发，虽然很怪异，但这没有违反它使用文档中的描述，当然这里未必一定要sleep5秒。在后面一种实现的情况下，Init里的如意算盘就会落空，它照样会收到它自己所click的那次Clickevent。</P>
+      <P>这个例子证明：server会按照约定抛出事件，但这个抛出事件的时机通常情况下是不可以被假设的，或者需要server进一步说明或明确的。如果CRadioButton明确表示它的Click方法里会同步抛出一个ClickEvent事件，那么用户可以在Init里那样假设，但如果CRadioButton没明确表示，就只能是Init一厢情愿了。</P>   
+      <P>再进一步说，server抛出回调事件是server自己的逻辑，什么时机抛出会通过使用文档说明，但client端还是要尽量避免做这种假设，比如我打server一拳，它就会立即还我一脚，这个server可能反应比较慢，要想一下再踢过来。</P> 
+      <P>如果确实想要消耗掉一次回调事件，可以在Init里这样做：</P>      
+<pre class=code>
+ECode Init()
+{
+  IRendezvous * pIRendezvous;
+  CRadioButton::AcquireClickEventRendezvous(pIClick, &pIRendezvous); // Step1
+  pIClick->Click(); // Step2
+  pIRendezvous->Wait(10000, &wr); // Step3
+  pIRendezvous->Release();
+  if (wr == S_OK) ...
+  else if (wr == TIIME_OUT) ...
+  
+  CRadioButton::AddClickEventCallback(...);
+}      
+</pre>
+      <P>通过IRendezvous可以等待一次事件发生，先调用Click，然后等待，就可以确保上次的click已经被消耗掉，然后再注册回调。</P>
+<pre>
+
+
+
+
+   
+</pre>
+	</body>
+</html>

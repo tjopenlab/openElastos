@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IStackPanel</interface><method> GetTopIndex </method>
+    <description>
+        <para>
+            获取 StackPanel 中第一个可见控件的索引值。 
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+指向 Int32 型的指针，用于获取 StackPanel 中第一个可见控件的索引值，有效值为 0～控件数-1，不能为 NULL                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        调用 <link url="SetTopIndex.htm">SetTopIndex</link> 方法可以使指定的控件在 StackPanel 的第一行可见，有效值为 0～控件数-1。但是也有可能出现指定控件不在首行显示或者 StackPanel 显示无变化的情况。故调用 GetTopIndex 方法得到的 TopIndex 也许并不是 SetTopIndex 方法中设置的控件的索引值，而是当前 StackPanel 中显示的第一个可见控件的索引值。例如，当前 StackPanel 有10个控件，且一屏可以显示7个控件，若此时设置 TopIndex 为 5，则第一个可见控件为第四个，因为要保证 StackPanel 一屏仍可以显示7个控件，此时调用 GetTopIndex 方法得到的 TopIndex 的值为3，并不是之前设置的5。又若当前 StackPanel 有5个控件，且一屏可以显示7个，在这种情况下设置 TopIndex 为3，则 StackPanel的显示无变化，同时调用 GetTopIndex 方法得到的 TopIndex 的值为0。
+    </para>
+    <para>
+        注意：GetTopIndex 和 <link url="SetTopIndex.htm">SetTopIndex</link> 方法的调用在 StackPanel 显示风格为 List 的情况下才有意义。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CStackPanel 类介绍 </ref_name>
+        <ref_url>../../class/StackPanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IStackPanel 接口方法列表</ref_name>
+        <ref_url>../IStackPanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetTopIndex</ref_name>
+        <ref_url>SetTopIndex</ref_url>
+    </reference>
+</references>
+</manpage>

@@ -1,0 +1,109 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\gets">gets</sample>
+    <title> gets，_getws</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Gets a line of characters from stdin.</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>gets</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>Pointer to input string storage location.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_getws</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>These functions return its argument if successful. A NULL pointer indicates an error or end-of-file condition. Call ferror to check specifically what kind of error has occurred.</para>
+    </return>
+
+    <remarks>
+        <para>The gets function reads a line from the standard input stream stdin and stores it in buffer. The line consists of all the characters up to and including the first newline character ('\n'). Then, gets replaces newline with null ('\0'). On the contrary, function fgets retains newline. _getws is the wide-character version of gets; the parameter and return value of _getws are wide-character string.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>gets</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_getws</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* gets.cpp:this program reads a line from the standard input stream stdin
+            and then display to the screen*/
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char line[81];
+
+    printf(&quot;Input a string: &quot;);
+    gets(line);
+    printf(&quot;The line entered was: %s\n&quot;, line);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Input a string: Hello!
+The line entered was: Hello!
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>getwchar</ref_name>
+            <ref_url>getwchar</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fgetws</ref_name>
+            <ref_url>fgetws</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fputws</ref_name>
+            <ref_url>fputws</ref_url>
+        </reference>
+    </references>
+
+</manpage>

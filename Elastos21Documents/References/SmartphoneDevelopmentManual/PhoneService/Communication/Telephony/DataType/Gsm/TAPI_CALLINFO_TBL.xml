@@ -1,0 +1,23 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>通讯引擎</volume>
+    <types> TAPI_CALLINFO_TBL </types>
+    <description>
+        <para>
+            通话信息表。
+        </para>
+    </description>
+
+  <struct>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwNumOfCall</mem_name>
+            <mem_description>当前通话的数量，即后面数组的记录数 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>TAPI_CALLINFO</mem_type>
+            <mem_name> ciCallInfoTbl [TAPI_MAX_CURRENT_CALLS]</mem_name>
+            <mem_description>为<link url="TAPI_CALLINFO.htm">TAPI_CALLINFO</link>类型，表示通话信息 </mem_description>
+         </struct_member>
+   </struct>
+</manpage>

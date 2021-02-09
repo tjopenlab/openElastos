@@ -1,0 +1,51 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>Profile</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>CProfileManager</b></h2></center>
+
+<hr size="1">
+<h4><li><b>构件类定义</b></font></h4>
+<pre>
+    [<a class="doxygen" href="../../car_technology/fundamental/development_environment/car/keywords/keywords_singleton.htm">singleton</a>, <a class="doxygen" href="../../car_technology/fundamental/development_environment/car/attributes/attributes_sequenced.htm">sequenced</a>]
+    class CProfileManager {
+        interface IProfileManager;
+        callback interface IProfileManagerEvents;
+    }
+</pre>
+
+<h4><li><b>构造函数</b></font></h4>
+<p><a class="doxygen" href="CProfileManager_New.htm">CProfileManager::AcquireSingleton</a></p>
+<P>当使用AcquireSingleton方法创建了一个ProfileManager对象后，可以获得IProfileManager接口指针，通过该接口指针用户可以调用接口内的方法对ProfileManager进行一系列操作。</P>
+
+<p>在脚本中实例化构件类请参考：<a class="doxygen" href="../../Programming/script_programming/CAR_usage.html">CAR构件在脚本中的使用。</a></p>
+
+<h4><li><b>接口方法列表</b></font></h4>
+<p><a class="doxygen" href="IProfileManager.htm">IProfileManager</a></font></p>
+
+<h4><li><b>异步回调接口方法列表</b></font></h4>
+<p><a class="doxygen" href="IProfileManagerEvents.htm">IProfileManagerEvents</a></p>
+
+<p>IProfileManagerEvents为异步回调事件接口，用户可以通过AddXXXCallback方法为CProfileManager注册回调事件，当该XXX事件发生时，相应的异步回调处理函数就会被调用。当销毁一个对象前，需要调用RemoveXXXCallback注销该事件。更多关于异步回调的介绍，请参见<a class="doxygen" href="../../car_technology/fundamental/development_environment/car/keywords/keywords_callback.htm">callback</a>。</p>
+
+<h4><li><b>构件相关信息</b></font></h4>
+<p>头文件：EmProfiles.h</p>
+<p>程序库：EmProfiles.dll</p>
+    
+<p>当在CAR文件中通过<a class="doxygen" href="../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a>加载EmProfiles.dll构件模块时，无需在源文件中添加"include&lt;EmProfiles.h&gt;"语句；若EmProfiles.dll是在sources文件中被加载的，则需要在源文件中添加"include &lt;EmProfiles.h&gt;"语句。更多有关信息请参考：<a class="doxygen" href="../../car_technology/car.htm">CAR编程入门</a>。</p>
+
+<h4><li><b>关于构件接口继承</b></font></h4>
+<p>若现有的构件接口无法满足应用开发的需求，您可以利用<a class="doxygen" href="../../car_technology/car.htm">CAR构件技术</a>的<a class="doxygen" href="../../car_technology/speciality/inheritance/index.htm">接口继承特性</a>，在继承已有接口的基础上拓展新的应用接口。</p>
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

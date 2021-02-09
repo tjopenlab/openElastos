@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址簿引擎</volume>
+<interface>IAddressBook</interface><method> SearchEntities </method>
+    <description>
+        <para>
+            通过组合条件，查找相应记录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> STORE_CLASS </param_type>
+                <param_name> scStore </param_name>
+                <param_note>
+                    <para>
+指定记录的存储类型，参见数据结构<link url="../../datatype/_STORE_CLASS.htm">STORE_CLASS</link>                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ENTITY_CLASS </param_type>
+                <param_name> ecEntity </param_name>
+                <param_note>
+                    <para>
+指定记录的类型，参见数据结构<link url="../../datatype/_ENTITY_CLASS.htm">ENTITY_CLASS</link>                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzArray&lt;UINT&gt; </param_type>
+                <param_name> eaFields </param_name>
+                <param_note>
+                    <para>
+记录字段ID组成的数组                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzArray&lt;EzStr&gt; </param_type>
+                <param_name> esTerm </param_name>
+                <param_note>
+                    <para>
+参数ecEntity对应的字段值，与参数eaFields构成组合查询条件                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IObjectEnumeratorRef * </param_type>
+                <param_name> ppiEntitiesEnum </param_name>
+                <param_note>
+                    <para>
+记录的对象枚举器接口指针，不能为NULL                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数ppiEntitiesEnum为NULL或输入的参数无效，返回E_INVALIDARG。</para><para>            其他参见            <link url="../../ab_error.htm">            地址簿错误返回值列表            </link>            。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CAddressBook.h, CDBStore.h, CSimStore.h, CContact.h, CContactGroup.h,  Abdata.h, spcomm.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElCRuntime.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>SearchAllEntities</ref_name>
+            <ref_url>SearchAllEntities</ref_url>
+        </reference>
+    </references>
+</manpage>

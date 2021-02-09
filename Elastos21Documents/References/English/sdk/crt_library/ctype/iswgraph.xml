@@ -1,0 +1,80 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\iswgraph">iswgraph</sample>
+    <title>isgraph iswgraph</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>Determine if an integer represents a graphical character other than a space.iswgraph will be used if c is a printable wide character  . </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>isdigit</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>input integer</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>if c in the range of 0 through 0xFF, then the function returns a non-zero value .otherwise  it returns 0 </para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>isgraph</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* isgraph.cpp: This program uses isprint to verify c
+ * whether it is a printable character except blank.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+      {
+        int c;
+        
+        c=&apos;a&apos;;
+        printf(&quot;%c %s\n&quot;,c,isgraph(c)?&quot;is a printable character.&quot;:&quot;is not a printable character.&quot;);
+        c=&apos; &apos;;           // 0x20
+        printf(&quot;&apos;%c&apos; %s\n&quot;,c,isgraph(c)?&quot;is a printable character.&quot;:&quot;is not a printable character.&quot;);
+        c=0x7f;
+        printf(&quot;%c %s\n&quot;,c,isgraph(c)?&quot;is a printable character.&quot;:&quot;is not a printable character.&quot;);
+        
+        return 0;
+      }
+</pre>
+    </example>
+<result>
+a  is a printable character.
+&apos; &apos; is not a printable character.
+△ is not a printable character.
+</result>
+
+
+
+</manpage>

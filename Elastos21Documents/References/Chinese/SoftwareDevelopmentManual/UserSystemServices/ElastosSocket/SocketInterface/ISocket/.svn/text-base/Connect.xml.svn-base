@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISocket</interface><method> Connect </method>
+    <description>
+        <para>
+            与网络另一端的套接口建立连接。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzByteBuf </param_type>
+                <param_name> Name </param_name>
+                <param_note>
+                    <para>
+另一段的套节口地址，其地址结构应为<link url="../../ElastosSocketAPI/DataType/sockaddr.htm">struct sockaddr</link>  </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> pError </param_name>
+                <param_note>
+                    <para>
+指向int型的指针，用于当函数执行发生错误时获取其错误返回值，该返回值参见<link url="../SocketWSA.htm">网络接口错误返回值</link>文档                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回 NOERROR；如果方法调用成功，但逻辑错误，则返回S_FALSE。</para><para>            更多返回值，参见            <link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECODE            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+</manpage>

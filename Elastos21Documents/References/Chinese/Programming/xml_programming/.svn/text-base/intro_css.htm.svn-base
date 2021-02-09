@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>CSS介绍</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li class="current"><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+	<ul>
+		<li class="current"><a href="intro_css.htm"><span>CSS介绍</span></a></li>
+		<li><a href="css_supported.htm"><span>XmlGlue支持的CSS</span></a></li>
+	</ul>
+</div>		
+
+<h2>概览</h2><!-- doxytag: class="window" -->
+<p>CSS是Cascading Style Sheet的缩写，中文名为层叠样式表，是一种指定标记文档内容以某种样式规则（Rule）呈现给用户的语言，从而提高页面设计的灵活性，从这点上看，CSS属于布局设计语言的范畴。标记文档即由标记语言构成的信息的集合。样式包括字体、背景等。常见的标记语言文档有：HTML（网页）、XML（常规结构化文档）、SVG（图形）、XUL（Mozilla中的用户界面）。
+<h2>CSS基础</h2>
+<ol>
+	<li> 样式表中每一个条目由选择符（selector）和对应的规则组成，选择符通常是标记文档中的标签元素名称（element）,也可以是类（class）、标识符（id）、伪类（pseudo class，它们标示了超链接的不同状态）、基于以上选择符的多个选择符（即群组选择符）等。</li>
+	<li>样式表的3种形式：
+		<ul>
+			<li>外部样式表:将样式规则写在独立的样式文件（.css）中，并在标记语言文档的首部使用&lt;link&gt;标签加载此样式表文件。同时外部样式表文件可为多个标记语言文档使用。在HTML文件中其使用格式如下：
+			<left><table border="0" cellpadding="0" cellspacing="0">
+				<tr><td class="memitem" valign="bottom"><pre>&lt;link rel="stylesheet" type="text/css" href="样式表文件的URL"&gt;</td></tr></table></left><p>
+			<li>应用于整个文档的样式，位于<head>区，包括嵌入样式表和输入样式表。
+				<p>嵌入样式表：嵌入样式表的使用方式是直接写在head区的style元素内，从而形成应用与整个文档的样式表。这种情况下只需要用到style元素的type属性。如下例所示：
+				<left><table border="0" cellpadding="0" cellspacing="0">
+				<tr><td class="memitem" valign="bottom"><pre>
+&lt;head&gt;
+&lt;style type = "text/css"&gt;
+&lt;!--
+body {
+       font: 10pt;
+       font-family: Serif;
+       color: black;
+       background-color: white;
+       }
+--&gt;
+&lt;/style&gt;
+&lt;/head&gt;
+</td></tr></table></left>
+        <p>输入样式表：输入样式表也是引用一个外部样式表，但不是通过link元素而是在style区内通过@import语法来引用：@import url（css的url地址）；可以在&lt;style&gt;元素内引用一些输入样式表，同时又指定一些只应用于本文档的样式。但是（Netscape）浏览器对输入样式表的支持还不普遍，所以建议使用&lt;link&gt;来引用外部样式表。示例如下：
+        <left><table border="0" cellpadding="0" cellspacing="0">
+				<tr><td class="memitem" valign="bottom"><pre>
+&lt;head&gt;
+&lt;style type = "type/css"&gt;
+&lt;!--
+@import url(corerules.css);
+@import url(linkrules.css);
+/* a rule specific to this document */
+h1{
+  font : 24pt;
+  font-family : Sans-Serif;
+  color : black;
+  text-align : center;
+}
+--&gt;
+&lt;/style&gt;
+&lt;/head&gt;
+</td></tr></table></left>
+</ul>
+<li>样式表内的注释用/* …*/。通过将样式规则包围在HTML注释&lt;!--    --&gt;之间可以让那些不支持样式表技术的老浏览器也能正常工作而不是直接把样式规则显示在屏幕上。一般而言，浏览器会忽略不认识的元素和属性，但包围在元素之间的内容会显示出来。
+<li> 每一条规则必须以分号"；"结束。
+<li>在1中提及样式表支持群组选择符，选择符之间以逗号","隔开。
+</ol>			
+<h3>样式规则的辖域 </h3>
+<p>以上讨论了样式表的存放位置，现在讨论样式表的作用范围，两者既有联系又有区别：行内
+样式规则自然决定了它的影响范围是当前元素，而其他样式规则可以灵活地设置规则的作用范围。
+<ul>
+	<li>简单规则：
+		<p>最简单的规则不妨称它们为文档规则和行内规则。前者可以应用到整个文档中出现的所有的某元素（如所有的&lt;p&gt;元素），后者只应用到当前元素。
+	   <p>
+	<li>id规则：
+		 <p>使用id属性的元素除了可以作为超链接的目标外（类似name属性，在载入页面时将显示定位在页面的指定位置），还可以用它来和样式表中的某个样式规则绑定（比name属性强的地方）。无论是作为超链接的href还是样式规则的选择符，引用id的格式为：＃id值。在一个HTML文档中，id属性值必须全局唯一。	
+	   <p>
+	<li>class规则：	 
+		<p>和id属性一样，class属性也是HTML核心属性之一，多数元素都有该属性。class属性定义了一个元素所属类的名称。class取值不要求唯一，同一类元素的多个实例、多个不同类的元素都可能属于同一个类。使用类可以显著地减少文档中必需的样式规则的数量。样式规则中有两种引用class的格式：
+			 <OL>
+			 	<li>为所有该类的元素设置样式：.类名{样式规则;}
+			 	<li>为属于该类的所有X元素(element)设置样式：X.类名{样式规则;}
+			</ol>
+    <p>
+  <li>伪类（pseudo－classes）和伪元素（pseudo－elements）
+  	<ul>
+  		<li>伪类
+  	<p>一组专门的预定义的类称为伪类，主要用来处理超链接的状态。超链接文字的状态可以通过伪类选择符＋样式规则来控制。伪类选择符包括：
+  	<pre>
+    ① a:link：未访问链接
+　　② a:visited：已访问链接
+　　③ a:active：激活时（链接获得焦点时）链接的颜色
+　　④ a:hover：鼠标移到链接上时
+  </pre>
+   <p>一般a:hover和a:visited链接的状态（颜色、下划线等）应该是相同的。前三者分别对应body元素的link、vlink、alink这三个属性。四个“状态”的先后过程是：a:link ->a:hover ->a:active ->a:visited。另外，a:active不能设置有无下划线（总是有的）。
+   <p>
+   	<li>伪元素
+   	<p>两个伪元素：:first-letter和:first-line。它们常常和像&lt;p&gt;这样的元素引导的一段文字一起使用，用来影响其中首字母或者首行的显示，如p:first-letter和p:first-line。	 
+  </ul>
+  <li>情境选择（contextual selection)
+  	<p>情景选择允许对位于某嵌套层次内的某元素进行样式控制，该规则通过按照嵌套的顺序列出元素的名称，然后给出样式规则来创建。
+  	<p>
+</ul>
+<h3>样式规则的继承与嵌套</h3>
+	<p>该性质允许对元素的多种规则进行组合，既可以从父元素那里继承一些属性，也可以重写某些属性。层叠（CSS中的C）的一般思想有效地创建了一个系统以确定在有多个样式表的文档中哪些规则将被应用。例如，使用id属性为一个特定的&lt;p&gt;元素指定规则，这相对于通过class规则指定的规则具有优先权，而class规则相对于为<p>元素自身指定的规则有优先权。相对于应用于整个文档的样式或链接进来的外部样式，通过一个style属性指定的行内样式是更重要的。考虑究竟哪一个规则将最终生效的简单方法是：越专门的规则优先级越高，和标记位置越近的规则优先级越高。
+	<p>如果需要一个特定的规则永远不被后面的另一条规则重写，可以用!important声明。对希望绝不被忽略的规则，可以在这个规则的分号之前插入声明!important，它一定要放在规则的最后，分号之前的位置，否则将被忽略。另外，许多老版本的浏览器并不支持该声明。
+	<p>示例：使用!important声明不被重写的规则。  			
+   <p><table border="0" cellpadding="0" cellspacing="0">
+   <tr><td class="memitem" valign="bottom"><pre>
+P {color:red !important;font-size:12pt;} 
+&lt;p style="color:green;font-size:24pt;"}...&lt;/p&gt; 
+
+</td></tr></table>
+&lt;p&gt;元素最终将以红色、24点大小显示。
+
+
+ <script>footer("chinese")</script>
+</body>
+</html>

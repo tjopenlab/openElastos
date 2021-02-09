@@ -1,0 +1,138 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>设备驱动程序框架</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>驱动程序接口的实现与配置</h2>
+        <p>Elastos设备驱动程序以静态方式被链入内核映像文件成为内核的一部分。与内核的其他部分一样，设备驱动程序代码在处理器特权态下执行。除了这些特征之外，Elastos设备驱动程序本质上就是一类存在于内核之中的特殊CAR构件。它们都必须通过暴露出一个统一的CAR接口<a class="style1" href="../driver_development/standard_driver_routines/IDeviceDriver.htm">IDeviceDriver</a>来提供服务。</p>
+        <p>所有的内核驱动程序都提供了一致的IDeviceDriver接口，但是却以各自特定于设备的方式来解释IDeviceDriver接口的精确语义。通常，IDeviceDriver接口的<a class="style1" href="../driver_development/standard_driver_routines/IDeviceDriver/Read.htm">Read()</a>方法用于从设备中读入数据；<a class="style1" href="../driver_development/standard_driver_routines/IDeviceDriver/Write.htm">Write()</a>方法用于向设备写数据；而<a class="style1" href="../driver_development/standard_driver_routines/IDeviceDriver/Control.htm">Control()</a>方法则用于向设备发送命令、获取状态信息等等。推荐的标准驱动程序实现方法是通过将驱动程序定义为一个特定的C＋＋类来完成，具体步骤如下：</p>
+        <p>1.在相应的$Elastos/src/kernel/drivers/arch/board/目录下，为所要开发的驱动程序建立一个目录。</p>
+        <p>比如，要写一个鼠标的驱动程序，首先定义其目录名为mouse/，并定义相应的实现文件mouse.cpp和一个sources文件（如图所示，此处只列出drivers子树）；然后修改$Elastos/src/kernel/drivers/arch/board/目录下的dirs文件，将新建的驱动程序目录加入内核的编译链接。</p>
+        <center><img src="images/msetree.jpg"></center>
+        <p>2.在驱动实现文件中定义一个驱动C++类，继承自一个由系统提供的虚基类Driver，并且提供了QueryInterface()、AddRef()/Release()的缺省实现。</p>
+        <p>其定义如下： </p>
+        <pre class="code">
+class Driver : public IDeviceDriver {
+public:
+    CARAPI QueryInterface(
+        /* [in] */ REFIID riid,
+        /* [out] */ void **ppv);
+
+    CARAPI_(ulong_t) AddRef(void);
+
+    CARAPI_(ulong_t) Release(void);
+    …
+    virtual void Dispose() = 0;
+    …
+};
+</pre>
+        <p>除了上面提及的QueryInterface()、AddRef()/Release()的缺省实现之外，Driver基类还定义了一个名为Dispose()的纯虚函数，必须由派生自Driver的驱动类提供实现。此函数设计为在整个对象引用计数到0的时候被调用一次，因此派生的驱动类必须在其Dispose()函数实现中根据驱动类对象的分配策略采取相应释放动作，除非派生类重载了Driver基类的AddRef()/Release()实现。当然，IDeviceDriver接口的Read()、Write()、Control()方法也必须由派生的驱动类来实现。就上例而言，鼠标驱动类的定义可以如下： </p>
+        <pre class="code">
+class Mouse : public Driver {
+public:
+    CARAPI Read(
+        /* [in] */ UINT64 u64Offset,
+        /* [in] */ UINT uNumberOfBytesToRead,
+        /* [out] */ EzByteBuf ebbData,
+        /* [out] */ IEvent * * ppCompletionEvent);
+    CARAPI Write(
+        /* [in] */ UINT64 u64Offset,
+        /* [in] */ EzByteBuf ebbData,
+        /* [out] */ UINT * puNumberOfBytesWritten,
+        /* [out] */ IEvent * * ppCompletionEvent);
+    CARAPI Control(
+        /* [in] */ INT nControlCode,
+        /* [in] */ EzByteBuf ebbInData,
+        /* [out] */ EzByteBuf ebbOutData,
+        /* [out] */ IEvent * * ppCompletionEvent);
+    virtual void Dispose();
+public:
+    Mouse(…);
+    ～Mouse();
+    ECODE InitHw(); //检测并初始化硬件设备
+public:
+    …
+};
+</pre>
+        <p>只要不引起编译冲突，对该驱动程序类的命名没有特殊的规定，可以用驱动程序所对应的设备名直接作为类名。</p>
+        <p>3.将驱动实例相关的数据定义为该驱动类的数据成员，将该驱动类相关的数据定义为该驱动类的静态数据成员或静态全局变量，并且将驱动类本身所需的初始化和析构化动作放在该驱动类的构造和析构函数中实现。 </p>
+        <p>通常情况下，驱动程序中不依赖于硬件的软件状态初始化动作应该放在驱动类的构造函数中实现。而诸如检测并初始化硬件设备的操作因为有可能会失败，则应当在创建出驱动构件实例后再执行。上例中定义了一个函数InitHw()来检测并初始化鼠标硬件设备。该函数将于驱动程序的创建方法中被调用。 </p>
+        <p>4. 定义并实现IDeviceDriver接口的Read()、Write()、Control()方法（以下就简称这三个方法为RWC方法）。</p>
+        <p>设备的使用者通过调用驱动程序的RWC方法来请求I/O服务，也就是说RWC方法将由请求I/O服务的线程执行。RWC方法和从RWC方法中直接间接调用到的函数皆被视为驱动程序的上半部分（top&nbsp;half）。驱动程序的上半部分在系统模式下执行，它既可以访问一些内核数据结构，也可以访问当前线程/进程上下文。因此在上半部分的执行过程中，可以调用<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/thread/method/DzSleep.htm">DzSleep()</a>例程使自己睡眠，或是使用同步对象；也可以调用其他可能会被阻塞的内核功能服务，如分配内存等。</p>
+        <p>RWC方法所使用的栈空间是请求I/O服务的线程的内核栈空间。Elastos内核对线程的内核栈空间的大小是有严格限制的。总体上来说，对线程的内核栈空间的使用最多不能超过7K字节。所以在实现RWC方法时，应当尽量避免在栈上分配的非常大的数据结构。</p>
+        <p>另外，Elastos内核是完全可抢占式的，因此驱动程序上半部分的运行可能会被其他更高优先级线程所抢占。如果某个驱动程序会被多个用户并发访问，请注意做好同步工作（关抢先或使用同步对象），以避免共享数据间的竞争条件。</p>
+        <p>上文中提及的驱动程序初始化和析构化动作也属于上半部分。</p>
+        <p>此外，驱动程序往往需要对相应设备产生的中断进行响应。为此，Elastos内核中断管理子系统提供了一个标准内核服务接口<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/DzRegisterIsr.htm">DzRegisterIsr()</a>函数，驱动程序可以通过该函数来向系统注册它的中断服务程序（以下简称为ISR）。当发生一个设备中断时，系统就会调用起对应事先注册好的ISR来响应该中断。系统还提供了一个标准内核功能接口<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/DzUnregisterIsr.htm">DzUnregisterIsr()</a>函数，驱动程序可以通过该函数来向系统注销它的ISR函数。 </p>
+        <p>通常情况下，驱动程序应该在其初始化过程中注册它的ISR，而在其析构化过程中注销它的ISR。</p>
+        <p>设备硬件中断的出现是异步的，并不依赖于任何线程的运行。因此，产生中断的当前线程/进程的上下文对ISR而言是不可知的。ISR函数和从ISR函数中直接或间接调用到的函数皆被视为驱动程序的下半部分（bottom half）。驱动程序的下半部分的执行既不能依赖于进程的状态，也不能被挂起或阻塞，因此驱动程序下半部分中能够调用的内核功能非常有限。除非有特别声明，否则内核服务皆不可用于驱动程序的下半部分。与之相反，除了个别作特殊声明的内核服务以外，绝大多数内核服务皆可用于驱动程序的上半部分。</p>
+        <p>进一步来说，Elastos中断管理是基于固定优先级策略的。当调用RegisterIsr()函数时，传入的参数ipl指定了相应设备中断的中断优先级，范围从IPL0到IPL31，共有32个级别，数值越小，优先级越高。这个中断优先级从注册ISR时被指定以后就不再发生变化，属于固定优先级。整个处理中断的内核代码（包括驱动程序的下半部分）的运行依赖于一个称为“当前系统中断优先级”的全局概念，只有高于当前系统中断优先级的中断才能得到响应。当系统调用某个驱动程序的ISR前，当前系统中断优先级会被提升到该ISR的中断优先级，从而屏蔽了优先级相等或者更低的中断的响应。而在ISR返回后，当前系统中断优先级会恢复原先的值。从概念上讲，所有中断的优先级高于所有线程的优先级。所以驱动程序的下半部分的运行不会被任何线程抢占，只会让比它的中断优先级更高的中断嵌套执行；而驱动程序的上半部分的运行除了会被其他更高优先级线程所抢占外，也会被任意中断所打断。但是，驱动程序的上半部分可以通过提升当前系统中断优先级（参见<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/DzRaiseCurrentIpl.htm">DzRaiseCurrentIpl()</a>和<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/DzLowerCurrentIpl.htm">DzLowerCurrentIpl()</a>函数）到一个合适的值，以屏蔽下半部分的中断响应。也可以通过临时禁止掉指定设备的中断响应的方法（参见<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/DzEnableIrq.htm">DzEnableIrq()</a>和<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/DzDisableIrq.htm">DzDisableIrq()</a>函数），来避免驱动程序的上、下半部分之间的竞争条件。</p>
+        <p>实际上，只要系统运行于恰当的当前系统中断优先级下，驱动程序的ISR就能够非常快的响应中断。因此将一些需要尽快被执行的硬件设备响应动作安排在ISR中进行是比较适合的。如上所述，驱动程序ISR的执行期间会屏蔽优先级相等或更低的中断，暂停系统中所有的线程执行，因此把并不是很紧急而且花费时间很长的操作放在ISR中进行将会严重影响整个系统的实时响应性能。而且ISR不允许被挂起或阻塞，这将导致许多需要请求内核服务的操作也无法在ISR中进行。所以应将不是很紧急且花费时间很长的操作放在驱动程序的上半部分中进行。驱动程序的上、下半部分之间通讯与协作可以通过诸如工作队列或缓冲区这样的共享数据结构进行，也可以通过概念上的“中断服务线程”进行。</p>
+        <p>5.为驱动程序实现一个创建函数（工厂方法），负责进行驱动构件实例的创建和初始化。</p>
+        <p>所有的驱动实例创建函数在系统中共享同一个名字空间，所以必须拥有全局唯一的名字。建议的命名规则为：“CreateDevice” ，其中“Device”部分应被替换成具体驱动程序所对应的设备名。就上例而言，可命名为：“CreateMouse”。所有驱动程序的创建函数必须是如下一致的类型：</p>
+        <pre class="code">
+IDeviceDriver *CreateDevice(uint_t uDeviceNo, void *pvParameter);
+</pre>
+        <p>驱动实例创建函数接收两个参数，设备号（uDeviceNo）和设备附加信息（pvParameter）。设备号指明为该类设备中具体哪一个实例创建驱动构件实例；设备附加信息从系统中已注册的设备信息中直接传递过来。如果创建对象并初始化成功，驱动创建函数应该直接将创建出来的对象的引用以IDeviceDriver接口指针类型返回；如果创建或初始化失败，则返回NULL。</p>
+        <p>创建函数的具体实现也与该驱动程序所要求的创建模式有关。一般情况下一个驱动程序会有多个实例，此时可以直接运用C++的new操作符从内核堆中分配驱动构件实例。就上例而言，可以实现如下：</p>
+        <pre class="code">
+EXTERN IDeviceDriver * CDECL CreateMouse(
+    uint_t uDeviceNo, void *pvParameter)
+{
+    …
+    Mouse *pMouse = new Mouse (…);
+    if (NULL == pMouse) return NULL; // 内存不足
+    …
+    ECODE ec = pMouse->InitHw();
+    if (FAILED(ec)) { // 检测不到硬件设备或初始化硬件设备出错
+        delete pMouse;
+        return NULL;
+    }
+    …
+    pMouse ->AddRef();
+    return pMouse; // 创建驱动构件实例成功
+}
+</pre>
+        <p>（注意遵循COM引用计数规则，不要忘记AddRef()。）</p>
+        <p>相应地，该驱动类的Dispose()方法中应该运用C++的delete操作符来删除对象，以释放内存。就上例而言，可以实现如下：</p>
+        <pre class="code">
+void Mouse::Dispose()
+{
+    // 关闭硬件设备，注销ISR
+    …
+    delete this;
+}
+</pre>
+        <p>另外有种比较常见的情况，一个驱动程序仅有一个静态实例（即SINGLETON模式）。此时该驱动构件实例可定义为一个静态全局变量。相应地，在该驱动类的Dispose()方法中就无需进行释放操作了。</p>
+        <p>6.将驱动程序的信息静态地加入一张全局驱动配置表中。</p>
+        <p>加入驱动配置表中的驱动程序信息只需要有驱动程序所对应的设备名和驱动实例创建函数的地址这两项即可。内核为这张全局驱动配置表维护一个以<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/data_structure/DriverConfig.htm">struct&nbsp;DriverConfig</a>为元素类型的数组s_driverConfigs加上uint_t类型的全局变量uNumberOfDriverConfigs来指明该数组的实际长度。通常情况下，s_driverConfigs和uNumberOfDriverConfigs的实现位于$Elastos/src/kernel/drivers/arch/board/config/config.cpp中。</p>
+        <p>就上例而言，可以以如下方法配置鼠标驱动程序：</p>
+        <pre class="code">
+…
+#define DEVICENAME_MOUSE L"mouse"
+…
+EXTERN IDeviceDriver * CDECL CreateMouse(
+uint_t uDeviceNo, void *pvParameter);
+…
+//
+// Driver Configurations
+//
+DriverConfig g_driverConfigs[] = {
+    …
+    { DEVICENAME_MOUSE, &CreateMouse },
+    …
+};
+uint_t g_uNumberOfDriverConfigs = lengthof(g_driverConfigs);
+</pre>
+        <p>对于设备的最终使用者而言，虽然他实际上必须通过驱动程序来请求设备I/O服务，但是他并不特别关心设备与驱动程序两者之间有何区别。而对于系统而言，设备与驱动程序之间的区别是很明显的，从理论上讲两者都可以独立存在。只不过没有对应驱动程序的设备无法为最终用户所用，而没有对应设备的驱动程序也无法发挥它的功能，所以驱动配置表和设备配置表只是在概念上的独立。</p>
+        <p>在内核初始化阶段，系统会读取设备配置表中的设备信息，用户也会通过<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/method/DzRegisterDevice.htm">DzRegisterDevice()</a>函数动态地向系统注册设备信息。无论是通过上述哪种方法，系统一旦感知到了新设备的存在，就会立即通过匹配设备名为其寻找所对应的驱动程序。如果能够找到，系统会通过调用此新设备所对应的驱动程序的创建函数来创建相应的驱动实例。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

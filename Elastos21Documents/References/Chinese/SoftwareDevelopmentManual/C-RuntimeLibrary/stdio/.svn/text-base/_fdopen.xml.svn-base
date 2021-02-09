@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_fdopen">_fdopen</sample>
+    <title>_fdopen, _wfdopen</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>将流和指定文件相关联，此文件先前为低级I/O打开。</para>
+    </description>
+
+    <syntax>
+        <return_val>FILE *</return_val>
+        <func_name>_fdopen </func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>文件句柄</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char *</param_type>
+                <param_name>mode</param_name>
+                <param_note>
+                    <para>文件打开模式</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>FILE *</return_val>
+        <func_name>_wfdopen </func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wconst_t char *</param_type>
+                <param_name>mode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回指向被打开文件的指针，如果出错，返回空指针。</para>
+    </return>
+
+    <remarks>
+        <para>函数_fdopen通过文件句柄，使流和指定文件相关联，从而能对该文件进行缓冲和格式化操作。_wdfopen是_dfopen的宽字符版本。_wdfopen的参数都是宽字符串，除此之外，_wdfopen和_fdopen是一样的。</para>
+        <para>参数mode指定了的文件打开方式，具体内容如下：</para>
+        <table>
+            <th>
+                <td>参数mode的值</td>
+                <td>对应的文件打开方式</td>
+            </th>
+            <tr>
+                <td> "w" </td>
+                <td>以只写方式打开空文件。如果给定的文件存在，内容将被清空。</td>
+            </tr>
+
+            <tr>
+                <td> "r" </td>
+                <td>以只读方式打开文件。如果文件不存在或者没有找到，函数调用失败。</td>
+            </tr>
+
+            <tr>
+                <td> "a" </td>
+                <td>以追加方式打开文件，在写入数据前不删除EOF标志。如果文件不存在，则首先创建文件。</td>
+            </tr>
+
+            <tr>
+                <td> "w+" </td>
+                <td>以读/写方式打开一个空文件。如果给定的文件存在，内容将被清空。</td>
+            </tr>
+
+            <tr>
+                <td> "r+" </td>
+                <td>以读/写方式打开文件(此文件必须存在）。</td>
+            </tr>
+
+            <tr>
+                <td> "a+" </td>
+                <td>以读/追加方式打开文件；追加操作包括：向文件写入新数据之前删除EOF标志，完成写入后重建EOF标志；如果文件不存在，则首先创建文件。</td>
+            </tr>
+        </table>
+
+        <para>当文件以"a"或"a+"的方式打开时，所有写操作都发生在文件末尾。调用函数fseek或rewind可以重新定位文件指针，但是进行任何写操作之前，文件指针都会移回到文件末尾。因而，已有数据不能被改写。</para>
+        <para>当指定"r+"、"w+"或者"a+"的访问方式后，读和写都是允许的(也就是说，文件是为更新而打开的)。然而，在读和写之间切换时，必须插入fflush、fseek或者rewind操作。如果需要，可以用fseek或者fsetpos函数操作指定文件指针的当前位置。</para>
+
+        <para>除了上述参数以外，mode中可以包含如下字符，来指定换行符的转换方式。</para>
+        <table>
+            <th>
+                <td>参数mode中包含的字符</td>
+                <td>对应的换行符的转换方式</td>
+            </th>
+            <tr>
+                <td> t </td>
+                <td>以文本(转换后)方式打开文件。在这种模式下，CTRL+Z被认为是文件的结束标志。以"a+"方式打开文件读/写时，_fdopen在文件末尾检测并删除CTRL+Z。这样做是因为，在以CTRL+Z结束的文件中，调用fseek和ftell移动文件指针时，在文件末尾附近fseek可能会发生错误。并且, 在文本模式下，输入时的回车和换行符转换为单个换行符；输出时，换行符转换为回车和换行两个字符。</td>
+            </tr>
+
+            <tr>
+                <td>b</td>
+                <td>以二进制方式(未转换)打开文件，不进行包括回车和换行符在内的转换。</td>
+            </tr>
+
+            <tr>
+                <td>c</td>
+                <td>设置相关的filename的确认位有效，以便调用fflush时，文件缓冲区的内容可以直接写入磁盘。</td>
+            </tr>
+
+            <tr>
+                <td>n</td>
+                <td>重新设置相关的filename的确认位无效。这是缺省设置。</td>
+            </tr>
+        </table>
+        <para>模式选项c，n，t是fopen和_fdopen的扩展，当需要兼容ANSI时，不应该使用它们。</para>
+        <para>如果t或b作为参数的前缀，函数调用失败，返回NULL。</para>
+
+        <para>_fdopen（_wfdopen）的参数mode的有效字符与_open的参数oflag的对照关系如下表所示：</para>
+        <table>
+            <th>
+                <td>状态串中的字符</td>
+                <td> _open中相应的oflag值</td>
+            </th>
+            <tr>
+                <td>a</td>
+                <td>_O_WRONLY | _O_APPEND (usually _O_WRONLY | _O_CREAT | _O_APPEND) </td>
+            </tr>
+            <tr>
+                <td>a+</td>
+                <td>_O_RDWR | _O_APPEND (usually _O_RDWR | _O_APPEND | _O_CREAT )</td>
+            </tr>
+            <tr>
+                <td>r</td>
+                <td>_O_RDONLY</td>
+            </tr>
+            <tr>
+                <td>r+</td>
+                <td>_O_RDWR</td>
+            </tr>
+            <tr>
+                <td>w</td>
+                <td>_O_WRONLY (usually _O_WRONLY | _O_CREAT | _O_TRUNC)</td>
+            </tr>
+            <tr>
+                <td>w+</td>
+                <td>_O_RDWR (usually _O_RDWR | _O_CREAT | _O_TRUNC)</td>
+            </tr>
+            <tr>
+                <td>b</td>
+                <td>_O_BINARY</td>
+            </tr>
+            <tr>
+                <td>t</td>
+                <td>_O_TEXT</td>
+            </tr>
+            <tr>
+                <td>c</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>n</td>
+                <td>None</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_fdopen</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wfdopen</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _fdopen.cpp: This program opens a file using low-
+ * level I/O, then uses _fdopen to switch to stream
+ * access. It counts the lines in the file.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;io.h&gt;
+
+int main()
+{
+    FILE *stream;
+    int  fh, count = 0;
+    char inbuf[128];
+
+    /* Open a file handle. */
+    if ((fh = _open(&quot;_fdopen.exe&quot;, _O_RDONLY)) == -1) {
+        perror(&quot;open failed on input file&quot;);
+        return 1;
+    }
+
+    /* Change handle access to stream access. */
+    if ((stream = _fdopen(fh, &quot;r&quot;)) == NULL)
+         return 1;
+
+    while (fgets(inbuf, 128, stream) != NULL)
+         count++;
+
+    /* After _fdopen, close with fclose, not _close. */
+    fclose(stream);
+    printf(&quot;Lines in file: %d\n&quot;, count);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Lines in file: 353
+</result>
+
+   
+    <references>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fopen</ref_name>
+            <ref_url>_wfopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_open</ref_name>
+            <ref_url>../io/_wopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

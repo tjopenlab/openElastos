@@ -1,0 +1,58 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址薄引擎</volume>
+<interface>IEntity</interface><method> EnumFieldInfo </method>
+    <description>
+        <para>
+          枚举记录的字段信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IObjectEnumeratorRef * </param_type>
+                <param_name> pContactFieldInfoEnum </param_name>
+                <param_note>
+                    <para>
+                      返回的记录对象的枚举器接口指针
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>地址簿错误码 </td>
+	    	    <td>地址簿操作错误 </td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../AddressBook_error.htm">地址簿错误码</link>相关帮助。</para>
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+         <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CAddressBook.h, CContactGroup.h, Abdata.h, spcomm.h, sperr.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elacrt.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

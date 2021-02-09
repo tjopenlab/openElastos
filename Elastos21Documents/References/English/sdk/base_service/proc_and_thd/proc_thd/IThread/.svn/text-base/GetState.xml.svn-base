@@ -1,0 +1,97 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IThread\GetState">GetState</sample>
+<volume>Process And Thread</volume>
+<interface>IThread</interface><method> GetState </method>
+    <description>
+        <para>
+			Gets the state of the thread.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ThreadState* </param_type>
+                <param_name> pState  </param_name>
+                <param_note>
+                    <para>
+						Pointer to a enum ThreadSate, which contains thread state.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value</td>
+		        <td>Hex Value</td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>NOERROR</td>
+		        <td>0x00000000</td>
+		        <td>Function succeeds in getting the thread state</td>
+	        </tr>
+	        <tr>
+		        <td>E_INVALID_ARGUMENT</td>
+		        <td>0x80070057</td>
+		        <td>Invalid argument(s)</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			If pState is NULL, the function will return E_INVALIDARG. The initial state is ThreadState_Unstarted.
+		</para>
+        <table>
+			<th>
+				<td>State</td>
+				<td>Hex Value</td>
+				<td>Description</td>
+			</th>
+			<tr>
+				<td>ThreadState_Running</td>
+				<td>0x00</td>
+				<td>The thread is running.</td>
+			</tr>
+			<tr>
+				<td>ThreadState_Sleeping</td>
+				<td>0x01</td>
+				<td>The thread is sleeping.</td>
+			</tr>
+			<tr>
+				<td>ThreadState_Suspended</td>
+				<td>0x04</td>
+				<td>The thread is suspended.</td>
+			</tr>
+			<tr>
+				<td>ThreadState_Finished</td>
+				<td>0x10</td>
+				<td>The thread is finished.</td>
+			</tr>
+			<tr>
+				<td>ThreadState_Unstarted</td>
+				<td>0x20</td>
+				<td>The thread is not started.</td>
+			</tr>
+		</table>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

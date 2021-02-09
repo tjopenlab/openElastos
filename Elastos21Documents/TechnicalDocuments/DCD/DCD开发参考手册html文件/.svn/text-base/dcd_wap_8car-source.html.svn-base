@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Kortide DCD API: dcdWap.car源文件</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="main.html"><span>首页</span></a></li>
+    <li><a href="annotated.html"><span>类</span></a></li>
+    <li class="current"><a href="files.html"><span>文件</span></a></li>
+  </ul>
+</div>
+<h1>dcdWap.car</h1><a href="dcd_wap_8car.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00008"></a>00008         <a class="code" href="dcdenum_8car.html#ece92a3985bb8db09e5a9201858bb583">DCD_Extern</a> <a class="code" href="dcdenum_8car.html#a9c0a0b2f6a4660ca7cb028e26feb8ca" title="内核对象的句柄，根据平台的支持亦可定义：typedef unsigned long...">Handle</a> <a class="code" href="dcd_wap_8car.html#acd6bf0a421e5df740b73778c80bd812" title="连接wap网关.">DCDWapConnect</a>(
+<a name="l00009"></a>00009                         <span class="comment">/* [in] */</span> <span class="keywordtype">char</span> *pszWapGatewayAddr,
+<a name="l00010"></a>00010                         <span class="comment">/* [in] */</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> port
+<a name="l00011"></a>00011                         );
+<a name="l00012"></a>00012 
+<a name="l00019"></a>00019         <a class="code" href="dcdenum_8car.html#ece92a3985bb8db09e5a9201858bb583">DCD_Extern</a> <span class="keywordtype">int</span> <a class="code" href="dcd_wap_8car.html#a19095ec3f3f7f703e0467c1bdfe6639" title="断开wap连接.">DCDWapDisconnect</a>(
+<a name="l00020"></a>00020                         <span class="comment">/* [in] */</span> <a class="code" href="dcdenum_8car.html#a9c0a0b2f6a4660ca7cb028e26feb8ca" title="内核对象的句柄，根据平台的支持亦可定义：typedef unsigned long...">Handle</a> wapHandle
+<a name="l00021"></a>00021                         );
+<a name="l00022"></a>00022 
+<a name="l00033"></a><a class="code" href="dcd_wap_8car.html#b927e3a8a9b4e547a020a0ea1df751d0">00033</a>         <span class="keyword">typedef</span> int  (*<a class="code" href="dcd_wap_8car.html#b927e3a8a9b4e547a020a0ea1df751d0" title="请求数据时的回调方法.">DCDWapGetCallBack</a>) (
+<a name="l00034"></a>00034                         <span class="comment">/* [in] */</span> <span class="keywordtype">int</span> nStatus,
+<a name="l00035"></a>00035                         <span class="comment">/* [in] */</span> <span class="keywordtype">void</span>* pBuf,
+<a name="l00036"></a>00036                         <span class="comment">/* [in] */</span> <span class="keywordtype">int</span> nBufLen,
+<a name="l00037"></a>00037                         <span class="comment">/* [in] */</span> <span class="keywordtype">char</span> * pHeaders
+<a name="l00038"></a>00038                         );
+<a name="l00039"></a>00039 
+<a name="l00051"></a>00051         <a class="code" href="dcdenum_8car.html#ece92a3985bb8db09e5a9201858bb583">DCD_Extern</a> <span class="keywordtype">int</span> <a class="code" href="dcd_wap_8car.html#bf35b1c9ef77103ef4e8d8b2554c423f" title="请求Wap数据, http get方法.">DCDWapGet</a>(
+<a name="l00052"></a>00052                         <span class="comment">/* [in] */</span> <a class="code" href="dcdenum_8car.html#a9c0a0b2f6a4660ca7cb028e26feb8ca" title="内核对象的句柄，根据平台的支持亦可定义：typedef unsigned long...">Handle</a> wapHandle,
+<a name="l00053"></a>00053                         <span class="comment">/* [in] */</span> <span class="keywordtype">char</span> *pUri,
+<a name="l00054"></a>00054                         <span class="comment">/* [in] */</span> <span class="keywordtype">char</span> *pHeaders,
+<a name="l00055"></a>00055                         <span class="comment">/* [in] */</span> <a class="code" href="dcd_wap_8car.html#b927e3a8a9b4e547a020a0ea1df751d0" title="请求数据时的回调方法.">DCDWapGetCallBack</a> resCallBack
+<a name="l00056"></a>00056                         <span class="comment">/* [in] */</span> <a class="code" href="dcdenum_8car.html#a55c825970107ffb49428d8d1cf480b3" title="宽窄串的定义，如果平台支持宽串，则定义：typedef wchar_t DcdChar...">DcdChar</a> *pFileName);
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated at Thu Mar 27 11:35:55 2008 for Kortide DCD API by&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.4 </small></address>
+</body>
+</html>

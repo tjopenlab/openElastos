@@ -1,0 +1,42 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--lastdate</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>lastdate</h2>
+    <p>This attribute is used to modify component or class.It marks the last modification date of the component or class. The syntax is: lastdate(yyyy-mm-dd) or lastdate(mm/dd/yyyy), among which yyyy represents year, mm represents month, dd represents date. For example: </p>
+    <pre class="code">
+[
+    uuid(3ad29575-9a00-44aa-8dae-9a80cefe0398),
+    uunm(http://www.koretide.com/car/DateDemo.dll),
+    <b>lastdate</b>(2002-04-05)  //the last modification date of component DateDemo is 2002, April, 5th.
+]
+component DateDemo
+{
+    [uuid(2e85df5c-8d94-485c-bca4-4ae3556b0f4d)]
+    interface IInterface {
+        ECODE Func([in] int i);
+    }
+    [
+        uuid(db2cdcad-0ed8-4eaf-b259-0e5d477b49f3)
+        <b>lastdate</b>(04/05/2002)  //the last modification date of class CClass is 2002, April, 5th.
+    ]
+    class CClass {
+        interface IInterface;
+    }
+}
+</pre>
+    <p>In sample component DateDemo, the last modification date of DateDemo is 2002, April, 5th. The last modification date of class CClass is 2002, April, 5th.</p>
+    <p>This attribute is optional.</p>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

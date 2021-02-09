@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strcmp">strcmp</sample>
+    <title>strcmp, wcscmp</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Compare strings.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>strcmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string1</param_name>
+                <param_note>
+                    <para>Null-terminated string to compare.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string2</param_name>
+                <param_note>
+                    <para>Null-terminated string to compare.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>wcscmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string1</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string2</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The return value for both functions indicates the lexicographic relation of string1 to string2. Please see the following table for details: </para>
+        <table>
+            <th>
+                <td>Value </td>
+                <td>Relationship of string1 to string2.</td>
+            </th>
+            <tr>
+                <td><![CDATA[< 0]]></td>
+                <td>string1 less than string2.</td>
+            </tr>
+            <tr>
+                <td><![CDATA[= 0]]></td>
+                <td>string1 identical to string2.</td>
+            </tr>
+            <tr>
+                <td><![CDATA[> 0]]></td>
+                <td>string1 greater than string2.</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The strcmp function compares string1 and string2 lexicographically and returns a value indicating their relationship. wcscmp is a wide-character version of strcmp. The arguments and return value of wcscmp are wide-character strings. Both functions behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strcmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcscmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    int isMatch;
+    char str1[10] = &quot;Hello&quot;;
+    char str2[10] = &quot;hello&quot;;
+
+    isMatch = strcmp(str1, str2);
+
+    if (isMatch == 0) {
+        printf(&quot;str1: %s = str2: %s \n&quot;, str1, str2);
+    }
+    else if (isMatch &gt; 0) {
+        printf(&quot;str1: %s &gt; str2: %s \n&quot;, str1, str2);
+    }
+    else if (isMatch &lt; 0) {
+        printf(&quot;str1: %s &lt; str2: %s \n&quot;, str1, str2);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+str1: Hello &lt; str2: hello
+</result>
+
+    <references>
+        <reference>
+            <ref_name> memcmp </ref_name>
+            <ref_url> memcmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _wstricmp </ref_name>
+            <ref_url> _wcsicmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wstrcmp </ref_name>
+            <ref_url> wcsncmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _wstrnicmp </ref_name>
+            <ref_url> _wcsnicmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wstrchr </ref_name>
+            <ref_url> wcschr </ref_url>
+        </reference>
+    </references>
+
+</manpage>

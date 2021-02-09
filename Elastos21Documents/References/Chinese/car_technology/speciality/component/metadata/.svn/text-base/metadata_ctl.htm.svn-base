@@ -1,0 +1,39 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Elastos是如何组织元数据的？</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>CTL&nbsp;metadata</h2>
+    <p>Elastos里的接口元数据来源于CAR（component&nbsp;assembly&nbsp;runtime）文件，该文件等同于微软的idl文件，经过Car编译器cdlc.exe产生元数据文件。编译的时候把元数据文件打包到dll中，就可以通过DLL的导出函数DllGetClassObject()找到。</p>
+    <p>CAR文件描述了一个构件里所包含的类对象的组织信息（如类的排列顺序、包含的接口）、各个接口的信息（如接口的种类、包含的接口方法）、各个方法的信息（如接口方法参数的种类、排列顺序等）以及CLSID等信息。</p>
+    <p>下面请看hello构件的CAR文件（hello.car）的内容：</p>
+    <pre class="code">
+
+module Hello
+{
+
+    interface IHello {
+        ECODE Hello([in] EzStr inStr, [out] EzStrBuf outStrBuf);
+    }
+
+    class CHello {
+        interface IHello;
+    }
+}
+</pre>
+    <p>编译hello.car，编译器在目标文件夹生成.cls文件，这是一个经过zip压缩过的文件。</p>
+    <p>然后根据生成的.cls文件，在目标目录产生包含客户所需接口信息的头文件hello.h供客户端使用。还有一种自描述的方式，就是在客户文件中用#import&lt;hello.dll&gt;代替#include&lt;hello.h&gt;。这是因为系统工具会在编译前使用工具mkimport对原文件作预处理，遇到import语句时，会到该dll的资源段寻找元数据生成相应的信息，从而实现了dll自带元数据的自描述。</p>
+    <p>根据生成的.cls文件，再通过系统工具cls2src可以生成HelloClsInfo.cpp、_CHello.cpp、_CHello.h、_hellopub.cpp和_Hello_1_0.h。HelloClsInfo.cpp文件是提供给列/散集（marshalling）使用的一个简化版元数据；_CHello.cpp和_CHello.h自动生成了接口的实现，为用户省去了一项重复又易出错的工作；_hellopub.cpp生成了DllGetClassObject函数的实现；_Hello_1_0.h包含了生成的hello.h文件的元数据。这些自动生成的文件会和用户自己编写的源文件一起生成服务器构件。</p>
+    <p>具体流程请参看下图。其中灰色部分为用户所需完成的原始文件。</p>
+    <center><img src="images/metadata.jpg"></center>
+
+<script>footer("chinese")</script>
+</body>
+</html>

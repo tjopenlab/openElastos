@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> sed </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para>Non-interactive text stream editor.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> SED </cmd_name>
+        <cmd_param> [-?] [address1[,address2]]function[filename] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> address1 </param_name>
+        <param_note> Line number or regular expression string </param_note>
+    </param>
+    <param>
+        <param_name> address2 </param_name>
+        <param_note> Line number or regular expression string </param_note>
+    </param>
+    <param>
+        <param_name> function </param_name>
+        <param_note> sed internal function, represents editing action executed </param_note>
+    </param>
+    <param>
+        <param_name> filename </param_name>
+        <param_note> Input file </param_note>
+    </param>
+    </parameters>
+    <remarks>
+        <para>Sed edits text copies from stdin (standard input) or file and outputs the result to stdout (standard output).</para>
+        <para>When executing sed command from command line, the actual command must be put within single quots ('  '). sed also allows to add double quots ("  ").</para>
+        <para>If no file names are specified, sed accepts input from stdin, usually it is keyboard or redirection result.</para>
+        <para>For details please reference sed related documentation.</para>
+    </remarks>
+
+    <examples>
+    <example>
+        <eg_line>sed 's/Glenn/Harold/g' file1.txt >file2.txt  </eg_line>
+        <eg_note>
+            Replaces each occurrence of "Glenn" in file file1.txt with "Harold", output the result in file2.txt . The search part 's/Glenn/Harold/g' is a regular expression.
+        </eg_note>
+    </example>
+
+    </examples>
+
+</manpage>

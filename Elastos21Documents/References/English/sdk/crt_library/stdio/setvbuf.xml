@@ -1,0 +1,152 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\setvbuf">setvbuf</sample>
+    <title>setvbuf</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Controls stream buffering and buffer size.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>setvbuf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>User-allocated buffer.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int*</param_type>
+                <param_name>mode</param_name>
+                <param_note>
+                    <para>Mode of buffering.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>Buffer size in bytes. Allowable range: 2 &lt; size &lt; 32768. Internally, the value supplied for size is rounded down to the nearest multiple of 2.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns 0 if successful, or a nonzero value if an illegal type or buffer size is specified.</para>
+    </return>
+
+    <remarks>
+        <para>The setvbuf function allows the program to control both buffering and buffer size for stream. stream must refer to an open file that has not undergone an I/O operation since it was opened. The array pointed to by buffer is used as the buffer, unless it is NULL, in which case setvbuf uses an automatically allocated buffer of length size/2 * 2 bytes.</para>
+        <para>The mode must be _IOFBF, _IOLBF, or _IONBF. If mode is _IOFBF or _IOLBF, then size is used as the size of the buffer. If mode is _IONBF, the stream is unbuffered and size and buffer are ignored. Values for mode and their meanings are:</para>
+        <table>
+            <th>
+                <td>Values for mode</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td> _IOFBF </td>
+                <td> Full buffering; that is, buffer is used as the buffer and size is used as the size of the buffer. If buffer is NULL, an automatically allocated buffer size bytes long is used.</td>
+        	</tr>
+
+        	<tr>
+        	    <td> _IOLBF </td>
+        	    <td> Line buffering.</td>
+        	</tr>
+
+        	<tr>
+        	    <td> _IONBF </td>
+        	    <td> No buffer is used, regardless of buffer or size.</td>
+        	</tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>setvbuf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* setvbuf.cpp: This program opens two streams: stream1
+ * and stream2. It then uses setvbuf to give stream1 a
+ * user-defined buffer of 1024 bytes and stream2 no buffer.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buf[1024];
+    FILE *stream1, *stream2;
+
+    if (((stream1 = fopen(&quot;data1&quot;, &quot;a&quot;)) != NULL) &amp;&amp;
+         ((stream2 = fopen(&quot;data2&quot;, &quot;w&quot;)) != NULL)) {
+        if (setvbuf(stream1, buf, _IOFBF, sizeof(buf)) != 0)
+            printf(&quot;Incorrect type or size of buffer for stream1\n&quot;);
+        else
+            printf(&quot;&apos;stream1&apos; now has a buffer of 1024 bytes\n&quot;);
+        if (setvbuf(stream2, NULL, _IONBF, 0) != 0)
+            printf(&quot;Incorrect type or size of buffer for stream2\n&quot;);
+        else
+            printf(&quot;&apos;stream2&apos; now has no buffer\n&quot;);
+        _fcloseall();
+    }
+    else
+        printf(&quot;problem open the file!!&quot;);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+&apos;stream1&apos; now has a buffer of 1024 bytes
+&apos;stream2&apos; now has no buffer
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fflush</ref_name>
+            <ref_url>fflush</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fopen</ref_name>
+            <ref_url>_wfopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>setbuf</ref_name>
+            <ref_url>setbuf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

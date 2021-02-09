@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICanvas</interface><method> DrawStretchedImage </method>
+    <description>
+        <para>
+            绘制拉伸图形。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> dstX </param_name>
+                <param_note>
+                    <para>
+目标Graphics左上角的x坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+               <param_name> dstY </param_name>
+                <param_note>
+                    <para>
+目标Graphics左上角的y坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> dstWidth </param_name>
+                <param_note>
+                    <para>
+目标Graphics宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+               <param_name> dstHeight </param_name>
+                <param_note>
+                    <para>
+目标Graphics高度                    </para>
+                </param_note>
+            </api_param>        
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IImage* </param_type>
+                <param_name> image </param_name>
+                <param_note>
+                    <para>
+指向<link url="../IImage.htm">IImage</link>接口类型的指针,用于指定绘制图像的画笔，不能为空                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> srcX </param_name>
+                <param_note>
+                    <para>
+源Graphics左上角的x坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> srcY </param_name>
+                <param_note>
+                    <para>
+源Graphics左上角的y坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> srcWidth </param_name>
+                <param_note>
+                    <para>
+源Graphics的宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> srcHeight </param_name>
+                <param_note>
+                    <para>
+源Graphics的高度                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

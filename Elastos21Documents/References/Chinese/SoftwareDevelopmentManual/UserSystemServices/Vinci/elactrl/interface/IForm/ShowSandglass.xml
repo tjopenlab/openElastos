@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> ShowSandglass </method>
+    <description>
+        <para>
+            显示沙漏。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> SandglassStyle </param_type>
+                <param_name> style </param_name>
+                <param_note>
+                    <para>
+沙漏的风格，默认图片或者用户自定义图片，详见 <link url="../../datatype/SandglassStyle.htm">SandglassStyle</link></para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  调用该方法后，Form 的 enable 属性就为 false，直至调用了 <link url="HideSandglass.htm">HideSandglass</link> 方法。
+	  </para>
+	  <para>
+	  	  当 SandglassStyle 指定为 SandglassStyle_UserImage 时，可以通过 <link url="SetSandglassImage.htm">SetSandglassImage</link> 设置用户自定义的沙漏图片。 
+	  </para>
+	  <para>
+	  	  沙漏的默认图片为用户配置文件内指定的图片。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SandglassStyle</ref_name>
+        <ref_url>../../datatype/SandglassStyle</ref_url>
+    </reference>
+    <reference>
+        <ref_name>HideSandglass </ref_name>
+        <ref_url>HideSandglass</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetSandglassImage </ref_name>
+        <ref_url>SetSandglassImage</ref_url>
+    </reference>
+</references>
+</manpage>

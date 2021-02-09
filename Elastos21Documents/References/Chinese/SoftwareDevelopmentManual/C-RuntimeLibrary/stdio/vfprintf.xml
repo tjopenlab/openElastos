@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\vfprintf">vfprintf</sample>
+    <title> vfprintf, vfwprintf</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>使用参数链表指针格式化输出到文件流。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>vfprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format</param_name>
+                <param_note>
+                    <para>格式化控制</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+                <param_note>
+                    <para>参数链表指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>vfwprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format</param_name>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>vfprintf和vfwprintf返回输出的字节数，不包括终结符，如果输出错误，返回负值。</para>
+    </return>
+
+    <remarks>
+        <para>函数vfprintf和vfwprintf得到参数链表的指针，然后将给定的数据格式化输出到stream中。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>vfprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>vfwprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* vfprintf.cpp:this program uses vfprintf to write lines and then read it to
+                display to the screen*/
+
+#include &lt;stdio.h&gt;
+
+int __cdecl test(FILE *out, ...);
+
+int main()
+{
+    FILE *out = NULL;
+    char buffer[100];
+    int retCun = 0;
+
+    out = fopen(&quot;vfprintf.out&quot;, &quot;w&quot;);
+    if (out == NULL) {
+        printf(&quot;cannot open:vfprintf.out\n&quot;);
+        return 1;
+    }
+    retCun = test(out, &quot;This is Elastos!&quot;);
+    fclose(out);
+    out = fopen(&quot;vfprintf.out&quot;, &quot;r&quot;);
+    if (out == NULL) {
+        printf(&quot;cannot open:vfprintf.out\n&quot;);
+        return 1;
+    }
+    fread(buffer, retCun, sizeof(char), out);
+    buffer[retCun] = &apos;\0&apos;;
+    printf(&quot;%s&quot;, buffer);
+    fclose(out);
+    return 0;
+}
+
+int __cdecl test(FILE *out, ...)
+{
+    int result = 0;
+    va_list parglist;
+    va_start(parglist, out);
+    result = vfprintf(out, &quot;Hello,world! %s\n&quot;, parglist);
+    va_end(parglist);
+    printf(&quot;The return value is %d\n&quot;, result);
+    return result;
+}
+</pre>
+    </example>
+<result>
+The return value is 30
+Hello, world! This is Elastos!
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>fprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name> printf</ref_name>
+            <ref_url>  wprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name> sprintf</ref_name>
+            <ref_url>  swprintf</ref_url>
+        </reference>
+    </references>
+</manpage>

@@ -1,0 +1,131 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>
+
+<manpage>
+    <volume> Common Data Structure </volume>
+    <interface> EzWCharBuf </interface>
+
+    <description>
+        <para> EzWCharBuf is one of the data structures designed for supporting component programming, which provides the buffer stored Unicode characters. You can operate EzWCharBuf object with EzWCharBuf member functions.</para>
+    </description>
+
+    <constructs>
+        <construct>
+            <construct_name>EzWCharBuf::EzWCharBuf</construct_name>
+            <construct_url>EzWCharBuf/structure/EzWCharBuf</construct_url>
+            <construct_description>Constructs an EzWCharBuf object.</construct_description>
+        </construct>
+        <construct>
+            <construct_name>template&lt;int SIZE&gt; EzWCharBuf_::EzWCharBuf_</construct_name>
+            <construct_url>EzWCharBuf/structure/EzWCharBuf_</construct_url>
+            <construct_description>Constructor method to construct a EzWCharBuf object and allocate memory for it.</construct_description>
+        </construct>
+        <construct>
+            <construct_name>EzWCharBuf::EzWCharBuf_Box(void *buf, const UINT size, const UINT used)</construct_name>
+            <construct_url>EzWCharBuf/structure/EzWCharBuf_Box1</construct_url>
+            <construct_description>Constructs an EzWCharBuf object using buffer data, sets both size and used size respectively.</construct_description>
+        </construct>
+        <construct>
+            <construct_name>EzWCharBuf::EzWCharBuf_Box(void *buf, const UINT size)</construct_name>
+            <construct_url>EzWCharBuf/structure/EzWCharBuf_Box2</construct_url>
+            <construct_description>Constructs an EzWCharBuf object using buffer data, sets both size and used size to size.</construct_description>
+        </construct>
+    </constructs>
+
+    <methods>
+        <self>
+        <method>
+        <method_name> AllocWCharBuf </method_name>
+        <method_url> EzWCharBuf/AllocWCharBuf </method_url>
+        <m_description>Allocates memory blocks of specified size for EzWCharBuf object.</m_description>
+        </method>
+        <method>
+        <method_name> AllocWCharBufLen </method_name>
+        <method_url> EzWCharBuf/AllocWCharBufLen </method_url>
+        <m_description>Allocates memory blocks of specified size for EzWCharBuf object and initializes it.</m_description>
+        </method>
+        <method>
+        <method_name> Append </method_name>
+        <method_url> EzWCharBuf/Append </method_url>
+        <m_description>Appends another specified Unicode characters at the end of the original characters of EzWCharBuf object.</m_description>
+        </method>
+        <method>
+        <method_name> Capacity </method_name>
+        <method_url> EzWCharBuf/Capacity </method_url>
+        <m_description>Gets the number of Unicode characters that this buffer can include.</m_description>
+        </method>
+        <method>
+        <method_name> Copy </method_name>
+        <method_url> EzWCharBuf/Copy  </method_url>
+        <m_description>Puts data into buffer and overwrites original data.</m_description>
+        </method>
+        <method>
+        <method_name> FreeWCharBuf </method_name>
+        <method_url> EzWCharBuf/FreeWCharBuf </method_url>
+        <m_description>Releases the memory occupied by EzWCharBuf. </m_description>
+        </method>
+        <method>
+        <method_name> Insert </method_name>
+        <method_url> EzWCharBuf/Insert  </method_url>
+        <m_description>Inserts specified Unicode characters into specified position of EzWCharBuf.</m_description>
+        </method>
+        <method>
+        <method_name> IsNull</method_name>
+        <method_url> EzWCharBuf/IsNull </method_url>
+        <m_description> Indicates whether the EzWCharBuf is NULL. </m_description>
+        </method>
+        <method>
+        <method_name> SetUsed </method_name>
+        <method_url> EzWCharBuf/SetUsed </method_url>
+        <m_description> Sets the number of Unicode characters used in the buffer.</m_description>
+        </method>
+        <method>
+        <method_name> Used </method_name>
+        <method_url> EzWCharBuf/Used </method_url>
+        <m_description> Gets the number of Unicode characters used in the buffer. </m_description>
+        </method>
+    </self>
+    </methods>
+
+    <operators>
+        <operator>
+            <operator_name> operator = </operator_name>
+            <operator_url> EzWCharBuf/operator </operator_url>
+            <operator_description> Assigns value to the EzWCharBuf object. </operator_description>
+        </operator>
+        <operator>
+            <operator_name> operator DATATYPE </operator_name>
+            <operator_url> EzWCharBuf/operator1 </operator_url>
+            <operator_description> Type cast. </operator_description>
+        </operator>
+    </operators>
+
+    <macros>
+        <macro>
+        <macro_name> EZWCHARBUF_NULL </macro_name>
+        <macro_url> EzWCharBuf/EZWCHARBUF_NULL </macro_url>
+        <macro_description> Defines a NULL EzWCharBuf object. </macro_description>
+        </macro>
+    </macros>
+
+    <remarks>
+        <para> While allocating for the EzWCharBuf object,system appends automatically to multiple of 4 bytes. For example, the number of Unicode characters that you want to allocate memory for is 3 (6 bytes), then the actual memory blocks are automatically appended to 8 bytes;4 Unicode characters.</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name> Windows 2000 or later; Elasots 2.0 or later.</system_name>
+        </system>
+        <headerfile>
+            <file_name> ezbuf.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

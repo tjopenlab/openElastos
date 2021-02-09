@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\float\_copysign">_copysign</sample>
+    <title> _copysign</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> float_idx.htm </routine_idx>
+
+    <description>
+        <para> 返回一个数，其绝对值等于第一个参数的绝对值，符号为第二个参数的符号。</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>_copysign</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>浮点数值</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>y</param_name>
+                <param_note>
+                    <para>浮点数值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回浮点数，其值等于x的绝对值，符号与y相同。无错误返回。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name> _copysign </routine_name>
+            <headerfile>float.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* copysign.cpp: This program uses _copysign function to
+ * return z , its value is x&apos;s value and the sign is y&apos;s.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;float.h&gt;
+
+int main()
+{
+    double z;
+    double x = 12345.6789;
+    double y = -9876.54321;
+
+    z = _copysign(x, y);
+    printf(&quot;x = %f\n&quot;, x);
+    printf(&quot;y = %f\n&quot;, y);
+    printf(&quot;z = %f\n&quot;, z);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+x = 12345.678900
+y = -9876.543210
+z = -12345.678900
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>fabs</ref_name>
+            <ref_url>../math/fabs</ref_url>
+        </reference>
+    </references>
+
+</manpage>

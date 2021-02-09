@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>CProfileManager Functions</volume>
+<interface>IProfileManager</interface><method> GetAllProfiles </method>
+    <description>
+        <para>获取所有情景模式项。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> <link url="../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/ProcessThread/IObjectEnumerator.htm">IObjectEnumerator</link>** </param_type>
+                <param_name> profiles </param_name>
+                <param_note>
+                    <para>指向情景模式(Profile)对象枚举器接口指针的指针，用于获取一组IProfile接口指针列表。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功调用该方法</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>    
+</remarks>
+<example>
+<pre>
+#include &lt;elastos.h&gt;
+using namespace Elastos;
+
+#include &lt;stdio.h&gt;
+
+#include "EmProfiles.h"
+
+ECode PrintProfileData(IProfile* pIProfile)
+{
+
+    printf("============ Printing Profile Data =============\n");
+
+    if (NULL == pIProfile) return E_INVALID_ARGUMENT;
+
+    Int32 nValue = -1;
+    WStringBuf_&lt;256&gt; wsbValue;
+
+    ECode ec = pIProfile->GetID(&amp;nValue);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    printf("=== Profile ID: %d.\n", nValue);
+
+    ec = pIProfile->GetName(&amp;wsbValue);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    printf("=== Profile Name: %S.\n", wsbValue.GetPayload());
+
+    return NOERROR;
+}
+
+ECode GetAllProfilesDemo()
+{
+
+    IProfileManager* pIProfileMgr = NULL;
+
+    ECode ec = CProfileManager::AcquireSingleton(&amp;pIProfileMgr);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    IObjectEnumerator* pIProfiles = NULL;
+    Boolean bSucceeded = FALSE;
+    IProfile* pIProfile = NULL;
+
+    ec = pIProfileMgr->GetAllProfiles(&amp;pIProfiles);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    if (NULL != pIProfileMgr) {
+        pIProfileMgr->Release();
+    }
+
+    ec = pIProfiles-><link url="../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/ProcessThread/IObjectEnumerator/MoveNext.htm">MoveNext</link>(&amp;bSucceeded);
+    while (SUCCEEDED(ec) &amp;&amp; bSucceeded) {
+        ec = pIProfiles-><link url="../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/ProcessThread/IObjectEnumerator/Current.htm">Current</link>((IInterface**)&amp;pIProfile);
+        if (FAILED(ec)) {
+        return ec;
+        }
+
+        PrintProfileData(pIProfile);
+
+        if (NULL != pIProfile) {
+           pIProfile->Release();
+        }
+
+        ec = pIProfiles->MoveNext(&amp;bSucceeded);
+    }
+
+    if (NULL != pIProfiles) {
+        pIProfiles->Release();
+    }
+    
+    return NOERROR;
+}
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;&amp; args)
+{
+     GetAllProfilesDemo();
+
+     CProcess::Exit(0);
+
+     return NOERROR;
+}
+</pre>
+<pre>
+输出：
+============ Printing Profile Data =============
+=== Profile ID: 1.
+=== Profile Name: Normal.
+============ Printing Profile Data =============
+=== Profile ID: 2.
+=== Profile Name: Outdoor.
+============ Printing Profile Data =============
+=== Profile ID: 3.
+=== Profile Name: Meeting.
+============ Printing Profile Data =============
+=== Profile ID: 4.
+=== Profile Name: Silent.
+============ Printing Profile Data =============
+=== Profile ID: 5.
+=== Profile Name: Custom.
+</pre>    
+</example>
+<references>
+    <reference>
+        <ref_name>Profiles构件模块介绍 </ref_name>
+        <ref_url>../../Contacts</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CProfileManager构件类介绍</ref_name>
+        <ref_url>../CProfileManager</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IProfileManager接口方法列表</ref_name>
+        <ref_url>../IProfileManager</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetProfileByID</ref_name>
+        <ref_url>GetProfileByID</ref_url>
+    </reference>
+</references>
+</manpage>

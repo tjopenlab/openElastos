@@ -1,0 +1,155 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_access">_access</sample>
+    <title> _access, _waccess </title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+	<para>The _access system call checks the accessibility of the file named by the path argument for the access permissions indicated by the mode argument. The value of mode is either the bitwise-inclusive OR of the access permissions to be checked (R_OK for read permission, W_OK for write permission, and X_OK for execute/search permission), or the existence test (F_OK).</para>
+        <para>The _access system call uses the real user ID, the real group ID and the group access list to authorize the request.</para>
+	<para>Even if a process's real or effective user has appropriate privileges and indicates success for X_OK, the file may not actually have execute permission bits set. Likewise for R_OK and W_OK.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_access</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>path</param_name>
+                <param_note>
+                    <para>Pointer to file or directory path.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>mode</param_name>
+                <param_note>
+                    <para>Permission setting.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_waccess</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>path</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>mode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Upon successful completion, the value 0 is returned; otherwise the value -1 is returned and the global variable errno is set to indicate the error. Error number is set to one of the following constants: </para>
+        <table>
+    	    <th>
+    	        <td>Error Number</td>
+    	        <td>Description</td>
+    	    </th>
+            <tr>
+                <td>EACCES</td>
+                <td>Permission bits of the file mode do not permit the requested access, or search permission is denied on a component of the path prefix.</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>The named file does not exist.</td>
+            </tr>
+   	    </table>
+    </return>
+
+    <remarks>
+        <para>When used with files, the _access function determines whether the specified file exists and can be accessed as specified by the value of mode. When used with directories, _access determines only whether the specified directory exists; in Windows NT, all directories have read and write access.</para>
+    	<table>
+    	    <th>
+    		    <td>mode Value</td>
+            	<td>File Property Checked</td>
+    	    </th>
+    	    <tr>
+    		    <td>00</td>
+            	<td>File exists.</td>
+    	    </tr>
+    	    <tr>
+    		    <td>02</td>
+            	<td>Write permission.</td>
+    	    </tr>
+    	    <tr>
+    		    <td>04</td>
+            	<td>Read permission.</td>
+    	    </tr>
+    	    <tr>
+    		    <td>06</td>
+            	<td>Read write permission.</td>
+    	    </tr>
+       	</table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_access</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_waccess</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _access.cpp: This example uses _access to check the
+ * file named &quot;_access.exe&quot; to see if it exists and if
+ * reading is allowed.
+ */
+
+#include  &lt;io.h&gt;
+#include  &lt;stdio.h&gt;
+#include  &lt;stdlib.h&gt;
+
+int main()
+{
+    /* Check for existence */
+    if ((_access(&quot;_access.exe&quot;, 0)) != -1) {
+        printf(&quot;File _access.exe exists\n&quot;);
+        /* Check for Read permission */
+        if ((_access(&quot;_access.exe&quot;, 4)) != -1)
+            printf(&quot;File _access.exe has read permission\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File _access.exe exists
+File _access.exe has read permission
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_wopen</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

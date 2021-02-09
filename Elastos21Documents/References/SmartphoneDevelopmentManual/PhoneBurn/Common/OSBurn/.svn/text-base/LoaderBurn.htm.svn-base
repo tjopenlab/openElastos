@@ -1,0 +1,33 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title> Loader的烧写流程</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Boot Loader烧写流程</h2>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;在以ARM为代表的嵌入式系统中，操作系统内核运行前的硬件初始化、建立内核镜像等都是由Boot Loader来完成的。对于Elastos嵌入式操作系统来说，系统加电后第一条指令就是Boot Loader的代码。Boot Loader通常位于目标设备上的非易失存储设备中(如Flash)，并且在系统加电或重置时自动执行。通常可以通过JTAG或串口工具把Boot Loader烧写到目标设备上，Boot Loader的唯一目标就是加载并执行操作系统映像。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;科泰为每种类型的CPU都提供了某种标准开发板的BootLoader例程，因此通常的做法是：从这些例程中寻找与硬件平台最接近的作为标本程序，然后再从自己的硬件平台上入手做相应的改动。一些新的评估板可能会由第三方的厂商来提供Bootloader。如果硬件平台是从这样的基板设计而来的话，那么最好去寻求这些厂商获取Bootloader来移植，以减少工作量 。</p>
+    <h3>以下我们以OMG1系列手机为例来介绍Boot Loader的烧写流程:
+    </h3>
+    <p>&nbsp;&nbsp;&nbsp;1)打开omega_downloadtool_n.exe(由厂商提供)。</p>
+    <p>&nbsp;&nbsp; 2)单击type，选择TAT（不能选其他的）。</p>
+    <p>&nbsp;&nbsp;&nbsp;3)单击open,打开需要烧制的ipl.bin文件，文件在dailybuild发布的版本中（\\svr_files\InterRls\B ）。</p>
+    <p>&nbsp;&nbsp;&nbsp;4)单击add，把ipl.bin文件添加至列表中。</p>
+    <p>&nbsp;&nbsp;&nbsp;5)单击download。</p>
+    <p>&nbsp;&nbsp;&nbsp;6)按住手机#键，连接主机USB线，正常烧制时，进度条会提示烧制进度，烧制ipl.bin文件进度条为100%时，表示烧制完毕，烧制开始便可以松开#键。</p>
+    <p>&nbsp;&nbsp;&nbsp;7)Ipl.bin文件烧制完毕后手机不能下电，不能断开USB数据线，单击remove，删除刚烧制的ipl.bin文件。</p>
+    <p>&nbsp;&nbsp;&nbsp;8)单击open，打开需要烧制的spl.bin文件，文件在dailybuild发布的版本中（\\svr_files\InterRls\B ）。</p>
+    <p>&nbsp;&nbsp;&nbsp;9)单击add，把spl.bin文件添加至列表中。</p>
+    <p>&nbsp;&nbsp;&nbsp;10)单击download，开始烧制spl.bin文件，文件进度条为100%时，表示烧制完毕。</p>
+    <p>&nbsp;&nbsp;&nbsp;11)完成以上操作后手机需下电（切记）。</p>
+    <p>注:</p>
+<p>&nbsp;&nbsp; 以上介绍的只是Loader烧写的一般流程,不同版本手机的Loader的烧写流程是不同的.如果您要烧写一个具体的BootLoader或有遇到任何问题,请联系科泰世纪,我们会为您解决.</p>
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+    <title>Existing Technology Similar To Component Inheritance Mechanism</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Existing Technology Similar To Component Inheritance Mechanism</h2>
+        <ol>
+            <li><h3>C++ Virtual Function</h3>
+                <p>C++ virtual function achieves object oriented run-time polymorphism. In run-time, invoking virtual function in base class will cause the program to jump into method of its derived class to execute. The derived class can be overloaded and can invoke virtual function of its parent class. Correspondingly, In </span>CAR<span lang="ZH-CN"> component inheritance mechanism, base component invoking virtual interface method can jump into derived component interface method to execute.The derived component can directly overload and invoke interface methods that inherited from base class. The most significant difference between the two is that C++ virtual function technology is source code level inheritance and overloading mechanism based on C++ class, but CAR inheritance is component based binary level inheritance and overloading mechanism.</p>
+                <p>The advantage of component binary inheritance and overloading is that it does not need expose base component implementation details.The base component is completely encapsulated, achieves binary component polymorphism too.</p>
+            <li><h3>Component Container Technology</h3>
+                <p>Container is the simplest component reuse method .It cannot rewrite interface method implementation of being contained object but can only be a "wrapper". The container cannot achieve polymorphism.</p>
+                <center><img src="images/contain.jpg"></center>We cannot realize polymorphism in this way.</p>
+            <li><h3>Component Aggregation Technology</h3>
+                <p>From the above diagram we can see that object A cannot invoke ISomeInterface interface of object B.The object B can only change the implementation of ISomeInterface interface from the outside. We cannot realize polymorphism in this way.
+                <p>Aggregation is also one of the component reuse method. It only exposes to outside of the interface of object to be aggregated directly.The aggregation object does not have the chance to change the interface method implementation of aggregated object, though it looks like a big object from outside.</p>
+                <center><img src="images/cluster.jpg"></center>
+                <p>From the above diagram we can see that ISomeInterface interface of object A is directly exposed to the outside while object B does not have any chance to modify ISomeInterface interface implementation. We can see that this kind of component reuse method also cannot realize polymorphism.</p>
+                <p>In a word, C++ virtual function technology can realize polymorphism, but it is only source code level inheritance and overloading.It will expose base class data structure, which violates encapsulation. Container and aggregation are both component reuse methods.The Component is very well encapsulated but container and aggregation cannot achieve polymorphism. The Component inheritance technology is developed to solve the above problem.</p>
+                <center><img src="images/inherit.jpg"></center>
+                <p>One can invoke ISomeInterface interface of derived class object B. In another word, object B have a chance to "change" ISomeInterface implementation.In this way we can realize component polymorphism.</p>
+
+        </ol>
+        
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> depends </title>
+    <volume>微软的工具</volume>
+
+    <description>
+        <para>创建文件依赖性。详细内容请参见微软文档。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> DEPENDS.EXE </cmd_name>
+        <cmd_param> [/?] [/c] [/a:#] [/f:#] [/u:#] [/ps:#]
+                    [/pp:#] [/po:#] [/ph:#] [/pl:#] [/pg:#] [/pt:#]
+                    [/pn:#] [/pe:#] [/pm:#] [/pf:#] [/pc:#] [/pa:#]
+                    [/pd:dir] [/pr:args] [/pb] [/sm:#] [/si:#] [/se:#]
+                    [/sf:#] [/od:path] [/ot:path] [/of:path] [/oc:path] [/d:path] [path]
+        </cmd_param>
+    </syntax>
+
+    <parameters>
+        <param>
+            <param_name> /? </param_name>
+            <param_note> 查看帮助 </param_note>
+        </param>
+        <param>
+            <param_name> /c </param_name>
+            <param_note> 控制台模式 </param_note>
+        </param>
+        <param>
+            <param_name> /a:# </param_name>
+            <param_note> 自动扩展 </param_note>
+        </param>
+        <param>
+            <param_name> /f:# </param_name>
+            <param_note> 查看全路经 </param_note>
+        </param>
+        <param>
+            <param_name> /u:# </param_name>
+            <param_note> 未修饰的C++函数 </param_note>
+        </param>
+        <param>
+            <param_name> /ps:# </param_name>
+            <param_note> 配置选项: 通过将任何应用程序路径加入到环境变量PATH中模拟Shell可执行程序 </param_note>
+        </param>
+        <param>
+            <param_name> /pp:# </param_name>
+            <param_note> 配置选项: 将DllMain调用的进程启动和结束的信息记入日志 </param_note>
+        </param>
+        <param>
+            <param_name> /po:# </param_name>
+            <param_note> 配置选项: 将DllMain调用的其他信息（包括线程启动和结束的信息）记入日志 </param_note>
+        </param>
+        <param>
+            <param_name> /ph:# </param_name>
+            <param_note> 配置选项: 钩住进程以得到更详细的依赖关系 </param_note>
+        </param>
+        <param>
+            <param_name> /pl:# </param_name>
+            <param_note> 配置选项: 将函数LoadLibrary的调用记入日志 </param_note>
+        </param>
+        <param>
+            <param_name> /pg:# </param_name>
+            <param_note> 配置选项: 将函数GetProcAddress的调用记入日志 </param_note>
+        </param>
+        <param>
+            <param_name> /pt:# </param_name>
+            <param_note> 配置选项: 将线程信息记入日志 </param_note>
+        </param>
+        <param>
+            <param_name> /pn:# </param_name>
+            <param_note> 配置选项: 使用简单线程号而不是真实ID </param_note>
+        </param>
+        <param>
+            <param_name> /pe:# </param_name>
+            <param_note> 配置选项: 将最可能的例外(first chance exceptions)记入日志 </param_note>
+        </param>
+        <param>
+            <param_name> /pm:# </param_name>
+            <param_note> 配置选项: 将调试的输出信息记入日志 </param_note>
+        </param>
+        <param>
+            <param_name> /pf:# </param_name>
+            <param_note> 配置选项: 在命名日志文件时使用全路径 </param_note>
+        </param>
+        <param>
+            <param_name> /pc:# </param_name>
+            <param_note> 配置选项: 自动打开并且配置子进程 </param_note>
+        </param>
+        <param>
+            <param_name> /pa:# </param_name>
+            <param_note> 配置选项: 将所有配置选项置为开 </param_note>
+        </param>
+        <param>
+            <param_name> /pd:dir </param_name>
+            <param_note> 配置选项: 起始目录 </param_note>
+        </param>
+        <param>
+            <param_name> /pr:args </param_name>
+            <param_note> 配置选项: 程序参数 </param_note>
+        </param>
+        <param>
+            <param_name> /pb </param_name>
+            <param_note> 配置选项: 在模块加载后自动开始配置 </param_note>
+        </param>
+        <param>
+            <param_name> /sm:# </param_name>
+            <param_note> 按列排序模块列表 </param_note>
+        </param>
+        <param>
+            <param_name> /si:# </param_name>
+            <param_note> 按列排序父进程导入函数列表 </param_note>
+        </param>
+        <param>
+            <param_name> /se:# </param_name>
+            <param_note> 按列排序导出函数列表 </param_note>
+        </param>
+        <param>
+            <param_name> /sf:# </param_name>
+            <param_note> 按列排序各函数列表视图 </param_note>
+        </param>
+        <param>
+            <param_name> /od:path </param_name>
+            <param_note> 输出DWI格式的文件 </param_note>
+        </param>
+        <param>
+            <param_name> /ot:path </param_name>
+            <param_note> 输出文本格式的文件 </param_note>
+        </param>
+        <param>
+            <param_name> /of:path </param_name>
+            <param_note> 输出带输入/输出函数列表的文本格式的文件 </param_note>
+        </param>
+        <param>
+            <param_name> /oc:path </param_name>
+            <param_note> 输出CSV格式的文件 </param_note>
+        </param>
+        <param>
+            <param_name> /d:path </param_name>
+            <param_note> 要加载的DWP文件路径 </param_note>
+        </param>
+        <param>
+            <param_name> path </param_name>
+            <param_note> 要加载的模块或 DWP 文件的路径 </param_note>
+        </param>
+    </parameters>
+
+    <examples>
+        <example>
+            <eg_line>depends /pr "1 2 3" /pb /oc "c:\output files\foo bar.csv" "c:\input files\foo bar.exe"</eg_line>
+            <eg_note>引号表示输出的CSV文件可包含空格。</eg_note>
+        </example>
+    </examples>
+
+    <references>
+        <reference>
+            <ref_name> mkdepend</ref_name>
+            <ref_url> ../tools/mkdepend</ref_url>
+        </reference>
+    </references>
+</manpage>

@@ -1,0 +1,152 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>XDK的安装和系统配置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>启动“Elastos”的系统配置</h2>
+    <p>在启动“Elastos”时，要根据实际情况对所需文件进行配置。位于DevKit\runtime\common\config目录下的对应子目录中存放各种配置文件。各配置文件的作用如下：</p>
+    <ul>
+        <li>cachemgr.cfg：用于配置cache&nbsp;manager支持CAR构件自动下载
+        <li>drv.cfg：用于配置网卡中断号和IO地址
+        <li>mkpkg.cfg：用于配置使用<a class="style1" href="../../resource_debug_kits/tools/mkpkg.htm">mkpkg.exe</a>进行打包的文件清单
+        <li>resolv.cfg：用于配置DNS服务器IP地址
+        <li>services.cfg：用于注册各种服务，用户可以注册自己在“Elastos”上开发的服务
+        <li>startup.cfg：系统启动后直接执行的程序（支持后台运行）
+        <li>tfs.cfg：用于在使用TFS文件系统时配置IP地址
+    </ul>
+    <h3>各配置文件的具体用途和使用方法</h3>
+        <a NAME="mkpkg">
+        <h4>elastos.img文件的打包配置（mkpkg.cfg）</h4>
+            <p>“Elastos”是通过“打包”后的elastos.img文件来启动的，所以必须使用一个列表来指明所有需要“打包”的文件。通过在“Elastos”提供的开发环境窗口执行<a class="style1" href="../../resource_debug_kits/tools/mkpkg.htm">mkpkg.exe</a>来进行“打包”操作。对需要进行“打包”的文件要指明全路径，可以通过系统设置的环境变量来拼接全路径。用户可以在“FILES”列表上写明自己需要“打包”文件的全路径和文件名。“FILES”列表的使用范例如下：</p>
+            <pre class="code">
+TARGET = %XDK_TARGETS%\elastos.img
+
+BIAS = 0x00000000
+
+ALIGN = 0x1000
+
+FILES = \
+    <font color="blue">%XDK_RUNTIME_PLATFORM%\kernel.exe \
+    %XDK_RUNTIME_PLATFORM%\elastos.dll \</font>
+    %XDK_TARGETS%\ElMathLib.dll \
+    %XDK_TARGETS%\ElCRuntime.dll \
+    %XDK_TARGETS%\ezregsvr.exe \
+    %XDK_TARGETS%\waitsvr.exe \
+    %XDK_TARGETS%\bmfs.dll \
+    %XDK_TARGETS%\crtsvr.dll \
+    %XDK_TARGETS%\elacmd.exe \
+    %XDK_TARGETS%\memfs.dll \
+    %XDK_TARGETS%\ElDevices.dll \
+    %XDK_TARGETS%\SuperExe.exe \
+    %XDK_TARGETS%\xsf.exe \
+    %XDK_TARGETS%\udc.exe \
+    %XDK_TARGETS%\clipboard.dll \
+    %XDK_COMMON_DATA%\i18n\encoding.dat \
+    %XDK_COMMON_CONFIG%\autorun.bat \
+    %XDK_COMMON_CONFIG%\services.cfg \
+    %XDK_COMMON_CONFIG%\elastos.cfg \
+    %XDK_COMMON_CONFIG%\startup.cfg \
+
+COMMANDLINE =
+
+<font color="blue">注：每行最后一个"\"为续行符</font>
+</pre>
+            <p>kernel.exe必须放在“打包”列表的第一个位置，因为通过GRUB启动后，“Elastos”会直接执行elastos.img的第一个文件kernel.exe；作为启动后提供构件运行平台的API，elastos.dll则必须“打包”在elastos.img中，但没有位置要求。如果需要在运行过程中加载服务，则应该把对应的服务配置文件也添加到“打包”列表中。例如如果需要使用网络服务，则应把对应的resolv.cfg和drv.cfg文件添加到FILES列表中。</p>
+            <p>mkpkg.cfg最多只能“打包”32个文件。如果“打包”的文件数超过最大限制或者根据全路径找不到有关文件，都会“打包”失败并且报错。这种情况下“打包”出来的elastos.img是无效的，可能会导致系统无法正常启动。如果需要在启动内核后自动运行一些程序，就需要把startup.cfg打包到elastos.img文件中。<p>
+        <a NAME="drv">
+        <h4>网卡配置（drv.cfg）</h4>
+            <p>因为“Elastos”暂时未实现PCI驱动，所以默认分配中断号（IRQ）5给网卡并默认IO地址为0x0000e000。如果用户的网卡插在主板不同的PCI插槽上，可能会因为PCI插槽的改变而使网卡中断号以及IO地址有所不同。这时就需要用户手动修改网卡驱动的配置文件drv.cfg的相关设置后才能正常使用。具体的中断号和IO地址根据用户实际的系统信息来修改。</p>
+            <pre class="code">
+irq 5 iobase 0x0000e000
+            </pre>
+            <p><b><font color="red">注意：</font></b></p>
+            <ol>
+                <li>“Elastos”的网卡驱动程序暂时只是支持TP_LINK&nbsp;RTL8139。如果用户使用的是其他芯片的网卡，则需要自己使用DDK环境开发或者移植驱动程序。
+                <li>如果中断号或者IO地址没有配置正确，在启动内核的过程中，网卡的初始化将失败并且显示相关信息，可能会影响启动后部分与网络有关的功能的正常使用。
+            </ol>
+        <h4>服务注册配置（services.cfg）</h4>
+            <p>这个配置文件用来记录需要注册的服务和相关信息，包括CLSID和IID以及使用RegisterService进行注册。有关RegisterService命令的详细说明请参看shell的“<a class="style1" href="../environment_and_tools/tools/shell/Ezregsvr.htm">Ezregsvr</a>”命令说明文档。</p>
+            <pre class="code">
+
+RegisterService("bmfs.dll", "CBMFileSystem", "IBasicFileSystem", "bootmods");
+
+RegisterService("memfs.dll" "CMemFileSystem", "IBasicFileSystem", "memfs");
+
+RegisterService("crtsvr.dll", "CDiskManager", "IDiskManager", "diskmgr");
+
+RegisterService("crtsvr.dll", "CLocaleInfo", "ILocaleInfo", "localeinfo");
+
+</pre>
+            <p>如上所示，就是注册和加载“Elastos”提供的网络服务和文件系统的方法。用户可以类似地添加并注册“Elastos”提供的其它服务程序或自行开发的服务程序。</p>
+        <h4>配置DNS服务器IP地址（resolv.cfg）</h4>
+            <p>“Elastos”网络使用的DNS配置文件。如果需要使用DNS的服务，必须在这个配置文件中指定有关信息。</p>
+            <pre class="code">
+domain companyname.com
+search companyname.com
+nameserver 210.22.70.3
+</pre>
+            <p>网络工具的使用方法请参看<a class="style1" href="../environment_and_tools/tools/network.htm">““Elastos”网络工具”</a>。</p>
+        <h4>配置TFS服务端和客户端的IP地址（tfs.cfg）</h4>
+            <p>“Elastos”网络文件系统（TFS）使用的IP配置文件。如果需要使用TFS的话，必须在这个配置文件中指定相应的服务端和客户端机器的IP地址。</p>
+            <pre class="code">
+SERVER_IP:192.168.1.xx
+CLIENT_IP:192.168.2.xx
+</pre>
+            <p>详细的TFS使用方法请参看<a class="style1" href="../environment_and_tools/tools/tfs.htm">“TFTP文件系统使用简介”</a>。</p>
+        <h4>支持CAR构件自动下载的配置（cachemgr.cfg）</h4>
+            <p>cachemgr.cfg文件配置的内容包括索引文件，cache目录，cache目录大小等。如果配置文件中没有相关设置，用户在使用cache&nbsp;manager的时候就需要调用cache&nbsp;manager构件的ICache接口的方法来进行相关的设置。</p>
+            <pre class="code">
+[index]
+#The full path of the index file, the length of it cannot be over 256,
+#and it must not be blank on the end of the full path
+file = /cache/index.dat
+
+[cache]
+#Cache directory, do not set it to TFS please
+directory = /cache
+#Cache size, the unit is MB
+size = 100
+</pre>
+            <p>有关cache&nbsp;manager的具体内容请参见<a class="style1" href="../../car_technology/speciality/cache/ccm.htm">“构件缓存机制”</a>的文档。</p>
+        <a NAME="start">
+        <h4>启动后加载服务或者自动执行的配置（startup.cfg）</h4>
+            <p>从elastos.img文件启动内核kernel.exe后，内核可以从配置文件startup.cfg自动创建进程来加载各种服务和应用程序，并且可以支持后台执行（在指定程序后面加上“&amp;”，用法和shell类似）。startup.cfg里面的命令列表将在内核启动后，将按顺序地创建进程并执行相应的命令。如果没有使用后台运行符“&amp;”的话，将严格按照串行顺序逐个执行，后一个进程在前一个进程执行完后才开始创建并执行。如果添加了后台执行符号“&amp;”，则该进程会与下一个进程并行创建和执行。startup.cfg里所配置的服务和应用程序的数量不受限制，可以配置任意多个。</p>
+            <ul>
+                <li>如果只是需要使用硬盘，可以首先在services.cfg里面添加对文件系统的服务注册，然后在启动内核后，通过startup.cfg自动执行有关的加载和注册，并且<a class="style1" href="../environment_and_tools/tools/shell/Mount.htm">mount</a>到用户指定的硬盘逻辑分区上。
+                <pre class="code">
+ezregsvr.exe services.cfg &amp;
+mount.exe -t msdos -d / -s device:idepartition0
+elacmd.exe
+reboot 1
+</pre>
+                <li>如果需要使用网络文件系统TFS，startup.cfg的配置可参考使用硬盘的配置，但需要使用<a class="style1" href="../environment_and_tools/tools/network/ifconfig.htm">ifconfig.exe</a>这个网络工具添加有关网络接口地址的配置并修改mount的命令行。有关的IP地址的信息应该根据用户的实际情况进行修改。
+                <pre class="code">
+ezregsvr.exe services.cfg &amp;
+ifconfig.exe lo0 127.0.0.1 netmask 255.255.248.0
+ifconfig.exe eth0 192.168.2.42 netmask 255.255.248.0 broadcast 192.168.7.255
+mount.exe -t tftpfs -d / -s TFTP
+<A NAME="elacmd"></A>elacmd.exe
+reboot 1
+</pre>
+            </ul>
+    <h3>综述</h3>
+        <p>综上所述，我们来总结一下启动“Elastos”需要配置的文件：</p>
+        <ul>
+            <li>情况一：一般情况下，如果打包后正常启动内核并不加载任何服务（包括文件系统、网络和其他服务），需要修改的配置文件是mkpkg.cfg，drv.cfg，startup.cfg。
+            <li>情况二：如果需要加载网络服务，除了需要修改“情况一”中的配置文件外，还需要修改resolv.cfg，services.cfg文件。
+            <li>情况三：如果需要使用文件系统中的网络文件系统TFS，除了需要修改“情况一”和“情况二”中提到的配置文件外，还需要修改tfs.cfg文件。
+            <li>情况四：如果需要使用cache&nbsp;manager，除了需要修改“情况一”和“情况二”中提到的配置文件外，还需要修改cachemgr.cfg文件。
+        </ul>
+
+
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListViewPaint</interface><method> DrawElement </method>
+    <description>
+        <para>
+            画控件的元素。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> row </param_name>
+                <param_note>
+                    <para>
+行索引值                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> column </param_name>
+                <param_note>
+                    <para>
+列索引值                    </para>
+                </param_note>
+            </api_param>                     
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ElementID </param_type>
+                <param_name> id </param_name>
+                <param_note>
+                    <para>
+ <link url="../../datatype/ElementID.htm">           元素ID             </link>                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ElementInfo </param_type>
+                <param_name> Info </param_name>
+                <param_note>
+                    <para>
+<link url="../ISkin/ElementInfo_struct.htm">           元素信息             </link>                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ISkin * </param_type>
+                <param_name> skin </param_name>
+                <param_note>
+                    <para>
+ISkin接口                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ICanvas* </param_type>
+                <param_name> canvas </param_name>
+                <param_note>
+                    <para>
+ICanvas接口                    </para>
+                </param_note>
+            </api_param>                        
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElControls.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+                用户可以根据这些信息来绘制元素。
+        </para>
+    </remarks>    
+</manpage>

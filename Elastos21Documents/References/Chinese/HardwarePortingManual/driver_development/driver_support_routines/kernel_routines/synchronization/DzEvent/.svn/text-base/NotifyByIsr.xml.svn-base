@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>同步</volume>
+<interface>DzEvent</interface><method> NotifyByIsr </method>
+    <description>
+        <para>
+            设置事件对象为一个指定的已通知状态。（仅用于驱动程序的下半部分）
+        </para>
+    </description>
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EventState </param_type>
+                <param_name> state </param_name>
+                <param_note>
+                    <para>指定一个已通知状态，可由用户自行定义的一个非零无符号整数来表示。在默认情况下，uState将被设置为SIGNALED</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>
+        本成员函数设置事件对象为一个指定的已通知状态，从而唤醒等待着的线程。如果事件对象是自动重置的，则仅唤醒一个等待线程，并且事件对象将被重置为未通知状态；如果事件对象是手动重置的，则唤醒所有等待线程，并且事件对象将保持此已通知状态，直到被<link url="Clear.htm">DzEvent::Clear</link>成员函数重置为未通知状态为止。如果没有任何线程在事件对象上等待，本成员函数仅仅将事件对象设置为指定的已通知状态。
+        </para>
+        <para>
+        本成员函数与<link url="Notify.htm">DzEvent::Notify</link>的区别在于：它仅可用于驱动程序的下半部分（即可用于中断服务例程中）。
+        </para>
+        <para>
+        本成员函数不可与Event::Notify混用。
+        </para>
+        <table>
+            <th>
+                <td>预定义通知状态</td>
+                <td>值</td>
+            </th>
+            <tr>
+                <td>SIGNALED</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>UNSIGNALED</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+</manpage>

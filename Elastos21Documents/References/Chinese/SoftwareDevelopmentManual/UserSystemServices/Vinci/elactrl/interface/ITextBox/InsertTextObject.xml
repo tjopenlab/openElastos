@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITextBox</interface><method> InsertTextObject </method>
+    <description>
+        <para>
+            插入文本对象。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+文本对象的内容，文本内容不能为空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> data </param_name>
+                <param_note>
+                    <para>
+文本对象的用户数据信息</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        TextBox 除了可以接受一个个字符的输入外，还可以通过在代码中设置文本对象插入文本，插入的文本作为一个整体，就好像对单独一个字符做操作一样，不能选中或修改其中个别的字符。修改插入的文本对象可以在代码中通过 <link url="SetTextObject.htm">SetTextObject</link> 方法。
+    </para>
+    <para>
+    	  文本对象的索引值由插入该对象时，系统自动分配，第一个插入的索引值为0，第二个插入的索引值为1，以此类推。用户数据信息可以作为除 index 之外，另一个作为对指定文本对象进行标示的数据。
+    </para>
+	  <para>
+        插入的文本不能为空，否则方法将调用失败；若插入的文本对象的字符数大于 TextBox 可以容纳的剩余字符数，方法也将调用失败。插入的位置为当前光标所在的位置。若 TextBox 内有选中的文本，则将被替代之。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTextBox 类介绍</ref_name>
+        <ref_url>../../class/TextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITextBox 接口方法列表</ref_name>
+        <ref_url>../ITextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetTextObject</ref_name>
+        <ref_url>GetTextObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetTextObject</ref_name>
+        <ref_url>SetTextObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name>RemoveTextObject</ref_name>
+        <ref_url>RemoveTextObject</ref_url>
+    </reference>
+</references>
+</manpage>

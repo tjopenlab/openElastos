@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method>Insert </method>
+
+    <description>
+        <para> 在此对象中的指定索引位置插入一个指定的AString字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>AStringBuf &amp;</return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> offset </param_name>
+            <param_note>
+                <para> 插入位置,offset的取值范围：大于等于0，且小于等于AStringBuf对象字符串的长度 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>const AString &amp; </param_type>
+            <param_name> as </param_name>
+            <param_note>
+                <para> 待插入的子串 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回当前AStringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>超过AStringBuf对象可用的长度会被省略掉。 </para>
+    </remarks>
+<example>
+<pre>
+AStringBuf_&lt;10&gt; asbuf;  
+asbuf.Copy("abc");
+AString as = "123";
+CConsole::WriteLine(asbuf.Insert(1,as));  //Display : "a123bc"
+</pre>
+</example>
+
+ <references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Append</ref_name>
+        <ref_url>../AStringBuf/Append/index/Append</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Replace</ref_name>
+        <ref_url>../AStringBuf/Replace</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Substring</ref_name>
+        <ref_url>../AStringBuf/Substring/index/Substring</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Insert</ref_name>
+        <ref_url>../WStringBuf/Insert</ref_url>
+    </reference>
+</references>   
+</manpage>

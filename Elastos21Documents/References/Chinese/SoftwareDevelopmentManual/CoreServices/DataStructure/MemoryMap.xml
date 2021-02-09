@@ -1,0 +1,39 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>系统基本服务</volume>
+    <types>MemoryMap</types>
+
+    <description>
+        <para>映射选项标识</para>
+    </description>
+
+    <enum>
+        <enum_member>
+            <mem_name>MemoryMap_Private</mem_name>
+            <mem_value>0x01</mem_value>
+            <mem_description>表示某块内存只映射到一个进程里</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>MemoryMap_Shared</mem_name>
+            <mem_value>0x02</mem_value>
+            <mem_description>表示某块内存映射到多个进程地址空间</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>MemoryMap_Fixed</mem_name>
+            <mem_value>0x04</mem_value>
+            <mem_description>如果不指定该标志位,或指定虚存地址不存在时，则由系统另行分配一个虚存地址</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>MemoryMap_UpGrow</mem_name>
+            <mem_value>0x10</mem_value>
+            <mem_description>映射的地址空间由下往上长</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>MemoryMap_DownGrow</mem_name>
+            <mem_value>0x20</mem_value>
+            <mem_description>映射的地址空间由上往下长</mem_description>
+        </enum_member>
+    </enum>
+</manpage>

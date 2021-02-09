@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>INumericSpin</interface><method> SetMinimum </method>
+    <description>
+        <para>
+            设置 NumericSpin 允许输入范围的下限。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> min </param_name>
+                <param_note>
+                    <para>
+允许输入范围的下限，默认为 0</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	    	  </tr>
+	    	  <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	    	  </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  若设置的下限值大于当前允许输入范围的上限，方法将调用失败。
+	  </para>
+	  <para>
+	  	  如果 NumericSpin 当前显示的数值小于该下限值，则将当前显示的数值设置为与该下限值相等。
+	  </para>
+</remarks>
+    <remarks>
+        <para>
+            如果本方法设置Minimum属性的值比TrackBar当前的Value值大（即Value&lt;Minimum），则会把Value值设为和Minimum属性值相等。
+        </para>
+    </remarks>
+</manpage>

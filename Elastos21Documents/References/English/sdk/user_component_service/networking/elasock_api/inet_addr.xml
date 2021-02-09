@@ -1,0 +1,65 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>inet_addr</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>将一个点间隔字符串地址转换成in_addr结构。</para>
+    </description>
+
+    <syntax>
+        <return_val>unsigned long</return_val>
+        <parameters>
+            <api_param>
+                <param_type>const char *</param_type>
+                <param_name>cp</param_name>
+                <param_note>
+                    <para>标准的Internet点间隔地址字符串</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，返回无符号长整型数，并以适当字节顺序存放Internet地址；当程序执行失败时，返回INADDR_NONE，表明cp参数不是一个合法的Internet地址，例如“a.b.c.d”地址中任一项大于255。</para>
+    </return>
+
+    <remarks>
+        <para>inet_addr函数转换cp参数指定的字符串，其中cp是由点间隔的数字表示的网络地址。返回值是可用的网络字节顺序的网络地址（高字节在后)。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>inet_ntoa</ref_name>
+            <ref_url>inet_ntoa</ref_url>
+        </reference>
+        <reference>
+            <ref_name>in_addr</ref_name>
+            <ref_url>data_type\in_addr</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

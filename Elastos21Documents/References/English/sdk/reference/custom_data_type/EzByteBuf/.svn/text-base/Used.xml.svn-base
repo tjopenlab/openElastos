@@ -1,0 +1,64 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzByteBuf\Used">used</sample>
+    <volume> COMMON DATA STRUCTURE </volume>
+    <interface> EzByteBuf    </interface>
+    <method> Used </method>
+
+    <description>
+        <para>Gets the number of used bytes of current byte buffer. </para>
+    </description>
+
+    <syntax>
+        <return_val> int </return_val>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>Returns the number of bytes that already used.</para>
+    </return>
+
+<example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzByteBuf_<200> buf;
+    int len;
+
+    buf.Copy("Good luck to you!", 18);
+
+    len = buf.Used();
+    if (!buf.IsNull()) {
+        printf("'%s' used %d bytes.\n", (char*)buf, len);
+    } else {
+        printf("wrong EzByteBuf!\n");
+    }
+
+    return 0;
+}
+]]></pre></example>
+
+<result><![CDATA[
+'Good luck to you!' used 18 bytes.
+]]></result>
+
+    <references>
+    <reference>
+        <ref_name> SetUsed </ref_name>
+        <ref_url> SetUsed </ref_url>
+    </reference>
+    <reference>
+        <ref_name> Capacity </ref_name>
+        <ref_url> Capacity </ref_url>
+    </reference>
+    </references>
+
+</manpage>

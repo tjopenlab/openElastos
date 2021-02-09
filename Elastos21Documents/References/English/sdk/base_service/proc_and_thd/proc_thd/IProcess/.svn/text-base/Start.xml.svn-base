@@ -1,0 +1,109 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IProcess</interface><method> Start </method>
+    <description>
+        <para>
+                Starts a process resource and associates it with a process component. Normally, it is used to start
+                an executable program specified by esName and pass the parameters through esArgs.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>
+                        String that specifies the module to execute.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> args </param_name>
+                <param_note>
+                    <para>
+                        String that specifies the executable program's command line arguments.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    <table>
+        <th>
+        <td>Return Value </td>
+        <td>Description</td>
+        </th>
+        <tr>
+        <td>NOERROR</td>
+        <td>Function succeeds in starting a process resource.</td>
+        </tr>
+        <tr>
+        <td>E_ABORT</td>
+        <td>Process has been killed</td>
+        </tr>
+        <tr>
+        <td>E_BAD_FILE_FORMAT</td>
+        <td>Bad file format</td>
+        </tr>
+        <tr>
+        <td>E_BAD_EXE_FORMAT</td>
+        <td>Bad executeable file format</td>
+        </tr>
+        <tr>
+        <td>E_FILE_NOT_FOUND</td>
+        <td>File not found</td>
+        </tr>
+        <tr>
+        <td>E_INVALID_ARGUMENT</td>
+        <td>Invalid argument(S)</td>
+        </tr>
+        <tr>
+        <td>E_NOT_ENOUGH_ADDRESS_SPACES</td>
+        <td>Insufficient address space</td>
+        </tr>
+        <tr>
+        <td>E_OUT_OF_MEMORY</td>
+        <td>Insufficient memory</td>
+        </tr>
+        <tr>
+        <td>E_PROCESS_ALREADY_STARTED</td>
+        <td>Process already started</td>
+        </tr>
+        <tr>
+        <td>E_UNEXPECTED</td>
+        <td>Unexpected error</td>
+        </tr>
+        		   <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>           	            	
+    </table>
+    </return>
+
+    <remarks>
+        <para>
+            esName should be an existing executable program name. Otherwise function will do nothing but returns
+            E_INVALIDARG. The esName should include the extension, for example "hello.exe" , and not "hello". esArgs
+            specifies the command line arguments to be passed when starting the process resource and it can be null.
+        </para>
+        <para>
+            A process should call the method only once and after calling,the calling program has to execute immediately.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心</volume>
+<interface>IAVDecEngine</interface><method> GetPriority </method>
+    <description>
+        <para>
+            获取应用的优先级和生命周期。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> enum AppPriority * </param_type>
+                <param_name> peAppPriority </param_name>
+                <param_note>
+                    <para>
+<link url="../../datatype/AppPriority.htm">AppPriority</link>枚举类型指针，用于保存得到的应用优先级                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> enum AppLifeSpan * </param_type>
+                <param_name> peAppLifeSpan </param_name>
+                <param_note>
+                    <para>
+<link url="../../datatype/AppLifeSpan.htm">AppLifeSpan</link>枚举类型指针，用于保存得到的生命周期                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功时，返回 S_OK 。如果参数 peAppPriority 或 peAppLifeSpan 值为 NULL，则参数无效，返回 E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>SetPriority</ref_name>
+            <ref_url>SetPriority</ref_url>
+        </reference>
+    </references>
+</manpage>

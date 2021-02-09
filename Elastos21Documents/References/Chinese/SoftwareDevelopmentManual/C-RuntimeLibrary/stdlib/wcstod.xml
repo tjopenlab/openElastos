@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\strtod">strtod</sample>
+    <title>strtod, wcstod</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>将字符串转化成双精度型数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>strtod</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>nptr</param_name>
+                <param_note>
+                    <para>字符指针，指向待转换的、以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char**</param_type>
+                <param_name>endptr</param_name>
+                <param_note>
+                    <para>字符指针，指向扫描停止时的字符</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>wcstod</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>nptr</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t**</param_type>
+                <param_name>endptr</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>strtod返回转换后的浮点数。如果因表示方式产生溢出（上溢），比如当被转化的字符串nptr大于最大Double值，或小于最小Double值时，则返回+/-HUGE_VAL，错误号errno置为ERANGE。（依据该不能表示的值的符号）。如果不能转换或发生下溢，函数返回0；wcstod函数返回值与strtod 类似。</para>
+    </return>
+
+    <remarks>
+        <para>strtod函数将参数字符串转换成双精度类型的数值。读串时遇到第一个非数字字符（包括空字符'\0'）时，或nptr以回车符或换行符开头时，则停止读操作。wcstod是strtod的宽字符串版本。nptr是待转换宽字符串。其它方面两者类似。</para>
+        <para>strtod要求nptr所指字符串具有如下格式：</para>
+        <para>[whitespace][sign][digits][.digits][{d|D|e|E}[sign]digits]</para>
+        <para>whitespace包括回车、换行符、空格或tab键，本函数忽略这部分字符；sign指加号(+)或减(–)号；digits是指一个或多个十进制数字，如果小数点前没有数字，那么其后必须至少有一个数字。数字后可跟指数，指数是包含前导字符( d, D, e, 或 E)和符号位的整数。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strtod</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcstod</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strtod.cpp: This program uses strtod to convert a
+ * string to a double-precision value.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char    *string, *stopstring;
+    double x;
+
+    string = &quot;3.1415926This stopped it&quot;;
+    x = strtod(string, &amp;stopstring);
+    printf(&quot;string = %s\n&quot;, string);
+    printf(&quot;    strtod = %f\n&quot;, x);
+    printf(&quot;    Stopped scan at: %s\n\n&quot;, stopstring);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+string = 3.1415926This stopped it
+strtod = 3.141593
+Stopped scan at: This stopped it
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcstol</ref_name>
+            <ref_url>wcstol</ref_url>
+        </reference>
+        <reference>
+            <ref_name>atof</ref_name>
+            <ref_url>atof</ref_url>
+        </reference>
+    </references>
+
+</manpage>

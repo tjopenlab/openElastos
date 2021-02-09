@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>manifest配置文件介绍</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li class="current"><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>标签(控件)层次模型</span></a></li>
+    <li><a href="form.html"><span>一般格式</span></a></li>
+    <li class="current"><a href="manifest_introduce.html"><span>manifest配置文件介绍</span></a></li>
+    <li><a href="sax.html"><span>XML解析器介绍</span></a></li>
+  </ul>
+</div>
+
+<h1>manifest配置文件介绍</h1>
+<p>manifest.xml文件为Widget应用的配置文件，在其中开发者可以自行定义关于这个widget应用的一些设置信息和描述信息，如默认的脚本语言，多语言包，用户自定义CAR构件。
+<p>同其他的XML文件一样，manifest.xml文件包括文件头和文件主体部分。以下将一一介绍它们。
+<p><b>◆ 文件头</b>
+<p>文件头部分主要指定当前使用的XML版本及字符编码。一般地，其格式如下。
+<p>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<p>示例中标明了当前的XML版本号为1.0，字符编码为UTF-8。
+<p><b>◆ 主要功能节点说明</b>
+<p>上文提到了在manifest.xml中可以为当前的应用配置一些信息，在实现上则是通过相应的功能结点来实现的。而这些功能结点则构成了文件的主体部分。同时，为了实现按需定制，在所有的结点中又可分为必选和可选节点两类。下文也将以这样的分类方式详细介绍它们。
+<table>
+	<tr class="setting"><th>节点</th><th width="70">是否必选</th><th>说明</th></tr>
+  <tr><td class="indexkey"><a class="el" href="widget.html">widget</a></td><td class="indexvalue">必选</td><td class="indexvalue">整个widget应用的配置文件根节点。</td></tr>
+  <tr><td class="indexkey"><a class="el" href="settings.html">settings</a>,<a class="el" href="setting.html">setting</a></td><td class="indexvalue">必选</td><td class="indexvalue">用于设置应用的脚本语言及错误日志等信息。</td></tr>
+  <tr><td class="indexkey"><a class="el" href="languageBundle.html">languageBundle</a></td><td class="indexvalue">可选</td><td class="indexvalue">若应用使用多语言包，须用此节点指定之。 </td></tr>
+  <tr><td class="indexkey"><a class="el" href="modules.html">modules</a>,<a class="el" href="module.html">module</a></td><td class="indexvalue">可选</td><td class="indexvalue">当用户引入一些CAR构件以扩展应用时，须使用用这两个节点指定之。默认，构件ElGrafix.dll、ElControls.dll已加载之，且别名分别为Grafix,Controls。 </td></tr>
+  <tr><td class="indexkey"><a class="el" href="layouts.html">layouts</a>,<a class="el" href="layout.html">layout</a></td><td class="indexvalue">可选</td><td class="indexvalue">当提供基于各种屏幕尺寸应用解决方案时，须使用这两个节点指定之。 </td></tr>
+</table>
+ <script>footer("chinese")</script>
+
+
+</body>
+</html>

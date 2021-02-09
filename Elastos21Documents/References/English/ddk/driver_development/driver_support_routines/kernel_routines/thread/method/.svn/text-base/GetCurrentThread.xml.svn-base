@@ -1,0 +1,70 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="thread\GetCurrentThread">GetCurrentThread</sample>
+    <volume>Thread and Scheduling</volume>
+    <title>GetCurrentThread</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>
+        	Gets a pointer to the interface of the current thread.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> IThread **</param_type>
+                <param_name> ppCurrentThread </param_name>
+                <param_note>
+                    <para>
+                    	Pointer to <link url="../IThread.htm">IThread</link> interface. It must not be NULL. 
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	
+    	<table>
+	    <th>
+			<td>Return Value </td>
+			<td>Hex Value</td>
+			<td>Description</td>
+	    </th>
+	    <tr>
+			<td>S_OK</td>
+			<td>0x00000000</td>
+			<td>Function succeeds in getting a pointer to the interface of the current thread.</td>
+		</tr>
+	    
+	</table>
+    </return>
+
+    <remarks>
+        <para>
+        	Uses the function to get a pointer to the interface of the current thread.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+
+</manpage>

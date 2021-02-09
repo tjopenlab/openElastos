@@ -1,0 +1,71 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> mv </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para>Renames a file or moves it from one directory to another directory.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> MV </cmd_name>
+        <cmd_param> [-?] [/l] [/x [/d] file1 [ file2 ...] target  </cmd_param>
+    </syntax>
+    <parameters>
+        <param>
+            <param_name>  -?    </param_name>
+            <param_note>  Displays help information </param_note>
+        </param>
+        <param>
+            <param_name>   /l    </param_name>
+            <param_note>  Changes all file names to lower case</param_note>
+        </param>
+        <param>
+            <param_name>  /x </param_name>
+            <param_note> Do not save deleted file into deleted subdirectory</param_note>
+        </param>
+        <param>
+            <param_name>  /d </param_name>
+            <param_note> Only changes the name of moved file when the next time the computer starts</param_note>
+        </param>
+        <param>
+            <param_name>  file1, file2... </param_name>
+            <param_note> File(s) to be moved</param_note>
+        </param>
+        <param>
+            <param_name>  target </param_name>
+            <param_note> Target path or target file name</param_note>
+        </param>
+    </parameters>
+
+    <remarks>
+        <para>When target is a path name, mv will moves all files to be moved to the directory.</para>
+        <para>If target is a file name with path, mv only moves one file, also changes the file name when moving it.If multiple files were moved, then the operation fails.</para>
+        <para>If target is just a file name, mv will change the file in current directory.</para>
+    </remarks>
+
+    <examples>
+        <example>
+            <eg_line>mv file.txt d:\temp\newfile.txt </eg_line>
+            <eg_note> Moves the file file.txt in current directory to under d drive temp directory and changes the name to newfile.txt .</eg_note>
+        </example>
+    </examples>
+
+    <references>
+        <reference>
+            <ref_name> ls </ref_name>
+            <ref_url> ls </ref_url>
+        </reference>
+        <reference>
+            <ref_name> cp </ref_name>
+            <ref_url> cp </ref_url>
+        </reference>
+    </references>
+
+</manpage>

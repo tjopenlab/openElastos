@@ -1,0 +1,68 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--pragma </title>
+</head>
+
+<body>
+	<h2>pragma</h2>
+	    <b>含义 </b>
+	        <p> 此关键字用于禁止或允许显示编译CAR文件的警告信息。</p>
+	
+	    <b>语法 </b>
+	    	<p><b>pragma</b> ([disable | enable]:nnn)  </p>
+	        <p>其中disable表示禁止，enable表示允许，nnn为采用十六进制表示的警告号。 </p>
+	    <b>使用范例 </b>
+	        <p>编译下述car文件时，会出现编译警告信息。</p>
+<pre class= code>
+library www.elastos.com/car/keywordDemo.dll
+{ 
+    importlib("foo.dll");
+    
+    interface IFoo {
+        Foo();
+    }
+
+    interface IBar {
+        Bar();
+    }
+
+    class CFooBar {
+        interface IFoo;
+        interface IBar;
+    }
+}
+
+</pre>
+	        <p>由于不存在foo.dll,所以在编译示例中CAR文件时，编译器会显示如下警告信息：[WARN] carc (0x000b) keywordDemo.car 3 : File "foo.dll" has an unexpected type, ignored.其中0x000b是警告号。 </p>
+            <p>如果在CAR文件中导致此警告出现的代码前加入pragma (disable:0x000b)，如下所示： </p>
+<pre class= code>
+library www.elastos.com/car/keywordDemo.dll
+{ 
+    <b>pragma</b>(disable:0x000b)
+    
+    import("foo.dll");
+
+    interface IFoo {
+        Foo();
+    }
+
+    class CFoo {
+        interface IFoo;
+    }
+}
+
+</pre>    
+            <p>重新编译就可以禁止该警告信息的显示。如果改为pragma (enable:0x000b)，则再次显示警告信息。</p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

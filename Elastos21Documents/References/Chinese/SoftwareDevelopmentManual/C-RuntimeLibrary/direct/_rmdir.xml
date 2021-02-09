@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\direct\_rmdir">_rmdir</sample>
+    <title> _rmdir, _wrmdir</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> dir_idx.htm </routine_idx>
+
+    <description>
+        <para>删除目录。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_rmdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>dirname</param_name>
+                <param_note>
+                    <para>指向要删除目录路径的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wrmdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>dirname</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果目录删除成功，函数返回0，如果函数在执行过程中出现错误，函数返回-1，并将错误号置为下列值之一：</para>
+        <table>
+            <th>
+                <td>错误号</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>ENOTEMPTY</td>
+                <td>所给的路径不是一个目录，目录非空，要删除的是当前工作目录或是根目录</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>路径没有找到</td>
+            </tr>
+            <tr>
+                <td>EACCESS</td>
+                <td>该目录下有一个被其它程序打开的文件</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>_rmdir函数根据dirname删除目录，该目录必须为空且非当前工作目录或根目录，而且不是tfs://tfs目录下的目录。_wrmdir是_rmdir的宽字符版本；_wrmdir的dirname参数是宽字符串，除此外两者一样。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_rmdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wrmdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _rmdir.cpp: This program uses the _mkdir function to created
+ * a new directory and then uses _rmdir function to remove this directory
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;direct.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(int argc, char *argv[])
+{
+    if (_mkdir(&quot;testtmp&quot;) == 0) {
+        printf(&quot;Directory &apos;testtmp&apos; was successfully created\n&quot;);
+        if (_rmdir(&quot;testtmp&quot;) == 0)
+            printf(&quot;Directory &apos;testtmp&apos; was successfully removed\n&quot; );
+        else
+            printf(&quot;Problem removing directory &apos;testtmp&apos;\n&quot;);
+    }
+    else
+        printf(&quot;Problem creating directory &apos;testtmp&apos;\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Directory &apos;testtmp&apos; was successfully created
+Directory &apos;testtmp&apos; was successfully removed
+</result>
+
+   
+
+</manpage>

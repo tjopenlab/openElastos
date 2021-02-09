@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\user_com_interface\elasock\sam01\server">WSAGetLastError</sample>
+    <volume>elasock API</volume>
+    <title>WSAGetLastError</title>
+    <routine_idx>ElastosSocketIndex.htm</routine_idx>
+
+    <description>
+        <para>获得上次失败操作的错误代码。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <NoArguments/>
+        <parameters>
+            <api_param>
+                <param_type>void</param_type>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，返回本线程最近一次elasock函数调用失败的错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>WSAGetLastError()返回最近一次elasock函数调用失败的错误代码。当某个elasock函数调用已经发生错误时，可调用本函数来获得具体的错误信息。</para>
+        <para>一个函数成功调用，或者一个WSAGetLastError()调用，都不会重置错误代码。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+    </references>
+    <example>
+    </example>
+</manpage>

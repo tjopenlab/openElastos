@@ -1,0 +1,372 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>图形控件IListView</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> IListView 范例程序 </h2>
+
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+<h3> CMainHello.h </h3>
+#include &quot;_CMainHello.h&quot;
+class CMainHello : public _CMainHello
+{
+public:
+    CMainHello();
+    ~CMainHello();
+
+    CARAPI OnPopup(IObject* pIObject);
+    CARAPI OnClick(IListView* pIObject, Int32 nIndex);
+    CARAPI OnChange(IListView* pIObject, Int32 nIndex);
+
+public:
+    CARAPI AtEntry(
+        /* [in] */ EzArray<WString> argcv);
+
+    CARAPI AtExit();
+
+    CARAPI OnClose(
+        /* [in] */ IButton* pIObject);
+
+    CARAPI OnSort(
+        /* [in] */ IButton* pIObject);
+
+    CARAPI OnComparer(IListView* pIObject, WString esItem1, WString esItem2, Int32* pResult);
+private:
+    IForm        * m_pMainForm;
+    ILabel       * m_pLabel;
+    IListView    * m_pListView;
+    IButton      * m_pIBtnClose;
+    IButton      * m_pIBtnSort;
+};
+
+<h3> CMainHello.cpp </h3>
+#include &quot;CMainHello.h&quot;
+#include &quot;_CMainHello.cpp&quot;
+#include &lt;stdio.h&gt;
+
+CMainHello::CMainHello()
+{
+    m_pIBtnClose = NULL;
+    m_pMainForm = NULL;
+    m_pLabel = NULL;
+    m_pListView = NULL;
+    m_pIBtnSort = NULL;
+}
+
+CMainHello::~CMainHello()
+{
+    if (m_pMainForm) {
+        m_pMainForm->Release();
+    }
+
+    if (m_pLabel) {
+        m_pLabel->Release();
+    }
+
+    if (m_pListView) {
+        m_pListView->Release();
+    }
+
+    if (m_pIBtnClose) {
+        m_pIBtnClose->Release();
+    }
+
+    if (m_pIBtnSort) {
+        m_pIBtnSort->Release();
+    }
+}
+
+ECode CMainHello::AtEntry(
+        /* [in] */ EzArray < WString > argcv)
+{
+    ECode ec;
+/////////   form
+    ec = CForm::New(&m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Create Form failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pMainForm->Init(FormStyle_Gradient, L"MAIN", 0, 0, 240, 320, NULL);
+    if (FAILED(ec)) {
+        prInt32f("Init Form failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+////////////    listview
+    ec = CListView::New(&m_pListView);
+    if (FAILED(ec)) {
+        prInt32f("Create ListView failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pListView->Init(ListViewStyle_AutoWrap | ListViewStyle_Gradient,
+                    L"listview", 0, 40, 240, 240,  m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Init ListView failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pListView->SetBackColor(0xFFFF);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    ec = m_pListView->InsertColumn(0, 120, L"first", 0);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    ec = m_pListView->InsertColumn(1, 90, L"second", 0);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    ec = m_pListView->InsertColumn(2, 120, L"third", 0);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    IImage* pIIcon = NULL;
+
+    ec = CImage::New(&pIIcon);
+    if (FAILED(ec)) {
+        prInt32f("Create Image failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = pIIcon->InitFromFile(L"hello.ico");
+    if (FAILED(ec)) {
+        prInt32f("Image InitFromFile failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    IImage* pIIcon2 = NULL;
+
+    ec = CImage::New(&pIIcon2);
+    if (FAILED(ec)) {
+        prInt32f("Create Image2 failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = pIIcon2->InitFromFile(L"hello.ico");
+    if (FAILED(ec)) {
+        prInt32f("Image2 InitFromFile failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    Int32 nCurrentIndex;
+
+    ec = m_pListView->AppendItem(ItemState_Normal, L"1", pIIcon, &nCurrentIndex);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    ec = m_pListView->SetItem(0, 0, ItemState_Normal, L"0.1", pIIcon);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    ec = m_pListView->SetItem(0, 1, ItemState_Normal, L"0.2", 0);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    ec = m_pListView->AppendItem(ItemState_Normal, L"2", pIIcon, &nCurrentIndex);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    ec = m_pListView->SetItem(nCurrentIndex, 0, ItemState_Normal, L"1.1", pIIcon);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    ec = m_pListView->SetItem(nCurrentIndex, 1, ItemState_Normal, L"1.2", 0);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    ec =m_pListView->InsertItem(0, ItemState_Normal, L"3", pIIcon);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    ec = m_pListView->SetItem(0, 0, ItemState_Normal, L"z.1", 0);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    ec = m_pListView->SetItem(0, 1, ItemState_Normal, L"z.2", 0);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    ec = m_pListView->SetItem(0, 2, ItemState_Normal, L"z.3", 0);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    pIIcon->Release();
+    pIIcon2->Release();
+
+    CListView::AddReSelectCallback(m_pListView,
+                 this, &CMainHello::OnClick);
+
+    CListView::AddSelectCallback(m_pListView,
+                 this, &CMainHello::OnChange);
+
+    CListView::AddCompareCallback(m_pListView,
+                 this, &CMainHello::OnComparer);
+
+/////////////   label
+    ec = CLabel::New(&m_pLabel);
+    if (FAILED(ec)) {
+        prInt32f("Create Label failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pLabel->Init(LabelStyle_UpArrow|LabelStyle_LeftArrow,
+                        L"Close", 5, 5, 60, 30,  m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Init Label failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pLabel->SetBackColor(0x008080);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+///////////////  Sort Button
+    ec = CButton::New(&m_pIBtnSort);
+    if (FAILED(ec)) {
+        prInt32f("Create SortButton failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pIBtnSort->Init(0, L"Sort",
+                70, 0, 80, 30,  m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Init SortButton failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    CButton::AddClickCallback(m_pIBtnSort,
+                 this, &CMainHello::OnSort);
+
+///////////////  Exit Button
+    ec = CButton::New(&m_pIBtnClose);
+    if (FAILED(ec)) {
+        prInt32f("Create CloseButton failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    ec = m_pIBtnClose->Init(0, L"Exit",
+                150, 0, 80, 30,  m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Init CloseButton failed, the ec = 0x%08x\n", ec);
+        return ec;
+    }
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 this, &CMainHello::OnClose);
+
+    m_pMainForm->Show();
+
+    return NOERROR;
+}
+
+ECode CMainHello::AtExit()
+{
+    return NOERROR;
+}
+
+ECode CMainHello::OnClick(
+        IListView* pIObject,
+        Int32 nIndex)
+{
+    prInt32f("!!!!!!!!!!!!!!%d!\n", nIndex);
+    if (nIndex == 0) {
+        m_pListView->SetViewStyle(ViewStyle_LargeIcon);
+    }
+    else if (nIndex == 1) {
+        m_pListView->SetViewStyle(ViewStyle_Details);
+    }
+    else if (nIndex == 2) {
+        m_pListView->SetViewStyle(ViewStyle_SmallIcon);
+    }
+    else if (nIndex == 3) {
+        m_pListView->SetViewStyle(ViewStyle_List);
+    }
+    else if (nIndex == 4) {
+        m_pListView->SetViewStyle(ViewStyle_AutoWrap);
+    }
+    else if (nIndex == 5) {
+        m_pListView->SetTopIndex(-1);
+    }
+    else {
+        Int32 n = 0;
+        m_pListView->GetCheckedCount(&n);
+        EzArray<Int32> a = EzArray<Int32>::CreateObject(n);
+        m_pListView->GetCheckedIndices(a);
+        for (; n > 0; n--) {
+            prInt32f("!!!!!%d!!!!!\n", a[n-1]);
+        }
+        a.Dispose();
+    }
+
+    return NOERROR;
+}
+
+ECode CMainHello::OnChange(
+        IListView* pIObject,
+        Int32 nIndex)
+{
+    prInt32f("!!!!OnChange!!!!\n");
+    return NOERROR;
+}
+
+ECode CMainHello::OnClose(
+        /* [in] */ IButton* pIObject)
+{
+    m_pMainForm->Close();
+
+    return NOERROR;
+}
+
+ECode CMainHello::OnSort(
+        /* [in] */ IButton* pIObject)
+{
+    m_pListView->Sort();
+
+    return NOERROR;
+}
+
+ECode CMainHello::OnComparer(
+        IListView* pIObject,
+        WString esItem1,
+        WString esItem2,
+        Int32* pResult)
+{
+    Int32 a = wcscmp((wchar_t*)esItem1, (wchar_t*)esItem2);
+
+    if (a < 0) {
+        *pResult = 1;
+    }
+    else if (a > 0) {
+        *pResult = -1;
+    }
+    else {
+        *pResult = 0;
+    }
+
+    return NOERROR;
+}
+
+</pre>
+
+<script>footer("KoreTide")</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\EzByteBuf\AllocByteBufLen">alloclen</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzByteBuf </interface>
+    <method> AllocByteBufLen </method>
+
+    <description>
+        <para> Allocates memory blocks of specified size for the variable EzByteBuf and initialized.</para>
+    </description>
+
+    <syntax>
+        <return_val> static EzByteBuf</return_val>
+        <parameters>
+        <api_param>
+            <param_type>const byte*</param_type>
+            <param_name> pb </param_name>
+            <param_note>
+                <para> Used in initializing variable EzByteBuf. </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>UINT</param_type>
+            <param_name> cb </param_name>
+            <param_note>
+                <para> The number of bytes allocated. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If the allocation is successful, returns the pointer to the string; otherwise return EZBYTEBUF_NULL.</para>
+    </return>
+
+    <remarks>
+        <para>The memory blocks allocated will be initialized by parameter <i>pb</i>. if <i>pb</i> is NULL, then the bytes used in buffer is valued 0.</para>
+    </remarks>
+
+    <example></example>
+
+
+
+    <references>
+        <reference>
+            <ref_name> AllocByteBuf </ref_name>
+            <ref_url> AllocByteBuf </ref_url>
+        </reference>
+        <reference>
+            <ref_name> FreeByteBuf </ref_name>
+            <ref_url> FreeByteBuf </ref_url>
+        </reference>
+    </references>
+
+</manpage>

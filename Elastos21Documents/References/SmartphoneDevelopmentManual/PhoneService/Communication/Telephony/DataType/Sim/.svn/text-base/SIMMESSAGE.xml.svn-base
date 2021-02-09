@@ -1,0 +1,93 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>通讯引擎</volume>
+    <types> SIMMESSAGE </types>
+    <description>
+        <para>
+            SIM卡上短信信息结构体
+        </para>
+    </description>
+  <struct>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>cbSize</mem_name>
+            <mem_description>本结构的长度（in bytes） </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>SMS_STATE</mem_type>
+            <mem_name>smssState</mem_name>
+            <mem_description>短信状态 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>SMS_MSGTYPE</mem_type>
+            <mem_name>smsmtMsgType</mem_name>
+            <mem_description>短信息类型</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name> dwParams </mem_name>
+            <mem_description>标识后面哪些参数有效 </mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>WCHAR</mem_type>
+            <mem_name>lpszAddress[MAX_LENGTH_ADDRESS]</mem_name>
+            <mem_description>发短信方的号码</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwAddressType</mem_name>
+            <mem_description>短信号码的类型</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwNumPlan</mem_name>
+            <mem_description>SIM_NUMPLAN</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>SYSTEMTIME</mem_type>
+            <mem_name>stReceiveTime</mem_name>
+            <mem_description>收到短信的时间</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>SMS_MULTIPART</mem_type>
+            <mem_name>mpMultiPartInfo</mem_name>
+            <mem_description>可写的短信条数，即当前空闲的存储容量</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>WCHAR</mem_type>
+            <mem_name>lpszMessage[MAX_LENGTH_MESSAGE]</mem_name>
+            <mem_description>短信内容</mem_description>
+        </struct_member>
+    </struct>
+     <remarks>
+		    <para>成员wParams可能的取值定义如下：</para>
+		    <table>
+	  	    <th>
+           <td>取值</td><td>描述</td>
+        </th>
+        <tr>
+           <td>SIM_PARAM_MSG_ADDRESS</td><td>lpszAddress有效</td>
+        </tr>
+        <tr>
+           <td>SIM_PARAM_MSG_ADDRESS_TYPE</td><td>dwAddressType有效</td>
+        </tr>
+        <tr>
+           <td>SIM_PARAM_MSG_NUMPLAN</td><td>dwNumPlan有效</td>
+        </tr>
+        <tr>
+           <td>SIM_PARAM_MSG_RECEIVE_TIME</td><td>stReceiveTime有效</td>
+        </tr>
+        <tr>
+           <td>SIM_PARAM_MSG_MULTIPARTINFO</td><td>mpMultiPartInfo有效</td>
+        </tr>
+         <tr>
+           <td>SIM_PARAM_MSG_MESSAGE</td><td>lpszMessage有效</td>
+        </tr>
+         <tr>
+           <td>SIM_PARAM_MSG_ALL</td><td>所有参数都有效</td>
+        </tr>
+        </table>
+    </remarks>
+
+
+</manpage>

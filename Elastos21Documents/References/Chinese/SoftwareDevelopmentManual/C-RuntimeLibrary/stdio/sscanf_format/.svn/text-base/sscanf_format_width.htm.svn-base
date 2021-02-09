@@ -1,0 +1,135 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+
+<title>sscanf 函数format格式中的width信息段说明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+
+<h2>sscanf函数format格式中的width信息段说明</h2>    
+
+        <p>width是一个正的十进制整数，用于指定对应于当前的格式项，从字符串中转换字符的最大个数。不多于width个数的字符将会被转换为指定类型并赋给相应的参数。如果在被转换的字符数达到width之前，遇到的字符为空白符（空格、制表符或换行符），或者不能被转换为指定类型，那么转换停止，被转换的字符个数会少于width。</p>
+
+<h2>前缀</h2>
+
+        <p>前缀h，l，I64和L是可选择项，用于指定格式串后被赋值参数的长度类型（long或short，单字节字符或宽字符，具体是哪种，决定于他们所修饰的类型符）。在sscanf、wsscanf函数中，这些前缀与类型符在一起使用，用来详细指明格式串后被赋值参数的数据类型，具体代表的含义如下表所示。h，l，I64和L是微软的扩展，与ANSI不兼容。</p>
+        <p>注意：前缀h，l和L与char型在一起使用时，是微软的一种扩展。</p>
+        <h5>类型符前缀使用对照表：</h5>
+        <table>
+          <thead>
+            <td align="center">To Specify</td>
+            <td align="center">Use Prefix</td>
+            <td align="center">With Type Specifier</td>
+          </thead>
+          <tr>
+            <td>double</td>
+            <td>l</td>
+            <td>e,  E,  f,  g,  G</td>
+          </tr>
+          <tr>
+            <td>long double,  double</td>
+            <td>L</td>
+            <td>e,  E,  f,  g,  G</td>
+          </tr>
+          <tr>
+            <td>long long</td>
+            <td>ll</td>
+            <td>d,  i,  o,  x,  X</td>
+          </tr>
+          <tr>
+            <td>long int</td>
+            <td>l</td>
+            <td>d,  i,  o,  x,  X</td>
+          </tr>
+          <tr>
+            <td>long unsigned int</td>
+            <td>l</td>
+            <td>u</td>
+          </tr>
+          <tr>
+            <td>short int</td>
+            <td>h</td>
+            <td>d,  i,  o,  x,  X</td>
+          </tr>
+          <tr>
+            <td>Short unsigned int</td>
+            <td>h</td>
+            <td>u</td>
+          </tr>
+          <tr>
+            <td>_int64</td>
+            <td>I64</td>
+            <td>d,  i,  o,  u,  x,  X</td>
+          </tr>
+          <tr>
+            <td>sscanf函数中单字节字符</td>
+            <td>h</td>
+            <td>c,  C</td>
+          </tr>
+          <tr>
+            <td>wsscanf函数中单字节字符</td>
+            <td>h</td>
+            <td>c,  C</td>
+          </tr>
+          <tr>
+            <td>sscanf函数中宽字节字符</td>
+            <td>l</td>
+            <td>c,  C</td>
+          </tr>
+          <tr>
+            <td>wsscanf函数中宽字节字符</td>
+            <td>l</td>
+            <td>c,  C</td>
+          </tr>
+          <tr>
+            <td>sscanf函数中单字节字符串</td>
+            <td>h</td>
+            <td>s,  S</td>
+          </tr>
+          <tr>
+            <td>wsscanf函数中单字节字符串</td>
+            <td>h</td>
+            <td>s,  S</td>
+          </tr>
+          <tr>
+            <td>sscanf函数中宽字节字符串</td>
+            <td>l</td>
+            <td>s,  S</td>
+          </tr>
+          <tr>
+            <td>wsscanf函数中宽字节字符串</td>
+            <td>l</td>
+            <td>s,  S</td>
+          </tr>   
+        </table>                
+        <p> h、l在函数中的使用例子：</p>
+        <p>  sscanf(“abcd”, "%ls", &x );     // 从字符串中格式化宽字符的字符串并赋值给x</p>
+        <p>  swscanf(“abcd”,"%hC", &x );    //从字符串中格式化一个单字节字符并赋值给x</p>
+        
+<h2>字符集</h2>
+
+        <p>当格式项中的类型符是s，即指定的类型为字符串时，可以在格式项中加入括号【】，在括号中放入一个字符集，用来指定从源字符串中可读取字符的范围，即只有括号中包括的字符会被转换为字符串赋给相应参数，如果碰到别的字符，此次格式赋值即结束。如果括号中的第一个字符是 ^，那么作用就会相反：在转换时，如果碰到括号中其他的字符，那么此次格式赋值即结束。</p>
+        <p>注意：％【a-z】和％【z-a】等价于％【abcde。。。z】。这是sscanf函数的一个扩展，与ANSI不兼容。</p>
+        
+<h2>字符数</h2>
+
+        <p>用格式项％nc（n为一十进制整数），可以将一字符数为n的字符串存储到一个参数中，而不用空白符来限定。其中，类型符c表明被赋值的参数是一个指向字符数组的指针。源字符串中的n个字符将会被读出并赋值给相应参数，如果无n值，则默认为1。</p>
+        
+<h2>格式项的结束</h2>
+
+        <p>sscanf函数一个一个字符地读源字符串。对应一格式项，在遇到空白符前停止的原因有以下几种：</p>
+        <li>指定的字符个数width达到。
+        <li>下一个字符不能被转化为指定的类型。
+        <li>下个字符与控制串中的字符不匹配。
+        <li>下个字符不是【】字符集中指定的字符。
+        <p>无论何种原因停止，当sscanf函数结束本格式项的读取，下个格式项的读取会紧接着下个未读的字符。</p>
+        
+
+<script>footer("chinese")</script>
+</body>
+</html>

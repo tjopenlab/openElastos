@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_findnext">_findnext</sample>
+    <title> _findnext, _wfindnext</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>继续查找下一个在前一次调用_findfirst函数时，与该函数的filespec参数信息相匹配的文件，并修改fileinfo参数结构体中的内容。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_findnext</func_name>
+        <parameters>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>前一次调用_findfirst函数时，返回的查找句柄</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>struct _finddata_t*</param_type>
+                <param_name>fileinfo</param_name>
+                <param_note>
+                    <para>文件信息缓冲区</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wfindnext</func_name>
+        <parameters>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>handle</param_name>
+            </func_param>
+            <func_param>
+                <param_type>struct _wfinddata_t*</param_type>
+                <param_name>fileinfo</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_findnext函数如果执行成功，将返回0。否则，将返回-1，并设置错误号为ENOENT，表示没有找到相匹配的文件。</para>
+        <para>当调用完<link url="_findfirst.htm">_findfirst</link>_findfirst函数或_findnext函数后，必须调用<link url="_findclose.htm">_findclose</link>函数。这样将释放在应用程序中，调用函数_findfirst和_findnext时使用的资源。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>_findnext</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* findnxt.cpp: This program uses _findnext to find the next name after
+ * _findfirst, and then display the attrib of fileinfo structure
+ * contents accordingly.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;io.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+    long hFile;
+    struct _finddata_t fileinf;;
+
+    /* Find first _find??.exe file in current directory */
+    if ((hFile = _findfirst(&quot;find*.*&quot;, &amp;fileinf)) == -1L)
+        printf(&quot;No find*.exe files in current directory!\n&quot;);
+    else {
+        do {
+            printf((fileinf.attrib &amp; _A_RDONLY) ? &quot; Y  &quot; : &quot; N  &quot;);
+            printf((fileinf.attrib &amp; _A_SYSTEM) ? &quot; Y  &quot; : &quot; N  &quot;);
+            printf((fileinf.attrib &amp; _A_HIDDEN) ? &quot; Y  &quot; : &quot; N  &quot;);
+            printf((fileinf.attrib &amp; _A_ARCH)   ? &quot; Y  &quot; : &quot; N  &quot;);
+            printf(&quot; %s\n&quot;, fileinf.name);
+        } while (_findnext(hFile, &amp;fileinf) == 0);
+        _findclose(hFile);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+N   N   N   N   findcls.exe
+N   N   N   N   findfst.exe
+N   N   N   N   findnxt.exe
+</result>
+
+    <references>
+        <reference>
+            <ref_name>_findfirst</ref_name>
+            <ref_url>_findfirst</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_findclose</ref_name>
+            <ref_url>_findclose</ref_url>
+        </reference>
+    </references>
+
+</manpage>

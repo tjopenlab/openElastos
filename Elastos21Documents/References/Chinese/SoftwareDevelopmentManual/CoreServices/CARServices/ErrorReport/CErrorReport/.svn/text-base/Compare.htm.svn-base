@@ -1,0 +1,92 @@
+<html>
+
+<head>
+<title>CErrorReport的API与错误值对应关系表</title>
+</head>
+
+<body>
+
+<div class="Section1">
+	<p class="MsoNormal" style="MARGIN-BOTTOM: 12pt" align="center">
+	<span lang="EN-US"><font size="2"><span style="FONT-SIZE: 10pt"><br><br>
+	</span></font><b><font size="4">CErrorReport</font></b></span><b><font size="4">的<span lang="EN-US">API</span>与错误值对应关系表</font></b></p>
+	<table class="MsoNormalTable" style="WIDTH: 605.25pt" cellPadding="0" width="807" border="1" id="table5">
+		<tr>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee" width="204">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span style="FONT-SIZE: 10pt">实现者调用</span></font></td>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span style="FONT-SIZE: 10pt">返回值</span></font></td>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span style="FONT-SIZE: 10pt">调用者应该使用</span></font></td>
+		</tr>
+		<tr>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee" width="204">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span lang="EN-US" style="FONT-SIZE: 10pt">CErrorReport::SetWString</span></font></td>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span lang="EN-US" style="FONT-SIZE: 10pt">E_ERROR_STRING</span></font></td>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span lang="EN-US" style="FONT-SIZE: 10pt">CErrorReport::GetWString</span></font></td>
+		</tr>
+		<tr>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee" width="204">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span lang="EN-US" style="FONT-SIZE: 10pt">CErrorReport::SetAString</span></font></td>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span lang="EN-US" style="FONT-SIZE: 10pt">E_ERROR_STRING_A</span></font></td>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span lang="EN-US" style="FONT-SIZE: 10pt">CErrorReport::GetAString</span></font></td>
+		</tr>
+		<tr>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee" width="204">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span lang="EN-US" style="FONT-SIZE: 10pt">CErrorReport::SetUrl</span></font></td>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span lang="EN-US" style="FONT-SIZE: 10pt">E_ERROR_URL</span></font></td>
+			<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee">
+			<p class="MsoNormal"><font face="宋体" size="2">
+			<span lang="EN-US" style="FONT-SIZE: 10pt">CErrorReport::GetUrl</span></font></td>
+		</tr>
+	</table>
+	<p><font face="宋体" size="2">
+	<span lang="EN-US" style="FONT-SIZE: 10pt">&nbsp;</span></font></div><b>
+<font size="4">示例</font></b>　<table class="MsoNormalTable" style="WIDTH: 100%" cellPadding="0" width="100%" border="0" id="table6">
+	<tr>
+		<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee">
+		<font face="宋体" size="2">
+<span lang="EN-US" style="FONT-SIZE: 10pt">ECode CFoo::Hello() //</span>实现者调用<span lang="EN-US" style="FONT-SIZE: 10pt"><br>{<br>&nbsp;&nbsp;&nbsp; if (...) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return E_INVALID_ARGUMENT;<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; // ...<br>
+<br>&nbsp;&nbsp;&nbsp; return CErrorReport::SetWString(L&quot;file not found&quot;);<br>}</span></font></td>
+	</tr>
+</table>
+<p class="MsoNormal" style="MARGIN-BOTTOM: 12pt">
+<font face="宋体" size="2">
+<span lang="EN-US" style="FONT-SIZE: 10pt"><br></span></font><font size="2">
+<span style="FONT-SIZE: 10pt">对于使用者，调用这个<span lang="EN-US">API</span>，比如：</span></font></p>
+<table class="MsoNormalTable" style="WIDTH: 100%" cellPadding="0" width="100%" border="0" id="table7">
+	<tr>
+		<td style="padding: 1.5pt; background: #eeeeee" vAlign="top" bgColor="#eeeeee">
+		<font face="宋体" size="2">
+<span lang="EN-US" style="FONT-SIZE: 10pt">ec = pFoo-&gt;Hello();<br>if (ec == E_INVALID_ARGUMENT) {<br>&nbsp;&nbsp;&nbsp; // 
+</span></font><font size="2"><span style="FONT-SIZE: 10pt">对于参数不正确的处理<span lang="EN-US"><br>}<br>else if (ec = E_ERROR_STRING) {<br>&nbsp;&nbsp;&nbsp; // 
+</span>这时，可以通过<span lang="EN-US"> CErrorReport::GetWString()
+			</span>来获取<span lang="EN-US"> CFoo::Hello() </span>方法传递过来的字符串<span lang="EN-US"><br>&nbsp;&nbsp;&nbsp; CConsole::WriteLine(</span></span><font color="#FF0000"><span lang="EN-US" style="FONT-SIZE: 10pt; ">CErrorReport::GetWString()</span></font><span lang="EN-US" style="FONT-SIZE: 10pt">);<br>}<br>// ...</span></font></td>
+	</tr>
+</table>
+<p style="line-height: 150%; margin-top: 0; margin-bottom: 0">　</p>
+<p style="line-height: 150%; margin-top: 0; margin-bottom: 0"><font size="2">
+<span style="font-size: 10pt">&nbsp;&nbsp; 没有拿到对应的返回值而对获取字符串<span lang="EN-US"> 
+	API</span>的调用无任何意义，即在上述红色部分改为<span lang="EN-US">CErrorReport::AString</span>（）是没有意义的，虽然也可以得到错误返回值。此外，使用者应该是根据返回值来判断应该使用哪个<span lang="EN-US">API.</span></span></font></p>
+<p style="line-height: 150%; margin-top: 0; margin-bottom: 0">　</p>
+<p>　
+
+</body>
+
+</html>

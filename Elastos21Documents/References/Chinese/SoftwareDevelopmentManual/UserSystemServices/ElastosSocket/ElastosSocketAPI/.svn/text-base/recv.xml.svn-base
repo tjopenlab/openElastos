@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\user_com_interface\elasock\sam01\server">recv</sample>
+    <volume>elasock API</volume>
+    <title>recv</title>
+    <routine_idx>ElastosSocketIndex.htm</routine_idx>
+
+    <description>
+        <para>从套接口接收数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>[in]已连接的套接口。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>char *</param_type>
+                <param_name>buf</param_name>
+                <param_note>
+                    <para>[out]接收数据的缓冲区。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>len</param_name>
+                <param_note>
+                    <para>[in]缓冲区长度。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>flags</param_name>
+                <param_note>
+                    <para>[in]调用方式标志位，普通方式为0。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>若无错误发生，recv()返回读入的字节数。如果连接已终止，返回0。否则的话，返回SOCKET_ERROR错误，应用程序可通过<link url="WSAGetLastError.htm">WSAGetLastError()</link>获取相应错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>本函数用于从数据报或已建立连接的流式套接口s接收数据。如果使用流类套接口，在调用recv()之间必须先建立连接。如果使用数据报报接口，在调用recv()之前需要绑定套接口。与<link url="recvfrom.htm">recvfrom()</link>不同的是，调用recv()无法获得远端套接口的地址信息。</para>
+        <para>套接口的本地地址必须是确定的。对于服务器端，可以显式调用<link url="bind.htm">bind()</link>或者隐式调用<link url="accept.htm">accept()</link>。对于客户端，不鼓励显式调用bind()，客户端程序可以通过<link url="connect.htm">connect()</link>或<link url="sendto.htm">sendto()</link>来隐式地建立套接口与本地地址的绑定。</para>
+        <para>本函数将鉴别数据发送方的地址。已连接远程地址发出的数据将被接收，而来自其他地址的数据将被丢弃。</para>
+        <para>对字节流套接口（SOCK_STREAM类型），本函数将返回接收数据的字节数，最大可达缓冲区的大小。</para>
+        <para>对于数据报套接口（SOCK_DGRAM类型），队列中第一个来自远程地址（由conncet()指定）的数据报将被接收。如果数据报长度大于缓冲区大小，缓冲区中将只有数据报的前面部分，recv()返回已读入缓冲区的字节数，多余的数据将被丢弃；而对于字节流套接口（例如TCP），同样的情况下数据将被保留，直到缓冲区足够大的recv()调用来取走数据。</para>
+        <para>对于阻塞模式，如果没有数据待读，调用recv()将阻塞套接口，以等待数据的到来；对于非阻塞套接口，此时将返回SOCKET_ERROR错误。调用<link url="select.htm">select()</link>可确定何时数据到达。</para>
+        <para>所有经过传输缓冲并接收的数据将被复制到用户给出的缓冲区。如果阻塞套接口无接收数据，程序将阻塞直到数据到达。对于字节流套接口，一次recv()将读取所有已经到来的数据，并尽可能地充满用户给出的缓冲区；当阻塞发生时，如果接收到大于或等于一个字节的数据，或者收到另一端正常关闭连接的信号，阻塞过程都将结束。而对于数据报套接口，每一次recv()调用只处理远端一次<link url="send.htm">send()</link>传送过来的数据；且需要接收到完整的数据报才可以结束阻塞状态，但是允许数据报长度为0。</para>
+        <para>如果字节流套接口的连接被关闭或者被强制中止，recv()将返回WSAECONNRESET错误。</para>
+        <para>标志位flags用于设置recv的接收方式，一般情况使用0。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>accept</ref_name>
+            <ref_url>accept</ref_url>
+        </reference>
+        <reference>
+            <ref_name>bind</ref_name>
+            <ref_url>bind</ref_url>
+        </reference>
+        <reference>
+            <ref_name>recvfrom</ref_name>
+            <ref_url>recvfrom</ref_url>
+        </reference>
+        <reference>
+            <ref_name>send</ref_name>
+            <ref_url>send</ref_url>
+        </reference>
+        <reference>
+            <ref_name>select</ref_name>
+            <ref_url>select</ref_url>
+        </reference>
+        <reference>
+            <ref_name>shutdown</ref_name>
+            <ref_url>shutdown</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+
+    </references>
+    <example>
+    </example>
+</manpage>

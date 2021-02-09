@@ -1,0 +1,30 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>文件的输入和输出</title>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>文件的输入和输出</h2>
+    <p>输入输出函数是用来从文件或设备中读写数据的。文件的输入输出操作可以采用文本模式或二进制模式。</p>
+<h3>  文本模式和二进制模式的输入输出</h3>
+    <p>文件的输入输出操作采用哪种转换模式（文本模式还是二进制模式），要看文件打开的模式。数据文件一般通过文本模式进行处理。要想控制文件的转换模式，你可以采取以下方法：</p>
+    <ul>
+        <li>保留当前默认设置，只有当打开选定文件时才指定两种模式中的一种。
+    </ul>
+    <p>当你调用一个打开文件的函数，例如<a class="style1" href="io/_wopen.htm">_open</a>或者<a class="style1" href="stdio/_wfopen.htm">fopen</a>，你可以直接通过使用这些函数的相应的参数的方法来指定文件转换模式。标准输入流（stdin），标准输出流（stdout），和标准错误流（stderr）通常默认设置以文本模式打开，你可以在打开这些文件时不考虑默认设置。</p>
+<h3>UNICODE流在文本模式和二进制模式的输入输出</h3>
+    <p>当一个UNICODE流输入输出函数程序（例如<a class="style1" href="stdio/fwprintf.htm">fwprintf</a>，<a class="style1" href="stdio/fgetwc.htm">fgetwc</a>，<a class="style1" href="stdio/fputc.htm">fputwc</a>，<a class="style1" href="stdio/fgetws.htm">fgetws</a>，或者<a class="style1" href="stdio/fputws.htm">fputws</a>）在一个以文本模式（默认值）打开的文件上进行操作时，会进行以下操作：</p>
+    <ul>
+        <li>Unicode-to-MBCS或者MBCS-to-Unicode转换。当一个UNICODE流-输入输出函数在文本模式进行操作时，源或目的流被假设为一个多字节字符序列。所以UNICODE流-输入函数要将多字节字符转换为宽字符，同样道理，UNICODE流-输出函数要将宽字符转换为多字节字符。
+    </ul>
+    <p>然而，当一个UNICODE流输入输出函数在二进制模式下操作时，当前处理文件将被假设为UNICODE，并且在输入输出过程中没有字符的转换操作发生。</p>
+    <p><b>备注：</b>由于Elastos上的文件为UNIX格式，所以对回车换行的操作和微软略有不同，一律没有'\r'。</p>
+
+<script>footer("KoreTide")</script>
+</body>
+</html>

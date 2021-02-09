@@ -1,0 +1,61 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>Event</interface><method> Notify </method>
+    <description>
+        <para>
+           Sets the Event object to notified state, so as to wake up the waiting thread. (Only used in the 
+           top half of driver)
+        </para>
+    </description>
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> uint_t </param_type>
+                <param_name> uState </param_name>
+                <param_note>
+                    <para>
+                       Specifies the value of the notified state. It can be any other integer without
+                       expression except zero. Default is SIGNALED.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <NoReturnValue/>
+	</return>
+
+	<remarks>
+		<para>
+		    Sets the Event object to notified state, so as to wake up the waiting thread.
+		    If the Event object is reset automatically, only one waiting thread will be woken up, and the Event object
+            will be reset as not notified state. If Event object is reset manually, all the waiting thread will be 
+            woken up, and Event object will keep this notified state until calling the <link url="Clear.htm">
+            Event::Clear</link> method. If no thread waits for the Event object, this method only changes the Event 
+            object into notified state.
+		</para>
+		<para>
+		    The difference between this method and <link url="NotifyByIsr.htm">Event::NotifyByIsr</link> is, it can 
+		    only be used in the top half of a driver. (i.e. it can not be used in a interrupt service routine).
+        </para>
+        <para>
+        	This method can not be misused with <link url="NotifyByIsr.htm">Event::NotifyByIsr</link>.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

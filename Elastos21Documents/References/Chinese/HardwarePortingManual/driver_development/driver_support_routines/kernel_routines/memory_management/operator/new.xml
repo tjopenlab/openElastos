@@ -1,0 +1,62 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\new">new</sample>
+    <volume>操作符</volume>
+    <method>new</method>
+    <title>new</title>
+    <routine_idx> ../operator.htm </routine_idx>
+
+    <description>
+        <para>动态创建内核对象或内核对象数组。</para>
+    </description>
+
+    <syntax>
+        <return_val> void * </return_val>
+        <method_name> operator new </method_name>
+        <parameters>
+            <api_param>
+                <param_type> size_t </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>指定所创建的内核对象或内核对象数组的大小（单位：字节）。动态创建的内核对象或内核对象数组的大小不能超过c_uMaxAllocationSize常量所指定的最大分配字节数。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> void * </return_val>
+        <method_name> operator new []</method_name>
+        <parameters>
+            <api_param>
+                <param_type> size_t </param_type>
+                <param_name> size </param_name>
+            </api_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>分配成功，返回所分配的内核对象或内核对象数组的首地址；分配失败，返回NULL。</para>
+    </return>
+
+    <remarks>
+        <para>此操作符用于动态创建内核对象或内核对象数组。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>delete</ref_name>
+            <ref_url>delete</ref_url>
+        </reference>
+    </references>
+</manpage>

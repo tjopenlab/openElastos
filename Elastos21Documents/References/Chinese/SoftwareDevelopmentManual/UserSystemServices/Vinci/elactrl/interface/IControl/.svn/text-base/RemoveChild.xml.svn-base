@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> RemoveChild </method>
+    <description>
+        <para>
+            删除指定的子控件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IControl* </param_type>
+                <param_name> control </param_name>
+                <param_note>
+                    <para>
+待删除的子控件的接口指针，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_CONTROL_NO_CHILD</td>
+	    	    <td>控件没有子控件</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        删除控件的同时会将其子控件一并删除。
+    </para>
+    <para>
+        该方法的成功调用可能会影响可滚动控件的滚动条位置。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+</references> 
+</manpage>

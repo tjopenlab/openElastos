@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\ezstr\operAssi">opertor=</sample>
+    <volume> Common data structure </volume>
+    <interface> EzStr </interface>
+    <method> operator = </method>
+
+    <description>
+        <para>The assignment operator, assigns an EzStr object.</para>
+    </description>
+
+    <syntax>
+        <return_val> EzStr&amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const EzStr&amp; </param_type>
+            <param_name> str </param_name>
+            <param_note>
+                <para> The reference of the EzStr object. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStr str1 = EZCSTR("Hello,world!");
+    EzStr str2 = EZCSTR("World,hello!");
+
+    printf("Before change,str1 is \"%S\".\n", (wchar_t*)str1);
+    str1 = str2;
+    printf("After change,str1 is \"%S\".\n", (wchar_t*)str1);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+Before change,str1 is "Hello,world!".
+After change,str1 is "World,hello!".
+]]>
+    </result>
+
+</manpage>

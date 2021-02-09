@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>U8String</class>
+    <method>LastIndexOf</method>
+    <description>
+        <para> 报告指定的U8String在此实例中的最后一个匹配项的索引位置。</para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const U8String &amp;</param_type>
+            <param_name> str </param_name>
+            <param_note>
+                <para> 要查找的U8String。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive </param_default>
+            <param_note>
+                <para> 大小写标示符。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param> 
+             
+        </parameters>        
+    </syntax>
+    <return>
+        <para>如果找到该字符串，则为str的从零开始的索引位置；如果未找到该字符串，则为-1。如果str为空字符串("")，则返回值为0。</para>
+    </return>
+    <remarks>
+        <para>1.索引编号从零开始。 </para>
+        <para>2.若U8String实例或str包含的字符串指针为NULL,或U8String实例为空字符串("")，则返回-1。 </para>
+    </remarks>
+
+<example>
+<pre>
+U8String u8s("abcabc");
+U8String assub("bc");
+CConsole::WriteLine(u8s.LastIndexOf(assub));  //Display : 4
+</pre>
+</example>
+  
+ 
+ 
+</manpage>

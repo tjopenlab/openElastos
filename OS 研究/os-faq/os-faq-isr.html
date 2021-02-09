@@ -1,0 +1,137 @@
+
+<html>
+<head>
+	<title>Operating Systems FAQ :: ISR :: Interrupt Service Routines</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="isr">ISR :: Interrupt Service Routines</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The x86 architecture is an interrupt driven system. External events
+			are processed by interrupt service routines (ISR's) whose offsets
+			are stored in the IDT (interrupt descriptor table).
+			<p>These events can be hardware driven interrupts or software driven
+			interrupts.
+			</p>
+			<p>An example of a hardware ISR is the keyboard. Every time you press
+			a key, the keyboard signales to the IRQ1 which runs an interrupt.
+			</p>
+			<p>An example of a software driven interrupt is the services provided
+			by MS-DOS, they use INT 21h and are signalled by software when to run.
+			</p>
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="normal_v_isr">Whats the difference between an ISR and normal routine?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The difference between an ISR and a normal routine is very slight
+		and has to do with CPU opcodes.
+		<p>ISR routines end their routine with an &quot;Interrupt Return (<b>IRET</b>)&quot;
+		whereas normal procedures end their routines with &quot;Return (<b>RET</b>)&quot;
+		or &quot;Far Return (<b>RETF</b>)&quot;
+		</p>
+		<p>Some compilers do not have the ability to correctly create ISRs.
+		Often a compiler introduces a non ansi compliant keyword &quot;<b>_interrupt</b>&quot;
+		or &quot;<b>interrupt</b>&quot;.  Compilers known to support this keyword are Watcom C/C++,
+		Borland C/C++, Microsoft C 6.0. However, GCC does not support this keyword for x86
+		architecture and it would seem Visual C/C++ does not.
+		</p>
+		<pre>
+/* example of clock tick routine in Watcom C/C++ */
+void <b>_interrupt</b> ISR_clock(void)
+{
+	clock_count++;
+}
+		</pre>
+		</td>
+	</tr>
+</table>
+
+<P>&nbsp;</P>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="gcc_isr">So how do I do an ISR in GCC?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Doing an ISR in GCC is a little more complex than for compilers
+		that support the &quot;<b>_interrupt</b>&quot; keyword.
+		<p>You have to write a small routine in assembler to call your C routine.
+		</p>
+		<pre>		
+/* Filename : isr_clock.s */
+/* GCC AT&amp;T	asm example for ISR routine */
+/* This example is for our clock_tick example */
+/* NOTE! This example assumes nothing in regards to
+   contents of registers on running */
+
+	.globl   _clock_isr
+	.align   4
+	
+_clock_isr:
+
+    /* save some registers */
+	pushl	%eax
+	pushl	%ds
+	pushl	%es
+	pushl	%fs
+	pushl	%gs
+
+    /* set our descriptors up to a DATA selector */
+	movl    $0x10, %eax
+	movw    %ax, %ds
+	movw    %ax, %es
+	movw    %ax, %fs
+	movw    %ax, %gs
+
+    /* call our clock routine */
+	call	_ISR_clock
+
+    /* clear the PIC (clock is a PIC interrupt) */
+	movl    $0x20, %eax
+	outb    %al, $0x20
+
+    /* restor our regs */
+	popl	%gs
+	popl	%fs
+	popl	%es
+	popl	%ds
+	popl	%eax
+	iret
+
+	
+/* filename : clock.c */
+/* clock routine */
+
+/* tell our linker clock_isr is not in this file */
+extern void clock_isr(void);
+
+__volatile__ unsigned long clock_count=0L;
+
+void ISR_clock(void)
+{
+	clock_count++;
+}	
+		</pre>
+		</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

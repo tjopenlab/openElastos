@@ -1,0 +1,75 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>Component Cache Mechanism</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>How To Use CAR Component Cache Mechanism?</h2>
+    <p>CCM manages file by using local index file. Each file corresponds to a record in index file. The record stores file related information including network address URL, local address (full path name). Files downloaded from the network are stored in Cache directory.</p>
+    <a NAME="ccm">
+    <h3>How to use CCM?</h3>
+        <p>The following will introduce to how to use CAR&nbsp;Cache&nbsp;Manager: </p>
+        <ol>
+            <li>Opens the compilation option in DDK, there is a line in Elastos\src\libpub\inc\eladef.h:
+            <pre class="code">
+//#define CACHEMANAGER
+</pre>
+            We take off the comments, and change them into: <pre class="code">
+#define CACHEMANAGER
+</pre>
+            Compiling DDK, then executing dropsdk.exe.
+            <li>Setting configuration file (config).
+                <p>(1) Adding in mkpkg.cfg: </p>
+                <pre class="code">
+%ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\elasock.dll \
+%ELASTOS_ROOT%\obj\%ELASTOS_BUILD_KIND%\bin\cachemgr.dll \
+</pre>
+                <p>(2) Adding settings that register Cache&nbsp;Manager service in service.cfg .</p>
+                <pre class="code">
+CLSID_CCARCacheMgr =
+{{0xDEFDE809,0x9A01,0x4223,{0x81,0xB7,0x05,0xF6,0xD4,0xF0,0xE0,0x8
+1}}, L"www.elastos.com.cn/car/cachemgr.dll"};
+IID_ICARCacheMgr =
+{0xD67B9349,0xF033,0x44FA,{0x8A,0xC3,0x13,0x22,0x16,0xB4,0x80,0xD2}
+};
+
+RegisterService(CLSID_CCARCacheMgr, IID_ICARCacheMgr, "cachemgr");
+</pre>
+                <p><b>Rule: </b>Cache&nbsp;Manager service must be started as the first service.</p>
+                <p>(3) Registers service in startup.cfg (default is already set).</p>
+                <pre class="code">
+ezregsvr.exe services.cfg &amp;
+</pre>
+                <p>(4) Set up network and file system (when using harddisk), for example: </p>
+                <pre class="code">
+ifconfig.exe lo0 127.0.0.1 netmask 255.255.248.0
+ifconfig.exe eth0 192.168.2.82 netmask 255.255.248.0 broadcast 192.168.7.255
+route.exe add default 192.168.0.1
+mount.exe -t tftpfs -d / -s TFTP
+mount.exe -t msdos -d /msdos -s device:idepartition0
+</pre>
+                <p>The above setup <a class="style1" href="../../../sdk/environment_and_tools/tools/shell/Mount.htm">mount</a>&nbsp;TFTP to root directory. In single board computer system, the root directory is bin directory under development machine mirror directory. We also need to create msdos directory under bin directory in order to successfully mount harddrive to msdos directory.</p>
+            <li>Compiles cachemgr code under SDK environment. Currently, CCM Cache directory and index file are specified in the program directly, they are not used through the method of configuration file. These two parameters are specified in src/cachemgr/CCARCache.cpp, as the following:
+                <pre class="code">
+wchar_t * g_pIndexFile = L"/msdos/cache/index.dat";
+wchar_t * g_pCacheDir  = L"/msdos/cache/";
+</pre>
+                <p>Of which, g_pIndexFile specifies index file, g_pCacheDir variable specifies Cache directory. Index file is not required to be in Cache directory, it is recommended to put it in Cache directory though.</p>
+            <li>Execute <a class="style1" href="../../../resource_debug_kits/tools/mkpkg.htm">mkpkg.exe</a>.
+        </ol>
+    <h3>Note: </h3>
+        <p>Traditionally, all target programs are copied under mirror directory. Now, if the user does not turn on the CCM switch (eladef.h), CMM does not change this habbit. However, if the switch is turned on, then you need to config according to the process described in the above article <a class="style1" href="use_ccm.htm#ccm">"How to use CMM?"</a> under SDK environment. It registers CCM service during system start up, otherwise component program cannot be correctly loaded. By default the switch is off.</p>
+        <p>Since usually uunm specified network address is not the development machine and usually target file is stored in the development machine, if every time the file is copied to the network, it will be very unconvient. So we suggest not to turn on CCM switch during development. Of course, you can also invoke <b>Add</b> method in ICARCache interface to add your own dll program into the index.</p>
+        <p>Using CCM brings many advantages, not only can you implement CAR component automatic rolling download and execution, click and run etc., but you can also use target file with the same name. In existing development environment, all target program files are copied under mirror directory. For example exe, dll files are all in bin directory of the mirror directory. Under this condition, we cannot generate file with the same name. But if CCM is used, we can generate target file of the same name, only their paths are different. For CAR component program, they just need to have different uunm.</p>
+
+
+<script>footer("english")</script>
+</body>
+</html>

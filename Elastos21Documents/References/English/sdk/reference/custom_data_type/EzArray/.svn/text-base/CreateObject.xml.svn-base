@@ -1,0 +1,53 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\CreateObject">CreateObject</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzArray </interface>
+    <method>CreateObject </method>
+
+    <description>
+        <para>Dynamically creates EzArray objects and allocates memory for them on heap.</para>
+    </description>
+    <syntax>
+        <return_val>static EzArray&lt;T&gt;</return_val>
+        <parameters>
+        <api_param>
+
+            <param_type> size_t  </param_type>
+            <param_name> siz </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para> The amount of array elements.</para>
+            </param_note>
+        </api_param>
+
+        </parameters>
+    </syntax>
+     <return>
+        <para>Returns EzArray object.</para>
+    </return>
+
+    <remarks>
+        <para>This function can be used to create EzArray objects only on heap, but not on stack.</para>
+        <para>EzArray array created by <link url="EzArray.htm">template&lt;class T&gt; EzArray::EzArray</link> shall call the function to allocate memory.</para>
+        <para>EzArray array created by calling the function needs to call <b><link url="Dispose.htm">Dispose</link></b> to release memory. </para>
+    </remarks>
+
+    <example></example>
+
+
+
+    <references>
+        <reference>
+            <ref_name> Constructor (Does not allocate memory) </ref_name>
+            <ref_url> EzArray </ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicDirectory</interface><method> DeleteDirectory </method>
+    <description>
+        <para>
+            在当前目录对象中删除一个空的子目录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> path </param_name>
+                <param_note>
+                    <para>
+删除的子目录路径，这里要求path是相对路径，相对GetRoot得到的根目录而言，不能带盘符，有效路径的写法为：“a\\b”                   </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果参数path未分配内存，或path为空字符串，或path超过260个字符，返回E_INVALID_ARGUMENT； </para>
+    <para>如果子目录不存在，返回E_FS_NO_SUCH_FILE； </para>
+    <para>如果子目录接口指针的引用计数非0，或子目录非空，返回E_FS_FILE_BUSY； </para>
+    <para>如果指定删除的不是个目录，返回E_FS_NOT_DIRECTORY。 </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+<remarks>
+	  <para>该方法只能删除一个空的目录对象，若欲删除的目录非空，则必须先删除目录对象中的所有子文件和子目录，删除文件可以调用 <link url="DeleteFile.htm"> DeleteFile </link> 方法。 </para>
+	  <para>要成功删除一个空的目录对象还必须保证所有用户都释放了它的接口指针，释放一个接口可以调用Release方法。</para>
+</remarks>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

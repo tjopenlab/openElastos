@@ -1,0 +1,103 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\memset">memset</sample>
+    <title> memset</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Sets buffers to a specified character.</para>
+    </description>
+
+    <syntax>
+        <return_val>void*</return_val>
+        <func_name>memset</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>dest</param_name>
+                <param_note>
+                    <para>Pointer to destination.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Character to set.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Number of characters.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns the value of dest.</para>
+    </return>
+
+    <remarks>
+        <para>The memset function sets the first count bytes of dest to the character c.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>memset</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buffer[] = &quot;This is a test of the memset function&quot;;
+
+    printf(&quot;Before: %s\n&quot;, buffer);
+    memset(buffer, &apos;*&apos;, 4);
+    printf(&quot;After:  %s\n&quot;, buffer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+Before: This is a test of the memset function
+After:  **** is a test of the memset function
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_memccpy</ref_name>
+            <ref_url>_memccpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memcmp</ref_name>
+            <ref_url>memcmp</ref_url>
+        </reference>
+    </references>
+
+</manpage>

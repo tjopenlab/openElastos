@@ -1,0 +1,74 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+
+<title>menu.lst File</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>menu.lst File</h2>
+    <p>menu.lst file is an important file in GRUB bootstrap program.In this file various Elastos system boot methods and Elastos system file required by these boot methods are defined.</p>
+    <p>First lets see a standard menu.lst file, as the following: </p>
+    <pre class="code">
+# start of MENU.LST
+title   Elastos 2.0 from network (dbg)
+ip         192.168.0.10
+tftpserver 192.168.0.223
+root    (nd)
+kernel /ela20.gnu/x86_pc.dbg/bin/elastos.img
+
+title   Elastos 2.0 from network (rls)
+ip         192.168.0.10
+tftpserver 192.168.0.223
+root    (nd)
+kernel /ela20.gnu/x86_pc.rls/bin/elastos.img
+
+title   Elastos 2.0 from Hd
+root    (hd0,0)
+kernel /elastos/elastos.img
+
+title  Boot from C:
+chainloader (hd0,0)+1
+# end of MENU.LST
+</pre>
+    <p><b>Detail explanations of command line in menu.lst file: </b></p>
+    <p>The following use "Elastos&nbsp;from&nbsp;network&nbsp;(dbg)" as an example, introduce to how to write menu.lst file. "Elastos&nbsp;from&nbsp;network&nbsp;(dbg)" is boot debug version Elastos operating system from the network. This part content is listed as the following: </p>
+    <pre class="code">
+title   Elastos 2.0 from network (dbg)
+ip         192.168.0.10          #Static IP address for this machine
+tftpserver 192.168.0.223         #Remote host IP address
+root    (nd)
+kernel /ela20.gnu/x86_pc.dbg/bin/elastos.img
+</pre>
+    <ul>
+        <p><b>title command</b></p>
+            <p>The title command specifies the content of GRUB boot menu. For example, menu.lst file as above, its GRUB boot menu is: </p>
+            <pre class="code">
+Elastos 2.0 from network (dbg)
+Elastos 2.0 from network (rls)
+Elastos 2.0 from Hd
+Boot from C:
+</pre>
+        <p><b>ip command</b></p>
+            <p>The ip command specifies a static IP address for target machine.</p>
+        <p><b>tftpserver command</b></p>
+            <p>The tftpserver command sets TFTP server IP address. Boots Elastos from network, remote host must install TFTP service program (This service program is automatically installed and run by Elastos.SDK installation program).</p>
+        <p><b>root command</b></p>
+            <p>The root command sets system boot path. (nd) stands for network device. (hd0,0) means first partition of the first hard disk (i.e. C:). (fd0) means floppy drive.</p>
+        <p><b>kernel command</b></p>
+            <p>The kernel command specifies path name of kernel image file loaded at start up. elastos.img is Elastos kernel image file.</p>
+        <p><b>module command</b></p>
+            <p>The module command specifies path name of module (i.e. file) loaded at start up.</p>
+        <p><b>chainloader command</b></p>
+            <p>The chainloader command boots through bootstrap. (hd0,0)+1 represents boot through C: drive bootstrap. (fd0)+1 means boot through A: drive bootstrap.</p>
+    </ul>
+    <p>Other commands about GRUB are not discussed here in details.For information, you can key in help&nbsp;[COMMAND] in GRUB command line to search related information.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

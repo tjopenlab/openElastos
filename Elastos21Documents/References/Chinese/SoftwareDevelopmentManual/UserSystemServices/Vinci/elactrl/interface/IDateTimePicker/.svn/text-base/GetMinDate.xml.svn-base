@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IDateTimePicker</interface><method> GetMinDate </method>
+    <description>
+        <para>
+            获取 DateTimePicker 控件日期选择范围的最小值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 *</param_type>
+                <param_name> year </param_name>
+                <param_note>
+                    <para>
+指向 Int32 型的指针，用于获取 DateTimePicker 控件日期选择范围的最小值的年份</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 *</param_type>
+                <param_name> month </param_name>
+                <param_note>
+                    <para>
+指向 Int32 型的指针，用于获取 DateTimePicker 控件日期选择范围的最小值的月份</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 *</param_type>
+                <param_name> day </param_name>
+                <param_note>
+                    <para>
+指向 Int32 型的指针，用于获取 DateTimePicker 控件日期选择范围的最小值的日</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	    	  </tr>
+          <tr>
+	    	    <td>E_CONTROL_STYLE_NOT_SUPPORT</td>
+	    	    <td>控件风格非 DateTimePickerStyle_Date</td>
+	    	  </tr>	   	  
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  只有 DateTimePicker 控件显示日期的时候调用该方法才有意义，DateTimePicker 控件日期选择范围的最小值默认为：1970/01/01。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CDateTimePicker 类介绍</ref_name>
+        <ref_url>../../class/DateTimePicker</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IDateTimePicker 接口方法列表</ref_name>
+        <ref_url>../IDateTimePicker</ref_url>
+    </reference>
+    <reference>
+        <ref_name>DateTimePicker 的回调事件</ref_name>
+        <ref_url>../JDateTimePickerEvents</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetMinDate</ref_name>
+        <ref_url>SetMinDate</ref_url>
+    </reference>
+</references>
+</manpage>

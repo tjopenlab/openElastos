@@ -1,0 +1,119 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\memcpy">memcpy</sample>
+    <title> memcpy</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Copies characters between buffers.</para>
+    </description>
+
+    <syntax>
+        <return_val>void*</return_val>
+        <func_name>memcpy</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>dest</param_name>
+                <param_note>
+                    <para>New buffer.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>src</param_name>
+                <param_note>
+                    <para>Buffer to copy from.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Number of characters to copy.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>memcpy returns the value of dest.</para>
+    </return>
+
+    <remarks>
+        <para>The memcpy function copies count bytes of src to dest. If the source and destination overlap, this function does not ensure that the original source bytes in the overlapping region are copied before being overwritten. Use memmove to handle overlapping regions.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>memcpy</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+char string1[60] = &quot;The quick brown dog jumps over the lazy fox&quot;;
+char string2[60] = &quot;The quick brown fox jumps over the lazy dog&quot;;
+/*                               1         2         3         4         5
+ *                      12345678901234567890123456789012345678901234567890
+ */
+
+int main()
+{
+    printf(&quot;Function:    memcpy without overlap\n&quot;);
+    printf(&quot;Source:      %s\n&quot;, string1 + 40);
+    printf(&quot;Destination: %s\n&quot;, string1 + 16);
+    memcpy(string1 + 16, string1 + 40, 6);
+    printf(&quot;Result:      %s\n&quot;, string1);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Function:    memcpy without overlap
+Source:      fox
+Destination: dog jumps over the lazy fox
+Result:      The quick brown fox
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>memchr</ref_name>
+            <ref_url>memchr</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_memccpy</ref_name>
+            <ref_url>_memccpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memset</ref_name>
+            <ref_url>memset</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memmove</ref_name>
+            <ref_url>memmove</ref_url>
+        </reference>
+    </references>
+
+</manpage>

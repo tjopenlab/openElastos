@@ -1,0 +1,49 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\GetLength">GetLength</sample>
+    <volume> Common data structure </volume>
+    <interface> EzArray </interface>
+    <method>GetLength </method>
+
+    <description>
+        <para>Gets the length of current EzArray array.</para>
+    </description>
+    <syntax>
+        <return_val> int </return_val>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+	<para>Returns the length of array.</para>
+    </return>
+
+    <example><pre><![CDATA[
+#include <EzArray.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+    EzArray<int> MyArray = EzArray<int>::CreateObject(10);
+
+    int i = MyArray.GetLength();
+    printf("MyArray's Length = %d", i);
+
+    MyArray.Dispose();
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+MyArray's Length = 10
+]]>
+    </result>
+
+</manpage>

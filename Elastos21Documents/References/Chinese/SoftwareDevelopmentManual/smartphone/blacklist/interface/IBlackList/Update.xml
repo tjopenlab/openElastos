@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBlackList</interface><method> Update </method>
+    <description>
+        <para>
+            更新数据库中指定的记录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IBlackListEntryRef </param_type>
+                <param_name> pEntry </param_name>
+                <param_note>
+                    <para>
+指向要更新的黑名单记录接口的指针                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数pEntry为空，返回E_INVALIDARG；如果参数esbPattern为空或参数nPatternType为            <link url="../../datatype/BL_PatternType.htm">            PT_NONE            </link>            ，返回E_INVALID_OPERATION。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

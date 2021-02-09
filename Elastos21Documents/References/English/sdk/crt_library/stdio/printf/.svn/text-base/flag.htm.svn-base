@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Flag Directives</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>Flag Directives</h2>
+    <p>The first optional field of the format specification is flags. A flag directive is a character that justifies output and prints signs, blanks, decimal points, and octal and hexadecimal prefixes. More than one flag directive may appear in a format specification.</p>
+    <p>Table of Flag Characters</p>
+<table>
+    <thead>
+        <td>Flag</td><td>Meaning</td><td>Default</td>
+    </thead>
+    <tr>
+        <td>
+            –
+        </td>
+        <td>
+            Left align the result within the given field width.
+        </td>
+        <td>
+            Right align.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            +
+        </td>
+        <td>
+            Prefix the output value with a sign (+ or –) if the output value is of a signed type.
+        </td>
+        <td>
+            Sign appears only for negative signed values (–).
+        </td>
+    </tr>
+    <tr>
+        <td>
+            0
+        </td>
+        <td>
+            If width is prefixed with 0, zeros are added until the minimum width is reached. If 0 and – appear, the 0 is ignored. If 0 is specified with an integer format (i, u, x, X, o, d) the 0 is ignored.
+        </td>
+        <td>
+            No padding.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            blank (' ')
+        </td>
+        <td>
+            Prefix the output value with a blank if the output value is signed and positive; the blank is ignored if both the blank and + flags appear.
+        </td>
+        <td>
+            No blank appears.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            #
+        </td>
+        <td>
+            When used with the o, x, or X format, the # flag prefixes any nonzero output value with 0, 0x, or 0X, respectively.
+        </td>
+        <td>
+            No blank appears.
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+        </td>
+        <td>
+            When used with the e, E, or f format, the # flag forces the output value to contain a decimal point in all cases.
+        </td>
+        <td>
+            Decimal point appears only if digits follow it.
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+        </td>
+        <td>
+            When used with the g or G format, the # flag forces the output value to contain a decimal point in all cases and prevents the truncation of trailing zeros.
+            Ignored when used with c, d, i, u, or s.
+        </td>
+        <td>
+            Decimal point appears only if digits follow it. Trailing zeros are truncated.
+        </td>
+    </tr>
+</table>
+
+<script>footer("english")</script>
+</body>
+
+</html>

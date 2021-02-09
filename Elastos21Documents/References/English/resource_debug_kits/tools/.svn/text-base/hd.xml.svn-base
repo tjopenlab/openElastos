@@ -1,0 +1,88 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> hd </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para>Displays file binary information.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> HD</cmd_name>
+        <cmd_param>  [-?] [options] [file1] [file2] ...</cmd_param>
+    </syntax>
+
+    <parameters>
+    <param>
+        <param_name>  -? </param_name>
+        <param_note> Displays help information </param_note>
+    </param>
+    <param>
+        <param_name>  -ad|x </param_name>
+        <param_note> Select decimal or hexdecimal to display address </param_note>
+    </param>
+    <param>
+        <param_name>  -A </param_name>
+        <param_note> Appends printable character till end of line </param_note>
+    </param>
+    <param>
+        <param_name>  -ch|C|e|r </param_name>
+        <param_note> Displays content of each byte using ascii character</param_note>
+    </param>
+    <param>
+        <param_name>  -bd|x </param_name>
+        <param_note> Displays file content in byte. You can display it in decimal (b), or in hexdecimal (x) </param_note>
+    </param>
+    <param>
+        <param_name> -wd|x </param_name>
+        <param_note> Displays file content in word. You can display it in decimal (b), or in hexdecimal (x) </param_note>
+    </param>
+    <param>
+        <param_name> -ld|x </param_name>
+        <param_note> Displays file content in double byte. You can display it in decimal (b), or in hexdecimal (x) </param_note>
+    </param>
+    <param>
+        <param_name> -s &lt;offset&gt; </param_name>
+        <param_note> Starting address </param_note>
+    </param>
+    <param>
+        <param_name> -n &lt;number&gt; </param_name>
+        <param_note> Number of bytes interpreted </param_note>
+    </param>
+    <param>
+        <param_name> -i </param_name>
+        <param_note> Do not display extra lines </param_note>
+    </param>
+    <param>
+        <param_name> -?|h|H </param_name>
+        <param_note> Displays help information </param_note>
+    </param>
+    <param>
+        <param_name>  file1 </param_name>
+        <param_note> Source file name </param_note>
+    </param>
+    </parameters>
+    <remarks>
+        <para>The parameter default option is: -ax -bx -A
+        </para>
+    </remarks>
+
+    <examples>
+    <example>
+        <eg_line>hd file.txt  </eg_line>
+        <eg_note> Prints the content of file file.txt in hexdecimal. Output result: </eg_note>
+        <eg_result><![CDATA[
+file.txt:
+00000000   54 68 69 73 20 69 73 20 74 68 65 20 66 69 6c 65  This is the file
+00000010   2e 74 78 74 2e                                   .txt.
+]]></eg_result>
+    </example>
+    </examples>
+
+</manpage>

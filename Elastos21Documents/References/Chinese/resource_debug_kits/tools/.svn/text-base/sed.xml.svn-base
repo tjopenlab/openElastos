@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> sed </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para>非交互性文本流编辑器。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> SED </cmd_name>
+        <cmd_param> [-?] [address1[,address2]]function[filename] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> address1 </param_name>
+        <param_note> 行号或正则表达式字串 </param_note>
+    </param>
+    <param>
+        <param_name> address2 </param_name>
+        <param_note> 行号或正则表达式字串 </param_note>
+    </param>
+    <param>
+        <param_name> function </param_name>
+        <param_note> sed的内定函数，表示执行的编辑动作 </param_note>
+    </param>
+    <param>
+        <param_name> filename </param_name>
+        <param_note> 输入文件 </param_note>
+    </param>
+    </parameters>
+    <remarks>
+        <para>Sed编辑从stdin（标准输入）或文件中得到文本拷贝，将结果送到stdout（标准输出）。</para>
+        <para>在命令行使用sed命令时，实际命令要加单引号（'  '）。sed也允许加双引号（"  "）。</para>
+        <para>如果没有指定filename，sed从stdin中接受输入，一般是键盘或重定向结果。</para>
+        <para>详细资料请参阅sed有关文档。</para>
+    </remarks>
+
+    <examples>
+    <example>
+        <eg_line>sed 's/Glenn/Harold/g' file1.txt >file2.txt  </eg_line>
+        <eg_note>
+            将文件file1.txt中出现的每个“Glenn”用“Harold”替换掉，输出写到file2.txt中。查找部分's/Glenn/Harold/g'是一个正则表达式。
+        </eg_note>
+    </example>
+
+    </examples>
+
+</manpage>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\getenv">getenv</sample>
+    <title>getenv, _wgetenv</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>从当前环境中获得环境变量的值。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>getenv</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>varname</param_name>
+                <param_note>
+                    <para>环境变量名称</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_wgetenv</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>varname</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回指向包含环境名称的环境向量表入口指针。使用返回来的指针来改变环境变量的值是不安全的。可以调用_putenv函数来改变环境变量的值。如果环境名称在环境向量表中找不到，那么返回值为NULL。</para>
+    </return>
+
+    <remarks>
+        <para>函数getenv在环境变量列表表中查找varname。函数getenv不区分大小写。</para>
+        <para>_wgetenv是getenv的宽字节版本，参数和返回值为宽字节字符串。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>getenv</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wgetenv</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* getenv.cpp: This program uses getenv to retrieve
+ * the LIB environment variable and then uses
+ * _putenv to change it to a new value.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char *libvar;
+
+    /* Get the value of the LIB environment variable. */
+    libvar = getenv(&quot;LIB&quot;);
+
+    if (libvar != NULL)
+        printf(&quot;Original LIB variable is: %s\n&quot;, libvar);
+    else
+        printf(&quot;can not get enviroment!\n&quot;);
+
+    /* Attempt to change path. Note that this only affects the environment
+     * variable of the current process. The command processor&apos;s environment
+     * is not changed.
+     */
+    _putenv(&quot;LIB=c:\\mylib;c:\\yourlib&quot;);
+
+    /* Get new value. */
+    libvar = getenv(&quot;LIB&quot;);
+
+    if (libvar != NULL)
+        printf(&quot;New LIB variable is: %s\n&quot;, libvar);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Original LIB variable is: C:\progra~1\devstu~1\vc\lib
+New LIB variable is: c:\mylib;c:\yourlib
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_putenv</ref_name>
+            <ref_url>_wputenv</ref_url>
+        </reference>
+    </references>
+
+</manpage>

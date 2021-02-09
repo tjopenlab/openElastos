@@ -1,0 +1,37 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>XDK的编译环境</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>XDK的目录树结构</h2>
+    <h3>XDK的目录设计特色</h3>
+    <p>XDK的目录将应用开发与运行划分开，具体而言：
+    <ol>
+    <li>应用开发过程中，所有代码放置在用户指定的代码根目录下。
+    <li>编译链接的时候，所有中间代码均生成在镜像目录中，并自动拷贝归类。
+    <li>通过自动拷贝归类的可运行代码放在一起，便于运行时的搜索。
+    </ol>
+    <p>XDK的目录通过Devkit、Targets目录体现出这种设计特色，目录结构见图2-2。</p>
+    <ul>
+    <p>■ Devkit：编译链接所需要的所有资源，包括编译工具集以及开发和调试过程中所需的各种工具。</p> 
+    <p>■ Targets：所有生成的可运行的文件，均被按照一定规则自动拷贝并归类放在相应的目录下，需要在此目录下才可运行
+。</p>
+    </ul>
+            <center><img src="images/xdk.jpg"></center>
+	  <center>图2-2</center>
+            <p></p>
+            <center>XDK目录树结构图</center>
+    <p>例如，如果用户使用arm的GNU环境开发基于ARM的应用程序，则除了会在相应的镜像目录下生成相关的临时文件和二进制可执行文件外，makefile的编译规则还会把生成的二进制可执行文件自动copy一份放到Targets\gnu.arm.dbg下，并且能通过提供的相关工具把二进制目标代码下载到ARM目标板卡上运行和使用GDB进行调试。如果用户用x86的MSVC环境开发应用程序，则除了会在相应的镜像目录下生成相关的临时文件和二进制可执行文件外，makefile的编译规则还会把生成的二进制可执行文件自动copy一份放到Targets\msvc.x86.dbg下，并且能在虚拟机或模拟器上运行和用VC进行调试。其余类推。</p>
+    <ul>本节包括以下内容：
+     <li> <a class="style1" href="Devkit.htm"> Devkit目录结构 </a>   
+     <li> <a class="style1" href="XDKTargets.htm"> Targets目录结构</a>
+<script>footer("chinese")</script>
+</body>
+</html>

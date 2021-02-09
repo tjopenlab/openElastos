@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ISliderBar</interface><method> SetMinimum </method>
+    <description>
+        <para>
+            设置进度条控件滑块的下限。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> min </param_name>
+                <param_note>
+                    <para>
+进度条控件滑块的下限                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElControls.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            如果本方法设置Minimum属性的值比进度条当前的Value值大（即Value&lt;Minimum），则会把Value值设为和Minimum属性值相等。
+        </para>
+    </remarks>
+</manpage>

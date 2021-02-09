@@ -1,0 +1,123 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\_ultoa">_ultoa</sample>
+    <title> _ultoa, _ultow</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Converts an unsigned long integer to a string.</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>_ultoa</func_name>
+        <parameters>
+            <func_param>
+                <param_type>unsigned long</param_type>
+                <param_name>value</param_name>
+                <param_note>
+                    <para>Number to be converted.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>String result.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+                <param_note>
+                    <para>Base of value.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_ultow</func_name>
+        <parameters>
+            <func_param>
+                <param_type>unsigned long</param_type>
+                <param_name>value</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns a pointer to string. There is no error return.</para>
+    </return>
+
+    <remarks>
+        <para>The _ultoa function converts value to a null-terminated character string and stores the result (up to 33 bytes) in string. No overflow checking is performed. radix specifies the base of value; radix must be in the range 2 – 36. _ultow is a wide-character version of _ultoa.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_ultoa</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_ultow</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _ultoa.cpp:this program convert ul whose type is unsigned long to string
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buffer[20];
+    unsigned long ul = 1234567890UL;
+
+    _ultoa(ul, buffer, 16);
+    printf(&quot;String of unsigned long %lu (radix 16): 0x%s.\n&quot;, ul,
+                                                                     buffer);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+String of unsigned long 1234567890 (radix 16): 0x499602d2.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_itow</ref_name>
+            <ref_url>_itow</ref_url>
+        </reference>
+    </references>
+
+</manpage>

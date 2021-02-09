@@ -1,0 +1,830 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>新建网页 1</title>
+<style>
+<!--
+td
+	{padding-top:1.0px;
+	padding-right:1.0px;
+	padding-left:1.0px;
+	color:windowtext;
+	font-size:18.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Arial;
+	text-align:general;
+	vertical-align:bottom;
+	border:medium none;
+	}
+.oa1
+	{border:1.0pt solid black;
+	text-align:center;
+	vertical-align:top;
+	padding-bottom:3.6pt;
+	padding-left:7.2pt;
+	padding-top:3.6pt;
+	padding-right:7.2pt;}
+.oa3
+	{border:1.0pt solid black;
+	vertical-align:top;
+	padding-bottom:3.6pt;
+	padding-left:7.2pt;
+	padding-top:3.6pt;
+	padding-right:7.2pt;}
+-->
+</style>
+</head>
+
+<body>
+
+<p class="MsoNormal" style="text-indent: -21.0pt; line-height: 200%; margin-left: 21.0pt">
+<span style="font-weight:700"><font size="5">CAR自描述数据类型与in/out参数</font></span></p>
+<p class="MsoNormal" style="text-indent: -21.0pt; line-height: 200%; margin-left: 21.0pt">
+　</p>
+<p:colorscheme
+ colors="#2b5481,#ffffff,#003366,#e5ffff,#009999,#336699,#00ccff,#ffcc00"/>
+
+<table border="0" cellpadding="0" cellspacing="0" width="733" style="border-collapse:
+ collapse;width:550pt">
+	<colgroup>
+		<col width="264" style="width: 198pt">
+		<col width="144" style="width: 108pt">
+		<col width="129" style="width: 96pt">
+		<col width="197" style="width: 148pt">
+	</colgroup>
+	<tr height="35" style="height: 26.5pt">
+		<td rowspan="2" height="71" class="oa1" width="264" style="height:53.0pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: center; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: bold; font-style: normal; vertical-align: baseline">
+		<font size="5">数据类型</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="5">
+		</font>
+		</span></td>
+		<td colspan="3" class="oa1" width="469" style="width:352pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: center; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: bold; font-style: normal; vertical-align: baseline">
+		<font size="5">参数属性</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="5">
+		</font>
+		</span></td>
+	</tr>
+	<tr height="35" style="height: 26.5pt">
+		<td height="35" class="oa3" width="144" style="height:26.5pt;width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="5">原型</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="5">
+		</font>
+		</span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="5">一级指针</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="5">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="5">二级指针</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="5">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="37" class="oa3" width="109" style="height:27.5pt;width:82pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">Byte</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="67" style="width:50pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="134" style="width:101pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" style="width: 178px">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="37" class="oa3" width="109" style="height:27.5pt;width:82pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">Int8</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="67" style="width:50pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="134" style="width:101pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" style="width: 178px">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="37" class="oa3" width="109" style="height:27.63pt;width:82pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">Int16</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="67" style="width:50pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="134" style="width:101pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" style="width: 178px">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="37" class="oa3" width="109" style="height:27.5pt;width:82pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">Int32</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="67" style="width:50pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="134" style="width:101pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" style="width: 178px">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="37" class="oa3" width="109" style="height:27.63pt;width:82pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">Int64</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="67" style="width:50pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="134" style="width:101pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" style="width: 178px">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="37" class="oa3" width="109" style="height:27.5pt;width:82pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">Float</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="67" style="width:50pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="134" style="width:101pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" style="width: 178px">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="37" class="oa3" width="109" style="height:27.63pt;width:82pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">Boolean</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="67" style="width:50pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="134" style="width:101pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" style="width: 178px">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="37" class="oa3" width="109" style="height:27.5pt;width:82pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">Double</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="67" style="width:50pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="134" style="width:101pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" style="width: 178px">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="35" class="oa3" width="191" style="height:26.5pt;width:143pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">AChar</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="78" style="width:59pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="35" class="oa3" width="191" style="height:26.5pt;width:143pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">WChar</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="78" style="width:59pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="35" class="oa3" width="191" style="height:26.0pt;width:143pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">enum</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="78" style="width:59pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="35" class="oa3" width="191" style="height:26.5pt;width:143pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">struct</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="78" style="width:59pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="35" class="oa3" width="191" style="height:26.5pt;width:143pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">Interface</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="78" style="width:59pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="35" class="oa3" width="191" style="height:26.0pt;width:143pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">GUID</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="78" style="width:59pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr>
+		<td height="35" class="oa3" width="191" style="height:26.5pt;width:143pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">ClassID</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="78" style="width:59pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="113" style="width:85pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr height="35" style="height: 26.0pt">
+		<td class="oa3" width="264" style="height: 2px; width: 198pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">ArrayOf&lt;Int32&gt;</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out(callee)</font></span></td>
+	</tr>
+	<tr height="35" style="height: 26.5pt">
+		<td height="35" class="oa3" width="264" style="height:26.5pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">ArrayOf&lt;Int32,n&gt;</font></span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out(caller)</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr height="35" style="height: 26.0pt">
+		<td height="35" class="oa3" width="264" style="height:26.0pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">ArrayOf&lt;IObject*&gt;</font></span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out(callee)</font></span></td>
+	</tr>
+	<tr height="35" style="height: 26.0pt">
+		<td height="35" class="oa3" width="264" style="height:26.0pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">ArrayOf&lt;IObject*,n&gt;</font></span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out(caller)</font></span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr height="35" style="height: 26.5pt">
+		<td height="35" class="oa3" width="264" style="height:26.5pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">ArrayOf&lt;T&gt;</font></span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr height="35" style="height: 26.0pt">
+		<td height="35" class="oa3" width="264" style="height:26.0pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">ArrayOf_&lt;T,n&gt;</font></span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out(callee)</font></span></td>
+	</tr>
+	<tr height="35" style="height: 26.5pt">
+		<td height="35" class="oa3" width="264" style="height:26.5pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">AString</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out(callee)</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr height="35" style="height: 26.0pt">
+		<td height="35" class="oa3" width="264" style="height:26.0pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">WString</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">in</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out(callee)</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr height="36" style="height: 26.63pt">
+		<td height="36" class="oa3" width="264" style="height:26.63pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">AStringBuf</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out(callee)</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr height="36" style="height: 26.63pt">
+		<td height="36" class="oa3" width="264" style="height:26.63pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">WStringBuf</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out(callee)</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr height="36" style="height: 26.63pt">
+		<td height="36" class="oa3" width="264" style="height:26.63pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">AStringBuf_&lt;n&gt;</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out(caller)</font></span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+	<tr height="40" style="height: 29.88pt">
+		<td height="40" class="oa3" width="264" style="height:29.88pt;width:198pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">WStringBuf_&lt;n&gt;</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="144" style="width:108pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">out(caller)</font></span></td>
+		<td class="oa3" width="129" style="width:96pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+		<td class="oa3" width="197" style="width:148pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">-</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">
+		</font>
+		</span></td>
+	</tr>
+</table>
+<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">　</p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">　</p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">　</p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">　</p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">Car</span><span style="font-family: 宋体; color: black">文件：</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Foo(</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [in]AString as,</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+<font color="#008000">
+<span style="font-family: Tahoma; ">[out]AStringBuf_&lt;100&gt; 
+asb,</span></font></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out]AStringBuf **pasb);</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">　</p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bar(</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-family: Tahoma; "><font color="#008000">&nbsp; 
+</font><font color="#0000FF">[in]ArrayOf&lt;Int32&gt; 
+a,</font></span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+<font color="#FF00FF">
+<span style="font-family: Tahoma; ">&nbsp; [out]ArrayOf&lt;Int32, 
+100&gt; oa,</span></font></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [out]ArrayOf&lt;Int32&gt; 
+**poa);</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">　</p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">C++</span><span style="font-family: 宋体; color: black">文件：</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp; CARAPI Foo(</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* [in] */ AString as,</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#008000"><span style="font-family: Tahoma; ">&nbsp; /* [out] */ AStringBuf * 
+pAsb,</span></font></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* [out] */ AStringBuf 
+** ppPasb);</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">　</p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp; CARAPI Bar(</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#0000FF"><span style="font-family: Tahoma; "> /* [in] */ const ArrayOf&lt;Int32&gt; 
+&amp; a,</span></font></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><font color="#FF00FF"><span style="font-family: Tahoma; ">&nbsp; /* [out] */ ArrayOf&lt;Int32&gt; 
+* pOa,</span></font></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<span style="font-family: Tahoma; color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* [out] */ ArrayOf&lt;Int32&gt; 
+** ppPoa);</span></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+　</p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<font face="Tahoma">备注：</font></p>
+<p style="text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; margin-top: 0pt; margin-bottom: 0pt">
+<font face="Tahoma">&nbsp;&nbsp;&nbsp;&nbsp; </font><font face="宋体">&nbsp;</font><span style="font-family: 宋体; color: black">参数中指明的“</span><span lang="EN-US" style="font-family: 宋体; color: black">100</span><span style="font-family: 宋体; color: black">”目前在<span lang="EN-US">car</span>编译和夹壁墙中没有检查和纠错，只是作为调用者和被调用者之间的一个约定，<span lang="EN-US">caller</span>应该提供一个<span lang="EN-US">&gt;=100</span>的<span lang="EN-US">buffer</span>给<span lang="EN-US">callee</span>，否则可能会被写溢出。</span></p>
+
+</body>
+
+</html>

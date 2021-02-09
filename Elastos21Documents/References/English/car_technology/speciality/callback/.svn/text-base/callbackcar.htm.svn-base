@@ -1,0 +1,96 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Callback Event Mechanism</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>How To Use CAR Custom Callback Mechanism</h2>
+    <p>In what follows we will use a simple example (A game of number guessing) to give an introduction on how to craft a CAR component using callback mechanism.</p>
+    <p>First let's introduce the rules of the number guessing game: <p>
+    <ul>
+        <li>The computer will generate one 4 digit number for guessing.
+        <li>Feedback is given after each guess, including the number of digits that are correct in figure but wrong in position, and the number of digits that are correct in both figure and position.
+        <li>If the figures and positions of the 4 digits number are all correct, the system will print success message.
+        <li>A maximum of eight guesses are allowed on every number. A message of failure and the correct answer to the game will be given after 8 wrong guesses.
+    </ul>
+    <p>There are two parts in this number guessing program: The first part is a joinable component <b>guesssvr</b>, which supports callback mechanism and is the core of the whole program. The second part is responsible for user interface.</p>
+    <h3>Write Description File For guesssvr Component's Description File guesssvr.car</h3>
+        <p>There are two interfaces for callback enabled joinable component guesssvr: </p>
+        <ul>
+            <li>The first interface <b>IGuessNum</b> passively waits for the user to call component. Its functions are: 
+                <ul>
+                    <li>Starts game StartGame(), generates a 4 digit number and memorizes it.
+                    <li>Accepts each user guess Guess().
+                    <li>Gives the answer after 8 wrong guesses GetNumber().
+                </ul>
+            <li>The second interface IGuessEvents will give feedback in the process of guessing, which includes: 
+                <ul>
+                    <li>Successful guess Bingo().
+                    <li>Wrong guess YouLose().
+                    <li>Prompt tips after each guess Tips().
+                </ul>
+            <p>The client program will be interested in these events, therefore it will register response function to handle it.</p>
+        </ul>
+        <p>Defines <b>guesssvr</b> component, writes the <b>guesssvr.car</b></p>
+        <pre class="code">
+[
+    version(1.0), uuid(d0b275bc-320b-41b4-a7b2-6ca76c41317c),
+    uunm(http://www.koretide.com/ezcom/guesssvr.dll)
+]
+component guesssvr
+{
+    [ uuid(b87bbdb5-f09d-4b68-ae38-96849e42d328) ]
+    interface IGuessNum {   //common interface
+        ECODE StartGame();
+        ECODE GetNumber([out] EzArray<int> iaNum);
+        ECODE Guess([in] EzArray<int> iaNum);
+    }
+
+    [ uuid(f867b977-56cc-4a8d-86be-d9ba2357b921) ]
+    <b>icallback</b> IGuessEvents {   //callback interface
+        ECODE Bingo();
+        ECODE YouLose();
+        ECODE Tips([<b>in</b>] int iTimes, [<b>in</b>] int iA, [<b>in</b>] int iB);
+    }
+
+    [ uuid(47e3d31e-85da-4efa-ae8c-f00340a69cf0) ]
+    class CGuessNum {
+        interface IGuessNum;
+        icallback IGuessEvents;
+    }
+}
+
+</pre>
+        <p>In <b>guesssvr.car</b>, component <b>guesssvr</b> uses keyword <b>interface</b> to define a common interface <b>IGuessNum</b>, and keyword <b>icallback</b> to define a callback interface <b>IGuessEvents</b>, the two of which are included in class <b>CGuessNum</b>. The contents of interface are: </p>
+        <table>
+            <thead>
+                <td>Interface Type</td>
+                <td>Interface Name</td>
+                <td>Methods Or Callback Events</td>
+                <td>Description</td>
+            </thead>
+            <tr>
+                <td>Common interface</td>
+                <td>IGuessNum</td>
+                <td>StartGame()</br>GetNumber()</br>Guess()</td>
+                <td>Initialize game</br>gets 4 digits number</br>guesses the number, and estimates the result</td>
+            </tr>
+            <tr>
+                <td>Callback event interface</td>
+                <td>IGuessEvents</td>
+                <td>Bingo()</br>YouLose()</br>Tips()</td>
+                <td>Event of successful guess</br>Event of wrong guess</br>Event of guess number status information.</td>
+            </tr>
+        </table>
+        <p>One or more common interfaces or callback interfaces are allowed in one component.</p>
+        <p><b>Note: </b><font color="color">When defining callback interface method, only the [in] attribute descriptor is allowed for the parameter.</font></p>
+
+<script>footer("english")</script>
+</body>
+</html>

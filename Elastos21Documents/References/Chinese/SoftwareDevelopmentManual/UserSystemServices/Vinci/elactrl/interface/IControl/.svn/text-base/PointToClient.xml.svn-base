@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> PointToClient </method>
+    <description>
+        <para>
+            将屏幕坐标映射到控件区域。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> srcX </param_name>
+                <param_note>
+                    <para>
+相对于屏幕左上角的 x 坐标</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> srcY </param_name>
+                <param_note>
+                    <para>
+相对于屏幕左上角的 y 坐标</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32* </param_type>
+                <param_name> dstX </param_name>
+                <param_note>
+                    <para>
+相对于控件区域左上角的 x 坐标</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32* </param_type>
+                <param_name> dstY </param_name>
+                <param_note>
+                    <para>
+相对于控件区域左上角的 y 坐标</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        OUT 参数不能全为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        例如，在一个全屏的 Form 内有一个 Button，其位置为 （40，50），对 Button 调用此方法将屏幕内坐标 （70，120）映射到 Button 区域得到的坐标为 （30，70）。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>PointToScreen</ref_name>
+        <ref_url>PointToScreen</ref_url>
+    </reference>
+</references>  
+</manpage>

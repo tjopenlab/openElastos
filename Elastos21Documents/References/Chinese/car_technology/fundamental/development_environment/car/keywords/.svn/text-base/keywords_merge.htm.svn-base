@@ -1,0 +1,59 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--merge </title>
+</head>
+
+<body>
+	<h2>merge</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于在当前构件中合并指定构件。 </p>
+	
+	    <b>语法 </b>
+	    	<p><b>merge</b> ("路径名\构件名.car");  </p>
+	    <b>使用说明 </b>
+	        <p> 1. 使用时须指定car文件的路径名，默认为当前目录。</p>
+	        <p>2. 所引用的car文件必须存在，否则编译报错。 </p>
+	        <p> </p>
+	    <b>使用范例 </b>
+	        <p> 假设在本示例mergeDemo.car文件的上级目录中存在一个foo.car文件，内容如下：</p>
+<pre class= code>
+module 
+{
+    interface IFoo {
+        Foo();
+    }
+    class CFoo {
+        interface IFoo;
+    } 
+}
+
+</pre>
+	        <p> 编写如下mergeDemo.car示例内容如下：</p>
+<pre class= code>
+module 
+{
+    merge ("..\foo.car");
+    
+    interface IBar {
+        Bar();
+    }
+    class CBar {
+        interface IBar;
+    } 
+}
+
+</pre>
+	        <p> 示例car中，由于mergeDemo.car中merge了foo.car，其自动生成代码框架中，包含了foo.car的自动代码框架生成的CFoo.h和CFoo.cpp文件。</p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

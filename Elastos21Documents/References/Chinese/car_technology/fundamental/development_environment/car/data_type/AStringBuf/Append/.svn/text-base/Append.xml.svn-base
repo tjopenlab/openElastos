@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\AStringBuf\Append">Append</sample>
+    <volume> 常用数据结构 </volume>
+    <class>AStringBuf</class>
+    <method> Append </method>
+
+    <description>
+        <para>在AStringBuf对象字符串中追加AString对象中的字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val> AStringBuf &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type>const AString &amp;</param_type>
+            <param_name>as</param_name>
+            <param_note>
+                <para> AString对象。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回AStringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>超过AStringBuf对象可用的长度会被省略掉。 </para>
+    </remarks>
+
+<example>
+<pre>
+AStringBuf_&lt;5&gt; asbuf;
+AString as1="1234";
+asbuf.Append(as1);
+CConsole::WriteLine(asbuf);  //Display : "1234"
+asbuf.SetEmpty();
+AString as2="123456789";
+asbuf.Append(as2);
+CConsole::WriteLine(asbuf);  //Display : "12345"
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Append</ref_name>
+        <ref_url>index/Append</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::operator &lt;&lt; </ref_name>
+        <ref_url>../operator3</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Append</ref_name>
+        <ref_url>../../WStringBuf/Append/index/Append</ref_url>
+    </reference>
+</references>
+
+
+</manpage>

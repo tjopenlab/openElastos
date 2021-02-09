@@ -1,0 +1,72 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IMutex</interface><method> Unlock</method>
+    <description>
+        <para>Releases the owned mutex object.</para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+ 
+    </syntax>
+
+	<return>
+	    
+	<table>
+	    <th>
+		<td>Return Value</td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>NOERROR</td>
+		<td>0x00000000</td>
+		<td>Function succeeds in releasing the owned mutex object.</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALID_ARGUMENT</td>
+		<td>0x80060090</td>
+		<td>Invalid argument(s)</td>
+	    </tr>
+	<tr>
+		<td>E_SERVICE_NAME_TOO_LONG</td>
+		<td>0x80060090</td>
+		<td>The specified service name is beyond the cofines  (256 characters)</td>
+	    </tr>
+	    <tr>
+		<td>E_ALREADY_EXIST</td>
+		<td>0x80060090</td>
+		<td>A non-mutex object already existed ,whose name is the same as the mutex object</td>
+	    </tr>
+	    <tr>
+		<td>E_OUT_OF_MEMORY</td>
+		<td>0x80060090</td>
+		<td>Insufficiend memory</td>
+	    </tr>
+	</table>
+          <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> related help.</para>   
+    </return>
+
+	<remarks>
+		<para>If the current thread does not own the mutex object, the method will fail.</para>
+		<para>
+			The mutex object is recursive. It means that a thread that has owned a mutex object can call
+			<link url="Lock.htm">IMutex::Lock</link> or <link url="TryLock.htm">IMutex::TryLock</link> to 
+			get the mutex object again. However, it must call <link url="UnLock.htm">
+			IMutex::UnLock</link> the same number of times as <link url="Lock.htm">IMutex::Lock</link>
+			and <link url="TryLock.htm">IMutex::TryLock</link> to release the mutex object.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

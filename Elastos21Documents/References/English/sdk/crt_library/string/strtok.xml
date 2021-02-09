@@ -1,0 +1,106 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strtok">strtok</sample>
+    <title>strtok</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Searches for tokens in string.</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strtok</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strToken</param_name>
+                <param_note>
+                    <para>String including tokens.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strDelimit</param_name>
+                <param_note>
+                    <para>Set of delimiter characters.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns a pointer to the next token found in strToken. They return NULL when no more tokens are found. Each call modifies strToken by substituting a NULL character for each delimiter that is encountered.</para>
+    </return>
+
+    <remarks>
+        <para>The strtok function finds the next token in strToken.The set of characters in strDelimit specifies possible delimiters of the token to be found in strToken on the current call</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strtok</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, 《和欣 2.0》</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strtok.cpp: In this program, a loop uses strtok
+ * to print all the tokens (separated by commas
+ * or blanks) in the string named &quot;string&quot;.
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+char string[] = &quot;A string\tof ,,tokens\nand some  more tokens&quot;;
+char seps[]   = &quot; ,\t\n&quot;;
+char *token;
+
+int main()
+{
+    printf(&quot;%s\n\nTokens:\n&quot;, string);
+    /* Establish string and get the first token: */
+    token = strtok(string, seps);
+    while (token != NULL) {
+        /* While there are tokens in &quot;string&quot; */
+        printf(&quot; %s\n&quot;, token);
+        /* Get next token: */
+        token = strtok(NULL, seps);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+A string        of ,,tokens
+and some  more tokens
+
+Tokens:
+A
+string
+of
+tokens
+and
+some
+more
+tokens
+</result>
+
+
+</manpage>

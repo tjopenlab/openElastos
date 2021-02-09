@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>window标签/控件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li class="controllist"><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li class="controllist"><a href="annotated.html"><span>图形标签(控件)列表</span></a></li>
+    <li><a href="attribute.html"><span>图形标签通用属性</span></a></li>
+    <li><a href="event.html"><span>图形标签通用事件</span></a></li>
+    <li><a href="genstyle_8car.html"><span>图形标签通用风格</span></a></li>
+  </ul>
+</div>
+<h1>panel标签/控件参考</h1><!-- doxytag: class="panel" -->面板，可以做为其它控件的容器。
+
+<hr><h2>命名空间</h2>
+http://www.elastos.com/XmlGlue/Widgets
+
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>属性</h2></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><h3>见<a class="el" href="attribute.html">通用属性</a></h3></td></tr>
+</table>
+
+<hr><h2>事件</h2>
+
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a><!-- doxytag: member="IDatabase::IsClosed" ref="80f8bf3a49657380380f1cf7ba46dec0" args="([out] Boolean *closed)" -->
+见<a class="el" href="event.html">通用事件</a>
+
+<hr><h2>控件风格</h2>
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a>
+<div class="memitem">
+<dl compact><dt><b>枚举值: </b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><em>AutoSize = 0x00000001,</em>&nbsp;</td><td>根据panel内控件大小自动调整panel的大小。 </td></tr>
+  </table>
+</dl>
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a>
+<b>其他风格</b>：见<a class="el" href="genstyle_8car.html">通用风格</a></td></tr>
+</div>
+<p>
+<b>注：</b>控件风格允许配合使用，例如将panel的风格设置成具有焦点并自动调整大小，可以这样：
+<center><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+    &lt;panel ... style="PanelStyle:AutoSize ControlStyle:Focused" .../&gt;
+</td></tr></table></center>
+枚举名:枚举值的形式表示，且大小写敏感，不同风格间用空格分开。也可以将两种风格的枚举值作或运算，得到的结果赋给style，例如PanelStyle:AutoSize = 0x00000001，ControlStyle:Focused = 0x00400000，将两者进行或运算得0x00400001，于是style="0x00400001"。建议采用第一种写法，清晰明了。
+
+ <script>footer("chinese")</script>
+</body>
+</html>

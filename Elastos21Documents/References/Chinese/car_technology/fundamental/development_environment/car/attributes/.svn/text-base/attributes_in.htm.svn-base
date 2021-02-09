@@ -1,0 +1,45 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字-- in</title>
+</head>
+
+<body>
+	<h2>in</h2>
+	    <b>含义 </b>
+	        <p>in属性用于修饰car文件中的接口方法参数，表示该参数为输入参数。 </p>
+	
+	    <b>语法 </b>
+	    	<p>   [in] type parameterName </p>
+	    <b>使用说明 </b>
+
+	        <p>1. 不支持参数同时具有[in]属性和[out]属性。 </p>
+	        <p>2．参数的in、<a class="style1" href="attributes_out.htm">out</a>、<a class="style1" href="attributes_callee.htm">callee</a>等属性必须显式指明，否则编译器报错。具体使用规则请参见<a class="style1" href= "..\others\InOut.htm">数据类型修饰方法参数时的使用规则一览表</a>。 </p>
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IHello {
+        Hello([in] Int32 n);
+    }
+
+    class CHello {
+        interface IHello;
+    }
+}
+
+</pre>
+	        <p> </p>
+
+        <b><a class="style1" href="../attribute.htm">【CAR属性关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

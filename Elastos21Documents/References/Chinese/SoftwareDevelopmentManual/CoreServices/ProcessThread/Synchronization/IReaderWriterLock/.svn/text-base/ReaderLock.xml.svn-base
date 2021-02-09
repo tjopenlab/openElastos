@@ -1,0 +1,66 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IReaderWriterLock\readerlock">ReaderLock</sample>
+<volume>同步</volume>
+<interface>IReaderWriterLock</interface><method> ReaderLock </method>
+    <description>
+        <para>获取读者锁。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+      <parameters>
+        <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>指向<link url="../../../DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址,不能为空。如果方法调用成功，则返回WaitResult_OK；如果在等待获取读者锁期间被打断，则返回WaitResult_Interrupted</para>
+                </param_note>
+        </api_param>
+      </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数不正确</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_READER_LOCKS_TOO_MANY</td>
+	    	    <td>调用线程所获取的读锁个数已达到了MAXIMUM_OWNED_READER_LOCKS个</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_ALREADY_LOCKED</td>
+	    	    <td>调用失败，调用线程已经以读者身份占有了读写锁对象</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_LOCK</td>
+	    	    <td>调用失败，调用线程已经以写者身份占有了读写锁对象</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>本方法用于获取读者锁（即调用线程以读者身份获取读写锁对象）。如果调用线程不能以读者身份获取读写锁对象（例如：当读写锁对象被一个写者占有时），调用线程将进入等待状态，直到读写锁对象被调用线程以读者身份成功获取到为止，才从本方法中成功返回。如果读写锁对象正处于未被占有状态，调用线程将以读者身份成功获取到它，本方法将立即成功返回。如果调用线程已经以写者或读者身份占有了读写锁对象，则本方法将会返回失败。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

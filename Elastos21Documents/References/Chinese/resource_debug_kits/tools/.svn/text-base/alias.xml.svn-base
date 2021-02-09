@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> alias </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para> 给对象或命令起别名。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> ALIAS </cmd_name>
+        <cmd_param> [-?] [-v] [-p programName] [-f filespec] [&lt;source&gt; &lt;target&gt;] </cmd_param>
+    </syntax>
+    <parameters>
+        <param>
+            <param_name>  -? </param_name>
+            <param_note> 显示帮助信息 </param_note>
+        </param>
+        <param>
+            <param_name>  -v </param_name>
+            <param_note> 列出详细的输出</param_note>
+        </param>
+        <param>
+            <param_name>  -d </param_name>
+            <param_note> 删除已定义的别名</param_note>
+        </param>
+        <param>
+            <param_name>  -p programName </param_name>
+            <param_note> 指定另一个可解释别名定义的程序，文件名可自己定义，默认文件名是CMD.EXE</param_note>
+        </param>
+        <param>
+            <param_name> -f filespec</param_name>
+            <param_note> 从包含别名定义的文件中读出并定义别名</param_note>
+        </param>
+    </parameters>
+
+    <examples>
+        <example>
+            <eg_line>alias  </eg_line>
+            <eg_note> 列出所有别名。输出结果：</eg_note>
+            <eg_result><![CDATA[
+Dumping all defined aliases for CMD.EXE.
+    src             =pushd %XDK_DEFAULT_PATH%\$1
+    inc             =pushd %XDK_INC_PATH%\$1
+    uinc            =pushd %XDK_USER_INC%\$1
+    lib             =pushd %XDK_LIB_PATH%\$1
+    ulib            =pushd %XDK_USER_LIB%\$1
+    misc            =pushd %XDK_ROOT%\DevKit\misc\$1
+    obj             =pushd %XDK_USER_OBJ%\%XDK_BUILD_KIND%\$1
+    root            =pushd %XDK_ROOT%\$1
+    tools           =pushd %XDK_ROOT%\DevKit\tools\$1    
+]]></eg_result>
+        </example>
+        <example>
+            <eg_line>alias -v tools </eg_line>
+            <eg_note> 列出有关别名tools的详细信息。（tools=pushd %XDK_ROOT%\DevKit\tools\$1） 输出结果：</eg_note>
+            <eg_result><![CDATA[
+    tools           =pushd %XDK_ROOT%\DevKit\tools\$1 
+]]></eg_result>
+        </example>
+    </examples>
+
+</manpage>

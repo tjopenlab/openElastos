@@ -1,0 +1,72 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>照相摄像</volume>
+<interface>ICamera</interface><method> SetParam </method>
+    <description>
+        <para>
+          设置指定类型的照相机参数
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum CamParam </param_type>
+                <param_name> eType </param_name>
+                <param_note>
+                    <para>
+                      设置的参数类型（见枚举CamParam）
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nVal1 </param_name>
+                <param_note>
+                    <para>
+                      取决于eType的参数
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nVal2 </param_name>
+                <param_note>
+                    <para>
+                      取决于eType的参数（目前只有设置“变焦”需要用到此参数且不允许为“0”，其他情况参数2均可设为“0”。）
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_ZOOMDENOM_ZERO</td>
+	    	    <td>变焦分母为“0”</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_FAIL</td>
+	    	    <td>由于驱动未给出完整的错误返回值定义，故暂时用此代表当前所有可能的的驱动错误返回值</td>
+	        </tr>
+	    </table>
+	    <para></para>
+    </return>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

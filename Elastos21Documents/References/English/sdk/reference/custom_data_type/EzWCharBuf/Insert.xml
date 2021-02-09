@@ -1,0 +1,89 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzWCharBuf\Insert">insert</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzWCharBuf   </interface>
+    <method> Insert </method>
+
+    <description>
+        <para>Inserts the Unicode characters of specified size into current buffer at specified position. </para>
+    </description>
+
+    <syntax>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const wchar_t* </param_type>
+            <param_name> p </param_name>
+            <param_note>
+                <para> Pointer to the data to be inserted.</para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type> int </param_type>
+            <param_name> offset </param_name>
+            <param_note>
+                <para> Offset from the start of the EzWCharBuf object buffer, whose scope is from 0 to the length of Unicode characters in the buffer.</para>
+            </param_note>
+        </api_param>
+
+        <api_param>
+            <param_type> int </param_type>
+            <param_name> n</param_name>
+            <param_note>
+                <para> The number of the Unicode characters to be inserted. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para> Returns the actual number of the Unicode character if inserted successfully. If the parameter offset is less than 0 or greater than the length of the Unicode characters in the buffer, then it fails to be inserted and returns 0.</para>
+    </return>
+
+    <remarks>
+        <para> If the total length of Unicode characters inserted exceeds the maximum capacity of current EzWCharBuf object buffer, then the extra portion is truncated.</para>
+        <para> If parameter p is 0, i.e. the pointer to the data is NULL, while parameter n is not 0 and the number of the Unicode characters is not 0,then the program goes awry.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzWCharBuf_<200> buf;
+
+    buf.Copy(L"Good to you!",13);
+    wprintf(L"Original: %s\n",(wchar_t*)buf);
+
+    buf.Insert(L"luck ",5,5);
+    wprintf(L"After inserting at pos=5: %s\n",(wchar_t*)buf);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+Original: Good to you!
+After inserting at pos=5: Good luck to you!
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Append </ref_name>
+            <ref_url> Append </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Copy </ref_name>
+            <ref_url> Copy </ref_url>
+        </reference>
+    </references>
+
+</manpage>

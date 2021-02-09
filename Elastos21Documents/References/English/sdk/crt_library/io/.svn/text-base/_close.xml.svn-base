@@ -1,0 +1,104 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_close">_close</sample>
+    <title> _close</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>The _close system call deletes a file descriptor from the per-process object reference table. If this is the last reference to the underlying object, the object will be deactivated. For example, on the last close of a file the current seek pointer associated with the file is lost; on the last close of a socket associated naming information and queued data are discarded; on the last close of a file holding an advisory lock, the lock is released.</para>
+	<para>When a process exits, all associated file descriptors are freed, but since there is a limit on active descriptors per process, the _close system call is useful when a large quantity of file descriptors are being handled.</para>
+	<para>When a process forks, all descriptors for the new child process refer the same objects as they did in the parent before the fork. If a new process is then to be run using execve, then the process normally inherits these descriptors. Most of the descriptors can be rearranged with dup2 or deleted with _close before the execve is attempted, but if some of these descriptors will still be needed if the execve fails, it is necessary to arrange for them to be closed if the execve succeeds.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_close</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>File descriptor (integer to represent file)</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_close returns 0 if the file was successfully closed. A return value of -1 indicates an error, in which case errno is set to EBADF, indicating an invalid handle parameter.</para>
+    </return>
+
+    <remarks>
+        <para>The _close function closes the file associated with handle.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_close</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _close.cpp: This program uses _open to open a file
+ * named _close.sam and then close it.
+ */
+
+#include &lt;fcntl.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int fh1 = 0;
+
+    fh1 = _open(&quot;_close.sam&quot;, _O_RDWR | _O_CREAT, _S_IREAD | _S_IWRITE);
+
+    if (fh1 == -1)
+        perror(&quot;open failed on file _close.sam&quot;);
+    else {
+        if ((fh1 = _close(fh1)) == -1) {
+            printf(&quot;Close failed on file :_close.sam.\n&quot;);
+            return 1;
+        }
+        printf(&quot;Open file _close.sam success!\n&quot;);
+        printf(&quot;Close file _close.sam success!\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Open file _close.sam succeess!
+Close file _close.sam succeess!
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_wopen</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wcreat</ref_name>
+            <ref_url>_wcreat</ref_url>
+        </reference>
+    </references>
+
+</manpage>

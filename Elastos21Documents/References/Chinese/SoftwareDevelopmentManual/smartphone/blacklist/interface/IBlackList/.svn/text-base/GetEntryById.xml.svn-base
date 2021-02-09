@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBlackList</interface><method> GetEntryById </method>
+    <description>
+        <para>
+            根据指定的黑名单记录ID，查找相应记录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nId </param_name>
+                <param_note>
+                    <para>
+黑名单记录ID                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IBlackListEntryRef * </param_type>
+                <param_name> ppEntry </param_name>
+                <param_note>
+                    <para>
+指向黑名单记录接口指针的指针，可以为空                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果没有查找到相应记录，返回S_FALSE。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            若数据库中没有查找到相应的记录，则ppEntity为空。
+        </para>
+    </remarks>
+</manpage>

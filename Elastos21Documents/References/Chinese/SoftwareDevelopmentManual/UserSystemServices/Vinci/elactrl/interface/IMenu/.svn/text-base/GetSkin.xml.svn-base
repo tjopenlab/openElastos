@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IMenu</interface><method> GetSkin </method>
+    <description>
+        <para>
+            获取菜单的皮肤。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ISkin** </param_type>
+                <param_name> skin </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../ISkin.htm">ISkin</link> 接口指针的指针，用于获取 ISkin 接口指针，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        成功调用该方法获取 ISkin 接口后，会自动为该接口的引用计数增加1，故一旦不需要该接口，记得调用 Release() 方法释放它，否则在销毁 Menu 对象时将造成内存泄漏。
+    </para>
+    <para>
+        菜单的外观受 Skin 对象控制，更换菜单显示的风格可以通过 <link url="SetSkin.htm">SetSkin</link> 方法，有关更多信息可参考：<link url="../../reference/SetSkin.htm">如何更换控件的皮肤</link>。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CMenu 类介绍 </ref_name>
+        <ref_url>../../class/Menu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IMenu 接口方法列表</ref_name>
+        <ref_url>../IMenu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetSkin</ref_name>
+        <ref_url>SetSkin</ref_url>
+    </reference>
+    <reference>
+        <ref_name>如何更换控件的皮肤</ref_name>
+        <ref_url>../../reference/SetSkin</ref_url>
+    </reference>
+</references>
+</manpage>

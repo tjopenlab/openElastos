@@ -1,0 +1,113 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\putchar">putchar</sample>
+    <title> putchar, putwchar</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes a character to stdout. </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>putchar</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Character to be written. </para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>putwchar</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wint_t</param_type>
+                <param_name>c</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns the character written. To indicate an error or end-of-file condition, putchar returns EOF; putwchar returns WEOF. For both routines, use ferror or feof to check for an error or end of file. </para>
+    </return>
+
+    <remarks>
+        <para>The putc routine writes the character c to the output stream at the current position. For each routine, if a read error occurs, the error indicator for the stream is set. putwchar is the wide-character version of putchar. </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>putchar</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>putwchar</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* putchar.cpp: This program writes characters from
+ * buffer to screen.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char  buffer[] = &quot;Testing putwchar.&quot;;
+    char  *p;
+
+    p = buffer;
+    while (*p) {
+        putchar(*p);
+        p++;
+    }
+    putchar(&apos;\n&apos;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Testing putwchar.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_putws</ref_name>
+            <ref_url>_putws</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getc</ref_name>
+            <ref_url>getwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fputc</ref_name>
+            <ref_url>fputc</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,103 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR属性</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>CAR属性</h2>
+    <p>属性用于修饰CAR中构件类、接口等各个部分的内容。下面对CAR中所支持的各属性的含义及其表示方法进行介绍。</p>
+    <p>按照所修饰的内容不同，我们将CAR属性分为以下几类：</p>
+    <ul>
+    <li>用于修饰构件的属性：
+        <table>
+            <thead>
+                <td>属性</td>
+                <td>描述</td>
+            </thead>
+            <tr>
+                <td><a class="style1" class="style1" href="./attributes/attributes_version.htm">version</a></td>
+                <td>用于标识构件的版本号</td>
+            </tr>
+        </table>
+        <p></p>
+    <li>用于修饰普通类的属性：
+        <table>
+            <thead>
+                <td>属性</td>
+                <td>描述</td>
+            </thead>
+
+            <tr>
+                <td><a class="style1" href="./attributes/attributes_synchronized.htm">synchronized</a></td>
+                <td>用于标识构件对象同时只允许一个线程进入到构件的实现代码中，其它访问该构件对象的线程将被阻塞等待（一旦线程调用到对象方法内，在从对象方法返回之前，其它线程对该对象的访问均会被阻塞）</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./attributes/attributes_sequenced.htm">sequenced</a></td>
+                <td>用于标识构件对象同时只允许一个线程进入到构件的实现代码中，其它访问该构件对象的线程将被阻塞等待（对象方法访问其它对象时临时释放锁，允许其它线程进入对象）</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./attributes/attributes_private.htm">private</a></td>
+                <td>用于标识所修饰的类只能在服务端被实例化</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./attributes/attributes_local.htm">local</a></td>
+                <td>用于修饰带有constructor（内有非自描述参数）的类</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./attributes/attributes_deprecated.htm">deprecated</a></td>
+                <td>用于兼容移植来的第三方软件中不符合CAR规范的数据类型使用</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./attributes/attributes_applet.htm">applet</a></td>
+                <td>此属性用于修饰类，表示该类接口方法的调用具有类似于applet的接口方法行为。</td>
+            </tr>
+        </table>
+
+    <li><a name="interface"></a>用于修饰接口的属性：
+        <table>
+            <thead>
+                <td>属性</td>
+                <td>描述</td>
+            </thead>
+            <tr>
+                <td><a class="style1" href="./attributes/attributes_local.htm">local</a></td>
+                <td>表示提供该接口的类的类对象与客户程序只能在相同的域内使用，不能用于远程调用</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./attributes/attributes_deprecated.htm">deprecated</a></td>
+                <td>用于兼容移植来的第三方软件中不符合CAR规范的数据类型使用</td>
+            </tr>
+        </table>
+       <p></p>
+    <li><a name="para"></a>用于修饰接口方法参数的属性：
+        <table>
+            <thead>
+                <td>属性</td>
+                <td>描述</td>
+            </thead>
+            <tr>
+                <td><a class="style1" href="./attributes/attributes_in.htm">in</a></td>
+                <td>用于标识该参数为输入参数</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./attributes/attributes_out.htm">out</a></td>
+                <td>用于标识该参数为输出参数</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="./attributes/attributes_callee.htm">callee</a></td>
+                <td>用于修饰五元组，表示该参数由客户端程序分配</td>
+            </tr>
+        </table>
+        <p></p>
+    <p></p>
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> AString </interface>
+    <method>GetLength </method>
+
+    <description>
+        <para>获取AString对象中字符串的长度，以字符数为单位。 </para>
+    </description>
+    
+    <syntax>
+        <return_val>Int32</return_val>
+        <parameters>
+            <api_param>
+                <param_type>Int32</param_type>
+                <param_name>maxLen </param_name>
+                <param_note>
+                    <para> 制定的待比较的字符数 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+	      <para>假如AString对象中字符串的字符个数超过maxLen，则返回-1，否则返回字符串的字符数，不包含"\0"结束符。 </para>
+    </return>
+
+    <remarks>
+        <para>假如AString对象中字符串缺少"\0"结束符，本函数也会返回-1。 </para>
+    </remarks>
+
+</manpage>

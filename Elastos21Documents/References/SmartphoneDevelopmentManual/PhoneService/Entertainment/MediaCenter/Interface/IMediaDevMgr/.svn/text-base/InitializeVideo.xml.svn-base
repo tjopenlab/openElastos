@@ -1,0 +1,183 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心引擎</volume>
+<interface>IMediaDevMgr</interface><method> InitializeVideo </method>
+    <description>
+        <para>
+          申请视频设备并进行必要的初始化。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> void * </param_type>
+                <param_name> pThis </param_name>
+                <param_note>
+                    <para>
+                      调用模块的对象指针。通过保留该指针可以判断一个模块是否能够使用设备，并在适当的时候回调该模块进行阻塞挂起或者恢复
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum AppPriority </param_type>
+                <param_name> eAppPriority </param_name>
+                <param_note>
+                    <para>
+                      为<link url="../../DataType/AppPriority.htm">AppPriority</link>枚举类型，用于表示模块的优先级，由此来决定模块是否可以抢占资源，或者是被抛弃
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum AppLifeSpan </param_type>
+                <param_name> eAppLifespan </param_name>
+                <param_note>
+                    <para>
+                      为<link url="../../DataType/AppLifeSpan.htm">AppLifeSpan</link>枚举类型，用于表示模块的生命周期，由此决定模块在被阻塞后是等待设备还是直接抛弃
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum OverlayColorFormat </param_type>
+                <param_name> eOverlayColorFormat </param_name>
+                <param_note>
+                    <para>
+                      为<link url="../../DataType/OverlayColorFormat.htm">OverlayColorFormat</link>枚举类型，用于表示overlay的数据格式
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uPosX </param_name>
+                <param_note>
+                    <para>
+                    所需要使用的视频设备的坐上角坐标X变量
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uPosY </param_name>
+                <param_note>
+                    <para>
+                    所需要使用的视频设备的坐上角坐标Y变量
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uWidth </param_name>
+                <param_note>
+                    <para>
+                      所需要使用的视频设备的宽
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uHeight </param_name>
+                <param_note>
+                    <para>
+                       所需要使用的视频设备的高
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> void ** </param_type>
+                <param_name> pOverlayYBufAddr </param_name>
+                <param_note>
+                    <para>
+                       overlay Y 分量地址
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> void ** </param_type>
+                <param_name> pOverlayCbBufAddr </param_name>
+                <param_note>
+                    <para>
+                      overlay Cb 分量地址
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> void ** </param_type>
+                <param_name> pOverlayCrBufAddr </param_name>
+                <param_note>
+                    <para>
+                      overlay Cr 分量地址
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UINT * </param_type>
+                <param_name> uOverlayYBufSize </param_name>
+                <param_note>
+                    <para>
+                     overlay Y 分量数据大小
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UINT * </param_type>
+                <param_name> uOverlayCbBufSize </param_name>
+                <param_note>
+                    <para>
+                     overlay Cb 分量数据大小
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UINT * </param_type>
+                <param_name> uOverlayCrBufSize </param_name>
+                <param_note>
+                    <para>
+                      overlay Cr 分量数据大小
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_MEDIA_DEVICE_OUT_OF_YOUR_HAND </td>
+	    	    <td>得不到设备使用权限   </td>
+	        </tr>
+	         <tr>
+	    	    <td>图形错误码 </td>
+	    	    <td>调用图形系统中函数失败   </td>
+	        </tr>
+	    </table>
+	   <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../MediaCenter_Error.htm">MediaCenter_Error</link>相关帮助。</para>
+    </return>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+
+    </requirements>
+</manpage>

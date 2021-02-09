@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WString</interface>
+    <method>GetLength </method>
+
+    <description>
+        <para>返回WString实例所占的字符数。 </para>
+    </description>
+    
+    <syntax>
+        <return_val>Int32</return_val>
+        <modifier>const</modifier>
+        <parameters>
+            <api_param>
+                <param_type>Int32</param_type>
+                <param_name>maxLen </param_name>
+                    <param_default>-1  </param_default>
+                <param_note>
+                    <para> 指定字符串的最大长度。  </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    
+    <return>
+	      <para>1.maxLen默认值是-1,此时相当于strlen/wcslen。</para>
+	      <para>2.如果maxLen=0,则返回0。</para>
+	      <para>3.如果WString对象指向的字符串的字符个数超过maxLen，则返回-1，否则返回字符串的字符数，不包含"\0"结束符。</para>
+    </return>
+
+    <remarks>
+        <para>在maxLen &gt;= 0 的情况下，如果WString对象指向的字符串缺少"\0"结束符，本函数也会返回-1。 </para>
+    </remarks>
+
+<example>
+<pre>
+请参见：<link url="../AString/GetLength.htm">AString::GetLength</link>
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>WString</ref_name>
+        <ref_url>../WString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::GetCharCount </ref_name>
+        <ref_url>../WString/GetCharCount</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::EstimateAStringLength</ref_name>
+        <ref_url>../WString/EstimateAStringLength</ref_url>
+    </reference>
+
+</references>   
+
+</manpage>

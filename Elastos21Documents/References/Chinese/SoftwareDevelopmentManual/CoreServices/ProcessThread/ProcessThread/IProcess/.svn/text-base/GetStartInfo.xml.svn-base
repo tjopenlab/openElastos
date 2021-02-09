@@ -1,0 +1,78 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\GetId">GetStartInfo</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> GetStartInfo	 </method>
+    <description>
+        <para>
+           获取进程的启动信息，包括应用程序名和命令行参数。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf *  </param_type>
+                <param_name> pName </param_name>
+                <param_note>
+                    <para>
+						进程名称，不能与参数pArgs同时为空
+                    </para>
+                </param_note>
+            </api_param>
+
+			<api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf *  </param_type>
+                <param_name> pArgs </param_name>
+                <param_note>
+                    <para>
+              进程启动时传入的命令行参数，不能与参数pName同时为空
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取进程的启动信息</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_PROCESS_NOT_STARTED</td>
+	    	    <td>进程没有启动</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		    一般情况，pName是指主模块名，即一个存在的可执行文件，一般扩展名为.exe。
+		</para>
+		<para>
+		    pArgs是指进程启动时传入的命令行参数，通过<link url="start.htm">IProcess::Start()</link>来设置。
+		</para>
+
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

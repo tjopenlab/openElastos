@@ -1,0 +1,72 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+	<sample url="dma_routines\FreeDmaPages">FreeDmaPages</sample>
+	<volume>DMA Routines</volume>
+	<title>FreeDmaPages</title>
+	<routine_idx> ../../dma_routines.htm </routine_idx>
+	
+	<description>
+		<para>Releases specified number of allocated continuous DMA memory pages.</para>
+	</description>
+	
+	<syntax>
+		<return_val>void </return_val>
+		<parameters>
+			<api_param>
+				<param_type> virtaddr_t </param_type>
+				<param_name> va </param_name>
+				<param_note>
+					<para>Starting address of released DMA page.</para>
+				</param_note>
+			</api_param>
+			<api_param>
+				<param_type> uint_t </param_type>
+				<param_name> uOrder </param_name>
+				<param_note>
+					<para>Log to the base 2 of specified continuous kernel pages, i.e. function releases 2^uOrder continuous kernel pages. The maximum value of uOrder cannot exceed allocated value.</para>
+				</param_note>
+			</api_param>
+		</parameters>
+	</syntax>
+	
+	<return>
+		<NoReturnValue/>
+	</return>
+	
+	<remarks>
+		<para> This function releases DMA memory pages allocated by the <link url="AllocDmaPages.htm">AllocDmaPages</link>. Releases invalid DMA memory pages (Pages that are not allocated by the <link url="AllocDmaPages.htm">AllocDmaPages</link> ) will cause unpredictable results.</para>
+	</remarks>
+	
+	<requirements>
+		<system>
+			<system_name>
+				Elastos 2.0 or later
+			</system_name>
+		</system>
+		<headerfile>
+			<file_name>dma.h</file_name>
+		</headerfile>
+	</requirements>
+	
+	<references>
+		<reference>
+			<ref_name>AllocDmaPage</ref_name>
+			<ref_url>AllocDmaPage</ref_url>
+		</reference>
+		<reference>
+			<ref_name>AllocDmaPages</ref_name>
+			<ref_url>AllocDmaPages</ref_url>
+		</reference>
+		<reference>
+			<ref_name>FreeDmaPage</ref_name>
+			<ref_url>FreeDmaPage</ref_url>
+		</reference>
+	</references>
+	
+</manpage>

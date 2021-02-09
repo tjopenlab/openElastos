@@ -1,0 +1,75 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="practical_routines\verify">verify</sample>
+    <volume>Practical Routines</volume>
+    <title>verify</title>
+    <routine_idx> ../practical_routines.htm </routine_idx>
+
+    <description>
+        <para>
+        	Evaluates an expression and if the expression is FALSE, displays a diagnostic message and enters 
+        	kernel debug mode.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> INT</param_type>
+                <param_name> expression </param_name>
+                <param_note>
+                    <para>Expression (including pointers) that evaluates to nonzero or 0.</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>
+            The verify macro is used to identify logical errors during program development by implementing 
+            the expression argument to evaluate to false, only if the program is not operating properly.
+		</para>
+		<para>
+		    In debug and release versions, verify macro displays a diagnostic message if the expression is false (0), 
+		    and makes the kernel enter debug mode. No action is taken if expression is true (nonzero). The diagnostic 
+		    message includes the failed expression, the name of the source file and line number where the assertion 
+		    failed.
+	    </para>
+		<para>
+		    In NAKED version, verify macro evaluates the expression, but does not display any diagnostic message or 
+		    make the kernel to enter debug mode.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>assert</ref_name>
+            <ref_url>assert</ref_url>
+        </reference>
+    </references>
+
+
+</manpage>

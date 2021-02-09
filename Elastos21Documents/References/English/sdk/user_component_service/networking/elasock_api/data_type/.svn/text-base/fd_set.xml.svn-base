@@ -1,0 +1,34 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/custom_type.xsl"?>
+
+<manpage>
+    <sample url=""></sample>
+    <volume>Elastos Network Programming Interface（elasock API）</volume>
+    <types>fd_set</types>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>This structure is to save a set of socket interface.</para>
+    </description>
+
+    <struct>
+      <struct_member>
+          <mem_type>u_int</mem_type>
+          <mem_name> fd_count </mem_name>
+          <mem_description> The socket interface numbers in the array. </mem_description>
+      </struct_member>
+      <struct_member>
+          <mem_type> SOCKET </mem_type>
+          <mem_name> fd_array[64] </mem_name>
+          <mem_description>Socket   Array </mem_description>
+      </struct_member>
+    </struct>
+
+    <remarks>
+        <para>When  <link url="../select.htm">select</link> is called,the socket to be checked is saved by this structure.</para>
+    </remarks>
+</manpage>

@@ -1,0 +1,169 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stat\_fstat">_fstat</sample>
+    <title>_fstat </title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> stat_idx.htm </routine_idx>
+
+    <description>
+        <para>Gets information about an open file.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_fstat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>File decscriptor of an open file.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>struct stat*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>Pointer to structure to store results.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_fstat returns 0 if the file-status information is obtained. A return value of -1 indicates an error, in which case error is set to ENOENT, indicating an invalid file descriptor.</para>
+    </return>
+
+    <remarks>
+        <para>The _fstat function obtains information about the open file associated with handle and stores it in the structure pointed to by buffer.</para>
+
+        <table>
+            <th>
+                <td>Fields of stat</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td> st_atime</td>
+                <td>Time of last file access.</td>
+            </tr>
+
+            <tr>
+                <td> st_ctime </td>
+                <td>Time of creation of file.</td>
+            </tr>
+
+            <tr>
+                <td> st_mtime</td>
+                <td>Time of last modification of file.</td>
+            </tr>
+
+            <tr>
+                <td> st_dev </td>
+                <td>If a device, handle; otherwise 0. It is invalid currently.</td>
+            </tr>
+
+            <tr>
+                <td> st_mode </td>
+                <td>Bit mask for file-mode information. The _S_IFCHR bit is set if handle refers to device. The _S_IFREG bit is set if handle refers to an ordinary file. The read/write bits are set according to the file's permission mode. _S_IFCHR and other constants are defined in stat.h.</td>
+            </tr>
+
+            <tr>
+                <td> st_nlink</td>
+                <td>Always 1 on non-NTFS file systems. It is invalid currently.</td>
+            </tr>
+
+            <tr>
+                <td> st_size </td>
+                <td>Size of the file in bytes.</td>
+            </tr>
+
+            <tr>
+                <td> st_rdev </td>
+                <td>If a device, handle; otherwise 0. It is invalid currently.</td>
+            </tr>
+        </table>
+        <para>If handle refers to a device, the st_size, st_ctime, st_ctime, st_atime, st_mtime fields are not meaningful.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_fstat</routine_name>
+            <headerfile>stat.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _fstat.cpp: This program uses _fstat to report
+ * the size of a file named F_STAT.OUT.
+ */
+
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    struct stat buf;
+    int fh, result;
+    char buffer[] = &quot;A line to output&quot;;
+
+    if ((fh = _open(&quot;_fstat.out&quot;, _O_CREAT | _O_WRONLY | _O_TRUNC ,
+            _S_IREAD | _S_IWRITE)) ==  -1) {
+        printf(&quot;problem open the file!\n&quot;);
+        return 1;
+    }
+
+    _write(fh, buffer, strlen(buffer));
+
+    /* Get data associated with &quot;fh&quot;: */
+    result = _fstat(fh, &amp;buf);
+
+    /* Check if statistics are valid: */
+    if (result != 0)
+        printf(&quot;Bad file handle\n&quot;);
+    else {
+        printf(&quot;File size      : %ld\n&quot;, buf.st_size);
+        printf(&quot;Time modified : %s&quot;, ctime(&amp;buf.st_ctime));
+    }
+
+    _close(fh);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File size      : 16
+Time modified : Tue Nov 06 10:20:12 2007
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_access</ref_name>
+            <ref_url>../io/_waccess</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_stat</ref_name>
+            <ref_url>_stat</ref_url>
+        </reference>
+    </references>
+
+</manpage>

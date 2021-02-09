@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IItemControl</interface><method> SetItemTag </method>
+    <description>
+        <para>
+            设置指定项的用户数据信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+指定项的索引值，有效值为 0～项数-1                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Handle32 </param_type>
+                <param_name> data </param_name>
+                <param_note>
+                    <para>
+用户数据信息</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+    	  用户数据信息可以作为除 index 之外，另一个对指定行进行标示的数据。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IItemControl 接口方法列表</ref_name>
+        <ref_url>../IItemControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetItemTag</ref_name>
+        <ref_url>GetItemTag</ref_url>
+    </reference>
+</references>
+</manpage>

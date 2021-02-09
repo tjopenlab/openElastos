@@ -1,0 +1,23 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+    <title>Reusability</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Reusability</h2>
+    <p>Similar to all object-oriented systems, reusability of CAR component is one of its very important characteristics. Unlike source code level reuse of C++ class, CAR component reusability is built upon the foundation of binary reuse. To be specific, the three models of reusability are <a class="style1" href="">containment</a>, <a class="style1" href="">aggregation</a> and <a class="style1" href="inheritance/inheritance.htm">binary inheritance</a>. Basically reusability is to use another component in one component.</p>
+    <p>In containment, besides implementing its own interface, external component also includes pointers to all interfaces of the internal component. Internal component interface is invisible to clients of external component. The client can only indirectly invoke internal component interface through interface provided by external component and thus achieves reuse of existing component this way. Since containment provides external interface implementation for internal component interface, adding appropriate code in external interface can complete functionality similar to services provided by reused component. This is similar to C++ class virtual function overloading.</p>
+    <p>Aggregation mechanism is just a special case of containment. Components using aggregation mechanism do not implement interface that uses to forward to the internal component interface.Instead they directly pass client request to internal component interface that is directly exposed to external component clients. The client is not aware of the existence of reused component and the service provided by it is as same as the aggregate component while invoking interface after getting the requested interface pointer.  Unlike containment, not all the component supports aggregation. The usage of containment mechanism or aggregation mechanism for reusing depends on the functionality to be implemented and whether the services provided by the component to be reused is similar or exactly the same.</p>
+    <center><img src="images/model.jpg"></center>
+    <center>Container And Aggregation Reuse Model</center>
+    <p>Component inheritance mechanism can achieve inheritance and overloading between binary components. It can also neatly reuse components. This mechanism is similar to inheritance, virtual function overloading properties in C++ language. The base component can jump into interface methods of corresponding derived component and execute by invoking virtual interface method. The derived component can directly overload and invoke interface method inherited by base component. Only component inheritance mechanism is binary component inheritance, overloading, in C++ language it is inheritance, overloading of the C++ source code.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

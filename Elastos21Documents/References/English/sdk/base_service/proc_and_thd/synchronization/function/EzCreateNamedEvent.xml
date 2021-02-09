@@ -1,0 +1,129 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\ezEvent">EzCreateNamedEvent</sample>
+    <volume>Synchronization</volume>
+    <title>CEvent::New</title>
+    <routine_idx> ..\..\synchronization.htm </routine_idx>
+
+    <description>
+        <para>
+        	Creates a named event object, enabling interprocess synchronization.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>
+                    	[in]The name of the event synchronization object.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Boolean</param_type>
+                <param_name> manualReset </param_name>
+                <param_note>
+                    <para>
+                    	[in]Specifies whether a manual-reset or auto-reset event object is created.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> EventState </param_type>
+                <param_name> initialState </param_name>
+                <param_note>
+                    <para>
+                    	[in] The initial state of the event synchronization object. Zero represents not-signaled state, otherwise, it is signaled.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> IEvent ** </param_type>
+                <param_name> ppEvent </param_name>
+                <param_note>
+                    <para>
+                    	[out]Interface pointer to the event object, if the function succeeds.
+                    </para>
+                </param_note>
+            <api_param>
+                <param_type> Boolean * </param_type>
+                <param_name> pAlreadyExists </param_name>
+                <param_note>
+                    <para>
+                    	[out]Specified whether the specified Event object already existed Ignore the parameter if it be null
+                    	</para>
+                </param_note>
+            </api_param>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+			 <tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in creating a named event object</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>Invalid argument(s)</td>
+            </tr>
+           <tr>
+                <td>E_SERVICE_NAME_TOO_LONG</td>
+                <td>The service name is beyond the confines (256 characters)</td>
+            </tr>
+            <tr>
+                <td>E_ALREADY_EXIST</td>
+                <td>A non-Event object  already existed ,whose name is the same as the Event one</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>Insufficient memory</td>
+            </tr>
+        </table>
+        <para>References <link url="/sdk/hresult.htm">ECODE </link> for correlative help</para>
+    </return>
+
+    <remarks>
+    	<para>
+    		Other process can access and use this object through the name specified by <i>esName</i> and by <link url=
+    		"EzFindService.htm">EzFindService</link> function.
+    	</para>
+    	<para>
+    	    Parameter ppEvent can be NULL.
+    	</para>
+        <para>
+            Please see <link url="../IEvent.htm">IEvent</link> interface.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                 Windows 2000 or later; Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+
+</manpage>

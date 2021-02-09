@@ -1,0 +1,53 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> ifconfig </title>
+    <volume>网络命令</volume>
+
+    <description>
+        <para> 查看和配置网络接口地址和参数。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> ifconfig.exe </cmd_name>
+        <cmd_param>interface [address][netmask address][broadcast address] </cmd_param>
+    </syntax>
+
+    <parameters>
+        <param>
+            <param_name>  interface </param_name>
+            <param_note> 在系统核心中定义的网络设备，一般为网卡 </param_note>
+        </param>
+        <param>
+            <param_name> [address] </param_name>
+            <param_note> 接口的IP地址 </param_note>
+        </param>
+        <param>
+            <param_name>[netmask address]</param_name>
+            <param_note>接口的子网掩码</param_note>
+        </param>
+        <param>
+            <param_name>[broadcast address]</param_name>
+            <param_note>用来向子网中所有机器发送消息的地址</param_note>
+        </param>
+    </parameters>
+
+    <remarks>
+        <para>ifconfig主要有两种使用方法：</para>
+        <para>1.ifconfig.exe [interface]或不带任何参数，用来查看当前系统的网络配置情况。如果没有给出参数，ifconfig显示当前有效借口的状态；如果给定单个接口作为参数，则只显示指定接口的状态；如果给出参数[-a]，则显示包括停用接口在内的所有接口状态。</para>
+        <para>2.ifconfig.exe interface address ...，用于配置网络接口的IP地址，网络掩码及广播地址。ifconfig用于在引导成功时配置常驻内核的网络接口，此后只在需要调试和系统调整时才使用。</para>
+    </remarks>
+
+    <examples>
+        <example>
+            <eg_line>ifconfig.exe lo0 127.0.0.1 netmask 255.255.248.0</eg_line>
+            <eg_note>配置loop-back接口的IP地址和子网掩码。</eg_note>
+        </example>
+        <example>
+            <eg_line>ifconfig.exe eth0 192.168.2.88 netmask 255.255.248.0 broadcast 192.168.0.255</eg_line>
+            <eg_note>配置以太网卡的IP地址，子网掩码和广播地址。</eg_note>
+        </example>
+    </examples>
+
+</manpage>

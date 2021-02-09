@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISocketEx</interface><method> Ioctl </method>
+    <description>
+        <para>
+            控制套接口的模式。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> cmd </param_name>
+                <param_note>
+                    <para>
+对套接口描述的命令                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzByteBuf </param_type>
+                <param_name> ebbInData </param_name>
+                <param_note>
+                    <para>
+当cmd参数值为FIONBIO时，是一个无符号长整型，允许或禁止套接口的非堵塞模式，若其值非零，则允许非阻塞模式，若其值为零，则禁止非阻塞模式                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzByteBuf </param_type>
+                <param_name> ebbOutData </param_name>
+                <param_note>
+                    <para>
+当cmd参数值为FIONREAD时，是一个无符号长整型，确定可从套接口读出的数据量大小。若为SOCKET_STREAM类型套接口，则FIONREAD返回可以在一次<link url="../../ElastosSocketAPI/recv.htm">recv()</link>中接收的数据量，通常与套接口中排队的数据总量相同；若为SOCK_DGRAM类型套接口，则FIONREAD返回套接口上排队的第一个数据报大小。</para><para>当cmd参数值为SIOCATMARK 时，确定是否所有的带外数据都已被读入。仅用于SOCK_STREAM类型的套接口，且套接口已被设置为可以在线接收带外数据（SO_OOBINLINE），如无带外数据等待读入，则该操作返回TRUE真，否则返回FALSE假。下一个recv()或<link url="../../ElastosSocketAPI/recvfrom.htm">recvfrom()</link>操作将检索"标记"前面的数据。应用程序可用SIOCATMARK操作来确定是否有剩余数据。如果在"紧急"（带外）数据前有常规数据，则按序接收这些数据（请注意，recv()和recvfrom()操作不会在一次调用中混淆常规数据与带外数据）。argp指向一个BOOL型数，ioctlsocket()<link url="../../ElastosSocketAPI/ioctlsocket.htm">ioctlsocket()</link>在其中存入返回值                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> pError </param_name>
+                <param_note>
+                    <para>
+指向int型的指针，用于当函数执行发生错误时获取其错误返回值，该返回值参见<link url="../SocketWSA.htm">网络接口错误返回值</link>文档                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果方法调用成功，但逻辑错误，则返回S_FALSE。</para><para>            更多返回值，参见            <link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECODE            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+</manpage>

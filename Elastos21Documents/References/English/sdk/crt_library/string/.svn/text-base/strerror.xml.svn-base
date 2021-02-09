@@ -1,0 +1,103 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strerror">strerror</sample>
+    <title> strerror</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Gets a system error message (strerror).</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strerror</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>errnum</param_name>
+                <param_note>
+                    <para>Error number.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>strerror returns a pointer to the error-message string. Subsequent
+            calls to strerror can overwrite the string.
+        </para>
+    </return>
+
+    <remarks>
+        <para>The strerror function maps errnum to an error-message string,
+            returning a pointer to the string. Strerror actually prints the
+            message: For that, one needs to call an output function such as
+            <link url="../stdio/fwprintf.htm">fprintf</link>.
+        </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strerror</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+//strerror.cpp:  This program attempts to open a file named
+// NOSUCHF.ILE. Because this file probably doesn&apos;t exist,
+// an error message is displayed. The same message is
+// created using perror, strerror, and _strerror.
+#include &lt;errno.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+
+int main()
+{
+    int  fh;
+
+    if ((fh = _open(&quot;NOSUCHF.ILE&quot;, _O_RDONLY)) == -1) {
+        /* Three ways to create error message: */
+        perror(&quot;perror says open failed&quot;);
+        printf(&quot;strerror says open failed: %s\n&quot;, strerror(errno));
+        printf(_strerror(&quot;_strerror says open failed&quot;));
+    }
+    else {
+        printf(&quot;open succeeded on input file\n&quot;);
+        _close(fh);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+perror says open failed: No such file or directory
+
+strerror says open failed: No such file or directory
+_strerror says open failed: No such file or directory
+</result>
+
+
+
+</manpage>

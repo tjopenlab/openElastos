@@ -1,0 +1,70 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IProcess</interface><method> GetThreads </method>
+    <description>
+        <para>
+				Gets the set of threads that are running in the associated process. 
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IObjectEnumerator ** </param_type>
+                <param_name> ppThreads </param_name>
+                <param_note>
+                    <para>
+						An array of threads currently running in the associated process.
+                    </para>
+                </param_note>
+            </api_param>       			
+			    
+        </parameters>
+    </syntax>
+	
+	<return>
+	<table>            
+	    <th>            
+		<td>Return Value </td>            
+		<td>Hex Value</td>
+		<td>Description</td>            
+	    </th>            
+	    <tr>            
+		<td>NOERROR</td>            
+		<td>Succeeds in getting the set of threads that are running in the associated process. </td>            
+	    </tr>               
+	   <tr>            
+		<td>E_INVALID_ARGUMENT</td>            
+
+		<td>Invalid argument(s)</td>            
+	    </tr>       
+	    <tr>            
+		<td>E_OUT_OF_MEMORY</td>            >
+		<td>Insufficient memory</td>            
+	    </tr>        
+			    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>           	
+	</table>            	
+    </return>
+
+	<remarks>
+		<para>
+			Each process starts with a single thread, which is the primary thread. Any of its threads can create 
+			additional threads. Threads within a process share the address space of the process. This method gets 
+			the interface references of all the threads in the associated process.
+		</para>		
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.            
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

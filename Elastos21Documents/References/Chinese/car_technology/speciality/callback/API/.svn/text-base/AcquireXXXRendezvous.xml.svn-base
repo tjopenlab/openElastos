@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> Callbacks相关API </volume>
+    <method>AcquireXXXRendezvous</method>
+
+    <description>
+        <para>获取ICallbackRendezvous接口，该接口可以调用wait方法。</para>
+    </description>
+    <syntax>
+        <return_val> static _ELASTOS  ECode </return_val>
+        <parameters>
+        <api_param>
+            <param_type>[in] PInterface</param_type>
+            <param_name>pServerObj</param_name>
+            <param_note>
+                <para> 指向server对象的接口指针，表示回调事件的抛出者。 </para>
+            </param_note>
+        </api_param>
+ 
+        <api_param>
+            <param_type>[out] ICallbackRendezvous**</param_type>
+            <param_name> ppRendezvous  </param_name>
+            <param_note>
+                <para> 指向ICallbackRendezvous接口指针的指针 </para>
+            </param_note>
+        </api_param>      
+        </parameters>
+    </syntax>
+    
+    <remarks>
+        <para>使用方法：CServer：：AcquireXXXFooEventRendezvous(......),其中CServer表示抛出回调事件的server对象的类名。 </para>
+
+
+     </remarks>
+
+        <example>
+    <pre class="codeview">
+    WaitResult wr;
+    ec = CForm::AcquireDialogResultEventRendezvous((_IInterface*)this, &amp;m_pIRendezvous);
+
+    m_pIRendezvous->Wait(INFINITE, &amp;wr);
+
+    m_pIRendezvous->Release();
+    </pre>
+    </example>   
+</manpage>

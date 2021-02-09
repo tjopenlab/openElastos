@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\user_com_interface\elasock\sam03\client">sendto</sample>
+    <volume>elasock API</volume>
+    <title>sendto</title>
+    <routine_idx>ElastosSocketIndex.htm</routine_idx>
+
+    <description>
+        <para>向指定目的地发送数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>[in]套接口（可能已连接）。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const char *</param_type>
+                <param_name>buf</param_name>
+                <param_note>
+                    <para>[in]保存待发送数据的用户缓冲区。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>len</param_name>
+                <param_note>
+                    <para>[in]待发送数据的长度。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>flags</param_name>
+                <param_note>
+                    <para>[in]调用方式标志位，普通方式为0。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const struct sockaddr *</param_type>
+                <param_name>to</param_name>
+                <param_note>
+                    <para>[in]（可选）指针，指向目的套接口的地址（<link url="DataType\sockaddr.htm">sockaddr</link>结构）。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>tolen</param_name>
+                <param_note>
+                    <para>[in]to所指地址的长度。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，返回所发送数据的总字节数（请注意对非阻塞套接口这个数字可能小于len中给出的大小）；否则返回SOCKET_ERROR。调用<link url="WSAGetLastError.htm">WSAGetLastError()</link>可获取相应的错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>sendto()将向数据报或字节流套接口发送数据。对数据报类套接口，需注意待发送数据长度不应超过通讯子网的IP包最大长度。此最大长度由下层的物理设备单次所能传输的最大长度决定，并包括通讯子网的一些附加信息，并非用户实际所能传输的最大长度。比如以太网的最大长度为1500个字节，附加信息约占55个字节，因此用户实际能传输的最大长度为1445个字节。如果数据太长无法自动通过下层协议，数据将不被发送，并返回WSAEMSGSIZE错误。并且用户不应当在sendto之前通过<link url="connect.htm">connect</link>建立缺省连接。</para>
+        <para>to参数不支持广播类型的地址。</para>
+        <para>如果套接口未被绑定，系统将给套接口自动绑定一个唯一的值，并设套接口为已捆绑。此时可调用<link url="getsockname.htm">getsockname()</link>得到套接口的地址。</para>
+        <para>请注意成功地完成sendto()调用并不意味着数据传送到达。</para>
+        <para>通常情况下，sendto()函数用于从SOCK_DGRAM套接口向to参数指定的远端套接口发送数据报。对于SOCK_STREAM类型套接口，to和tolen参数被忽略，此时sendto()等价于<link url="send.htm">send()</link>。</para>
+        <para>对阻塞套接口，如果协议缓冲区的剩余空间不够保存待发送数据，sendto()将阻塞。非阻塞套接口不会产生阻塞过程，调用sendto ()的返回值可能在1到len之间，具体值取决于本地和远端主机的缓冲区大小。可调用<link url="select.htm">select()</link>来确定何时能够进一步发送数据。</para>
+        <para>允许将len参数设为0，函数仍将成功执行并返回0。如果是数据报套接口，将传送一个长度为0的数据报。</para>
+        <para>标志位flag用于设置函数的执行方式，一般情况下使用0。elasock不支持发送广播数据。</para>
+        <para>带外数据在各种不同的socket中常常有不同的实现和语义，我们并不鼓励使用带外数据功能。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>recv</ref_name>
+            <ref_url>recv</ref_url>
+        </reference>
+        <reference>
+            <ref_name>recvfrom</ref_name>
+            <ref_url>recvfrom</ref_url>
+        </reference>
+        <reference>
+            <ref_name>select</ref_name>
+            <ref_url>select</ref_url>
+        </reference>
+        <reference>
+            <ref_name>send</ref_name>
+            <ref_url>send</ref_url>
+        </reference>
+        <reference>
+            <ref_name>shutdown</ref_name>
+            <ref_url>shutdown</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+        <reference>
+            <ref_name>setsockopt</ref_name>
+            <ref_url>setsockopt</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

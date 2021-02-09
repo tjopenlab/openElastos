@@ -1,0 +1,520 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Kortide DCD API: dcdThread.car文件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<div class="tabs">
+  <ul>
+    <li><a href="main.html"><span>首页</span></a></li>
+    <li><a href="globals.html"><span>全部</span></a></li>
+    <li class="current"><a href="Engineglobals.html"><span>引擎部分</span></a></li>
+    <li><a href="UIglobals.html"><span>UI部分</span></a></li>
+  </ul>
+</div>
+<h1>线程及同步对象相关API参考</h1>
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>类型定义</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#76ad67e5e7e32d26f80e60a6a13fdb64">PAuraThreadMain</a> )(void *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">线程原型定义  <a href="#76ad67e5e7e32d26f80e60a6a13fdb64"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>函数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">AURA_API&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#eaebaea5701fc8f54df868bcaad32b3e">AuraThread_Create</a> (<a class="el" href="dcd_thread_8car.html#76ad67e5e7e32d26f80e60a6a13fdb64">PAuraThreadMain</a> pEntry, void *pArgument, int creationFlags, Handle *phThread, int *pThreadId)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">创建线程.  <a href="#eaebaea5701fc8f54df868bcaad32b3e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">AURA_API&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#50424a6a02bd78714000513cf687cd88">AuraThread_Join</a> (Handle hThread, int timeOut, int *pResult)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">等待线程退出.  <a href="#50424a6a02bd78714000513cf687cd88"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">AURA_API&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#94eb38101a74d71a662ac471f2e70c50">AuraThread_Destroy</a> (Handle hThread)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">销毁线程.  <a href="#94eb38101a74d71a662ac471f2e70c50"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">AURA_API&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#fbb99fb716a01c6921202a7eaedfbb34">AuraEvent_Create</a> (DcdChar *name, bool bManualReset, int initialState, Handle *phEvent)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">创建事件对象.  <a href="#fbb99fb716a01c6921202a7eaedfbb34"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">AURA_API&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#105fb23058a12d7f8dec5b11b99ee525">AuraEvent_Wait</a> (Handle hEvent, int timeOut, int *pResult)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">等待事件.  <a href="#105fb23058a12d7f8dec5b11b99ee525"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">AURA_API&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#4e195f3f8e712e6cbc9afeeee3745ad3">AuraEvent_Signal</a> (Handle hEvent, int state)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">唤醒事件.  <a href="#4e195f3f8e712e6cbc9afeeee3745ad3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">AURA_API&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#debbdeb1920e81988aa4fff99e58b52c">AuraEvent_Destroy</a> (Handle hEvent)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">释放事件对象.  <a href="#debbdeb1920e81988aa4fff99e58b52c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">AURA_API&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#8f9a6f5a0c15ab137333ffa9205c9122">AuraMutex_Create</a> (DcdChar *name, bool bLimitToOpenFlag, Handle *phMutex)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">创建互斥体对象.  <a href="#8f9a6f5a0c15ab137333ffa9205c9122"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">AURA_API&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#3a786ee303ac4b2c63e60122a52d5b1f">AuraMutex_Lock</a> (Handle hMutex, int timeOut, int *pResult)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将互斥体上锁.  <a href="#3a786ee303ac4b2c63e60122a52d5b1f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">AURA_API&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#a6386971a4c13eb39e6ca6aade1ca8ca">AuraMutex_Unlock</a> (Handle hMutex)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将互斥体解锁.  <a href="#a6386971a4c13eb39e6ca6aade1ca8ca"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">AURA_API&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_thread_8car.html#85ec59d0e19a673666c4f98d9cc04c5a">AuraMutex_Destroy</a> (Handle hMutex)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">销毁互斥体对象.  <a href="#85ec59d0e19a673666c4f98d9cc04c5a"></a><br></td></tr>
+</table>
+<hr><h2>类型定义文档</h2>
+<a class="anchor" name="76ad67e5e7e32d26f80e60a6a13fdb64"></a><!-- doxytag: member="dcdThread.car::PAuraThreadMain" ref="76ad67e5e7e32d26f80e60a6a13fdb64" args=")(void *)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* <a class="el" href="dcd_thread_8car.html#76ad67e5e7e32d26f80e60a6a13fdb64">PAuraThreadMain</a>)(void *)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+线程原型定义
+<p>
+
+</div>
+</div><p>
+<hr><h2>函数文档</h2>
+<a class="anchor" name="fbb99fb716a01c6921202a7eaedfbb34"></a><!-- doxytag: member="dcdThread.car::AuraEvent_Create" ref="fbb99fb716a01c6921202a7eaedfbb34" args="(DcdChar *name, bool bManualReset, int initialState, Handle *phEvent)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AURA_API AuraEvent_Create           </td>
+          <td>(</td>
+          <td class="paramtype">DcdChar *&nbsp;</td>
+          <td class="paramname"> <em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>bManualReset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>initialState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Handle *&nbsp;</td>
+          <td class="paramname"> <em>phEvent</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+创建事件对象.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>- 事件的名字. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>bManualReset</em>&nbsp;</td><td>- 是否手动设置事件状态. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>initialState</em>&nbsp;</td><td>- 事件的初始状态. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>phEvent</em>&nbsp;</td><td>- 事件的句柄. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="debbdeb1920e81988aa4fff99e58b52c"></a><!-- doxytag: member="dcdThread.car::AuraEvent_Destroy" ref="debbdeb1920e81988aa4fff99e58b52c" args="(Handle hEvent)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AURA_API AuraEvent_Destroy           </td>
+          <td>(</td>
+          <td class="paramtype">Handle&nbsp;</td>
+          <td class="paramname"> <em>hEvent</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+释放事件对象.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>hEvent</em>&nbsp;</td><td>- 事件句柄. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>执行成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="4e195f3f8e712e6cbc9afeeee3745ad3"></a><!-- doxytag: member="dcdThread.car::AuraEvent_Signal" ref="4e195f3f8e712e6cbc9afeeee3745ad3" args="(Handle hEvent, int state)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AURA_API AuraEvent_Signal           </td>
+          <td>(</td>
+          <td class="paramtype">Handle&nbsp;</td>
+          <td class="paramname"> <em>hEvent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>state</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+唤醒事件.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>hEvent</em>&nbsp;</td><td>- 事件句柄. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>State</em>&nbsp;</td><td>- 将事件设置为该状态，该参数不需实现. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>执行成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="105fb23058a12d7f8dec5b11b99ee525"></a><!-- doxytag: member="dcdThread.car::AuraEvent_Wait" ref="105fb23058a12d7f8dec5b11b99ee525" args="(Handle hEvent, int timeOut, int *pResult)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AURA_API AuraEvent_Wait           </td>
+          <td>(</td>
+          <td class="paramtype">Handle&nbsp;</td>
+          <td class="paramname"> <em>hEvent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>timeOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>pResult</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+等待事件.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>hEvent</em>&nbsp;</td><td>- 事件句柄. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>timeOut</em>&nbsp;</td><td>- 等待的超时时间. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pResult</em>&nbsp;</td><td>- 等待结果，详见WaitResult的枚举值定义. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>执行成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="8f9a6f5a0c15ab137333ffa9205c9122"></a><!-- doxytag: member="dcdThread.car::AuraMutex_Create" ref="8f9a6f5a0c15ab137333ffa9205c9122" args="(DcdChar *name, bool bLimitToOpenFlag, Handle *phMutex)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AURA_API AuraMutex_Create           </td>
+          <td>(</td>
+          <td class="paramtype">DcdChar *&nbsp;</td>
+          <td class="paramname"> <em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>bLimitToOpenFlag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Handle *&nbsp;</td>
+          <td class="paramname"> <em>phMutex</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+创建互斥体对象.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>- 互斥体的名字，目前没有用到，传NULL. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>bLimitToOpenFlag</em>&nbsp;</td><td>- 目前没有用到， 传false. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>phMutex</em>&nbsp;</td><td>- 所创建互斥体对象的句柄. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>执行成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="85ec59d0e19a673666c4f98d9cc04c5a"></a><!-- doxytag: member="dcdThread.car::AuraMutex_Destroy" ref="85ec59d0e19a673666c4f98d9cc04c5a" args="(Handle hMutex)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AURA_API AuraMutex_Destroy           </td>
+          <td>(</td>
+          <td class="paramtype">Handle&nbsp;</td>
+          <td class="paramname"> <em>hMutex</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+销毁互斥体对象.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>hMutex</em>&nbsp;</td><td>- 互斥体句柄. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>执行成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3a786ee303ac4b2c63e60122a52d5b1f"></a><!-- doxytag: member="dcdThread.car::AuraMutex_Lock" ref="3a786ee303ac4b2c63e60122a52d5b1f" args="(Handle hMutex, int timeOut, int *pResult)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AURA_API AuraMutex_Lock           </td>
+          <td>(</td>
+          <td class="paramtype">Handle&nbsp;</td>
+          <td class="paramname"> <em>hMutex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>timeOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>pResult</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将互斥体上锁.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>hMutex</em>&nbsp;</td><td>- 互斥体句柄. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>timeOut</em>&nbsp;</td><td>- 等待锁的超时时间, 目前没有用到，传-1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pResult</em>&nbsp;</td><td>- 等待结果,详见WaitResult的枚举值定义. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>执行成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="a6386971a4c13eb39e6ca6aade1ca8ca"></a><!-- doxytag: member="dcdThread.car::AuraMutex_Unlock" ref="a6386971a4c13eb39e6ca6aade1ca8ca" args="(Handle hMutex)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AURA_API AuraMutex_Unlock           </td>
+          <td>(</td>
+          <td class="paramtype">Handle&nbsp;</td>
+          <td class="paramname"> <em>hMutex</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将互斥体解锁.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>hMutex</em>&nbsp;</td><td>- 互斥体句柄. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>执行成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="eaebaea5701fc8f54df868bcaad32b3e"></a><!-- doxytag: member="dcdThread.car::AuraThread_Create" ref="eaebaea5701fc8f54df868bcaad32b3e" args="(PAuraThreadMain pEntry, void *pArgument, int creationFlags, Handle *phThread, int *pThreadId)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AURA_API AuraThread_Create           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dcd_thread_8car.html#76ad67e5e7e32d26f80e60a6a13fdb64">PAuraThreadMain</a>&nbsp;</td>
+          <td class="paramname"> <em>pEntry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&nbsp;</td>
+          <td class="paramname"> <em>pArgument</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>creationFlags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Handle *&nbsp;</td>
+          <td class="paramname"> <em>phThread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>pThreadId</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+创建线程.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pEntry</em>&nbsp;</td><td>- 线程运行时的函数入口. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pArgument</em>&nbsp;</td><td>- 线程参数. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>creationFlags</em>&nbsp;</td><td>- 线程的启动标志,详见ThreadCreationFlags的枚举值定义. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>phThread</em>&nbsp;</td><td>- 线程句柄. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pThreadId</em>&nbsp;</td><td>- 线程ID；该参数不必实现，平台实现时直接赋NULL即可. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>线程建创成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="94eb38101a74d71a662ac471f2e70c50"></a><!-- doxytag: member="dcdThread.car::AuraThread_Destroy" ref="94eb38101a74d71a662ac471f2e70c50" args="(Handle hThread)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AURA_API AuraThread_Destroy           </td>
+          <td>(</td>
+          <td class="paramtype">Handle&nbsp;</td>
+          <td class="paramname"> <em>hThread</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+销毁线程.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>hThread</em>&nbsp;</td><td>- 待销毁的线程句柄. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>执行成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="50424a6a02bd78714000513cf687cd88"></a><!-- doxytag: member="dcdThread.car::AuraThread_Join" ref="50424a6a02bd78714000513cf687cd88" args="(Handle hThread, int timeOut, int *pResult)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AURA_API AuraThread_Join           </td>
+          <td>(</td>
+          <td class="paramtype">Handle&nbsp;</td>
+          <td class="paramname"> <em>hThread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>timeOut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&nbsp;</td>
+          <td class="paramname"> <em>pResult</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+等待线程退出.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>hThread</em>&nbsp;</td><td>- 线程句柄. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>timeOut</em>&nbsp;</td><td>- 等待的超时时间. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pResult</em>&nbsp;</td><td>- 等待结果，详见WaitResult的枚举值定义. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>执行成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<hr size="1"><address style="text-align: right;"><small>
+<a href="http://www.kortide.com.cn">© Kortide Corp.All rights reserved.</a></small></address></body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AString</interface>
+    <method>operator []</method>
+
+    <description>
+        <para>存取数组元素操作符，用来对AString对象中的字符串数组元素进行存取操作。 </para>
+    </description>
+    <syntax>
+        <return_val> AChar </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type> Int32 </param_type>
+            <param_name> idx </param_name>
+            <param_note>
+                <para> AString对象中的字符串数组元素下标。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回AString对象中的字符串数组对应元素。 </para>
+    </return>
+<example>
+<pre>
+AString as("abcd");
+CConsole::WriteLine(as[0]);  //Display : 'a'
+CConsole::WriteLine(as[4]);  //Display : '\0'
+</pre>
+</example>
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::GetChar </ref_name>
+        <ref_url> ../AString/GetChar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::operator [] </ref_name>
+        <ref_url>../WString/operator4</ref_url>
+    </reference>
+</references>   
+
+</manpage>

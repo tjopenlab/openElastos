@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>图形系统</volume>
+    <types> FormStyle </types>
+    <description>
+        <para>
+            窗体风格。
+        </para>
+    </description>
+<enum>    <enum_member>    <mem_name> FormStyle_AlphaChannel </mem_name>    <mem_value> 0x00000001 </mem_value>    <mem_description>        Form按照某个透明度整体透明，透明度通过Form的SetOpacity设置。。    </mem_description>    </enum_member>       
+          <enum_member>    <mem_name> FormStyle_LayeredAlphaChannel </mem_name>    <mem_value> 0x00000040 </mem_value>    <mem_description>  层透明。加了此属性后，可以将下面层的内容透出来。可以通过EnableLayerTransparent、DisableLayerTransparent、AddLayerTransparentArea、RemoveLayerTransparentArea、RemoveAllLayerTransparentArea等方法设置  </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> FormStyle_PixelAlphaChannel </mem_name>    <mem_value> 0x00000080 </mem_value>    <mem_description>  Form按照绘制时所带的透明度信息进行透明，如果绘制的内容是半透明的，则半透明透出下面的内容。用此风格时，需加ControlStyle_Transparent风格，否则不清除之前画的内容，会有重影。建议在窗口内各数据透明度不同的情况下使用该风格，否则将使刷新速度变慢。 </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> FormStyle_StickyBuffer </mem_name>    <mem_value> 0x00000002 </mem_value>    <mem_description>  不加此风格，将拿不到form所对应的buffer缓冲区。即不能通过IBitmapBuf的LockBitmap拿到<link url="BitmapBuf.htm">BitmapBuf</link>的值。  </mem_description>    </enum_member>        
+          <enum_member>    <mem_name> FormStyle_NoActivation </mem_name>    <mem_value> 0x00000004 </mem_value>    <mem_description>  窗口不抢焦点，将收不到键盘事件、Activated、Deactivated事件  </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> FormStyle_DialogFrame </mem_name>    <mem_value> 0x00000100 </mem_value>    <mem_description> 窗口显示Dialog的背景  </mem_description>    </enum_member>
+          </enum>
+</manpage>

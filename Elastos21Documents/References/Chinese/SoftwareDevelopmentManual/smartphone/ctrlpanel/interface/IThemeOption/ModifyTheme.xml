@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IThemeOption</interface><method> ModifyTheme </method>
+    <description>
+        <para>
+            根据主题名esThemeName修改主题。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IThemeDataRef </param_type>
+                <param_name> pThemeData </param_name>
+                <param_note>
+                    <para>
+存放主题中所有参数的数据模块                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esOldThemeName </param_name>
+                <param_note>
+                    <para>
+修改前主题的名字                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；pThemeData和esThemeName为空或者esThemeName的长度为0，返回E_INVALIDARG；读取环境变量（数据库名）失败，返回E_INVALID_ENVIRONMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            pThemeData数据块中是修改后的参数，把这些参数保存在数据库中相应记录中。</para><para>            esThemeName是修改前主题的名字，根据该名字来查找数据库中的记录，然后再进行修改。
+        </para>
+    </remarks>
+</manpage>

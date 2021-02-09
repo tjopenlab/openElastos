@@ -1,0 +1,106 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strxfrm">strxfrm</sample>
+    <title>strxfrm</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Changes source string according to specified information.</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>strxfrm</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strDest</param_name>
+                <param_note>
+                    <para>Target string.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strSource</param_name>
+                <param_note>
+                    <para>Source string.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>The maximum number of characters to be put in target string</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>This function returns the number of characters changes, excluding terminal character.If return value is greater than or equal to count, then the content of target string is unpredictable.</para>
+    </return>
+
+    <remarks>
+        <para>Function strxfrm uses string pointed to by strSource to replace part of string pointed to by strDest and makes a new string. Character replaced into target string, including NULL character, does not exceed count number of characters.</para>
+        <para>Two strings after invoking strcmp to compare and replace, the result is the same as directly invoke strcoll to compare the two original strings.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strxfrm</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strxfrm.cpp:this transforms the string pointed to by strSource into a new collated form that is stored in strDestprogram
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[100] = &quot;Cats are nice usually&quot;;
+    printf(&quot;Before: %s\n&quot;, string);
+    strxfrm(string, &quot;Dogs&quot;, 4);
+    strxfrm(string + 9, &quot;mean&quot;, 4);
+    printf(&quot;After:  %s\n&quot;, string);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+Before: Cats are nice usually
+After:  Dogs are mean usually
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcscmp</ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcsncmp</ref_name>
+            <ref_url>wcsncmp</ref_url>
+        </reference>
+    </references>
+
+</manpage>

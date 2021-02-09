@@ -1,0 +1,236 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.
+<link url="Free.xml">Free</link>
+-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> <i>BufferOf </i></interface>
+
+    <description>       
+        <para>BufferOf构造函数和各种方法使用介绍：</para>
+        
+   </description>
+    <constructs>
+        <construct>
+            <construct_name>BufferOf_(T Type, Int32 capacity )</construct_name>
+            <construct_url>BufferOf/structure/BufferOf_</construct_url>
+            <construct_description>拷贝构造函数 </construct_description>
+        </construct>
+         <construct>
+            <construct_name>BufferOf( T *pBuf, Int32 capacity)</construct_name>
+            <construct_url>BufferOf/structure/BufferOf_Box2</construct_url>
+            <construct_description>在栈中构造一个BufferOf对象,将m_pBuf指向用户指定的内存块，并分别其长度和已使用长度为capacity</construct_description>
+        </construct>
+        <construct>
+            <construct_name>BufferOf(T *pBuf, Int32 capacity, Int32 used)</construct_name>
+            <construct_url>BufferOf/structure/BufferOf_Box1</construct_url>
+            <construct_description>在栈中构造一个BufferOf对象,将m_pBuf指向用户指定的内存块，并分别其长度和已使用长度.</construct_description>
+        </construct>
+        
+       
+     </constructs>   
+        
+    <methods>
+      <self>
+        
+             
+        <method>
+        <method_name> Free</method_name>
+        <method_url>BufferOf/Free</method_url>
+        <m_description> 删除由Alloc或Clone在堆上创建的BufferOf对象，并释放其所占内存空间 </m_description>
+        </method> 
+           
+           
+        <method>
+        <method_name>Clone</method_name>
+        <method_url>BufferOf/Clone</method_url>
+        <m_description> 获取一个BufferOf对象的深拷贝，即在堆上复制BufferOf数组</m_description>
+        </method>
+          
+       
+        <method>
+        <method_name>Replace</method_name>
+        <method_url>BufferOf/Replace</method_url>
+        <m_description>用指定源数据覆盖指定位置的内容</m_description>
+        </method>
+        
+        <method>
+        <method_name> Insert</method_name>
+        <method_url>BufferOf/Insert</method_url>
+        <m_description> 将源数据插入到指定位置</m_description>
+        </method> 
+        
+         
+        <method>
+        <method_name> SetUsed</method_name>
+        <method_url>BufferOf/SetUsed</method_url>
+        <m_description> 设置数据区内已使用的字节数</m_description>
+        </method>
+        
+        <method>
+        <method_name> GetUsed</method_name>
+        <method_url>BufferOf/GetUsed</method_url>
+        <m_description> 获取数据区空间已经使用的空间大小，单位为sizeof(<i>Type</i>) </m_description>
+        </method>
+          
+           
+      
+         <method>
+        <method_name> IsNull</method_name>
+        <method_url>BufferOf/IsNull</method_url>
+        <m_description>判断当前BufferOf对象的指向数据区的指针是否为空。</m_description>
+        </method>
+        
+        <method>
+        <method_name> IsEmpty</method_name>
+        <method_url>  BufferOf/IsEmpty</method_url>
+        <m_description> 判断BufferOf对象的数据区内容是否为空</m_description>
+        </method>
+        
+        <method>
+        <method_name> IsNullOrEmpty</method_name>
+        <method_url>BufferOf/IsNullOrEmpty</method_url>
+        <m_description> 判断当前BufferOf对象的指向数据区的指针或者数据区的内容是否为空。</m_description>
+        </method>
+       
+       
+        <method>
+        <method_name>GetPayload</method_name>
+        <method_url>BufferOf/GetPayload</method_url>
+        <m_description>返回指向BufferOf对象的数据区的指针，即返回指向类型Type的指针 </m_description>
+        </method>
+        
+        <method>
+        <method_name> GetCapacity</method_name>
+        <method_url>BufferOf/GetCapacity</method_url>
+        <m_description> 获取当前BufferOf数组长度 </m_description>
+        </method>
+        
+        <method>
+        <method_name>GetAvailableSpace</method_name>
+        <method_url>BufferOf/GetAvailableSpace</method_url>
+        <m_description> 获取当前BufferOf数组可用长度</m_description>
+        </method>
+        
+       
+        
+       
+        
+        <method>
+        <method_name>Append(T value)</method_name>
+        <method_url>BufferOf/AppendEx</method_url>
+        <m_description> 在BufferOf对象的数据区的已使用空间末尾添加数据 </m_description>
+        </method>
+      
+        
+        <method>
+        <method_name>Append(const T* pBuf, Int32 n)</method_name>
+        <method_url>BufferOf/Append</method_url>
+        <m_description> 在BufferOf对象的数据区的已使用空间末尾添加n个数据 </m_description>
+        </method>
+        
+       
+        
+        <method>
+        <method_name>Append(const BufferOf&lt; T &gt; *pSrc)</method_name>
+        <method_url>BufferOf/AppendExx</method_url>
+        <m_description> 在BufferOf对象的数据区的已使用空间末尾添加数据 </m_description>
+        </method>
+        
+        <method>
+        <method_name>Copy(const T* pBuf, Int32 n)</method_name>
+        <method_url>BufferOf/Copy</method_url>
+        <m_description> 将T类型数组的元素拷贝到当前BufferOf数组，并指定要拷贝的数组元素个数 </m_description>
+        </method>
+        
+        <method>
+        <method_name>Copy(const BufferOf &lt;T&gt; *pSrc)</method_name>
+        <method_url>BufferOf/CopyEx</method_url>
+        <m_description> 将BufferOf数据类型数组，复制到当前BufferOf数组，并指定要拷贝的数组元素个 </m_description>
+        </method>
+       
+        
+        <method>
+        <method_name> Alloc(Int32 capacity )</method_name>
+        <method_url>BufferOf/Alloc</method_url>
+        <m_description> 动态创建(在堆上)BufferOf对象和指向的Type数组 </m_description>
+        </method>
+        
+         <method>
+        <method_name>Alloc(T * pBuf,Int32 capacity)</method_name>
+        <method_url>BufferOf/Alloc2</method_url>
+        <m_description> 在堆中构造一个BufferOf对象,将m_pBuf指向用户指定的内存块，并分别其长度和已使用长度为capacity.</m_description>
+        </method>
+        
+        <method>
+        <method_name> Alloc(T * pBuf,Int32 capacity, Int32 used ) </method_name>
+        <method_url>BufferOf/Alloc1</method_url>
+        <m_description> 在堆中构造一个BufferOf对象,将m_pBuf指向用户指定的内存块，并分别其长度和已使用长度.</m_description>
+        </method>
+        
+       
+       
+      </self>
+    </methods>
+
+    <operators>
+        <operator>
+            <operator_name>operator[]</operator_name>
+            <operator_url>BufferOf/operator</operator_url>
+            <operator_description>存取数组元素操作符，用来对数组元素进行存取操作</operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator[]</operator_name>
+            <operator_url>BufferOf/operator1</operator_url>
+            <operator_description>存取数组元素操作符，用来对数组元素进行存取操作</operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator pCarQuintet </operator_name>
+            <operator_url>BufferOf/operator2</operator_url>
+            <operator_description>取五元组的指针</operator_description>
+        </operator>
+        
+        <operator>
+            <operator_name>operator ArrayOf &lt;T&gt;<![CDATA[&]]> </operator_name>
+            <operator_url>BufferOf/operator3</operator_url>
+            <operator_description>类型转换操作符，将BufferOf转成ArrayOf。</operator_description>
+        </operator>
+        
+       
+    </operators>
+   
+    <macros>
+        <macro>
+        <macro_name> NULL_BUFFEROF&lt;T&gt;  </macro_name>
+        <macro_url> BufferOf/NULL_BUFFEROF </macro_url>
+        <macro_description> 构造一个内容为空的BufferOf&lt;T&gt;对象  </macro_description>
+        </macro>
+        <macro>
+        <macro_name> AUTO_BUFFEROF(T, n)  </macro_name>
+        <macro_url> BufferOf/AUTO_BUFFEROF </macro_url>
+        <macro_description> 构造一个类型为Ｔ，大小为ｎ的BufferOf对象  </macro_description>
+        </macro>
+    </macros>    
+        
+        
+</manpage>     
+        
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+
+    

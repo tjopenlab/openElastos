@@ -1,0 +1,97 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\clearerr">clearerr</sample>
+    <title>_flushall</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Flushes all streams; clears all buffers</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_flushall </func_name>
+        <parameters>
+            <func_param>
+                <param_type>void </param_type>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    <para>_flushall returns the number of open streams (input and output). There is no error return</para>
+    </return>
+
+    <remarks>
+        <para>By default, the _flushall function writes to appropriate files the contents of all buffers associated with open output streams. All buffers associated with open input streams are cleared of their current contents. (These buffers are normally maintained by the operating system, which determines the optimal time to write the data automatically to disk: when a buffer is full, when a stream is closed, or when a program terminates normally without closing streams.).If a read follows a call to _flushall, new data is read from the input files into the buffers. All streams remain open after the call to _flushall.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_flushall</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* clearerr.cpp: This program creates an error
+ * on the standard input stream, then clears
+ * it so that future reads won&apos;t fail.
+ */
+
+#include &lt;stdio.h&gt;
+
+void main( void )
+{
+   int c;
+   /* Create an error by writing to standard input. */
+   putc( &apos;c&apos;, stdin );
+   if( ferror( stdin ) )
+   {
+      printf( &quot;Write error\n&quot; );
+      clearerr( stdin );
+   }
+
+   /* See if read causes an error. */
+   printf( &quot;Will input cause an error? &quot; );
+   c = getc( stdin );
+   if( ferror( stdin ) )
+   {
+      printf( &quot;Read error&quot; );
+      clearerr( stdin );
+   }
+}
+</pre>
+    </example>
+<result>
+Write error: No error
+Will input cause an error? n
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fclose  </ref_name>
+            <ref_url>fclose  </ref_url>
+        </reference>
+        <reference>
+            <ref_name>flush</ref_name>
+            <ref_url>flush</ref_url>
+        </reference>
+    </references>
+
+</manpage>

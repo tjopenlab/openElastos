@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WString</interface>
+    <method>Compare </method>
+
+    <description>
+        <para>将此实例与指定的WString对象进行比较，忽略或接受其大小写，并指示此实例在排序顺序中是位于指定的WString之前、之后还是与其出现在同一位置。</para>
+    </description>
+
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const WString &amp; </param_type>
+            <param_name>wstr </param_name>
+            <param_note>
+                <para> 指定的WString对象。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive </param_default>
+            <param_note>
+                <para> 指定大小写标示符，默认为区分大小写。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。  </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>一个32位有符号整数，该整数指示此实例在排序顺序中是位于参数之前、之后还是与其出现在同一位置。 </para>
+        <table border="1" width="100%" >
+	<tr>
+		<td>返回值</td>
+		<td>　含义</td>
+	</tr>
+	<tr>
+		<td>&lt; 0　</td>
+		<td>　此实例位于wstr之前。 </td>
+	</tr>
+	<tr>
+		<td>= 0　</td>
+		<td>　此实例在排序顺序中的位置与wstr相同。 </td>
+	</tr>
+	<tr>
+		<td>&gt;0　</td>
+		<td>　此实例位于wstr之后。</td>
+	</tr>
+   </table>
+    </return>
+    <remarks>
+         <para>1.如果此实例与指定对象包含的字符串指针相等，返回值为0。 </para>
+         <para>2.如果此实例包含的字符串指针为NULL,则返回值为-2；如果指定对象包含的字符串指针为NULL,则返回值为2。 </para>
+    </remarks>
+<example>
+<pre>
+    WString as1(L"AsDf");                                         
+    WString as2(L"asdf");                                         
+    as1.Compare(as2);                         //返回：负数
+    as1.Compare(as2,StringCase_Insensitive);  //返回：0
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>WString</ref_name>
+        <ref_url>../WString</ref_url>
+    </reference>
+</references>   
+</manpage>

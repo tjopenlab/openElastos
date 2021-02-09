@@ -1,0 +1,164 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\EzArray_Box1">EzArray_Box</sample>
+    <volume> Common Data Structures  </volume>
+    <method>template&lt;T&gt; EzArray::EzArray_Box(T *pArray, size_t SIZE, size_t used)</method>
+
+    <description>
+        <para> 
+        	Initialize an EzArray object with T type array, and sets the size and used size respectively. 
+        </para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>T *</param_type>
+            <param_name>pArray </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>
+                	Source T type array 
+                </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>size_t</param_type>
+            <param_name>SIZE </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>
+                	The size of source T type array.
+                </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>size_t</param_type>
+            <param_name>used </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>
+                	The size of the used data of <b>EzArray</b> which is to be set, the unit is sizeof(T).
+                </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>
+        	EzArray_Box is a template class, and a subclass of EzArray. Template parameter T specifies the type of the 
+        	array elements.
+        </para>
+        <para>
+        	This constructor creates EzArray object and allocate memory in stack, so no need to call 
+        	<link url="Dispose.htm">Dispose</link> to release memory.
+        </para>
+        <para>
+        	If the space of the data to be stored is allocated, but not initialized, it is recommended to 
+        	construct EzArray object by this function.
+        </para>
+        <para>
+        	NOTE:- 1.It is the user's responsibility to release the memory of <i>pArray</i>.
+        		   2.The size of the function SIZE can not be more than the number of the elements of source T type 
+        	  		 array, or it will cause unpredictable results.
+        </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <EzArray.h>
+
+int __cdecl main()
+{
+    int * array1 = new (int [4]);
+
+    for (int i = 0; i < 4; i++) {
+        array1[i] = i;
+    }
+    printf("Array array1:\n");
+    for(i = 0; i < 4; i++) {
+        printf("array1[%d] = %d\n", i, array1[i]);
+    }
+
+    EzArray_Box<int> array2(array1, 4, 4);
+
+    printf("EzArray array2 instantiated using array1.\nEzArray array2:\n");
+
+    for(i = 0; i < array2.GetLength(); i++) {
+        printf("array2[%d] = %d\n", i, array2[i]);
+    }
+    printf("EzArray array2 used: %d\n\n", array2.Used());
+
+    delete(array1);
+
+    int array3[6] = {4,5,6,7,8,9};
+    printf("Array array3:\n");
+    for(i = 0; i < 6; i++) {
+        printf("array3[%d] = %d\n", i, array3[i]);
+    }
+
+    EzArray_Box<int> array4(array3, 4, 3);
+
+    printf("EzArray array4 instantiated using array3.\nEzArray array4:\n");
+    for(i = 0; i < array4.GetLength(); i++) {
+        printf("array4[%d] = %d\n", i, array4[i]);
+    }
+    printf("EzArray array4 used: %d\n", array4.Used());
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+Array array1:
+array1[0] = 0
+array1[1] = 1
+array1[2] = 2
+array1[3] = 3
+EzArray array2 instantiated using array1.
+EzArray array2:
+array2[0] = 0
+array2[1] = 1
+array2[2] = 2
+array2[3] = 3
+EzArray array2 used: 4
+
+Array array3:
+array3[0] = 4
+array3[1] = 5
+array3[2] = 6
+array3[3] = 7
+array3[4] = 8
+array3[5] = 9
+EzArray array4 instantiated using array3.
+EzArray array4:
+array4[0] = 4
+array4[1] = 5
+array4[2] = 6
+array4[3] = 7
+EzArray array4 used: 3
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Constructor（T type array）2 </ref_name>
+            <ref_url> EzArray_Box2 </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Copy Constructor </ref_name>
+            <ref_url> EzArray_Box3 </ref_url>
+        </reference>
+    </references>
+
+</manpage>

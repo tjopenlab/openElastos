@@ -1,0 +1,37 @@
+
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> 常用数据结构 </volume>
+    <macro> AUTO_ARRAYOF(T, n) </macro>
+
+    <description>
+        <para>构造一个ArrayOf对象。 </para>
+    </description>
+   <remarks>
+   <para> T: Arrayof数组类型</para>
+   <para> n: 要创建的Arrayof数组的大小</para>
+  <para>如果n&lt;1024则在栈上创建对象，否则在堆上创建对象</para>
+   </remarks>
+    <example>
+ 
+<pre>
+//==========================================================================
+// AUTO_ARRAYOF(T, n)使用
+//==========================================================================
+
+ArrayOf&lt;Int32&gt;* pAutoArray = AUTO_ARRAYOF(Int32,20);
+if (pAutoArray == NULL) {
+    return E_OUT_OF_MEMORY;
+}
+//使用
+ArrayOf&lt;Int32&gt;::Free(pAutoArray);
+
+</pre>
+
+</example>
+   
+</manpage>

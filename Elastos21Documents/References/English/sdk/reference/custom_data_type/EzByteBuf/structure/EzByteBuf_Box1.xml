@@ -1,0 +1,70 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/structuremanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\EzByteBuf\EzByteBuf_Box1">EzByeBuf</sample>
+    <volume> Common Data Structure </volume>
+    <class>EzByteBuf</class><function>EzByteBuf_Box(void *buf, UINT size, const UINT used) </function>
+
+    <description>
+        <para>
+            Creates an EzByteBuf object using buffer data, and specifies its size and used size respectively.
+        </para>
+    </description>
+
+    <syntax>
+        <apiname>EzByteBuf_Box</apiname>
+        <parameters>
+            <api_param>
+                <param_type>void *</param_type>
+                <param_name> buf </param_name>
+                <param_note>
+                    <para> Source data buffer</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>UINT</param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para> The size of the buffer</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const UINT</param_type>
+                <param_name> used </param_name>
+                <param_note>
+                    <para> The used data size of EzByteBuf</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>
+            This constructor is recommended to instantiate EzByteBuf object, if the data to be stored is allocated
+            but not initialized.
+        </para>
+        <para>
+            Note: User should release the memory which is pointed by <i>buf</i>.
+        </para>
+    </remarks>
+
+    <example></example>
+
+
+
+    <references>
+        <reference>
+            <ref_name> Constructor (Memory won't be allocated) </ref_name>
+            <ref_url> EzByteBuf</ref_url>
+        </reference>
+        <reference>
+            <ref_name> Constructor (Memory will be allocated) </ref_name>
+            <ref_url> EzByteBuf_ </ref_url>
+        </reference>
+    </references>
+</manpage>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IDateTimePicker</interface><method> SetFormat </method>
+    <description>
+        <para>
+            设置 DateTimePicker 控件显示日期或者时间的格式。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DateTimeFormat </param_type>
+                <param_name> format </param_name>
+                <param_note>
+                    <para>
+时间或者日期显示的格式，详见<link url="../../datatype/DateTimeFormat.htm">DateTimeFormat</link>枚举类型</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	    	  </tr>
+          <tr>
+	    	    <td>E_CONTROL_STYLE_NOT_SUPPORT</td>
+	    	    <td>控件风格无效</td>
+	    	  </tr>	    	  
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        DateTimeFormat_UserDefinedRange 该格式只能在 DateTimePicker 控件显示时间时指定。当 DateTimePicker 控件在其他风格下显示时，调用 SetFormat 方法将 format 设置为该值，将失败。一旦 format 指定为 DateTimeFormat_UserDefinedRange 后，当用户选择的时间超过24小时时，可正常显示（当然首先需要保证时间的可选范围允许选择超过24小时的值）；否则当设置的小时数超过24小时时，即使该数值在可选范围内也将显示为23。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CDateTimePicker 类介绍</ref_name>
+        <ref_url>../../class/DateTimePicker</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IDateTimePicker 接口方法列表</ref_name>
+        <ref_url>../IDateTimePicker</ref_url>
+    </reference>
+    <reference>
+        <ref_name>DateTimePicker 的回调事件</ref_name>
+        <ref_url>../JDateTimePickerEvents</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetFormat</ref_name>
+        <ref_url>GetFormat</ref_url>
+    </reference>
+</references>
+</manpage>

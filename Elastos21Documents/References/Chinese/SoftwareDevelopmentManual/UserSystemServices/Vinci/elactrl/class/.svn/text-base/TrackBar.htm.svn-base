@@ -1,0 +1,44 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>TrackBar</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>TrackBar</b></h2></center>
+<small><p><b>头文件：</b>ElControls.h
+<p><b>程序库：</b>ElControls.dll
+（<b>备注：</b>当在 CAR 文件中通过 <a class="doxygen" href="../../../../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a> 引入 ElControls.dll 时，则无需在源文件中添加“include &lt;ElControls.h&gt;”该句；若 ElControls.dll 是在 sources 文件中引入的，则需要在源文件中添加“include &lt;ElControls.h&gt;”该句。有关更多信息请参考：<a class="doxygen" href="../../../../../car_technology/car.htm">CAR 编程入门</a>）</small>
+<hr size="1">
+<h4><li><b>详细描述：</b></h3>
+<center> <img src="images/TrackBar.jpg"></center>
+<center><small>TrackBar 图例</small></center>
+
+<p>追踪条控件。用于在大量信息中进行浏览，或用于以可视的形式调整数字设置，例如在媒体播放器中选择视频或音频文件开始播放的起始点。TrackBar 控件有两部分：滚动块（又称为滑块）和刻度线。滚动块是可以调整的部分，其位置可以通过 <a class="doxygen" href="../interface/ITrackBar/SetValue.htm">SetValue</a> 方法设置。跟踪条按指定的增量移动并且可以水平或者垂直排列。
+<p>设置追踪条 value 的滚动范围可以通过 <a class="doxygen" href="../interface/ITrackBar/SetMaximum.htm">SetMaximum</a> 和 <a class="doxygen" href="../interface/ITrackBar/SetMinimum.htm">SetMinimum</a> 方法。改变点击追踪条空白处时滚动块移动的距离可以通过 <a class="doxygen" href="../interface/ITrackBar/SetPageStep.htm">SetPageStep</a> 方法。改变点击箭头，追踪条滚动块移动的距离可以通过 <a class="doxygen" href="../interface/ITrackBar/SetSingleStep.htm">SetSingleStep</a> 方法。
+<p><b>注意：</b>TrackBar 必须放在一个 <a class="doxygen" href="Form.htm">Form</a> 内，或者 TrackBar 的 parent 控件在一个 Form 内。
+<hr size="1">
+<h4><li><b>CTrackBar类封装图：</b></font></h4>
+<center> <img src="images/CTrackBar.jpg"> </center>
+        <p>如图所示，JControlEvents（通用回调事件接口）、JSliderBarEvents 为回调事件接口，用户可以通过 AddXXXCallback 的方法为 TrackBar 注册回调事件，当该 XXX 事件发生时，相应的回调处理函数会被调用。当销毁一个对象前，需要调用 RemoveXXXCallback 取消该事件。具体 Callbak 机制的介绍，详见 Elastos 编程入门中 Callback 这节。
+        <p>当使用 <a class="doxygen" href="CTrackBar/CTrackBar_New.htm">New</a> 方法创建了一个 TrackBar 对象后，可以获得 <a class="doxygen" href="../interface/ITrackBar.htm">ITrackBar</a> 接口指针，通过该接口指针用户可以调用接口内的方法对 TrackBar 进行一系列操作。
+
+<hr size="1">
+<h4><li><b>构造函数：</b></font></h4>
+<table>
+<thead><td>名称</td><td class="memitem">说明</td></thead>
+<tr><td><a class="doxygen" href="CTrackBar/CTrackBar_New.htm">CTrackBar::New</as></td><td>创建一个 TrackBar 对象</td></tr>
+</table>
+<h4><li><b><a class="doxygen" href="../interface/ITrackBar.htm">ITrackBar 接口方法列表</a></b></font></h4>
+<ul><p><b>注：</b>ITrackBar 接口继承于 <a class="doxygen" href="../interface/ISliderBar.htm">ISliderBar</a> 接口。</ul>
+<h4><li><b><a class="doxygen" href="../interface/TrackBarEvents.htm">TrackBar 回调事件列表</a></b></font></h4>
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

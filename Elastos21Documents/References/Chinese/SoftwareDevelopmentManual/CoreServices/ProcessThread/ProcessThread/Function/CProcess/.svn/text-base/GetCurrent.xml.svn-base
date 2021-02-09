@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>进程</volume>
+    <title>CProcess::GetCurrent</title>
+    <routine_idx>../../../Process.htm</routine_idx>
+
+    <description>
+        <para>获取当前进程的接口指针。</para>
+    </description>
+
+    <syntax>
+        <return_val>IProcess *</return_val>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>返回指向当前进程的接口指针。</para>
+    </return>
+
+    <remarks>
+        <para>调用这个函数可以返回指向当前进程接口IProcess的指针。通过对返回的接口指针的方法进行调用，可以对当前进程做所需的操作。</para>
+        <para>可以通过调用<link url="Exit.htm">CProcess::Exit</link>函数退出当前进程。</para>
+        <para>此处 return 出来的 IProcess 接口指针不带引用计数，所以使用后不需要Release。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+        </system>
+       <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+    <reference>
+        <ref_name> CThread::GetCurrent</ref_name>
+        <ref_url>../CThread/GetCurrent</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CProcess::Exit</ref_name>
+        <ref_url> Exit</ref_url>
+    </reference>
+    <reference>
+        <ref_name> IProcess</ref_name>
+        <ref_url>../../IProcess</ref_url>
+    </reference>
+    </references>
+
+</manpage>

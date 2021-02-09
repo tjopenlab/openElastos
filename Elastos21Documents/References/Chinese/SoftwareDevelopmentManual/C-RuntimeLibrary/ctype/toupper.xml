@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\toupper">toupper towupper</sample>
+    <title>toupper towupper</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>将一个给定的小写字符转换成大写字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>toupper</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>需要判断的整型值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+     <syntax>
+        <return_val>int</return_val>
+        <func_name>towupper</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+               
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>toupper将给定整型值（英文字符的ascii值）c的一个拷贝转换为对应大写字符的ascii值，无错误返回。</para>
+    </return>
+
+    <remarks>
+        <para>该函数将能够转换的小写字符转换为大写字符。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>toupper</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>twoupper</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* toupper.cpp: This program use toupper converts a english characters
+ * string to a uppercase string.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+char msg[] = &quot;THESE letters will BE Capitals\n&quot;;
+char *p;
+
+int main()
+{
+    printf(&quot;%s&quot;, msg);
+
+    /* Reverse case of message. */
+    for (p = msg; *p; p++)
+        putchar(toupper(*p));
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+THESE letters will BE Capitals
+THESE LETTERS WILL BE CAPITALS
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>tolower</ref_name>
+            <ref_url>tolower</ref_url>
+        </reference>
+    </references>
+
+</manpage>

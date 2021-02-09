@@ -1,0 +1,86 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Program Debugging Tool</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+    <h2>Elastos 2.0 Debugging Tool Introduction</h2>
+
+    <h4>Software Debugging and Debugging Tool</h4>
+        <p>	
+        	Bugs are obvious while development and so testing is an essential step in the software 
+        	development process. Problems appear in the development can be analyzed and solved by 
+        	software testing. The following diagram shows the basic process of software product development flow. 
+        	Problems detected in software testing can only be solved by repeatedly running and debugging, 
+        	then the source of the bug can be found, program design can be modified.
+        </p>
+        <center><img src="images/gdb1.jpg"></center>
+        <center>Diagram 1: Basic Software Development Process</center>
+        <p>
+        	The important tool of software testing is software debugger. With debugger, we can perform operations 
+        	such as read/write memory, read/write register, disassembly, single step execution, set breakpoint to 
+        	the debugging program etc. The purpose of these operations is viewing state information and disposition 
+        	data information in the debugging program.
+        </p>
+        <p>
+        	There are obvious differences between embedded operating systems and all purpose desktop operating 
+        	systems, in software testing environment. In desktop operating systems, the application and the debugger
+        	usually run in the same computer as two processes and there by control and access the application processes 
+        	through the debug interface provided by operating system. Due to the limited resources, 
+        	embedded operating systems may lack human computer interaction capability, or does not support 
+        	dynamic loading programming module, difficulty to directly run debugger etc. Therefore, embedded operating 
+        	systems offer a set of tools for application developers, which can cross debug a software running in a 
+        	special hardware platform (target system). 
+        </p>
+
+    <h4>Debugging Tool of Elastos</h4>
+        <p>
+        	Elastos offers two debugging tools for application developers: <b>GDB</b> and memory leak monitoring tool:
+        	<b>memtrace</b>. 
+        </p>
+        <table>
+            <tr>
+                <td>
+                <a class="style1" href="gdb/gdb.htm">gdb</a>
+                </td>
+                <td>
+                	GNU debugging tools with graphical interfaces, support assemble and source program debugging, 
+                	it can debug target system even if system crashes.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <a class="style1" href="../sdk/environment_and_tools/tools/memtrace.htm">memtrace</a>
+                </td>
+                <td>
+                	Memory leak monitoring tool.
+                </td>
+            </tr>
+        </table>
+        <p>
+        	Memory leak monitoring tool--memtrace is a special tool. The tool exists only in Elastos DEBUG version 
+        	and RELEASE version, not in NAKED version. It is an automatic tool not manual controlled, which is used for 
+        	monitoring the occurrences of memory disclosure while the program exits, if any, and displays debugging 
+        	information when a memory leak is detected.
+        </p>
+        <p>        	
+        	The remote debugging tool provided with Elastos can perform source code level debugging and error finding
+        	in the target system, using Internet or other communication environment. It can also upgrade or replace the
+        	application components and can monitor or operate on the remote target system.
+        	
+        </p>
+        <p>
+        	Debugging tools of Elastos can debug operating system kernel. It is not only very convenient in system 
+        	porting but also very useful in error diagnosis of system.
+        </p>
+
+<script>footer("english")</script>
+</body>
+</html>

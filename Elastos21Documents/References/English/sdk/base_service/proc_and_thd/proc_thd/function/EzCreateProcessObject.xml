@@ -1,0 +1,109 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzCreateProcessObject"> EzCreateProcessObject </sample>
+    <volume>System API</volume>
+    <title>CProcess::New </title>
+    <routine_idx> ..\process_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	Creates a  process object.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> IProcess **</param_type>
+                <param_name> ppProcess </param_name>
+                <param_note>
+                    <para>
+                    	[out]Interface pointer to the process object, if the function succeeds. <i>ppProcess</i> should 
+                    	not be NULL.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>    
+    
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in creating process object.</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>Invalid argument(s)</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>Insufficient memory</td>
+            </tr>
+        </table>
+        <para>See <link url="sdk/hresult.htm">ECODE </link> related help for more details.</para>
+    </return>
+
+    <remarks>
+        <para>
+        	This function creates only process object, the actual running process will be created only after the 
+        	start method of gained process interface has been transferred. Process pointer returned through this 
+        	method can be used for some process method invocation, suitable time is selected to run this process.
+       </para>
+       <para>
+       		If a process is to be created and run immediately, use the <link url="EzCreateProcess.htm">
+       		CProcess::New(WString name, WString args, IProcess** ppProcess )</link> method.
+       </para>
+       <para>
+       		If this process object is no longer used, the IProcess releases needs to be called to release the pointer to this object.
+       </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+    
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CProcess::New</ref_name>
+        <ref_url>EzCreateProcessObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CSystem::GetAllProcesses</ref_name>
+        <ref_url>EzGetProcesses</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CProcess::GetCurrent</ref_name>
+        <ref_url>EzGetCurrentProcess</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CProcess::Exit</ref_name>
+        <ref_url>EzExitProcess</ref_url>
+    </reference>
+    </references>
+
+</manpage>

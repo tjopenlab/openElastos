@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> IsStylusPreview </method>
+    <description>
+        <para>
+            判断 Form 是否在鼠标事件传递到具有焦点的控件前，接收鼠标事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Boolean * </param_type>
+                <param_name> stylusPreview </param_name>
+                <param_note>
+                    <para>
+指向 Boolean 型的指针，用于判断 Form 是否在具有焦点控件前接收鼠标事件。若为 true ，则鼠标事件先发给 Form，再发给焦点控件；否则窗体上当前具有焦点的控件接收鼠标事件，不能为 NULL。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>    
+       <para>
+            StylusPreview 的默认值为 false。
+       </para>
+       <para>
+        当 StylusPreview 设置为 true 时，Form 将接收所有鼠标事件，在 Form 的事件处理程序处理完后，然后将该鼠标事件分配给具有焦点的控件。
+       </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetStylusPreview</ref_name>
+        <ref_url>SetStylusPreview</ref_url>
+    </reference>
+</references>
+</manpage>

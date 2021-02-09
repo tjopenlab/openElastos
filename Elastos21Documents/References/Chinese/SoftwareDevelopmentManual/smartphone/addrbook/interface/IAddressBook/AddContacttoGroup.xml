@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址簿引擎</volume>
+<interface>IAddressBook</interface><method> AddContacttoGroup </method>
+    <description>
+        <para>
+            在组中添加联系人成员。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IContactRef </param_type>
+                <param_name> piContact </param_name>
+                <param_note>
+                    <para>
+指定的联系人记录接口                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IContactGroupRef </param_type>
+                <param_name> piGroup </param_name>
+                <param_note>
+                    <para>
+指定的组记录接口                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数piContact为NULL或参数piGroup为NULL，返回E_INVALIDARG。</para><para>            其他参见            <link url="../../ab_error.htm">            地址簿错误返回值列表            </link>            。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CAddressBook.h, CDBStore.h, CSimStore.h, CContact.h, CContactGroup.h,  Abdata.h, spcomm.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElCRuntime.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            该方法只能用于存储在数据库中的记录，如果指定的记录存储在SIM卡上，返回E_INVALIDARG。
+        </para>
+    </remarks>
+    <references>
+        <reference>
+            <ref_name>RemoveContactFromGroup</ref_name>
+            <ref_url>RemoveContactFromGroup</ref_url>
+        </reference>
+    </references>
+</manpage>

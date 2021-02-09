@@ -1,0 +1,91 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Automatic Code Framework Generation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Writing Component CAR File</h2>
+    <p>The first step of developing CAR component is writing CAR file. CAR file is used to define class, interface, method and its parameter information etc of the component. Please read the article <a class="style1" href="../car/car_file.htm">CAR file structure</a> for details about CAR file, and <a class="style1" href="../car/keyword.htm">CAR keyword</a> and <a class="style1" href="../car/attribute.htm">CAR attribute</a> related chapters for details.</p>
+    <p>Please see the CAR file (hello.car) content of the sample hello component: </p>
+    <pre class="code">
+[
+    version(1.0), uuid(787784a2-db0c-49f8-b288-cb09ddd8e450),
+    uunm(http://www.koretide.com/car/hello.dll)
+]
+component hello
+{
+    [ uuid(ec3625a4-88ba-4688-bf67-d9a1f08b44dd) ]
+    interface IHello {
+        ECODE Hello([in] EzStr InStr, [out, retval] EzStr *pOutStr);
+    }
+
+    [ uuid(463ac6d4-233f-4dea-93c9-1d1f0cf54efd), scriptable ]
+    class CHello {
+        interface IHello;
+    }
+}
+</pre>
+    <p>In sample hello.car file, component hello is defined. This component defines interface IHello and class CHello: IHello interface provides Hello method. Class CHello implements interface IHello.</p>
+    <p><b>Remarks: </b>Considering file system compatibility, it is recommended that component name (excluding name extension) to be less than or equal to 8 characters. Since the final generated component name is the same as CAR file name.CAR file name needs to be less than or equal to 8 characters first.</p>
+    <h3>Attribute of component hello</h3>
+        <p>In the example, the attribute of component hello is: </p>
+        <pre class="code">
+[
+    version(1.0), uuid(787784a2-db0c-49f8-b288-cb09ddd8e450),
+    uunm(http://www.koretide.com/car/hello.dll)
+]
+</pre>
+        <p>In component attribute, the <a class="style1" href="../car/attributes/attributes_uuid.htm">uuid</a> attribute and <a class="style1" href="../car/attributes/attributes_uunm.htm">uunm</a> attribute is required, otherwise compilation cannot be passed. In the example, the attributes of hello component are explained in the following: </p>
+        <ul>
+            <li>version(1.0): Identifies the component version is 1.0. For details please see <a class="style1" href="../car/attributes/attributes_version.htm">version</a> attribute.</li>
+            <li>uuid: 787784a2-db0c-49f8-b288-cb09ddd8e450 uniquely identifies component hello. The user needs to use uuidgen tool to generate uuid.
+            <li>uunm: http://www.koretide.com/car/hello.dll specifies the Internet address of component hello.
+                <p><font color="red"><b>Note: </b>uunm attribute specifies three names,which must be consistent and case sensitive.They are component name (hello.dll),the CAR file name (hello.car) and final generated component name.If the name is not correctly written, then this component cannot be able to execute normally.</font></p>
+        </ul>
+        <p>There are other attributes in component attribute, please see the article <a class="style1" href="../car/attribute.htm">CAR attribute</a> for details about component attribute modifier related content.</p>
+    <h3>The definition of component hello</h3>
+        <p>In component hello, an interface IHello and a class CHello is defined.</p>
+        <ul>
+            <li><b>Interface definition</b>
+                <p>Interface IHello in sample hello.car is defined as the following: </p>
+                <pre class="code">
+……
+[ uuid(ec3625a4-88ba-4688-bf67-d9a1f08b44dd) ]
+interface IHello {
+    <b>ECODE</b> Hello([<b>in</b>] EzStr InStr, [<b>out, retval</b>] EzStr *pOutStr);
+}
+……
+</pre>
+                <p>In interface attribute, <a class="style1" href="../car/attributes/attributes_uuid.htm">uuid</a> attribute is required, otherwise compilation cannot be passed. There are other attributes in interface attribute.For details please see <a class="style1" href="../car/attribute.htm#interface">attributes used to modify interface</a> in CAR attribute article.</p>
+                <p>Method <b>Hello</b> is defined in interface IHello. In CAR files, method definition is similar to method definition in C++ language. When writing interface method, it is recommended the user to use <a class="style1" href="../car/types.htm">CAR supported data type</a> as interface method parameter type.Otherwise the client program cannot remotely communicate with component program. The following rules must be followed: </p>
+                <ol>
+                    <li>Interface method must use <a class="style1" href="../../../../sdk/reference/basic_data_type/hresult.htm">ECODE</a> as return value.
+                    <li>Interface method parameter must specify the interface method parameter as input parameter(in),output parameter(out) or as a return value (retval).For details please see <a class="style1" href="../car/attribute.htm#para">attribute used to modify interface method parameter</a> in CAR attribute.
+                </ol>
+                        <p>In the example the attribute of the first parameter <i>InStr</i> of Hello method is [in]and it represents that <i>InStr</i> is a input parameter. The attribute of the second parameter <i>pOutStr</i> is [out]and it represents that <i>pOutStr</i> is an output parameter.</p>
+                        <p><b>Remarks: </b>Parameter in the example uses <a class="style1" href="../../../../sdk/reference/custom_data_type/EzStr.htm">EzStr</a> data type. EzStr data type is CAR defined data type. About other defined data type please see <a class="style1" href="../../../../sdk/reference/custom_data_type.htm">Elastos system defined self-descriptive data type</a>.</p>
+            <li><b>Class definition</b>
+                <p>Class CHello in example hello.car is defined as the following: </p>
+                <pre class="code">
+……
+[ uuid(463ac6d4-233f-4dea-93c9-1d1f0cf54efd), scriptable ]
+<b>class</b> CHello {
+    interface IHello;
+}
+……
+</pre>
+                <p>Besides required uuid attribute, in class attribute one can also use other attributes. For example in sample class CHello attribute there is <a class="style1" href="../car/attributes/attributes_scriptable.htm">scriptable</a> attribute, which means object of class CHello can be executed on webpage. More examples about this can be seen in the article. For details about attributes that modify class, please see related material in the article <a class="style1" href="../car/attribute.htm">CAR attribute</a>.</p>
+                <p>Class definition includes possible interface declaration of this class object. In the example, interface IHello is declared in the definition of class CHello.This class can provide methods in interface IHello.</p>
+        </ul>
+
+    <p>Through reading of the above information, you have already learnt how to write CAR file of simple CAR component.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

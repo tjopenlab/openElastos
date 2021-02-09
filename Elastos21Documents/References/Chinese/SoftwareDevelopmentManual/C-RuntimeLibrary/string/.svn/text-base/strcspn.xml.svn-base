@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strcspn">strcspn</sample>
+    <title>strcspn</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>查找字符串中的子串。</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>strcspn</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>被查找的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strCharSet</param_name>
+                <param_note>
+                    <para>以NULL结尾的字符集</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回一个子串长度值，该子串是从字符串string的起始段开始的，并且子串中所有字符都不包含在字符集strCharSet中，当strCharSet中任一个字符最先在被查找串string中出现时，则string中该字符前的子串长度即为要返回的长度值。如果字符串string的第一个字符包含在字符集strCharSet中，则函数返回0；如果string中不包含strCharSet中的任何字符，则返回字符串string的长度值。无错误返回值。</para>
+    </return>
+
+    <remarks>
+        <para>结束符（‘\0’）包括在检索范围内。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strcspn</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+// strcspn.cpp:this program returns the index of the first occurrence of a character in string
+//               that belongs to the set of characters in strCharSet
+//
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[] = &quot;xyzabc&quot;;
+    int  pos;
+
+    pos = strcspn(string, &quot;abc&quot;);
+    printf(&quot;First a, b or c in %s is at character %d\n&quot;,
+              string, pos);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+First a, b or c in xyzabc is at character 3
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name> strncat </ref_name>
+            <ref_url>wcsncat</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strncmp </ref_name>
+            <ref_url>wcsncmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strncpy </ref_name>
+            <ref_url>wcsncpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url>strrchr</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _strnicmp </ref_name>
+            <ref_url>_wcsnicmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strspn </ref_name>
+            <ref_url>strspn</ref_url>
+        </reference>
+    </references>
+
+</manpage>

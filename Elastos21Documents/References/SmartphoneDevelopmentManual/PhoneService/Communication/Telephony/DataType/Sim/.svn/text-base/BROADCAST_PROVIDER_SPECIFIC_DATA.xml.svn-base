@@ -1,0 +1,65 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>通讯引擎</volume>
+    <types> BROADCAST_PROVIDER_SPECIFIC_DATA </types>
+    <description>
+        <para>
+            信息广播的提供者信息结构
+        </para>
+    </description>
+  <struct>
+        <struct_member>
+            <mem_type>WORD</mem_type>
+            <mem_name>wMessageID</mem_name>
+            <mem_description>标示一个信息广播的Id </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>WORD</mem_type>
+            <mem_name>wMessageCode</mem_name>
+            <mem_description>区分拥有同一信息广播Id的不同信息体 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>BROADCAST_PROVIDER_SPECIFIC_GEOGRAPHICAL_SCOPE</mem_type>
+            <mem_name>bpsgsGeographicalScope</mem_name>
+            <mem_description>信息广播的地理区域信息：</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>WORD</mem_type>
+            <mem_name>wUpdateNumber</mem_name>
+            <mem_description>标示同一信息的不同内容段的改变</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwNumPlan</mem_name>
+            <mem_description>信息数据长度</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>WCHAR</mem_type>
+            <mem_name>lpwszText[256]</mem_name>
+            <mem_description>电话本记录的文本部分</mem_description>
+        </struct_member>
+    </struct>
+
+     <remarks>
+		<para>BROADCAST_PROVIDER_SPECIFIC_GEOGRAPHICAL_SCOPE定义如下：</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>BPSGS_CELL_DISPLAY_IMMEDIATE</td><td>立即显示信息</td>
+    </tr>
+    <tr>
+       <td>BPSGS_CELL</td><td>在另外的小区（Cell）收到的信息，但在以前小区已经收到的新信息</td>
+    </tr>
+    <tr>
+       <td>BPSGS_PLMN</td><td>在另外的小区收到的信息和以前小区收到信息的是相同message code。但message code和/或update code必须更新</td>
+    </tr>
+    <tr>
+       <td>BPSGS_LOCATION_AREA</td><td>在不同区域收到的有相同message code的信息</td>
+    </tr>
+    </table>
+    </remarks>
+
+</manpage>
+

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_filelength">_filelength</sample>
+    <title>_filelength, _filelengthi64</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>获取文件长度。</para>
+    </description>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>_filelength</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+				<param_note>
+                    <para>文件的句柄</para>
+                </param_note>
+            </func_param>
+        </parameters>
+  	</syntax>
+	<syntax>
+     <return_val>__int64</return_val>
+       <func_name>_filelengthi64</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+            </func_param>
+        </parameters>
+	</syntax>
+    <return>
+        <para>函数_filelength和_filelengthi64返回参数handle关联的文件的长度（以字节为单位）；如果出错，返回-1，并将错误号设置为EBADF，EBADF表明一个无效的文件句柄参数。</para>
+    </return>
+	<remarks>
+        <para>_filelength返回一个32位整数；_filelengthi64返回一个64位整数。</para>
+    </remarks>
+    <requirements>
+        <routine>
+            <routine_name>_filelength</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+			<routine_name>_filelengthi64</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* filelen.cpp: This program uses _filelength to report the size
+ * of a file before and after modifying it with _chsize.
+ */
+
+#include &lt;fcntl.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+
+int main()
+{
+    int fh, result;
+
+    /* Open a file */
+    if ((fh = _open(&quot;data&quot;, _O_RDWR | _O_CREAT, _S_IREAD
+                         | _S_IWRITE))  != -1) {
+        printf(&quot;File length before: %ld\n&quot;, _filelength(fh));
+        if ((result = _chsize(fh, 329678)) == 0)
+            printf(&quot;Size successfully changed\n&quot;);
+        else
+            printf(&quot;Problem in changing the size\n&quot;);
+        printf(&quot;File length after:  %ld\n&quot;, _filelength(fh));
+        _close(fh);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File length before: 0
+Size successfully changed
+File length after:  329678
+</result>
+
+   
+    <references>
+        <reference>
+            <ref_name>_fileno</ref_name>
+            <ref_url>..\stdio\_fileno</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_fstat</ref_name>
+            <ref_url>..\stat\_fstat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_stat</ref_name>
+            <ref_url>..\stat\_stat</ref_url>
+        </reference>
+    </references>
+</manpage>

@@ -1,0 +1,98 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="../../../xsl/xsl_e/interfaceman.xsl"?>    <manpage>
+    <volume>System COM Interface</volume>
+    <interface> ICondition </interface>
+    <description>
+        <para>
+        	The parameter list interface.
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Wait</method_name>
+        <method_url>ICondition\Wait</method_url>
+    <m_description>
+        Makes the current thread to release the mutex temporarily.
+    </m_description>
+    </method>
+    <method>
+        <method_name>TryWait</method_name>
+        <method_url>ICondition\TryWait</method_url>
+    <m_description>
+		Attempts to make the current thread to release the mutex temporarily.
+    </m_description>
+    </method>
+    <method>
+        <method_name>Pulse</method_name>
+        <method_url>ICondition\Pulse</method_url>
+    <m_description>
+		Wakes up a waiting thread.
+    </m_description>
+    </method>
+    <method>
+        <method_name>PulseAll</method_name>
+        <method_url>ICondition\PulseAll</method_url>
+    <m_description>
+        Wakes up all the waiting threads.
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+
+    <remarks>
+		<para>
+			A <b>Condition</b> object represents a "condition variable", which is a synchronization object that 
+			provides a mechanism to make a conclusion on some shared data (the result is a boolean expression). 
+			A <b>Condition</b> object provides its service by exposing an <b>ICondition</b> interface.
+		</para>
+    	<para>
+    		A thread uses <link url="../synchronization/function/EzCreateCondition.htm">CCondition::New</link> 
+    		function to create a condition object, and uses <link url=
+    		"../synchronization/function/EzCreateNamedCondition.htm">CCondition::New</link> function to create 
+    		a named condition object. Other threads can call the <link url="sdk/base_service/car_naming_service/naming_service_api/FindRunningObject.htm">CSystem::FindRunningObject</link> function 
+    		to get a pointer to the event object's interface by its name.
+    	</para>
+		<para>
+			A condition object allows a thread to be blocked (usually after a conclusion estimation) by 
+			calling the <link url="ICondition/Wait.htm">ICondition::Wait</link> method or the 
+			<link url="ICondition/TryWait.htm">ICondition::TryWait</link> method. And when the result of 
+			the conclusion changes, a thread can call <link url="ICondition/Pulse.htm">ICondition::Pulse
+			</link> method to wake up one waiting thread, or call the <link url="ICondition/PulseAll.htm">
+			ICondition::PulseAll</link> method to wake up all waiting thread on the condition object.
+		</para>
+		<para>
+			A condition object effects with a mutex object and provides an atom operation composed of a 
+			conclusion estimation and a waiting action. The mutex object provides protection for the share 
+			data and avoids any loss on waking up. User's thread, requests the mutex object first, and then 
+			tests the conclusion, if needs waiting, calls the <link url="ICondition/Wait.htm">ICondition::
+			Wait</link> method or the <link url="ICondition/TryWait.htm">ICondition::TryWait</link> method 
+			with the owned mutex object as the parameter. Calling the <link url="ICondition/Wait.htm">
+			ICondition::Wait</link> method or the <link url="ICondition/TryWait.htm">ICondition::TryWait
+			</link> method blocks the calling thread and release the mutex object in an atom step. When the 
+			result of the conclusion changes, other threads call <link url="ICondition/Pulse.htm">ICondition
+			::Pulse</link> method or <link url="ICondition/PulseAll.htm">ICondition::PulseAll</link> method 
+			to wake up the waiting threads. The <link url="ICondition/Wait.htm">ICondition::Wait</link> 
+			method and <link url="ICondition/TryWait.htm">ICondition::TryWait</link> method will own the 
+			mutex object again before return.
+		</para>
+		<para>
+			If several threads wait for a condition object,while a wake up occurs, the operating system will 
+			wake up the waiting thread with the highest priority. If any waiting threads have same 
+			priorities, the thread with the longest waiting time will be woken up.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AString</interface>
+    <method>ToInt32 </method>
+
+    <description>
+        <para>将当前AString对象的值转换为32位有符号整数。</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>Int32 </return_val>
+        <modifier>const</modifier>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para> 返回转换后的32位整型数值。</para>
+    </return>
+
+    <remarks>
+        <para>如果AString对象包含的字符串指针指向NULL，则返回0。</para>
+    </remarks>
+
+<example>
+<pre>
+AString as1("-1");
+AString as2("123.45");
+AString as3("abc");
+AString as4("123abc");
+AString as5("abc123");
+CConsole::WriteLine(as1.ToInt32());  //Display : -1
+CConsole::WriteLine(as2.ToInt32());  //Display : 123
+CConsole::WriteLine(as3.ToInt32());  //Display : 0
+CConsole::WriteLine(as4.ToInt32());  //Display : 123
+CConsole::WriteLine(as5.ToInt32());  //Display : 0
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::ToInt64 </ref_name>
+        <ref_url>../AString/ToInt64</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::ToInt32 </ref_name>
+        <ref_url>../WString/ToInt32</ref_url>
+    </reference>
+</references>
+
+</manpage>

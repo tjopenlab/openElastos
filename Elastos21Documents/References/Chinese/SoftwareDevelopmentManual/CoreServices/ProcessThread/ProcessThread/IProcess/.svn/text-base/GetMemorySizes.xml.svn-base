@@ -1,0 +1,91 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\GetProcessorTime">GetProcessorTimes</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> GetMemorySizes </method>
+    <description>
+        <para>
+            获取进程所占用的内存大小。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> MemorySize *  </param_type>
+                <param_name> pPrivateVirtualMemorySize </param_name>
+                <param_note>
+                    <para>
+                        MemorySize型指针，用于获取进程所占有的私有的虚拟内存的大小，为NULL时表示忽略此参数，单位为字节数
+                    </para>
+                </param_note>
+            </api_param>
+
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> MemorySize *  </param_type>
+                <param_name> pSharedVirtualMemorySize </param_name>
+                <param_note>
+                    <para>
+                       MemorySize型指针，用于获取进程所占有的共享的虚拟内存的大小，为NULL时表示忽略此参数，单位为字节数
+                    </para>
+                </param_note>
+            </api_param>
+
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> MemorySize *  </param_type>
+                <param_name> pPrivatePhysicalMemorySize </param_name>
+                <param_note>
+                    <para>
+                        MemorySize型指针，用于获取进程所占有的私有的物理内存的大小，为NULL时表示忽略此参数，单位为字节数
+                    </para>
+                </param_note>
+            </api_param>
+
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> MemorySize *  </param_type>
+                <param_name> pSharedPhysicalMemorySize </param_name>
+                <param_note>
+                    <para>
+                        MemorySize型指针，用于获取进程所占有的共享的物理内存的大小，为NULL时表示忽略此参数，单位为字节数
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取进程所占内存的大小</td>
+	        </tr>
+	        <tr>
+	            <td>E_INVALID_ARGUMENT</td>
+	            <td>参数错误。例如：该方法四个参数同时为NULL。</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>本方法用于获取进程所占用的内存大小。分为私有的虚拟内存，共享的虚拟内存，私有的物理内存和共享的物理内存四类统计数据。</para>
+		<para>如果进程当前未处于运行状态，调用该方法仍将成功。同时，四类内存大小统计都将返回零。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

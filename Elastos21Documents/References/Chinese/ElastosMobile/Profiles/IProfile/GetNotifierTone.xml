@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>CProfile Functions</volume>
+<interface>IProfile</interface><method> GetNotifierTone </method>
+    <description>
+        <para>获取系统提示音。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> <link url="../Enum/NotifierKind.htm">NotifierKind</link> </param_type>
+                <param_name> notifierKind </param_name>
+                <param_note>
+                    <para>系统提示音类型。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf_&lt;<link url="../Datatype.htm">MAX_PATH</link>&gt;  </param_type>
+                <param_name> notifierTone </param_name>
+                <param_note>
+                    <para>用作系统提示音的文件的绝对路径。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功调用该方法</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>    
+</remarks>
+<references>
+    <reference>
+        <ref_name>Profiles构件模块介绍 </ref_name>
+        <ref_url>../../Profiles</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CProfile构件类介绍</ref_name>
+        <ref_url>../CProfile</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IProfile接口方法列表</ref_name>
+        <ref_url>../IProfile</ref_url>
+    </reference>
+</references>
+</manpage>

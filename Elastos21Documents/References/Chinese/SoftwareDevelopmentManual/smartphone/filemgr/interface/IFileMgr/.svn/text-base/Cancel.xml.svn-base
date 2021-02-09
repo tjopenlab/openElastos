@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IFileMgr</interface><method> Cancel </method>
+    <description>
+        <para>
+            取消当前的文件操作。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <NoArguments/>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            当一个线程调用Copy、Move、RmDir等命令对含有大量文件的目录进行操作时，可以在另一个线程中通过调用Cancel中止这一操作。
+        </para>
+    </remarks>
+</manpage>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IImagePanel</interface><method> SetAllImagePanes </method>
+    <description>
+        <para>
+            设置 ImagePanel 内所有窗格的属性，包括窗格在 ImagePanel 内的位置，截取图片的位置，窗格的索引值，显示风格，状态等属性。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> BufferOf&lt;ImagePanelPane&gt; </param_type>
+                <param_name> panes </param_name>
+                <param_note>
+                    <para>
+<link url="../../../../../../car_technology/fundamental/development_environment/car/data_type/BufferOf.htm">BufferOf</link> 类型，所有窗格的属性</para>
+                </param_note>
+            </api_param>          
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_OUT_OF_MEMORY</td>
+	    	    <td>没有足够的空间</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+    	  ImagePanel 控件是通过划分一个个小窗格，即不同的点击区域，然后设置每个窗格的属性来达到用户想要的效果的。设置指定窗格的属性可以通过 <link url="SetImagePane.htm">SetImagePane</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CImagePanel 类介绍 </ref_name>
+        <ref_url>../../class/ImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IImagePanel 接口方法列表</ref_name>
+        <ref_url>../IImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetAllImagePanes</ref_name>
+        <ref_url>GetAllImagePanes</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetImagePane</ref_name>
+        <ref_url>SetImagePane</ref_url>
+    </reference>
+</references>
+</manpage>

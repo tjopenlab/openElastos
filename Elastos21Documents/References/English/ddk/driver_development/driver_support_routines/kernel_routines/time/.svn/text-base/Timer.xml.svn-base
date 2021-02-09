@@ -1,0 +1,100 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>    <manpage>
+    <volume>Time</volume>
+    <interface> Timer Class</interface>
+    <description>
+        <para>
+        	Timer class.
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Timer Constructor</method_name>
+        <method_url>Timer\structure\Timer</method_url>
+    <m_description>
+        Creates Timer object.
+    </m_description>
+    </method>
+    <method>
+        <method_name>Start</method_name>
+        <method_url>Timer\Start</method_url>
+    <m_description>
+        Starts Timer object.
+    </m_description>
+    </method>
+    <method>
+        <method_name>Restart</method_name>
+        <method_url>Timer\Restart</method_url>
+    <m_description>
+        Restarts Timer object.
+    </m_description>
+    </method>
+    <method>
+        <method_name>Cancel</method_name>
+        <method_url>Timer\Cancel</method_url>
+    <m_description>
+        Cancels Timer object that is already started.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Due</method_name>
+        <method_url>Timer\Due</method_url>
+    <m_description>
+        Checks if the started Timer object is due.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>GetResidualTicks</method_name>
+        <method_url>Timer\GetSurplusTicks</method_url>
+    <m_description>
+        Gets remaining time from Timer object that is been canceled but not yet timed out.
+    </m_description>
+    </method>
+</self>
+    </methods>
+    
+    <remarks>
+    	<para>
+    		Class Timer represents a system timer. After the Timer object's specified time has expired (i.e. Timer 
+    		object is timed out), the system will invoke callback routine provided by Timer object. 
+    	</para>
+    	<para>
+    		In order to use Timer object, you must use Timer class constructor <link url="Timer\structure\Timer.htm">Timer::Timer
+    		</link> to create it as needed. Timer object can be defined as global or local variable, or be created 
+    		in kernel heap.
+    	</para>
+    	<para>
+    		After Timer object is created, it cannot run by its own. <link url="Timer\start.htm">Timer::Start</link> 
+    		method needs to be invoked to make it running. When Timer is in running state, <link url="Timer\Cancel.htm">
+    		Timer::Cancel</link> can be used to stop it (i.e. Cancels the Timer callback routine execution). After 
+    		Timer object is cancelled, member function <link url="Timer\GetSurplusTicks.htm">Timer::GetResidualTicks
+    		</link> can be used to get the remaining time from now to the scheduled time-out duration of the Timer 
+    		object. When Timer object is timed-out or cancelled, <link url="Timer\Restart.htm">Timer::Restart</link> 
+    		can be used to restart it. Also, member function <link url="Timer\Due.htm">Timer::Due</link> can be used 
+    		to check if Timer object is timed-out or not.
+    	</para>
+    	<para>
+    		Before Timer object is destructed, ensure that the Timer object is not in running state.
+    	</para>
+    </remarks>
+    
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later
+			</system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>
+
+

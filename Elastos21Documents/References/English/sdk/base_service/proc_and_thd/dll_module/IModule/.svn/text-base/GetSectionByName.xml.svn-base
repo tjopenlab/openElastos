@@ -1,0 +1,70 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IModule</interface>
+<method> GetSectionByName </method>
+    <description>
+        <para>
+         	Gets the address of a section, by name.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+			<parameters>
+				<api_param>
+					<param_inout>[in]</param_inout>
+					<param_type> AString  </param_type>
+					<param_name> esName </param_name>
+					<param_note>
+						<para>
+							Name of the section.
+						</para>
+					</param_note>
+				</api_param>
+				<api_param>
+					<param_inout>[out]</param_inout>
+					<param_type> ADDRESS *  </param_type>
+					<param_name> pAddress </param_name>
+					<param_note>
+						<para>
+							Pointer to an ADDRESS object that receive the address of the section.
+						</para>
+					</param_note>
+				</api_param>
+			</parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+			<td>Returns </td>
+			<td>Description</td>
+	    </th>
+	    <tr>
+			<td>NOERROR</td>
+			<td>Function succeeds in getting the address of a section.</td>
+	    </tr>
+	    <tr>
+			<td>E_INVALID_ARGUMENT</td>
+			<td>Invalid argument(s)</td>
+	    </tr>
+	    <tr>
+			<td>E_DOES_NOT_EXIST</td>
+			<td>The specified section does not exist.</td>
+	    </tr>
+	</table>
+            	 <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>  
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> touch </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para> Updates the access and modification times of a file.</para>
+    </description>
+
+    <syntax>
+        <cmd_name>TOUCH</cmd_name>
+        <cmd_param>[-?] [/c] [/f] [/t year month day hour min sec] filenames</cmd_param>
+    </syntax>
+
+    <parameters>
+    <param>
+        <param_name>  -?  </param_name>
+        <param_note> Displays help information</param_note>
+    </param>
+    <param>
+        <param_name> /c </param_name>
+        <param_note>Does not create the file if it does not already exist.</param_note>
+    </param>
+    <param>
+        <param_name> /f </param_name>
+        <param_note>Attempts to force the touch in spite of read and write permissions on a file.</param_note>
+    </param>
+    <param>
+        <param_name> /t year month day hour min sec </param_name>
+        <param_note>Uses the specified time instead of the current time. The time format is: yyyy mm dd hh mm ss .If does not specify time, touch uses current system time to modify file time.</param_note>
+    </param>
+    <param>
+        <param_name> filenames </param_name>
+        <param_note>File name of the file that need to change time, supports wildcard * and ?</param_note>
+    </param>
+
+    </parameters>
+
+    <examples>
+    <example>
+        <eg_line>touch file.txt</eg_line>
+        <eg_note>This sets the last access and modification times of the file.txt file in the current directory to the current system date and time.</eg_note>
+    </example>
+    <example>
+        <eg_line>touch /t 2001 11 1 2 22 2 file.txt</eg_line>
+        <eg_note>This gives the file.txt file of the current directory a time stamp of 2:22:2 a.m. on November 1st., 2001.</eg_note>
+    </example>
+    </examples>
+
+</manpage>

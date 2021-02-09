@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\Other"> CSystem::DebugPrint </sample>
+    <volume>系统对象</volume>
+    <title>CSystem::DebugPrint</title>
+    <routine_idx>../../System.htm</routine_idx>
+
+    <description>
+        <para>输出打印信息到控制台。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> message </param_name>
+                <param_note>
+                    <para>[in]要输出的字符串信息</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存分配不成功</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>该函数以最直接的方式输出打印信息到控制台上。输出信息几乎可以不依赖于任何的内核对象，因此很适合于调试信息输出。</para>
+        <para>如果string为WSTRING_NULL，方法返回E_INVALID_ARGUMENT。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

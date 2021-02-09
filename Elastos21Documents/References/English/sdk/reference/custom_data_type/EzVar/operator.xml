@@ -1,0 +1,208 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzVar\operator">operator</sample>
+    <volume> Common data structure </volume>
+    <interface> EzVar </interface>
+    <method> operator = </method>
+
+    <description>
+        <para> Assigns to an existing EzVar object. </para>
+    </description>
+
+    <syntax>
+        <return_val> EzVar&amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type> INT (or INT *) </param_type>
+            <param_name> value1 </param_name>
+            <param_note>
+                <para> Integer data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> EzVar&amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type> UINT (or UINT *) </param_type>
+            <param_name> value2 </param_name>
+            <param_note>
+                <para> Unsigned integer data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> EzVar&amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type> SHORT (or SHORT *) </param_type>
+            <param_name> value3 </param_name>
+            <param_note>
+                <para> Short data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> EzVar&amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type> USHORT (or USHORT *) </param_type>
+            <param_name> value4 </param_name>
+            <param_note>
+                <para> Unsigned short data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> EzVar&amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type>LONG (or LONG *) </param_type>
+            <param_name> value5 </param_name>
+            <param_note>
+                <para> Long data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> EzVar&amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type> ULONG (or ULONG *) </param_type>
+            <param_name> value6 </param_name>
+            <param_note>
+                <para>  Unsigned long data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> EzVar&amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type>FLOAT (or FLOAT *) </param_type>
+            <param_name> value7 </param_name>
+            <param_note>
+                <para> Float data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> EzVar&amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type>DOUBLE (or DOUBLE *) </param_type>
+            <param_name> value8 </param_name>
+            <param_note>
+                <para> Double data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> EzVar&amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type>BYTE (or BYTE *) </param_type>
+            <param_name> value9 </param_name>
+            <param_note>
+                <para> Byte data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> EzVar&amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type>CHAR (or CHAR *) </param_type>
+            <param_name> value10 </param_name>
+            <param_note>
+                <para> Char data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> EzVar&amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type>EzStr&amp; </param_type>
+            <param_name> value11 </param_name>
+            <param_note>
+                <para> The pointer<link url="..\Ezstr.htm">EzStr</link>that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> EzVar&amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type>InterfaceRef&amp;</param_type>
+            <param_name> value12 </param_name>
+            <param_note>
+                <para> The InterfaceRef data that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include "EzVar.h"
+#include "stdio.h"
+
+int __cdecl main()
+{
+    EzVar ezVar;
+
+    ezVar = 5;
+    printf("ezVar is %d\n", (INT)ezVar);
+
+    ezVar = 100;
+    printf("Now ezVar is %ld\n", (LONG)ezVar);
+
+    ezVar = 'A';
+    printf("Now ezVar is %c\n", (CHAR)ezVar);
+
+    ezVar = "ABCDE";
+    printf("Now ezVar is %s\n", (char*)ezVar);
+
+    EzVar ezvar;
+
+    ezVar = 'a';
+    ezvar = ezVar;
+    printf("Now ezVar is %c\n", (BYTE)ezvar);
+
+    ezVar = "abcde";
+    ezvar = ezVar;
+    printf("Now ezVar is %s\n", (BYTE*)ezvar);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+ezVar is 5
+Now ezVar is 100
+Now ezVar is A
+Now ezVar is ABCDE
+Now ezVar is a
+Now ezVar is abcde
+]]>
+    </result>
+
+</manpage>

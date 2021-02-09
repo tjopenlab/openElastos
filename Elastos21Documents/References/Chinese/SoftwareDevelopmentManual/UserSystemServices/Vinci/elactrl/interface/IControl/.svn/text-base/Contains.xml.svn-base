@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> Contains </method>
+    <description>
+        <para>
+            判断控件是否拥有指定的子控件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IControl* </param_type>
+                <param_name> control </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../IControl.htm">IControl</link> 接口的指针，用于设置待判断的控件，不能为 NULL</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Boolean </param_type>
+                <param_name> recursion </param_name>
+                <param_note>
+                    <para>
+是否递归到孙控件进行查找，若为 TURE，则递归查找，否则为 FALSE</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Boolean* </param_type>
+                <param_name> inside </param_name>
+                <param_note>
+                    <para>
+指向 Boolean 型的指针，判断控件是否拥有指定的子控件，不能为 NULL，若为 TURE，则控件拥有该子控件，否则为 FALSE</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        由于控件的子控件有可能还拥有子控件，如果不递归，则只在该控件的子控件中查找，不会遍历所有子控件的子控件。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+</references> 
+</manpage>

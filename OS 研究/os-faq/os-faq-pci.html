@@ -1,0 +1,162 @@
+
+<HTML>
+<HEAD>
+<TITLE>Operating Systems FAQ :: PCI</TITLE>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</HEAD>
+<BODY>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="prog_pci">Where can I find programming info :: PCI</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The official PCI web site is located at <A href="http://www.pcisig.com">www.pcisig.com</A>
+<P>This PCI Special Interest Group site contains a little information on PCI as Microsoft Word 6 document files
+        which are the official specifications, it also contains a few test/diagnostic programs in C for working with PCI
+        that you can download and also they keep a list of Vendor ID numbers but not product ID numbers.</P>
+<P>Alternatively, two good sites that seem to be the mainstay for collecting a database on Equipment vendor ID's and Product ID's are;</P>
+<P>Craig &quot;Merlin&quot; Hart's PCI page <A href="http://members.hyperlink.net.au/~chart/pci.htm">http://members.hyperlink.net.au/~chart/pci.htm</A><BR>
+Jim Boemler's PCI page <A href="http://members.hyperlink.net.au/~chart/pci.htm">http://www.halcyon.com/scripts/jboemler/pci/pcicode</A><BR>
+Ralf Brown's page <A href="http://members.hyperlink.net.au/~chart/pci.htm">http://www.cs.cmu.edu/afs/cs.cmu.edu/user/ralf/pub/WWW/files.html</A></P>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="pci_pmode">I heard you can do PCI BIOS calls in pmode?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>True! You can call the PCI bios functions from pmode and its quite easy to do, and it does not require any mode switching  back into real-mode to do it.
+<P>First thing is, you have to locate the BIOS32 service directory entry point. This is done by scanning for the 4 bytes of &quot;magic&quot; that is &quot;_32_&quot; (0x5F32335F). The BIOS32 SD can lie in memory from 0xE0000 to 0x100000 and it always lies on a paragraph alignment.
+<PRE>
+CALL xxxxh:xxxxh - BIOS32 Service Directory
+InstallCheck:	scan paragraph boundaries E000h to FFFFh for signature
+		string &quot;_32_&quot;, followed by a valid header structure
+                (see #F0021)
+
+Notes:	a 32-bit-code alternate PCI BIOS entry point may be found (if
+	supported) by requesting the entry point for the API with
+        identifier &quot;$PCI&quot;.
+	an alternate entry point for INT 1A/AH=B4h may be found (if
+        supported) by requesting the entry point for the API with
+        identifier &quot;$ACF&quot;
+	other known identifiers are &quot;$WDS&quot; and &quot;MPTN&quot;
+SeeAlso: INT 1A/AX=B100h
+
+Format of BIOS32 Service Directory header structure:
+Offset	Size	Description	(Table F0021)
+ 00h  4 BYTEs	signature &quot;_32_&quot;
+ 04h	DWORD	physical address of BSD entry point (see #F0022)
+ 08h	BYTE	header structure version number (currently 00h)
+ 09h	BYTE	header structure length in paragraphs (currently 01h)
+ 0Ah	BYTE	checksum (8-bit sum of all bytes in structure,
+		including this one, should equal zero)
+ 0Bh  5 BYTEs	reserved (0)
+
+(Table F0022)
+Call BIOS32 Service Directory entry point with:
+	EBX = function
+	    00000000h get service entry point
+		EAX = service identifier
+		    46434124h (&quot;FCA$&quot;) Plug-and-Play Auto-Configuration
+		    49435024h (&quot;ICP$&quot;) PCI BIOS
+		    4E54504Dh (&quot;NTPM&quot;) ??? MPTN [PhoenixBIOS4 Rev. 6.0]
+		    54435724h (&quot;SDW$&quot;) ??? WDS$ [PhoenixBIOS4 Rev. 6.0]
+		Return: AL = status
+			    00h successful
+				 EBX = base address of handler's code seg
+				 ECX = size of code segment
+				 EDX = offset of handler in code seg
+			    80h unknown service identifier
+	    else
+		Return: AL = 81h invalid function
+Notes:	the BSD handler assumes that it is running in a 32-bit code
+        segment the returned entry points for PCI BIOS and Auto-Config
+        must be called with the same registers as the real-mode INT
+        1Ah interface, including the value B1h or B4h in AH (AMI BIOS
+        v1.00.05.AX1 returns the same entry point for both interfaces
+        and uses AH to distinguish which API is desired)
+
+	some references indicate that only BL is used for the function
+	number, though at least one implementation actually checks the
+        entire EBX register; for maximum compatibility, the upper 24
+        bits of EBX should be cleared when calling the entry point
+		</PRE>
+	    Here is an example of detecting the BIOS32 service directory.
+		<PRE>
+typedef struct BIOS32
+{
+	ULONG	magic			__attribute__ ((packed));
+	ULONG	phys_bsd_entry		__attribute__ ((packed));
+	UCHAR	vers			__attribute__ ((packed));
+	UCHAR	prg_lens		__attribute__ ((packed));
+	UCHAR	crc			__attribute__ ((packed));
+} BIOS32;
+
+BIOS32 *master_bios32;
+ULONG bios32_call;
+
+UCHAR search_pci_bios(void)
+{
+	UCHAR		*p=(UCHAR*)0xE0000;
+	BIOS32		*x;
+	UCHAR		flag=0;
+	UCHAR		crc;
+	int			i;
+
+	master_bios32=NULL;
+	bios32_call=0;
+	while(flag==0 &amp;&amp; (ULONG)p&lt;0X100000)
+	{
+		X=(BIOS32*)P;
+		IF(X-&gt;magic==0x5F32335F)		/* _32_ */
+		{
+			for(i=0, crc=0; i&lt;(X-&gt;prg_lens*16); i++)
+				crc+=*(p+i);
+			if(crc==0)
+			{
+			    flag=1;
+			    master_bios32=x;
+				bios32_call=master_bios32-&gt;phys_bsd_entry;
+			}
+		}
+		else
+			p+=0x10;
+	}
+}
+	    </PRE>
+	    Once you have located the service directory you can do a far call
+	    to its physical entry point and ask it if PCI bios32 calls exist.
+	    (PCI v2.0c+)	
+		<PRE>		
+void bios32_scan_pci_entry(void)
+{
+	ULONG	cseg_size, offset, base_addr;
+
+	/* call the BIOS32 BSD for the PCI address
+ 	   BSD calls terminate in RETF not RET */
+
+	/* eax is loaded with &quot;$PCI&quot; magic */
+	asm(&quot;movl	$0x49435024, %%eax\n&quot;
+		&quot;xorl	%%ebx, %%ebx\n&quot;
+		&quot;movl	_bios32_call, %%ebp\n&quot;
+		&quot;pushl	%%cs\n&quot;
+		&quot;call	%%ebp\n&quot;
+		: &quot;=c&quot; (cseg_size),
+		  &quot;=d&quot; (offset),
+		  &quot;=b&quot; (base_addr)
+		:
+		: &quot;eax&quot;, &quot;ebx&quot;, &quot;ecx&quot;, &quot;edx&quot;, &quot;ebp&quot;, &quot;memory&quot; );
+
+	/* setup two new selectors of pci_code32, pci_data32, etc. */
+}
+</PRE>Once you have determined that PCI v2.0c+ BIOS calls exist  for pmode applications, you can call the PCI v2.0c+ calls (see INT  0x1A, function 0xB101 down to 0xB18F in Ralf Brown's INT List).
+		</TD>
+	</TR>
+</TABLE>
+</BODY>
+</HTML>

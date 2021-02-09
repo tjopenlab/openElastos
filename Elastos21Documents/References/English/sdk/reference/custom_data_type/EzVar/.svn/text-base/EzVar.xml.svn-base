@@ -1,0 +1,203 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzVar\EzVar">EzVar</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzVar </interface>
+    <method> EzVar </method>
+
+    <description>
+        <para> Constructor function of EzVar, which is used to construct an EzVar object. </para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type> INT (or INT *) </param_type>
+            <param_name> value1 </param_name>
+            <param_note>
+                <para> Integer data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type> UINT (or UINT *) </param_type>
+            <param_name> value2 </param_name>
+            <param_note>
+                <para> Unsigned integer data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type> SHORT (or SHORT *) </param_type>
+            <param_name> value3 </param_name>
+            <param_note>
+                <para> Short data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type> USHORT (or USHORT *) </param_type>
+            <param_name> value4 </param_name>
+            <param_note>
+                <para> Unsigned short data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>LONG (or LONG *) </param_type>
+            <param_name> value5 </param_name>
+            <param_note>
+                <para> Long data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type> ULONG (or ULONG *) </param_type>
+            <param_name> value6 </param_name>
+            <param_note>
+                <para> Unsigned long data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>FLOAT (or FLOAT *) </param_type>
+            <param_name> value7 </param_name>
+            <param_note>
+                <para> Float data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>DOUBLE (or DOUBLE *) </param_type>
+            <param_name> value8 </param_name>
+            <param_note>
+                <para> Double data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>BYTE (or BYTE *) </param_type>
+            <param_name> value9 </param_name>
+            <param_note>
+                <para> Byte data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>CHAR (or CHAR *) </param_type>
+            <param_name> value10 </param_name>
+            <param_note>
+                <para> Char data or pointer that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>EzStr&amp;</param_type>
+            <param_name> value11 </param_name>
+            <param_note>
+                <para> The pointer<link url="..\Ezstr.htm">EzStr</link>that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>InterfaceRef&amp;</param_type>
+            <param_name> value12 </param_name>
+            <param_note>
+                <para> The InterfaceRef data that is stored. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>1、You can declare an EzVar variable directly: </para>
+        <para><![CDATA[EzVar myEzVar；]]></para>
+        <para>This kind of declaration method constructs an unicode pointer inside the EzVar type. </para>
+        <para>2、And you can construct another EzVar variable using an existing EzVal variable: </para>
+        <para><![CDATA[EzVar ezVar1,ezVar2；]]></para>
+        <para><![CDATA[ezVar1 = ...]]></para>
+        <para><![CDATA[ezVar2 = ezVar1；]]></para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include "EzVar.h"
+#include "stdio.h"
+
+int __cdecl main()
+{
+    EzVar ezVar = EzVar(8);
+    printf("ezVar is %d\n", (INT)ezVar);
+
+    ezVar = 100;
+    printf("Now ezVar is %ld\n", (LONG)ezVar);
+
+    ezVar = EzVar('Z');
+    printf("Now ezVar is %c\n", (CHAR)ezVar);
+
+    ezVar = "ABCDE";
+    printf("Now ezVar is %s\n", (CHAR*)ezVar);
+
+    EzVar ezvar;
+
+    ezVar = 'a';
+    ezvar = ezVar;
+    printf("Now ezVar is %c\n", (BYTE)ezvar);
+
+    ezVar = "abcde";
+    ezvar = ezVar;
+    printf("Now ezVar is %s\n", (BYTE*)ezvar);
+
+    return 0;
+}
+]]></pre></example>
+    <result>
+    <![CDATA[
+ezVar is 8
+Now ezVar is 100
+Now ezVar is Z
+Now ezVar is ABCDE
+Now ezVar is a
+Now ezVar is abcde
+]]>
+    </result>
+
+</manpage>

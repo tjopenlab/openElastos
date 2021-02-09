@@ -1,0 +1,58 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method> ToDouble </method>
+
+    <description>
+        <para> 将当前对象的值转换为双精度浮点数字。 </para>
+    </description>
+    <syntax_nopara>
+        <return_val> Double  </return_val>
+        <modifier>const</modifier>
+    </syntax_nopara>
+    <return>
+        <para>AStringBuf对象字符串内容以非数字字符开始，则返回+0.000000。</para>
+        <para>AStringBuf对象字符串内容以数字字符开始，返回由开始字符开始直到遇到非数字字符之间的子串对应的double型数值。</para>
+    </return>
+    <remarks>
+        <para>如果AStringBuf对象包含的字符串指针指向NULL，则返回0.0。</para>
+    </remarks>
+<example>
+<pre>
+AStringBuf_&lt;20&gt; asbuf;
+asbuf.Copy("123");
+CConsole::WriteLine(asbuf.ToDouble());  //Display : 123.000000
+
+asbuf.SetEmpty();
+asbuf.Copy("abc");
+CConsole::WriteLine(asbuf.ToDouble());  //Display : 0.000000
+	
+asbuf.SetEmpty();
+asbuf.Copy("123abc");	
+CConsole::WriteLine(asbuf.ToDouble());  //Display : 123.000000
+
+asbuf.SetEmpty();
+asbuf.Copy("abc123");	
+CConsole::WriteLine(asbuf.ToDouble());  //Display : 0.000000
+</pre>
+</example> 
+
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::ToBoolean </ref_name>
+        <ref_url>../AStringBuf/ToBoolean</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::ToDouble </ref_name>
+        <ref_url>../WStringBuf/ToDouble</ref_url>
+    </reference>
+</references>
+ 
+</manpage>

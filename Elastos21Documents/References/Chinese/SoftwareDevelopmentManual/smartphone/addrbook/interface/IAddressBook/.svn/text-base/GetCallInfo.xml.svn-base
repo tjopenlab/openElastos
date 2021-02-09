@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址簿引擎</volume>
+<interface>IAddressBook</interface><method> GetCallInfo </method>
+    <description>
+        <para>
+            获取来电的信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esPhoneNumber </param_name>
+                <param_note>
+                    <para>
+来电号码                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf * </param_type>
+                <param_name> esbPicture </param_name>
+                <param_note>
+                    <para>
+指向EzStrBuf类型的指针，用于获取来电的图片                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf * </param_type>
+                <param_name> esbRing </param_name>
+                <param_note>
+                    <para>
+指向EzStrBuf类型的指针，用于获取来电的铃声                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf * </param_type>
+                <param_name> esbName </param_name>
+                <param_note>
+                    <para>
+指向EzStrBuf类型的指针，用于获取来电的姓名                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数esPhoneNumber为NULL，返回E_INVALIDARG。</para><para>            其他参见            <link url="../../ab_error.htm">            地址簿错误返回值列表            </link>            。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CAddressBook.h, CDBStore.h, CSimStore.h, CContact.h, CContactGroup.h,  Abdata.h, spcomm.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElCRuntime.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            如果数据库中有多人拥有此号码，则取默认的联系人信息。
+        </para>
+    </remarks>
+</manpage>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISocketService</interface><method> CreateSocket </method>
+    <description>
+        <para>
+            创建套接口, 得到ISocket接口指针。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> family </param_name>
+                <param_note>
+                    <para>
+地址族。目前只支持IF_INET                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> type </param_name>
+                <param_note>
+                    <para>
+套接口的类型描述                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> protocol </param_name>
+                <param_note>
+                    <para>
+套接口使用的协议。如果使用缺省协议可以设为IPPROTO_IP，其值为0。或者根据套接口类型指定相应的协议，SOCK_STREAM对应的协议为IPPROTO_TCP，SOCK_DGRAM对应的协议为IPPROTO_UDP。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type>  ISocket * * </param_type>
+                <param_name> ppNewSocket </param_name>
+                <param_note>
+                    <para>
+指向<link url="../ISocket.htm">ISocket</link>接口类型的二级指针，用于获取新的ISocket接口                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> pError </param_name>
+                <param_note>
+                    <para>
+指向int型的指针，用于当函数执行发生错误时获取其错误返回值，该返回值参见<link url="../SocketWSA.htm">网络接口错误返回值</link>文档                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果内存分配不成功，则方法调用失败，并返回E_OUT_OF_MEMORY；如果STATUS_WIN32_ERROR(erro)是宏，被定义为((SCODE)((erro)|0x80070000))，则返回STATUS_WIN32_ERROR(error)。</para><para>            更多返回值，参见            <link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECODE            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            参数type支持的套接口如下表：</para><para>            <table>            <th>            <td>            参考值            </td>            <td>            描述            </td>            </th>            <tr>            <td>            SOCK_STREAM            </td>            <td>            使用TCP协议（有连接）            </td>            </tr>            <tr>            <td>            SOCK_DGRAM            </td>            <td>            使用UDP协议（无连接）            </td>            </tr>            <tr>            <td>            SOCK_RAW            </td>            <td>            使用原始套接字            </td>            </tr>            </table>
+        </para>
+    </remarks>
+</manpage>

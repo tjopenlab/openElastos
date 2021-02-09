@@ -1,0 +1,62 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<title> 映像文件（手机升级）烧制操作</title>
+<meta http-equiv="Content-Type" content="text/xmll; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>映像文件(手机升级)烧制操作</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;通过和欣提供的mkpkg工具（制做用于启动的压缩文件，根据配置文件elasto.cfg,把在启动Elastos操作系统时需要使用的文件打包成一个压缩文件）打包成一个image文件(elastos.img)，然后将镜像烧制到板子上的flash中。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;用户要添加自己的程序到文件系统的image里面去,首先要把自己的程序或文件复制到这个文件系统在宿主机中对应的目录里面去, 然后重新打包生成image.
+这样就完成了对文件系统镜像的修改,随后就是下载和烧写的问题了.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;用于手机升级的计算机除了要求安装Windows&nbsp;2000或者Windows&nbsp;XP或者Windows&nbsp;2003操作系统外，还需要安装如下软件才能进行正确的手机升级工作。(注：对于已经安装如下软件的计算机可以略过相关步骤。)</p>
+<h3>1.用于烧制映像文件(手机升级)的计算机软件准备</h3>
+<h4>&nbsp;&nbsp;&nbsp;&nbsp;步骤一：安装微软的. Net framework&nbsp;2.0</h4>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.到微软官方网站下载：<a style="color: blue; text-decoration: underline; text-underline: single" href="http://www.microsoft.com/downloads/details.aspx?familyid=0856EACB-4362-4B0D-8EDD-AAB15C5E04F5&displaylang=zh-cn">Microsoft 
+.NET Framework 2.0 版可再发行组件包 (x86)</a></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.安装Net&nbsp;framework 2.0软件包</p>
+<h4>&nbsp;&nbsp;&nbsp;&nbsp;步骤二：安装手机驱动程序</h4>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.关闭手机</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.通过USB线连接手机与计算机</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.计算机上提示安装驱动程序</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.指定驱动程序的位置（驱动程序在软件包中的Usb*nbsp;Driver目录）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.驱动安装完毕后，拔掉USB线，关闭手机</p>
+<h4>&nbsp;&nbsp;&nbsp;&nbsp;步骤三：安装TMC</h4>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本工具不需要安装，将软件包中tmc.exe文件拷贝到计算机上即可使用。</p>
+<h3>2.映像文件烧制(手机软件升级)的操作步骤</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;提示：升级手机软件前，请确保手机有足够电量。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;(1)将软件包中SDCard目录下的文件拷贝到MiniSD卡的根目录中；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;(2)将MiniSD卡插到手机中；</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;(3)在计算机端运行tmc.exe，弹出两个窗口（见图1）： </p>
+<center><img src="images/tmc1.jpg"></center>
+<p></p>
+<center>图1</center>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;(4)计算机端插入USB数据线，在手机关闭状态下，按住手机的&quot;0&quot;键后，在手机端插入USB数据线，等待TMC的COMCONS窗口中提示：Waiting&nbsp;remote&nbsp;host&nbsp;send&nbsp;command&nbsp;（见图2）.</p>
+<p>&nbsp;&nbsp; 注：如果COMCONS没有任何提示，请您检查一下是否安装了需要安装的软件，详见：用于手机升级的计算机软件准备</p>
+<center><img src="images/tmc2.jpg"></center>
+<p></p>
+<center>图2</center>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;(5)在tmc工具的菜单中选择Loader－&gt; BurnToDoc（见图2），选择软件包中的burn.img文件，点击“OK”确认（见图3），开始烧写升级程序。此后升级数据的烧写将自动完成。</p>
+<center><img src="images/burn.jpg"></center>
+<p></p>
+<center>图3</center>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;(6)烧写过程说明：该步骤无需升级人员干预，由系统自动完成。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;手机烧录数据过程中，有墨绿色的底色作提示，烧录不同文件时有不同颜色的进度条变化。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;具体烧写过程如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1)烧写burn.img（见图4）。该文件烧写完成，进入下一步骤烧写时（见图5），即可拔出USB线。</p>
+<center><img src="images/burnimg.jpg"></center>
+<p></p>
+<center>图4</center>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)烧写elastos.img，手机有蓝色进度变化（见图5）</p>
+<center><img src="images/blue.jpg"></center>
+<p></p>
+<center>图5</center>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;(7)烧写完成后，手机自动重启，当显示白色背景且出现“请点触十字中心校准位置”字样时，拔除电池，烧写(升级)过程完成。</p>
+<p>&nbsp;注：若烧写数据文件后不能自动重启，请检查SD卡上的升级数据文件是否正确，并重复执行升级操作。</p>
+<script>footer("chinese")</script>
+</body>
+
+</html>

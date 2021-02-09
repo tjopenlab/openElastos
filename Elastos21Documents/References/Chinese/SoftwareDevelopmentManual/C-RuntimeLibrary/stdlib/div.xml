@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\div">div</sample>
+    <title> div</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>计算两个整型数的商和余数。</para>
+    </description>
+
+    <syntax>
+        <return_val>div_t</return_val>
+        <func_name>div</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>num</param_name>
+                <param_note>
+                    <para>被除数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>denom</param_name>
+                <param_note>
+                    <para>除数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回div_t类型的结构体，包含商和余数。此结构体在STDLIB.H中定义。</para>
+    </return>
+
+    <remarks>
+        <para>函数div可以计算出商和余数，结构div_t包含整型变量quot（商），整型变量rem（余数）。商的符号与精确商相同，它的绝对值是小于精确商的最大整型值。如果除数为零，程序终止并给出错误信息。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>div</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _getch.cpp: This example takes two integers as command-line
+ * arguments and displays the results of the integer
+ * division. This program accepts two arguments on the
+ * command line following the program name, then calls
+ * div to divide the first argument by the second.
+ * Finally, it prints the structure members quot and rem.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main()
+{
+    int x,y;
+    div_t div_result;
+
+    x = 876;
+    y = 13;
+
+    printf(&quot;x is %d, y is %d\n&quot;, x, y);
+    div_result = div(x, y);
+    printf(&quot;The quotient is %d, and the remainder is %d\n&quot;,
+              div_result.quot, div_result.rem);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+x is 876, y is 13
+The quotient is 67, and the remainder is 5
+</result>
+
+
+
+</manpage>

@@ -1,0 +1,178 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字-- applet</title>
+</head>
+
+<body>
+	<h2>applet</h2>
+	    <b>含义 </b>
+	        <p>此关键字用来在car文件中定义applet类。 </p>
+	
+	    <b>语法 </b>
+	    	<p><b>applet</b> appletName appletBody; </p>
+	    <b>使用说明 </b>
+	        <p>1.applet类名必须以字母“T”开头。 </p>
+	        <p>2.applet类不能声明构造函数constructor。 </p>
+	        <p> </p>
+	    <b>使用范例 </b>
+	        <p>下面是一个打印“tita”的小应用。在这个名为TTita的applet里，使用一个CTimer构件对象实现一个timer，它每秒钟发送一个事件，我们注册这个回调事件，并在回调函数里打印“tita”。当打印10次以后退出应用结束applet。 </p>
+<pre class= code>
+module
+{
+    interface ITimer {
+        SetInterval([in] Int32 interval);
+    }
+    
+    interface ITimerEvent {
+        Alarm();
+    }
+    class CTimer {
+        interface ITimer;
+        callbacks JTimerEvent;
+    }
+
+    <b>applet</b> TTita {
+    
+    }
+}
+
+</pre>
+	        <p>编译上述titaDemo.car文件，修改生成的CTimer.cpp文件如下:(其中黑体部分是编译器自动生成的代码框架) </p>
+<pre class= code>
+<b>#include "CTimer.h"
+#include "_CTimer.cpp"
+</b>
+Int32 g_nInterval = 0;
+
+<b>ECode CTimer::SetInterval(
+    /* [in] */ Int32 interval)
+{</b>
+    g_nInterval = interval;
+    return NOERROR;
+<b>}</b>
+
+</pre>
+	        <p>其中TimerRoutine是timer的一个后台线程，每秒钟激发一次timer的Alarm事件。激发十次。 </p>
+            <p>修改TTita.cpp文件如下： </p>
+<pre class= code>
+<b>#include "TTita.h"
+#include "_TTita.cpp"</b>
+#include "CTimer.h"
+
+ECode OnAlarm(PVoid userData, PInterface pSender)
+{
+    static int nCount = 0;
+    CConsole::Write("Tita.");
+    CConsole::WriteLine(++nCount);
+
+    if (nCount >= 10) {
+        CTimer::RemoveAllCallbacks(pSender);
+        CApplet::Finish(AppletFinish_ASAP);
+    }
+    return NOERROR;
+}
+
+ECode TimerRoutine(PVoid pParam)
+{ 
+    CTimer *pCTimer = (CTimer *)pParam;
+    int i;
+
+    for(i = 0; i < 10; i++) {
+        pCTimer->Callback::Alarm();
+    }
+
+    return NOERROR;
+}
+
+<b>ECode TTita::Main(
+    /* [in] */ const BufferOf&lt;WString&gt; & wargs)
+{
+    // TODO: Add your code here</b>
+    ITimer *pTimer;
+    ECode ec = CTimer::New(&pTimer);
+    if (FAILED(ec)) 　return ec;
+    ec = CTimer::AddAlarmCallback(pTimer, &OnAlarm, NULL);
+
+    pTimer->SetInterval(1000);
+    
+    CObject::ReleaseAtThreadQuit(pTimer);
+    
+    IThread *pThread;
+    ec = CThread::New(TimerRoutine, pTimer, 0, &pThread);
+    if (FAILED(ec))  return ec;
+
+    pThread->Start();
+    pThread->Join(INFINITE, NULL);
+    pThread->Release();
+
+    return NOERROR;
+<b>}</b>
+
+</pre>
+	        <p>Applet的Main方法作为Applet的入口点，相当于crt的main函数，用户可以在Main方法里初始化程序，调用其它构件，或者创建新线程等等。 </p>
+            <p>修改使用titaDemo.dll的客户端代码如下： </p>
+<pre class= code>
+#include "titaDemo.h"
+using namespace Elastos;
+
+
+ECode ElastosMain(const BufferOf&lt;WString&gt; & args)
+{
+    IApplet* pApplet;  
+    ECode ec = TTita::New(&pApplet); //创建对象
+    if (FAILED(ec)) return ec;
+
+    ec = pApplet->Start(args);       //调用Start方法启动applet	
+    if (FAILED(ec)) {
+        pApplet->Release();
+        return ec;
+    }
+
+　　//等待applet结束，20秒超时，若超时则主动终止applet
+
+    WaitResult wr;
+    pApplet->WaitUntilFinished(20000, &wr);
+    if (wr == WaitResult_TimedOut) {
+        pApplet->Finish(AppletFinish_ASAP);
+        CApplet::Finish(AppletFinish_ASAP);
+    }
+
+    CObject::ReleaseAtThreadQuit(pApplet);
+    CApplet::Finish(AppletFinish_ASAP);
+
+    return NOERROR;
+}
+
+</pre>
+	        <p>运行结果如下: </p>
+<pre class= code>
+Tita.1
+Tita.2
+Tita.3
+Tita.4
+Tita.5
+Tita.6
+Tita.7
+Tita.8
+Tita.9
+Tita.10
+</pre>
+	        <p> </p>
+        <b>相关API和接口</b>
+            <p>1.<a class= "style1" href="..\..\..\..\speciality\Applet\CApplet.htm">CApplet和TApplet</a></p>
+            <p>2.<a class= "style1" href="..\..\..\..\speciality\Applet\IApplet.htm">IApplet接口方法介绍</a></p>
+            <p>3.<a class= "style1" href="..\..\..\..\speciality\Applet\IAppletEvents.htm">JAppletEvent回调接口方法介绍</a></p>
+
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

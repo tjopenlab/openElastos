@@ -1,0 +1,88 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Custom Marshaling/Unmarshaling</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Samples Of Using CAR Component Custom Marshaling/Unmarshaling Mechanism</h2>
+    <h3>Sample 1</h3>
+        <p>A custom component CCustomMarshalingSample0 is implemented in this sample.This component uses custom marshaling/unmarshaling mechanism to emulate CAR&nbsp;RPC standard marshaling/unmarshaling effects. Component CCustomMarshalingSample0 CAR file is defined as the following: </p>
+        <pre class="code">
+[
+    version(1.0), uuid(e5d06585-72f7-44cf-bc65-52ff48a80e48),
+uunm(cmsam0.dll)
+]
+component cmsample0
+{
+    … …
+
+    [ uuid(97fe7a0c-556a-4c29-a204-8a57062d1517) ]
+    class CCustomMarshalingSample0 {
+        … …
+        interface ICustomMarshal;
+    }
+}
+</pre>
+        <p>The following is ICustomMarshal interface implementation in component CCustomMarshalingSample0: </p>
+        <pre class="code">
+ECODE CCustomMarshalingSample0::GetClsid(/* [out] */ EzCLSID * pezCLSID)
+{
+    if (!pezCLSID || !pezCLSID->urn) return E_INVALIDARG;
+
+    // Copy CLSID of this component itself
+    *(CLSID*)pezCLSID = CLSID_CCustomMarshalingSample0.clsid;
+    memcpy(pezCLSID->urn, CLSID_CCustomMarshalingSample0.urn, 160);
+    return S_OK;
+}
+
+ECODE CCustomMarshalingSample0::CreateObject(
+    /* [in] */ IUnknown *pOriginProxy,
+    /* [out] */ IUnknown **ppNewProxy)
+{
+    ECODE ec;
+
+    if (!pOriginProxy || !ppNewProxy) return E_INVALIDARG;
+    *ppNewProxy = pOriginProxy;
+    return pOriginProxy->AddRef();
+}
+</pre>
+    <h3>Sample 2</h3>
+        <p>In this sample a custom component CCustomMarshalingSample1 is implemented, each time the instance of this component is remotely transfered a new instance is created. Also, the execution of this sample does not need any communication with the original component object. CAR file definition of component CCustomMarshalingSample1 is similar to the previous example CCustomMarshalingSample0.Please see the previous article for details.</p>
+        <p>The following is ICustomMarshal interface implementation of component CCustomMarshalingSample1: </p>
+        <pre class="code">
+ECODE CCustomMarshalingSample1::GetClsid(/* [out] */ EzCLSID * pezCLSID)
+{
+    if (!pezCLSID || !pezCLSID->urn) return E_INVALIDARG;
+
+    // Copy CLSID of this component itself
+    *(CLSID*)pezCLSID = CLSID_CCustomMarshalingSample0.clsid;
+    memcpy(pezCLSID->urn, CLSID_CCustomMarshalingSample0.urn, 160);
+    return S_OK;
+}
+
+ECODE CCustomMarshalingSample1::CreateObject(
+    /* [in] */ IUnknown *pOriginProxy,
+    /* [out] */ IUnknown **ppNewProxy)
+{
+    IID* iid = NULL;
+    ECODE ec;
+
+    if (!pOriginProxy || !ppNewProxy) return E_INVALIDARG;
+    *ppNewProxy = NULL;
+
+    ec = pOriginProxy->QueryInterface(IID_INTERFACE_INFO, (void**)&iid);
+    if (FAILED(ec)) return ec;
+
+    return ((IUnknown*)this)->QueryInterface(*iid, ppNewProxy);
+}
+</pre>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_setmode">_setmode</sample>
+    <title> _setmode </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+	<para>设置文件转换模式。</para>
+    </description>
+
+    <syntax>
+	<return_val>int</return_val>
+	<func_name>_setmode</func_name>
+	<parameters>
+	    <func_param>
+		<param_type>int</param_type>
+		<param_name>fd</param_name>
+		<param_note>
+		    <para>指定文件的句柄</para>
+		</param_note>
+	    </func_param>
+	    <func_param>
+		<param_type>int</param_type>
+		<param_name>mode</param_name>
+		<param_note>
+		    <para>新的转换模式</para>
+		</param_note>
+	    </func_param>
+	</parameters>
+    </syntax>
+
+    <return>
+	<para>函数调用成功，返回预先指定的文件转换模式。如果返回-1，表示出现错误，此时，如果errno被设置为EBADF，表示指定了无效的文件句柄；如果errno被设置为EINVAL，表示指定了无效的文件转换模式（既不是_O_TEXT，又不是_O_BINARY）。</para>
+    </return>
+
+    <remarks>
+	<para>_setmode函数将handle指定的文件设置为mode指定的转换模式。mode的值必须是以下两个变量之一，_O_TEXT或_O_BINARY。_O_TEXT设置文本（转换）模式，输入时的回车换行操作（CR-LF）被转换为简单的换行字符；输出时再将换行字符转换回CR-LF。_O_BINARY设置二进制（非转换）模式，这些转换被禁止。</para>
+	<para>_setmode 通常用于修改标准输入流和标准输出流的默认转换方式，但是它可以被用于任何文件。如果将_setmode应用于一个流的句柄，需要在对该流进行输入/输出操作前调用_setmode。</para>
+    </remarks>
+
+    <requirements>
+	<routine>
+	    <routine_name>_setmode</routine_name>
+	    <headerfile>io.h</headerfile>
+	    <compatibility>Windows 2000, Elastos </compatibility>
+	</routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _setmode.cpp: This program uses _setmode to change
+ * stdin from text mode to binary mode.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;io.h&gt;
+
+int main()
+{
+    int result;
+
+    /* Set &quot;stdin&quot; to have binary mode: */
+    result = _setmode(_fileno(stdin), _O_BINARY);
+    if (result == -1)
+        perror(&quot;Cannot set mode&quot;);
+    else
+        printf(&quot;&apos;stdin&apos; successfully changed to binary mode\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+&apos;stdin&apos; successfully changed to binary mode
+</result>
+
+   
+
+    <references>
+        <reference>
+            <ref_name>_creat</ref_name>
+            <ref_url>_wcreat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fopen</ref_name>
+            <ref_url>../stdio/_wfopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_open</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,58 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IReaderWriterLock\UpgradeToWriter">UpgradeToWriter</sample>
+<volume>同步</volume>
+<interface>IReaderWriterLock</interface><method> UpgradeToWriter </method>
+    <description>
+        <para>将已占有的读者锁升级为写者锁。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>指向<link url="../../../DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址,不能为空。如果方法调用成功，则返回WaitResult_OK；如果在等待获取读者锁期间被打断，则返回WaitResult_Interrupted</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值</td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数不正确</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_NOT_READER</td>
+	    	    <td>调用失败，调用线程并未以读者身份占有读写锁对象</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>本方法用于将已占有的读者锁升级为写者锁（即已经以读者身份占有读写锁对象的调用线程升级为以写者身份占有读写锁对象）。如果调用线程不能升级为以写者身份占有读写锁对象（例如：当读写锁对象被一个或多个读者占有时），调用线程将进入等待状态，直到读写锁对象被调用线程以写者身份成功获取到为止，才从本方法中成功返回。如果调用线程未以读者身份占有读写锁对象，则本方法将会返回失败。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

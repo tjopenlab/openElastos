@@ -1,0 +1,105 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib"> CSystem::WaitForRunningObject </sample>
+    <volume>命名服务函数</volume>
+    <title>CSystem::WaitForRunningObject</title>
+
+    <description>
+        <para>等待指定的命名服务被注册。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>[in]指定所等待的服务的名字，不能为空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Millisecond </param_type>
+                <param_name> timeout </param_name>
+                <param_note>
+                    <para>[in]指定等待的超时间隔，单位为毫秒</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> WaitResult *</param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>[out]指向<link url="../../../../../SoftwareDevelopmentManual/CoreServices/DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址，不能为空</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>指定的命名服务已被注册</td>
+            </tr>
+            <tr>
+                <td>WaitResult_OK</td><td>成功等待进程结束</td>
+            </tr>
+            <th>
+                <td>WaitResult_Interrupted</td><td>等待被打断</td>
+            </th>
+            <th>
+                <td>WaitResult_TimedOut</td><td>超时，在指定时间内进程还没退出</td>
+            </th>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>本例程用于等待指定的命名服务被注册。</para>
+        <para>如果所指定的命名服务未被注册，当前线程将进入等待状态。如果等待时间不超过指定的时间间隔，或是timeout参数为INFINITE，当前线程将一直处于等待状态，直到所指定的命名服务被注册，本例程才会成功返回；如果等待时间超过指定的时间间隔，也就是当返回值为NOERROR并且参数pResult得到值WaitResult_TimeOut时，当前线程将立即结束等待，返回。</para>
+        <para>如果timeout参数为零，则本方法将立即返回。此时，如果所指定的命名服务已被注册，则返回NOERROR；如果所指定的命名服务未被注册，则返回。 </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CSystem::RegisterRunningObject </ref_name>
+        <ref_url>RegisterRunningObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CSystem::FindRunningObject </ref_name>
+        <ref_url>FindRunningObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CSystem::UnregisterRunningObject </ref_name>
+        <ref_url>UnregisterRunningObject</ref_url>
+    </reference>
+    </references>
+
+</manpage>

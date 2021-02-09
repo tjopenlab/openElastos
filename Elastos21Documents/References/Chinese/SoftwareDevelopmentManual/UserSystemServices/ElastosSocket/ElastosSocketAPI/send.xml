@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\user_com_interface\elasock\sam01\client">send</sample>
+    <volume>elasock API</volume>
+    <title>send</title>
+    <routine_idx>ElastosSocketIndex.htm</routine_idx>
+
+    <description>
+        <para>向已连接套接口发送数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>[in]已连接的套接口。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const char *</param_type>
+                <param_name>buf</param_name>
+                <param_note>
+                    <para>[in]保存待发送数据的缓冲区。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>len</param_name>
+                <param_note>
+                    <para>[in]待发送数据的长度。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>flags</param_name>
+                <param_note>
+                    <para>[in]调用方式标志位，普通方式为0。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，返回所发送数据的总字节数（请注意对非阻塞套接口这个数字可能小于len中给出的大小）；否则返回SOCKET_ERROR。调用<link url="WSAGetLastError.htm">WSAGetLastError()</link>可获取相应的错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>send()向已连接的数据报或字节流套接口发送数据。对数据报类套接口，需注意待发送数据长度不应超过通讯子网的IP包最大长度。此最大长度由下层的物理设备单次所能传输的最大长度决定，并包括通讯子网的一些附加信息，并非用户实际所能传输的最大长度。比如以太网的最大长度为1500个字节，附加信息约占55个字节，因此用户实际能传输的最大长度为1445个字节。如果数据太长无法自动通过下层协议，数据将不被发送，并返回WSAEMSGSIZE错误。</para>
+        <para>成功完成send()调用并不意味着数据传送到达。</para>
+        <para>对阻塞套接口，如果传输缓冲区的剩余空间不够保存待发送数据，send()将阻塞。非阻塞套接口不会产生阻塞过程，调用send()的返回值可能在1到len之间，具体值取决于本地和远端主机的缓冲区大小。可调用<link url="select.htm">select()</link>来确定何时能够进一步发送数据。</para>
+        <para>允许将len参数设为0，函数仍将成功执行并返回0。如果是数据报套接口，将传送一个长度为0的数据报。</para>
+        <para>elasock不支持发送广播数据。</para>
+        <para>标志位flag用于设置函数的执行方式，一般情况下使用0。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>bind</ref_name>
+            <ref_url>bind</ref_url>
+        </reference>
+        <reference>
+            <ref_name>recv</ref_name>
+            <ref_url>recv</ref_url>
+        </reference>
+        <reference>
+            <ref_name>recvfrom</ref_name>
+            <ref_url>recvfrom</ref_url>
+        </reference>
+        <reference>
+            <ref_name>select</ref_name>
+            <ref_url>select</ref_url>
+        </reference>
+        <reference>
+            <ref_name>sendto</ref_name>
+            <ref_url>sendto</ref_url>
+        </reference>
+        <reference>
+            <ref_name>shutdown</ref_name>
+            <ref_url>shutdown</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+        <reference>
+            <ref_name>setsockopt</ref_name>
+            <ref_url>setsockopt</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

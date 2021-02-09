@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: CDatabase类参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>CDatabase类参考</h1><!-- doxytag: class="CDatabase" --><code>import &quot;<a class="el" href="database_8car-source.html">database.car</a>&quot;;</code>
+<p>
+
+<p>
+<a href="interface_c_database-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_c_database.html#36135f8ceaea444c175b8a97d30fa1c8">New</a> ([in] WString database,[out] IDatabase** pIDatabase)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">打开一个数据库文件。如果数据库不存在，则创建一个具有默认属性的新的数据库文件。  <a href="#36135f8ceaea444c175b8a97d30fa1c8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_c_database.html#9385a8f7dcd2b2d2af0b93064ae7f748">New</a> ([in] WString database,[in] Int32 pageSize,[in] Int32 cacheSize,[in] <a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19">DbEncoding</a> encoding,[out] IDatabase** pIDatabase)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">打开数据库文件。如果数据库不存在，则创建 一个具有指定编码方式，页面大小，缓冲区大小的数据库文件。  <a href="#9385a8f7dcd2b2d2af0b93064ae7f748"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l01462">1462</a>行定义。</p>
+<hr><h2>成员函数文档</h2>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] WString database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDatabase::New           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>database</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] IDatabase**&nbsp;</td>
+          <td class="paramname"> <em>pIDatabase</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+打开一个数据库文件。如果数据库不存在，则创建一个具有默认属性的新的数据库文件。
+<p>
+如果文件名为":memory:",则创建一个私有的内存数据库。 这个数据库被关闭时将销毁。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>database</em>&nbsp;</td><td>- 数据库文件名。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pIDatabase</em>&nbsp;</td><td>- 新建的IDatabase对象。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="9385a8f7dcd2b2d2af0b93064ae7f748"></a><!-- doxytag: member="CDatabase::constructor" ref="9385a8f7dcd2b2d2af0b93064ae7f748" args="([in] WString database,[in] Int32 pageSize,[in] Int32 cacheSize,[in] DbEncoding encoding)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDatabase::New           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>database</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>pageSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>cacheSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] <a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19">DbEncoding</a>&nbsp;</td>
+          <td class="paramname"> <em>encoding</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] IDatabase**&nbsp;</td>
+          <td class="paramname"> <em>pIDatabase</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+打开数据库文件。如果数据库不存在，则创建 一个具有指定编码方式，页面大小，缓冲区大小的数据库文件。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>database</em>&nbsp;</td><td>- 数据库文件名。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pageSize</em>&nbsp;</td><td>- 页的大小，这个值必须是介于512和8192之间并且是2的幂。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>cacheSize</em>&nbsp;</td><td>- 每次在内存中为数据库分配的最大页数。 硬盘中每页为1K，内存中每页为1.5K. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>encoding</em>&nbsp;</td><td>- 数据库的编码方式。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pIDatabase</em>&nbsp;</td><td>- 新建的IDatabase对象。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<hr>该接口的文档由以下文件生成：<ul>
+<li><a class="el" href="database_8car-source.html">database.car</a></ul>
+<script>footer("chinese")</script>
+</body>
+</html>

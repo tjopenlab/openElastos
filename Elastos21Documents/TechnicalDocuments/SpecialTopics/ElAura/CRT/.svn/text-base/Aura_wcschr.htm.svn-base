@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<title>
+Aura_wcschr
+</title>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<H3>Aura_wcschr</H3>
+</div>
+<p>Find a character in a string.</p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">EXTERN_C wchar_t * CDECL Aura_wcschr
+                    (
+                 </TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">const char*</TD>
+<TD class="param">string<span style="color:black; font-size:110%">,</span></TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">int</TD>
+<TD class="param">c</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">);</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<H4>Parameters</H4>
+<DL><DT class="param" style="color:#222222;margin-left:42">string</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">Null-terminated source string.<BR /><BR />
+</font></DD>
+<DT class="param" style="color:#222222;margin-left:42">c</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">Character to be located.<BR /><BR />
+</font></DD>
+</DL>
+<DL></DL>
+<h4>Return Value</h4>
+<p>Both functions returns a pointer to the first occurrence of c in string or NULL if c is not found.</p>
+<h4>Remarks</h4>
+<p>The strchr function finds the first occurrence of c in string or it returns NULL if c is not found. The null-terminating character is included in the search.</p>
+<p>wcschr is a wide-character version of strchr. The arguments and return value of wcschr are wide-character strings. Both functions behave identically otherwise.</p>
+<h4>Requirements</h4>
+<table class="methodtbl" cellspacing="0" cellpadding="0">
+<THEAD class="head">
+<TD width="20%" class="cell">
+Routine</TD>
+<TD width="20%" class="cell">
+Required header</TD>
+<TD class="cell">
+Compatibility</TD>
+</THEAD>
+<TR>
+<TD class="cell"><B>strchr</B></TD>
+<TD class="cell">string.h</TD>
+<TD class="cell">ANSI, Windows 2000, Elastos 2.0</TD>
+</TR>
+<TR>
+<TD class="cell"><B>wcschr</B></TD>
+<TD class="cell">string.h</TD>
+<TD class="cell">ANSI, Windows 2000, Elastos 2.0</TD>
+</TR>
+</table>
+<p></p>
+<table class="methodtbl" cellspacing="0" cellpadding="0">
+<THEAD class="head">
+<TD width="30%" class="cell">
+                Library
+            </TD>
+<TD class="cell">
+                Description
+            </TD>
+</THEAD>
+<TR>
+<TD class="cell">
+                libc.lib
+            </TD>
+<TD class="cell">
+                Single thread static library
+            </TD>
+</TR>
+<TR>
+<TD class="cell">
+                elacrt.lib
+            </TD>
+<TD class="cell">
+                Import library for elacrt.dll
+            </TD>
+</TR>
+</table>
+<h4>Example</h4>
+<p><script>showButton_e()</script></p>
+<pre class="codeview">
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+wchar_t ch = L'r';
+wchar_t string[] = L"The quick brown dog jumps over the lazy fox";
+wchar_t fmt1[] = L"         1         2         3         4         5";
+wchar_t fmt2[] = L"12345678901234567890123456789012345678901234567890";
+
+int __cdecl wmain()
+{
+    wchar_t *pdest;
+    int result;
+    wprintf(L"String to be searched:\n\t\t%s\n", string);
+    wprintf(L"\t\t%s\n\t\t%s\n\n", fmt1, fmt2);
+
+    wprintf(L"Search wchar_t:\t%c\n", ch);
+    pdest = wcschr(string, ch);
+    result = pdest - string + 1;
+    if (pdest != NULL)
+        wprintf(L"Result:\t\tfirst %c found at position %d\n\n", ch, result);
+    else
+        wprintf(L"Result:\t\t%c not found\n", ch);
+
+    return 0;
+}
+</pre>
+<h4>Output</h4>
+<pre class="codeview">
+String to be searched:
+                The quick brown dog jumps over the lazy fox
+                         1         2         3         4         5
+                12345678901234567890123456789012345678901234567890
+
+Search char:   r
+Result:        first r found at position 12
+</pre>
+</DIV>
+</BODY>
+</HTML>
+

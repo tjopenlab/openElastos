@@ -1,0 +1,150 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\gen\_utime">_utime</sample>
+    <title>_utime, _wutime</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> gen_idx.htm </routine_idx>
+
+    <description>
+        <para>Sets the file last access and modification times by filename.</para>
+    </description>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_utime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char *</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>Filename or path.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>struct _utimbuf *</param_type>
+                <param_name>times</param_name>
+                <param_note>
+                    <para>Pointer to stored time values.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wutime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t *</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+            <func_param>
+                <param_type>struct _utimbuf *</param_type>
+                <param_name>times</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of  these functions returns 0 if successful. A return value of -1 indicates an error, in which case error number is set to one of  the following values:</para>
+        <table>
+    	    <th>
+    	        <td>Error number</td>
+    	        <td>Description</td>
+    	    </th>
+            <tr>
+                <td>EACCES</td>
+                <td>Path specifies a directory or read-only file.</td>
+            </tr>
+            <tr>
+                <td>EINVAL</td>
+                <td>Invalid times argument.</td>
+            </tr>
+            <tr>
+                <td>EMFILE</td>
+                <td>Too many open files.</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>Path or filename not found.</td>
+            </tr>
+   	    </table>
+    </return>
+
+    <remarks>
+        <para>The _utime function sets the modification and last access times for the file specified by filename. The process must have write access to the file in order to change the time. If times is a NULL pointer, the modification time is set to the current local time. Otherwise, times must point to a structure of type _utimbuf.</para>
+        <para>_utime is identical to _futime except that the filename argument of _utime is a filename or a path to a file, rather than a file descriptor to an open file.</para>
+        <para>_wutime is a wide-character version of _utime; the filename argument to _wutime is a wide-character string. These functions behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_utime</routine_name>
+            <headerfile>utime.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wutime</routine_name>
+            <headerfile>utime.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _utime.cpp: TThis program uses _utime to set the
+ * file-modification time to the current time.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;utime.h&gt;
+
+int main()
+{
+    if (_utime(&quot;_utime.exe&quot;, NULL) == -1)
+        printf(&quot;_wutime failed\n&quot;);
+    else
+        printf(&quot;File time modified\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File time modified
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_ftime</ref_name>
+            <ref_url>../stdtime/_ftime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_futime</ref_name>
+            <ref_url>_futime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_fstat</ref_name>
+            <ref_url>../stat/_fstat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>localtime</ref_name>
+            <ref_url>../stdtime/localtime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_stat</ref_name>
+            <ref_url>../stat/_stat</ref_url>
+        </reference>
+    </references>
+
+</manpage>

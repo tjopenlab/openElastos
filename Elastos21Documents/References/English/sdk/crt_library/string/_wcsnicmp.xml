@@ -1,0 +1,141 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_wcsnicmp">_wcsnicmp</sample>
+    <title>_strnicmp, _wcsnicmp</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Compares characters of two strings without regard to case.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_strnicmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string1</param_name>
+                <param_note>
+                    <para>NULL-terminated string to compare.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string2</param_name>
+                <param_note>
+                    <para>NULL-terminated string to compare.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Number of characters to compare.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wcsnicmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string1</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string2</param_name>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Indicates the relationship between the substrings as follows.</para>
+        <table>
+            <th>
+                <td>Return value</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td><![CDATA[< 0]]></td>
+                <td>string1 substring less than string2 substring.</td>
+            </tr>
+            <tr>
+                <td><![CDATA[= 0]]></td>
+                <td>string1 substring identical to string2 substring.</td>
+            </tr>
+            <tr>
+                <td><![CDATA[> 0]]></td>
+                <td>string1 substring greater than string2 substring.</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The _strnicmp function lexicographically compares, at most, the first count characters of string1 and string2. The comparison is performed without regard to case; _strnicmp is a case-insensitive version of strncmp. The comparison ends if a terminating null character is reached in either string before count characters are compared.If the strings are equal when a terminating null character is reached in either string before count characters are compared, the shorter string is lesser.</para>
+        <para>Two strings containing characters located between 'Z' and 'a' in the ASCII table ('[', '\', ']', '^', '_', and '`') compare differently, depending on their case.For example, the two strings "ABCDE" and "ABCD^" compare one way if the comparison is lowercase ("abcde" &gt; "abcd^") and the other way ("ABCDE" &lt; "ABCD^") if it is uppercase. </para>
+        <para>_wcsnicmp is wide-character version of _strnicmp.It is also the case-insensitive version of _strnicmp. The arguments and return value of _wcsnicmp are wide-character strings. These two functions behave identically otherwise. </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_strnicmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wcsnicmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example></example>
+
+
+
+    <references>
+        <reference>
+            <ref_name> wcscmp </ref_name>
+            <ref_url> wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcscpy </ref_name>
+            <ref_url> wcscpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncat </ref_name>
+            <ref_url> wcsncat</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncmp </ref_name>
+            <ref_url> wcsncmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncpy </ref_name>
+            <ref_url> wcsncpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strspn </ref_name>
+            <ref_url> strspn  </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strcspn </ref_name>
+            <ref_url> strcspn  </ref_url>
+        </reference>
+    </references>
+
+</manpage>

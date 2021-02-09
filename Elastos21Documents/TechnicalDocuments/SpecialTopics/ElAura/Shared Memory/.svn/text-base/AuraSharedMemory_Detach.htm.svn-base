@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<TITLE>
+AuraSharedMemory_Detach
+</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<h3>
+AuraSharedMemory_Detach
+</h3>
+<p></p>
+</div>
+<p>
+       		Detaches the shared memory from process space.
+        </p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">
+AURA_API AuraSharedMemory_Detach
+
+            (</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">)
+                    
+                ;</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return Value</TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">Function succeeds in detaching the shared memory from process space.</TD>
+</TR>
+<TR><TD class="cell">E_INVALID_OPERATION</TD>
+<TD class="cell">Invalid operation</TD>
+</TR>
+</table></p>
+<h4>Remarks</h4>
+<p>
+			When users do not need to operate on shared memory, this shared memory can be detached from process space
+			by the method <b>Detach</b>
+, thus thread in the process can not access this memory block again. Calling this
+			method does not cause any effect on other processes using this shared memory block.
+		</p>
+<p>
+			If users have not called ISharedMemory::Attach</a> to map this shared memory to
+			process space before calling <b>Detach</b>
+, it will return E_INVALID_OPERATION.
+		</p>
+<h4>Requirements</h4>
+<p>
+<table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>
+Windows 2000 or later; Elastos2.0 or later
+</td>
+<td></td>
+</tr>
+</table></p>
+<script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>

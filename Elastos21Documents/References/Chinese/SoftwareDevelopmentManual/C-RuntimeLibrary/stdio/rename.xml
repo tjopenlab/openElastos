@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\rename">rename</sample>
+    <title>rename, wrename </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>重新命名文件或路径名。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>rename</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>oldname</param_name>
+                <param_note>
+                    <para>指向旧文件或路径名的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>newname</param_name>
+                <param_note>
+                    <para>指向新文件或路径名的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>wrename</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>oldname</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>newname</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>成功返回0，出错则返回非0值，并将errno设为如下值：</para>
+        <table>
+            <th>
+                <td>errno值</td>
+                <td>描述</td>
+            </th>
+	        <tr>
+	    	    <td>EACCES</td>
+                <td>新名字代表的文件或路径已经存在，或者是因为路径错误而不能创建，或者旧名字是个路径，而新名字在不同的子目录下。</td>
+	        </tr>
+	        <tr>
+	    	    <td> ENOENT</td>
+            	<td>旧的文件或者路径名不存在。</td>
+	        </tr>
+	        <tr>
+	    	    <td>EINVAL</td>
+            	<td>名字中含有非法字符。</td>
+	        </tr>
+	    </table>
+    </return>
+
+    <remarks>
+        <para>rename函数用新文件或路径名去替代旧文件或路径名。旧文件或路径名必须是一个存在的文件或路径。新文件或路径名必须是一个不存在的文件或路径。rename函数能移动文件到不同的目录或者设备中，但不能移动目录。目录只能被重命名，而不能移动。</para>
+        <para>wrename是rename的宽字符版本；_wrename的参数是宽字符串；除此之外，_wrename和rename是一样的。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>rename</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wrename</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* rename.cpp: This program attempts to rename a file
+ * named rename.tmp to newname.tmp. For this operation
+ * to succeed, a file named rename.tmp must exist and
+ * a file named newname.tmp must not exist.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int  result;
+    char oldfile[] = &quot;rename.tmp&quot;, newfile[] = &quot;newname.tmp&quot;;
+
+    /* Attempt to rename file: */
+    result = rename(oldfile, newfile);
+    if (result != 0)
+        printf(&quot;Could not rename &apos;%s&apos;\n&quot;, oldfile);
+    else
+        printf(&quot;File &apos;%s&apos; renamed to &apos;%s&apos;\n&quot;, oldfile, newfile);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File &apos;rename.tmp&apos; renamed to &apos;newname.tmp&apos;
+</result>
+
+</manpage>

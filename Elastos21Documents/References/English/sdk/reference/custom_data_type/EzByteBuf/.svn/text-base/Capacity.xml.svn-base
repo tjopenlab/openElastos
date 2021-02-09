@@ -1,0 +1,57 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzByteBuf\Capacity">capacity</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzByteBuf    </interface>
+    <method> Capacity </method>
+
+    <description>
+        <para> Gets the size of current buffer.</para>
+    </description>
+    <syntax>
+        <return_val> int </return_val>
+    <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>Returns the size of buffer.</para>
+    </return>
+
+<example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzByteBuf_<200> buf;
+    int capa;
+
+    capa = buf.Capacity();
+    printf("capacity: %d bytes.", capa);
+
+    return 0;
+}
+]]></pre></example>
+
+<result><![CDATA[
+capacity: 200 bytes.
+]]></result>
+
+    <references>
+    <reference>
+        <ref_name> Used </ref_name>
+        <ref_url> Used </ref_url>
+    </reference>
+    <reference>
+        <ref_name> SetUsed </ref_name>
+        <ref_url> SetUsed </ref_url>
+    </reference>
+    </references>
+
+</manpage>

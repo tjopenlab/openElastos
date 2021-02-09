@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>Phone Enumerations </volume>
+    <types> BarringCondition </types>
+    <description>
+        <para>
+            呼叫限制条件枚举类型。
+        </para>
+    </description>
+<enum> 
+          <enum_member>    <mem_name> BarringCondition_IN </mem_name>    <mem_value>0x1</mem_value>    <mem_description>限制所有呼入：移动电话就只能拨出呼叫，而不能接听电话，即只能打出，不能打进；只能发送而不能接收短信。 </mem_description>    </enum_member>  
+          <enum_member>    <mem_name> BarringCondition_ALL_IN </mem_name>    <mem_value>0x2</mem_value>    <mem_description>？    </mem_description>    </enum_member>  
+          <enum_member>    <mem_name> BarringCondition_IN_ROAM </mem_name>    <mem_value>0x4</mem_value>    <mem_description>限制漫游时所有呼入：在国际漫游过程中，只能拨打电话而不接听电话。如用户在漫游时不愿接听电话时可以通过使用此项服务进行呼入限制。国内漫游时的呼入限制功能现仍未实现。 </mem_description>    </enum_member>  
+          <enum_member>    <mem_name> BarringCondition_IN_NOTINSIM </mem_name>    <mem_value>0x8</mem_value>    <mem_description>限制陌生号码呼入：移动电话不能接收来自陌生号码的电话或短信。(注：陌生号码为不存在于SIM卡中的号码)    </mem_description>    </enum_member>  
+          <enum_member>    <mem_name> BarringCondition_OUT </mem_name>    <mem_value>0x10</mem_value>    <mem_description>限制所有呼出：移动电话只能接听来电呼叫，而不能拨打电话，即只能打进，不能打出(拨打免费电话除外)；只能接收而不能发送短信。   </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> BarringCondition_ALL_OUT</mem_name>    <mem_value>0x20</mem_value>    <mem_description>？    </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> BarringCondition_OUT_INT</mem_name>    <mem_value>0x40</mem_value>    <mem_description>限制所有国际呼出：限制移动电话的国际长途拨号权，避免被人盗打国际长途电话，造成经济损失。可以发送短信和接收短信. </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> BarringCondition_OUT_INT_EXPT_HOME</mem_name>    <mem_value>0x80</mem_value>    <mem_description>限制漫游时除归属国外的国际呼出：国际漫游时，激活此项功能后，只能拨打到中国的国际长途电话，而不能拨打其他国家的国际长途电话。  </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> BarringCondition_All</mem_name>    <mem_value>0xFF </mem_value>    <mem_description>限制所有呼入以及呼出。     </mem_description>    </enum_member>    
+
+</enum>
+</manpage>

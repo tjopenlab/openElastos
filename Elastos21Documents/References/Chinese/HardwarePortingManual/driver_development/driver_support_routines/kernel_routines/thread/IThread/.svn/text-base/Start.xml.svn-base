@@ -1,0 +1,52 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>线程与调度</volume>
+<interface>IThread</interface><method> Start </method>
+    <description>
+        <para>
+            启动线程，从线程入口点开始执行。
+        </para>
+    </description>
+    <syntax_nopara>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值 </td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>成功启动线程</td>
+            </tr>
+\            <tr>
+                <td>E_PROCESS_ALREADY_EXITED</td>
+                <td>进程已退出</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+		<para>
+		    用<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/ProcessThread/Function/CThread/New.htm">CThread::New</link>创建一个线程。
+		</para>
+        <para>
+            本方法被调用后，新的线程将启动并进入ThreadState_Running状态。
+        </para>
+        <para>
+            当线程已经被启动，方法将不起作用并返回S_FALSE；当线程已经结束，方法将不起作用并返回E_FAIL。
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,28 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>CAR构件继承机制特性</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+        <h2>CAR构件继承机制特性</h2>
+        <p>构件继承机制实现类似C++的虚函数特性。对应C++语言中的基类、派生类、虚函数等概念，CAR构件继承机制有<a class="style1" href ="basic_concept.htm">基构件</a>、<a class="style1" href ="basic_concept.htm">派生构件</a>、<a class="style1" href ="basic_concept.htm">虚接口</a>等。基构件调用虚接口方法可以跳到相应派生构件的接口方法中执行，派生构件可以直接重载和调用继承于基构件的接口方法。</p>
+        <ol>
+            <li>当基类（这里指CAR文件中定义的构件类，下同）的一个接口是“虚接口”（CAR接口定义中有<a class="style1" href ="basic_concept.htm">virtual</a>属性），那么其派生类将可以覆盖(override)接口的所有方法。实现了构件级别的多态性。
+            <li>基类是一个构件，具有构件的特性，包括封装性。基类不须暴露其内部结构。
+            <li>基类只要接口不变，无论怎样升级更新或改变内部结构，派生类都不需要重新编译。
+            <li>实现了构件间的迟绑定。完全遵循COM规范。
+            <li>接口定义时支持<a class="style1" href ="basic_concept.htm">public</a>、<a class="style1" href ="basic_concept.htm">private</a>、<a class="style1" href ="basic_concept.htm">protected</a>关键字，类似C++的相应关键字，用于指示该接口是否提供给外界或派生类使用。
+            <li><font color="red">支持多层次不支持多重“继承”</font>
+        </ol>
+
+<script>footer("chinese")</script>
+</body>
+</html>

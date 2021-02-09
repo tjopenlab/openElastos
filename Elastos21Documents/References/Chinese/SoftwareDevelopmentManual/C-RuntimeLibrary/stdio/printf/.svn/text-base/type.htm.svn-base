@@ -1,0 +1,213 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>type信息段说明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>Type信息段说明</h2>
+    <p>type是唯一必需的格式化信息段，它放在可选格式化信息段后，type决定相应的信息段是一个字符，字符串，还是数字。<a class="style1" href="../wprintf.htm">printf</a>函数使用的C和S类型及c和s类型参数，是微软的扩展而不与ANSI兼容</p>
+    <p>printf函数Type信息段参数表</p>
+    <table>
+        <thead>
+            <td>参数</td><td>类型</td><td>输出的格式化</td>
+        </thead>
+        <tr>
+            <td>
+                c
+            </td>
+            <td>
+                int或wint_t型
+            </td>
+            <td>
+                当使用printf函数时，指定为单字节字符格式，当使用wprintf函数时，指定为宽字符格式
+            </td>
+        </tr>
+        <tr>
+            <td>
+                C
+            </td>
+            <td>
+                int或wint_t型
+            </td>
+            <td>
+                当使用printf函数时，指定为宽字符格式，当使用wprintf函数时，指定为单字节字符格式
+            </td>
+        </tr>
+        <tr>
+            <td>
+                d
+            </td>
+            <td>
+                int型
+            </td>
+            <td>
+                带符号的十进制整数
+            </td>
+        </tr>
+        <tr>
+            <td>
+                i
+            </td>
+            <td>
+                int型
+            </td>
+            <td>
+                带符号的十进制整数
+            </td>
+        </tr>
+        <tr>
+            <td>
+                o
+            </td>
+            <td>
+                int型
+            </td>
+            <td>
+                不带符号的八进制整数
+            </td>
+        </tr>
+        <tr>
+            <td>
+                u
+            </td>
+            <td>
+                int型
+            </td>
+            <td>
+                不带符号的十进制整数
+            </td>
+        </tr>
+        <tr>
+            <td>
+                x
+            </td>
+            <td>
+                int型
+            </td>
+            <td>
+                不带符号的十六进制整数，使用“abcdef”
+            </td>
+        </tr>
+        <tr>
+            <td>
+                X
+            </td>
+            <td>
+                int型
+            </td>
+            <td>
+                不带符号的十六进制整数，使用“ABCDEF”
+            </td>
+        </tr>
+        <tr>
+            <td>
+                e
+            </td>
+            <td>
+                double型
+            </td>
+            <td>
+                带符号值，格式为[-]d.dddd e [sign]ddd，d表示一个十进制的数字，dddd表示小数点后一个或多个数字，ddd表示精确显示三个十进制数字，sign表示正负号
+            </td>
+        </tr>
+       <tr>
+            <td>
+                E
+            </td>
+            <td>
+                double型
+            </td>
+            <td>
+                与e格式相同，格式为[-]d.dddd E [sign]ddd
+            </td>
+        </tr>
+        <tr>
+            <td>
+                f
+            </td>
+            <td>
+                double型
+            </td>
+            <td>
+                带符号值，格式为[-]dddd.dddd，dddd表示一个或多个十进制数字，小数点前的数字由实际数字决定，小数点后的数字由所需精度决定
+            </td>
+        </tr>
+         <tr>
+            <td>
+                g
+            </td>
+            <td>
+                double型
+            </td>
+            <td>
+                以f或e格式显示的带符号值，这样令值看起来更紧凑。仅当指数值小于-4或大于等于精度参数时使用e格式。末尾的0自动被删除，且仅当小数位有一个或多个数字时，才加上小数点
+            </td>
+        </tr>
+        <tr>
+            <td>
+                G
+            </td>
+            <td>
+                double型
+            </td>
+            <td>
+                与g格式相同，仅当指数值小于-4或大于等于精度参数时使用E格式
+            </td>
+        </tr>
+        <tr>
+            <td>
+                n
+            </td>
+            <td>
+                整数型指针
+            </td>
+            <td>
+                成功写入stream或buffer字符的个数；该整数值存储在参数指定的地址里
+            </td>
+        </tr>
+        <tr>
+            <td>
+                p
+            </td>
+            <td>
+                void型指针
+            </td>
+            <td>
+                以十六进制格式输出指定参数的地址
+            </td>
+        </tr>
+         <tr>
+            <td>
+                s
+            </td>
+            <td>
+                String型
+            </td>
+            <td>
+                当使用printf函数时，指定为单字节字符串格式，当使用wprintf函数时，指定为宽字符串格式。字符显示到第一个空字符为止，或者到显示到精度值指定到的地方
+            </td>
+        </tr>
+        <tr>
+            <td>
+                S
+            </td>
+            <td>
+                String型
+            </td>
+            <td>
+                当使用printf函数时，指定为宽字符串格式，当使用wprintf函数时，指定为单字节字符串格式。字符显示到第一个空字符为止，或者到显示到精度值指定到的地方
+            </td>
+        </tr>
+    </table>
+
+<script>footer("KoreTide")</script>
+</body>
+
+</html>

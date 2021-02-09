@@ -1,0 +1,140 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\libpsx\getopt">getopt</sample>
+    <title>getopt</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> libp_idx.htm </routine_idx>
+
+    <description>
+        <para>The getopt utility is used to break up options in command lines for easy parsing by shell procedures and to check for legal options. Optstring is a string of recognized option letters; if a letter is followed by a colon, then the option is expected to have an argument which may or may not be separated from it by white space. The special option '--' is used to delimit the end of the options or recognize it if used explicitly. The shell arguments ($1 $2 ...) are reset so that each option is preceded by a '-' and in its own shell argument ; each option argument is also in its own shell argument.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>getopt</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>nargc</param_name>
+                <param_note>
+                    <para>Number of arguments in command line parameter.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char**</param_type>
+                <param_name>nargv</param_name>
+                <param_note>
+                    <para>Pointer to command line parameter.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char**</param_type>
+                <param_name>ostr</param_name>
+                <param_note>
+                    <para>Pointer to legal options' aggregate.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>struct_opt*</param_type>
+                <param_name>opt_data</param_name>
+                <param_note>
+                    <para>Pointer to the structure of information. The value of opt_data. pErr is the path of the wrong file and error information, the value of opt_data. optarg is the current option's argument.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If the letter after "-" is a legal option, then the program returns the letter; if the letter after "-" isn't a legal option, then the program returns "?"; if the read argument isn't followed by "-" or the read argument is "--", then it returns END_OF_PARA.</para>
+    </return>
+
+    <remarks>
+        <para>getopt requires a legal options' aggregate, for example, "a:bcd:".</para>
+        <para>The aggregate indicates that if a letter is followed by a colon, the option is expected to have an argument which may or may not be separated from it by white space. The special option '--' is used to delimit the end of the options.</para>
+        <para>getopt can parse the option which have "-" ahead. But there is a exception, if an option have no argument, like "c", then "-cb" is legal, it is equal to "-c -b"; "-cd123" is legal too; it is equal to "-c -d123".</para>
+        <para>The following are legal options: (1)cmd -aopg -b -c -d 123 file file (2)cmd -a opg -b -cd123 file file (3)cmd -b -aopg file file (4)cmd -a opg -b -d123 -- file file</para>
+        <para>Note: Currently, this function is not realized in Windows 2000.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>getopt</routine_name>
+            <headerfile>getopt.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* getopt.cpp: This program uses getopt to analyse the command line, and check
+ * these option.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;getopt.h&gt;
+
+struct_opt opt_data = {1, 1, 0, NULL, NULL};
+int main(int argc, char* argv[])
+{
+    int c, num = 1;
+    if (argc &lt; 2) {
+        printf(&quot;Usage %s output-file\n&quot;, argv[0]);
+        return 1;
+    }
+
+    while ((c = getopt(argc, argv, &quot;a:bcd:&quot;, &amp;opt_data)) != END_OF_PARA) {
+        switch (c) {
+            case &apos;a&apos;:
+                printf(&quot;the input option %d is %c !\n&quot;, num++, c);
+                break;
+            case &apos;b&apos;:
+                printf(&quot;the input option %d is %c !\n&quot;, num++, c);
+                break;
+            case &apos;c&apos;:
+                printf(&quot;the input option %d is %c !\n&quot;, num++, c);
+                break;
+            case &apos;d&apos;:
+                printf(&quot;the input option %d is %c !\n&quot;, num++, c);
+                break;
+            case &apos;?&apos;:
+                printf(&quot;the input option %d is wrong!\n&quot;, num++);
+                printf(&quot;error: %s\n&quot;, opt_data.pErr);
+                break;
+            default:
+                printf(&quot;error!\n&quot;);
+                break;
+        }
+        if (opt_data.optarg) {
+            printf(&quot;the argument is %s.\n&quot;, opt_data.optarg);
+            opt_data.optarg = NULL;
+        }
+    }
+    printf(&quot;%s \n&quot;, &quot;getopt testing is over!&quot;);
+
+    return 0;
+}
+
+
+/* getopt -a 123 -b c */
+</pre>
+    </example>
+<result>
+the input option 1 is a !
+the argument is 123.
+the input option 2 is b !
+getopt testing is over!
+</result>
+
+
+
+</manpage>

@@ -1,0 +1,87 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\float\_finite">_finite</sample>
+    <title>_finite</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> float_idx.htm </routine_idx>
+
+    <description>
+        <para>Determines whether given double-precision floating point value is finite.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_finite</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>Double-precision floating-point value</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_finite returns a nonzero (TRUE) if its argument x is not infinite.It returns 0 (FALSE) if the argument is infinite or a NAN.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>_finite</routine_name>
+            <headerfile>float.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _finite.cpp: This program uses _finite function to verify
+ * x is finite.
+ */
+
+#include &lt;float.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;elastos.h&gt;
+
+int main()
+{
+    double x;
+    Boolean TF;
+
+    x = -14.87654321;
+    if (_finite(x))
+        TF = TRUE;
+    else
+        TF = FALSE;
+    printf(&quot;For this x, is %s\n&quot;, TF ? &quot;finite&quot; : &quot;infinite&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+For this x, is finite
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_isnan</ref_name>
+            <ref_url>_isnan</ref_url>
+        </reference>
+    </references>
+
+</manpage>

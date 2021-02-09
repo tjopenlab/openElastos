@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>CPhoneBook Functions</volume>
+<interface>IPhoneBook</interface><method> GetAllContacts </method>
+    <description>
+        <para>获取所有联系人记录。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> <link url="../Enum/StorageLocation.htm">StorageLocation</link> </param_type>
+                <param_name> location </param_name>
+                <param_note>
+                    <para>联系人的存储位置。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> groupId </param_name>
+                <param_note>
+                    <para>联系人所在的组id。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> <link url="../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/ProcessThread/IObjectEnumerator.htm">IObjectEnumerator</link>** </param_type>
+                <param_name> contacts </param_name>
+                <param_note>
+                    <para>指向联系人(Contacts)对象枚举器接口指针的指针，用于获取一组IContacts接口指针列表。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功调用该方法</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>    
+</remarks>
+<references>
+    <reference>
+        <ref_name>Contacts构件模块介绍</ref_name>
+        <ref_url>../../Contacts</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CPhoneBook构件类介绍</ref_name>
+        <ref_url>../CPhoneBook</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IPhoneBook接口方法列表</ref_name>
+        <ref_url>../IPhoneBook</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetAllGroups</ref_name>
+        <ref_url>GetAllGroups</ref_url>
+    </reference>
+</references>
+</manpage>

@@ -1,0 +1,97 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\direct\_chdir">_chdir</sample>
+    <title> _chdir, _wchdir</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> dir_idx.htm </routine_idx>
+
+    <description>
+        <para>Changes the current working directory.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_chdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>dirname</param_name>
+                <param_note>
+                    <para>Pointer to the path of new directory.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wchdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>dirname</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns a value of 0 if successful. A return value of -1 indicates that the specified path could not be found, in which case errno is set to ENOENT.</para>
+    </return>
+
+    <remarks>
+            <para> The _chdir function changes the current working directory to the directory specified by dirname. The dirname parameter must refer to an existing directory. This function can change the current working directory on any drive and if a new drive letter is specified in dirname, the default drive letter is changed as well. For example, if A is the default drive letter and \BIN is the current working directory, then the following call changes the current working directory for drive C and establishes C as the new default drive: </para>
+            <para> _chdir("c:\\temp"); </para>
+            <para> When you use the optional backslash character (\) in paths, you must place two backslashes (\\) in a C string literal to represent a single backslash (\).</para>
+            <para> _wchdir is a wide-character version of _chdir; the dirname argument to _wchdir is a wide-character string. __wchdir and __chdir behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_chdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wchdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _chdir.cpp: This program uses the _chdir function to verify
+ * that a given directory exists.
+ */
+
+#include &lt;direct.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    if (_chdir(&quot;\\Elastos21&quot;))
+       printf(&quot;Unable to locate the directory: %s\n&quot;, &quot;\\Elastos21&quot;);
+    else
+       printf(&quot;this directory: %s exists\n&quot;, &quot;\\Elastos21&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+this directory: \Elastos21 exists
+</result>
+
+
+
+</manpage>

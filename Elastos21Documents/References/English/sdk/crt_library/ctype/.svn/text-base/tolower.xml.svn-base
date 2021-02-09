@@ -1,0 +1,90 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\tolower">tolower</sample>
+    <title>tolower towlower</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>The tolower function converts an uppercase letter to the corresponding lowercase letter. For single c character locale the value of the argument is represented as an unsigned character or the value of EOF.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>tolower</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>input integer</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If the argument is an uppercase letter, the tolower function returns the corresponding lowercase letter if there is one; otherwise the argument is returned unchanged.</para>
+    </return>
+
+    <remarks>
+        <para>If possible and appropriate each of these routines converts a given uppercase letter to a lowercase letter .</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>tolower</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* tolower.cpp: This program use tolower converts a english characters
+ * string to a lowercase string.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+char msg[] = &quot;THESE letters will BE in lower cases\r\n&quot;;
+char *p;
+
+int main()
+{
+    printf(&quot;%s&quot;, msg);
+
+    /* Reverse case of message. */
+    for (p = msg; *p; p++)
+        putchar(tolower(*p));
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+THESE letters will BE in lower cases
+these letters will be in lower cases
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>toupper</ref_name>
+            <ref_url>toupper</ref_url>
+        </reference>
+    </references>
+
+</manpage>

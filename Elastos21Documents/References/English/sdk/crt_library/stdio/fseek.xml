@@ -1,0 +1,143 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fseek">fseek</sample>
+    <title>fseek</title>
+    <volume>C Run-Time Library Functions</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>The fseek function sets the file position indicator for the stream pointed to by stream. The new position, measured in bytes, is obtained by adding offset bytes to the position specified by origin. If origin is set to SEEK_SET, SEEK_CUR, or SEEK_END, the offset is relative to the start of the file, the current position indicator or end-of-file, respectively. A successful call to the fseek function clears the end-of-file indicator for the stream and undo any effects of the <link class="style1" url="../stdio/ungetwc.htm">ungetc</link> and <link class="style1" url="../stdio/ungetwc.htm">ungetwc</link> functions on the same stream.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fseek</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>offset</param_name>
+                <param_note>
+                    <para>Number of offset bytes from origin.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>origin</param_name>
+                <param_note>
+                    <para>Initial position.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If successful, fseek returns 0. Otherwise, it returns a nonzero value. On devices incapable of seeking, the return value is undefined.</para>
+    </return>
+
+    <remarks>
+        <para>The fseek function moves the file pointer (if any) associated with stream to a new location that is offset bytes from origin. The next operation on the stream takes place at the new location. On a stream open for update, the next operation can be either a read or a write. The argument origin must be one of the following constants, defined in STDIO.H: </para>
+        <table>
+            <th>
+                <td>Parameter origin Value</td>
+                <td>Description</td>
+            </th>
+	        <tr>
+		        <td>SEEK_CUR</td>
+        	    <td>Current position of file pointer.</td>
+	        </tr>
+	        <tr>
+		        <td>SEEK_END</td>
+        	    <td>End of file.</td>
+	        </tr>
+	        <tr>
+		        <td>SEEK_SET</td>
+        	    <td>Beginning of file.</td>
+	        </tr>
+	    </table>
+        <para>Function fseek can point file pointer to any place in a file, even beyond end-of-file. fseek removes end-of-file and cancels any effect to the file stream caused by ungetc function.</para>
+        <para>When opening and appending file, file pointer current position is determined by the last I/O operation, not the position to write to. If no I/O operation have been done to the file yet, file pointer points to the beginning of file.</para>
+        <para>For streams opened in text mode, fseek has limited use, because carriage return–linefeed translations can cause fseek to produce unexpected results. Only the following two kinds of file streams opening in text mode can gurantee fseek behaves normally: </para>
+        <para>·Position file pointer in 0 offset.</para>
+        <para>·From the file beginning, position offset according to ftell function call.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fseek</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fseek.cpp: This program opens the file FSEEK.OUT and
+ * moves the pointer to the file&apos;s beginning.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE *stream;
+    char line[81];
+    int  result;
+
+    stream = fopen(&quot;fseek.out&quot;, &quot;w+&quot;);
+    if (stream == NULL)
+        printf(&quot;The file fseek.out was not opened\n&quot;);
+    else {
+        fprintf(stream, &quot;The fseek begins here: &quot;
+                              &quot;This is the file &apos;fseek.out&apos;.\n&quot;);
+        result = fseek(stream, 23L, SEEK_SET);
+        if (result)
+            perror(&quot;Fseek failed&quot;);
+        else {
+            printf(&quot;File pointer is set to middle of first line.\n&quot;);
+            fgets(line, 80, stream);
+            printf(&quot;%s&quot;, line);
+
+        }
+        fclose(stream);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File pointer is set to middle of first line.
+This is the file &apos;fseek.out&apos;.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>ftell</ref_name>
+            <ref_url>ftell</ref_url>
+        </reference>
+        <reference>
+            <ref_name>rewind</ref_name>
+            <ref_url>rewind</ref_url>
+        </reference>
+    </references>
+
+</manpage>

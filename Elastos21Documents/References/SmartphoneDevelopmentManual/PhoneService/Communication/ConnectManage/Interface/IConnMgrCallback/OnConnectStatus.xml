@@ -1,0 +1,40 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IConnMgrCallback</interface><method> OnConnectStatus </method>
+    <description>
+        <para>
+           数据连接状态事件
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_type> HANDLE </param_type>
+                <param_name> connHandle </param_name>
+                <param_note>
+                    <para>
+                       连接句柄
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> DWORD </param_type>
+                <param_name> status </param_name>
+                <param_note>
+                    <para>
+                       数据连接状态，为TAPI_DATACONN_CONNECTED表示数据连接连上，为TAPI_DATACONN_DISCONNECTED表示数据连接断开
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+	   
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.1》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

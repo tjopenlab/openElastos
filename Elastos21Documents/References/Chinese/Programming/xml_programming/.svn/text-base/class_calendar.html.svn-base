@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>calendar标签/控件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li class="current"><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li class="current"><a href="annotated.html"><span>图形标签(控件)列表</span></a></li>
+    <li><a href="attribute.html"><span>图形标签通用属性</span></a></li>
+    <li><a href="event.html"><span>图形标签通用事件</span></a></li>
+    <li><a href="genstyle_8car.html"><span>图形标签通用风格</span></a></li>
+  </ul>
+</div>
+<h1>calendar标签/控件参考</h1><!-- doxytag: class="window" -->
+<center> <img src="images/calendar.jpg"> </center>
+<center><small>calendar控件</small></center>
+    <p>日历控件。
+
+<hr><h2>命名空间</h2>
+http://www.elastos.com/XmlGlue/Widgets
+
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>属性</h2></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>firstDayOfWeek</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置日历控件一周中的第一天，<a href="Week.html">Week</a>枚举数据类型，使用形式为：枚举名:枚举值。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd><a href="Week.html">Week</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>firstDayOfWeek="Week:Monday"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;calendar x:id="mycalendar" firstDayOfWeek="Week:Monday" x="50" y="40" width="240" height="180"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><h3>其他属性：见<a class="el" href="attribute.html">通用属性</a></h3></td></tr>
+</table>
+
+<hr><h2>事件</h2>
+<p>
+<b>注：</b>在xml部分注册回调事件时，可以写一个具体的执行语句，也可以写在脚本中定义的事件处理函数。
+   若在xml部分注册回调事件时，给该回调事件写了一个具体的执行语句，之后又在脚本中定义了该事件的事件处理函数，则触发该事件后会直接调用事件处理函数而忽略xml部分的具体的执行语句。
+   具体在xml部分注册回调事件的方法，可参照如下代码，示例中为calendar注册了一个dateSelected事件。
+<table border="0" cellpadding="0" cellspacing="10">
+<tr><td class="memitem" valign="bottom">
+    &lt;calendar x:id="mycalendar" caption="calendar1" x="50" y="40" width="240" height="180" <font color=red>dateSelected="print('dateSelected')"</font>/&gt;（事件发生时，若脚本中没有另外定义事件处理函数，执行该可执行语句）
+</td></tr>
+<tr><td class="memitem" valign="bottom">
+    &lt;calendar x:id="mycalendar" caption="calendar1" x="50" y="40" width="240" height="180" <font color=red>dateSelected="ondateSelected()"</font>/&gt;（事件发生时，执行事件处理函数）
+</td></tr>
+</table>
+<p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dateSelected</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当日历控件中某日期被选中时，产生dateSelected事件。同时dateSelected指定的事件处理程序将被执行。 
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">dateSelected = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.dateSelected = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;calendar x:id="mycalendar" caption="calendar1" x="50" y="40" width="240" height="180" checkedChanged="on_dateSelected()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_dateSelected() {
+...
+...
+}
+mycalendar.dateSelected= on_dateSelected
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+	
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dateChanged</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当日期控件选择日期改变时，产生dateChanged事件。同时dateChanged指定的事件处理程序将被执行。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">dateChanged = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.dateChanged = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;calendar x:id="mycalendar" caption="calendar1" x="50" y="40" width="240" height="180" dateChanged="on_dateChanged()"
+/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_dateChanged() {
+...
+...
+}
+mycalendar.dateChanged= on_dateChanged
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a><!-- doxytag: member="IDatabase::IsClosed" ref="80f8bf3a49657380380f1cf7ba46dec0" args="([out] Boolean *closed)" -->
+<b>其他事件</b>: 见<a class="el" href="event.html">通用事件</a>
+
+<hr><h2>控件风格</h2>
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a>
+见<a class="el" href="genstyle_8car.html">通用风格</a></td></tr>
+
+ <script>footer("chinese")</script>
+</body>
+</html>

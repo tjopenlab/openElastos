@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> 常用数据结构 </volume>
+    <class>U8StringBuf</class>
+    <method> Copy </method>
+
+    <description>
+        <para> 按UTF-8编码格式将WString对象字符串拷贝到当前U8StringBuf对象字符串中。</para>
+    </description>
+
+   
+    <syntax>
+        <return_val> U8StringBuf &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const WString &amp;</param_type>
+            <param_name>ws</param_name>
+            <param_note>
+                <para> 源WString对象。 </para>
+            </param_note>
+         </api_param>
+        
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回U8StringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>1.超过U8StringBuf对象可用的长度会被省略掉。 </para>
+        <para>2.如果待复制的宽字符串中有汉字，且出现在字符串末尾处，则该文字会丢失。 </para>
+    </remarks>
+<example>
+<pre>
+U8StringBuf_&lt;5&gt; u8sbuf;
+WString ws = L"ABCDEF";
+u8sbuf.Copy(ws);
+CConsole::WriteLine(u8sbuf);  //Display : "ABCDE"	
+</pre>
+</example>
+
+ <references>
+    <reference>
+        <ref_name>U8StringBuf::Copy</ref_name>
+        <ref_url>Copy1</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>U8StringBuf::Copy</ref_name>
+        <ref_url>Copy3</ref_url>
+    </reference>
+</references>   
+
+</manpage>

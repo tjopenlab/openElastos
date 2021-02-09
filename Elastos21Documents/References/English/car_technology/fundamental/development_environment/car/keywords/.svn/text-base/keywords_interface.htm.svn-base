@@ -1,0 +1,83 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>CAR Keyword--interface</title>
+</head>
+
+<body>
+<h2>interface</h2>
+    <p>This keyword is used to define interface. For example: </p>
+    <pre class="code">
+[
+    uuid(9b9d422d-b9cc-4658-9f94-3dff2667e89b),
+    uunm(http://www.koretide.com/car/ComponentDemo.dll)
+]
+component ComponentDemo
+{
+    [uuid(6bd80415-d91b-44f2-9e44-b3e11ed50d65)]
+    <b>interface</b> IInterface {
+        ECODE Func([in] int num,[out] long* sum);
+    }; (this semicolon is optional)
+    [uuid(8bc5829e-ad6e-4b2f-91c5-8c17f38e9110)]
+    class CClass {
+        interface IInterface;
+    }
+}
+</pre>
+    <p>In sample component ComponentDemo, a interface IInterface was defined, a method Func was defined in this interface.</p>
+    <p>In the "[]" before the interface keyword, is the attribute of this interface. Interface attribute modifies the interface, among which the <a class="style1" href="../attributes/attributes_uuid.htm">uuid</a> attribute is required. uuid in interface attribute is called interface ID (IID), it is used to uniquely identifies a interface. Other attributes can be included in the interface attribute. Please see <a class="style1" href="../attribute.htm">CAR Attribute</a> for details.</p>
+    <p>After the interface keyword comes the name of the interface.</p>
+    <p>In the "{}" after the interface keyword, is the definition of this interface. Interface definition includes interface definition declaration. An interface without interface method is meaningless in reality.</p>
+    <ul><b>Remarks: </b>When the interface does not modify using the <a class="style1" href="../attributes/attributes_local.htm">local</a> attribute, the parameter type in interface method must be <a class="style1" href="../types.htm">CAR supported data type</a>. If the interface parameter uses non-CAR&nbsp;supported data type, when compile, the compiler automatically forces a local attribute on this interface. The client program cannot be able to communicate remotely with the component program.</ul>
+    <ul><font color="red"><b>Note: </b>Interface is the bridge between client program and class object, interface change requires the user program to change accordingly.This does not convert with component programing methodology. Once an interface definition is fixed and published, you cannot change the method location, parameter type and number in the method in the interface.</font></ul>
+    <p>In a CAR file, you can define one or more interfaces. For example: </p>
+    <pre class="code">
+[
+    version(1.0),uuid(75b6a6b2-84dc-4dc0-bb3d-2a3347bee0e6),
+    uunm(http://www.koretide.com/car/InterfaceDemo1.dll)
+]
+component InterfaceDemo1
+{
+    [uuid(18b60b58-09b6-4303-86e8-ffb6d690f77b)]
+    <b>interface IInterface1</b> {
+        ……
+    };
+    [uuid(d083c7a3-1559-4e62-8fd7-32c648410797)]
+    <b>interface IInterface2</b> {
+        ……
+    };
+}
+</pre>
+    <p>In sample component InterfaceDemo1, two interfaces are defined: IInterface1 and IInterface2 .</p>
+    <p>Interface can inherit other interfaces. For example: </p>
+    <pre class="code">
+[
+    version(1.0),uuid(27a796d0-4b60-48dc-82c4-e0252bfd4459),
+    uunm(http://www.koretide.com/car/InterfaceDemo2.dll)
+]
+component InterfaceDemo2
+{
+    [uuid(b580f089-8a97-4b4e-b583-99c640ed5401)]
+    <b>interface IInterface1</b> {
+        ……
+    };
+    [uuid(e7ad92cc-3ec2-4455-a9e8-3077b0df0fb5)]
+    <b>interface IInterface2 : IInterface1</b> {
+        ……
+    };
+}
+</pre>
+    <p>In sample component InterfaceDemo2, interface IInterface2 inherits from interface IInterface1.interface IInterface2 contains all methods defined in interface IInterface1.</p>
+    <p>Also, another keyword <b>icallback</b> is defined in CAR, it is used to define callback interface. Relative to callback interface, interface defined by the interface keyword is also called normal interface. For details please see <a class="style1" href="keywords_icallback.htm">icallback</a>.</p>
+    <b><a class="style1" href="../keyword.htm">CAR Keyword Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

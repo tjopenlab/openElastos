@@ -1,0 +1,230 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fopen">fopen</sample>
+    <title> fopen, _wfopen</title>
+    <volume>C Run-Time Library Functions</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Opens the file whose name is the string pointed to by filename and associates a stream with it.</para>
+    </description>
+
+    <syntax>
+        <return_val>FILE *</return_val>
+        <func_name>fopen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>Pointer to file name.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>mode</param_name>
+                <param_note>
+                    <para>Pointer to file open mode.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>FILE *</return_val>
+        <func_name>_wfopen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>mode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Upon successful completion fopen, _wfopen returns a FILE pointer. Otherwise, NULL is returned.</para>
+    </return>
+
+    <remarks>
+        <para>Function fopen opens a file determined by parameter filename. _wfopen is the wide-character version of fopen. The parameters of _wfopen are all wide-character string. _wfopen and fopen are the same besides that.</para>
+        <para>mode field c, n, and t are extension to Microsoft fopen and _wfopen; they are not used when need to be compatible with ANSI.</para>
+        <para>Parameter mode specifies file opening mode, as the following: </para>
+        <table>
+            <th>
+                <td>Value of Parameter mode</td>
+                <td>Corresponding File Opening Mode</td>
+            </th>
+            <tr>
+                <td> "w" </td>
+                <td>Truncates file to zero length or creates text file for writing. The stream is positioned at the beginning of the file.</td>
+            </tr>
+
+            <tr>
+                <td> "r" </td>
+                <td>Opens text file for reading. The stream is positioned at the beginning of the file.</td>
+            </tr>
+
+            <tr>
+                <td> "a" </td>
+                <td>Opens for writing. The file is created if it does not exist. The stream is positioned at the end of the file. Subsequent writes to the file will always end up at the then current end of file, irrespective of any intervening <link class="style1" url="../stdio/fseek.htm">fseek</link> or similar.</td>
+            </tr>
+
+            <tr>
+                <td> "w+" </td>
+                <td>Opens for reading and writing. The file is created if it does not exist, otherwise it is truncated. The stream is positioned at the beginning of the file.</td>
+            </tr>
+
+            <tr>
+                <td> "r+" </td>
+                <td>Opens for reading and writing. The stream is positioned at the beginning of the file.</td>
+            </tr>
+
+            <tr>
+                <td> "a+" </td>
+                <td>Opens for reading and writing. The file is created if it does not exist. The stream is positioned at the end of the file. Subsequent writes to the file will always end up at the then current end of file, irrespective of any intervening <link class="style1" url="../stdio/fseek.htm">fseek</link> or similar.</td>
+            </tr>
+        </table>
+
+        <para>When file is opened under "a" or "a+" mode, all the write operation occured in the end of file. Invoking functions fseek or rewind can reposition file pointer; before any write operation, file pointer is going to move to the end of file. Hence, existing data is not altered.</para>
+        <para>When specified "r+", "w+" or "a+" visiting mode, both read and write are allowed (i.e. file is opened for update). However, when you switch between reading and writing, there must be an intervening fflush,fseek, or rewind operation. The current position can be specified for the fsetpos or fseek operation, if desired.</para>
+
+        <para>Besides the above parameters, mode can include the following characters, to specify new line character conversion.</para>
+        <table>
+            <th>
+                <td>Character in Parameter mode</td>
+                <td>Corresponding New Line Character Conversion</td>
+            </th>
+            <tr>
+                <td> t </td>
+                <td>Opens file in text mode (after conversion), under text mode, input carriage return and new line character convert to single new line character; output new line converts to carriage return and newline, two characters.</td>
+            </tr>
+
+            <tr>
+                <td>b</td>
+                <td>Opens file in binary (not converted) mode, no conversion including carriage return and new line is done.</td>
+            </tr>
+
+        </table>
+        <para>mode selection t is the extension to fopen and _fdopen, should not use it when ANSI compatible is needed.</para>
+        <para>If t or b as parameter prefixes, function call fails and returns NULL.</para>
+
+        <para>mode parameter characters of _fdopen (_wfdopen) have the following correspondence with oflag parameter of _open: </para>
+        <table>
+            <th>
+                <td>Character in Status String</td>
+                <td>oflag Value in _open</td>
+            </th>
+            <tr>
+                <td>a</td>
+                <td>_O_WRONLY | _O_APPEND (usually _O_WRONLY | _O_CREAT | _O_APPEND) </td>
+            </tr>
+            <tr>
+                <td>a+</td>
+                <td>_O_RDWR | _O_APPEND (usually _O_RDWR | _O_APPEND | _O_CREAT )</td>
+            </tr>
+            <tr>
+                <td>r</td>
+                <td>_O_RDONLY</td>
+            </tr>
+            <tr>
+                <td>r+</td>
+                <td>_O_RDWR</td>
+            </tr>
+            <tr>
+                <td>w</td>
+                <td>_O_WRONLY (usually _O_WRONLY | _O_CREAT | _O_TRUNC)</td>
+            </tr>
+            <tr>
+                <td>w+</td>
+                <td>_O_RDWR (usually _O_RDWR | _O_CREAT | _O_TRUNC)</td>
+            </tr>
+            <tr>
+                <td>b</td>
+                <td>_O_BINARY</td>
+            </tr>
+            <tr>
+                <td>t</td>
+                <td>_O_TEXT</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fopen</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wfopen</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fopen.cpp: This program opens files named &quot;data&quot;
+ * and &quot;data2&quot;.It  uses fclose to close &quot;data&quot; and
+ * _fcloseall to close all remaining files.
+ */
+
+#include &lt;stdio.h&gt;
+
+FILE *stream, *stream2;
+
+int main()
+{
+
+    /* Open for read (will fail if file &quot;data&quot; does not exist) */
+    if ((stream  = fopen(&quot;fopen.exe&quot;, &quot;r&quot;)) == NULL)
+        printf(&quot;The file &apos;fopen.cpp&apos; was not opened\n&quot;);
+    else
+        printf(&quot;The file &apos;fopen.cpp&apos; was opened\n&quot;);
+
+    /* Open for write */
+    if ((stream2 = fopen(&quot;fopen.out&quot;, &quot;w+&quot;)) == NULL)
+          printf(&quot;The file &apos;fopen.out&apos; was not opened\n&quot;);
+    else
+          printf(&quot;The file &apos;fopen.out&apos; was opened\n&quot;);
+
+     /* Close stream */
+    if (fclose(stream))
+        printf(&quot;The file &apos;fopen.cpp&apos; was not closed\n&quot;);
+
+    if (fclose(stream2))
+        printf(&quot;The file &apos;fopen.out&apos; was not closed\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The file &apos;fopen.cpp&apos; was opened.
+The file &apos;fopen.out&apos; was opened.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+    </references>
+
+</manpage>

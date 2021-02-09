@@ -1,0 +1,54 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <volume> Interface Smart Pointer Class Shared Method </volume>
+    <interface> InterfaceRef </interface>
+    <method>IsSameInterface</method>
+
+    <description>
+        <para>Checks if current interface smart pointer and specified interface smart pointer point to the same interface in the same object.</para>
+    </description>
+
+    <syntax>
+        <return_val>BOOL</return_val>
+        <parameters>
+            <api_param>
+                <param_type>InterfaceRefArg&amp;</param_type>
+                <param_name>ir</param_name>
+                <param_note>
+                    <para>Specified interface smart pointer.</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If two smart pointers point to the same interface in the same object, return TRUE; otherwise, return FALSE.</para>
+    </return>
+
+    <example><pre><![CDATA[
+//g_Interface is smart pointer points to Interface interface in some object.
+InterfaceRef g_Interface;
+
+void Foo(InterfaceRef& senderRef)
+{
+    if (!senderRef.IsValid()) { //invokes IsValid method to validate interface smart pointer senderRef.
+        assert(0 && "senderRef is invalid.");
+        return;
+    }
+
+    //Checks if senderRef points to the same interface in the same object as g_Interface.
+    if (senderRef.IsSameInterface(g_Interface)) {
+        ……
+        return;
+    }
+    ……
+}
+]]></pre></example>
+
+</manpage>

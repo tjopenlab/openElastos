@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IImage</interface><method> SaveAs </method>
+    <description>
+        <para>
+            保存到文件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> fileName </param_name>
+                <param_note>
+                    <para>
+包含路径的文件名，需包含文件后缀名                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ImageFormat </param_type>
+                <param_name> format </param_name>
+                <param_note>
+                    <para>
+<link url="../../datatype/ImageFormat.htm">图像的格式</link></para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果FileName为空，则方法调用失败，并返回E_INVALID_ARGUMENT；</para> 
+ <para>
+    	      更多返回值信息，参见 <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+           路径中出现的文件夹必须是已经存在的文件夹，本方法不能创建新文件夹。
+        </para>
+    </remarks>
+</manpage>

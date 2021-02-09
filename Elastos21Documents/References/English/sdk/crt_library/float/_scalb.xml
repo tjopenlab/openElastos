@@ -1,0 +1,84 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\float\_scalb">_scalb</sample>
+    <title> _scalb</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> float_idx.htm </routine_idx>
+
+    <description>
+	<para>The function allows users to test conformance to IEEE Standard 754-1985. Otherwise it's use is not recommended.</para>
+        <para>_scalbn(x, n) returns x*(2**n) computed by exponent manipulation.</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>_scalb</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>Double-precision floating-point value.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>exp</param_name>
+                <param_note>
+                    <para>Long integer exponent.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_scalb returns an exponential value if successful. On overflow (depending on the sign of x),_scalb returns +/– HUGE_VAL.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>_scalb</routine_name>
+            <headerfile>float.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _scalb.cpp: This program scales argument by a power of 2.
+ */
+
+#include &lt;float.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double x, z;
+    long y;
+
+    x = 123.456789;
+    y = 16;
+    z = _scalb(x, y);
+    printf(&quot;_scalb(%f, %ld) = %f\n&quot;, x, y, z);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+_scalb(123.456789, 16) = 8090864.123904
+</result>
+
+
+
+</manpage>

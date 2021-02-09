@@ -1,0 +1,160 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_creat">_creat</sample>
+    <title> _creat, _wcreat</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>Creates a new file.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_creat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>Pointer to name of new file.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+                <param_note>
+                    <para>Permission setting.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wcreat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions, if successful, returns a file descriptor to the created file. Otherwise the function return -1 and sets error number as follows:</para>
+        <table>
+    	    <th>
+    	        <td>Error Number</td>
+    	        <td>Description</td>
+    	    </th>
+            <tr>
+                <td>EACCES</td>
+                <td>Filename specifies an existing read-only or specifies a directory instead of a file.</td>
+            </tr>
+            <tr>
+                <td>EMFILE</td>
+                <td>No more file handles are available.</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>The specified file could not be found.</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The _creat function creates a new file or opens and truncates an existing one. _wcreat is a wide-character version of _creat, its parameter is a wide-character string. _wcreat and _creat behave identically otherwise.</para>
+        <para>If the file specified by filename does not exist, a new file is created with the given permission setting and is opened for writing. If the file already exists and its permission setting allows writing, _creat trunctates the file to length 0, destroying the previous contents, and opens it for writing.The permission setting, pmode, applies to newly created files only.The new file receives the specified permission setting after it is closed for the first time. </para>
+        <para>The pmode parameter is set to one of the following values:</para>
+        <table>
+            <th>
+                <td>pmode parameter value</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>_S_IWRITE</td>
+                <td>Writing permitted.</td>
+            </tr>
+            <tr>
+                <td>_S_IREAD</td>
+                <td>Reading permitted.</td>
+            </tr>
+            <tr>
+                <td>_S_IREAD | _S_IWRITE</td>
+                <td>Reading and writing permitted.</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_creat</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wcreat</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _creat.cpp: This program uses _creat to create
+ * the file (or truncate the existing file)
+ * named data and open it for writing.
+ */
+
+#include &lt;fcntl.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int fh;
+
+    fh = _creat(&quot;data&quot;, _S_IREAD | _S_IWRITE);
+    if (fh == -1)
+        perror(&quot;Couldn&apos;t create data file&quot;);
+    else {
+        printf(&quot;Created data file.\n&quot;);
+        _close(fh);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Created data file.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_close</ref_name>
+            <ref_url>_close</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wopen</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

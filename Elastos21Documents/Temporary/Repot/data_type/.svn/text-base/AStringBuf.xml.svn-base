@@ -1,0 +1,265 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> AStringBuf</interface>
+
+    <description>
+        <para>AStringBuf是为了支持构件化编程而设计的数据结构。WStringBuf和AStringBuf在构造函数、方法、操作符和宏的用法相似</para>
+    </description>
+
+    <constructs>
+        <construct>
+            <construct_name>AStringBuf(char *pstr, Int32 size)</construct_name>
+            <construct_url>AStringBuf/structure/AStringBuf</construct_url>
+            <construct_description>构造一个AStringBuf对象,并指定其字符串长度</construct_description>
+        </construct>
+        <construct>
+            <construct_name>AStringBuf_(UInt32 SIZE)</construct_name>
+            <construct_url>AStringBuf/structure/AStringBuf_</construct_url>
+            <construct_description>构造一个AStringBuf对象，同时字符串数组作为成员变量被分配</construct_description>
+        </construct>
+    </constructs>
+
+    <methods>
+        <self>
+        
+        <method>
+        <method_name> GetPayload </method_name>
+        <method_url> AStringBuf/GetPayload </method_url>
+        <m_description> 返回指向AStringBuf对象的数据区的指针，即返回指向窄字符串的指针。</m_description>
+        </method>
+        
+        <method>
+        <method_name> GetCapacity </method_name>
+        <method_url> AStringBuf/GetCapacity </method_url>
+        <m_description> 取缓冲区的总容量，以字符数为单位。</m_description>
+        </method>
+        
+        <method>
+        <method_name> GetLength </method_name>
+        <method_url> AStringBuf/GetLength </method_url>
+        <m_description> 获取当前字符串的长度，以字符数为单位。</m_description>
+        </method>
+        
+        <method>
+        <method_name> GetAvailableSpace </method_name>
+        <method_url> AStringBuf/GetAvailableSpace </method_url>
+        <m_description> 获取当前可用空间，以字符数为单位。</m_description>
+        </method>
+        
+        <method>
+        <method_name> SetLength </method_name>
+        <method_url> AStringBuf/SetLength </method_url>
+        <m_description> 设置缓冲区的长度，以字符数为单位。</m_description>
+        </method>
+        
+        <method>
+        <method_name> GetChar </method_name>
+        <method_url> AStringBuf/GetChar </method_url>
+        <m_description> 取指定位置的字符</m_description>
+        </method>
+        
+        <method>
+        <method_name> GetCharCount </method_name>
+        <method_url> AStringBuf/GetCharCount </method_url>
+        <m_description> 获得字符串长度。</m_description>
+        </method>
+        
+        <method>
+        <method_name> IsNull </method_name>
+        <method_url> AStringBuf/IsNull </method_url>
+        <m_description> 判断AStringBuf对象的指向字符串的指针是否为空。</m_description>
+        </method>
+        
+        <method>
+        <method_name> IsEmpty </method_name>
+        <method_url> AStringBuf/IsEmpty </method_url>
+        <m_description>判断缓冲区内容是否为空</m_description>
+        </method>
+        
+        <method>
+        <method_name> IsNullOrEmpty </method_name>
+        <method_url> AStringBuf/IsNullOrEmpty </method_url>
+        <m_description> 判断AStringBuf对象的指向字符串的指针或者字符串的内容是否为空。</m_description>
+        </method>
+        
+        <method>
+        <method_name> SetEmpty </method_name>
+        <method_url> AStringBuf/SetEmpty </method_url>
+        <m_description> 设置缓冲区内容为空。</m_description>
+        </method>
+        
+        <method>
+        <method_name>  Insert </method_name>
+        <method_url> AStringBuf/Insert  </method_url>
+        <m_description> 在缓冲区中的指定位置插入一个字符串，插入的字符串是AString类型。</m_description>
+        </method>
+        
+        <method>
+        <method_name> Append(AString as)</method_name>
+        <method_url> AStringBuf/Append </method_url>
+        <m_description>在AStringBuf对象中原字符串末尾追加另一指定字符串。</m_description>
+        </method>
+        
+        
+        
+        <method>
+        <method_name> Append(Achar ac)</method_name>
+        <method_url> AStringBuf/Append2 </method_url>
+        <m_description>在AStringBuf对象中原字符串末尾追加另一指定字符。</m_description>
+        </method>
+        
+        <method>
+        <method_name> Append(Boolean  boolean)</method_name>
+        <method_url> AStringBuf/Append8 </method_url>
+        <m_description>在AStringBuf对象中原字符串末尾追加布尔值(True或False)。</m_description>
+        </method>
+        
+        <method>
+        <method_name> Append(WString ws, AString encoding = NULL)</method_name>
+        <method_url> AStringBuf/Append3 </method_url>
+        <m_description>在AStringBuf对象中原字符串末尾追加另一指定字符。</m_description>
+        </method>
+        
+        <method>
+        <method_name> Append(Int8 value, UInt32 fmt = 0)</method_name>
+        <method_url> AStringBuf/Append4 </method_url>
+        <m_description>按一定格式在AStringBuf对象中原字符串末尾追加Int8数值。</m_description>
+        </method>
+        
+         <method>
+        <method_name> Append(Int16 value, UInt32 fmt = 0)</method_name>
+        <method_url> AStringBuf/Append5 </method_url>
+        <m_description>按一定格式在AStringBuf对象中原字符串末尾追加Int16数值。</m_description>
+        </method>
+        
+        <method>
+        <method_name> Append(Int32 value, UInt32 fmt = 0)</method_name>
+        <method_url> AStringBuf/Append6 </method_url>
+        <m_description>按一定格式在AStringBuf对象中原字符串末尾追加Int32数值。</m_description>
+        </method>
+        
+         <method>
+        <method_name> Append(Int64 value, UInt32 fmt = 0)</method_name>
+        <method_url> AStringBuf/Append7 </method_url>
+        <m_description>按一定格式在AStringBuf对象中原字符串末尾追加Int64数值。</m_description>
+        </method>
+        
+        
+        <method>
+        <method_name> Append(AString as，Int32 offset,Int32 count)</method_name>
+        <method_url> AStringBuf/Append1 </method_url>
+        <m_description>在AStringBuf对象中原字符串指定位置追加另一指定字符串。</m_description>
+        </method>
+       
+        
+        <method>
+        <method_name> Replace </method_name>
+        <method_url> AStringBuf/Replace </method_url>
+        <m_description>将缓冲区中从指定位置开始替换为源数据前指定个字符。</m_description>
+        </method>
+        <method>
+        <method_name> ConcatenateAString </method_name>
+        <method_url> AStringBuf/ConcatenateAString </method_url>
+        <m_description>在AStringBuf对象中原字符串末尾追加多个字符串。</m_description>
+        </method>
+        
+        
+        <method>
+        <method_name> Compare(AString as) </method_name>
+        <method_url> AStringBuf/Compare</method_url>
+        <m_description>把AStringBuf对象中原字符串与另一个给定的字符串作比较。</m_description>
+         </method>
+          
+        <method>
+        <method_name> Compare(const AStringBuf&amp; asb) </method_name>
+        <method_url> AStringBuf/Compare1</method_url>
+        <m_description>把AStringBuf对象中原字符串与另一个给定的字符串作比较。</m_description>
+        </method>
+        
+        <method>
+        <method_name> CompareNoCase(AString as)</method_name>
+        <method_url> AStringBuf/CompareNoCase</method_url>
+        <m_description>把AStringBuf对象中原字符串与另一个给定的字符串作比较，不考虑大小写。</m_description>
+        </method>
+        
+        <method>
+        <method_name> CompareNoCase(const AStringBuf&amp; asb)</method_name>
+        <method_url> AStringBuf/CompareNoCase1</method_url>
+        <m_description>把AStringBuf对象中原字符串与另一个给定的字符串作比较，不考虑大小写。</m_description>
+        </method>
+        
+        <method>
+        <method_name> Copy </method_name>
+        <method_url> AStringBuf/Copy</method_url>
+        <m_description>将源AStringBuf对象的数组元素拷贝到当前AStringBuf对象的数组中。</m_description>
+        </method>
+        <method>
+        <method_name> Clone</method_name>
+        <method_url> AStringBuf/Clone</method_url>
+        <m_description>获取一个AStringBuf对象的克隆，即在堆上复制AStringBuf对象和指向的字符串。</m_description>
+        </method>
+        <method>
+        <method_name> Alloc(Int32 n)</method_name>
+        <method_url> AStringBuf/Alloc</method_url>
+        <m_description>动态创建(在堆上) AStringBuf对象和指向的字符串 </m_description>
+        </method>
+        <method>
+        <method_name> Alloc(char *pstr, Int32 size) </method_name>
+        <method_url> AStringBuf/Alloc1</method_url>
+        <m_description>动态创建(在堆上) AStringBuf对象,并分别设置字符串和其长度 </m_description>
+        </method>
+        <method>
+        <method_name> Free </method_name>
+        <method_url> AStringBuf/Free</method_url>
+        <m_description>释放由Alloc或Clone在堆上创建的内存块。</m_description>
+        </method>
+      </self>
+    </methods>
+
+    <operators>
+        <operator>
+            <operator_name>operator char *</operator_name>
+            <operator_url>AStringBuf/operator1</operator_url>
+            <operator_description> 把AStringBuf对象转换成指向char的指针</operator_description>
+        </operator>
+        <operator>
+            <operator_name>ooperator AString</operator_name>
+            <operator_url>AStringBuf/operator2</operator_url>
+            <operator_description> 把AStringBuf对象转换成AString型对象</operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator []</operator_name>
+            <operator_url>AStringBuf/operator</operator_url>
+            <operator_description> 存取数组元素操作符，用来对AStringBuf对象的数组元素进行存取操作。</operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator >></operator_name>
+            <operator_url>AStringBuf/operator3</operator_url>
+            <operator_description> 相当于Applend。</operator_description>
+        </operator>
+    </operators>
+
+    <macros>
+        <macro>
+        <macro_name> NULL_ASTRINGBUF </macro_name>
+        <macro_url> AStringBuf/NULL_ASTRINGBUF </macro_url>
+        <macro_description> 构造一个内容为空的AStringBuf对象</macro_description>
+        </macro>
+        <macro>
+        <macro_name> AUTO_ASTRINGBUF(n) </macro_name>
+        <macro_url> AStringBuf/AUTO_ASTRINGBUF </macro_url>
+        <macro_description> 构造一个大小为n的AStringBuf对象</macro_description>
+        </macro>
+    </macros>
+
+    
+    
+
+</manpage>

@@ -1,0 +1,162 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>socket Interface</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Network Interface Error Return</h2>
+    <p>If ISocket, ISocketEx, ISocketService interface function execution error, it will return value after process by macro STATUS_WIN32_ERROR. The definition of STATUS_WIN32_ERROR is as the following: </p>
+    <pre class="code">
+#define STATUS_WIN32_ERROR(u) ((SCODE)((u)|0x80070000))
+</pre>
+    <p>Of which the value of u is as the following table: </p>
+    <table>
+        <thead>
+            <td>Error Return Value</td><td>Enumeration Value</td><td>Description</td>
+        </thead>
+        <tr>
+            <td>WSABASEERR</td><td>10000</td><td>Elastos 2.0 elasock error number base value.</td>
+        </tr>
+        <tr>
+            <td>EINTR</td><td>WSABASEERR＋4</td><td>Cancel one block of socket invocation.</td>
+        </tr>
+        <tr>
+            <td>EBADF</td><td>WSABASEERR＋9</td><td>Reserved value</td>
+        </tr>
+        <tr>
+            <td>EACCES</td><td>WSABASEERR＋13</td><td>Operation not allowed.</td>
+        </tr>
+        <tr>
+            <td>EFAULT</td><td>WSABASEERR＋14</td><td>Wrong address</td>
+        </tr>
+        <tr>
+            <td>EINVAL</td><td>WSABASEER＋22</td><td>Invalid parameter</td>
+        </tr>
+        <tr>
+            <td>EMFILE</td><td>WSABASEERR＋24</td><td>Too many opened files.</td>
+        </tr>
+        <tr>
+            <td>EWOULDBLOCK</td><td>WSABASEERR＋35</td><td>Resource temporarily not avialable.</td>
+        </tr>
+        <tr>
+            <td>EINPROGRESS</td><td>WSABASEERR＋36</td><td>Operation in progress.</td>
+        </tr>
+        <tr>
+            <td>EALREADY</td><td>WSABASEERR＋37</td><td>Operation done</td>
+        </tr>
+        <tr>
+            <td>ENOTSOCK</td><td>WSABASEERR＋38</td><td>Do socket operation on a non-socket resource.</td>
+        </tr>
+        <tr>
+            <td>EDESTADDRREQ</td><td>WSABASEERR＋39</td><td>Target address missing.</td>
+        </tr>
+        <tr>
+            <td>EMSGSIZE</td><td>WSABASEERR＋40</td><td>Message too long.</td>
+        </tr>
+        <tr>
+            <td>EPROTOTYPE</td><td>WSABASEERR＋41</td><td>Wrong protocol type.</td>
+        </tr>
+        <tr>
+            <td>ENOPROTOOPT</td><td>WSABASEERR＋42</td><td>Wrong protocol option.</td>
+        </tr>
+        <tr>
+            <td>EPROTONOSUPPORT</td><td>WSABASEERR＋43</td><td>Does not support this protocol.</td>
+        </tr>
+        <tr>
+            <td>ESOCKTNOSUPPORT</td><td>WSABASEERR＋44</td><td>Does not support this socket type.</td>
+        </tr>
+        <tr>
+            <td>EOPNOTSUPP</td><td>WSABASEERR＋45</td><td>Does not support this operation.</td>
+        </tr>
+        <tr>
+            <td>EPFNOSUPPORT</td><td>WSABASEERR＋46</td><td>Does not support this protocol family.</td>
+        </tr>
+        <tr>
+            <td>EAFNOSUPPORT</td><td>WSABASEERR＋47</td><td>Does not support this address family.</td>
+        </tr>
+        <tr>
+            <td>EADDRINUSE</td><td>WSABASEERR＋48</td><td>This address is already used by someone.</td>
+        </tr>
+        <tr>
+            <td>EADDRNOTAVAIL</td><td>WSABASEERR＋49<td>Cannot allocate requested address.</td>
+        </tr>
+        <tr>
+            <td>ENETDOWN</td><td>WSABASEERR＋50</td><td>Network disconnected</td>
+        </tr>
+        <tr>
+            <td>ENETUNREACH</td><td>WSABASEERR＋51</td><td>Network not reachable.</td>
+        </tr>
+        <tr>
+            <td>ENETRESET</td><td>WSABASEERR＋52</td><td>Network reset</td>
+        </tr>
+        <tr>
+            <td>ECONNABORTED</td><td>WSABASEERR＋53</td><td>Software causes the network to disconnect.</td>
+        </tr>
+        <tr>
+            <td>ECONNRESET</td><td>WSABASEERR＋54</td><td>Reset connection</td>
+        </tr>
+        <tr>
+            <td>ENOBUFS</td><td>WSABASEERR＋55</td><td>Buffer space not enough.</td>
+        </tr>
+        <tr>
+            <td>EISCONN</td><td>WSABASEERR＋56</td><td>Socket already connected.</td>
+        </tr>
+        <tr>
+            <td>ENOTCONN</td><td>WSABASEERR＋57</td><td>Socket not connected.</td>
+        </tr>
+        <tr>
+            <td>ESHUTDOWN</td><td>WSABASEERR＋58</td><td>Socket already closed, not able to send.</td>
+        </tr>
+        <tr>
+            <td>ETOOMANYREFS</td><td>WSABASEERR＋59</td><td>Reserved</td>
+        </tr>
+        <tr>
+            <td>ETIMEDOUT</td><td>WSABASEERR＋60</td><td>Connection timed-out</td>
+        </tr>
+        <tr>
+            <td>ECONNREFUSED</td><td>WSABASEERR＋61</td><td>Connection refused</td>
+        </tr>
+        <tr>
+            <td>ELOOP</td><td>WSABASEERR＋62</td><td>Reserved</td>
+        </tr>
+        <tr>
+            <td>ENAMETOOLONG</td><td>WSABASEERR＋63</td><td>Reserved</td>
+        </tr>
+        <tr>
+            <td>EHOSTDOWN</td><td>WSABASEERR＋64</td><td>Host disconnected</td>
+        </tr>
+        <tr>
+            <td>EHOSTUNREACH</td><td>WSABASEERR＋65</td><td>No route to reach the host.</td>
+        </tr>
+        <tr>
+            <td>ENOTEMPTY</td><td>WSABASEERR＋66</td><td>Reserved</td>
+        </tr>
+        <tr>
+            <td>EPROCLIM</td><td>WSABASEERR＋67</td><td>Too many processes.</td>
+        </tr>
+        <tr>
+            <td>EUSERS</td><td>WSABASEERR＋68</td><td>Reserved</td>
+        </tr>
+        <tr>
+            <td>EDQUOT</td><td>WSABASEERR＋69</td><td>Reserved</td>
+        </tr>
+        <tr>
+            <td>ESTALE</td><td>WSABASEERR＋70</td><td>Reserved</td>
+        </tr>
+        <tr>
+            <td>EREMOTE</td><td>WSABASEERR＋71</td><td>Reserved</td>
+        </tr>
+        <tr>
+            <td>SYSNOTREADY</td><td>WSABASEERR＋91</td><td>Network subsystem not available.</td>
+        </tr>
+    </table>
+
+<script>footer("english")</script>
+</body>
+</html>

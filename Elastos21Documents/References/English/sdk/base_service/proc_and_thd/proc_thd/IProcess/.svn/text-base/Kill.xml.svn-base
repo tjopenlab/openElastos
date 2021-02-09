@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IProcess</interface><method> Kill </method>
+    <description>
+        <para>
+			This function kills a process and all its threads.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value </td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>NOERROR</td>
+		<td>0x00000000</td>
+		<td>Function succeeds in killing the process and all its threads.</td>
+	    </tr>
+    <tr>
+    	 <td>E_INVALID_OPERATION</td>
+    	 <td>The process does not start.</td>
+     </tr>
+     			    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>           	
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+			This function is used to terminate current process or other processes. Killing a process would make
+			its CAR service to shut down; all of the threads in that particular process will stop its execution;
+			all of the modules loaded by the process will be released; and all of the resources including address
+			space will be recycled. If there is any other reference to the process interface, the process object
+			will not be destroyed.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

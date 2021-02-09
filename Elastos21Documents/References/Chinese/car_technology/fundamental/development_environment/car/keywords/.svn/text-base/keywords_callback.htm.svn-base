@@ -1,0 +1,114 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--callbacks </title>
+</head>
+
+<body>
+	<h2>callbacks</h2>
+	    <b>含义 </b>
+	        <p> 此关键字用于定义或声明异步回调接口。 </p>
+	        <p> 回调包括两种：同步回调和异步回调。定义同步回调接口请参见关键字<a class= "style1" href= "keywords_delegate.htm">delegates</a>。</p>
+	    <b>语法 </b>
+	    	<p><b>callbacks</b> JInterfaceName;  </p>
+	    <b>使用说明 </b>
+	        <p>1.回调接口命名必须以字母“J”开头；回调接口不能继承其它接口，也不能被其它接口继承。 </p>
+	        <p>2.回调接口中声明的每个方法代表一个回调事件。</p>
+	        <p>3.Callbacks接口声明的回调事件的参数属性只能具有<a calss= "style1" href="../attributes_in.htm">in</a>属性，delegates接口方法可以具有<a calss= "style1" href="../attributes_out.htm">out</a>属性,但不支持<a calss= "style1" href="../attributes_out.htm">local</a>属性。 </p>
+	        <p>4.一个构件类不能只含有一个回调接口，至少要有一个普通接口。 </p>
+	    <b>使用范例 </b>
+	        <p>在服务器端，callbackDemo.car文件如下： </p>
+<pre class= code>
+module
+{
+    interface IFoo {
+        Foo();
+     } 
+ 
+    callbacks JFooEvent {
+       FooEvent ();
+     }
+
+    class CFoo {
+       interface IFoo;
+       <b>callbacks</b> JFooEvent;
+    }
+}
+
+</pre>
+	        <p>上述示例中，定义了普通接口IFoo和异步回调接口JFooEvent，回调接口中方法FooEvent()就是一个回调事件。编译该car文件，并在自动生成的代码框架中添加如下代码：(其中黑体部分是编译器自动生成的代码框架)  </p>
+<pre class= code>
+CFoo.cpp文件：
+<b>#include "CFoo.h"
+#include "_CFoo.cpp"
+
+ECode CFoo::Foo()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine(L"Common Function:Foo");
+    Callback::FooEvent();
+    return NOERROR;
+<b>}</b>
+
+</pre>
+	        <p>客户端代码如下： </p>
+<pre class= code>
+#include "callbackDemo.h"
+using namespace Elastos;
+
+ECode OnFooEvent(PVoid userData, PInterface pSender)
+{
+    CConsole::WriteLine(L"callback event:FooEvent");
+    CFoo::RemoveAllCallbacks(pSender);
+    CApplet::Finish(AppletFinish_ASAP);
+    return NOERROR;
+}
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    ECode ec;
+    IFoo* pIFoo;
+
+    ec = CFoo::New(&pIFoo);
+    if (FAILED(ec)) {	 
+        return ec;
+    }
+    	 
+    pIFoo->Foo();	 
+    
+    ec = CFoo::AddFooEventCallback(pIFoo, OnFooEvent, NULL);
+    if (FAILED(ec)) 
+    {
+        pIFoo->Release();
+        return ec;
+    }
+
+    pIFoo->Foo();
+
+    CObject::ReleaseAtThreadQuit(pIFoo);
+    return NOERROR;
+}
+
+</pre>
+	        <p>运行结果如下： </p>
+<pre class= code>
+Common Function:Foo
+Common Function:Foo
+callback event:FooEvent
+
+</pre>
+	        <p> </p>
+        <b>备注 </b>
+            <p>关于callback的详细技术请参见<a class= "style1" href= "../../../../speciality/callback/index.htm">回调机制</a>。</p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

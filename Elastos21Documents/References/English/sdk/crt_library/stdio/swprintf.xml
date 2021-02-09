@@ -1,0 +1,134 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\sprintf">sprintf</sample>
+    <title> sprintf, swprintf</title>
+    <volume>C Run-Time Library</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes formatted data to a string.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>sprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>Storage location for output.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format[, argument]...</param_name>
+                <param_note>
+                    <para>Format-control string(argument is Optional arguments).</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>swprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format[, argument]...</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>sprintf returns the number of bytes stored in buffer, not counting the terminating null character. 
+swprintf returns the number of wide characters stored in buffer, not counting the terminating null wide character.</para>
+    </return>
+
+    <remarks>
+        <para>The sprintf function formats and stores a series of characters and values in buffer. Each argument (if any) is converted and output according to the corresponding format specification in format. The format consists of ordinary characters and has the same form and function as the format argument for printf. A null character is appended after the last character written. If copying occurs between strings that overlap, the behavior is undefined.
+swprintf is a wide-character version of sprintf; the pointer arguments to swprintf are wide-character strings. Detection of encoding errors in swprintf may differ from that in sprintf. swprintf and fwprintf behave identically except that swprintf writes output to a string rather than to a destination of type FILE.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>sprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>swprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* sprintf.cpp: This program uses sprintf to format various
+ * data and place them in the string named buffer.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char  buffer[200], s[] = &quot;computer&quot;, c = &apos;l&apos;;
+    int    i = 35, j;
+    float fp = 1.7320534f;
+
+    /* Format and print various data: */
+    j  = sprintf(buffer,      &quot;\tString:     %s\n&quot;, s);
+    j += sprintf(buffer + j, &quot;\tCharacter: %c\n&quot;, c);
+    j += sprintf(buffer + j, &quot;\tInteger:    %d\n&quot;, i);
+    j += sprintf(buffer + j, &quot;\tReal:        %f\n&quot;, fp);
+
+    printf(&quot;Output:\n%s\ncharacter count = %d\n&quot;, buffer, j);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Output:
+String:     computer
+Character: l
+Integer:    35
+Real:        1.732053
+
+character count = 75
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wprintf</ref_name>
+            <ref_url>wprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fwprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>vswprintf</ref_name>
+            <ref_url>vswprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,146 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\getc">getc</sample>
+    <title> getc, getwc </title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Reads a character from a stream.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>getc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Input stream, pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>getwc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>This function returns the character read. To indicate an read error or end-of-file condition, getc returns EOF and getwc returns WEOF. For getc you can check if it is a read error or stop at end-of-file through <link url="ferror.htm">ferror</link> or <link url="feof.htm">feof</link>.</para>
+    </return>
+
+    <remarks>
+        <para>The getwc reads a single character from a file at the current position and increments the associated file pointer (if defined) to point to the next character. The file is associated with stream: </para>
+        <table>
+            <th>
+                <td>Function</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>getc</td>
+                <td>Similar to function fgetc, but implemented as a function and as a macro.</td>
+            </tr>
+            <tr>
+                <td>getwc</td>
+                <td>Wide-character set version of getc, reads a multibyte character or a wide-character in text mode or binary mode. </td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>getc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>getwc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* getc.cpp: This program uses getwc read a line characters from a stream.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE * fp, *stream;
+    char list[50] = &quot;This is a test of Elastos operating system\n&quot;;
+    int i, number;
+
+    if ((fp = fopen(&quot;getwc.txt&quot;, &quot;w&quot;)) == NULL)
+        printf(&quot;problem open the file!&quot;);
+    else {
+        number = fwrite(list,sizeof(char), 50, fp);
+        fclose(fp);
+    }
+
+    if ((stream = fopen(&quot;getwc.txt&quot;, &quot;r&quot;)) == NULL)
+        printf(&quot;problem open the file!&quot;);
+    else {
+        for (i = 0; i &lt; 50; i++) {
+            putwchar(getwc(stream));
+        }
+
+        fclose(stream);
+    }
+
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+This is a test of Elastos operating system
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fputc</ref_name>
+            <ref_url>fputc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fgetc</ref_name>
+            <ref_url>fgetwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_getch</ref_name>
+            <ref_url>..\conio\_getch</ref_url>
+        </reference>
+        <reference>
+            <ref_name>putc</ref_name>
+            <ref_url>putc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>putchar</ref_name>
+            <ref_url>putwchar</ref_url>
+        </reference>
+    </references>
+
+</manpage>

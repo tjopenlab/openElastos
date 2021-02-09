@@ -1,0 +1,86 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\fabs">fabs</sample>
+    <title> fabs</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>The fabs function computes the absolute value of a floating-point number n.</para>
+    </description>
+
+    <syntax>
+        <return_val>float</return_val>
+        <func_name>fabs</func_name>
+        <parameters>
+            <func_param>
+                <param_type>float</param_type>
+                <param_name>n</param_name>
+                <param_note>
+                    <para>Floating-point value.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The fabs function returns the absolute value of its parameter. There is no error return.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>fabs</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fabs.cpp: This program uses fabs to
+ * calculates the absolute value of the floating-point argument.
+ */
+
+#include  &lt;stdio.h&gt;
+#include  &lt;math.h&gt;
+
+int main()
+{
+    double x, y;
+
+    x = -3.14159;
+    y = fabs(x);
+    printf(&quot;The absolute value of %f is %f\n&quot;, x, y);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The absolute value of -3.141590 is 3.141590
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>abs</ref_name>
+            <ref_url>abs</ref_url>
+        </reference>
+        <reference>
+            <ref_name>labs</ref_name>
+            <ref_url>labs</ref_url>
+        </reference>
+    </references>
+
+</manpage>

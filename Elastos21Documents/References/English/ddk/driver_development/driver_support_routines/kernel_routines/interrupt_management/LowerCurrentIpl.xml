@@ -1,0 +1,74 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <volume>Interrupt Management</volume>
+    <title>LowerCurrentIpl</title>
+    <routine_idx> ../interrupt_management.htm </routine_idx>
+
+    <description>
+        <para>
+        	Lowers current system interrupt priority.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ipl_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> ipl_t</param_type>
+                <param_name> ipl </param_name>
+                <param_note>
+                    <para>
+                    	The value current system interrupt priority is lowered to. The value has to be between IPL1 and 
+                    	IPL31 inclusive, or IPL_Base.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>
+        	If specified interrupt priority is lower than current system interrupt priority, the original system 
+        	interrupt priority will be returned. If specified interrupt priority is not less than current system 
+        	interrupt priority, the current system interrupt priority is returned. 
+        </para>
+    </return>
+
+    <remarks>
+        <para>
+        	If specified interrupt priority is lower than current system interrupt priority, this method lowers the 
+        	current system interrupt priority to specified interrupt priority, and returns the original system interrupt 
+        	priority. If the specified interrupt priority is not less than current system interrupt priority, this 
+        	method only returns current system interrupt priority. 
+        </para>
+        <para>
+        	Lowering current system interrupt priority will cause all hardware interrupts with a higher interrupt 
+        	priority than the specified priority, to respond. If the current system interrupt priority is lowered 
+        	to IPL_Base, then all hardware interrupts are allowed to respond.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>RaiseCurrentIpl</ref_name>
+            <ref_url>RaiseCurrentIpl</ref_url>
+        </reference>
+    </references>
+
+</manpage>

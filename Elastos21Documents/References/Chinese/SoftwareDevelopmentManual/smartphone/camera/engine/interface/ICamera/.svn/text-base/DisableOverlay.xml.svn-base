@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>照相摄像引擎模块</volume>
+<interface>ICamera</interface><method> DisableOverlay </method>
+    <description>
+        <para>
+            关闭overlay层。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nLayer </param_name>
+                <param_note>
+                    <para>
+关闭的Overlay层，不再显示预览图像                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果方法调用失败，返回E_FAIL。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>camera.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib，ElCRuntime.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            关闭Overlay层之后，还是可以进行拍照，但不能显示预览图像。
+        </para>
+    </remarks>
+    <references>
+        <reference>
+            <ref_name>EnableOverlay</ref_name>
+            <ref_url>EnableOverlay</ref_url>
+        </reference>
+    </references>
+</manpage>

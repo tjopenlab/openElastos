@@ -1,0 +1,51 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--struct </title>
+</head>
+
+<body>
+	<h2>struct</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于定义结构体，使用方法与C语言中的struct用法基本相同。 </p>
+	    <b>语法 </b>
+	    	<p><b> struct </b>  structName structBody;  </p>
+	    <b>使用说明 </b>
+	        <p>1. 结构体中定义变量使用的数据类型必须是<a class="style1" href= "..\data_type.htm">CAR数据类型</a>。  </p>
+	        <p>2．CAR文件中结构体的定义目前不支持下述定义的形式： </p>
+<pre class= code>
+struct {
+    WChar wchName[SIZE];
+    ...
+} MyStruct；
+
+</pre>	        
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    ...
+    <b>struct</b>  MyStruct {
+        WChar            wcElem;
+        Float            fElem;
+        Int64             *plElem;
+        ArrayOf <Int32>     naElem;
+    }
+    ...
+}
+
+</pre>
+	        <p>示例中，在CAR文件中定义了一个结构类型MyStruct。 </p>
+
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

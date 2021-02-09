@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\_putenv">_putenv</sample>
+    <title>_putenv, _wputenv</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>创建新的环境变量，改变或者删除旧的环境变量。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_putenv</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>envstring</param_name>
+                <param_note>
+                    <para>环境变量的值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wputenv</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>envstring</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果操作成功则返回0，失败则返回-1。</para>
+    </return>
+
+    <remarks>
+        <para>函数_putenv添加新的环境变量或者改变已经存在的环境变量的值。环境变量指定了进程执行的环境（例如，程序需要链接的库的默认搜索路径）。_wputenv是_putenv的宽字节版本；参数envstring为一个宽字节字符串。</para>
+        <para>参数nvstring参数必须是指向"varname=string"形式的字符串的指针。其中，varname是要添加的或者修改的环境变量的名称，string是环境变量的值。如果varname已经是环境变量的一部分，那么该环境变量的值将被string所替换；否则新的环境变量名称和它的值被增加到环境中。用户可以通过指定一个空串来删除某个环境变量，也就是说通过指定"varname="，来删除环境变量。</para>
+        <para>函数_putenv只对当前进程的环境产生影响。在当前进程终止的时候，环境回复到调用进程一层（在大多数情况下，为操作系统层）。</para>
+        <para>考虑到环境入口，要注意以下事项： </para>
+        <para>·	不要直接改变环境入口；而是使用_wputenv去改变环境入口。如果想改变_wputenv的返回值却不想影响环境向量表，那么可以使用 strcpu得到字符串的拷贝。</para>
+        <para>·	不要释放指向环境入口的指针，因为如果这样做，环境变量将会指向已经被释放的空间。 </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_wputenv</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _putenv.cpp: This program uses getenv to retrieve
+ * the LIB environment variable and then uses
+ * _putenv to change it to a new value.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char *libvar;
+
+    /* Get the value of the LIB environment variable. */
+    libvar = getenv(&quot;LIB&quot;);
+
+    if (libvar != NULL)
+        printf(&quot;Original LIB variable is: %s\n&quot;, libvar);
+    else
+       printf(&quot;can not get the enviroment\n&quot;);
+    /* Attempt to change path. Note that this only affects the environment
+     * variable of the current process. The command processor&apos;s environment
+     * is not changed.
+     */
+    _putenv(&quot;LIB=c:\\mylib;c:\\yourlib&quot;);
+
+    /* Get new value. */
+    libvar = getenv(&quot;LIB&quot;);
+
+    if (libvar != NULL)
+        printf(&quot;New LIB variable is: %s\n&quot;, libvar);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Original LIB variable is: C:\progra~1\devstu~1\vc\lib
+New LIB variable is: c:\mylib;c:\yourlib
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>getenv</ref_name>
+            <ref_url>_wgetenv</ref_url>
+        </reference>
+    </references>
+
+</manpage>

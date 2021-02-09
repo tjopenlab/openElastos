@@ -1,0 +1,40 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IConnMgrCallback</interface><method> OnRequestConnect </method>
+    <description>
+        <para>
+           数据连接请求响应事件
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_type> IConnectionSetting * </param_type>
+                <param_name> connSetting </param_name>
+                <param_note>
+                    <para>
+                       指向IConnectionSetting接口的指针，用于表示网络属性设置
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> BOOL * </param_type>
+                <param_name> connect </param_name>
+                <param_note>
+                    <para>
+                       指向BOOL型的指针，用于返回请求连接的响应情况，为TRUE表示数据连接已连上，为FALSE表示数据连接未连上
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.1》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

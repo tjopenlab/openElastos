@@ -1,0 +1,84 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_com_interface\IEvent\TryWait">CEvent::New</sample>
+    <volume>事件</volume>
+    <title>CEvent::New</title>
+    <routine_idx>../../Event.htm</routine_idx>
+
+    <description>
+        <para>创建事件同步对象。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Boolean </param_type>
+                <param_name> manualReset </param_name>
+                <param_note>
+                    <para>[in]指定是否手动重置事件的布尔值。如果指定为TRUE，表示需要手动重置事件为未通知状态，如果未手动重置，则事件一直为已通知状态；指定为FALSE，则表示会自动重置事件为未通知状态
+</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> EventState </param_type>
+                <param_name> initialState </param_name>
+                <param_note>
+                    <para>[in]指定所创建的事件同步对象的初始状态。为零表示未通知状态，否则为已通知状态</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> IEvent ** </param_type>
+                <param_name> ppEvent </param_name>
+                <param_note>
+                    <para>[out]指向事件同步对象接口指针的指针，用以获取创建的事件同步对象接口指针</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>参见<link url="../../IEvent.htm">IEvent</link>接口</para>
+        <para>事件对象在某个时刻将处于未通知状态或已通知状态。当事件对象处于未通知状态时，所有等待此事件对象的线程将全部进入等待状态；当事件对象处于已通知状态时，等待此事件对象的线程则不会进入等待状态。</para>
+        <para>事件对象有两种类型：手动重置和自动重置。事件对象的类型是在创建时由传入的类型参数指定的。手动重置的事件对象可以通过调用<link url="../../IEvent/Notify.htm">IEvent::Notify</link>方法设置为已通知状态，或是通过调用<link url="../../IEvent/Clear.htm">IEvent::Clear</link>方法设置为未通知状态。手动重置的事件对象会保持已通知状态，直到通过调用IEvent::Clear方法重置为未通知状态为止。而自动重置的事件对象也可以通过调用<link url="../../IEvent/Notify.htm">IEvent::Notify</link>方法或<link url="../../IEvent/Clear.htm">IEvent::Clear</link>方法设置为已通知状态或未通知状态，并且自动重置的事件对象会在一个线程被唤醒后自动重置为未通知状态。</para>
+        <para>以自动重置形式创建的事件同步对象，当多个线程等待同一系统事件发生时，如果该事件仅发生一次，那么仅可有一个线程获知该事件并结束等待，其它线程仍在等待。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

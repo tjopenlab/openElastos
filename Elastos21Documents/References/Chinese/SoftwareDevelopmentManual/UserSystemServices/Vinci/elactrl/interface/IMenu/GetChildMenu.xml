@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IMenu</interface><method> GetChildMenu </method>
+    <description>
+        <para>
+            获取指定菜单项的子菜单。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> id </param_name>
+                <param_note>
+                    <para>
+菜单项的 ID 号</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IMenu ** </param_type>
+                <param_name> menu </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../IMenu.htm">IMenu</link> 接口指针的指针，用于获取子菜单，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        OUT 参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        成功调用该方法获取某项的子菜单接口后，系统会自动对该接口的引用计数增加1，故一旦不再需要该接口时，记得调用 Release() 方法释放该接口，否则在销毁子菜单对象时将造成内存泄漏。
+    </para>
+    <para>
+        拥有子菜单的菜单项会自动在其右边添加左箭头用于标示。设置子菜单可以通过 <link url="SetChildMenu.htm">SetChildMenu</link> 方法或者在创建子菜单对象的时设置其 <link url="../../class/CMenu/CMenu_New.htm">parent</link> 参数值。菜单的 ID 号并不像 index 那样由系统自动分配，需要用户在添加菜单项时通过 id 参数显式指定。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CMenu 类介绍 </ref_name>
+        <ref_url>../../class/Menu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IMenu 接口方法列表</ref_name>
+        <ref_url>../IMenu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetChildMenu</ref_name>
+        <ref_url>SetChildMenu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>构造函数</ref_name>
+        <ref_url>../../class/CMenu/CMenu_New</ref_url>
+    </reference>
+</references>
+</manpage>

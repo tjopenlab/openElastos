@@ -1,0 +1,86 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Elastos是如何组织元数据的？</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Clsinfo&nbsp;metadata</h2>
+    <p>同样以hello构件为例，hello.car文件被car编译器编译后产生HelloClsInfo.cpp如下：</p>
+    <pre class="code">
+unsigned char g_Hello_classInfo[76] = {
+    0x4c, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
+    0x01, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00,
+    0x2a, 0x00, 0x00, 0x00, 0x4c, 0xbc, 0x19, 0x3d,
+    0xc7, 0xb2, 0xa5, 0x4e, 0x84, 0x09, 0x63, 0xdb,
+    0x93, 0x0a, 0xd1, 0xb7, 0x01, 0x00, 0x48, 0x00,
+    0x00, 0x00, 0x01, 0x00, 0x40, 0x00, 0x00, 0x00,
+    0xe4, 0xf7, 0xf1, 0x70, 0x9b, 0x1b, 0x74, 0x4e,
+    0x8c, 0x1b, 0xfd, 0xc2, 0xfe, 0xfb, 0x1c, 0xe1,
+    0x46, 0x00, 0x00, 0x00, 0x02, 0x02, 0x46, 0x27,
+    0x2a, 0x00, 0x00, 0x00,
+};
+CIClassInfo *g_pCIClassInfo_ = (CIClassInfo *)g_Hello_classInfo;
+</pre>
+    <p>它的文件结构描述在clsinfo.h文件中（仅截取主要部分）：</p>
+    <pre class="code">
+typedef UINT8                   CIBaseType;
+// +-----------------------------------------------+
+// |  7  |  6  |  5  |  4  |  3  |  2  |  1  |  0  |
+// +-----------------------------------------------+
+// |     ATTRIB      | PTR |         TYPE          |
+// +-----------------+-----+-----------------------+
+// | RET | IN  | OUT |
+// +-----------------+
+
+typedef struct __PACKED__ _CIMethodEntry {
+    CIBaseType              *params;    //数组元素个数(paramNum)
+    UINT8                   paramNum;
+    UINT8                   reserved1;
+}   CIMethodEntry;
+
+typedef struct __PACKED__ _CIInterfaceEntry {
+    UINT16            methodNumMinus3; //不含接口三标准方法
+    CIMethodEntry     *methods;
+    IID               iid;
+}   CIInterfaceEntry;
+
+typedef struct __PACKED__ _CIClassEntry {
+    CLSID                   clsid;//16字节
+    UINT16                  interfaceNum;
+    CIInterfaceEntry        **interfaces;
+}   CIClassEntry;
+
+typedef struct __PACKED__ _CIClassInfo {
+    int                     totalSize;
+    int                     classNum;
+    int                     interfaceNum;
+    CIClassEntry            *classDir;
+    CIInterfaceEntry        *interfaceDir;
+}   CIClassInfo;
+</pre>
+    <p>clsinfo.h中严格定义了上面数组的格式，有了这部分描述的信息上面的数组就是可读的了。</p>
+    <p>在生成的_hellopub.cpp文件中可通过调用EzComDllGetClassObject获得相关的接口信息。EzComDllGetClassObject函数的定义如下：</p>
+    <pre class="code">
+EZAPI _EzComDllGetClassObject(REFCLSID clsid, REFIID riid, void** ppv)
+{
+    if (clsid == CLSID_ClassInfo) {
+        *ppv = (void *)g_pCIClassInfo_;//从这里返回
+        return S_OK;
+    }
+    if (clsid == (REFCLSID)CLSID_CHello) {
+        return _g_CHelloCF.QueryInterface(riid, ppv);
+    }
+    return CLASS_E_CLASSNOTAVAILABLE;
+}
+</pre>
+    <p>该函数增加了CLSID_ClassInfo选项，客户可通过调用_EzComDllGetClassObject取得该dll所包含的接口元数据。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzWCharBuf\AllocLen">alloclen</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzWCharBuf </interface>
+    <method> AllocWCharBufLen </method>
+
+    <description>
+        <para> Allocates specified size of memory space to EzWCharBuf and initializes it with specified content. </para>
+    </description>
+
+    <return>
+        <para> Returns pointer to Unicode character sequence or EZWCHARBUF_NULL if allocation fails. </para>
+    </return>
+
+    <remarks>
+        <para> The memory space is initialized with the value of the parameter pd. If pd is NULL,then the size of the used buffer is set to zero.</para>
+    </remarks>
+
+    <syntax>
+        <return_val> static EzWCharBuf</return_val>
+        <parameters>
+        <api_param>
+            <param_type>const wchar_t*</param_type>
+            <param_name> pb </param_name>
+            <param_note>
+                <para> Initializes the variable EzWCharBuf.</para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>int</param_type>
+            <param_name> cb </param_name>
+            <param_note>
+                <para> The number of Unicode characters to be allocated .</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    wchar_t* p = L"Hello world!";
+
+    EzWCharBuf mybuf = EzWCharBuf::AllocWCharBufLen(p,20);
+    wprintf(L"%s\n",(wchar_t*)mybuf);
+
+    EzWCharBuf::FreeWCharBuf(mybuf);
+
+    return 0;
+}
+]]></pre></example>
+
+<result><![CDATA[
+Hello world!
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> AllocWCharBuf </ref_name>
+            <ref_url> AllocWCharBuf </ref_url>
+        </reference>
+        <reference>
+            <ref_name> FreeWCharBuf </ref_name>
+            <ref_url> FreeWCharBuf </ref_url>
+        </reference>
+    </references>
+
+</manpage>

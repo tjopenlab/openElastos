@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBlackListEntry</interface><method> GetContactInfo </method>
+    <description>
+        <para>
+            获取黑名单记录中对应联系人的id。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pContactID </param_name>
+                <param_note>
+                    <para>
+获取黑名单记录中对应联系人的id。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf </param_type>
+                <param_name> esbContactName </param_name>
+                <param_note>
+                    <para>
+获取联系人的姓名                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            如果没有对应的联系人的记录，则pContactID返回-1。
+        </para>
+    </remarks>
+</manpage>

@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WString</interface>
+    <method> Trim </method>
+
+    <description>
+        <para> 从当前实例移除一组指定字符的所有前导匹配项和尾部匹配项。匹配项包括空白字符、水平制表符、垂直制表符、换页符、回车符和换行符。</para>
+    </description>
+    <syntax>
+        <return_val> WString </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>WStringBuf &amp;</param_type>
+            <param_name> str </param_name>
+            <param_note>
+                 <para> 用于保存移除所有匹配项后保留的字符串的WStringBuf对象。 </para>
+            </param_note>  
+            </api_param>                   
+        </parameters>        
+    </syntax>
+    <return>
+        <para>从当前实例的开始和末尾移除所有匹配项后保留的字符串。若实例或str包含的字符串指针指向NULL，返回的WString对象包含的字符串指针指向NULL。</para>
+    </return>
+    <remarks>
+        <para>空白字符(0x09-0x0D或0x20)字符。</para>
+    </remarks>
+
+<example>
+<pre>
+    WString wstr(L" hello");     //以空格开头或结尾
+    WStringBuf_&lt;40&gt; wsb;
+    WString sret = wstr.Trim(wsb);
+
+//    WString wstr(L"\thello");  //以水平制表符开头或结尾
+//    WString wstr(L"\vhello");  //以垂直制表符开头或结尾
+//    WString wstr(L"\fhello");  //以换页符开头或结尾
+//    WString wstr(L"\rhello");  //以回车符开头或结尾
+//    WString wstr(L"\nhello");  //以换行符开头或结尾
+//    WString wstr(L" \n\t\f\v\rhello");  //以由空格、水平制表符、垂直制表符、换页符、回车符、换行符等构成的任意子串开头或结尾
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>WString</ref_name>
+        <ref_url>../WString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::TrimStart </ref_name>
+        <ref_url>../WString/TrimStart</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::TrimEnd </ref_name>
+        <ref_url>../WString/TrimEnd</ref_url>
+    </reference>
+
+</references>     
+ 
+</manpage>

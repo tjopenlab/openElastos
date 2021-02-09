@@ -1,0 +1,129 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\getchar">getchar</sample>
+    <title> getchar, getwchar</title>
+    <volume>C Run-Time Libaray Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>The getchar, getwchar functions obtain the next input character (if present) from standard input stream. getchar function is equivalent to getc(stdin).</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>getchar</func_name>
+        <NoArguments/>
+        <parameters>
+            <func_param>
+                <param_type>void</param_type>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>getwchar</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void</param_type>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>These functions return the character read. To indicate an read error or end-of-file condition, getchar returns EOF and getwchar returns WEOF.</para>
+    </return>
+
+    <remarks>
+        <para>Each of these routines reads a single character from stdin at the current position and increments stream pointer to point to the next character.</para>
+	<para>getwchar is the wide-character version of getchar.</para>
+        <table>
+            <th>
+                <td>Function</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>getchar</td>
+                <td>Can run as a function or macro.</td>
+            </tr>
+            <tr>
+                <td>getwchar</td>
+                <td>Wide-character version of getchar. Reads a multibyte character or a wide character according to whether stream is opened in text mode or binary mode.</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>getchar</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>getwchar</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* getchar.cpp: This program uses getchar to read a single line
+ * of input from stdin, places this input in buffer, then
+ * terminates the string before printing it to the screen.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buffer[81];
+    int i, ch;
+
+    printf(&quot;Enter a line: &quot;);
+
+    /* Read in single line from &quot;stdin&quot;: */
+    for (i = 0; (i &lt; 80) &amp;&amp; ((ch = getchar()) != EOF) &amp;&amp; (ch != &apos;\n&apos;); i++)
+        buffer[i] = (char)ch;
+
+    /* Terminate string with null character: */
+    buffer[i] = &apos;\0&apos;;
+    printf(&quot;%s\n&quot;, buffer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Enter a line: This is a test
+This is a test
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_getws</ref_name>
+            <ref_url>_getws</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fgetwc</ref_name>
+            <ref_url>fgetwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>ungetwc</ref_name>
+            <ref_url>ungetwc</ref_url>
+        </reference>
+    </references>
+
+</manpage>

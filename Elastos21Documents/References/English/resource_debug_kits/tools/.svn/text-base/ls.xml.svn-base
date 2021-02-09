@@ -1,0 +1,104 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> ls </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para>Lists all subdirectories and files under specified directory.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> LS </cmd_name>
+        <cmd_param> [-?] [/FrqRdlt1sSvu] [files] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> -?  </param_name>
+        <param_note> Displays help information </param_note>
+    </param>
+    <param>
+        <param_name> /F  </param_name>
+        <param_note> Displays full path of file and directory</param_note>
+    </param>
+    <param>
+        <param_name> /r  </param_name>
+        <param_note> Sort directories in decending order</param_note>
+    </param>
+    <param>
+        <param_name> /q  </param_name>
+        <param_note> Does not display summary (directory searched, number of files, total size etc.)</param_note>
+    </param>
+    <param>
+        <param_name>  /R </param_name>
+        <param_note> Recursively displays all content under each directory</param_note>
+    </param>
+    <param>
+        <param_name> /d  </param_name>
+        <param_note> Only displays directory information about directory listed in the parameter, content under this directory is not displayed</param_note>
+    </param>
+    <param>
+        <param_name> /l  </param_name>
+        <param_note> Displays detail information about file and directory</param_note>
+    </param>
+    <param>
+        <param_name> /t  </param_name>
+        <param_note> Sort according to file time</param_note>
+    </param>
+    <param>
+        <param_name> /1 </param_name>
+        <param_note> Output in a column</param_note>
+    </param>
+    <param>
+        <param_name> /s </param_name>
+        <param_note> Output in a column (same as /1)</param_note>
+    </param>
+    <param>
+        <param_name> /S </param_name>
+        <param_note> Sort according to file size</param_note>
+    </param>
+    <param>
+        <param_name> /v  </param_name>
+        <param_note> Does not display hidden file and system file, it does not display '*' that represents file attribute</param_note>
+    </param>
+    <param>
+        <param_name> /u  </param_name>
+        <param_note> Display file modification time using UTC</param_note>
+    </param>
+    <param>
+        <param_name> files  </param_name>
+        <param_note> File name </param_note>
+    </param>
+    </parameters>
+    <remarks>
+        <para>When ls is displaying hidden, system and read only file, it will append a '*' to represent the attribute.If /v parameter is use, then '*' will not be displayed.</para>
+    </remarks>
+    <examples>
+    <example>
+        <eg_line>ls -l  </eg_line>
+        <eg_note> Lists detail information of file and subdirectory under the current directory. Output result: </eg_note>
+          <eg_result><![CDATA[
+d--------         0 Wed Jul 23 15:44:00 2003 [tools]
+--a------       121 Wed Jul 16 09:52:17 2003 file.txt
+]]></eg_result>
+    </example>
+    </examples>
+
+    <references>
+    <reference>
+        <ref_name> mv </ref_name>
+        <ref_url> mv </ref_url>
+    </reference>
+    <reference>
+        <ref_name> cp </ref_name>
+        <ref_url> cp </ref_url>
+    </reference>
+
+    </references>
+
+</manpage>

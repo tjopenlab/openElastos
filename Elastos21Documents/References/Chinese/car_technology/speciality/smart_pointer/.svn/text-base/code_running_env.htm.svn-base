@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>可执行代码的运行环境（context）</title>
+</head>
+
+<body>
+<h2>可执行代码的运行环境（context）</h2>
+    <p>用户在编写CAR程序的时候，通常调用Instantiate方法初始化对象。该方法参数dwClsContext用于指定对象与客户程序的相对位置，其可选值列表如下：</p>
+    <table>
+        <THEAD>
+            <TD>参数可选值</TD>
+            <TD>描述</TD>
+        </THEAD>
+        <TR>
+            <TD>CTX_SAME_DOMAIN</TD>
+            <TD>对象与客户程序在同一地址空间内</TD>
+        </TR>
+        <TR>
+            <TD>CTX_DIFF_DOMAIN</TD>
+            <TD>对象与客户程序在不同的地址空间内，但在同一进程中</TD>
+        </TR>
+        <TR>
+            <TD>CTX_KERN_DOMAIN</TD>
+            <TD>对象与客户程序在不同的地址空间内，且对象运行在内核程序中</TD>
+        </TR>
+        <TR>
+            <TD>CTX_DIFF_PROCESS</TD>
+            <TD>对象与客户程序在不同进程空间中，但在同一机器中</TD>
+        </TR>
+        <TR>
+            <TD>CTX_DIFF_MACHINE</TD>
+            <TD>对象与客户程序在不同的机器中</TD>
+        </TR>
+    </table>
+    <p>参数的五个可选值主要涉及程序的执行效率与安全性问题。</p>
+    <ul>
+        <li>参数值为CTX_SAME_DOMAIN时，程序的执行效率是最高的，因为对象与客户程序在同一地址空间，无需作上下文切换（context&nbsp;switch），可直接做指针跳转。但是参数值为CTX_SAME_DOMAIN时，程序的安全性是最差的。因为此时对象与客户程序共存亡，如果任意一方执行非法指令，对象与客户程序都会崩溃；
+        <li>参数值为CTX_DIFF_DOMAIN时，可以在一定程度上保证安全性，对象与客户程序不能访问对方的私有数据，但在效率上比CTX_SAME_DOMAIN差；
+        <li>参数值为CTX_KERN_DOMAIN时，同样可以在一定程度上保证安全性，<b>只有创建文件系统对象时，才必须使用此参数，其他情况不会用到此参数的</b>；
+        <li>参数值为CTX_DIFF_PROCESS时，对象与客户程序在不同的进程中，即使其中一个进程崩溃也不会影响到另一进程；
+        <li>参数值为CTX_DIFF_MACHINE时，对象与客户程序在不同的机器中，即使其中一台机器出现异常也不会影响到另一机器上程序的运行。</p>
+    </ul>
+    <p><font color="red"><b>注意：</b>目前《Elastos&nbsp;2.0》只支持CTX_SAME_DOMAIN和CTX_KERN_DOMAIN（CTX_KERN_DOMAIN只用在创建文件系统对象的时候）。</font></p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

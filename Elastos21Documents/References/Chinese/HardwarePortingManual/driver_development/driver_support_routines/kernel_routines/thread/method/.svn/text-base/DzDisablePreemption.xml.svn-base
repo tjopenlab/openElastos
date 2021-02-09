@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+
+    <volume>线程与调度</volume>
+    <title>DzDisablePreemption</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>禁止系统抢占。</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>bool_t</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para>本函数将会返回原先的系统抢占状态。如果原先系统抢占处于打开状态，本函数返回TRUE；如果原先系统抢占已处于被禁止状态，则返回FALSE。</para>
+    </return>
+
+    <remarks>
+        <para>Elastos实时内核是完全可抢占式的，从而保证了良好的系统响应时间。在通常情况下，一个线程在执行驱动程序上半部分代码期间有可能会被其他具有更高优先级的线程所抢占。这就意味着如果驱动程序会被多个用户并发访问，就必须对其所拥有的共享数据结构作保护，以避免竞争条件。除了可以使用各种原子操作和同步对象以外，驱动程序还可以通过暂时禁止系统抢占来保证其间的代码执行不会被抢占。</para>
+        <para>本函数将禁止系统抢占，直到调用<link url="DzRestorePreemption.htm">DzRestorePreemption</link>函数恢复系统抢占为止。</para>
+        <para>需要注意的是：在系统抢占被禁止期间，只有如下的内核例程可被使用：公用库、DzMillisecondsToTicks、DzTicksToMilliseconds、DzDisableIrq、DzEnableIrq、DzRaiseCurrentIpl、DzLowerCurrentIpl。另外，在禁止系统抢占后，驱动程序代码应该尽可能快的执行所必需的操作，一旦完成后应立即调用<link url="DzRestorePreemption.htm">DzRestorePreemption</link>函数来恢复系统抢占。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>DzRestorePreemption</ref_name>
+            <ref_url>DzRestorePreemption</ref_url>
+        </reference>
+    </references>
+
+
+
+</manpage>

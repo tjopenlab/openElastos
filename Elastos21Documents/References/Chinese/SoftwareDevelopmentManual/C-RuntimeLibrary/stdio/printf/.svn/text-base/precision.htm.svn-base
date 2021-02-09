@@ -1,0 +1,135 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>precision信息段说明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>precision信息段说明</h2>
+    <p>format格式规范的第三个可选项是precision，它（[.precision]）在小数点后指定一个非负十进制整数，用来指示字符显示的个数，小数位的个数，或有效数字的个数（参见表格：精度对类型的影响）。与width信息段不同的是，精度不仅能删去超出精度指定范围的字符个数，还可以对小数部分进行四舍五入操作。如果精度为0且值为0，结果就是没有输出字符，如下所示：</p>
+    <pre class="code">
+printf( "%.0d", 0 );      /* 无字符输出 */
+</pre>
+    <p>如果precision信息段是一个星号（*），则<a class="style1" href="../wprintf.htm">printf</a>函数的参数列表中必须提供int型参数替代width值。该int型参数必须放在参数列表中需格式化显示的值之前。</p>
+    <p>type决定精度的转换以及当忽略精度时的默认值，如下表所示：</p>
+    <p>精度对类型的影响表</p>
+    <table>
+        <thead>
+            <td>类型</td><td>说明</td><td>默认值</td>
+        </thead>
+        <tr>
+            <td>
+                c, C
+            </td>
+            <td>
+                精度无影响
+            </td>
+            <td>
+                直接显示字符
+            </td>
+        </tr>
+        <tr>
+            <td>
+                d, i, u, o, x, X
+            </td>
+            <td>
+                精度指定数字显示的最少个数，如果printf函数参数中数字的个数小于精度的话，则在输出值前填充0。当数字的位数大于精度的话，该值则不会被截短
+            </td>
+            <td>
+                默认精度为1
+            </td>
+        </tr>
+        <tr>
+            <td>
+                e, E
+            </td>
+            <td>
+                精度指定小数位个数。最后一个数字四舍五入
+            </td>
+            <td>
+                默认的精度为6；如果精度为0，或小数点后没有数字，则不显示小数点
+            </td>
+        </tr>
+        <tr>
+            <td>
+                f
+            </td>
+            <td>
+                精度值指定小数位个数。如果有小数点，小数点前至少有一个数字
+            </td>
+            <td>
+                默认的精度为6；如果精度为0，或小数点后没有数字，则不显示小数点
+            </td>
+        </tr>
+        <tr>
+            <td>
+                g, G
+            </td>
+            <td>
+                精度指定有效数字的最多个数
+            </td>
+            <td>
+                显示六个有效位，包括所有末尾被忽略的0
+            </td>
+        </tr>
+        <tr>
+            <td>
+                s, S
+            </td>
+            <td>
+                精度指定字符显示的最多个数。不会显示精度范围外多余的字符
+            </td>
+            <td>
+                直到出现空字符，否则字符将一直显示下去
+            </td>
+        </tr>
+    </table>
+    <p>如果信息段对应的浮点数是无穷大，无限，或NAN，按以下方式显示：</p>
+    <table>
+        <thead>
+            <td>值</td>
+            <td>输出</td>
+        </thead>
+        <tr>
+            <td>
+                + infinity
+            </td>
+            <td>
+                + Infinity
+            </td>
+        </tr>
+        <tr>
+            <td>
+                - infinity
+            </td>
+            <td>
+                - Infinity
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Indefinite (same as quiet NaN)
+            </td>
+            <td>
+                Indefinite
+            </td>
+        </tr>
+        <tr>
+            <td>
+                NAN
+            </td>
+            <td>
+                NaN
+            </td>
+        </tr>
+    </table>
+
+<script>footer("KoreTide")</script>
+</body>
+
+</html>

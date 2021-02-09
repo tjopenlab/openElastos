@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListView</interface><method> SetColumnFont </method>
+    <description>
+        <para>
+            设置 ListView 中指定列的字体。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+指定列的索引值，有效值为 0～列数-1                     </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IFont * </param_type>
+                <param_name> font </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IFont.htm">IFont</link> 接口的指针，用于得到设置的字体（请先确定已经创建了该字体对象并获得了它的 <link url="../../../graphics/interface/IFont.htm">IFont</link> 接口，有关更多信息可参考：<link url="../../../graphics/class/CFont.htm">CFont 类介绍</link>）</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+    	ListView 中某列的字体受 <link url="../../../graphics/class/CFont.htm">Font</link> 对象控制，设置整个 ListView 显示的字体可以通过 <link url="../IControl/SetFont.htm">SetFont</link> 方法，有关更多信息请参考：<link url="../../reference/SetText.htm">如何设置控件所显示的文本</link>。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CListView 类介绍 </ref_name>
+        <ref_url>../../class/ListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListView 接口方法列表</ref_name>
+        <ref_url>../IListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListViewPaint 接口方法列表</ref_name>
+        <ref_url>../IListViewPaint</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetColumnFont</ref_name>
+        <ref_url>GetColumnFont</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetFont</ref_name>
+        <ref_url>../IControl/SetFont</ref_url>
+    </reference>
+    <reference>
+        <ref_name>如何设置控件所显示的文本</ref_name>
+        <ref_url>../../reference/SetText</ref_url>
+    </reference>
+</references>
+</manpage>

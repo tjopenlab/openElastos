@@ -1,0 +1,41 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WString</interface>
+    <method> LastIndexOfAnyChar</method>
+
+    <description>
+        <para> 返回strCharSet中任意一个宽字符在当前WString对象宽字符串中的最后的索引值。</para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>Char32 *</param_type>
+            <param_name> strCharSet </param_name>
+            <param_note>
+                <para> 指定字符集。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive </param_default>
+            <param_note>
+                <para> 大小写标示符。 参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。(StringCase_Insensitive暂不支持) </para>
+            </param_note>
+        </api_param>                      
+        </parameters>        
+    </syntax>
+    <return>
+        <para>返回strCharSet中任意一个宽字符在当前WString对象宽字符串中的最后的索引值，若没有出现则返回-1。</para>
+    </return>
+<remarks>
+	<para>若WString对象字符串指针为NULL或内容为空，则返回-1。</para>
+  <para>若strCharSet指针为NULL或内容为空，则返回-1。</para>
+</remarks>
+    
+</manpage>

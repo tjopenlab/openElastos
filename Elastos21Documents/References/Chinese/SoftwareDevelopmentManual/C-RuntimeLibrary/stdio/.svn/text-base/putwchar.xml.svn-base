@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\putchar">putchar</sample>
+    <title> putchar, putwchar</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>将字符写入标准输出流。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>putchar</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>要写入输出流的字符</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>putwchar</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wint_t</param_type>
+                <param_name>c</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回写入标准输出流的字符。出错或文件结束，putchar返回EOF，putwchar返回WEOF。调用ferror可以检测是哪种错误。</para>
+    </return>
+
+    <remarks>
+        <para>函数putchar将字符c输出到标准输出流的当前位置。如果发生读错误，就设置流的错误指针。putwchar是putchar的宽字符版本。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>putchar</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>putwchar</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* putchar.cpp: This program writes characters from
+ * buffer to screen.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char  buffer[] = &quot;Testing putwchar.&quot;;
+    char  *p;
+
+    p = buffer;
+    while (*p) {
+        putchar(*p);
+        p++;
+    }
+    putchar(&apos;\n&apos;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Testing putwchar.
+</result>
+
+   
+    <references>
+        <reference>
+            <ref_name>_putws</ref_name>
+            <ref_url>_puts</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getc</ref_name>
+            <ref_url>getwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fputc</ref_name>
+            <ref_url>fputc</ref_url>
+        </reference>
+    </references>
+
+</manpage>

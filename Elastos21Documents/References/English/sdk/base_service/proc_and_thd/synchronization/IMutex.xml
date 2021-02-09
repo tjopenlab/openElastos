@@ -1,0 +1,83 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>    <manpage>
+    <volume>System COM Interface</volume>
+    <interface>IMutex</interface>
+    <description>
+        <para>The mutex object interface.</para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Lock</method_name>
+        <method_url>IMutex\Lock </method_url>
+    <m_description>
+        Locks the mutex object.
+    </m_description>
+    </method>
+    <method>
+        <method_name> TryLock</method_name>
+        <method_url>IMutex\TryLock </method_url>
+    <m_description>
+        Tries to lock the mutex object.
+    </m_description>
+    </method>
+ <method>
+        <method_name>Unlock</method_name>
+        <method_url>IMutex\Unlock</method_url>
+    <m_description>
+		Unlocks the locked mutex object.
+	</m_description>
+    </method>
+</self>
+    </methods>
+
+	<remarks>
+		<para>
+			A <b>Mutex</b> object represents a "mutex", which is a thread synchronization object that enables 
+			mutually exclusive access to a resource. A mutex object provides its service by exposing an 
+			<b>IMutex</b> interface.
+		</para>
+	        <para>
+	        	Only one thread at a time can own a mutex object. The current thread that owns the mutex object is 
+	        	called the owner of the object. Other threads that request the mutex object will be blocked. If the 
+	        	owning thread releases the mutex object, one of the blocked threads will own the mutex object and 
+	        	execution continues. Other threads will keep waiting.
+	        </para>
+	        <para>
+	        	A thread uses the <link url="../synchronization/function/EzCreateMutex.htm">CMutex::New</link> function to 
+	        	create a mutex object. Alternatively <link url="../synchronization/function/EzCreateNamedMutex.htm">CMutex::New
+	        	</link> function can be used to create a named mutex object. Other threads can call the 
+	        	<link url="sdk/base_service/car_naming_service/naming_service_api/FindRunningObject.htm">CSystem::FindRunningObject</link> function to get a pointer to 
+	        	the mutex object's interface by its name.
+	        </para>
+	        <para>
+	        	A thread calls IMutex::Lock or IMutex::TryLock to get or try to get a mutex object. The thread calls 
+	        	IMutex::Unlock to release the owned mutex object.
+	        </para>
+	        <para>
+	        	The mutex object is recursive. It means that a thread that has owned a mutex object can call 
+	        	IMutex::Lock or 
+	        	IMutex::TryLock to get the mutex object again. However, it must call 
+	        	IMutex::UnLock, the same number of  times as it calls
+	        	IMutex::Lock or IMutex::TryLock, in order to release the mutex object.
+	        </para>
+	        <para>
+	        	The priority inheritance is applicable on mutex objects.
+	        </para>
+	        <para>
+	        	If the owning thread exits or is killed, the mutex object will be released automatically.
+	        </para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

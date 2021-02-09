@@ -1,0 +1,51 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzStr\IsNull">IsNull</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzStr </interface>
+    <method> IsNull </method>
+
+    <description>
+        <para> Indicates whether the EzStr object is NULL.</para>
+    </description>
+
+    <return>
+        <para>Returns TRUE if the EzStr object is NULL; otherwise returns FALSE. </para>
+    </return>
+    <syntax>
+        <return_val> BOOL </return_val>
+        <NoArguments/>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStr str = EZCSTR("Hello, world");
+
+    if (!str.IsNull()) {
+        printf("str's value is not NULL.\n");
+    }
+    else {
+        printf("str's value is NULL.\n");
+    }
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+str's value is not NULL.
+]]>
+    </result>
+
+</manpage>

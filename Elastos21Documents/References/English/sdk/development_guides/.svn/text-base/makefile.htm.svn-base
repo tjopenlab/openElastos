@@ -1,0 +1,198 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>Files Described In make Program</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Files Described In make Program</h2>
+        <p>The three files dirs, sources and makefile.inc are used to describe how to compile a project under Elastos 2.0 development environment. dirs file lists all subdirectories that are needed to be compiled in the current directory. sources file describes how to compile the current directory. makefile.inc describes special operation to the current directory. Please note when reading these files, <b>the back slash ('\') at the end of line is the line continue character '#', which indicates comments.</b></p>
+        <p>If you do not want to use this method to compile,then you can create "makefile" file under directory to be compiled to compile this project. For details about makefile please see GNU make and makefile related document.</p>
+        <ul>
+            <li><a class="style1" href="makefile.htm#dirs">dirs file</a>
+            <li><a class="style1" href="makefile.htm#sources">sources file</a>
+            <li><a class="style1" href="makefile.htm#macro">Appendix: Commonly used macro</a>
+            <li><a class="style1" href="makefile.htm#makefile">makefile.inc file</a>
+            <li><a class="style1" href="makefile.htm#path">Appendix: Commonly used path macro</a>
+        </ul>
+
+        <a NAME="dirs">
+        <h4>dirs file</h4>
+            <p>dirs file (without extension) is a text file under directory to be compiled. If a directory contains a subdirectory to be compiled. You can list names of all the subdirectories to be compiled in the dirs file of the current directory. <a class="style1" href="../../resource_debug_kits/tools/emake.htm">emake</a> searches for dirs file in each directory.Initially it compiles the subdirectories and then compiles the current directory. If the current directory does not have subdirectory that needed to be compiled, then dirs file is not required.</p>
+            <p><b>dirs file example: </b></p>
+            <pre class="code">
+DIRS=\
+   idl \
+   inc \
+</pre>
+            <p><b>Description: </b>Two subdirectories idl and inc are included in the compilation.</p>
+
+        <a NAME="sources">
+        <h4>sources file</h4>
+            <p>sources file (no extension) is a text file located under the directory to be compiled. It sets macro for compilation of the current directory, including source program files of the current directory, generated target file type, target file name etc. There is also some macro about compiler and linker FLAG. All these macro controls the behavior of compiler and linker.</p>
+            <p>For details about compiler, linker FLAG please see GNU related documentation.</p>
+            <p><b>sources file example: </b></p>
+            <pre class="code">
+TARGET_NAME= hello
+TARGET_TYPE= exe
+
+SOURCES= \
+    hello.c
+
+LIBRARIES =\
+$(TARGET_LIB_PATH)\elacrt.lib \
+</pre>
+            <p>Comments: </p>
+            <ol>
+                <li>TARGET_NAME specifies the target file generated from compilation is hello.
+                <li>TARGET_TYPE specifies the generated target file type is exe file. This file is generated under the mirror directory corresponding to the current directory. In order to generate a lib file or dll file, you need to make sure in sources file TARGET_TYPE=lib or TARGET_TYPE=dll.
+                <li>SOURCES specifies source file to be compiled and linked as hello.c.
+                <li>LIBRARIES specifies that the linked library is elacrt.lib, here must specify the full path of the file and the dependency that needs to check during compilation. For example: 
+                <pre class="code">
+LIBRARIES =\
+    $(TARGET_LIB_PATH)\elacrt.lib \
+    d:\lib\user.lib
+</pre>
+                <p>Description 1: The example does not define INCLUDES, which means all the used header files are under default search path. If header file that were not under default header file search path then you should declare the path of this header file in INCLUDES. For example: "INCLUDES=$(MAKEDIR)\inc" means at first search inc directory under the current directory while searching for header files, then search the default search path. When you have multiple search path that needs to describe, distinguish different path by separating them with semicolon (‘;’). Complete <a class="style1" href="sources.htm">sources example</a>.</p>
+                <p>Description 2: If ELASTOS_LIBS is used and required library file can be found in default path then you can directly write the file name (without including the path).This way it does not check the dependency of related library file. For example: </p>
+                <pre class="code">
+ELASTOS_LIBS =\
+elacrt.lib \
+</pre>
+            </ol>
+            <p><b>Remarks: </b>Since Elastos can only recognize file name less than or equals to 8 characters, file type does not exceed 3 characters. Hence if target file full name does not fit this rule, Elastos system treats it as wrong file name. When write TARGET_NAME and TARGET_TYPE, special care need to be taken to control the size of file name and file type.</p>
+
+        <a NAME="macro">
+        <h4>Appendix: Common Macro Definition</h4>
+            <table>
+                <thead>
+                    <td>Macro Name</td>
+                    <td>Description</td>
+                </thead>
+                <tr>
+                    <td>C_FLAGS/CPP_FLAGS</td>
+                    <td>C/C++ compiler FLAG of specified user.</td>
+                </tr>
+                <tr>
+                    <td>DLLTOOL_FLAGS</td>
+                    <td>Various parameters when specified user compile DLL using DLL compiler.</td>
+                </tr>
+                <tr>
+                    <td>ELASTOS_LIBS</td>
+                    <td>Lists all library files used when compile application, the default search path order is <a class="style1" href="makefile.htm#path">TARGET_LIB_PATH</a>, <a class="style1" href="makefile.htm#path">SYSTEM_LIB_PATH</a>. If the above two paths use library file, you can directly write the library file name and it does not include the path name. Otherwise you need to write full path file name.</td>
+                </tr>
+                <tr>
+                    <td>EXE_FLAGS</td>
+                    <td>Various parameters when specified user use linker to link EXE file.</td>
+                </tr>
+                <tr>
+                    <td>INCLUDES</td>
+                    <td>Header file search path. The default search path order is the current directory, <a class="style1" href="makefile.htm#path">TARGET_INC_PATH</a>, <a class="style1" href="makefile.htm#path">ELASTOS_INC_PATH</a>. If the user specifies the search path, then first searches the user specified path, then searches the above three paths.</td>
+                </tr>
+                <tr>
+                    <td>LIBRARIES</td>
+                    <td>Lists all library files used in compiling application and needs to specify path related library files located. For the details of the path, see <a class="style1" href="makefile.htm#path">"common path macro definition"</a>.</td>
+                </tr>
+                <tr>
+                    <td>LINK_FLAGS</td>
+                    <td>C/C++ linker FLAG of specified user.</td>
+                </tr>
+                <tr>
+                    <td>MAKE_FLAGS</td>
+                    <td>Macro specified for GNU make to use as parameter.</td>
+                </tr>
+                <tr>
+                    <td>RES_FLAGS</td>
+                    <td>Various parameters specified user use resource tools to generate resource file.</td>
+                </tr>
+                <tr>
+                    <td>SOURCES</td>
+                    <td>Source program list (can be .cpp .c .rc .idl .def types etc.)</td>
+                </tr>
+                <tr>
+                    <td>TARGET_BOARD</td>
+                    <td>Specifies the development board type of the current development environment.</td>
+                </tr>
+                <tr>
+                    <td>TARGET_CPU</td>
+                    <td>CPU type of specified current development environment, such as x86, arm etc.</td>
+                </tr>
+                <tr>
+                    <td>TARGET_NAME</td>
+                    <td>Target file name, it forms full target file name (TARGET_NAME.TARGET_TYPE) with TARGET_TYPE. Target file name cannot exceed 8 characters.</td>
+                </tr>
+                <tr>
+                    <td>TARGET_TYPE</td>
+                    <td>Target file type (usually EXE, DLL or LIB). Target file type cannot exceed 3 characters.</td>
+                </tr>
+            </table>
+            <p><font color="red">Note: ELASTOS_LIBS is different from LIBRARIES, the former does not need search program library file dependency,while the latter searches for related library file dependency.</font></p>
+
+        <a NAME="makefile">
+        <h4>makefile.inc</h4>
+            <p>If certain project needs to use special tools and method to generate target file, it can be specified in the makefile.inc file of the current directory. This is a special case, most programmer does not encounter. For details about makefile please see GNU makefile related document.</p>
+            <p><font color="red">Note: As mentioned before, in these three kinds of files, the back slash ('\') at program end of lines is line continuation character.It represents this line and next line are continuous.No space is added after the line continuation character. In the program line that terminates with line continuation character must not continuous with contents after it.For example the 5th line "hello.c&nbsp;\" and the line follows it "LIBRARIES=&nbsp;\" in the above sources file example are totally two different contents.They must not be connected together, so as to have an empty line between these two lines.Otherwise it generates error during compilation.</font></p>
+
+        <a NAME="path">
+        <h4>Appendix: Commonly Used Path Macro Definition</h4>
+            <table>
+                <thead>
+                    <td>Commonly Used Path Macro Definition</td>
+                    <td>Description</td>
+                </thead>
+                    <tr>
+                    <td>ELASTOS_ROOT</td>
+                    <td>Elastos.SDK root directory</br>DDK setup under Elastos/build/misc/setenv.bat</br>SDK setup under Elastos.SDK/build/misc/setenv.bat</td>
+                </tr>
+                 <tr>
+                    <td>EXTERN_SDK</td>
+                    <td>External provided SDK tool directory.</td>
+                </tr>
+                <tr>
+                    <td>MAKEDIR</td>
+                    <td>Current compilation directory.</td>
+                </tr>
+
+                <tr>
+                    <td>SYSTEM_BIN_PATH</td>
+                    <td>Elastos.SDK needed kernel.exe and elastos.dll storing path.</td>
+                </tr>
+                <tr>
+                    <td>SYSTEM_LIB_PATH</td>
+                    <td>Elastos.SDK static library path (corresponds to the current development environment)</br>Elastos.SDK\system\x86.dbg\lib</br>Elastos.SDK\system\x86.rls\lib</br>Elastos.SDK\system\ntos.dbg\lib</br>Elastos.SDK\system\ntos.rls\lib</td>
+                </tr>
+                <tr>
+                    <td>SYSTEM_INC_PATH</td>
+                    <td>SDK export header file path provided by Elastos 2.0</br>Elastos.SDK\system\inc</td>
+                </tr>
+                <tr>
+                    <td>TARGET_BIN_PATH</td>
+                    <td>Executable file storage path (corresponds to the current development environment) </br>Elastos.SDK\obj\x86.dbg\bin</br>Elastos.SDK\obj\x86.rls\bin</br>Elastos.SDK\obj\ntos.dbg\bin</br>Elastos.SDK\obj\ntos.rls\bin</td>
+                </tr>
+                <tr>
+                    <td>TARGET_INC_PATH</td>
+                    <td>Target header file storage path (corresponds to the current development environment)</br>Elastos.SDK\obj\x86.dbg\inc</br>Elastos.SDK\obj\x86.rls\inc</br>Elastos.SDK\obj\ntos.dbg\inc</br>Elastos.SDK\obj\ntos.rls\inc</td>
+                </tr>
+                <tr>
+                    <td>TARGET_LIB_PATH </td>
+                    <td>Target library file storage path (corresponding to the current development environment) </br>Elastos.SDK\obj\x86.dbg\lib</br>Elastos.SDK\obj\x86.rls\lib</br>Elastos.SDK\obj\ntos.dbg\lib</br>Elastos.SDK\obj\ntos.rls\lib</td>
+                </tr>
+                <tr>
+                    <td>TARGET_OBJ_PATH</td>
+                    <td>Corresponding mirror directory of current compilation directory.</td>
+                </tr>
+                <tr>
+                    <td>USER_TARGET_PATH </td>
+                    <td>The user can set the path macro value under the current compilation environment through the set command. Thus specifies target file storage path (note: This setup is only effective in current compilation environment window.)</td>
+                </tr>
+            </table>
+
+<script>footer("english")</script>
+</body>
+</html>    

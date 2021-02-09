@@ -1,0 +1,138 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\ezstrbuf\relOper">Relational Operators</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzStrBuf </interface>
+    <method> operator ==,!=,&lt;,&lt;=,&gt;,&gt;=  </method>
+
+    <description>
+        <para> Compares the sequence of two strings. </para>
+    </description>
+
+    <syntax>
+        <return_val> BOOL </return_val>
+        <method_name> operator == </method_name>
+        <parameters>
+        <api_param>
+            <param_type> const EzStr&amp; </param_type>
+            <param_name> buf </param_name>
+            <param_note>
+                <para> The string needs to be compared. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <method_name> operator != </method_name>
+        <return_val> BOOL </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const EzStr&amp; </param_type>
+            <param_name> buf </param_name>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <method_name> Operator &gt; </method_name>
+        <return_val> BOOL </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const EzStr&amp; </param_type>
+            <param_name> buf </param_name>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <method_name> Operator &lt; </method_name>
+        <return_val> BOOL </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const EzStr&amp; </param_type>
+            <param_name> buf </param_name>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <method_name> Operator &gt;= </method_name>
+        <return_val> BOOL </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const EzStr&amp; </param_type>
+            <param_name> buf </param_name>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <method_name> Operator &lt;= </method_name>
+        <return_val> BOOL </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const EzStr&amp; </param_type>
+            <param_name> buf </param_name>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns TRUE if the result of comparison is according to the semantic, else returns FALSE. </para>
+    </return>
+
+    <remarks>
+        <para>This operator is used to compare the sequence of two strings in the dictionary.</para>
+        <para>The left of operator is an EzStrBuf string and the right is EzStrBuf string or <link url="..\EzStr.htm">EzStr</link> string. </para>
+        <para>Note: If NULL pointer is compared,then the result is unexpected. </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStrBuf_<20> buf1, buf2;
+    buf1.Copy(L"Hello,world!");
+    buf2.Copy(L"hello,world!");
+
+    EzStr str = EZCSTR("Hello,world!");
+
+    //比较buf1和buf2
+    if (buf1 == buf2) {
+        printf("Call EzStrBuf::operator==,buf1 = buf2.\n");
+    }
+    else {
+        printf("Call EzStrBuf::operator==,buf1 != buf2.\n");
+    }
+
+    //比较buf1和str
+    if (buf1 == str) {
+        printf("Call EzStrBuf::operator==,buf1 = str.\n");
+    }
+    else {
+        printf("Call EzStrBuf::operator==,buf1 != str.\n");
+    }
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+Call EzStrBuf::operator==,buf1 != buf2.
+Call EzStrBuf::operator==,buf1 = str.
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name> EzStr comparison operator </ref_name>
+            <ref_url> ../EzStr/Relational_Operators</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>How Does Elastos Organize Metadata?</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>CTL&nbsp;metadata</h2>
+    <p>Interface metadata in Elastos has originated from CAR (component&nbsp;assembly&nbsp;run-time) file,which is equivalent to Microsoft idl file. After processed by the CAR compiler carc.exe, the metadata file is generated. During compilation the metadata file is packaged into dll, which can be found by using the DLL export function DllGetClassObject().</p>
+    <p>CAR file describes class object organization information (e.x. class order, interface that is included) in a component, various interface information (e.x. interface type, interface methods included), various method information (e.x. interface method parameter type, order etc.) and CLSID information etc.</p>
+    <p>Please take a look at the content of the following CAR file (hello.car) of the hello component: </p>
+    <pre class="code">
+[
+    version(1.0), uuid(e363b985-8a3a-40a6-b88c-b2e10274fe54),
+    urn(hello.dll)
+]
+component Hello
+{
+    [ uuid(70f1f7e4-1b9b-4e74-8c1b-fdc2fefb1ce1) ]
+    interface IHello {
+        ECODE Hello([in] EzStr inStr, [out] EzStrBuf outStrBuf);
+    }
+
+    [ uuid(3d19bc4c-b2c7-4ea5-8409-63db930ad1b7) ]
+    class CHello {
+        interface IHello;
+    }
+}
+</pre>
+    <p>Compiles hello.car, the compiler generates .cls file in the target directory and this file is been compressed by zip.</p>
+    <p>Then according to generated .cls file,system generates the interface information file hello.h for the client side in the target directory. Another self-descriptive method is using #import&lt;hello.dll&gt; to replace #include&lt;hello.h&gt; in the client file. This is because the system uses the mkimport tool before compile to preprocess the original file.When it encounters the import line, it goes to the resource section of this dll to search for metadata and generates corresponding information and thus achieves self-description metadata in the dll itself.</p>
+    <p>According to generated .cls file, then the system passes it through system tool cls2src and we can generate HelloClsInfo.cpp, _CHello.cpp, _CHello.h, _hellopub.cpp and _Hello_1_0.h. HelloClsInfo.cpp file is a simplified metadata for marshaling/unmarshaling to use. _CHello.cpp and _CHello.h automatically generated interface implementation.It saves the trouble of a repetitive and error prone work for the user. _hellopub.cpp generates DllGetClassObject function implementation. _Hello_1_0.h includes metadata of generated hello.h file. These automatically generated file combines with source files written by the user to generate server component.</p>
+    <p>Please refer to the following diagram for detailed workflow. In the diagram, the grey area is original file,which has to be completed by the user.</p>
+    <center><img src="images/metadata.jpg"></center>
+
+<script>footer("english")</script>
+</body>
+</html>

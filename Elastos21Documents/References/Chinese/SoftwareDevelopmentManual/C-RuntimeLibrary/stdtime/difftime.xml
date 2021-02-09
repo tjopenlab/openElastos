@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\difftime">difftime</sample>
+    <title> difftime </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>计算两时间之间的差值。</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>difftime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>time_t</param_type>
+                <param_name>time1</param_name>
+                <param_note>
+                    <para>结束时间</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>time_t</param_type>
+                <param_name>time0</param_name>
+                <param_note>
+                    <para>初始时间</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回以秒为单位的两时间差值，返回值是一个双精度的浮点型的数值。</para>
+    </return>
+
+    <remarks>
+        <para>difftime函数计算参数time0和time1的差值。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>difftime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* difftime.cpp: This program calculates the amount of time
+ * needed to do a floating-point multiply 10 million times.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+     time_t     start, finish;
+     long loop;
+     double     result, elapsed_time;
+
+     printf(&quot;Multiplying 2 floating point numbers 10 million times...\n&quot;);
+
+     time(&amp;start);
+     for (loop = 0; loop &lt; 10000000; loop++)
+          result = 3.63 * 5.27;
+     time(&amp;finish);
+
+     elapsed_time = difftime(finish, start);
+     printf(&quot;\nProgram takes %6.0f seconds.\n&quot;, elapsed_time);
+
+     return 0;
+}
+</pre>
+    </example>
+<result>
+Multiplying 2 floating point numbers 10 million times...
+
+Program takes     36 seconds.
+</result>
+
+
+
+</manpage>

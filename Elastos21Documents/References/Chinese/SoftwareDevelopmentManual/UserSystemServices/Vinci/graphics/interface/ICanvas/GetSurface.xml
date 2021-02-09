@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICanvas</interface><method> GetSurface </method>
+    <description>
+        <para>
+            得到Graphics的绘图对象。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ISurface ** </param_type>
+                <param_name> surface </param_name>
+                <param_note>
+                    <para>
+指向ISurface类型的二级指针，用于获取Graphics绘图对象                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有无效参数，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            调用本方法前必须先调用            <link url="InitFromSurface.htm">            InitFromSurface            </link>            方法，否则调用失败。
+        </para>
+    </remarks>
+</manpage>

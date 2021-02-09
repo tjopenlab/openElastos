@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>Menu</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>Menu</b></h2></center>
+<small><p><b>头文件：</b>ElControls.h
+<p><b>程序库：</b>ElControls.dll
+（<b>备注：</b>当在 CAR 文件中通过 <a class="doxygen" href="../../../../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a> 引入 ElControls.dll 时，则无需在源文件中添加“include &lt;ElControls.h&gt;”该句；若 ElControls.dll 是在 sources 文件中引入的，则需要在源文件中添加“include &lt;ElControls.h&gt;”该句。有关更多信息请参考：<a class="doxygen" href="../../../../../car_technology/car.htm">CAR 编程入门</a>）</small>
+<hr size="1">
+<h4><li><b>详细描述：</b></h3>
+<center> <img src="images/Menu.jpg"> </center>
+<center><small>Menu 图例</small></center>
+<p>菜单控件。用户创建了一个 Menu 对象后，需要通过 <a class="doxygen" href="../interface/IMenu/AddItem.htm">AddItem</a> 或 <a class="doxygen" href="../interface/IMenu/InsertItem.htm">InsertItem</a> 方法为菜单插入菜单项。修改某个菜单项的内容可以通过 <a class="doxygen" href="../interface/IMenu/SetItem.htm">SetItem</a> 方法，同时每个菜单项还可以拥有其子菜单，通过在创建一个 Menu 对象时指定它是某个上一级菜单项的子菜单或者调用 <a class="doxygen" href="../interface/IMenu/SetChildMenu.htm">SetChildMenu</a> 方法为某个菜单项指定其子菜单，拥有子菜单的菜单项系统会自动为该项添加右箭头用于标示，如图例中所示。若菜单中的菜单项的个数超过一屏可以显示的个数，则系统会自动为菜单添加上下滚动的按钮，用于将未显示的菜单项显示出来，如图例中所示。Menu 的宽度会随菜单项文本的长度自动调整，若想控制 Menu 的宽度可以通过 <a class="doxygen" href="../interface/IMenu/SetItemWidth.htm">SetItemWidth</a> 方法。系统已经自动为每个菜单项设置了快捷键，对应硬键盘的1～9，可以通过将 <a class="doxygen" href="CMenu/CMenu_New.htm">style</a> 属性设置为 <a class="doxygen" href="../datatype/MenuStyle.htm">MenuStyle_AcceleratorKey</a> 显示快捷键的图标。
+<p>主菜单并不会随其父 Form 的显示而显示出来，一般需要点击一个 Form 或者其它控件后，在回调事件处理函数中调用 <a class="doxygen" href="../interface/IMenu/Show.htm">Show</a> 方法将主菜单显示出来。
+<p><b>注意：</b>Menu 必须放在一个 <a class="doxygen" href="Form.htm">Form</a> 内，或者 Menu 的 parent 控件在一个 Form 内，每个 Form 只能有一个弹出式菜单。
+<hr size="1">
+<h4><li><b>CMenu类封装图：</b></font></h4>
+<center> <img src="images/CMenu.jpg"> </center>
+        <p>如图所示，JMenuEvents 为回调事件接口，用户可以通过 AddXXXCallback 的方法为 Menu 注册回调事件，当该 XXX 事件发生时，相应的回调处理函数会被调用。当销毁一个对象前，需要调用 RemoveXXXCallback 取消该事件。具体 Callbak 机制的介绍，详见 Elastos 编程入门中 Callback 这节。
+        <p>当使用 <a class="doxygen" href="CMenu/CMenu_New.htm">New</a> 方法创建了一个 Menu 对象后，可以获得 <a class="doxygen" href="../interface/IMenu.htm">IMenu</a> 接口指针，通过该接口指针用户可以调用接口内的方法对 Menu 进行一系列操作。
+
+<hr size="1">
+<h4><li><b>构造函数：</b></font></h4>
+<table>
+<thead><td>名称</td><td class="memitem">说明</td></thead>
+<tr><td><a class="doxygen" href="CMenu/CMenu_New.htm">CMenu::New</as></td><td>创建一个 Menu 对象</td></tr>
+</table>
+<h4><li><b><a class="doxygen" href="../interface/IMenu.htm">IMenu 接口方法列表</a></b></font></h4>
+
+<h4><li><b><a class="doxygen" href="../interface/JMenuEvents.htm">Menu 回调事件列表</a></b></font></h4>
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method>Concatenate</method>
+
+    <description>
+        <para> 在AStringBuf对象字符串中追加多个字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>AStringBuf &amp;</return_val>
+        <parameters>
+        <api_param>
+            <param_type>AString</param_type>
+            <param_name>firststr[argument]...</param_name>
+            <param_note>
+                <para> firstwstr为要追加的第一个字符串,argument为要追加的可选的其他字符串。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回AStringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>最后一参数必须为NULL，否则结果不可预期。</para>
+    </remarks>
+
+<example>
+<pre>
+AStringBuf_&lt;20&gt; asbuf;
+AString as1="Great";
+AString as2=" Wall";
+asbuf.Concatenate(as1, as2, NULL);
+CConsole::WriteLine(asbuf);  //Display : "Great Wall" 
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Append</ref_name>
+        <ref_url>Append/index/Append</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Concatenate</ref_name>
+        <ref_url>../WStringBuf/Concatenate</ref_url>
+    </reference>
+</references>
+</manpage>

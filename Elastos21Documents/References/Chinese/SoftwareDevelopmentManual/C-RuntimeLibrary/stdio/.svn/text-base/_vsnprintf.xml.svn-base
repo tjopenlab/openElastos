@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_vsnprintf">_vsnprintf</sample>
+    <title>_vsnprintf, _vsnwprintf</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>使用参数链表指针格式化输出到字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_vsnprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>输出字符的存储空间</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>输出字符的最大数目</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format</param_name>
+                <param_note>
+                    <para>格式化控制</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+                <param_note>
+                    <para>参数链表指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_vsnwprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format</param_name>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para> _vsnprintf 和 _vsnwprintf 返回存储在buffer中字符的个数，不包括结束符，如果出错，则返回负值。对于_vsnprintf函数，如果要写的字节数超过buffer大小，只写count个字节，并返回-1。</para>
+    </return>
+
+    <remarks>
+        <para>两个函数都接收参数链表指针，将给定的数据格式化输出到buffer指向的内存空间中。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_vsnprintf</routine_name>
+            <headerfile>stdio.h 和 stdarg.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_vsnwprintf</routine_name>
+            <headerfile>stdio.h 和 stdarg.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* vsnprntf.cpp:the program return the number of characters written*/
+
+#include &lt;stdio.h&gt;
+#include &lt;stdarg.h&gt;
+#define BUFSIZE 500
+#define BUFMAX 100
+
+void __cdecl test(char *buf, ...);
+
+int main(int argc, char *argv[])
+{
+    char buffer[BUFSIZE] = &quot;This is Elastos Of KoreTide Corp!&quot;;
+    char ch = &apos;A&apos;;
+    wchar_t wch = &apos;B&apos;;
+    int i = 9999, j = -999;
+    double x = 987.654321;
+    test(&quot;Hello! %s a good operation system!&quot;, buffer);
+    test(&quot;ch = %4c, wch = %-4d, i = %6d, j = %-10x, x= %10.5e&quot;, \
+        ch, wch, i, j, x);
+
+    return 0;
+}
+
+void __cdecl test(char *buf, ...)
+{
+    char writebuf[BUFSIZE];
+    va_list marker;
+    int result = 0;
+    int k = BUFMAX;
+    va_start(marker, buf);
+    result = _vsnprintf(writebuf, k, buf , marker);
+    va_end(marker);
+    printf(&quot;%s\n&quot;,writebuf);
+    printf(&quot;result = %d\n&quot;,result);
+}
+</pre>
+    </example>
+<result>
+Hello! This is Elastos Of KoreTide Corp! a good operation system!
+ch =    A, wch = 66  , i =   9999, j = fffffc19  , x= 9.87654e+002
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>fprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>sprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_snprintf</ref_name>
+            <ref_url>_snprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_snwprintf</ref_name>
+            <ref_url>_snprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

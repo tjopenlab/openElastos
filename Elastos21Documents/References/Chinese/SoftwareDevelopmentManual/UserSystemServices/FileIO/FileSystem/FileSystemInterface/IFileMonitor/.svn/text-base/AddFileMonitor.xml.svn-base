@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>IFileMonitor</volume>
+<interface>IFileMonitor</interface>
+	<method> AddFileMonitor </method>
+    	<description>
+        	<para>注册文件修改通知。</para>
+    	</description>
+    	<syntax>
+        	<return_val> ECode </return_val>
+        	<parameters>
+            	<api_param>
+                	<param_inout>[out]</param_inout>
+                	<param_type> IEvent ** </param_type>
+                	<param_name> ppEvent </param_name>
+                	<param_note><para>指向<link url="../../../../../CoreServices/ProcessThread/Synchronization/IEvent.htm">IEvent</link>接口指针的指针，用于获取注册成功后的事件接口指针，不能为空</para></param_note>
+            	</api_param>
+        	</parameters>
+    	</syntax>
+
+	<return>
+    	<para>如果方法调用成功，返回NOERROR； </para>
+    	<para>如果参数ppEvent为NULL，返回E_INVALID_ARGUMENT； </para>
+    	<para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+	</return>
+
+	<requirements>
+		<system>
+			<system_name>Elastos 操作系统</system_name>
+    	</system>
+	</requirements>
+</manpage>

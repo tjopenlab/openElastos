@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\Modules">GetModuleByAddress</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> GetModuleByAddress </method>
+    <description>
+        <para>
+            通过指定的地址获取模块的接口指针。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Address   </param_type>
+                <param_name> address </param_name>
+                <param_note>
+                    <para>
+						指定的模块地址
+                    </para>
+                </param_note>
+            </api_param>
+
+			<api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IModule  **  </param_type>
+                <param_name> ppMod </param_name>
+                <param_note>
+                    <para>
+						指向需要返回的模块接口的二级指针,不能为空
+                    </para>
+               </param_note>
+            </api_param>
+
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取模块接口指针</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_DOES_NOT_EXIST</td>
+	    	    <td>没有找到指定模块</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        <tr>
+	            <td>E_PROCESS_NOT_ACTIVE</td>
+	            <td>进程处于非运行状态</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

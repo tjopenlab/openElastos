@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>基本CAR函数</volume>
+    <title>CObject::ReleaseAtAppletFinish</title>
+    <routine_idx>../../BasicCAR.htm</routine_idx>
+
+    <description>
+        <para>将一个对象引用托管给系统，当applet消息循环结束以后,将自动释放此引用。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+         <api_name>ReleaseAtAppletFinish</api_name>
+        <parameters>
+            <api_param>
+                <param_type>/* [in] */ PInterface </param_type>
+                <param_name> pObject </param_name>
+                <param_note>
+                    <para>[in] 需要托管的对象引用。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<para>成功返回NOERROR。具体参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关信息。</para>
+    </return>
+    
+    <remarks>
+        <para>applet所托管的对象和代码，将在applet消息循环结束以后，即将退出线程时被清理和调用。此操作与现在的OnFinish调用时机相同。早于applet主线程上的Thread托管对象和代码被执行。</para>
+    </remarks>
+    
+    <requirements>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+   
+</manpage>

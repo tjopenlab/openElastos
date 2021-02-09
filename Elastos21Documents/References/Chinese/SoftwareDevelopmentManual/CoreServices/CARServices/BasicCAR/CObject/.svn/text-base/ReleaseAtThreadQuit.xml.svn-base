@@ -1,0 +1,46 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>基本CAR函数</volume>
+    <title>CObject::ReleaseAtThreadQuit</title>
+    <routine_idx>../../BasicCAR.htm</routine_idx>
+
+    <description>
+        <para>将一个对象引用托管给系统，当前线程退出时将自动释放此引用。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+         <api_name>ReleaseAtThreadQuit</api_name>
+        <parameters>
+            <api_param>
+                <param_type>/* [in] */ PInterface </param_type>
+                <param_name> pObject </param_name>
+                <param_note>
+                    <para>[in] 需要托管的对象引用</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    
+        
+    <return>
+    	<para>成功返回NOERROR。具体参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关信息。</para>
+    </return>
+    
+     <remarks>
+        <para>将一个对象引用托管给系统，在当前线程退出时会将此托管的对象引用自动释放。</para>
+    </remarks>
+    
+    <requirements>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+   
+</manpage>

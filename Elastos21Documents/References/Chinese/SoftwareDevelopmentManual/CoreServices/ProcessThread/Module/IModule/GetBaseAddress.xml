@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IModule\AddressFunction"> GetBaseAddress </sample>
+<volume>可执行文件和模块</volume>
+<interface>IModule</interface>
+<method> GetBaseAddress </method>
+    <description>
+        <para>
+    		获取模块的装载地址。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+			<parameters>
+				<api_param>
+					<param_inout>[out]</param_inout>
+					<param_type> Address *  </param_type>
+					<param_name> pBase </param_name>
+					<param_note>
+						<para>
+						    指向Address类型的指针，用于获取模块在进程内的装载地址，不能为空
+						</para>
+					</param_note>
+				</api_param>
+			</parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值</td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取模块装载地址</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+            模块的装载地址也可称为模块的基址，是指模块装载到进程空间的虚地址。
+        </para>
+
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统 
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

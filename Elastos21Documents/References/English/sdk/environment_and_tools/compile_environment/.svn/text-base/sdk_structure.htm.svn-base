@@ -1,0 +1,108 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>SDK Compile Environment</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>SDK Development Environment Directory Structure Guide</h2>
+        <h3>SDK code tree structure</h3>
+            <center><img src="images/sdk_tree.jpg"></center>
+            <center>Picture 1: SDK Code Tree Structure</center>
+        <h3>Directories and subdirectory descriptions</h3>
+            <table>
+                <thead>
+                    <td>Directory</td>
+                    <td>Content</td>
+                </thead>
+                <tr>
+                    <td>Extern </td>
+                    <td>GNU and Microsoft compile tools.</td>
+                </tr>
+                <tr>
+                    <td>build</td>
+                    <td>Development tools, development environment. </td>
+                </tr>
+                <tr>
+                    <td>build\misc</td>
+                    <td>Development environment shortcut icon, environment initialization script and general makefile directory.</td>
+                </tr>
+                <tr>
+                    <td>build\tools</td>
+                    <td>Development tools, including some script and compile tools.</td>
+                </tr>
+                <tr>
+                    <td>src</td>
+                    <td>Source program directory.</td>
+                </tr>
+                <tr>
+                    <td>src\crt</td>
+                    <td>Standard C function library.</td>
+                </tr>
+                <tr>
+                    <td>src\socket</td>
+                    <td>Standard winsock interface implementation code built on Elastos 2.0.</td>
+                </tr>
+                <tr>
+                    <td>src\net</td>
+                    <td>Network service implementation code built on Elastos 2.0.</td>
+                </tr>
+                <tr>
+                    <td>src\filesys</td>
+                    <td>File system implementation code built on Elastos 2.0.</td>
+                </tr>
+                <tr>
+                    <td>src\shell</td>
+                    <td>Shell implementation code built on Elastos 2.0.</td>
+                </tr>
+                <tr>
+                    <td>src\config</td>
+                    <td>Configuration file used to configure Elastos 2.0.</td>
+                </tr>
+                <tr>
+                    <td>src\websvrs</td>
+                    <td>WEB service implementation code built on Elastos 2.0.</td>
+                </tr>
+                <tr>
+                    <td>src\samples</td>
+                    <td>Sample program code.</td>
+                </tr>
+                <tr>
+                    <td>src\Atlas</td>
+                    <td>Graphics system implementation code built on Elastos 2.0.</td>
+                </tr>
+                <tr>
+                    <td>src\cachemgr</td>
+                    <td>CAR component automatic download manager implementation code built on Elastos 2.0.</td>
+                </tr>
+                <tr>
+                    <td>src\ElaScope</td>
+                    <td>Browser implementation code built on Elastos 2.0.</td>
+                </tr>
+            </table>
+            <h4>Remarks: </h4>
+            <ul>
+                <li>Tools provided under build is mainly used for development.A small number of the tools need default path.Usually we set D drive as the default drive. During installation, if the user selects other drive letter(for example E drive or other drives), then some parameters must be changed manually. These tools refer to the shortcuts to compile environment under Elastos\build\misc directory.If specified drive letter is not D drive,then you need to modify the "target" parameter in "Shortcut" selection of file properties tag from *.lnk file.
+                <li>In DDK and SDK development environments of Elastos 2.0, all the public compile rules follows makefile.gnu under misc directory. Tools directory stores some development tools, usage of parameters "?", "/?" or "-/?" can call up the help for details of how to use this tool.
+            </ul>
+            <p><font color="red"><b>Note: </b></font></p>
+            <ol>
+                <li>Tools provided under build is used for development.Some of the tools need default path.Usually specifies the default drive letter to be D drive. During installation, if the user selects other drive letter(for example E drive or other drives), then the user needs to modify some parameter manually. These tools mainly refer to shortcuts of various compile environments under Elastos\build\misc directory.If specified drive letter is not D drive, then "target" parameter of "Shortcut" option in file properties tag of *.lnk file needs to be changed.
+                <li>Since the compilation result of Elastos 2.0 is put under mirror directory obj, all users must make sure that there is enough disk space for compile.Otherwise it causes compilation error.The error prompt information is detected and sent by the compiler.
+                <li>Differences between various DEBUG/RELEASE versions are the following: DEBUG version is not optimized and includes all the debug information you can debug.RELEASE version is optimized and removes debug information and debugger during linking time.Basically it cannot be debugged.It is the final version after optimization.
+            </ol>
+        <h3>Things need to be noted for SDK development environment</h3>
+            <ol>
+                <li>If crt, networking, file system and shell of Elastos 2.0 is required, then the SDK compile order must follow crt->socket->net->filesys->shell. Network related code uses crt library function, network file system (TFS) of file system uses some networking compiled library, shell implementation also uses library functions generated by crt and file system. If user develop crt, networking, file system and shell themselves, then the user needs to solve related compile order problem.
+                <li>If need to use disk, TFTP file system or web service built on Elastos 2.0, various *.cfg configuration files in config module need to be modified. Detail guide is in <a class="style1" href="../../setup_and_administration/configure.htm">"start Elastos 2.0&nbsp;SDK configuration"</a>.
+                <li>Corresponding guide related to various subdirectories of the module you can refer readme.txt file under corresponding source code directory.
+            </ol>
+
+<script>footer("english")</script>
+</body>
+</html>

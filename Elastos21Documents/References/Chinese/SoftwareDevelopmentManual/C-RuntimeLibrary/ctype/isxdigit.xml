@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\isxdigit">isxdigit iswxdigit</sample>
+    <title>isxdigit iswxdigit</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>判断一个字符是否为十六进制的字符（A – F，a – f 或 0 – 9）。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>isxdigit</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>需要判断的整型值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+   
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>iswxdigit</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+              
+            </func_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>如果c是一个十六进制数字(A-F,a-z或0-9),则isxdigit返回一个非0值。如果c是对应于十六进制的宽字符,则iswxdigit返回一个非0值。如果c不满足这个测试条件则函数返回0。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>isxdigit</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>iswxdigit</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* isxdigit.cpp: This program uses isxdigit to verify c
+ * whether it is a hexadecimal digit (A – F, a – f, or 0 – 9).
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+{
+    int c = 65;
+    if (isxdigit(c)) {
+        printf(&quot;it is a hexadecimal character.\n&quot;);
+    }
+    else {
+        printf(&quot;it is not a hexadecimal character.\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+it is a hexadecimal character.
+</result>
+
+
+
+</manpage>

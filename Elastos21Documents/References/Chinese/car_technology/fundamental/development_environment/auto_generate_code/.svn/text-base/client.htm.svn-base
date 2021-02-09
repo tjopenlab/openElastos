@@ -1,0 +1,70 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>自动生成代码框架</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<h2>开发构件的客户端程序</h2>
+    <p>通过阅读前面的文章，用户已经掌握了编写简单的CAR构件的方法。下面我们来编写两个简单的使用构件hello的客户程序。</p>
+    <p>下面请看构件hello的C++客户程序代码（client.cpp文件）：</p>
+    <pre class="code">
+#include &lt;stdio.h&gt;
+<b>#import &lt;hello.dll&gt;</b>
+
+int __cdecl main()
+{
+    EzStr outStr;
+<b>    CHelloRef cHello;    //创建类智能指针
+    ECODE ec = cHello.Instantiate();  //创建类CHello的对象</b>
+    if (!cHello.IsValid()) {
+        assert(0 && "Can't create cHello");
+        return 1;
+    }
+
+<b>    ec = cHello.Hello(EZCSTR("Hello,"), &outStr);    //使用类智能指针cHello调用Hello()方法</b>
+    if (FAILED(ec)) {
+        return 1;
+    }
+
+    printf("%S\n", (wchar_t*)outStr);   //打印输出结果
+    EzStr::FreeString(outStr);
+
+    return 0;
+}
+</pre>
+    <p>编写sources文件如下：</p>
+    <pre class="code">
+TARGET_NAME= hello_c
+TARGET_TYPE= exe
+
+SOURCES= client.cpp
+
+ELASTOS_LIBS= ElCRuntime.lib
+ELASTOS_LIBS+= elastos.lib
+</pre>
+    <p>该程序执行结果：</p>
+    <pre class="code">
+Hello, world!
+</pre>
+    <ul>
+    <li>在客户程序中使用import语句引用构件，例如：
+    <pre class="code">
+#import &lt;hello.dll&gt;
+</pre>
+    <p>编译源程序时，编译器将按照以下顺序查找引用的构件：当前目录-&gt;系统目录-&gt;ElastosSDK开发环境的bin目录。</p>
+    <font color="red"><b>注意：</b>#import&nbsp;&lt;XXX.dll&gt;语句只能用于cpp文件中，如果在XXX头文件中需要声明引用的构件中的变量时，请将#import <XXX.dll>语句添加在#include <XXX.h>之前。</font>
+        <li></a>智能指针（Smart&nbsp;Pointer）的使用
+                <p>示例中，参数cHello为类CHello的类智能指针。当使用import引用了构件hello时，就可以使用类CHello提供的智能指针。通过类智能指针cHello，客户程序可以调用类CHello对象的所有接口中的方法，例如：</p>
+                <pre class="code">
+cHello.Hello(EZCSTR("Hello,"), &outStr);    //使用类智能指针cHello调用Hello()方法
+</pre>
+    <p>示例中，类智能指针cHello使用点操作符“.”调用接口IHello中的方法Hello。接口方法Hello的参数中，<a class="style1" href="../../../../sdk/reference/custom_data_type/EzStr.htm">EzStr</a>是将一个单字节字符串转换为EzStr对象的宏，一般用来初始化一个EzStr对象。</p>
+    </ul>
+
+<body><script>footer("chinese")</script>
+</body>
+</html>

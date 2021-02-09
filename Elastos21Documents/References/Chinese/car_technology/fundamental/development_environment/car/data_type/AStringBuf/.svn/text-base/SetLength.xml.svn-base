@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method>SetLength</method>
+
+    <description>
+        <para> 设置此对象字符串所占的字符数,以sizeof(AChar)为单位。</para>
+    </description>
+
+     <syntax>
+        <apiname>SetLength</apiname>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>Int32 </param_type>
+            <param_name> len </param_name>
+            <param_note>
+                <para> 要设置的长度 </para>
+            </param_note>
+         </api_param>
+         </parameters>
+    </syntax>
+    <remarks>
+        <para>如果len小于0，字符串长度不变。</para>
+        <para>如果len大于0并且小于字符串当前长度，字符串长度设置为len,并在len+1的位置设置'\0'。</para>
+         <para>如果len大字符串当前长度，字符串长度不变。</para>
+    </remarks>
+<example>
+<pre>
+AStringBuf_&lt;5&gt; asbuf;
+asbuf.Copy("123456789");
+asbuf.SetLength(10);
+CConsole::WriteLine(asbuf);  //Display : "12345"
+asbuf.SetLength(3);
+CConsole::WriteLine(asbuf);  //Display : "123"
+</pre>
+</example>
+
+ <references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::GetLength</ref_name>
+        <ref_url>../AStringBuf/GetLength</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::GetCapacity</ref_name>
+        <ref_url>../AStringBuf/GetCapacity</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::GetAvailableSpace</ref_name>
+        <ref_url>../AStringBuf/GetAvailableSpace</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::SetLength</ref_name>
+        <ref_url>../WStringBuf/SetLength</ref_url>
+    </reference>
+</references>   
+
+
+</manpage>

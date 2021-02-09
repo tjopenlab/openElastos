@@ -1,0 +1,67 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>ITapiEventHandler</interface><method> OnRegisterStatus </method>
+    <description>
+        <para>
+           CSD网络注册状态提示事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwRegisterStatus </param_name>
+                <param_note>
+                    <para>
+                       GPRS网络注册状态
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <remarks>
+      <para>
+        pdwRegisterStatus定义如下：
+      </para>
+      <table>
+       <th>
+         <tr>
+           <td>取值</td><td>描述</td>
+         </tr>
+       </th>
+       <tr>
+           <td>TAPI_REGSTATUS_UNREGISTERED</td><td>未注册，且并不在搜索中</td>
+         </tr>
+       <tr>
+           <td>TAPI_REGSTATUS_HOME</td><td>已注册，本地</td>
+         </tr>
+       <tr>
+           <td>TAPI_REGSTATUS_ATTEMPTING</td><td>未注册，在搜索中</td>
+         </tr>
+       <tr>
+           <td>TAPI_REGSTATUS_DENIED</td><td>注册被拒绝</td>
+         </tr>
+       <tr>
+           <td>TAPI_REGSTATUS_UNKNOWN</td><td>未知</td>
+         </tr>
+       <tr>
+           <td>TAPI_REGSTATUS_ROAM</td><td>注册，漫游</td>
+       </tr>
+      </table>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

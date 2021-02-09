@@ -1,0 +1,134 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>sendto</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>向指定目的地发送数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>套接口（可能已连接）。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const char *</param_type>
+                <param_name>buf</param_name>
+                <param_note>
+                    <para>保存待发送数据的用户缓冲区。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>len</param_name>
+                <param_note>
+                    <para>待发送数据的长度。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>flags</param_name>
+                <param_note>
+                    <para>调用方式标志位，普通方式为0。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const struct sockaddr *</param_type>
+                <param_name>to</param_name>
+                <param_note>
+                    <para>（可选）指针，指向目的套接口的地址。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>tolen</param_name>
+                <param_note>
+                    <para>to所指地址的长度。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，返回所发送数据的总字节数（请注意对非阻塞套接口这个数字可能小于len中给出的大小）；否则返回SOCKET_ERROR。调用WSAGetLastError()可获取相应的错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>sendto()将向数据报或字节流套接口发送数据。对数据报类套接口，需注意待发送数据长度不应超过通讯子网的IP包最大长度。如果数据太长无法自动通过下层协议，数据将不被发送，并返回WSAEMSGSIZE错误。并且用户不应当在sendto之前通过connect建立缺省连接。</para>
+        <para>to参数可以是任何类型的地址，包括广播地址和多播地址。在向广播地址发送数据之前，应用程序须调用setsockopt()并将SO_BROADCAST选项打开。否则将导致sendto失败并产生WSAEACCES错误。在TCP/IP协议中，应用程序可向任意多播地址发送数据，而不需要成为组内成员。</para>
+        <para>如果套接口未被绑定，系统将给套接口自动绑定一个唯一的值，并设套接口为已捆绑。此时可调用getsockname()得到套接口的地址。</para>
+        <para>请注意成功地完成sendto()调用并不意味着数据传送到达。</para>
+        <para>通常情况下，sendto()函数用于从SOCK_DGRAM套接口向to参数指定的远端套接口发送数据报。对于SOCK_STREAM类型套接口，to和tolen参数被忽略，此时sendto()等价于send()。</para>
+        <para>若要从SOCK_DGRAM套接口发送广播数据报，to参数指向的地址应该包括广播地址INADDR_BROADCAST和端口号。通常应当限制一个广播数据报的大小，保持数据报的数据部分（包括数据报的头）不超过512字节。</para>
+        <para>对阻塞套接口，如果协议缓冲区的剩余空间不够保存待发送数据，sendto()将阻塞。非阻塞套接口不会产生阻塞过程，调用sendto ()的返回值可能在1到len之间，具体值取决于本地和远端主机的缓冲区大小。可调用select()来确定何时能够进一步发送数据。</para>
+        <para>应用程序可以向广播地址发送数据报，但是在sendto()调用之前必须通过setsockopt打开SO_BROADCAST选项，否则将返回WSAEACCESS错误。</para>
+        <para>允许将len参数设为0，函数仍将成功执行并返回0。如果是数据报套接口，将传送一个长度为0的数据报。</para>
+        <para>标志位flag用于设置函数的执行方式，一般情况下使用0。elasock中send()和sendto()支持将标志位设为MSG_OOB，缓冲区内的最后一个字符将以带外数据形式发送。</para>
+        <para>带外数据在各种不同的socket中常常有不同的实现和语义，我们并不鼓励使用带外数据功能。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>recv</ref_name>
+            <ref_url>recv</ref_url>
+        </reference>
+        <reference>
+            <ref_name>recvfrom</ref_name>
+            <ref_url>recvfrom</ref_url>
+        </reference>
+        <reference>
+            <ref_name>select</ref_name>
+            <ref_url>select</ref_url>
+        </reference>
+        <reference>
+            <ref_name>send</ref_name>
+            <ref_url>send</ref_url>
+        </reference>
+        <reference>
+            <ref_name>shutdown</ref_name>
+            <ref_url>shutdown</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+        <reference>
+            <ref_name>setsockopt</ref_name>
+            <ref_url>setsockopt</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

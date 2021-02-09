@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>WStringBuf</class>
+    <method> PadRight </method>
+
+    <description>
+        <para> 左对齐此对象中的字符，在右边用空格填充以达到指定的总长度。</para>
+    </description>
+    <syntax>
+        <return_val> WStringBuf &amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> width </param_name>
+            <param_note>
+                <para> 填充后字符长度。 </para>
+            </param_note>
+        </api_param>
+        </parameters>        
+    </syntax>
+    <return>
+        <para>WStringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>如果width &lt; 0，本函数不起作用。</para>
+        <para>如果width 大于当前对象的Capacity，则填充后WStringbuf对象字符串长度为Capacity。当前对象字符串的Capacity值可以通过调用函数GetCapacity()获得。</para>
+    </remarks>
+<example>
+<pre>
+请参见：<link url="../../AStringBuf/PadRight/index/PadRight.htm">AStringBuf::PadRight</link>
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>WStringBuf</ref_name>
+        <ref_url>../../WStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::PadRight </ref_name>
+        <ref_url>index/PadRight</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::PadLeft </ref_name>
+        <ref_url>../PadLeft/index/PadLeft</ref_url>
+    </reference>
+
+
+</references>   
+ 
+</manpage>

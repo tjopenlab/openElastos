@@ -1,0 +1,87 @@
+##########################################################################
+#
+# File:     $/LearnCOM/lesson01/sources
+# Purpose:  Demonstrate how to use SOURCES to build HELLO sample code
+# Usage:    zmake [clean]
+# Author:   Chen Rong
+# Date:     2000-4-24
+#
+
+##########################################################################
+#
+# Usually there is only one target to build in each directory.
+# The target types are normally EXE (executable), DLL (dynamic-load-library),
+# LIB (library) or XXX (ZMAKE will skip building this target).
+# Target type controls options used for compiler and linker.
+#
+TARGET_NAME= hello
+TARGET_TYPE= exe
+
+##########################################################################
+#
+# INCLUDES lists the C/C++/IDL header directories
+#
+# To specify directories related to the source directory, use macro
+# MAKEDIR. For example, $(MAKEDIR)\..\inc pointing to a sibling directory
+# named as inc.
+#
+INCLUDES=$(EXTERN_INC);$(EXTERN_INC)\crt
+
+##########################################################################
+#
+# C_CALLING_CONVENTION defaults to _stdcall (which is the C++ convention).
+# But to port some classic C apps (which does not comply to ANSI standard),
+# you may want to specify __cdecl as your C calling convention.
+#
+# C_CALLING_CONVENTION=__cdecl
+
+##########################################################################
+#
+# C_DEFINES specifies the macros for C/C++ #if, #ifdef statements
+#
+# C_DEFINES=-D_X86_ -DWIN32_LEAN_AND_MEAN
+
+##########################################################################
+#
+# C_FLAGS defines user specific C/C++ compiler flags
+#
+# C_FLAGS=-MD
+
+##########################################################################
+#
+# LINK_FLAGS defines user specific C/C++ linker flags
+#
+# LINK_FLAGS=-ignore:4099
+
+##########################################################################
+#
+# List of SOURCES files which could be one of the following types:
+# .cpp .c .rc .idl .def
+#
+SOURCES= \
+    hello.cpp
+
+##########################################################################
+#
+# LIBRARIES lists all INTERNAL .lib or .obj files which are needed
+# to build this app.  "INTERNAL files" means we build and maintain them.
+#
+# LIBRARIES= \
+#    $(TARGET_LIB_PATH)\toolib.lib \
+
+##########################################################################
+#
+# WIN32_LIBS lists all EXTERNAL .lib or .obj files which are needed
+# to build this app.  "EXTERNAL files" means we don't build nor maintain them.
+#
+WIN32_LIBS= \
+    $(EXTERN_LIB)\libc.lib \
+    $(EXTERN_LIB)\kernel32.lib \
+
+##########################################################################
+#
+# ZMAKE will NOT try to generate C/C++ header dependencies if NO_MKDEPEND
+# is set.  The default is to generate dependencies for EXE, DLL, LIB targets
+#
+# NO_MKDEPEND=1
+

@@ -1,0 +1,148 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strcoll">strcoll</sample>
+    <title>strcoll, wcsicoll</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Compare strings using locale-specific information.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>strcoll</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string1</param_name>
+                <param_note>
+                    <para>Null-terminated strings to compare.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string2</param_name>
+                <param_note>
+                    <para>Null-terminated strings to compare.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>wcsicoll</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t *</param_type>
+                <param_name>string1</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t *</param_type>
+                <param_name>string2</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns a value indicating the relationship of string1 to string2, as follows.</para>
+        <table>
+	        <th>
+               <td>Return Value</td>
+               <td>Relationship of string1 to string2.</td>
+            </th>
+            <tr>
+               <td>&lt;0</td>
+               <td>string1 less than string2.</td>
+            </tr>
+            <tr>
+               <td>0</td>
+               <td>string1 identical to string2.</td>
+            </tr>
+            <tr>
+               <td>&gt;0</td>
+               <td>string1 greater than string2.</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>Each of these functions performs a case-sensitive comparison of string1 and string2 according to the code page currently in use. These functions should be used only when there is a difference between the character set order and the lexicographic character order in the current code page and this difference is of interest for the string comparison.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strcoll</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcsicoll</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+char string1[] = &quot;The quick brown dog jumps over the lazy fox&quot;;
+char string2[] = &quot;The QUICK brown dog jumps over the lazy fox&quot;;
+
+int main()
+{
+    char tmp[20];
+    int result;
+    /* Case sensitive */
+    printf(&quot;Compare strings:\n\t%s\n\t%s\n\n&quot;, string1, string2);
+    result = strcoll(string1, string2);
+    if (result &gt; 0)
+        strcpy(tmp, &quot;greater than&quot;);
+    else if (result &lt; 0)
+        strcpy(tmp, &quot;less than&quot;);
+    else
+        strcpy(tmp, &quot;equal to&quot;);
+    printf(&quot;\tstrcoll:   String 1 is %s string 2\n&quot;, tmp);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+Compare strings:
+The quick brown dog jumps over the lazy fox
+The QUICK brown dog jumps over the lazy fox
+
+strcoll:   String 1 is greater than string 2
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcscmp</ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>strxfrm</ref_name>
+            <ref_url>strxfrm</ref_url>
+        </reference>
+    </references>
+
+</manpage>

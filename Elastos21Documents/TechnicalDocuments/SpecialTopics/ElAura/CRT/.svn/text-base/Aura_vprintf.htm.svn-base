@@ -1,0 +1,135 @@
+<HTML>
+<HEAD>
+<title>
+Aura_vprintf
+</title>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<H3>Aura_vprintf</H3>
+</div>
+<p>Writes formatted output to stdout using a pointer to a list of arguments.</p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">EXTERN_C int CDECL Aura_vprintf
+                    (
+                 </TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">const char*</TD>
+<TD class="param">format<span style="color:black; font-size:110%">,</span></TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">va_list</TD>
+<TD class="param">argptr</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">);</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<H4>Parameters</H4>
+<DL><DT class="param" style="color:#222222;margin-left:42">format</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">Format specification.<BR /><BR />
+</font></DD>
+<DT class="param" style="color:#222222;margin-left:42">argptr</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">Pointer to list of arguments.<BR /><BR />
+</font></DD>
+</DL>
+<DL></DL>
+<h4>Return Value</h4>
+<p>vprintf and vwprintf return the number of characters written, not including the terminating null character or a negative value if an output error occurs.</p>
+<h4>Remarks</h4>
+<p>Each of these functions takes a pointer to an argument list, then formats and writes the given data to stdout.</p>
+<h4>Requirements</h4>
+<table class="methodtbl" cellspacing="0" cellpadding="0">
+<THEAD class="head">
+<TD width="20%" class="cell">
+Routine</TD>
+<TD width="20%" class="cell">
+Required header</TD>
+<TD class="cell">
+Compatibility</TD>
+</THEAD>
+<TR>
+<TD class="cell"><B>vprintf</B></TD>
+<TD class="cell">stdio.h</TD>
+<TD class="cell">ANSI, Windows 2000, Elastos 2.0</TD>
+</TR>
+<TR>
+<TD class="cell"><B>vwprintf</B></TD>
+<TD class="cell">stdio.h</TD>
+<TD class="cell">ANSI, Windows 2000, Elastos 2.0</TD>
+</TR>
+</table>
+<p></p>
+<table class="methodtbl" cellspacing="0" cellpadding="0">
+<THEAD class="head">
+<TD width="30%" class="cell">
+                Library
+            </TD>
+<TD class="cell">
+                Description
+            </TD>
+</THEAD>
+<TR>
+<TD class="cell">
+                libc.lib
+            </TD>
+<TD class="cell">
+                Single thread static library
+            </TD>
+</TR>
+<TR>
+<TD class="cell">
+                elacrt.lib
+            </TD>
+<TD class="cell">
+                Import library for elacrt.dll
+            </TD>
+</TR>
+</table>
+<h4>Example</h4>
+<p><script>showButton_e()</script></p>
+<pre class="codeview">
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* vprintf.cpp:this program display a line to screen*/
+
+#include &lt;stdio.h&gt;
+
+void __cdecl test(char *, ...);
+
+int main(int argc, char** argv)
+{
+    test("Hello,world! %s\n", "This is Elastos!");
+
+    return 0;
+}
+
+void __cdecl test(char *first, ...)
+{
+    int result = 0;
+    va_list parglist;
+
+    va_start(parglist, first);
+    result = vprintf(first, parglist);
+    va_end(parglist);
+}
+</pre>
+<h4>Output</h4>
+<pre class="codeview">Hello, world! This is Elastos!</pre>
+</DIV>
+</BODY>
+</HTML>
+

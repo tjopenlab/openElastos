@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/custom_type.xsl"?>
+
+<manpage>
+    <sample url=""></sample>
+    <volume>Elastos Network Programming Interface（elasock API）</volume>
+    <types>hostent</types>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>This structure holds the related information about the specified host computer, such as the name of the host computer,IP address etc.Users are not permitted to modify the structure or release the structure members.Each thread saves only one copy of the content of structure hostent and the value will be changed by calling API again.User should copy what is needed before calling.</para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type> char * </mem_type>
+            <mem_name> h_name </mem_name>
+            <mem_description> The official name of the host computer</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char ** </mem_type>
+            <mem_name> h_aliases </mem_name>
+            <mem_description> Aliases List</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> short </mem_type>
+            <mem_name> h_addrtype </mem_name>
+            <mem_description> The address type of the host computer</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> short </mem_type>
+            <mem_name> h_length </mem_name>
+            <mem_description> The address length of the host computer</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char ** </mem_type>
+            <mem_name> h_addr_list </mem_name>
+            <mem_description> The IP address list of the host computer</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char * </mem_type>
+            <mem_name> h_addr </mem_name>
+            <mem_description> The first IP address in the IP address list of the host computer.</mem_description>
+        </struct_member>
+    </struct>
+
+    <remarks>
+        <para>This structure is not permitted to be changed.Besides,one thread is allocated with one copy of the hostent structure.</para>
+    </remarks>
+
+</manpage>

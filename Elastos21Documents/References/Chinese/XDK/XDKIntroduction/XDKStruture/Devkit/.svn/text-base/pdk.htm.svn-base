@@ -1,0 +1,24 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Devkit的目录结构介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>pdk</h2>
+    <p>为了满足不同用户的开发需求，XDK还提供用于支持系统平台级开发的内容。PDK的目标定位在系统级构件的开发用户，用户可以通过pdk中提供的头文件、库文件和相关工具开发系统级构件，用以扩充、升级或替换Elastos提供的相应构件。</p>
+    <p>在pdk中将根据平台来区分提供的头文件和库文件，并且根据选择的编译工具和编译版本，以及目标板卡来区分具体的库文件。在开发过程中，XDK将会根据当前用户的开发环境自动选择相应的文件。例如，用户如果通过PDK使用GNU编译工具开发基于ARM的gingko板卡的debug版程序，在编译的时候，XDK将自动把头文件的搜索路径设置到DevKit\pdk\inc；在进行链接的时候，XDK将自动把库文件的搜索路径设置为DevKit\pdk\lib\zener\gnu.arm.gingko.dbg。</p>
+    <p>inc: 目录下存放由相应的DDK环境drop出来的系统头文件和pdk环境下导出os级的头文件，在编译过程中，XDK会将该目录自动设置为优先搜索的路径。</p>
+    <p>lib: 目录下存放由相应的DDK环境drop出来的lib文件和pdk环境下生成的os级的lib文件，现在Elastos暂时提供EVC编译的ARM、MSVC编译的x86、GNU编译的ARM和GNU编译的x86，在这些分类中根据debug和release的版本分别放置相应的文件。</p>
+<!--    <p>注1：在打开开发环境的图标中，通过“快捷方式”的图标传入参数来确定是否使用PDK，而此参数能决定在编译的时候搜索的头文件目录和在链接的时候搜索的库文件目录。</P>
+    <p>注2：用户必须设置目标板卡（可在DevKit\misc\usr.bat文件中，通过XDK_TARGET_BOARD环境变量设定），以便XDK在编译和运行以及调试中找到相应的所需文件。</p>
+-->    
+    
+<script>footer("chinese")</script>
+</body>
+</html>

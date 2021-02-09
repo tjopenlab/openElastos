@@ -1,0 +1,52 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>web_service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>访问Web服务（SOAP调用）</h2>
+        <p>由于SOAP和WSDL为标准的WWW网络服务协议，所以从理论上任何第三方Web&nbsp;services客户端开发工具均可以访问我们发布的CAR&nbsp;Web&nbsp;services。事实上，我们也已经成功验证了我们目前的实现与Microsoft.NET，Microsoft&nbsp;SOAP&nbsp;Toolkit&nbsp;3.0，gSOAP等开发工具的兼容性。</p>
+        <p>仍然以<b><font color="red">Error!&nbsp;Reference&nbsp;source&nbsp;not&nbsp;found.</font></b>中的calculator构件为例，下面首先给出一个例子SOAP&nbsp;request包的内容如下（不包含底层HTTP协议头部）。注意：对于不同的开发工具，生成SOAP&nbsp;Request的XML文档格式可能略有出入，但内容是一致的。</p>
+        <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;SOAP-ENV:Envelope
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:ns1="urn:car-remote-service"&gt;
+ &lt;SOAP-ENV:Body id="_0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"&gt;
+  &lt;ns1:Add&gt;
+   &lt;a&gt;0&lt;/a&gt;
+   &lt;b&gt;0&lt;/b&gt;
+  &lt;/ns1:Add&gt;
+ &lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
+</pre>
+        <p>接收到上如所示的输入信息后，经过CAR构件网络服务代理的处理，会返回如下的结果信息：</p>
+        <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;SOAP-ENV:Envelope
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:ns1="urn:car-remote-service"&gt;
+ &lt;SOAP-ENV:Body id="_0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"&gt;
+  &lt;ns1:AddResponse&gt;
+   &lt;result&gt;0&lt;/result&gt;
+   &lt;c&gt;0&lt;/c&gt;
+  &lt;/ns1:AddResponse&gt;
+ &lt;/SOAP-ENV:Body&gt;
+&lt;/SOAP-ENV:Envelope&gt;
+</pre>
+
+<script>footer("chinese")</script>
+</body>
+</html> 

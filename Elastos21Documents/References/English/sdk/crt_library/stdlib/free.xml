@@ -1,0 +1,101 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\free">free</sample>
+    <title> free</title>
+    <volume>C Run-Time Library Function</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Deallocates or frees a memory block.</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>free</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>memblock</param_name>
+                <param_note>
+                    <para>Pointer to previously allocated memory block to be freed.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>The free function deallocates a memory block (memblock) that was previously allocated by a call to calloc, malloc or realloc. The number of freed bytes is equivalent to the number of bytes requested when the block was allocated (or reallocated, in the case of realloc). If memblock is NULL, the pointer is ignored and free immediately returns. Attempting to free an invalid pointer (a pointer to a memory block that was not allocated by calloc, malloc, or realloc) may affect subsequent allocation requests and cause errors.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>free</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* free.cpp: This program allocates memory with
+ * malloc, then frees the memory with free.
+ */
+
+#include &lt;stdlib.h&gt;            /* For _MAX_PATH definition */
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char *string;
+
+    /* Allocate space for a path name */
+    string = (char *)malloc(_MAX_PATH);
+    if (string == NULL)
+        printf(&quot;Insufficient memory available\n&quot;);
+    else {
+        printf(&quot;Memory space allocated for path name\n&quot;);
+        free(string);
+        printf(&quot;Memory freed\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Memory space allocated for path name
+Memory freed
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_alloca </ref_name>
+            <ref_url>../malloc/_alloca</ref_url>
+        </reference>
+        <reference>
+            <ref_name>malloc</ref_name>
+            <ref_url>malloc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>realloc</ref_name>
+            <ref_url>realloc</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,35 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> IApplet相关API介绍 </volume>
+    <interface>IApplet</interface>
+    <method> GetCurrentDirectoryInStorage </method>
+
+    <description>
+        <para>获得当前applet在指定盘符下的绝对路径 </para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>[in] WString</param_type>
+            <param_name>storage</param_name>
+
+            <param_note>
+                <para>指定的盘符名 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>[out] WStringBuf&lt;260&gt;</param_type>
+            <param_name>path</param_name>
+            <param_note>
+                <para>获取的路径名  </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+  <remarks>
+        <para>如果当前applet不在指定的盘符下，则返回E_DOES_NOT_EXIST。 </para>
+    </remarks>
+</manpage>

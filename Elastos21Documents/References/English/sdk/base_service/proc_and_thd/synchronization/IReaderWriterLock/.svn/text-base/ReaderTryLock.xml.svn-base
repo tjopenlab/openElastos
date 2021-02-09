@@ -1,0 +1,106 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface </volume>
+<interface>IReaderWriterLock</interface><method> ReaderTryLock </method>
+    <description>
+        <para>
+         	Tries to acquire the reader lock within given time interval.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+      <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Millisecond </param_type>
+                <param_name> timeout </param_name>
+                <param_note>
+                    <para>
+						Specifies the time-out interval, in milliseconds. When the thread is waiting to acquire
+						the reader lock, and if the interval elapses, the thread will stop waiting immediately and 
+						the function returns. If msTimeout is zero, the function returns immediately. However, if the 
+						thread acquires the reader lock successfully, the function returns S_OK; otherwise, S_TIME_OUT 
+						is returned.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type>WaitResult * </param_type>
+                <param_name>pResult </param_name>
+                <param_note>
+                    <para>
+						
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	
+	<table>
+	    <th>
+		<td>Return Value </td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>NOERROR </td>
+		<td>0x00000000</td>
+		<td>Function Succeeds in trying to acquire the reader lock within given time interval.</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALID_ARGUMENT</td>
+		<td>0x00060003</td>
+		<td>The interval elapses; attempt to acquire the reader lock failed.</td>
+	    </tr>
+	    <tr>
+		<td>E_READER_LOCKS_TOO_MANY</td>
+		<td>0x00060014</td>
+		<td>The waiting of the calling thread is interrupted.</td>
+	    </tr>
+	    <tr>
+		<td>E_ALREADY_LOCKED</td>
+		<td>0x80060091</td>
+		<td>Function call failed. The calling thread has already aquired the ReaderWriterLock object 
+		as a reader.</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALID_LOCK</td>
+		<td>0x80060092</td>
+		<td>Function call failed. The calling thread has already aquired the ReaderWriterLock object 
+		as a writer.</td>
+	    </tr>
+	</table>
+       <para>See <link url="..\..\..\..\reference\basic_data_type\hresult.htm">ECODE</link> for related help.</para>   
+    </return>
+
+	<remarks>
+		<para>
+			This function attempts to acquire the ReaderWriterLock object as a reader. If the calling thread cannot 
+			acquire a reader lock (for example: The ReaderWriterLock object is locked by a writer), it will enter 
+			the waiting status. As long as the interval does not elapse, the thread will keep on waiting, until 
+			the reader lock of the ReaderWriterLock object is acquired, then the function returns successfully. 
+			If the interval elapses, the calling thread will stop waiting immediately and the function returns. 
+			If no other threads acquire the ReaderWriterLock object, the calling thread will acquire it as 
+			a reader successfully, and the function returns immediately. If the calling thread has already acquired 
+			the ReaderWriterLock object as a reader or writer, the function will fail. The waiting of the calling 
+			thread can be interrupted.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

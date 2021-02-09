@@ -1,0 +1,196 @@
+<html>
+
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>generic_release</title>
+	</head>
+
+	<body>
+		<h2>编写DLL </h2>
+		  <P>GSM手机与CDMA手机因底层实现的不同，其建立与断开通话链接的方式也必然会有差异。然而用户在使用手机的通话功能时却无需关心这些实现上的细节，只需通过手机的通话键与结束健就能使用通话功能。</P>
+		  <P>根据以上事例，我们模拟出以下构件示例，图5-13为示例图示。在PickCarrier.dll中，泛类GCarrier是面向用户的通用手机类，它为用户屏蔽了所使用手机的底层实现细节，通过ICarrier接口向用户提供手机的通用功能Connect()、Disconnect()与GetName()。</P>
+		  <center><img src="images/generic1.JPG"/></center>
+		  <center>图5-13</center>
+		  <P>在泛类内部实现中，其会判断用户所使用的手机类型，并创建对应的具体类CGSMCarrier或类CCDMACarrier，它们才是用户真正使用的对象。</P>
+		  <P>类CGSMCarrier与CCDMACarrier继承了泛类的ICarrier接口，并新增接口IGSMCarrier和ICDMACarrier实现各自特有的功能。</P>
+		  <P>实现PickCarrier.dll的步骤如下：</P>
+		  <P>为了统一管理编写和调用，可以先建一个PickCarrier目录，在此目录下再分别建一个PickCarrierDll和PickCarrierDemo目录，在PickCarrierDll目录下实现如何编写一个PickCarrier.dll的例子，在PickCarrierDemo目录下实现如何调用该DLL。</P>
+		<h3>1.编写car文件</h3>
+		  <P>在dll定义文件中，开发者需为泛类及具体类声明对应关系，语法为class XXX::YYY(XXX为具体构件类，YYY泛类)。在泛类中定义通用接口，通用接口提供此种抽象构件类的一般方法。在具体构件类中应定义继承于泛类的通用接口，并增添新接口，以向用户提供该类特有的服务。</P>
+		  <P>PickCarrier.car文件</P>
+<pre class = code>
+module www.elastos.com/CAR/PickCarrier.dll
+{
+    interface ICarrier {                //泛类通用接口中包括此种抽象类提供的一般方法
+        Connect();
+
+        Disconnect();
+
+        GetName(WStringBuf_<50> name);
+    }
+
+    generic GCarrier {                 //通过generic关键字定义泛类GCarrier
+        interface ICarrier;            //定义泛类的通用接口
+    }
+
+    interface IGSMCarrier {
+        DoSomethingWithGSM();
+    }
+
+    interface ICDMACarrier {
+        DoSomethingWithCDMA();
+    }
+
+    class CGSMCarrier :: GCarrier {    //声明CGSMCarrier与泛类GCarrier的对应关系
+
+        interface ICarrier;            //继承泛类的通用接口
+        interface IGSMCarrier;         //新增接口，提供CGSMCarrier特有服务
+    }
+
+    class CCDMACarrier :: GCarrier {   //声明CGSMCarrier与泛类GCarrier的对应关系
+
+        interface ICarrier;            //继承泛类的通用接口
+        interface ICDMACarrier;        //新增接口，提供CCDMACarrier特有服务
+    }
+}
+</pre>
+    <h3>2.emake PickCarrier.car文件</h3>
+      <p>对car文件进行编译后，在生成的代码框架中主要包括以下这些文件： </p>
+      <p><a href= "code/GCarrier_cpp.htm">GCarrier.h</a></p>
+      <p><a href= "code/GCarrier_h.htm">GCarrier.cpp</a> </p>
+      <p><a href= "code/CGSMCarrier_cpp.htm">CGSMCarrier.h</a></p>
+      <p><a href= "code/CGSMCarrier_h.htm">CGSMCarrier.cpp</a> </p>
+      <p><a href= "code/CCDMACarrier_cpp.htm">CCDMACarrier.h</a></p>
+      <p><a href= "code/CCDMACarrier_h.htm">CCDMACarrier.cpp</a> </p>
+      <p><a href= "code/sources.htm">sources </a></p>
+    <h3>3.为构件类实现文件添加代码</h3>
+		  <p>注:下述代码片断中粗体部分是自动生成的代码，非粗体部分是用户添加的代码。</p>
+      <P>添加实现代码的步骤如下：</P>
+      <P>(1)实现泛类GCarrier的接口方法</P>
+      <P>在泛类实现文件GCarrier.cpp中添加被引用到的类头文件CGSMCarrier.h和CCDMACarrier.h。</P>
+      <P>在平台为泛类生成的new方法中添加选择语句，其用途在于使泛类根据用户程序的具体特征判断为用户生成哪种具体构件对象。选择语句中应包括选择创建具体对象的判断条件、执行动作及相应返回值。</P>
+      <P>GCarrier.cpp文件</P>
+<pre class= code><B>
+#include "GCarrier.h"
+#include "_GCarrier.cpp"</B>
+
+#include "CGSMCarrier.h"               //添加类CGSMCarrier头文件
+#include "CCDMACarrier.h"              //添加类CCDMACarrier头文件
+                                       
+#include &lt;stdlib.h&gt;                    //srand()包含于此头文件
+#include &lt;time.h&gt;                      //time()包含于此头文件
+
+<B>ECode GCarrier::New(
+    /*[out]*/ ICarrier ** ppICarrier)
+{</B>
+    ECode ec;
+
+    // pretend to find a GSM or CDMA network
+    //
+    srand(time(NULL));                 //设置随机数的起始点
+    Int32 i = rand() % 10;             //随机产生一个整数作为判断条件
+
+    if (i &lt;= 5) {                      //根据判断结果，选择创建具体类对象
+        ec = CGSMCarrier::New(ppICarrier);
+    }
+    else {
+        ec = CCDMACarrier::New(ppICarrier);
+    }
+
+    // ec = GCarrier::NewByImplementor(L"PickCarrierWiFi.dll", ppICarrier);
+
+    return ec;                          //返回被创建对象的接口值
+<B>}</B>
+</pre>
+      <P>(2)实现CGSMCarrier的接口方法</P>
+      <P>在CGSMCarrier.cpp文件中，重载继承于泛类的通用接口方法。</P>
+      <P>CGSMCarrier.cpp文件</P>
+<pre class=code><B>
+#include "CGSMCarrier.h"
+#include "_CGSMCarrier.cpp"
+
+ECode CGSMCarrier::Connect()</B>        //重载泛类的Connect方法
+<B>{</B>
+    CConsole::WriteLine("GSM carrier connected!");
+    return NOERROR;
+<B>}
+
+ECode CGSMCarrier::Disconnect()</B>    //重载泛类的Disconnect方法
+<B>{</B>
+    CConsole::WriteLine("GSM carrier disconnected!");
+    return NOERROR;
+<B>}
+
+ECode CGSMCarrier::GetName(</B>        //重载泛类的GetName方法
+    <B>/* [out] */ WStringBuf * pName)
+{</B>
+    pName->Copy(L"China Mobile");
+    return NOERROR;
+<B>}
+
+ECode CGSMCarrier::DoSomethingWithGSM()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}</B>
+</pre>      
+      <P>(3)实现CCDMACarrier的接口方法</P>
+      <P>在CGSMCarrier.cpp文件中，重载继承于泛类的通用接口方法。</P>      
+      <P>CGSMCarrier.cpp文件</P>         
+<pre class=code><B>
+#include "CCDMACarrier.h"
+#include "_CCDMACarrier.cpp"
+
+ECode CCDMACarrier::Connect()</B>        //重载泛类的Connect方法
+<B>{</B>
+    CConsole::WriteLine("CDMA carrier connected!");
+    return NOERROR;
+<B>}
+
+ECode CCDMACarrier::Disconnect()</B>    //重载泛类的Disconnect方法
+<B>{</B>
+    CConsole::WriteLine("CDMA carrier disconnected!");
+    return NOERROR;
+<B>}
+
+ECode CCDMACarrier::GetName(</B>        //重载泛类的GetName方法
+    <B>/* [out] */ WStringBuf * pName)
+{</B>
+    pName->Copy(L"China Unicom");
+    return NOERROR;
+<B>}
+
+ECode CCDMACarrier::DoSomethingWithCDMA()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}</B>
+</pre>        
+    <h3>4.修改sources文件</h3>
+      <P>本例中因使用了srand()和time()函数，所以需要添加ElCRuntime.lib。</P>
+<pre class=code>
+TARGET_NAME= PickCarrier
+TARGET_TYPE= dll
+
+SOURCES= PickCarrier.car
+SOURCES+= GCarrier.cpp
+SOURCES+= CGSMCarrier.cpp
+SOURCES+= CCDMACarrier.cpp
+
+ELASTOS_LIBS= elastos.lib
+ELASTOS_LIBS+=ElCRuntime.lib
+</pre>
+    <h3>5.生成相应的dll</h3>
+      <P>进入正确的XDK目录，emake后会在对应镜像目录中生成构件PickCarrier.dll。</P>
+<pre>
+
+
+
+
+
+</pre>
+	</body>
+
+</html>

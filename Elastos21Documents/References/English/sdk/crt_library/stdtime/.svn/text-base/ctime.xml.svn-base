@@ -1,0 +1,117 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\ctime">_wctime</sample>
+    <title>ctime, _wctime</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>Converts a time value to a string and adjust for local time zone settings.</para>
+    </description>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <func_name>ctime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const time_t*</param_type>
+                <param_name>timer</param_name>
+                <param_note>
+                    <para>Pointer to stored time.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>wchar_t *</return_val>
+        <func_name>_wctime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const time_t*</param_type>
+                <param_name>timer</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns a pointer to the character string result. If time represents a date before midnight, January 1, 1970, UTC, the function returns NULL.</para>
+    </return>
+
+    <remarks>
+        <para>The ctime function converts a time value stored as a time_t structure into a character string. The timer value is usually obtained from a call to time. The string result produced by ctime contains exactly 26 characters and has the form:
+</para>
+        <para>Wed Jan 02 02:03:55 1980\n\0</para>
+        <para>A 24-hour clock is used. All fields have a constant width. The newline character ('\n') and the null character ('\0') occupy the last two positions of the string. _wctime is a wide-character version of ctime; _wctime returns a pointer to a wide-character string.</para>
+        <para>Parameter timer must not be NULL.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>ctime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wctime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ctime.cpp: This program gets the current
+ * time in time_t form, then uses ctime to
+ * display the time in string form.
+ */
+
+#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    time_t ltime;
+
+    time(&amp;ltime);
+    printf(&quot;The time is %s\n&quot;, ctime(&amp;ltime));
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The time is Fri Apr 29 12:25:12 1994
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_ftime</ref_name>
+            <ref_url>_ftime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>localtime</ref_name>
+            <ref_url>localtime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>time</ref_name>
+            <ref_url>time</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wasctime</ref_name>
+            <ref_url>_wasctime</ref_url>
+        </reference>
+    </references>
+
+</manpage>

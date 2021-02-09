@@ -1,0 +1,75 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzGetCurrentThread"> EzGetCurrentThread </sample>
+    <volume>System API</volume>
+    <title>CThread::GetCurrent</title>
+    <routine_idx> ..\thread_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	Gets the thread object interface of the current thread.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> IThread ** </param_type>
+                <param_name> ppThread </param_name>
+                <param_note>
+                    <para>
+                    	[out] Returns the thread object interface pointer of the current thread.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>    	
+		<table>
+			<th><td>Return value</td><td>Description</td></th>
+			<tr><td>NOERRORK</td><td>Function succeed</td></tr>
+			<tr><td>E_INVALID_ARGUMENT</td><td>Invalid argument(s)</td></tr>
+		</table>
+        <para>references <link url="/sdk/hresult.htm"> ECODE </link> correlative help.</para>
+    </return>
+
+    <remarks>
+    	<para>
+    		Invoking this method will return the interface IThread pointer to the current thread.
+    		
+		</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+    <references>
+    <reference>
+        <ref_name>CProcess::GetCurrent</ref_name>
+        <ref_url>EzGetCurrentProcess</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CThread::Quit</ref_name>
+        <ref_url>EzExitThread</ref_url>
+    </reference>
+    </references>
+
+</manpage>

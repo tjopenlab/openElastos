@@ -1,0 +1,78 @@
+<html>
+<head>
+	<title>Operating Systems FAQ :: v8086</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="whats_v8086">What is Virtual 8086, why is it causing problems for me?</A></H2> 
+		</TD>
+	</TR>
+	<TR>
+		<TD>Virtual 8086 mode is a sub-mode of protected mode. In
+        short, virtual 8086 mode is whereby the cpu (in protected
+        mode) is running a &quot;Emulated&quot; 16bit 'segmented'
+        model (real mode) machine.
+<P>V8086 mode can cause all
+        different kinds of problems for OS programmers.</P>
+<P>The most common problem with v86 mode is that, you
+        can't &quot;enter&quot; protected mode inside a v86
+        task.</P>
+<P>That meaning, if you are running Windows or have
+        emm386 in memory, you can't do a &quot;raw&quot; switch
+        into protected mode (it causes an exception if I remember
+        correctly!:)</P>
+<P>There are a few other more &quot;technical&quot;
+        problems people have when using v86 mode, mostly because
+        v86 has some instructions &quot;emulated&quot; by what's
+        known as a v86-monitor program, as the cpu is in
+        protected mode, some instructions are high up on the
+        security/protection level and running those directly
+        would cause no-end of trouble for the OS.</P>
+<P>Such technicalities are beyond the scope of a simple
+        FAQ</P>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="detect_v86">How do I detect if my machine is in Virtual 8086 mode?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>EFLAGS.VM is NEVER pushed onto the stack if the V86 task uses PUSHFD. You should check if
+CR0.PE=1 and then assume it's V86 if that bit is set.
+		
+		<PRE>
+detect_v86:
+	smsw	ax
+	and	eax,1		;CR0.PE bit
+	ret
+	
+<!-- /* how to detect if a machine is in v86 mode by Dark Fiber - 22nov98
+ *
+ * in: nothing
+ * out: eax; 0=task not in v86 mode
+ *           1=task is in v86 mode
+ * destroys: eax
+ */
+	detect_v86:
+		pushfd
+		pop	eax
+		shr	eax, 17
+		and	eax, 1
+		ret
+ -->
+ </PRE>
+		</TD>
+	</TR>
+</TABLE>
+
+
+
+</body>
+</html>

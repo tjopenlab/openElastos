@@ -1,0 +1,52 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>中断管理</volume>
+    <title>DzLowerCurrentIpl</title>
+    <routine_idx> ../interrupt_management.htm </routine_idx>
+
+    <description>
+        <para>降低当前系统中断优先级。</para>
+    </description>
+
+    <syntax>
+        <return_val>ipl_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> ipl_t</param_type>
+                <param_name> ipl </param_name>
+                <param_note>
+                    <para>当前系统中断优先级将被降低到的值。必须为IPL1到IPL31，或是IPL_Base</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果降低了当前系统中断优先级，返回降低前的系统中断优先级；否则，返回当前系统中断优先级。</para>
+    </return>
+
+    <remarks>
+        <para>如果指定的中断优先级低于当前系统中断优先级，本函数将当前系统中断优先级降低到指定的中断优先级，并返回降低前的系统中断优先级。如果指定的中断优先级不低于当前系统中断优先级，本函数直接返回当前系统中断优先级。</para>
+        <para>降低当前系统中断优先级会使中断优先级比其更高的所有硬件中断的得到响应。如果降低当前系统中断优先级到IPL_Base，则允许所有硬件中断得到响应。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>DzRaiseCurrentIpl</ref_name>
+            <ref_url>DzRaiseCurrentIpl</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,24 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>How To Control Version When Multiple Applications Reference The Same Component?</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>How To Control Version When Multiple Applications Reference The Same Component?</h2>
+        <p>The previous three rules are focused on same application.For different applications, it is possible for them to refer the same CAR component.We need to apply rule number 4 and rule number 5 to determine if we load and which version to load the component if this is the case, as shown in diagram 4.</p>
+        <center><img src="images/site.jpg"></center>
+        <center>Diagram 4: Rules For Different Application Referencing Component With The Same Name</center>
+    <h3>Rule Number 4: Share The First Copy Rule</h3>
+        <p>When a certain application needs to load a certain CAR component and if the component with the same name is already loaded into memory,then all you need to do is to specify the shared address of this component and also one more reference is added. The pre-condition of share the first copy rule is: Check whether the main version number of the same component needed to be loaded by different applications are the same, if not, then you need the independent version rule of the following.</p>
+    <h3>Rule Number 5: Independent Version Rule</h3>
+        <p>For multiple applications that need to refer the same component, load the corresponding component when the first application issues the request.If other applications follow shares the component of this version with the first one but it cannot provide normal service, then the system applies the independent version rule and applies the first three rules to independently load appropriate version component for this request.</p>
+
+<script>footer("english")</script>
+</body>
+</html>         

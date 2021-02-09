@@ -1,0 +1,61 @@
+<html>
+
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>aop_d-aggregate</title>
+	</head>
+
+	<body>
+		<h2>方面的拼装—动态聚合</h2>
+		<P>Car构件技术通过动态聚合以及解聚合的方式将方面构件对象与普通构件对象编织在一起，因此car构件技术对方面的编织是动态的。</P>
+		<h3>动态聚合</h3>
+		  <P>动态聚合是指构件对象可以在运行时根据需要任意聚合、拆卸其它构件对象。由于现实中，事物是不断变化的，因此动态聚合更加贴近客观世界。</P>
+		  <P>例如，宠物店的猫，具有宠物和商品两方面的特征。但猫刚生下来时却未必是宠物，更不会是商品，而一旦被售出，就不再是商品，但宠物特征却保留下来；所以猫的这些属性特征是随着环境的变化自动添加或卸除的。</P>
+		  <P>一旦聚合之后，就可以probe出方面构件对象的接口指针，并通过此接口指针调用被聚合对象接口方法。</P>
+		  <P>聚合是通过Aspect对象的Attach与Detach方法来实现的。图5-12为构件CBar动态聚合aspect构件AFoo的图示。</P>
+		  <center><img src="images/aop3.JPG"/></center>
+		  <center>图5-12</center>
+		  <P>对应代码如下：</P>
+<pre class=code>
+......
+ec=AFoo::Attach(pBar);   //动态聚合AFoo
+pFoo=IFoo::Frobe(pBar);  //聚合后能够通过CBar接口指针得到AFoo接口指针
+......
+ec=AFoo::Detach(pBar);   //动态卸载AFoo
+......
+</pre>
+      
+      <P>例中，pBar为CBar的接口指针、IFoo为AFoo接口，pFoo为AFoo的接口指针。</P>
+      <P>注：不需对pFoo进行Release，在pFoo析构时会自动调用pFoo->Release()。</P>
+
+
+      <P>需要注意的是只有aspect构件可以被聚合，一个非aspect构件可以聚合多个aspect构件，而aspect构件也可以被多个非aspect构件聚合。图5-10与图5-11分别图示了这两种关系。</P>
+
+		  <center><img src="images/aop1.JPG"/></center>
+		  <center>图5-10</center>
+		  <center><img src="images/aop2.JPG"/></center>
+		  <center>图5-11</center>
+		<h3>备注</h3>		
+		<P>1.aspect构件类中不允许定义带参数的constructor。</P>  
+		<P>2.由于“aspect”在问题域中是属于“特性”的、抽象的概念，并不是一个可以独立存在的实体，因此它只能作为一个构件的附属构件，供主构件对象调用服务之用。因此，在CAR的AOP机制中禁止用户使用非aspect与非aspect构件间聚合、aspect与aspect构件间的聚合、aspect构件的创建等做法。</P>
+		<P>3.当聚合(或解聚合)发生时，系统会先后调用aspect构件和聚合构件的虚函数OnAspectAttaching(或OnAspectDetaching)，使聚合双方得到对方发出的聚合通知及接口指针。如果聚合构件继承于某个父构件或已聚合了其它aspect构件，则这些构件同样会收到aspect构件的聚合或解聚合通知。用户也可重载这两个虚函数实现自己的功能。</P>
+		<h3>自动聚合</h3>	
+		<P>我们可以在car文件中通过关键字aggregate为构件类声明一些方面构件，当被修饰的类创建时，将自动聚合上这些方面构件对象。这种特性将一直伴随着构件的整个生命周期。</P>	
+		<P>使用aggregate属性关键字可以为构件声明与aspect构件间的静态聚合关系，如下例：</P>
+<pre class=code>
+{
+    ......
+    [ aggregate(AFoo1，AFoo2...) ]
+    class CBar {
+        interface IBar;
+    }
+}
+</pre>
+<P>例中，定义了CBar静态聚合AFoo的关系。</P>			
+		<h4>聚合约束</h4>	
+		<P>虽然我们可以在运行时随意的聚合上若干个方面构件对象，但有时候我们希望能够限制一个对象能够聚合的方面构件对象。比如，。。。。此时，我们可以使用通过属性关键字class指定方面构件对象可以被哪些构件聚合上。</P>
+	</body>
+
+</html>

@@ -1,0 +1,83 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>C 运行库 数据结构</volume>
+    <types>_finddata_t, _wfinddata_t</types>
+
+    <description>
+        <para> 文件信息缓冲区。 </para>
+    </description>
+
+    <struct>
+        <struct_alias>_finddata_t</struct_alias>
+        <struct_member>
+            <mem_type>unsigned </mem_type>
+            <mem_name>attrib</mem_name>
+            <mem_description>文件属性 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>time_t </mem_type>
+            <mem_name> time_create </mem_name>
+            <mem_description>创建时间 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>time_t </mem_type>
+            <mem_name>time_access </mem_name>
+            <mem_description>访问时间 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>time_t </mem_type>
+            <mem_name>time_write </mem_name>
+            <mem_description>修改时间 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>_fsize_t </mem_type>
+            <mem_name>size </mem_name>
+            <mem_description>文件大小，以字节为单位 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>char </mem_type>
+            <mem_name>name[520] </mem_name>
+            <mem_description>所匹配的文件或目录的名称，不含路径和结束符 </mem_description>
+        </struct_member>
+    </struct>
+
+    <struct>
+        <struct_alias>_wfinddata_t</struct_alias>
+        <struct_member>
+            <mem_type>unsigned </mem_type>
+            <mem_name>attrib</mem_name>
+            <mem_description>文件属性 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>time_t </mem_type>
+            <mem_name> time_create </mem_name>
+            <mem_description>创建时间 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>time_t </mem_type>
+            <mem_name>time_access </mem_name>
+            <mem_description>访问时间 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>time_t </mem_type>
+            <mem_name>time_write </mem_name>
+            <mem_description>修改时间 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>_fsize_t </mem_type>
+            <mem_name>size </mem_name>
+            <mem_description>文件大小，以字节为单位 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>char </mem_type>
+            <mem_name>name[260] </mem_name>
+            <mem_description>所匹配的文件或目录的名称，不含路径和结束符 </mem_description>
+        </struct_member>
+    </struct>
+
+    <remarks>
+        <para>在有些不支持记录文件创建时间和最近访问时间的文件系统(如FAT文件系统)中，time_create和time_access这两个字段值总为-1。</para>
+    </remarks>
+</manpage>

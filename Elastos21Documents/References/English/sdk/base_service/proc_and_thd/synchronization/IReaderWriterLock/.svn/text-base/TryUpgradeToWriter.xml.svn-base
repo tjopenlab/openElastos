@@ -1,0 +1,72 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IReaderWriterLock\TryUpgradeToWriter">TryUpgradeToWriter</sample>
+<volume>Synchronization</volume>
+<interface>IReaderWriterLock</interface><method> TryUpgradeToWriter </method>
+    <description>
+        <para>Tries to upgrade occupied reader lock to writer lock within specified time out period.</para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+              <api_param>
+                  <param_inout>[in]</param_inout>
+                  <param_type> Millisecond </param_type>
+                  <param_name> timeout </param_name>
+                  <param_note>
+                      <para>Specifies a time out period, the unit is ms. While waiting for upgrade of reader lock to writer lock, if the wait time exceeds specified time period, the calling thread will imediately terminates wait, and return from this member function. If this parameter is zero, then this member function imediately returns. At that time, if the calling thread upgrades reader lock to writer lock, then returns S_OK. If calling thread did not upgrade reader lock to writer lock, returns S_TIMED_OUT.</para>
+                  </param_note>
+              </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult *</param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+          </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>Return Value</td>
+	    	    <td>Description</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>Succeed in upgrading occupied reader lock to writer lock within specified time out period</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>Wait time exceeds specified time period, the calling thread did not upgrade reader lock to writer lock.</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_NOT_READER</td>
+	    	    <td>Invocation fails, calling thread did not occupy reader writer lock object as reader.</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> related help.</para>
+    </return>
+
+	<remarks>
+	    <para>This member function is used to upgrade occupied reader lock to writer lock (i.e. Already upgrades the calling thread which occupies reader writer lock object as a reader to a thread that occupies the reader writer lock as a writer). If calling thread cannot be upgrade to thread the occupies reader writer lock object as a writer (For example: When reader writer lock object is occupied by one or multiple readers), the calling thread will enter wait mode. As long as the wait time does not exceed specified time period, the calling thread will remain in waiting mode, until occupied reader lock is upgraded to writer lock, it then returns successfully from member function. The calling thread can be interrupted when waiting for upgrade reader lock to writer lock.</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later. Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

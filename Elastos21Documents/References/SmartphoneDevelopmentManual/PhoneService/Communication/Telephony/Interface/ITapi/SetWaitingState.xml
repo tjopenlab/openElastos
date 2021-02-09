@@ -1,0 +1,73 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>ITapi</interface><method> SetWaitingState </method>
+    <description>
+        <para>
+           设置呼叫等待服务。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwClass </param_name>
+                <param_note>
+                    <para>
+                       类型
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> stCallWaiting </param_name>
+                <param_note>
+                    <para>
+                      等待服务类型
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	         <tr>
+	    	    <td>FAMILY_GEN 类或FAMILY_CME类错误值</td>
+	    	    <td>表示指令发送到通讯模块过程中遇到错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../Telephony_Error.htm">Telephony_Error</link>相关帮助。</para>
+	   </return>
+	   <remarks>
+	     dwClass为TAPI_CLASS_VOICE表示电话;为TAPI_CLASS_DATA表示数据;为TAPI_CLASS_FAX表示传真;为TAPI_CLASS_ALL表示所有上述三种。
+       <para>
+	     </para>
+	     <para>
+	       StCallWaiting为TAPI_CALLWAITING_STATE_INACTIVE表示禁止该项服务;为TAPI_CALLWAITING_STATE_ACTIVE表示启动该项服务。
+	     </para>
+	   </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+         <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

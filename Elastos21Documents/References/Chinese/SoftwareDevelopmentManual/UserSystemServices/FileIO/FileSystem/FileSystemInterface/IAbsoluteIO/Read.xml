@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IAbsoluteIO</interface><method> Read </method>
+    <description>
+        <para>
+            从文件对象的特定偏移处读取一定数目的数据，把读取到的数据拷贝到缓冲区中。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> offset </param_name>
+                <param_note>
+                    <para>开始读取数据的偏移位置</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> bytesToRead </param_name>
+                <param_note>
+                    <para>预从文件对象读取的数据字节数目 </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> MemoryBuf&lt;&gt; </param_type>
+                <param_name> buffer  </param_name>
+                <param_note>
+                    <para>存放返回数据的缓冲区 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR；</para>
+    <para>如果参数offset大于文件大小或小于0，或者参数numberOfBytesToRead大于0x7fffffff或超过buffer的大小（GetCapacity），又或者参数buffer为NULL，返回E_INVALID_ARGUMENT；</para>
+    <para>当文件的共享方式被其他用户设置为 FileShareMode_Deny 时，返回E_FS_FILE_BUSY </para>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>参数offset所指的偏移位置是指从文件对象的起始位置以字节为单位的距离，从0开始算起。</para>
+        <para>用户使用Read时，应注意offset与numberOfBytesToRead值的设置。buffer应当已经正确声明并分配内存。</para>
+    </remarks>
+</manpage>

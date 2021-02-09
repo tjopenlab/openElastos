@@ -1,0 +1,61 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>cardemo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+	<h2> 编写CAR构件</h2>
+<h3>编写HelloWorld.car文件</h3>
+<p>&nbsp;&nbsp;新建一个<b>HelloWorld.car</b>文件，内容如下：</p>
+<pre class=code>
+module www.elastos.com/car/HelloWorld.dll
+{
+    interface IHello
+    {
+        HelloWorld();
+    }
+    class CHello
+    {
+        interface IHello;
+    }
+} 
+</pre>
+<p>&nbsp;&nbsp; 一般情况下，一个构件对应一个car文件，构件的定义参见CAR基本关键字<a class= "style1" href= "..\keywords\keywords_module.htm">module</a>。</p>
+<h3>&nbsp;&nbsp;编译HelloWorld.car文件</h3>
+<p> &nbsp;&nbsp;打开xdk环境，在上述car文件所在目录下输入：<b>emake  Xxxxx.car</b>即编译此car文件。如图2-1所示：</p>
+ <center><img src="images\emake_car.JPG"/> </center>
+ <center>图2-1 输入emake  Xxxxx.car  </center>
+<p>&nbsp;&nbsp; 执行该命令后，在该car文件所在同级目录下会自动生成若干文件，如图2-2所示：</p>
+  <center><img src="images\genFile.JPG"/></center> 
+  <center>图2-2 自动生成的文件</center>
+<p> <a href="code\CHello_h.htm"> CHello.h</a> -->构件类CHello对应的头文件。</p>
+<p> <a href="code\CHello_cpp.htm"> CHello.cpp</a>-->构件类CHello对应的实现文件。</p>
+<p> <a href="code\sources.htm"> sources</a>->此文件描述如何编译当前目录。</p>
+
+<h3>实现接口方法</h3>
+<p> &nbsp;&nbsp;打开CHello.cpp文件，添加应用代码如下：</p>
+<pre class=code>
+<b>#include "CHello.h"
+#include "_CHello.cpp"
+
+ECode CHello::HelloWorld()
+{
+    </b>CConsole::WriteLine("HelloWorld!"); //添加的代码
+   <b> return </b>NOERROR;
+<b>}</b>
+
+</pre>
+<p>&nbsp;&nbsp;上述代码片断中粗体部分是自动生成的代码，非粗体部分是用户添加的代码。其中,CConsole::WriteLine("HelloWorld!")语句向控制台输出字符串“HelloWorld!”。 </p>
+<h3>编译生成dll</h3>
+<p>&nbsp;&nbsp; 进入XDK环境下，在HelloWorld.cpp目录下输入<b>emake</b>进行编译，生成HelloWorld.dll。如图2-3所示：<p>
+<center><img src="images\emakeDll.JPG"/> </center>
+	<center>图2-3 编译生成dll  </center>
+</body>
+</html>

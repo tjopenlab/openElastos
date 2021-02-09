@@ -1,0 +1,167 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR File Structure</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>CAR File Structure</h2>
+    <p>CAR (Component&nbsp;Assembly&nbsp;Run-Time) files are used to define class, interface and interface methods information in components.</p>
+    <h3>CAR File Introduction</h3>
+    <p>Each CAR component can be consists of one or more class(es) and each class can provide one or more interface(s). In each interface you can define one or more method(s). For example: The following is the diagram of component HelloDemo: </p>
+    <center><img src="images/hello.jpg"></center>
+    <center>Diagram 1: Component HelloDemo</center>
+    <p>From the diagram you can see that three classes were defined in component HelloDemo: CHello1, CHello2 and CHello3. Of which, class CHello2 provides interface IHello, class CHello3 provides interface IHei, class CHello1 provides interface IHello and IHei at the same time. These information are all defined in HelloDemo.car file.</p>
+    <p>The following use HelloDemo.car in component HelloDemo as an example, describes the CAR file structure.</p>
+    <p>HelloDemo.car file: </p>
+    <pre class="code">
+[
+    uuid(1845B8D5-15A0-4EFB-AFB7-2A261A0EF408),
+    uunm(http://www.koretide.com/car/HelloDemo.dll)
+]
+component HelloDemo         //component HelloDemo
+{
+    //interface IHello
+    [ uuid(B5613847-0A96-4F16-A63F-0BC00358607E) ]
+    interface IHello {
+        ECODE Hello([in] int i);
+    }
+
+    //interface IHei
+    [ uuid(07280692-2E77-4562-A9D9-8813ECE351AF) ]
+    interface IHei {
+        ECODE Hei([in] int i, [out, retval] char* pChar);
+    }
+
+    //class CHello1
+    [ uuid(994381D4-397D-410F-A106-56DED7359FC2), scriptable ]
+    class CHello1 {
+        interface IHello;
+        interface IHei;
+    }
+
+    //class CHello2
+    [ uuid(C71ACA6F-ECCA-4537-832D-89033590B02C)]
+    class CHello2 {
+        interface IHello;
+    }
+
+    //class CHello3
+    [ uuid(8C4F6ED3-C3A2-482C-9211-3E315500978F)]
+    class CHello3 {
+        interface IHei;
+    }
+}
+</pre>
+    <ul><b>Remarks: </b>Double slash "//" is used in CAR files to indicate comments.</ul>
+
+    <p>In CAR files, description about component, interface, class, category etc. includes two parts: <b>attribute</b> and <b>definition</b>. CAR attribute is located in square brackets "[]", multiple attributes are separated by using comma "," as separator. Definitions of component, interface, class, category etc. are located between curly brackets "{}". Attributes are always located before definition of corresponding topic. For example: </p>
+    <pre class="code">
+//attribute of component HelloDemo
+[
+    uuid(1845B8D5-15A0-4EFB-AFB7-2A261A0EF408),
+    uunm(http://www.koretide.com/car/HelloDemo.dll)
+]
+//definition of component HelloDemo
+component HelloDemo
+{
+    //attribute of interface IHello
+    [ uuid(B5613847-0A96-4F16-A63F-0BC00358607E) ]
+    //definition of interface IHello
+    interface IHello {
+        ECODE Hello([in] int i);
+    }
+
+    ……
+
+    //attribute of class CHello2
+    [ uuid(C71ACA6F-ECCA-4537-832D-89033590B02C)]
+    //definition of class CHello2
+    class CHello2 {
+        interface IHello;
+    }
+
+    ……
+
+}
+</pre>
+    <p></p>
+
+    <h3>Descriptions Of Component, Interface, Class In CAR.</h3>
+    <p>The following content will describe details of the definition of component, interface, class in CAR.</p>
+    <p><b>Component: </b>We use the <a class="style1" href="./keywords/keywords_component.htm">component</a> keyword to define component in CAR. Only one component definition is allowed in a CAR file. For example: </p>
+        <pre class="code">
+//attribute of component HelloDemo
+[
+    uuid(1845B8D5-15A0-4EFB-AFB7-2A261A0EF408),
+    uunm(http://www.koretide.com/car/HelloDemo.dll)
+]
+//definition of component HelloDemo
+<b>component</b> HelloDemo
+{
+    ……
+}
+</pre>
+        <ul>
+        <li><b>Component Attribute</b>
+            <p>Component attribute modifies component, of which <a class="style1" href="./attributes/attributes_uuid.htm">uuid</a> attribute and <a class="style1" href="./attributes/attributes_uunm.htm">uunm</a> attribute are required. uuid in component attribute is called component ID, it is used to uniquely identify a component. uunm specifies the location of the dll file specified component located in the Internet. Component attribute can also include other attribute, for details please see <a class="style1" href="attribute.htm">CAR Attribute</a> for details.</p>
+        <li><b>Component Definition</b>
+            <p>Component definition includes interface definition and class definition.It also includes some other type definition. Two interfaces are defined in HelloDemo component definition: IHello and IHei. Three classes are defined: CHello1, CHello2 and CHello3.</p>
+            <ul>
+            <li><b>Interface: </b>Use <a class="style1" href="./keywords/keywords_interface.htm">interface</a> keyword definition interface in CAR. For example: </p>
+                <pre class="code">
+……
+//interface IHello attribute
+[ uuid(B5613847-0A96-4F16-A63F-0BC00358607E) ]
+//definintion of interface IHello
+<b>interface</b> IHello {
+    ECODE Hello([in] int i);
+}
+……
+</pre>
+                <ul>
+                <li><b>Interface attribute</b>
+                    <p>Interface attribute modifies the interface, uuid attribute is required. uuid in interface attribute is called interface ID (IID). It is used to identify an interface uniquely. Interface attribute also includes other attributes, for details please see <a class="style1" href="attribute.htm">CAR Attribute</a>.</p>
+                <li><b>Interface definition</b>
+                    <p>Interface definition mainly includes interface method declaration. Interface definition is the most important in CAR files. Since in component, only interface can interact with the outside world,an interface without interface method is meaningless. CAR provides <a class="style1" href="../../../speciality/smart_pointer/smartpointer.htm">Smart Pointer</a> to complete operations on interface methods.</p> Hello method declaration in IHello interface is: </p>
+                    <pre class="code">
+<b>ECODE</b> Hello([<b>in</b>] int i);
+</pre>
+                    <p>Interface method definition must follow the following rules: <br>
+                        1. Interface method must use <a class="style1" href="../../../../sdk/reference/basic_data_type/hresult.htm">ECODE</a> as return value.</br>
+                        2. Interface method parameter must specify if the interface method parameter is input parameter (in) or output parameter (out) are being used as a return value (retval). For details please see <a class="style1" href="attribute.htm#para">Attributes Used To Modify Interface Method Parameters</a> in CAR attribute.</p>
+                </ul>
+
+            <li><b>Class: </b>Use <a class="style1" href="./keywords/keywords_class.htm">class</a> keyword to define interface in CAR. For example: </p>
+                <pre class="code">
+……
+//class attribute
+[ uuid(994381D4-397D-410F-A106-56DED7359FC2), scriptable ]
+//class definition
+<b>class</b> CHello1 {
+    interface IHello;
+    interface IHei;
+}
+……
+</pre>
+                <p>In CAR files, class definition is very important. Similar to object concept in C++, class object is the instance that client program and CAR component interact with. So class definition is essential.</p>
+                <ul>
+                <li><b>Class attribute</b>
+                    <p>Class attribute modifies class, uuid attribute is required. uuid in class attribute is called class ID (CLSID), which is used to uniquely identify a class. Attribute <a class="style1" href="./attributes/attributes_scriptable.htm">scriptable</a> means this component can be used in webpages. Other attributes can also be included in class attribute. Please see <a class="style1" href="attribute.htm">CAR Attribute</a> for details.</p>
+                <li><b>Class definition</b>
+                    <p>Class definition mainly includes interface declaration.It represents the interface provided by this class object. Since interface is the only way class object interact with the outside world, it is meaningless for a class without interface.</p>
+                </ul>
+            <li><b>Other definition</b>
+                <p>Component definition also include category (<a class="style1" href="./keywords/keywords_category.htm">category</a>), type (<a class="style1" href="./keywords/keywords_struct.htm">struct</a>), enumeration (<a class="style1" href="./keywords/keywords_enum.htm">enum</a>) definitions, component import (<a class="style1" href="./keywords/keywords_importlib.htm">importlib</a>) etc. For details please see <a class="style1" href="keyword.htm">CAR Keywords</a>.</p>
+            </ul>
+    </ul>
+
+<script>footer("english")</script>
+</body>
+</html>

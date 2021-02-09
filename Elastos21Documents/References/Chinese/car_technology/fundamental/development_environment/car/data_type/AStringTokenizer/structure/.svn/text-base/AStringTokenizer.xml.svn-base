@@ -1,0 +1,73 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/structuremanual.xsl"?>
+
+<manpage>
+   
+    <volume> 常用数据结构 </volume>
+    <class>AStringTokenizer</class>
+    <function>AStringTokenizer</function>
+
+    <description>
+        <para> 构造一个AStringTokenizer对象，并指定分隔字符。默认分隔字符为 " \t\n\r\f" 参数。 </para>
+    </description>
+
+    <syntax>
+        <apiname>AStringTokenizer</apiname>
+        <parameters>
+        <api_param>
+            <param_type>AString </param_type>
+            <param_name>str </param_name>
+            <param_note>
+                <para>需分析的字符串;</para>
+            </param_note>          
+        </api_param>
+        <api_param>
+            <param_type>AString </param_type>
+            <param_name>delim = &quot; \t\n\r\f&quot;</param_name>          
+            <param_note>
+                <para>指定的分割符，可以多个。默认是" \t\n\r\f" </para>
+            </param_note>
+        </api_param>
+         <api_param>
+            <param_type>Boolean </param_type>
+            <param_name>returnDelims = FALSE</param_name>          
+            <param_note>
+                <para>设置分隔字符是否当Token返回，默认不当Token返回 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        
+    </syntax>
+    
+<example>
+<pre>
+AString astr("There is$a,book.");
+//分割符设置为空格、逗号、$符，且不返回分割符。
+AStringTokenizer astrToken(astr, " ,$"); 
+for( ; astrToken.HasMoreTokens(); ) {
+    CConsole::WriteLine(astrToken.NextToken());
+}
+
+运行结果：
+There
+is
+a
+book.
+</pre>
+</example>  
+    
+   <references>
+    <reference>
+        <ref_name>AStringTokenizer</ref_name>
+        <ref_url>../../AStringTokenizer</ref_url>
+    </reference>        
+
+    </references>
+
+
+
+</manpage>
+
+
+
+

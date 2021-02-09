@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICanvas</interface><method> DrawArc </method>
+    <description>
+        <para>
+            绘制拱形。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> x </param_name>
+                <param_note>
+                    <para>
+绘制的拱形的左上角的x坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> y </param_name>
+                <param_note>
+                    <para>
+绘制的拱形的左上角的y坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> radius </param_name>
+                <param_note>
+                    <para>
+绘制的拱形的半径                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> startAngle </param_name>
+                <param_note>
+                    <para>
+绘制的拱形的起始角度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> angleSpan </param_name>
+                <param_note>
+                    <para>
+绘制的拱形弧度。即角度跨辐                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Color </param_type>
+                <param_name> color </param_name>
+                <param_note>
+                    <para>
+用来绘制拱形的画笔的颜色，颜色的取值指定为<link url="../../datatype/ColorChart.htm">ColorChart</link>数据类型。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT 。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>    
+</manpage>

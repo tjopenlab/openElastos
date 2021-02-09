@@ -1,0 +1,64 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Process And Thread</volume>
+<interface>IThread</interface><method> GetQuitTime </method>
+    <description>
+        <para>
+			Gets the time, when the associated thread finished execution.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> SystemTime * </param_type>
+                <param_name> pTime  </param_name>
+                <param_note>
+                    <para>
+						Pointer to <link url="...\sdk\base_service\other_service\data_type\EzTime.htm">SystemTime </link>, used to get the exit time of the thread.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+			<td>Return Value </td>
+			<td>Hex Value</td>
+			<td>Description</td>
+	    </th>
+	    <tr>
+			<td>NOERROR</td>
+			<td>0x00000000</td>
+			<td>Function succeeds in getting the time, when the associated thread finished execution.</td>
+	    </tr>
+	    <tr>
+			<td>E_INVALIDARG</td>
+			<td>0x80070057</td>
+			<td>Invalid argument(s)</td>
+	    </tr>
+	    <tr>
+			<td>E_THREAD_NOT_STOPPED</td>
+			<td>0x80004005</td>
+			<td>Thread is not exited</td>	    
+	    </tr>
+	</table>
+	<para>See <link url="../../hresult.htm">ECODE</link> related help for more details.</para>
+    </return>
+
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

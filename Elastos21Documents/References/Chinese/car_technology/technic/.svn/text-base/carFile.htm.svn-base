@@ -1,0 +1,58 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR文件结构</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+    <h3>CAR文件组成</h3>
+    <p>一个CAR文件（扩展名为.car）对应一个<a class= "style1" href= "..\fundamental\development_environment\car\keywords\keywords_module.htm">module</a>或<a class= "style1" href= "..\fundamental\development_environment\car\keywords\keywords_library.htm">library</a>。CAR文件的结构主要由构件类，接口和接口方法组成。</p>
+
+    <p>每个CAR构件都由若干类组成，每个类实现若干接口，每个接口中定义若干方法。图3-3为构件HelloDemo的示意图：</p>
+    <center><img src="images/hello.JPG"></center>
+    <p> </p>
+    <center>图3-3 构件HelloDemo示意图</center>
+    <p>该构件对应的CAR文件内容如下： </p>
+    <p>HelloDemo.car文件:</p>
+    <pre class="code">
+module        　　　　　　//构件HelloDemo
+{
+    //接口IHello
+    [local]　　　　　　　　 //接口属性　local
+    interface IHello {
+        Hello([in] Int32 id);  //方法
+    }
+
+    //接口IHey
+    interface IHey {
+        Hey([in] Int32 id, [out] WStringBuf&lt;&gt; wtrBuf);
+    }
+
+    //类CHello1
+    class CHello1 {
+        interface IHello;
+        interface IHey;
+    }
+
+    //类CHello2
+    class CHello2 {
+        interface IHello;
+    }
+    //类CHello3
+    class CHello3 {
+        interface IHey;
+    }
+}
+
+</pre>
+        <ul><b>注：</b>CAR文件中使用双斜杠“//”作为语句注释符。</ul>
+
+</body>
+</html>

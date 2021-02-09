@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> ezregsvr </title>
+    <volume>Shell支持的命令</volume>
+
+    <description>
+        <para> 根据配置文件的规则创建一个新的构件实例并将其注册为命名服务。</para>
+    </description>
+    <remarks>
+        <para>该命令根据配置文件的规则创建一个新的构件实例并将其注册为命名服务。运行时需要一个参数，用于指明该命令所使用的配置文件。</para>
+        <para>配置文件的规则如下：</para>
+        <para>以每一行为处理单元，每一有效行应以“;”结尾，暂不支持续行符；以“#”开始的行为注释行；“RegisterService”关键字用于定义一次命名服务注册，参数之间用“,”分隔。</para>
+        <para>需要注意的是：目前只支持读取打包到elastos.img中的文件；尽量不要定义大小超过4K的配置文件。</para>
+        <para>配置文件中定义的命名服务注册成功后，该命令会进入睡眠状态，但不会退出。因此，建议以后台方式运行程序。</para>
+    </remarks>
+    <examples>
+        <example>
+            <eg_line>ezregsvr services.cfg</eg_line>
+            <eg_note> 通过services.cfg配置文件，命名服务"tcpip"和"filesys"被注册到系统中。配置文件services.cfg范例：</eg_note>
+            <eg_result><![CDATA[
+
+RegisterService("bmfs.dll", "CBMFileSystem", "IBasicFileSystem", "bootmods");
+
+RegisterService("memfs.dll" "CMemFileSystem", "IBasicFileSystem", "memfs");
+
+RegisterService("crtsvr.dll", "CDiskManager", "IDiskManager", "diskmgr");
+
+RegisterService("crtsvr.dll", "CLocaleInfo", "ILocaleInfo", "localeinfo");
+
+]]></eg_result>
+        </example>
+    </examples>
+
+</manpage>

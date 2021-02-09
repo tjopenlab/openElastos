@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> IApplet接口方法介绍 </volume>
+    <interface>IApplet</interface>
+    <method> Start </method>
+
+    <description>
+        <para>启动applet，从applet的Main方法开始执行。</para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>[in] BufferOf&lt;WString&gt; </param_type>
+            <param_name>args </param_name>
+            <param_note>
+                <para> args将被传递给Applet::Main </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    
+<remarks>
+    <para>创建一个applet对象后，applet并不会开始执行，需要调用IApplet的Start方法启动该applet。Start方法将创建一个新线程执行applet的Main函数，当Main函数返回0时applet进入消息循环。如果想结束applet的消息循环，可以调用<link url="Finish.htm">IApplet::Finish</link>方法。Start方法创建的线程就是applet的主线程，同时也是applet的消息处理线程。 </para>
+ </remarks>
+</manpage>

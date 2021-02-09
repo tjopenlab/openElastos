@@ -1,0 +1,122 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\getenv">getenv</sample>
+    <title>getenv, _wgetenv</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Gets the value of environment variable from current environment.</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>getenv</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>varname</param_name>
+                <param_note>
+                    <para>Environment variable name.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_wgetenv</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>varname</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The function returns a pointer to environment table entry containing the environment variable name. It is not safe to modify the value of the environment variable using the returned pointer.
+              Use the _putenv function to modify the value of an environment variable. if the environment variable name is not found in the environment table, the return value is NULL.</para>
+    </return>
+
+    <remarks>
+        <para>The getenv function searches the list of the environment varaible for varname. The function is not case sensitive.</para> 
+        <para>_wgetenv is a wide-character version of getenv, the argument and return value are wide-character strings.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>getenv</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0 </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wgetenv</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0 </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* getenv.cpp: This program uses getenv to retrieve
+ * the LIB environment variable and then uses
+ * _putenv to change it to a new value.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char *libvar;
+
+    /* Get the value of the LIB environment variable. */
+    libvar = getenv(&quot;LIB&quot;);
+
+    if (libvar != NULL)
+        printf(&quot;Original LIB variable is: %s\n&quot;, libvar);
+    else
+        printf(&quot;can not get enviroment!\n&quot;);
+
+    /* Attempt to change path. Note that this only affects the environment
+     * variable of the current process. The command processor&apos;s environment
+     * is not changed.
+     */
+    _putenv(&quot;LIB=c:\\mylib;c:\\yourlib&quot;);
+
+    /* Get new value. */
+    libvar = getenv(&quot;LIB&quot;);
+
+    if (libvar != NULL)
+        printf(&quot;New LIB variable is: %s\n&quot;, libvar);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Original LIB variable is: C:\progra~1\devstu~1\vc\lib
+New LIB variable is: c:\mylib;c:\yourlib
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_url>_wputenv</ref_url>
+        </reference>
+            <ref_name>_putenv</ref_name>
+    </references>
+
+</manpage>

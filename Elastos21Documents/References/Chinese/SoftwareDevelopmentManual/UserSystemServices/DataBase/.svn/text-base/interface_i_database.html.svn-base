@@ -1,0 +1,914 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: IDatabase接口参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>IDatabase接口参考</h1><!-- doxytag: class="IDatabase" -->特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。
+<a href="#_details">更多...</a>
+<p>
+<code>import &quot;<a class="el" href="database_8car-source.html">database.car</a>&quot;;</code>
+<p>
+
+<p>
+<a href="interface_i_database-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#7422654514f14353fa3684bd341e1a79">Close</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">关闭当前数据库，并立即释放掉当前数据库对象的资源，而不是等待它们被自动释放。  <a href="#7422654514f14353fa3684bd341e1a79"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#80f8bf3a49657380380f1cf7ba46dec0">IsClosed</a> ([out] Boolean *closed)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检查数据库是否已被关闭。  <a href="#80f8bf3a49657380380f1cf7ba46dec0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#2e37813bc1e4302c5c73e676cf07d26d">GetErrorCode</a> ([out] ECode *code)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取数据库最近的一个错误码。  <a href="#2e37813bc1e4302c5c73e676cf07d26d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#e21e39da1c1e811b637a7fdc84083c40">GetErrorMessage</a> ([out] WStringBuf * message)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取数据库最近的一个错误信息。  <a href="#e21e39da1c1e811b637a7fdc84083c40"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#b68a1bd86c5b4d996a9dde72b6ea3f9d">CreateStatement</a> ([out] <a class="el" href="interface_i_statement.html">IStatement</a> **stmt)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">创建一个用于向数据库传递SQL语句的SQL语句对象。 没有参数的 SQL 语句通常使用 Statement 对象执行。 如果多次执行相同的 SQL 语句，使用 PreparedStatement 对象可能更有效。  <a href="#b68a1bd86c5b4d996a9dde72b6ea3f9d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#8137012a31e4531f720a29a2222c40a9">PrepareStatement</a> ([in] WString sql,[out] <a class="el" href="interface_i_prepared_statement.html">IPreparedStatement</a> **stmt)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">创建一个用于向数据库传递参数化的SQL语句的预处理语句对象。  <a href="#8137012a31e4531f720a29a2222c40a9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#d850245063fa59835dc985519a74058f">Commit</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将自上一次Commit/Rollback以来所产生的改变提交，并释放数据库对象所持有的所有数据库锁。  <a href="#d850245063fa59835dc985519a74058f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#9cb9ff5637d70824bcf1c8af96d0c68b">Rollback</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">撤销当前事务对数据库所做的所有更改，并释放数据库对象当前保存的所有数据库锁。  <a href="#9cb9ff5637d70824bcf1c8af96d0c68b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#ce2fb27da6074e7ad05a011fb9494cb0">SetAutoCommit</a> ([in] Boolean autoCommit)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置数据库的自动提交模式到指定的状态。 如果一个数据库处于自动提交状态，则将执行其所有 SQL 语句，并将这些语句作为单独的事务提交。 否则，其 SQL 语句将成组地进入通过调用 commit 方法或 rollback 方法终止的事务中。 默认情况下，新的连接处于自动提交模式下。  <a href="#ce2fb27da6074e7ad05a011fb9494cb0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#117f7c61bd5c180c8a1780477cac0662">IsAutoCommit</a> ([out] Boolean *autoCommit)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检索此数据库对象的当前自动提交模式。  <a href="#117f7c61bd5c180c8a1780477cac0662"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#1f3a8da3b3e5ddf642b3d2390f911ab7">GetTotalEffectiveRowCount</a> ([out] Int32 *rowCount)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取数据库在打开后被修改，插入，或者删除的行数的合计。 这个合计也包含了被触发器和存储过程影响的行，以及在辅助 和临时数据库中所影响的行。  <a href="#1f3a8da3b3e5ddf642b3d2390f911ab7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#ce13fec1f567661febd0555242782892">GetBusyTimeout</a> ([out] Int32 *millisecond)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取数据库在忙时重试等待所引起的超时时间。  <a href="#ce13fec1f567661febd0555242782892"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#e36e5c3bb67fbdbf48c502dc8f2d592d">SetBusyTimeout</a> ([in] Int32 millisecond)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设定数据库在忙时所等待的时间。  <a href="#e36e5c3bb67fbdbf48c502dc8f2d592d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#e3f4b97e75565d9d8f9b273da5239620">GetCacheSize</a> ([out] Int32 *pages)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取数据库当前使用的缓冲页数。  <a href="#e3f4b97e75565d9d8f9b273da5239620"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#4df46979a8f828765d4ffa86d67aca51">SetCacheSize</a> ([in] Int32 pages)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置数据库一次在内存中保留的磁盘页数的最大值。 磁盘中每页为1K，内存中每页为1.5K.  <a href="#4df46979a8f828765d4ffa86d67aca51"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#e608c874a563df1106c368916e781bf9">GetDefaultCacheSize</a> ([out] Int32 *pages)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取数据库默认使用的缓冲页数。  <a href="#e608c874a563df1106c368916e781bf9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#4671ccfade7afc51c99dc5d3b646dad9">SetDefaultCacheSize</a> ([in] Int32 pages)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置数据库一次在内存中分配的磁盘页数的最大值。 磁盘中每页为1K，内存中每页为1.5K.  <a href="#4671ccfade7afc51c99dc5d3b646dad9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#980a64f99be21d887e40a7e78b0a67e2">GetPageSize</a> ([out] Int32 *pageSize)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取数据库的页面大小。数据库的数据页面大小在数据库创建时确定。  <a href="#980a64f99be21d887e40a7e78b0a67e2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#5473b0397d1302d862e7eeab53fbf515">GetEncoding</a> ([out] <a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19">DbEncoding</a> *encoding)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取在主数据库中使用的字符编码方式。 该字符编码只能在数据库创建时设定。  <a href="#5473b0397d1302d862e7eeab53fbf515"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#485a9df096874de0ac23fe8550a98b75">IsReadOnly</a> ([out] Boolean *readOnly)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检查数据库对象是否为只读模式。  <a href="#485a9df096874de0ac23fe8550a98b75"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#fed2503c0bd6cb96f7830f6adbcd1821">GetBlobAsStream</a> ([in] WString dbAlias,[in] WString table,[in] WString column,[in] Int64 rowId,[out] IInputStream **stream)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">按照流的方式读取指定的Blob数据。  <a href="#fed2503c0bd6cb96f7830f6adbcd1821"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#2a2fb827466afb787e3e4db613aaf893">SetBlobOfStream</a> ([in] WString dbAlias,[in] WString table,[in] WString column,[in] Int64 rowId,[in] Int32 newSize,[out] IOutputStream **stream)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">按照流的方式写入指定的Blob数据。  <a href="#2a2fb827466afb787e3e4db613aaf893"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#c14c327a5f8bc0cc533f721d2d79cc81">LoadUserExtension</a> ([in] WString extModule,[in] WString entryPoint)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">尝试载入一个包含在"extFile"文件中的SQLite外部库文件。 入口为参数entryPoint所指定，参数entryPoint在入口名默认为"sqlite3_extension_init"时可为NULL.  <a href="#c14c327a5f8bc0cc533f721d2d79cc81"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#afa67e654670ee706ef5a835123d3371">Defragment</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">清除后台数据库文件中的空闲空间，减小数据库文件大小。  <a href="#afa67e654670ee706ef5a835123d3371"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#ba1651645f76f4d6b20c7451f3d6b8b3">SetProperty</a> ([in] WString property,[in] WString value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">保留的方法。  <a href="#ba1651645f76f4d6b20c7451f3d6b8b3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html#7802ccee338eff214e73309b040eea0b">GetProperty</a> ([in] WString property,[out] WStringBuf * value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">保留的方法。  <a href="#7802ccee338eff214e73309b040eea0b"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。
+<p>
+默认情况下，Database 对象处于自动提交模式下，这意味着它在执行每个 语句后都会自动提交更改。如果禁用自动提交模式，为了提交更改， 必须显式调用 Commit 方法；否则无法保存数据库更改。 <dl compact><dt><b>示例: </b></dt><dd>
+
+<p>
+<a class="el" href="_close_8cpp-example.html#_a0">Close.cpp</a>、<a class="el" href="_effective_row_8cpp-example.html#_a0">EffectiveRow.cpp</a>、<a class="el" href="_execute_8cpp-example.html#_a0">Execute.cpp</a>、<a class="el" href="_execute_update_8cpp-example.html#_a0">ExecuteUpdate.cpp</a>、<a class="el" href="_get_encoding_8cpp-example.html#_a0">GetEncoding.cpp</a>、<a class="el" href="_get_error_8cpp-example.html#_a0">GetError.cpp</a>、<a class="el" href="_get_result_8cpp-example.html#_a0">GetResult.cpp</a>及<a class="el" href="_pre_set_8cpp-example.html#_a0">PreSet.cpp</a>.</dl>
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00068">68</a>行定义。</p>
+<hr><h2>成员函数文档</h2>
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a><!-- doxytag: member="IDatabase::Close" ref="7422654514f14353fa3684bd341e1a79" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::Close           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+关闭当前数据库，并立即释放掉当前数据库对象的资源，而不是等待它们被自动释放。
+<p>
+对已经关闭的数据库对象调用该方法无效。<p>
+当数据库对象被销毁时，该对象将被自动关闭。 <dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_close_8cpp-example.html#a5">Close.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a><!-- doxytag: member="IDatabase::IsClosed" ref="80f8bf3a49657380380f1cf7ba46dec0" args="([out] Boolean *closed)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::IsClosed           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Boolean *&nbsp;</td>
+          <td class="paramname"> <em>closed</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检查数据库是否已被关闭。
+<p>
+当对一个数据库对象调用Close()方法，或发生了严重错误时该数据库对象将被关闭。 仅当Close()方法被调用后，此方法才会返回 true.<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>closed</em>&nbsp;</td><td>- 如果数据库对象已被关闭则返回true； 否则返回false. </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_close_8cpp-example.html#a6">Close.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="2e37813bc1e4302c5c73e676cf07d26d"></a><!-- doxytag: member="IDatabase::GetErrorCode" ref="2e37813bc1e4302c5c73e676cf07d26d" args="([out] ECode *code)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::GetErrorCode           </td>
+          <td>(</td>
+          <td class="paramtype">[out] ECode *&nbsp;</td>
+          <td class="paramname"> <em>code</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取数据库最近的一个错误码。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>code</em>&nbsp;</td><td>- 错误码；如果当前数据库没有发生错误则返回NOERROR. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e21e39da1c1e811b637a7fdc84083c40"></a><!-- doxytag: member="IDatabase::GetErrorMessage" ref="e21e39da1c1e811b637a7fdc84083c40" args="([out] WStringBuf * message)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::GetErrorMessage           </td>
+          <td>(</td>
+          <td class="paramtype">[out] WStringBuf *&nbsp;</td>
+          <td class="paramname"> <em>message</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取数据库最近的一个错误信息。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>message</em>&nbsp;</td><td>- 错误信息； 如果当前数据库没有发生错误则返回空串。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="b68a1bd86c5b4d996a9dde72b6ea3f9d"></a><!-- doxytag: member="IDatabase::CreateStatement" ref="b68a1bd86c5b4d996a9dde72b6ea3f9d" args="([out] IStatement **stmt)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::CreateStatement           </td>
+          <td>(</td>
+          <td class="paramtype">[out] <a class="el" href="interface_i_statement.html">IStatement</a> **&nbsp;</td>
+          <td class="paramname"> <em>stmt</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+创建一个用于向数据库传递SQL语句的SQL语句对象。 没有参数的 SQL 语句通常使用 Statement 对象执行。 如果多次执行相同的 SQL 语句，使用 PreparedStatement 对象可能更有效。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>stmt</em>&nbsp;</td><td>- 新建的默认Statement对象。 </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_close_8cpp-example.html#a2">Close.cpp</a>、<a class="el" href="_effective_row_8cpp-example.html#a2">EffectiveRow.cpp</a>、<a class="el" href="_execute_8cpp-example.html#a2">Execute.cpp</a>、<a class="el" href="_get_error_8cpp-example.html#a2">GetError.cpp</a>及<a class="el" href="_get_result_8cpp-example.html#a2">GetResult.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="8137012a31e4531f720a29a2222c40a9"></a><!-- doxytag: member="IDatabase::PrepareStatement" ref="8137012a31e4531f720a29a2222c40a9" args="([in] WString sql,[out] IPreparedStatement **stmt)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::PrepareStatement           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>sql</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] <a class="el" href="interface_i_prepared_statement.html">IPreparedStatement</a> **&nbsp;</td>
+          <td class="paramname"> <em>stmt</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+创建一个用于向数据库传递参数化的SQL语句的预处理语句对象。
+<p>
+带有 IN 参数或不带有 IN 参数的 SQL 语句都可以被预编译并存储在 PreparedStatement 对象中。 然后可以有效地使用此对象来多次执行该语句。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>sql</em>&nbsp;</td><td>- 包含一个或多个IN属性参数的SQL语句。</td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>stmt</em>&nbsp;</td><td>- 新建的包含预编译SQL语句的预处理语句对象。 </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_execute_update_8cpp-example.html#a2">ExecuteUpdate.cpp</a>及<a class="el" href="_pre_set_8cpp-example.html#a2">PreSet.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="d850245063fa59835dc985519a74058f"></a><!-- doxytag: member="IDatabase::Commit" ref="d850245063fa59835dc985519a74058f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::Commit           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将自上一次Commit/Rollback以来所产生的改变提交，并释放数据库对象所持有的所有数据库锁。
+<p>
+本方法只在禁用自动提交模式时使用。
+</div>
+</div><p>
+<a class="anchor" name="9cb9ff5637d70824bcf1c8af96d0c68b"></a><!-- doxytag: member="IDatabase::Rollback" ref="9cb9ff5637d70824bcf1c8af96d0c68b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::Rollback           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+撤销当前事务对数据库所做的所有更改，并释放数据库对象当前保存的所有数据库锁。
+<p>
+本方法只在禁用自动提交模式时使用。
+</div>
+</div><p>
+<a class="anchor" name="ce2fb27da6074e7ad05a011fb9494cb0"></a><!-- doxytag: member="IDatabase::SetAutoCommit" ref="ce2fb27da6074e7ad05a011fb9494cb0" args="([in] Boolean autoCommit)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::SetAutoCommit           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Boolean&nbsp;</td>
+          <td class="paramname"> <em>autoCommit</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设置数据库的自动提交模式到指定的状态。 如果一个数据库处于自动提交状态，则将执行其所有 SQL 语句，并将这些语句作为单独的事务提交。 否则，其 SQL 语句将成组地进入通过调用 commit 方法或 rollback 方法终止的事务中。 默认情况下，新的连接处于自动提交模式下。
+<p>
+提交发生在语句完成或执行下一条语句时，以先发生的情况为准。 在语句返回 ResultSet 对象的情况下，该语句在已检索完最后一行 ResultSet 对象或已关闭 ResultSet 对象时完成。<p>
+如果在事务处理期间调用此方法，则提交该事务。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>autoCommit</em>&nbsp;</td><td>- 启用自动提交模式为true； 禁用该模式为false。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="117f7c61bd5c180c8a1780477cac0662"></a><!-- doxytag: member="IDatabase::IsAutoCommit" ref="117f7c61bd5c180c8a1780477cac0662" args="([out] Boolean *autoCommit)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::IsAutoCommit           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Boolean *&nbsp;</td>
+          <td class="paramname"> <em>autoCommit</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检索此数据库对象的当前自动提交模式。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>autoCommit</em>&nbsp;</td><td>- 当前数据库对象的自动提交模式。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1f3a8da3b3e5ddf642b3d2390f911ab7"></a><!-- doxytag: member="IDatabase::GetTotalEffectiveRowCount" ref="1f3a8da3b3e5ddf642b3d2390f911ab7" args="([out] Int32 *rowCount)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::GetTotalEffectiveRowCount           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>rowCount</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取数据库在打开后被修改，插入，或者删除的行数的合计。 这个合计也包含了被触发器和存储过程影响的行，以及在辅助 和临时数据库中所影响的行。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>rowCount</em>&nbsp;</td><td>- 更改的行数合计。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ce13fec1f567661febd0555242782892"></a><!-- doxytag: member="IDatabase::GetBusyTimeout" ref="ce13fec1f567661febd0555242782892" args="([out] Int32 *millisecond)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::GetBusyTimeout           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>millisecond</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取数据库在忙时重试等待所引起的超时时间。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>milliSecond</em>&nbsp;</td><td>- 当前查询等待时间(毫秒) 0意味着无需等待。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e36e5c3bb67fbdbf48c502dc8f2d592d"></a><!-- doxytag: member="IDatabase::SetBusyTimeout" ref="e36e5c3bb67fbdbf48c502dc8f2d592d" args="([in] Int32 millisecond)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::SetBusyTimeout           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>millisecond</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设定数据库在忙时所等待的时间。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>milliSecond</em>&nbsp;</td><td>- 新的查询时间(毫秒) 0意味着无需等待。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e3f4b97e75565d9d8f9b273da5239620"></a><!-- doxytag: member="IDatabase::GetCacheSize" ref="e3f4b97e75565d9d8f9b273da5239620" args="([out] Int32 *pages)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::GetCacheSize           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>pages</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取数据库当前使用的缓冲页数。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pages</em>&nbsp;</td><td>- 数据库的当前缓冲页数。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="4df46979a8f828765d4ffa86d67aca51"></a><!-- doxytag: member="IDatabase::SetCacheSize" ref="4df46979a8f828765d4ffa86d67aca51" args="([in] Int32 pages)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::SetCacheSize           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>pages</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设置数据库一次在内存中保留的磁盘页数的最大值。 磁盘中每页为1K，内存中每页为1.5K.
+<p>
+默认的缓冲区大小为2000. 您可以增加缓冲区大小来获得速度的改进。<p>
+当你使用这种方法来更改缓冲区大小时，这个改变只在当前状态有效。 缓冲区大小将在数据库关闭和重新打开时恢复。 若想彻底改变缓冲区大小，可使用SetDefaultCacheSize方法。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pages</em>&nbsp;</td><td>- 数据库的缓冲页数。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e608c874a563df1106c368916e781bf9"></a><!-- doxytag: member="IDatabase::GetDefaultCacheSize" ref="e608c874a563df1106c368916e781bf9" args="([out] Int32 *pages)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::GetDefaultCacheSize           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>pages</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取数据库默认使用的缓冲页数。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pages</em>&nbsp;</td><td>- 数据库的缓冲页数。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="4671ccfade7afc51c99dc5d3b646dad9"></a><!-- doxytag: member="IDatabase::SetDefaultCacheSize" ref="4671ccfade7afc51c99dc5d3b646dad9" args="([in] Int32 pages)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::SetDefaultCacheSize           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>pages</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设置数据库一次在内存中分配的磁盘页数的最大值。 磁盘中每页为1K，内存中每页为1.5K.
+<p>
+该方法除了实现SetCacheSize方法的功能外，还会永久更改缓冲区大小。 使用此方法，您可以一次设置缓冲区大小，并将此设置保留， 而且在每次重新打开数据库时使用此缓冲区大小。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pages</em>&nbsp;</td><td>- 数据库的缓冲页数。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="980a64f99be21d887e40a7e78b0a67e2"></a><!-- doxytag: member="IDatabase::GetPageSize" ref="980a64f99be21d887e40a7e78b0a67e2" args="([out] Int32 *pageSize)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::GetPageSize           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>pageSize</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取数据库的页面大小。数据库的数据页面大小在数据库创建时确定。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>pageSize</em>&nbsp;</td><td>- 数据库的页面大小。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="5473b0397d1302d862e7eeab53fbf515"></a><!-- doxytag: member="IDatabase::GetEncoding" ref="5473b0397d1302d862e7eeab53fbf515" args="([out] DbEncoding *encoding)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::GetEncoding           </td>
+          <td>(</td>
+          <td class="paramtype">[out] <a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19">DbEncoding</a> *&nbsp;</td>
+          <td class="paramname"> <em>encoding</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取在主数据库中使用的字符编码方式。 该字符编码只能在数据库创建时设定。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>encoding</em>&nbsp;</td><td>- 在主数据库中使用的字符编码方式。 </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_get_encoding_8cpp-example.html#a1">GetEncoding.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="485a9df096874de0ac23fe8550a98b75"></a><!-- doxytag: member="IDatabase::IsReadOnly" ref="485a9df096874de0ac23fe8550a98b75" args="([out] Boolean *readOnly)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::IsReadOnly           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Boolean *&nbsp;</td>
+          <td class="paramname"> <em>readOnly</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检查数据库对象是否为只读模式。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>readOnly</em>&nbsp;</td><td>- 是只读模式则返回true. 否则返回false. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="fed2503c0bd6cb96f7830f6adbcd1821"></a><!-- doxytag: member="IDatabase::GetBlobAsStream" ref="fed2503c0bd6cb96f7830f6adbcd1821" args="([in] WString dbAlias,[in] WString table,[in] WString column,[in] Int64 rowId,[out] IInputStream **stream)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::GetBlobAsStream           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>dbAlias</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>table</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int64&nbsp;</td>
+          <td class="paramname"> <em>rowId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] IInputStream **&nbsp;</td>
+          <td class="paramname"> <em>stream</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+按照流的方式读取指定的Blob数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>abAlias</em>&nbsp;</td><td>- 数据库的符号名。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>table</em>&nbsp;</td><td>- 表名。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- blob数据的列名。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>rowId</em>&nbsp;</td><td>- blob数据中指定行号。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>stream</em>&nbsp;</td><td>- blob的输入流接口。</td></tr>
+  </table>
+</dl>
+注:参数dbAlias并非数据库中的文件名而是当使用ATTACH连接数据库时指定给数据库的别名。 对于主数据库文件，数据库别名为"main"。 对于临时的表，数据库别名为"temp"。
+</div>
+</div><p>
+<a class="anchor" name="2a2fb827466afb787e3e4db613aaf893"></a><!-- doxytag: member="IDatabase::SetBlobOfStream" ref="2a2fb827466afb787e3e4db613aaf893" args="([in] WString dbAlias,[in] WString table,[in] WString column,[in] Int64 rowId,[in] Int32 newSize,[out] IOutputStream **stream)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::SetBlobOfStream           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>dbAlias</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>table</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int64&nbsp;</td>
+          <td class="paramname"> <em>rowId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>newSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] IOutputStream **&nbsp;</td>
+          <td class="paramname"> <em>stream</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+按照流的方式写入指定的Blob数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>abAlias</em>&nbsp;</td><td>- 数据库的符号名。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>table</em>&nbsp;</td><td>- 表名。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- blob数据的列名。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>rowId</em>&nbsp;</td><td>- blob数据中指定行号。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>newSize</em>&nbsp;</td><td>- blob的大小。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>stream</em>&nbsp;</td><td>- blob的输出流接口。</td></tr>
+  </table>
+</dl>
+注:参数dbAlias并非数据库中的文件名而是当使用ATTACH连接数据库时指定给数据库的别名。 对于主数据库文件，数据库别名为"main"。 对于临时的表，数据库别名为"temp"。
+</div>
+</div><p>
+<a class="anchor" name="c14c327a5f8bc0cc533f721d2d79cc81"></a><!-- doxytag: member="IDatabase::LoadUserExtension" ref="c14c327a5f8bc0cc533f721d2d79cc81" args="([in] WString extModule,[in] WString entryPoint)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::LoadUserExtension           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>extModule</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>entryPoint</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+尝试载入一个包含在"extFile"文件中的SQLite外部库文件。 入口为参数entryPoint所指定，参数entryPoint在入口名默认为"sqlite3_extension_init"时可为NULL.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>extModule</em>&nbsp;</td><td>- 外部DLL文件。 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>entryPoint</em>&nbsp;</td><td>- 外部文件的入口名。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="afa67e654670ee706ef5a835123d3371"></a><!-- doxytag: member="IDatabase::Defragment" ref="afa67e654670ee706ef5a835123d3371" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::Defragment           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+清除后台数据库文件中的空闲空间，减小数据库文件大小。
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="ba1651645f76f4d6b20c7451f3d6b8b3"></a><!-- doxytag: member="IDatabase::SetProperty" ref="ba1651645f76f4d6b20c7451f3d6b8b3" args="([in] WString property,[in] WString value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::SetProperty           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>property</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+保留的方法。
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="7802ccee338eff214e73309b040eea0b"></a><!-- doxytag: member="IDatabase::GetProperty" ref="7802ccee338eff214e73309b040eea0b" args="([in] WString property,[out] WStringBuf * value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabase::GetProperty           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>property</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+保留的方法。
+<p>
+
+</div>
+</div><p>
+<hr>该接口的文档由以下文件生成：<ul>
+<li><a class="el" href="database_8car-source.html">database.car</a></ul>
+<script>footer("chinese")</script>
+</body>
+</html>

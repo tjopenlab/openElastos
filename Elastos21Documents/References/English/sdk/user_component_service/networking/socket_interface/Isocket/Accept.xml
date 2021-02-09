@@ -1,0 +1,80 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Socket Interface </volume>
+<interface>Isocket</interface><method> Accept </method>
+    <description>
+        <para>
+            Accepts a connection.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ISocket **  </param_type>
+                <param_name> ppIncomingConnection </param_name>
+                <param_note>
+                    <para>
+						When successfully executed,this parameter obtains ISocket interface connected with remote host.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzByteBuf  </param_type>
+                <param_name> Addr </param_name>
+                <param_note>
+                    <para>
+						Gets the guest address information.Its capacity must be at least greater than sizeof(SOCKADDR).The obtained data structure is struct sockaddr.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int *  </param_type>
+                <param_name> pError </param_name>
+                <param_note>
+                    <para>
+					If function execution fails, this parameter gets the error return value.See <link url="../socket_wsa.htm">network interface error return value</link> documents for this return value.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Returns </td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>S_OK</td>
+		        <td>Method invocation successful.</td>
+	        </tr>
+	        <tr>
+		        <td>S_FALSE</td>
+		        <td>Method execution fails.</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later. Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

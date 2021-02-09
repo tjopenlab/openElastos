@@ -1,0 +1,82 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> mktfs </title>
+    <volume>TFTP File System User Guide</volume>
+
+    <description>
+        <para> 
+        	Recursively creates or deletes _index files of specified directory and all its subdirectories.
+        </para>
+    </description>
+
+    <syntax>
+        <cmd_name> MKTFS </cmd_name>
+        <cmd_param>[-?] [-h] [-d] [dirs] ... </cmd_param>
+    </syntax>
+    <parameters>
+        <param>
+            <param_name>  [-h]  </param_name>
+            <param_note>
+            	Displays mktfs help information. 
+            </param_note>
+        </param>
+        <param>
+            <param_name>  [-d] </param_name>
+            <param_note>
+            	Recursively deletes _index file of specified directory and all its subdirectories.
+            </param_note>
+        </param>
+        <param>
+            <param_name>[dirs]</param_name>
+            <param_note>
+            	Target directory list. If target path is not specified, the target directory is the default path:
+            	Current Elastos target mirror directory\bin directory. For example D:\Elastos.SDK\obj\_ix86.dbg\bin 
+            </param_note>
+        </param>
+    </parameters>
+    <remarks>
+        <para>
+        	The _index file contains the listing of the files that are in the specified directory. The _index 
+        	file is used by the TFTP file system.
+        </para>
+    </remarks>
+    <examples>
+        <example>
+            <eg_line>mktfs d:\Elastos.SDK\obj\_ntos.dbg\samples</eg_line>
+            <eg_note>
+            	Recursively creates _index files of d:\Elastos.SDK\obj\_ntos.dbg\samples directory and all its 
+            	subdirectories.
+            </eg_note>
+        </example>
+        <example>
+            <eg_line>mktfs -d d:\Elastos.SDK\obj\_ntos.dbg\samples</eg_line>
+            <eg_note>
+            	Recursively deletes _index files of d:\Elastos.SDK\obj\_ntos.dbg\samples directory and all its 
+            	subdirectories.
+            </eg_note>
+        </example>
+        <example>
+            <eg_line>mktfs -h</eg_line>
+            <eg_note>Displays mktfs help information. Outputs: </eg_note>
+            <eg_result><![CDATA[
+				mktfs: generate/delete index files for specified directories and their sub directories on host 
+				machines for Elastos Tftp FS.
+
+				usage: mktfs [-h] [-d] [dirs] ...
+       			-h   show this message
+       			-d   delete index files
+       			dirs target directory list.
+            	if no direcotry specified, use the default:
+            	D:\Elastos.SDK\obj\_ix86.dbg\bin
+				]]>
+			</eg_result>	
+        </example>
+    </examples>
+
+</manpage>

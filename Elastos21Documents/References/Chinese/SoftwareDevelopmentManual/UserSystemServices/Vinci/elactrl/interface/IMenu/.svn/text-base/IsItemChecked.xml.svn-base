@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IMenu</interface><method> IsItemChecked </method>
+    <description>
+        <para>
+            判断指定菜单项是否被选中。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> id </param_name>
+                <param_note>
+                    <para>
+菜单的 ID 号</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Boolean * </param_type>
+                <param_name> checked </param_name>
+                <param_note>
+                    <para>
+指向 Boolean 型的指针，标示指定菜单项是否被选中，若为 TRUE，则指定菜单项被选中，否则为 FALSE，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        OUT 参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        设置选中项可以通过 <link url="SetItemChecked.htm">SetItemChecked</link> 方法。菜单的 ID 号并不像 index 那样由系统自动分配，需要用户在添加菜单项时通过 id 参数显式指定。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CMenu 类介绍 </ref_name>
+        <ref_url>../../class/Menu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IMenu 接口方法列表</ref_name>
+        <ref_url>../IMenu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetItemChecked</ref_name>
+        <ref_url>SetItemChecked</ref_url>
+    </reference>
+</references>
+</manpage>

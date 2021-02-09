@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--module</title>
+</head>
+
+<body>
+	<h2>module</h2>
+	<b>含义 </b>
+	<p>此关键字用于指定生成动态链接库.dll形式的car构件。 </p>
+	
+	<b>语法 </b>
+	    	<p><b>module</b> UUNM ModuleBody </p>
+	<b>使用说明 </b>
+        <p>1.其中UUNM为该构件的全球唯一名字，包括URL路径和dll名字。 </p>
+        <p>2.在一个CAR文件中必须包含且只能包含一个module或<a class="style1" href= "keywords_library.htm">library</a>定义，其中可以定义若干构件类和接口。module中必须定义具体的类和接口。 </p>
+        <p>3.如不指定UUNM，则默认的dll名由car文件名加上.dll后缀构成，并且构件名不能和该构件的类名重复。 </p>
+        <p>4.构件名必须和car文件名一致。 </p>
+        <p>5.不允许定义一个空的module，即不含任何的类、接口和方法。 </p>
+	<b>使用范例 </b>
+<pre class= code>
+<b>module</b> www.elastos.com/car/HelloModuleDemo.dll
+{
+
+    interface IHello {
+
+        Func([in] Int32 num);
+
+    }
+
+    class CHello {
+
+        interface IHello;
+
+    }
+}
+
+</pre>
+	<p>示例中，定义了一个构件HelloModuleDemo。在该构件中定义了一个接口IHello和一个类CHello，并且在CHello类中声明了IHello接口。 </p>
+
+<b>与library的区别</b>
+	<p> module指定生成dll形式的car构件，<a class="style1" href= "keywords_library.htm">library</a>指定生成lib形式的car构件。并且module中必须定义具体的类，而library中则可以只定义接口，然后在其它module中实现。</p>
+
+    <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

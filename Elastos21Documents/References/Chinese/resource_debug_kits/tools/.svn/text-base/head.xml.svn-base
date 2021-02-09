@@ -1,0 +1,77 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> head </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para> 显示输入内容或文件的前n行内容。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> HEAD </cmd_name>
+        <cmd_param> [-? | -n] [filename...] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name>  -? </param_name>
+        <param_note> 显示帮助信息</param_note>
+    </param>
+    <param>
+        <param_name>  -n </param_name>
+        <param_note> 显示前n行，默认为10</param_note>
+    </param>
+    <param>
+        <param_name>  filename </param_name>
+        <param_note> 待查看文件的文件名</param_note>
+    </param>
+    </parameters>
+
+    <remarks>
+        <para>    参数中未指定文件名则显示输入的内容；若指定了文件名，则忽略输入的内容。
+        </para>
+        <para>    显示多个文件内容时在显示每个文件内容之前打印文件名。
+        </para>
+    </remarks>
+
+    <examples>
+    <example>
+        <eg_line>head -3</eg_line>
+        <eg_note> 显示文件file1.txt前3行内容。输出结果： </eg_note>
+        <eg_result><![CDATA[
+the 1st line in file1.
+the 2nd line in file1.
+the 3rd line in file1.
+]]></eg_result>
+    </example>
+    <example>
+        <eg_line>head -1 file1.txt file2.txt</eg_line>
+        <eg_note> 显示文件file1.txt和file2.txt的第一行的内容。输出结果：</eg_note>
+        <eg_result><![CDATA[
+==> file1 <==
+the 1st line in file1.txt.
+
+==> file2 <==
+the 1st line in file2.txt.
+]]></eg_result>
+    </example>
+
+    </examples>
+
+    <references>
+    <reference>
+        <ref_name>tail</ref_name>
+        <ref_url> tail </ref_url>
+    </reference>
+    <reference>
+        <ref_name>grep</ref_name>
+        <ref_url> grep </ref_url>
+    </reference>
+    <reference>
+        <ref_name>tee</ref_name>
+        <ref_url> tee </ref_url>
+    </reference>
+    </references>
+
+</manpage>

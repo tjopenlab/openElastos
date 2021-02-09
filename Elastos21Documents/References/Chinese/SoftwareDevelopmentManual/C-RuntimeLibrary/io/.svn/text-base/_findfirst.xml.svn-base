@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_findfirst">_findfirst</sample>
+    <title> _findfirst, _wfindfirst</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>获取与参数filespec指定的信息相匹配的文件的信息。</para>
+    </description>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>_findfirst</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>filespec</param_name>
+                <param_note>
+                    <para>指向目标文件名的指针，可以包括通配符</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>struct _finddata_t*</param_type>
+                <param_name>fileinfo</param_name>
+                <param_note>
+                    <para>文件信息缓冲区</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>_wfindfirst</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>filespec</param_name>
+            </func_param>
+            <func_param>
+                <param_type>struct _wfinddata_t*</param_type>
+                <param_name>fileinfo</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_findfrist函数如果执行成功，将返回一个该文件唯一确定的查找句柄，或者返回一个与参数filespec指定的信息相匹配的一组文件的查找句柄，该句柄可以用于随后调用的<link url="_findnext.htm">_findnext</link>函数；如果执行失败，将返回-1，并将错误号置为下列值：</para>
+        <table>
+            <th>
+                <td>错误号</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>ENOENT</td>
+                <td>没有找到匹配的文件信息</td></tr>
+            <tr>
+                <td>EINVAL</td>
+                <td>非法文件名</td></tr>
+        </table>
+        <para>当调用完_findfirst函数或_findnext函数后，必须调用<link url="_findclose.htm">_findclose</link>函数。这样将释放在应用程序中，调用函数_findfirst和_findnext时使用的资源。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>_findfirst</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _getch.cpp: This program uses _findfirst to find first instance of
+ * a filename that matches the file specified in the filespec argument.
+
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;io.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+    long hFile;
+    struct _finddata_t fileinf;
+
+    /* Find first findf*.exe file in current directory */
+    if ((hFile = _findfirst(&quot;findf*.exe&quot;, &amp;fileinf)) == -1L)
+        printf(&quot;No findf*.exe files in current directory!\n&quot;);
+    else {
+        printf(&quot;findf*.exe: %-18s %.24s  %9ld\n&quot;, fileinf.name,
+            ctime(&amp;(fileinf.time_write)), fileinf.size);
+        _findclose(hFile);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+findf*.exe: findfst.exe        Tue Nov 23 13:56:08 2004     248886
+</result>
+
+    <references>
+        <reference>
+            <ref_name>_findnext</ref_name>
+            <ref_url>_findnext</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_findclose</ref_name>
+            <ref_url>_findclose</ref_url>
+        </reference>
+    </references>
+
+</manpage>

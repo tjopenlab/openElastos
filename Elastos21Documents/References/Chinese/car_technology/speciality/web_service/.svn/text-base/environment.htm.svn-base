@@ -1,0 +1,39 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>web_service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>部署CAR&nbsp;Web服务环境</h2>
+        <p>目前的设计是将所有Elastos中注册的本地命名服务发布为网络服务。发布服务的方法非常简单，用户只需要启动一个网络服务器即可，无需对原有代码进行任何修改。为了方便使用，Elastos&nbsp;已经实现了一个CAR&nbsp;Web服务部署程序，保存在目录“Elastos.SDK\src\websvrs\soapsvr\testing\soapsexe\”，您只需要编译该目录并执行soapsexe.exe即可（由于soapsexe.exe程序不会退出，建议以后台方式运行）。</p>
+        <p>以下再给出利用在应用程序中注册CAR&nbsp;Web服务环境的方法。</p>
+        <p>下例是一个SOAP&nbsp;Web服务器（实际上就是一个HTTP&nbsp;Web服务器）的启动过程。</p>
+        <pre class="code">
+INetworkServerRef iNetworkSvrRef;
+    // 声明SOAP Web服务器实现的接口智能指针;
+iNetworkSvrRef.Instantiate(CLSID_CSOAPServer);
+    // 创建一个新的SOAP Web服务器实例;
+iNetworkSvrRef.RegisterCGIModulePath(CLSID_CWebServiceStub, EZCSTR("WSStub"));
+    //注册CAR构件网络服务代理到路径“WSStub”;
+iNetworkSvrRef.Start(5380);
+//启动SOAP Web服务器, 监听5380端口;
+
+… …
+</pre>
+        <p>从以上代码可以看出，目前的SOAP&nbsp;Web服务器以及CAR构件网络服务代理均被实现为构件，对应的构件标识分别是CLSID_CSOAPServer和CLSID_CWebServiceStub。整个注册过程包含以下步骤：</p>
+    <ul>
+        <li>创建出一个新的HTTP服务器构件实例；
+        <li>将实现CAR构件网络服务代理的构件EZCLSID注册到路径“/WSStub/”（注：类似普通HTTP服务器激活CGI应用程序的方法，以后每次收到指向该路径的HTTP请求时服务器都会创建出一个该构件的新实例处理用户发送过来的HTTP消息）；
+        <li>启动网络服务器，监听5380端口；
+    </ul>
+        <p>完成这些启动过程后，所有的CAR本地服务均可通过WWW标准网络服务协议被远程访问。由于目前暂时只实现了WSDL和SOAP协议，下面只分别对这两种协议的支持方法进行描述。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>         

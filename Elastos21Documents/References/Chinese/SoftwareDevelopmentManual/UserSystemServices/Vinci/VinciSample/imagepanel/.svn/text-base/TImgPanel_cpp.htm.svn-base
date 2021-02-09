@@ -1,0 +1,384 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Elastos Database: TImgPanel.cpp源文件</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+
+<h1>TImgPanel.cpp</h1><div class="fragment"><pre class="fragment">
+<span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include "<a class="code" href="TImgPanel_h.htm">TImgPanel.h</a>"</span>
+<span class="preprocessor">#include "_TImgPanel.cpp"</span>
+ 
+<span class="preprocessor">#define COUNT 3</span>
+<span class="preprocessor"></span>
+<span class="preprocessor">#define NONE -1</span>
+<span class="preprocessor"></span><span class="preprocessor">#define TEXT 0</span>
+<span class="preprocessor"></span><span class="preprocessor">#define ROUND 1</span>
+<span class="preprocessor"></span><span class="preprocessor">#define SQUARE 2</span>
+<span class="preprocessor"></span><span class="preprocessor">#define LINE 3</span>
+<span class="preprocessor"></span>
+ Int32 g_nTool2Choose[10] = {NONE, LINE, SQUARE, NONE, TEXT,
+                           LINE , SQUARE, SQUARE, ROUND , ROUND};
+ 
+ TImgPanel::TImgPanel()
+ {
+     m_pMainForm = NULL;
+     m_pIImagePanel = NULL;
+     m_pIImagePanel2 = NULL;
+     m_pIImagePanel3 = NULL;
+     m_pIBtnClose = NULL;
+ }
+ 
+ TImgPanel::~TImgPanel()
+ {
+     <span class="keywordflow">if</span> (m_pMainForm) {
+         m_pMainForm-&gt;Release();
+     }
+ 
+     <span class="keywordflow">if</span> (m_pIImagePanel) {
+         m_pIImagePanel-&gt;Release();
+     }
+ 
+     <span class="keywordflow">if</span> (m_pIImagePanel3) {
+         m_pIImagePanel3-&gt;Release();
+     }
+ 
+     <span class="keywordflow">if</span> (m_pIImagePanel2) {
+         m_pIImagePanel2-&gt;Release();
+     }
+ 
+     <span class="keywordflow">if</span> (m_pIBtnClose) {
+         m_pIBtnClose-&gt;Release();
+     }
+ }
+ 
+ ECode TImgPanel::Main(
+     <span class="comment">/* [in] */</span> <span class="keyword">const</span> BufferOf&lt;WString&gt; &amp; argcv)
+ {
+ 
+     CForm::New(L<span class="stringliteral">"MAIN"</span>, 0,
+                0, 0, 240, 320, (IForm*)DefaultOwner, &amp;m_pMainForm);
+ 
+     CForm::AddStylusPressedCallback(m_pMainForm,
+                  <span class="keyword">this</span>, &amp;TImgPanel::OnStylusPressed);
+ 
+     CImagePanel::New(L<span class="stringliteral">"button"</span>, ImagePanelStyle_ImageFrame,
+                      0, 65, 240, 144,  m_pMainForm,&amp;m_pIImagePanel);
+ 
+     IImage* pIFImg = NULL;
+     CImage::New(L<span class="stringliteral">"dialfimg.jpg"</span>, ImageFormat_Unknown, &amp;pIFImg);
+ 
+     IImage* pIBImg = NULL;
+     CImage::New(L<span class="stringliteral">"dialbimg.jpg"</span>, ImageFormat_Unknown, &amp;pIBImg);
+ 
+     m_pIImagePanel-&gt;SetPanelImages(pIFImg, pIBImg, NULL, NULL, NULL);
+ 
+     <span class="keywordflow">if</span> (pIFImg) {
+         pIFImg-&gt;Release();
+     }
+ 
+     <span class="keywordflow">if</span> (pIBImg) {
+         pIBImg-&gt;Release();
+     }
+ 
+     BufferOf_&lt;ImagePanelPane, 12&gt; rects;
+     rects.SetUsed(12);
+     Int32 i = 0;
+     <span class="keywordflow">for</span> (i = 0; i &lt; 12; i++) {
+         Int32 row = i / 3;
+         Int32 cloumn = i % 3;
+         rects[i].x              = 10 + cloumn * (60 + 20) ;
+         rects[i].y               = 6 + row * (26 + 8);
+         rects[i].width             = 60;
+         rects[i].height            = 26;
+         rects[i].carveX              = 10 + cloumn * (60 + 20) ;
+         rects[i].carveY              = 6 + row * (26 + 8);
+         rects[i].index             = -4 + i;
+         rects[i].style            = 0;
+         rects[i].enabled           = TRUE;
+         rects[i].checked           = TRUE;
+         rects[i].visible           = TRUE;
+         rects[i].acceleratorKey     = 0;
+         rects[i].text[0]            = 0;
+     }
+ 
+     m_pIImagePanel-&gt;SetAllImagePanes(rects);
+ 
+     CImagePanel::New(L<span class="stringliteral">"button"</span>, 0, 0, 0, 240, 60, m_pMainForm,&amp;m_pIImagePanel2);
+ 
+     IImage* pIFImg2 = NULL, *pIBImg2 = NULL, *pIDImg = NULL;
+     CImage::New(L<span class="stringliteral">"shortcut1.jpg"</span>, ImageFormat_Unknown, &amp;pIFImg2);
+     CImage::New(L<span class="stringliteral">"shortcut2.jpg"</span>, ImageFormat_Unknown, &amp;pIBImg2);
+     CImage::New(L<span class="stringliteral">"shortcut3.jpg"</span>, ImageFormat_Unknown, &amp;pIDImg);
+ 
+     m_pIImagePanel2-&gt;SetPanelImages(pIFImg2, pIBImg2, NULL, NULL, pIDImg);
+ 
+     <span class="keywordflow">if</span> (pIFImg2) {
+         pIFImg2-&gt;Release();
+     }
+ 
+     <span class="keywordflow">if</span> (pIBImg2) {
+         pIBImg2-&gt;Release();
+     }
+ 
+     <span class="keywordflow">if</span> (pIDImg) {
+         pIDImg-&gt;Release();
+     }
+ 
+     BufferOf_&lt;ImagePanelPane, 6&gt;      rects2;
+     rects2.SetUsed(6);
+ 
+     <span class="keywordflow">for</span> (i = 0; i &lt; 6; i++) {
+         rects2[i].x              = i * 40;
+         rects2[i].y               = 20;
+         rects2[i].width             = 40;
+         rects2[i].height            = 40;
+         rects2[i].carveX              = (5 - i) * 40;
+         rects2[i].carveY              = 0;
+         rects2[i].index             = (5 - i);
+         rects2[i].style             = 0;
+         rects2[i].enabled           = TRUE;
+         rects2[i].checked           = FALSE;
+         rects2[i].visible           = TRUE;
+         rects2[i].acceleratorKey    = 0;
+         rects2[i].text[0]           = 0;
+     }
+     rects2[4].style            = ImagePanelPaneStyle_CheckBox;
+     rects2[4].checked           = TRUE;
+     rects2[1].enabled           = FALSE;
+     m_pIImagePanel2-&gt;SetAllImagePanes(rects2);
+ 
+     CImagePanel::AddPaneClickCallback(m_pIImagePanel2,
+                  <span class="keyword">this</span>,
+                  &amp;TImgPanel::OnPaneClick);
+ 
+     CImagePanel::New(L<span class="stringliteral">"button"</span>, ImagePanelStyle_ImageFrame,
+                      0, 215, 235, 67,  m_pMainForm,&amp;m_pIImagePanel3);
+ 
+     CImagePanel::AddPaneClickCallback(m_pIImagePanel3,
+                  <span class="keyword">this</span>,
+                  &amp;TImgPanel::OnPaneClick2);
+ 
+     Panel3_Init();
+ 
+     CButton::New(L<span class="stringliteral">"Exit"</span>, 0, 0, 290, 80, 30,  m_pMainForm,&amp;m_pIBtnClose);
+ 
+     CButton::AddClickCallback(m_pIBtnClose,
+                  <span class="keyword">this</span>, &amp;TImgPanel::OnClose);
+ 
+     m_pMainForm-&gt;Show();
+ 
+     <span class="keywordflow">return</span> NOERROR;
+ }
+ 
+ ECode TImgPanel::OnStylusPressed(
+     <span class="comment">/* [in] */</span> PInterface pIObject,
+     <span class="comment">/* [in] */</span> Int32 x,
+     <span class="comment">/* [in] */</span> Int32 y,
+     <span class="comment">/* [in] */</span> Int64 timestamp)
+ {
+     <span class="keywordflow">return</span> NOERROR;
+ }
+ 
+ ECode TImgPanel::OnClose(
+     <span class="comment">/* [in] */</span> PInterface pIObject)
+ {
+     m_pMainForm-&gt;Close();
+     <span class="keywordflow">return</span> NOERROR;
+ }
+ 
+ ECode TImgPanel::OnPaneClick(
+     <span class="comment">/* [in] */</span> PInterface pIObject,
+     <span class="comment">/* [in] */</span> Int32 nIndex)
+ {
+     printf(<span class="stringliteral">"OnClickItem:%d!\n"</span>, nIndex);
+     <span class="keyword">static</span> Int32 a = 0;
+     a++;
+     m_pIImagePanel2-&gt;SetPaneEnabled(1, a % 4);
+ 
+     <span class="keywordflow">return</span> NOERROR;
+ }
+ 
+ <span class="keywordtype">void</span> TImgPanel::Panel3_Init()
+ {
+     IImage* pIFImg2 = NULL, *pIBImg2 = NULL;                      <span class="comment">// load image</span>
+ 
+     CImage::New(L<span class="stringliteral">"front.jpg"</span>, ImageFormat_Unknown, &amp;pIFImg2);
+     CImage::New(L<span class="stringliteral">"back.jpg"</span>, ImageFormat_Unknown, &amp;pIBImg2);
+ 
+     m_pIImagePanel3-&gt;SetPanelImages(pIFImg2, pIBImg2, NULL, NULL, NULL);
+ 
+     <span class="keywordflow">if</span> (pIFImg2) {
+         pIFImg2-&gt;Release();
+     }
+ 
+     <span class="keywordflow">if</span> (pIBImg2) {
+         pIBImg2-&gt;Release();
+     }
+ 
+     BufferOf_&lt;ImagePanelPane, 22&gt; rects2;
+     rects2.SetUsed(22);
+     Int32 i;
+ 
+     <span class="keywordflow">for</span> (i = 0; i &lt; 12; i++) {                      <span class="comment">// "size" region, 12 rects, 4 group</span>
+         Int32 row = i / COUNT;
+         Int32 cloumn = i % COUNT;
+         rects2[i].x              = 12;
+         rects2[i].y               = 3 + cloumn * 18;
+         rects2[i].width             = 42;
+         rects2[i].height            = 19;
+         rects2[i].carveX              = 256 + row * 64;
+         rects2[i].carveY              = 3 + cloumn * 18;
+         rects2[i].index             = i;
+         rects2[i].style             = ImagePanelPaneStyle_ManualCheck;
+         rects2[i].enabled           = TRUE;
+         rects2[i].checked           = FALSE;
+         rects2[i].visible           = FALSE;
+         rects2[i].acceleratorKey    = 0;
+         rects2[i].text[0]           = 0;
+     }
+ 
+     <span class="keywordflow">for</span> (i = 0; i &lt; 12 / COUNT; i++) {
+         rects2[i * COUNT].checked = TRUE;
+     }
+ 
+     <span class="keywordflow">for</span> (i = 12; i &lt; 22; i++) {                     <span class="comment">// "tool" region, 10 rects, exclusive style</span>
+         Int32 row = (i - 12) / 5;
+         Int32 cloumn = (i - 12) % 5;
+         rects2[i].x              = 68 + cloumn * 33;
+         rects2[i].y               = 0 + row * 33;
+         rects2[i].width             = 33;
+         rects2[i].height            = 33;
+         rects2[i].carveX              = 68 + cloumn * 33;
+         rects2[i].carveY              = 0 + row * 33;
+         rects2[i].index             = i;
+         rects2[i].style           = ImagePanelPaneStyle_CheckBoxGroup;
+         rects2[i].enabled           = TRUE;
+         rects2[i].checked           = FALSE;
+         rects2[i].visible           = TRUE;
+         rects2[i].acceleratorKey    = 0;
+         rects2[i].text[0]           = 0;
+     }
+ 
+     rects2[12].checked = TRUE;
+ 
+     m_pIImagePanel3-&gt;SetAllImagePanes(rects2);
+ }
+ 
+ ECode TImgPanel::OnPaneClick2(
+     <span class="comment">/* [in] */</span> PInterface pIObject,
+     <span class="comment">/* [in] */</span> Int32 nIndex)
+ {
+     <span class="keywordflow">if</span> (nIndex == m_nToolPrev || nIndex == m_nChoosePrev) {    <span class="comment">// if click the same region, return</span>
+         <span class="keywordflow">return</span> NOERROR;
+     }
+ 
+     <span class="keywordflow">if</span> (nIndex &gt;= 12 &amp;&amp; nIndex &lt; 22) {      <span class="comment">// click "tool" region</span>
+         ToolGroup(nIndex);
+         Change(g_nTool2Choose[nIndex - 12]);
+     }
+     <span class="keywordflow">else</span> {                                  <span class="comment">// click "size" region</span>
+         SizeGroup(nIndex);
+     }
+ 
+     <span class="keywordflow">return</span> NOERROR;
+ }
+ 
+ <span class="keywordtype">void</span> TImgPanel::ToolGroup(Int32 nIndex) <span class="comment">// record the index</span>
+ {
+     m_nToolPrev = nIndex;
+ }
+ 
+ <span class="keywordtype">void</span> TImgPanel::SizeGroup(Int32 nIndex) <span class="comment">// record the index and show the selected one</span>
+ {
+     m_nChoosePrev = nIndex;
+     nIndex /= COUNT;
+     <span class="keywordflow">for</span> (Int32 i = 0; i &lt; COUNT; i++) {
+         <span class="keywordflow">if</span> (nIndex * COUNT + i != m_nChoosePrev) {
+             m_pIImagePanel3-&gt;SetPaneChecked(nIndex * COUNT + i, FALSE);
+         }
+     }
+     m_pIImagePanel3-&gt;SetPaneChecked(m_nChoosePrev, TRUE);
+ }
+ 
+ <span class="keywordtype">void</span> TImgPanel::Change(Int32 nIndex) <span class="comment">// decide which one to be shown</span>
+ {
+     <span class="keywordflow">if</span> (m_nChoosePrev == NONE) {
+         <span class="keywordflow">if</span> (nIndex != NONE) {
+             <span class="keywordflow">for</span> (Int32 i = 0; i &lt; COUNT; i++) {
+                 m_pIImagePanel3-&gt;SetPaneVisible(nIndex * COUNT + i, TRUE);
+             }
+         }
+     }
+     <span class="keywordflow">else</span> {
+         <span class="keywordflow">if</span> (nIndex == NONE) {
+             m_nChoosePrev /= COUNT;
+             <span class="keywordflow">for</span> (Int32 i = 0; i &lt; COUNT; i++) {
+                 m_pIImagePanel3-&gt;SetPaneVisible(m_nChoosePrev * COUNT + i, FALSE);
+             }
+         }
+         <span class="keywordflow">else</span> {
+             <span class="keywordflow">if</span> (m_nChoosePrev / COUNT == nIndex) return ;
+             m_nChoosePrev /= COUNT;
+ 
+             <span class="keywordflow">for</span> (Int32 i = 0; i &lt; COUNT; i++) {
+                 m_pIImagePanel3-&gt;SetPaneVisible(m_nChoosePrev * COUNT + i, FALSE);
+                 m_pIImagePanel3-&gt;SetPaneVisible(nIndex * COUNT + i, TRUE);
+             }
+         }
+     }
+ 
+     m_nChoosePrev = (nIndex == NONE : nIndex * COUNT);
+ }
+ 
+ ECode TImgPanel::Quit()
+ {
+     <span class="keywordflow">return</span> NOERROR;
+ }
+ 
+ ECode TImgPanel::Terminate()
+ {
+     <span class="keywordflow">return</span> NOERROR;
+ }
+ 
+ ECode TImgPanel::Activate()
+ {
+     <span class="comment">// TODO: Add your code here</span>
+     <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+ }
+ 
+ ECode TImgPanel::Deactivate()
+ {
+     <span class="comment">// TODO: Add your code here</span>
+     <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+ }
+ 
+ ECode TImgPanel::IsActivated(
+     <span class="comment">/* [out] */</span> Boolean * pActivated)
+ {
+     <span class="comment">// TODO: Add your code here</span>
+     <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+ }
+ 
+ ECode TImgPanel::Snooze()
+ {
+     <span class="comment">// TODO: Add your code here</span>
+     <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+ }
+ 
+ ECode TImgPanel::Wakeup()
+ {
+     <span class="comment">// TODO: Add your code here</span>
+     <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+ }
+ 
+ ECode TImgPanel::GetName(
+     WStringBuf * name)
+ {
+     <span class="comment">// TODO: Add your code here</span>
+     <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+ }
+</pre></div>
+</body>
+</html>

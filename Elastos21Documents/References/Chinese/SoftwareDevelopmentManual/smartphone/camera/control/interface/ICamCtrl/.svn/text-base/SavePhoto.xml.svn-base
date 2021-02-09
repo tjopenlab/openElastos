@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICamCtrl</interface><method> SavePhoto </method>
+    <description>
+        <para>
+            将当前索引照片原始数据（YCbCr格式）编码成jpeg格式，并以给定文件名保存。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nFrameIndex </param_name>
+                <param_note>
+                    <para>
+索引值                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esbFileName </param_name>
+                <param_note>
+                    <para>
+给定的用于保存照片的文件名                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            S_OK：方法调用成功；E_FAIL：方法调用失败；E_INVALIDARG：无效参数    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

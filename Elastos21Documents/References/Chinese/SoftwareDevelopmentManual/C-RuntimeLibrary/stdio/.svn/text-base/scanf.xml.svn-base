@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\scanf">scanf wscanf</sample>
+    <title>scanf wscanf</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>从标准输入流中读取格式化数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>scanf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format[, argument]...</param_name>
+                <param_note>
+                    <para>格式化控制（argument为可选参数）</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数scanf返回成功转换并赋值的字段数，其中不包含已读取但未赋值的字段。如果没有给任何字段赋值，返回0；如果出错或者第一次读到的字符是文件结束符或字符串结束符，返回EOF。</para>
+    </return>
+
+    <remarks>
+        <para>函数scanf从标准输入流中读取数据，并把数据写入argument指定的存储区。每个argument都必须是指针，指向由format指定类型的变量。重叠字符串之间的拷贝，操作未定义。</para>
+        <para>参数format控制输入字段的输入形式，与scanf的参数format具有相同的形式和功能，参见sscanf关于format的完整描述。如果width为0，本函数忽略width。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>scanf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* scanf.cpp: This program uses the scanf and wscanf functions
+  * to read formatted input.
+  */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+   int   i, result;
+   float fp;
+   char  c, s[81];
+   wchar_t wc, ws[81];
+
+   printf(&quot;\n\nEnter an int, a float, two chars and two strings\n&quot;);
+
+   result = scanf(&quot;%d %f %c %C %s %S&quot;, &amp;i, &amp;fp, &amp;c, &amp;wc, s, ws);
+   printf(&quot;\nThe number of fields input is %d\n&quot;, result);
+   printf(&quot;The contents are: %d %f %c %C %s %S\n&quot;, i, fp, c, wc, s, ws);
+
+   return 0;
+}
+</pre>
+    </example>
+<result>
+Enter an int, a float, two chars and two strings
+71
+98.6
+h
+z
+Byte characters
+
+The number of fields input is 6
+The contents are: 71 98.599998 h z Byte characters
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fscanf</ref_name>
+            <ref_url>fscanf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>printf</ref_name>
+            <ref_url>wprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>sprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

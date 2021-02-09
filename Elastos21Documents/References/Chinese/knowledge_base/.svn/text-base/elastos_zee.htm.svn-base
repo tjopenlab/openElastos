@@ -1,0 +1,66 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title> Introduction to Elastos component run-time platform </title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> Introduction to Elastos component run-time platform </h2>
+    <h3>What is Elastos component run-time platform</h3>
+    <p>Elastos component run-time platform provided a set of system service components that fit CAR criterion and component related API function, support system component and user component invocation, provided program running environment for CAR component. Elastos run-time platform make it possible for different os implemented application that fit CAR criterion to achieve binary platform independence.</p>
+    <p>In Elastos, component run-time platform and "Elastos agile kernel" forms a complete operating system together.</p>
+    <p>In Windows&nbsp;2000, WinCE, Linux and other operating system, Elastos run-time platform hides details of low level traditional operating system, achieves a component oriented virtual machine. Applications developed on Elastos component run-time platform can run on traditional operating system as the same binary code without change, and without much change in efficiency.</p>
+    <p>The following figure shows the position of Elastos run-time platform in Windows 2000/XP, and Elastos operating system.</p>
+    <center><img src="images/position.jpg"/></center>
+
+    <h3>Functionality of Elastos component run-time platform</h3>
+    <p>From the definition of Elastos component run-time platform, we know this platform provided run-time environment for CAR. From this point of view, we can say that CAR technology is the set of applications that support CAR criterion in the run-time environment.</p>
+    <p>From the programming point of view, Elastos component run-time platform provided a suit of system service component and system API (Application Programming Interface), these form the foundation of developing applications on this platform.</p>
+    <p>Other component libraries provided by Elastos are also implemented by these system service components and system API. These component libraries provided by the system make application development a piece of cake: </p>
+    <ul>
+        <li>Graphics System Component Library.
+        <li>Device Driver Component Library.
+        <li>File System Component Library.
+        <li>Network System Component Library.
+    </ul>
+    <p>Form Elastos component run-time platform, these components are at the same level as application. User can develop better or more suitable file system, network system and other component library to replace these component libraries provided by Koretide Corp.. User can also establish his or her own application component library.</p>
+    <p>The following figure shows the functionality of Elastos component run-time platform and the relationship between Elastos component run-time platform, component library, and application.</p>
+    <center><img src="images/flat.jpg"/></center>
+    <p>From run-time environment that support CAR's point of view, Elastos component run-time platform provides the following functionalities: </p>
+    <ul>
+        <li>Generate component run-time environment automatically according to self discription of binary component, dynamically load component.
+        <li>Provided component messaging mechanism, messaging between components can be inter-process or across networks.
+        <li>Monitor component status, and report errors etc..
+        <li>Provided component status interruption mechanism, such as load balancing, process synchronization, access control, security (falt torrence) control, error report etc..
+        <li>Component life-cycle management, such as system persistence control, transaction control etc..
+    </ul>
+    <p>In summary, component run-time platform provided transparent run-time environment for programmer using CAR components. Component can run at different address space, in different environment, even across networks. Automatically, component run-time platform provides support for component, setting necessary network protocol, and corresponding I/O protocol. Programmer don't have to care such component interaction synchronization problems as network protocol conversion and component run-time control. The only thing a programmer needs to care about is the algorithm of his or her own program. Programmer can be liberated from the cobweb of application environment system, improving programming efficiency.</p>
+    <p>The Elastos run-time platform run the binary component directly. This is different from JAVA and .NET application, which interpreting and executing the intermediate byte code via the virtual machine. Therefore, comparing with other component based programming architecture, it possesses the advantages of minimal resource consumption, and high efficiency.</p>
+
+    <h3>Programming benefits of Elastos component run-time platform</h3>
+    <p>In the previous section, we touched on the advantages of the Elastos run-time platform, to summarize, we emphasizes the following: </p>
+    <ul>
+        <li>Developing cross-platform application;
+        <li>Programmer transparent CAR component run-time environment, improve the programming efficiency;
+        <li>Directly running the binary component code, achieves highly efficient software execution;
+        <li>Replaceable component, and user-defined component.
+    </ul>
+    <p>Please note, the identical hardware system architecture requirement is a prerequisite for realizing the Elastos cross-platform application capability. Currently, the Elastos run-time platform is yet to be able to support "cross-platform" compatibility on CPUs with different instruction sets.</p>
+
+    <h3>How to use Elastos component run-time platform</h3>
+    <p>To a programmer, developing application running on Elastos run-time platform, and specifically uising CAR technology and cross-platform technology are all realized through the invocation of the component library interface and common function APIs. The dynamically linked library required by the application are automatically loaded while running the application.</p>
+    <p>The following figure briefly illustrates the relationship between various critical components required for running the Elastos run-time platform application.</p>
+    <center><img src="images/relation.jpg"/></center>
+    <p>For details methods please see <a class="style1" href="elastosSDK.htm">Introduction to Elastos.SDK</a>, <a class="style1" href="../manual/programming/zee/elastos.htm">Elastos Component Run-time Platform</a> in manual, please see manual for how to use interface, functions.</p>
+    <p>Elastos Component Run-time Platform for Windows 2000/XP is included in softwares provided by this CD, also installed on PC automatically, under Elastos.SDK environment, it is easy to develop and run application software.</p>
+
+
+<script>footer("chinese")</script>
+</body>
+</html>

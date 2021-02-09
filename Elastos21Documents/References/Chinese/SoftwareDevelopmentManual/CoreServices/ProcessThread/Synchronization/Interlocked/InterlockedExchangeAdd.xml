@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>同步</volume>
+<method> InterlockedExchangeAdd </method>
+    <description>
+        <para>
+            InterlockedExchangeAdd完成对一个变量的原子加法操作。该函数防止多个（一个以上）线程同时对一个变量进行操作。
+        </para>
+    </description>
+    <syntax>
+        <return_val>Int32</return_val>
+        <parameters>
+            <api_param>
+                <param_type> PInt32 </param_type>
+                <param_name> pAddend </param_name>
+                <param_note>
+                    <para>
+                        指向被加数的指针
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Int32 </param_type>
+                <param_name> increment </param_name>
+                <param_note>
+                    <para>
+                        参数的增量值
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回目标的初始值。</para>
+    </return>
+
+    <remarks>
+        <para>Interlocked系列函数提供一个简单的机制来同步访问被多个线程共享的变量。如果变量处于共享内存中，不同进程的线程可以使用这种机制。</para>
+        <para>InterlockedExchangeAdd可用来对参数pAddend指定的值和增量值进行原子加法运算。结果存储在指针pAddend所指向的地址。参数pAddend初始指定的值作为返回值。</para>
+        <para>pAddend参数指向的被加数必须是32位对齐的；否则该函数在多处理器的x86系统和任何非x86系统运行时可能会失败。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>

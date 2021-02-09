@@ -1,0 +1,39 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Time</volume>
+<interface>Timer</interface><method> Cancel </method>
+    <description>
+        <para>
+            Cancels the running <b>Timer</b> object.
+        </para>
+    </description>
+    <syntax>
+        <return_val> void </return_val>
+        <NoArguments/>
+    </syntax>
+
+	<return>
+	    <NoReturnValue/>
+    </return>
+
+	<remarks>
+		<para>
+			This member function is used to cancel the running Timer object. Before invoking <b>Cancel</b>, it is 
+			required to make sure that the Timer object is started, or it may cause unpredictable result. At this moment, 
+			if Timer object is running,then Timer object is cancelled (i.e. Timer callback routine is not invoked). 
+			If the Timer object is expired, then invoking this method does not have any effect.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

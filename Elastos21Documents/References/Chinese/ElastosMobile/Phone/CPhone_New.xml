@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>CPhone Functions</volume>
+<method>CPhone::AcquireSingleton </method>
+    <description>
+        <para>
+            创建一个Phone对象。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> <link url="IPhone.htm">IPhone</link>**   </param_type>
+                <param_name> phone </param_name>
+                <param_note>
+<para>指向IPhone接口指针的指针，
+用于获取IPhone接口指针。</para>
+                </param_note>
+            </api_param>                                                             
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  当创建了一个Phone对象后，就可以获取<link url="IPhone.htm">IPhone</link>接口指针，通过该接口指针，您就可以调用各种方法对该Phone设置各种属性值。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>Phone构件模块介绍 </ref_name>
+        <ref_url>../Phone</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CPhone构件类介绍</ref_name>
+        <ref_url>CPhone</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IPhone接口方法列表</ref_name>
+        <ref_url>IPhone</ref_url>
+    </reference>
+</references>
+</manpage>

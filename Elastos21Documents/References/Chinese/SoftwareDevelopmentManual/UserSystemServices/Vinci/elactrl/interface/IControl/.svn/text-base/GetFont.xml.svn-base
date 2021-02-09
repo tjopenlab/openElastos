@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> GetFont </method>
+    <description>
+        <para>
+            获取控件显示文本的字体。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IFont** </param_type>
+                <param_name> font </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IFont.htm">IFont</link> 接口指针的指针，用于获取控件显示文本的字体，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        参数不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        成功调用该方法获取 IFont 接口时，会自动对该接口的引用计数加 1，故一旦不再需要该接口，需要调用 Release() 方法释放该接口，否则在销毁该控件时将造成内存泄漏。
+    </para>
+    <para>
+        默认情况下，控件显示文本的字体为宋体，高度 20（像素为单位）。设置控件显示文本的字体可以通过 <link url="SetFont.htm">SetFont</link> 方法。有关更多信息可参考：<link url="../../reference/SetText.htm">如何设置控件显示文本的字体</link>。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetFont</ref_name>
+        <ref_url>SetFont</ref_url>
+    </reference>
+</references> 
+</manpage>

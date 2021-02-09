@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITextBox</interface><method> GetFilterChars </method>
+    <description>
+        <para>
+            获取 TextBox 需要过滤或只接受输入的字符。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf_&lt;&gt; </param_type>
+                <param_name> chars </param_name>
+                <param_note>
+                    <para>
+<link url="../../../../../../car_technology/fundamental/development_environment/car/data_type/WStringBuf.htm">WStringBuf_</link> 类型，用于获取需要过滤或接受输入的字符</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Boolean* </param_type>
+                <param_name> accepted </param_name>
+                <param_note>
+                    <para>
+指向 Boolean 型的指针，用于判断这些字符是否需要过滤或接受，若为 TRUE，则 TextBox 只接受这些字符的输入；若为 FALSE，则 TextBox 不能接受这些字符的输入</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        设置需要过滤或者 TextBox 仅处理的字符可以通过 <link url="SetFilterChars.htm">SetFilterChars</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTextBox 类介绍</ref_name>
+        <ref_url>../../class/TextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITextBox 接口方法列表</ref_name>
+        <ref_url>../ITextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetFilterChars</ref_name>
+        <ref_url>SetFilterChars</ref_url>
+    </reference>
+</references>
+</manpage>

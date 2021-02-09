@@ -1,0 +1,105 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>    <manpage>
+    <volume>同步</volume>
+    <interface> IReaderWriterLock </interface>
+    <description>
+        <para>读写锁对象接口</para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>ReaderLock</method_name>
+        <method_url>IReaderWriterLock\ReaderLock</method_url>
+    <m_description>
+		获取读者锁
+    </m_description>
+    </method>
+    <method>
+        <method_name>ReaderTryLock</method_name>
+        <method_url>IReaderWriterLock\ReaderTryLock</method_url>
+    <m_description>
+		尝试在指定时间间隔内获取读者锁
+    </m_description>
+    </method>
+    <method>
+        <method_name>ReaderUnlock</method_name>
+        <method_url>IReaderWriterLock\ReaderUnlock</method_url>
+    <m_description>
+		释放已占有的读者锁
+    </m_description>
+    </method>
+    <method>
+        <method_name>UpgradeToWriter</method_name>
+        <method_url>IReaderWriterLock\UpgradeToWriter</method_url>
+    <m_description>
+        将已占有的读者锁升级为写者锁
+    </m_description>
+    </method>
+    <method>
+        <method_name>TryUpgradeToWriter</method_name>
+        <method_url>IReaderWriterLock\TryUpgradeToWriter</method_url>
+    <m_description>
+        尝试在指定时间间隔内将已占有的读者锁升级为写者锁
+    </m_description>
+    </method>
+    <method>
+        <method_name>WriterLock</method_name>
+        <method_url>IReaderWriterLock\WriterLock</method_url>
+    <m_description>
+		获取写者锁
+    </m_description>
+    </method>
+    <method>
+        <method_name>WriterTryLock</method_name>
+        <method_url>IReaderWriterLock\WriterTryLock</method_url>
+    <m_description>
+		尝试在指定时间间隔内获取写者锁
+    </m_description>
+    </method>
+    <method>
+        <method_name>WriterUnlock</method_name>
+        <method_url>IReaderWriterLock\WriterUnlock</method_url>
+    <m_description>
+		释放已占有的写者锁
+    </m_description>
+    </method>
+    <method>
+        <method_name>DowngradeFromWriter</method_name>
+        <method_url>IReaderWriterLock\DowngradeFromWriter</method_url>
+    <m_description>
+        将已占有的写者锁降级为读者锁
+    </m_description>
+    </method>
+    <method>
+        <method_name>IsReaderLockHeld</method_name>
+        <method_url>IReaderWriterLock\IsReaderLockHeld</method_url>
+    <m_description>
+		判断是否已经获得了读者锁
+    </m_description>
+    </method>
+    <method>
+        <method_name>IsWriterLockHeld</method_name>
+        <method_url>IReaderWriterLock\IsWriterLockHeld</method_url>
+    <m_description>
+        判断是否已经获得了写者锁
+    </m_description>
+    </method>
+</self>
+    </methods>
+
+    <remarks>
+		<para>一个读写锁对象代表一个"读写锁"--一种同步对象，通过它可允许一个线程独占访问一个资源；或是多个线程共享访问此资源。读写锁对象通过暴露出IReaderWriterLock接口来提供服务。</para>
+        <para>读写锁对象在某个时刻可以允许单个写者或多个读者所占有。当读写锁对象为一个写者所占有时，其他以写者或读者身份获取读写锁对象的线程皆会进入等待状态，直到此写者释放它为止。当读写锁对象为一个或多个读者所占有，所有以写者身份获取读写锁对象的线程皆会进入等待状态，直到最后一个读者释放它为止。</para>
+        <para>当前线程可以通过调用<link url="Function/CReaderWriterLock/New0.htm">CReaderWriterLock::New</link>函数来创建一个读写锁对象；或是调用另一个<link url="Function/CReaderWriterLock/New.htm">CReaderWriterLock::New</link>函数来创建一个命名的读写锁对象；其它线程可以通过调用<link url="../../CARServices/NamingService/CSystem/FindRunningObject.htm">CSystem::FindRunningObject</link>函数以其名字来获得此读写锁对象的接口指针。</para>
+        <para>当前线程可以通过调用IReaderWriterLock::WriterLock方法或是IReaderWriterLock::WriterTryLock方法（尝试）以写者身份获取读写锁对象（即获取写者锁）。已成为写者的线程可以通过调用IReaderWriterLock::WriterUnlock方法释放已占有的读写锁对象（即释放写者锁）。类似地，当前线程可以通过调用IReaderWriterLock::ReaderLock方法或是IReaderWriterLock::ReaderTryLock方法（尝试）以读者身份获取读写锁对象（即获取读者锁）。已成为读者的线程可以通过调用IReaderWriterLock::ReaderUnlock方法释放已占有的读写锁对象（即释放读者锁）。另外，已成为写者的线程可以通过调用IReaderWriterLock::DowngradeFromWriter方法降级为读者；已成为读者的线程可以通过调用IReaderWriterLock::UpgradeToWriter或IReaderWriterLock::TryUpgradeToWriter方法（尝试）升级为写者。读写锁对象是不可递归的。这意味着一个已经成为读者或写者的线程不可以再次以读者或写者身份获取同一读写锁对象。但是线程可以通过调用IReaderWriterLock::IsReaderLockHeld方法来判断是否已经以读者身份占有了此读写锁对象（即是否已经获得了读者锁）；类似地，可以通过调用IReaderWriterLock::IsWriterLockHeld方法来判断是否已经以写者身份占有了此读写锁对象（即是否已经获得了写者锁）。</para>
+        <para>当读写锁对象的读者或写者线程退出或被杀死时，会自动释放该读写锁对象。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

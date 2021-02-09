@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITextBox</interface><method> SetSizeRange </method>
+    <description>
+        <para>
+            设置 TextBox 允许自动调整高度时的高度范围。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> minSize </param_name>
+                <param_note>
+                    <para>
+高度调整范围的最小值，单位为像素</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> maxSize </param_name>
+                <param_note>
+                    <para>
+高度调整范围的最大值，单位为像素</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_CONTROL_STYLE_NOT_SUPPORT</td>
+	    	    <td>控件风格不支持</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法只有在 TextBox 允许自动调整显示高度时有效，即在创建该 TextBox 时，将 <link url="../../class/CTextBox/CTextBox_New.htm">style</link> 参数指定为 <link url="../../datatype/TextBoxStyle.htm">TextBoxStyle_AutoSize</link>，此时通过 <link url="../../class/CTextBox/CTextBox_New.htm">height</link> 参数指定的高度将不再有效。minSize 一般在 TextBox 单行显示时显示效果，默认值为字体高度加上 TextBox 的上下边距；maxSize 在 TextBox 多行显示下显示效果，默认值为三倍字体高度加上 TextBox 的上下边距。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTextBox 类介绍</ref_name>
+        <ref_url>../../class/TextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITextBox 接口方法列表</ref_name>
+        <ref_url>../ITextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetSizeRange</ref_name>
+        <ref_url>GetSizeRange</ref_url>
+    </reference>
+</references>
+</manpage>

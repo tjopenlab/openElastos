@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IWStringEnumerator</interface><method> Reset </method>
+    <description>
+        <para>
+            重新设置WString对象枚举器，使其指向WString对象集合中的第一个对象之前。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR。</para>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统
+            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>在创建一个WString对象枚举器或者调用Reset方法后，都会使WString对象枚举器指向WString对象集合中的第一个对象之前。此时，调用<link url="Current.htm">Current</link>方法是无效的，并会返回错误信息。所以，如果要获取任意一个WString对象的副本，都必须通过调用<link url="MoveNext.htm"> MoveNext</link>方法将WString对象枚举器后移并指向相应的对象上，再调用Current方法。</para>
+        <para>如果对WString对象集合进行了修改（包括增加和删除WString对象），建议调用Reset方法重新设置WString对象枚举器，否则在调用Current和MoveNext方法可能产生错误。</para>
+    </remarks>
+</manpage>

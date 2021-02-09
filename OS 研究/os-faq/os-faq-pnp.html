@@ -1,0 +1,67 @@
+
+<html>
+<head>
+	<title>Operating Systems FAQ :: PNP</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="prog_pnp">Where can I find programming info :: PNP</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>You can get the official Plug-and-Play documentation
+        from the Microsoft ftp site. These documents are .EXE
+        (self extracting) MS-Word format files.
+<P>The documents
+        are the industry (MS) specifications for PNP on BIOS,
+        SCSI, Peripherals, etc.</P>
+<P><A href="ftp://ftp.microsoft.com/developr/drg/Plug-and-Play/Pnpspecs/">ftp.microsoft.com/developr/drg/Plug-and-Play/Pnpspecs/</A></P>
+<P>also Craig Hart has a good page on PNP programming at <A href="http://members.hyperlink.net.au/~chart/pnpinfo.htm">http://members.hyperlink.net.au/~chart/pnpinfo.htm</A></P>
+		</TD>
+	</TR>
+</TABLE>
+
+
+<p>&nbsp;<p>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="pnp_pmode">I heard you can do PNP BIOS calls in pmode?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Yes, just like PCI bios32 calls you can do PNP calls in pmode.
+		<p>Once you have the BIOS32 service directory (see PCI example routine)
+		you can call it with the PNP Auto Config magic.
+				<PRE>		
+void bios32_scan_pnp_entry(void)
+{
+	ULONG	cseg_size, offset, base_addr;
+
+	/* call the BIOS32 BSD for the PCI address
+ 	   BSD calls terminate in RETF not RET */
+
+	/* eax is loaded with &quot;$ACF&quot; magic */
+	asm(&quot;movl	$0x46434124, %%eax\n&quot;
+		&quot;lcall _bios32_call\n&quot;
+		: &quot;=c&quot; (cseg_size),
+		&quot;=d&quot; (offset),
+		&quot;=b&quot; (base_addr)
+		:
+		: &quot;eax&quot;, &quot;ebx&quot;, &quot;ecx&quot;, &quot;edx&quot;, &quot;ebp&quot;, &quot;memory&quot; );
+
+	/* setup two new selectors of pnp_code32, pnp_data32, etc. */
+}
+</PRE>Once you have determined that PNP BIOS calls exist  for pmode applications, you can call the PCI v2.0c+ calls (see INT  0x1A, function 0xB400 to 0xB407 in Ralf Brown's INT List).
+<p>Note, not many BIOS seem to support PNP Bios32 calls, so you may have to resort to using pmode16 calls directly to
+the PNP bios (requiring a 286 TSS).
+		</TD>
+	</TR>
+</TABLE>
+
+</body>
+</html>

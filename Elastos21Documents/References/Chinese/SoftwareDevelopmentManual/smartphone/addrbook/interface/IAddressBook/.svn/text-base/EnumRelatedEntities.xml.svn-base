@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址簿引擎</volume>
+<interface>IAddressBook</interface><method> EnumRelatedEntities </method>
+    <description>
+        <para>
+            通过指定的组记录或联系人记录，遍历该组中的联系人成员或联系人的所属组。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IEntityRef </param_type>
+                <param_name> piEntity </param_name>
+                <param_note>
+                    <para>
+指定的记录接口                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> piCount </param_name>
+                <param_note>
+                    <para>
+指向INT类型的指针，用于获取返回的组成员的个数或联系人所属组的个数，不能为NULL                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IObjectEnumeratorRef * </param_type>
+                <param_name> ppiRelatedEntities </param_name>
+                <param_note>
+                    <para>
+返回结果集的对象枚举器接口指针，不能为NULL                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果输入的参数无效，或参数piCount为NULL，或参数ppiRelatedEntities为NULL，返回E_INVALIDARG。</para><para>            其他参见            <link url="../../ab_error.htm">            地址簿错误返回值列表            </link>            。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CAddressBook.h, CDBStore.h, CSimStore.h, CContact.h, CContactGroup.h,  Abdata.h, spcomm.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElCRuntime.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            如果指定的是一个组记录，该方法将遍历该组记录中的所有联系人成员并返回组成员的个数；如果指定的是一个联系人记录，该方法将遍历该联系人的所属组并返回所属组的个数。</para><para>            该方法只能用于存储在数据库中的记录，如果指定的记录存储在SIM卡上，返回E_INVALIDARG。
+        </para>
+    </remarks>
+</manpage>

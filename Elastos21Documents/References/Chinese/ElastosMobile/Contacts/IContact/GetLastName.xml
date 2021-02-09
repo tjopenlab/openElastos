@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>CContact Functions</volume>
+<interface>IContact</interface><method> GetLastName </method>
+    <description>
+        <para>获取联系人姓氏。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf_&lt;<link url="../Datatype.htm">MAX_NAME</link>&gt; </param_type>
+                <param_name> lastName </param_name>
+                <param_note>
+                    <para>联系人姓氏，参数不允许为空。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功调用该方法</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_ZOMBIE_OBJECT</td>
+	    	    <td>该联系人记录对象已被删除</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>	    
+	</table>
+    <para>其它参见<link url="../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>    
+</remarks>
+<references>
+    <reference>
+        <ref_name>Contacts构件模块介绍 </ref_name>
+        <ref_url>../../Contacts</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CContact构件类介绍</ref_name>
+        <ref_url>../CContact</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IContact接口方法列表</ref_name>
+        <ref_url>../IContact</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetLastName</ref_name>
+        <ref_url>SetLastName</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetFirstName</ref_name>
+        <ref_url>GetFirstName</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetNickName</ref_name>
+        <ref_url>GetNickName</ref_url>
+    </reference>
+</references>
+</manpage>

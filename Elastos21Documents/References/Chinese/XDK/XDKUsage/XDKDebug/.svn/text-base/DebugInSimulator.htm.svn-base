@@ -1,0 +1,45 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>在模拟器开发环境调试</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>在模拟器开发环境调试</h2>
+<p>
+如果希望应用程序在运行的过程中进入调试状态，可以采取设置断点的办法。我们以上一章的hello程序为例：
+</p>
+<pre>
+#include &lt;stdio.h&gt;
+
+void main(void)
+{
+    char *p = "hello world!";
+    _asm int 3;   //DebugBreak();
+    printf("%s\n",p);
+}
+
+</pre>
+<p>
+在程序中加上中断语句“__asm int 3;” 或 ”DebugBreak();”（用DebugBreak需在源程序中包含头文件elastos.h，即#include &lt;elastos.h&gt;），然后编译链接，并且在模拟器上运行hello.exe，当程序运行到“__asm int 3;”时，WINDOWS操作系统会捕捉到断点陷入DEBUG状态的信息并弹出对话框，让用户选择是否进行调试以及选择调试器，见图3-1：
+</p>
+<center><img src="images/XDKDebug1.jpg"></center>
+<center>图3-1</center>
+<p>选择“关闭”终止程序，选择“调试”对程序选择调试器并进行调试，见图3-2： </p>
+<center><img src="images/XDKDebug2.jpg"></center>
+<center>图3-2</center>
+<p>
+备注：对话框的样式会因PC机上所安装的操作系统不同而不同，您只需按照对话框的提示选择合适的按钮即可。 </p>
+<p>
+注意：当前需要使用VC8.0版本自带的调试器才能正常解析代码的符号。因为我们MSVC版本的模拟器开发环境使用VC8.0的编译工具集，所以低于VC8.0的调试器无法正常解析所有的调试符号。图3-3为在VC8.0中的调试界面：
+</p>
+<center><img src="images/XDKDebug3.jpg"></center>
+<center>图3-3</center>
+<script>footer("chinese")</script>
+</body>
+</html>

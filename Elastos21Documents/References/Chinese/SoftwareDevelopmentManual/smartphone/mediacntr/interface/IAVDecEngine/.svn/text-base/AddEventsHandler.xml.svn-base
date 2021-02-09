@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心</volume>
+<interface>IAVDecEngine</interface><method> AddEventsHandler </method>
+    <description>
+        <para>
+            提供给调用模块，用于注册解码引擎的回调函数。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nEvent </param_name>
+                <param_note>
+                    <para>
+需要注册的回调事件                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Delegate </param_type>
+                <param_name> edHandler </param_name>
+                <param_note>
+                    <para>
+调用模块句柄                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功时，返回 S_OK。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            可以注册的回调事件包括以下四种：</para><para>            CAVDecEngine_PlayOver：播放完成时触发；</para><para>            CAVDecEngine_Step：播放过程中定时触发；</para><para>            CAVDecEngine_HangUp：被阻塞时触发；</para><para>            CAVDecEngine_Resume：阻塞后继续时触发。
+        </para>
+    </remarks>
+    <references>
+        <reference>
+            <ref_name>RemoveEventsHandler</ref_name>
+            <ref_url>RemoveEventsHandler</ref_url>
+        </reference>
+    </references>
+</manpage>

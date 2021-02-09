@@ -1,0 +1,79 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> carc </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para>CAR file generates needed cls file, provides template library support.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> CARC </cmd_name>
+        <cmd_param> [-?] [-c clsfilename carfilename |-C cppfilename carfilename |- p carfilename |-i filename |-a |-t |-w |-s |-? ] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> -?   </param_name>
+        <param_note> Displays help information </param_note>
+    </param>
+    <param>
+        <param_name> -c clsfilename carfilename   </param_name>
+        <param_note> Generates cls file with corresponding name clsfilename from carfilename specified file </param_note>
+    </param>
+    <param>
+        <param_name> -c cppfilename carfilename  </param_name>
+        <param_note> carfilename specified file generates C++ format type information source file </param_note>
+    </param>
+    <param>
+        <param_name> -p carfilename  </param_name>
+        <param_note> carfilename specified file output corresponding Microsoft idl source file on screen </param_note>
+    </param>
+    <param>
+        <param_name>  -i idlfilename carfilename </param_name>
+        <param_note> carfilename specified file output corresponding Microsoft idl on screen. The file name is specified idlfilename </param_note>
+    </param>
+    <param>
+        <param_name> -a </param_name>
+        <param_note> Generates compressed cls file </param_note>
+    </param>
+    <param>
+        <param_name> -t  </param_name>
+        <param_note> Treates warning as error</param_note>
+    </param>
+    <param>
+        <param_name> -w  </param_name>
+        <param_note> Closes compiler warning information </param_note>
+    </param>
+    <param>
+        <param_name> -s  </param_name>
+        <param_note> Do not use system template library </param_note>
+    </param>
+    </parameters>
+    <remarks>
+        <para>The template library mentioned provides the definition for interface, class, method, struct, enumeration etc. In Elastos.SDK component template library is cls file, corresponding to tlb file in mscom.</para>
+    </remarks>
+    <examples>
+     <example>
+        <eg_line>carc -a -t -c hello.cls hello.car </eg_line>
+        <eg_note> hello.car generates corresponding compression format cls file hello.cls. Processes compiler warning message as out of position information.</eg_note>
+    </example>
+    </examples>
+
+    <references>
+        <reference>
+            <ref_name> introduction to CAR component technology </ref_name>
+            <ref_url> ../../preface/elastos_technic/elastos_car </ref_url>
+        </reference>
+        <reference>
+            <ref_name> automatic code generation framework</ref_name>
+            <ref_url> ../../car_technology/fundamental/development_environment/auto_generate_code/auto_generate </ref_url>
+        </reference>
+    </references>
+
+</manpage>

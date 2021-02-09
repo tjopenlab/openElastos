@@ -1,0 +1,71 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\EzMemory">CVirtualMemory::Free</sample>
+    <volume>虚拟内存管理</volume>
+    <title>CVirtualMemory::Free</title>
+    <routine_idx>../VirtualMemoryManagement.htm</routine_idx>
+
+    <description>
+        <para>释放指定的虚存块。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name> baseAddr </param_name>
+                <param_note>
+                    <para>[in]指定的虚存地址</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemorySize </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>[in]指定的虚存块大小，单位为字节</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的虚存地址没有分配</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+    <para><link url="Free.htm">CVirtualMemory::Free</link>函数用来释放<link url="Alloc.htm">CVirtualMemory::Alloc</link>函数所获取的虚拟内存块。指定的虚拟内存块一旦经过该函数的释放，它所包含的地址将不可访问。</para>
+    <para>指定的虚存地址和虚存块的大小是通过<link url="Alloc.htm">CVirtualMemory::Alloc</link>函数或<link url="Query.htm">CVirtualMemory::Query</link>函数获取的，其中任何一个不与其匹配都会返回E_INVALID_ARGUMENT。</para>
+    </remarks>
+
+   <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

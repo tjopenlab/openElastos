@@ -1,0 +1,39 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--graphics(lite)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>graphics(lite)</h2>
+    <p>This attribute can only be used to modify component. This component is an executable component. It can use <a class="style1" href="../../../../environment/use_elastos/elastos_tools/commands/elahost.htm">elahost</a> to start and enters graphics mode. After this component is executed, the system provides a CGraphics object for drawing operations. For example: </p>
+    <pre class="code">
+[
+    uuid(760246bb-fcb3-4e43-bb84-9ed5e69a3496), <b>graphics(lite)</b>,
+    uunm(http://www.koretide.com/car/samples/GraphicsLiteDemo.dll)
+]
+component GraphicsLiteDemo
+{
+    ……
+    [uuid(b31846c3-7e9b-4db5-8c0e-a3ac7ab93b2b), main]
+    class CClass { }
+    ……
+}
+</pre>
+    <p>In sample component GraphicsLiteDemo, component GraphicsLiteDemo has Graphics(lite) attribute,which means this component is executable component. It can be started by using elahost.Then it enters graphics mode and a series of drawing graphics operations can be executed. Class with <a class="style1" href="attributes_main.htm">main</a> attribute CClass is the program entry point to execute this component.</p>
+    <p>When component has this attribute, the client program can invoke <a class="style1" href="../inline_func/MyMainGraphics.htm">MyMainGraphics</a> method to obtain class smart pointer <a class="style1" href="../../../graphics/elagdi/class/CGraphicsRef.htm">CGraphicsRef</a>.This pointer points to system provided class <a class="style1" href="../../../graphics/elagdi/class/CGraphics.htm">CGraphics</a> object and it can use all methods of class CGraphics. If you want to exit the user program, you need to invoke <a class="style1" href="../../../graphics/elagdi/interface/IGraphics/Quit.htm">Quit</a> method, the syntax: MyMainGraphics().Quit() .</para></p>
+    <ul><b>Remarks: </b>This attribute is different from the <a class="style1" href="attributes_graphics.htm">graphics</a> attribute. Once a component using this attribute enters graphics mode, you can perform draw operations.But you cannot add control. Please see <a class="style1" href="../../../../../userguide/use_sdk/graphics/dev_gdi/nonuse_control.htm">Writing applications that does not use control</a> for details about writing program. When using graphics attribute enters graphics mode, the system provides a main window (CForm).The client program can add controls to the main window and thus they can <a class="style1" href="../../../../../userguide/use_sdk/graphics/dev_gdi/use_control.htm">Write applications that use controls</a>.</ul>
+    <ol><font color="red"><b>Note: </b>
+        <li>In a component, this attribute is mutually exclusive with <a class="style1" href="attributes_graphics.htm">graphics</a> attribute and <a class="style1" href="attributes_console.htm">console</a> attribute.
+        <li>When component having this attribute, there must be one class and can be only one class in the component that have main attribute.It means this class is the program entry point of this executable component. Otherwise the program cannot pass compilation.</font>
+    </ol>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

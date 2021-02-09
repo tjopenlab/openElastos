@@ -1,0 +1,136 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> MemoryBuf</interface>
+
+    <description>       
+        <para>MemoryBuf继承自BufferOf&lt;Byte&gt;。操作对象是内存块，以字节为单位进行操作。</para>
+        <para>MemoryBuf构造函数和各种方法使用介绍：</para>
+        <para>以下只列出比BufferOf多的方法，相同或相似的方法请参考<link url= "BufforOf.htm">BufferOf</link>。</para>
+        <para>操作符与BufferOf相同</para>
+   </description>
+    <constructs>
+        
+        <construct>
+            <construct_name>MemoryBuf(Byte *, Int32, Int32)</construct_name>
+            <construct_url>MemoryBuf/structure/MemoryBuf2</construct_url>
+            <construct_description>在栈中构造一个MemoryBuf对象，并用源buffer中数据初始化。</construct_description>
+        </construct>
+        
+        <construct>
+            <construct_name>MemoryBuf(Byte *, Int32)</construct_name>
+            <construct_url>MemoryBuf/structure/MemoryBuf3</construct_url>
+            <construct_description>在栈中构造一个MemoryBuf对象，并用源buffer中数据初始化。</construct_description>
+        </construct>
+        
+        <construct>
+            <construct_name>MemoryBuf_&lt;size&gt;( )</construct_name>
+            <construct_url>MemoryBuf/structure/MemoryBuf3</construct_url>
+            <construct_description>按size的大小，构造一个MemoryBuf对象。</construct_description>
+        </construct>
+     </constructs>   
+        
+    <methods>
+      <self>
+        <method>
+        <method_name>Alloc</method_name>
+        <method_url>MemoryBuf/Alloc/index/Alloc</method_url>
+        <m_description>已重载。(在堆上)动态创建MemoryBuf对象。</m_description>
+        </method>      
+              
+        <method>
+        <method_name>Append</method_name>
+        <method_url>MemoryBuf/Append/index/Append</method_url>
+        <m_description>已重载。在MemoryBuf对象已使用buffer后追加数据。</m_description>
+        </method> 
+        
+        <method>
+        <method_name>Clone</method_name>
+        <method_url>MemoryBuf/Clone</method_url>
+        <m_description>获取一个MemoryBuf对象的克隆。</m_description>
+        </method>
+
+        <method>
+        <method_name>Compare</method_name>
+        <method_url>MemoryBuf/Compare/index/Compare</method_url>
+        <m_description>已重载。将此实例与指定对象进行比较。 </m_description>
+        </method>
+        
+        <method>
+        <method_name>Copy</method_name>
+        <method_url>MemoryBuf/Copy/index/Copy</method_url>
+        <m_description>已重载。将指定对象复制到此实例中。</m_description>
+        </method> 
+
+        <method>
+        <method_name>Insert</method_name>
+        <method_url>MemoryBuf/Insert</method_url>
+        <m_description>在当前MemoryBuf对象buffer指定位置插入源buffer中的前n个字节值。</m_description>
+        </method> 
+                         
+        <method>
+        <method_name>Replace</method_name>
+        <method_url>MemoryBuf/Replace</method_url>
+        <m_description>用源buffer中字节值替换MemoryBuf对象从指定位置开始的buffer中的字节值。</m_description>
+        </method>
+                      
+        <method>
+        <method_name>SetByteVaule</method_name>
+        <method_url>MemoryBuf/SetByteVaule</method_url>
+        <m_description>将MemoryBuf对象的整个buffer的字节值设置为特定值。 </m_description>
+        </method>
+        
+
+        
+      </self>
+    </methods>
+
+
+   
+    <macros>
+        <macro>
+        <macro_name> NULL_MEMORYBUF  </macro_name>
+         <macro_url>MemoryBuf/NULL_MEMORYBUF</macro_url>
+        <macro_description> 构造一个内容为空的MemoryBuf对象。  </macro_description>
+        </macro>
+        <macro>
+        <macro_name> AUTO_MEMORYBUF(n)  </macro_name>
+         <macro_url>MemoryBuf/AUTO_MEMORYBUF</macro_url>
+        <macro_description> 构造一个大小为n的MemoryBuf对象。  </macro_description>
+        </macro>
+    </macros>    
+    <requirements>
+        <headerfile>
+            <file_name> elastos.h  </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>        
+
+    <references>
+        <reference>
+            <ref_name> MemoryBuf类型定义 </ref_name>
+            <ref_url> ../data_type/MemoryBuf/Definition</ref_url>
+        </reference>
+    </references>  
+        
+        
+</manpage>     
+        
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+
+    

@@ -1,0 +1,108 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\strtoul">strtoul</sample>
+    <title> strtoul, wcstoul</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Converts strings to an unsigned long-integer value.</para>
+    </description>
+
+    <syntax>
+        <return_val>unsigned long</return_val>
+        <func_name>strtoul</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>nptr</param_name>
+                <param_note>
+                    <para>Null-terminated string to convert.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char**</param_type>
+                <param_name>endptr</param_name>
+                <param_note>
+                    <para>Pointer to character that stops scan.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>base</param_name>
+                <param_note>
+                    <para>Number base to use.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>unsigned long</return_val>
+        <func_name>wcstoul</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>nptr</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t**</param_type>
+                <param_name>endptr</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>base</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>strtoul returns the converted value, if any, or ULONG_MAX on overflow. strtoul returns 0 if no conversion can be performed. wcstoul returns values analogously to strtoul.</para>
+    </return>
+
+    <remarks>
+        <para>strtoul stops reading the string nptr at the first character it cannot recognize as part of a number. This may be the terminating null character, or it may be the first numeric character greater than or equal to base. wcstoul is a wide-character version of strtoul; its nptr argument is a wide-character string. Otherwise these functions behave identically.</para>
+        <para>strtoul expects nptr to point to a string of the following form:</para>
+        <para>[whitespace] [{+ | –}] [0 [{ x | X }]] [digits]</para>
+        <para>A whitespace may consist of space and tab characters, which are ignored; digits are one or more decimal digits. The first character that does not fit this form stops the scan. If base is between 2 and 36, then it is used as the base of the number. If base is 0, the initial characters of the string pointed to by nptr are used to determine the base. If the first character is 0 and the second character is not 'x' or 'X', the string is interpreted as an octal integer; otherwise, it is interpreted as a decimal number. If the first character is '0' and the second character is 'x' or 'X', the string is interpreted as a hexadecimal integer. If the first character is '1' through '9', the string is interpreted as a decimal integer. The letters 'a' through 'z' (or 'A' through 'Z') are assigned the values 10 through 35; only letters whose assigned values are less than base are permitted. strtoul allows a plus (+) or minus (–) sign prefix; a leading minus sign indicates that the return value is negated.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strtoul</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcstoul</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example></example>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcstod</ref_name>
+            <ref_url>wcstod</ref_url>
+        </reference>
+        <reference>
+            <ref_name>strtol</ref_name>
+            <ref_url>wcstol</ref_url>
+        </reference>
+        <reference>
+            <ref_name>atof</ref_name>
+            <ref_url>atof</ref_url>
+        </reference>
+    </references>
+
+</manpage>

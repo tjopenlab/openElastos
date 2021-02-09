@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\CriticalSection">CCriticalSection::Initialize</sample>
+    <volume>临界区</volume>
+    <title>CCriticalSection::Initialize</title>
+    <routine_idx>../../CriticalSection.htm</routine_idx>
+
+    <description>
+        <para>初始化临界区。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>CriticalSection是一种同步对象， 主要用于进程内多线程互斥地使用临界区。</para>
+        <para>在创建临界区对象之后，必须使用本函数初始化临界区对象，才能使用。</para>
+        <para>临界区对象在初始化之后，进程中的线程就可以在<link url="Enter.htm">CCriticalSection::Enter</link>或<link url="Leave.htm">CCriticalSection::Leave</link>函数中使用临界区对象来互斥地使用共享资源。如果是不同进程中的不同线程之间同步，请使用互斥体对象。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CCriticalSection::Terminate </ref_name>
+        <ref_url> Terminate</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::TryEnter </ref_name>
+        <ref_url> TryEnter</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::Leave </ref_name>
+        <ref_url> Leave</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::Enter </ref_name>
+        <ref_url> Enter</ref_url>
+    </reference>
+    </references>
+
+</manpage>

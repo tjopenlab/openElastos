@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IMutex\MutexUsage">Lock</sample>
+<volume>互斥体</volume>
+<interface>IMutex</interface><method> Lock</method>
+    <description>
+        <para>获取互斥体对象。</para>
+    </description>
+    <syntax>
+        <return_val>ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult</param_name>
+                <param_note>
+                	<para>指向<link url="../../../DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址，不能为空。如果方法调用成功，则返回WaitResult_OK；如果在等待获取互斥体对象期间被打断，则返回WaitResult_Interrupted</para>
+                </param_note>
+            </api_param>
+        </parameters>
+   </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		本方法用于获取互斥体对象。
+		</para>
+		<para>
+		如果互斥体对象已经被其它线程所占有，当前线程将进入等待状态，直到该互斥体被其它线程释放，并唤醒当前线程，本方法才成功返回；如果互斥体对象正处于无属主状态，当前线程将获取该互斥体对象，方法立即成功返回。
+		</para>
+		<para>
+		如果当前线程已经占有了互斥体对象，则本方法也将立即成功返回，并且当前线程必须相应多调用一次<link url="Unlock.htm">IMutex::Unlock</link>方法才能最终释放互斥体对象。
+		</para>
+		<para>
+		调用线程在等待获取互斥体对象期间可以被打断。
+		</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

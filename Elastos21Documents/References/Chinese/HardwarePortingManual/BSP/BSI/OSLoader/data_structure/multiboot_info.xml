@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>系统引导数据结构 </volume>
+    <types>multiboot_info</types>
+
+    <description>
+        <para> boot loader传递给内核的信息结构 </para>
+    </description>
+
+    <struct>
+        <embeded_struct>
+            <embeded_struct_type>union</embeded_struct_type>
+            <embeded_struct_member>
+                <mem_type>aout_symbol_table_t</mem_type>
+                <mem_name>aout_sym</mem_name>
+                <mem_description>a.out格式的内核映像中在哪里可以找到符号表，当flags域的位4为1，本域有效</mem_description>
+            </embeded_struct_member>
+            <embeded_struct_member>
+                <mem_type>elf_section_header_table_t</mem_type>
+                <mem_name>elf_sec</mem_name>
+                 <mem_description>ELF内核的section header表的地址，当flags域的位5为1，本域有效</mem_description>
+            </embeded_struct_member>
+        </embeded_struct>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>flags</mem_name>
+            <mem_description>标志域</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>mem_lower</mem_name>
+            <mem_description>指明TPA的大小，单位：千字节，当flags域的位0为1，本域有效</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>mem_upper</mem_name>
+            <mem_description>指明扩展内存的大小，单位：千字节，当flags域的位0为1，本域有效</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>boot_device</mem_name>
+            <mem_description>表示boot loader从哪一个BIOS磁盘设备引导映像文件，当flags域的位1为1，本域有效</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>cmdline</mem_name>
+            <mem_description>引导命令，当flags域的位2为1，本域有效 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>mods_count</mem_name>
+            <mem_description>要引导的引导模块的数目，当flags域的位3为1，本域有效</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>mods_addr</mem_name>
+            <mem_description>第一个引导模块结构的物理地址，当flags域的位3为1，本域有效</mem_description>
+        </struct_member>
+
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>mmap_length</mem_name>
+            <mem_description>由“内存映射”（memory map）所组成的缓冲区的首地址，当flags域的位6为1，本域有效</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>unsigned long</mem_type>
+            <mem_name>mmap_addr</mem_name>
+            <mem_description>由“内存映射”（memory map）所组成的缓冲区的大小，当flags域的位6为1，本域有效</mem_description>
+        </struct_member>
+    </struct>
+</manpage>
+

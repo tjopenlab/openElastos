@@ -1,0 +1,208 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Example 1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>The use of the basic file function.</h2>
+    <p>
+    	This program includes some basic file operations, so as to get and check the file information.
+    </p>
+    <p>
+    	After getting vfs pointer, you can get root directory pointer using GetRoot, and then create a file as 
+    	read-only, the name of which is obtained from running command's parameters. After that change the access 
+    	mode of the file into read-write, and write string "123456789". User can get the content, the size and  
+    	created, modified and accessed time.
+    </p>
+    <h3>sam001.cpp</h3>
+    <p>The following is sam001.cpp in compling:</p>
+    <pre class = "code">
+//sam001.cpp
+#define _USECOMPTR
+#include    &lt;stdio.h&gt;
+#include    &lt;vfs.h&gt;
+
+int PrintBuf(EzByteBuf &str)
+{
+    int i;
+    char *p = (char *)str;
+    for(i = 0; i < str.Used(); i++) {
+        printf("%c", *(p + i));
+    }
+    return 0;
+}
+
+int Usage(wchar_t name[])
+{
+    printf("usage: %S input\n", name);
+    return 0;
+}
+
+EXTERN_C int __cdecl wmain(int argc, wchar_t* argv[])
+{
+    // Check the arguments.
+    if (argc < 2) {
+        Usage(argv[0]);
+        return -1;
+    }
+
+    // variables definition
+    IBasicFileSystem *pvfs;
+    IBasicFile *fp = NULL;
+    IBasicDirectory *pRoot = NULL;
+    IAbsoluteIO *iAb = NULL;
+    UINT size;
+    UINT wsize;
+    INT time;
+    EzByteBuf_<101> buf;
+    EzStr filePath;
+    ECODE ec;
+
+    // Get the IFileSystem pointer
+    ec = EzFindService(EZCSTR("filesys"), (IUnknown **)&pvfs);
+    if (FAILED(ec)) {
+        printf(">>>>>>>>>>failed to find IBasicFileSystem, ec = 0x%08x\n", ec);
+        return 1;
+    }
+
+    // Get the input
+    filePath = EzStr::AllocString(argv[1]);
+
+    // GetRoot
+    ec = pvfs->GetRoot(&pRoot);
+    if (FAILED(ec)) {
+        printf("Error in GetRoot! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // CreateFile
+    ec = pRoot->CreateFile(filePath, FileAccessMode_Read, 1, &fp);
+    if (ec == S_OK) {
+        printf("CreateFile: %S (Read) Success.\n", (wchar_t *)filePath);
+    } else {
+        printf("Error in CreateFile! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // SetAccessMode
+    ec = fp->SetAccessMode(FileAccessMode_ReadWrite);
+    if (ec == S_OK) {
+        printf("The file is set FileAccessMode_ReadWrite.\n");
+    } else {
+        printf("Error in SetAccessMode! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // QueryInterface to get iAb pointer
+    ec = fp->QueryInterface(IID_IAbsoluteIO, (void**)&iAb);
+    if (FAILED(ec)) {
+        printf("Error in QueryInterface! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // Write
+    buf.Copy("123456789", 9);
+    ec = iAb->Write(0, buf, &wsize);
+    if (ec == S_OK) {
+        printf("Write %d bytes success.\n", wsize);
+    } else {
+        printf("Error in Write! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // GetSize
+    ec = iAb->GetSize(&size);
+    if (ec == S_OK) {
+        printf("The file is get Size: %d\n", size);
+    } else {
+        printf("Error in GetSize! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // Read
+    ec = iAb->Read(0, size, buf);
+    if (ec == S_OK) {
+        printf("The file content is:\n\n");
+        PrintBuf(buf);
+        printf("\n\n");
+    } else {
+        printf("Error in Read! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // GetCreateTime
+    ec = fp->GetCreateTime(&time);
+    if (ec == S_OK) {
+        printf("CreateTime: %d\n", time);
+    } else {
+        printf("Error in GetCreateTime! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // GetModificationTime
+    ec = fp->GetModificationTime(&time);
+    if (ec == S_OK) {
+        printf("ModifyTime: %d\n", time);
+    } else {
+        printf("Error in GetModificationTime! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // GetAccessTime
+    ec = fp->GetAccessTime(&time);
+    if (ec == S_OK) {
+        printf("AccessTime: %d\n", time);
+    } else {
+        printf("Error in GetAccessTime! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+myexit:
+    if (!filePath.IsNull()) EzStr::FreeString(filePath);
+    if (iAb) iAb->Release();
+    if (fp) fp->Release();
+    if (pRoot) pRoot->Release();
+    if (pvfs) pvfs->Release();
+    return 0;
+}
+
+    </pre>
+    <p>Description:</p>
+    <p>1. Gets the pointer of IBasicFileSystem by EzFindService;</p>
+    <p>2. Reads the parameter and takes it as the name of the file to be created;</p>
+    <p>3. Gets the pointer of the root directory by GetRoot;</p>
+    <p>4. Creates the file represented by 1 as read-only in root directory;</p>
+    <p>5. Changes the file into readable or writable by SetAccessMode;</p>
+    <p>6. Transfering into I/O interface pointer by QueryInterface;</p>
+    <p>7. Writes 9 characters;</p>
+    <p>8. Gets the the size of the file object by GetSize;</p>
+    <p>9. Reads the content of the file object and outputs it;</p>
+    <p>10. Gets the created time by GetCreateTime and outputs it;</p>
+    <p>11. Gets the modifyied time by GetModificationTime and outputs it;</p>
+    <p>12. Gets the accessed time by GetAccessTime and outputs it;</p>
+    <p>13. Release and then exits the program.</p>
+
+    <p>Result:</p>
+    <p>$   sam001.exe test.txt</p>
+    <p>CreateFile: test.txt (Read) Success.</p>
+    <p>The file is set FileAccessMode_ReadWrite.</p>
+    <p>Write 9 bytes success.</p>
+    <p>The file is get Size: 9</p>
+    <p>The file content is:</p>
+
+    <p>123456789</p>
+
+    <p>CreateTime: 1085411328</p>
+    <p>ModifyTime: 1085411328</p>
+    <p>AccessTime: 1085328000</p>
+
+<script>footer("english")</script>
+</body>
+</html>

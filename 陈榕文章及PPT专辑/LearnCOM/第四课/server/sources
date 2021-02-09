@@ -1,0 +1,23 @@
+TARGET_NAME= server
+TARGET_TYPE= exe
+SPECIAL_TARGET= regexe
+
+INCLUDES=$(EXTERN_INC);$(EXTERN_INC)\crt;..\proxy
+
+C_FLAGS= -MD
+
+SOURCES= \
+   server.cpp \
+
+LIBRARIES= ..\proxy\hello_i.obj
+
+WIN32_LIBS= \
+    $(EXTERN_LIB)\msvcrt.lib \
+    $(EXTERN_LIB)\uuid.lib \
+    $(EXTERN_LIB)\ole32.lib \
+    $(EXTERN_LIB)\oleaut32.lib \
+    $(EXTERN_LIB)\user32.lib \
+    $(EXTERN_LIB)\advapi32.lib \
+    $(EXTERN_LIB)\kernel32.lib \
+
+NO_MKDEPEND=1

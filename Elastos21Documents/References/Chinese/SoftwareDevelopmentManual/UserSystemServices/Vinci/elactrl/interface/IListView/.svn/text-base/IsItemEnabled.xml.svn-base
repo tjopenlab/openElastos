@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListView</interface><method> IsItemEnabled </method>
+    <description>
+        <para>
+            判断 ListView 中指定行是否可以接收鼠标键盘事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+指定行的索引值，有效值为 0～行数-1                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Boolean* </param_type>
+                <param_name> enabled </param_name>
+                <param_note>
+                    <para>
+指向 Boolean 型的指针，若为 TURE，则指定行能接收鼠标键盘事件，否则为 FALSE，不能为 NULL                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功调用该方法</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+    	  设置某行是否能够接收鼠标键盘事件可以调用 <link url="SetItemEnabled.htm">SetItemEnabled</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CListView 类介绍 </ref_name>
+        <ref_url>../../class/ListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListView 接口方法列表</ref_name>
+        <ref_url>../IListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListViewPaint 接口方法列表</ref_name>
+        <ref_url>../IListViewPaint</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetItemEnabled</ref_name>
+        <ref_url>SetItemEnabled</ref_url>
+    </reference>
+</references>
+</manpage>

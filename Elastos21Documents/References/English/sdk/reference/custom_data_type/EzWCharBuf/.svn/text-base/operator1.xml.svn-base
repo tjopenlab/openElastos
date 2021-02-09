@@ -1,0 +1,50 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzWCharBuf\Operator">operator</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzWCharBuf   </interface>
+    <method> operator datatypes  </method>
+
+    <description>
+        <para> Type conversion operator used to convert EzWCharBuf object to pointer to Unicode charater(wchar_t *).</para>
+    </description>
+
+    <syntax>
+        <method_name> operator wchar_t* </method_name>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para> Returns the data type converted from the EzWCharBuf object, keeping the data content.</para>
+    </return>
+
+    <remarks>
+        <para>After converting a EzWCharBuf object to a (wchar_t *) pointer, one can access the memory directly through the pointer, which increases the efficiency. But one must consider the memory size when doing this and not to exceed the its capacity. If the length of valid data is changed,then one must use function SetUsed to set the length. These are the drawbacks.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzWCharBuf_<200> buf;
+
+    buf.Copy(L"Hello world!",12);
+    wprintf(L"operator (wchar_t*): %s\n",(wchar_t*)buf);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+operator (wchar_t*): Hello world!
+]]></result>
+
+</manpage>

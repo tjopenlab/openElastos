@@ -1,0 +1,50 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Time</volume>
+<interface>Timer</interface><method> Due </method>
+    <description>
+        <para>
+            Checks if the started <b>Timer</b> object is expired.
+        </para>
+    </description>
+    <syntax>
+        <return_val> bool_t </return_val>
+        <NoArguments/>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>TRUE</td>
+		<td>Timer object is expired.</td>
+	    </tr>
+	    <tr>
+		<td>FALSE</td>
+		<td>Timer object is running, but not expired yet.</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+            This member function is used to check if Timer object is expired. Before invoking <b>Due</b>, 
+            make sure that the Timer object is started, otherwise it may cause unpredictable results.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

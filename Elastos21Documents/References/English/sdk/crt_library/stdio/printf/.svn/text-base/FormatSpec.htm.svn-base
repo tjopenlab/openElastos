@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>format specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>format specification</h2>
+    <p>A format specification, which consists of optional and required fields, has the following form:</p>
+    <pre class="code">
+%[flags] [width] [.precision] [{h | l | I64 | L}]type
+</pre>
+    <p>Each field of the format specification is a single character or a number signifying a particular format option. The simplest format specification contains only the percent sign and a type character (for example, %s). If a percent sign is followed by a character that has no meaning as a format field, the character is copied to stdout. For example, to print a percent sign character, use %%.</p>
+    <p>The optional fields, which appear before the type character, control other aspects of the formatting, as follows:</p>
+    <p>type</p>
+    <p>Required character that determines whether the associated argument is interpreted as a character, a string, or a number (see <a class="style1" href="../wprintf.htm">printf</a> function<a class="style1" href="type.htm"> Type Field Characters</a>）</p>
+    <p>flags</p>
+    <p>Optional character or characters that control justification of output and printing of signs, blanks, decimal points and octal and hexadecimal prefixes (see <a class="style1" href="flag.htm">flag Field Characters</a>).More than one flag can appear in a format specification.</p>
+    <p>width</p>
+    <p>Optional number that specifies the minimum number of characters output.(see <a class="style1" href="width.htm">width Field Characters</a>)</p>
+    <p>precision</p>
+    <p>Optional number that specifies the maximum number of characters printed for all or part of the output field or the minimum number of digits printed for integer values(see <a class="style1" href="precision.htm">How Precision Values Affect Type</a>)</p>
+    <p>h&nbsp;|&nbsp;l&nbsp;|&nbsp;I64&nbsp;|&nbsp;L</p>
+    <p>Optional prefixes to type-that specify the size of argument (see <a class="style1" href="prefixes.htm">The optional prefixes to type</a>)</p>
+
+<script>footer("english")</script>
+</body>
+
+</html>

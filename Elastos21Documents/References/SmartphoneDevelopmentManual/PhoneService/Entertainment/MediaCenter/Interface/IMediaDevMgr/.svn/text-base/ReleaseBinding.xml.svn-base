@@ -1,0 +1,62 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心引擎</volume>
+<interface>IMediaDevMgr</interface><method> ReleaseBinding </method>
+    <description>
+        <para>
+          通知设备管理控制器解除调用模块与设备的绑定，置设备的使用状态为空闲。同时将调用模块在设备优先级队列中清除出去。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> void * </param_type>
+                <param_name> pThis </param_name>
+                <param_note>
+                    <para>
+                     调用模块的对象指针，不能为空。通过判断本指针与设备管理器中当前允许使用设备的模块指针进行比较来决定是否允许该调用请求
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> BOOL </param_type>
+                <param_name> bRemove </param_name>
+                <param_note>
+                    <para>
+                      标识是否需要将调用对象从设备优先级队列中移除。
+                    </para>
+               </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td> E_INVALID_ARGUMENT </td>
+	    	    <td>参数错误 </td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../MediaCenter_Error.htm">MediaCenter_Error</link>相关帮助。</para>
+    </return>
+    <remarks>
+     <para>若在队列中没有被阻塞的模块，则原来被占用的设备处于空闲状态。若队列中存在被阻塞的饿模块，选其中优先级最高的一个模块回调通知恢复。</para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+
+    </requirements>
+</manpage>

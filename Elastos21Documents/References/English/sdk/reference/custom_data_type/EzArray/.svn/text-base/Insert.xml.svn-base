@@ -1,0 +1,119 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\Insert">Insert</sample>
+    <volume> Common Data Structures </volume>
+    <interface> EzArray   </interface>
+    <method> Insert </method>
+
+    <description>
+        <para>
+        	Inserts the source data to the specified index.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>const T*</param_type>
+                <param_name>src </param_name>
+                <param_note>
+                    <para> Source <b>T</b> type array  </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> int  </param_type>
+                <param_name> offset </param_name>
+                <param_note>
+                    <para> 
+                    	The offset between the inserting index and the starting index of <b>EzArray</b> object,
+                    	the unit is sizeof(T).
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> int  </param_type>
+                <param_name> len </param_name>
+                <param_note>
+                    <para>
+                    	The number of array elements to be inserted.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>
+        	Returns the number of the elements actually inserted; if offset is less than 0 or more than the maximum 
+        	length of target EzArray, insert will fail and return 0.
+        </para>
+    </return>
+
+    <remarks>
+        <para>
+        	If the length of the data after inserting is more than the  maximum length of the target EzArray object, 
+        	data will be truncated and returns the number of the elements actually inserted. 
+        </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <EzArray.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+    int array1[6] = {0,1,2,3,4,5};
+    int array2[2] = {8,9};
+    EzArray_<int, 6> myArray;
+
+    myArray.CopyEx(array1, 6);
+    for (int i = 0; i < myArray.GetLength(); i++){
+        printf("myArray[%d] = %d\n", i, myArray[i]);
+    }
+    printf("The used size of myArray is : %d.\n", myArray.Used());
+
+    int m = myArray.Insert(array2, 3, 2);
+printf("return: %d\n", m);
+    for (i = 0; i < myArray.GetLength(); i++){
+        printf("myArray[%d] = %d\n", i, myArray[i]);
+    }
+    printf("The used size of myArray is : %d.\n", myArray.Used());
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+Before Insert myArray:
+myArray[0] = 0
+myArray[1] = 1
+myArray[2] = 2
+myArray[3] = 3
+myArray[4] = 4
+myArray[5] = 5
+The used size of myArray is : 6.
+After Insert myArray:
+myArray[0] = 0
+myArray[1] = 1
+myArray[2] = 2
+myArray[3] = 8
+myArray[4] = 9
+myArray[5] = 5
+The used size of myArray is : 6.
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name>Append  </ref_name>
+            <ref_url> Append </ref_url>
+        </reference>
+    </references>
+
+</manpage>

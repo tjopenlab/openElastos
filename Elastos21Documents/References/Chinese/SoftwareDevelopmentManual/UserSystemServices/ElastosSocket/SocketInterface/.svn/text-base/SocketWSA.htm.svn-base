@@ -1,0 +1,162 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>socket接口</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>网络接口的错误返回值</h2>
+    <p>如果ISocket，ISocketEx，ISocketService接口函数执行错误，会返回宏STATUS_WIN32_ERROR处理后的值。STATUS_WIN32_ERROR的定义如下：</p>
+    <pre class="code">
+#define STATUS_WIN32_ERROR(u) ((SCODE)((u)|0x80070000))
+</pre>
+    <p>其中u的取值如下表所示：</p>
+    <table>
+        <thead>
+            <td>错误返回值</td><td>枚举值</td><td>描述</td>
+        </thead>
+        <tr>
+            <td>WSABASEERR</td><td>10000</td><td>Elastos elasock错误值的基值</td>
+        </tr>
+        <tr>
+            <td>EINTR</td><td>WSABASEERR＋4</td><td>一次阻塞套接口的调用被取消</td>
+        </tr>
+        <tr>
+            <td>EBADF</td><td>WSABASEERR＋9</td><td>保留值</td>
+        </tr>
+        <tr>
+            <td>EACCES</td><td>WSABASEERR＋13</td><td>操作不允许</td>
+        </tr>
+        <tr>
+            <td>EFAULT</td><td>WSABASEERR＋14</td><td>错误的地址</td>
+        </tr>
+        <tr>
+            <td>EINVAL</td><td>WSABASEER＋22</td><td>无效参数</td>
+        </tr>
+        <tr>
+            <td>EMFILE</td><td>WSABASEERR＋24</td><td>打开了过多的文件</td>
+        </tr>
+        <tr>
+            <td>EWOULDBLOCK</td><td>WSABASEERR＋35</td><td>资源暂时无法使用</td>
+        </tr>
+        <tr>
+            <td>EINPROGRESS</td><td>WSABASEERR＋36</td><td>操作正在进行</td>
+        </tr>
+        <tr>
+            <td>EALREADY</td><td>WSABASEERR＋37</td><td>操作已经进行</td>
+        </tr>
+        <tr>
+            <td>ENOTSOCK</td><td>WSABASEERR＋38</td><td>对一个非套接口资源进行用于套接口的操作</td>
+        </tr>
+        <tr>
+            <td>EDESTADDRREQ</td><td>WSABASEERR＋39</td><td>缺少目的地址</td>
+        </tr>
+        <tr>
+            <td>EMSGSIZE</td><td>WSABASEERR＋40</td><td>消息过长</td>
+        </tr>
+        <tr>
+            <td>EPROTOTYPE</td><td>WSABASEERR＋41</td><td>错误的协议类型</td>
+        </tr>
+        <tr>
+            <td>ENOPROTOOPT</td><td>WSABASEERR＋42</td><td>错误的协议选项</td>
+        </tr>
+        <tr>
+            <td>EPROTONOSUPPORT</td><td>WSABASEERR＋43</td><td>协议不支持</td>
+        </tr>
+        <tr>
+            <td>ESOCKTNOSUPPORT</td><td>WSABASEERR＋44</td><td>套接口类型不支持</td>
+        </tr>
+        <tr>
+            <td>EOPNOTSUPP</td><td>WSABASEERR＋45</td><td>操作不支持</td>
+        </tr>
+        <tr>
+            <td>EPFNOSUPPORT</td><td>WSABASEERR＋46</td><td>协议族不支持</td>
+        </tr>
+        <tr>
+            <td>EAFNOSUPPORT</td><td>WSABASEERR＋47</td><td>地址族不支持</td>
+        </tr>
+        <tr>
+            <td>EADDRINUSE</td><td>WSABASEERR＋48</td><td>该地址已经被使用</td>
+        </tr>
+        <tr>
+            <td>EADDRNOTAVAIL</td><td>WSABASEERR＋49<td>请求的地址无法分配</td>
+        </tr>
+        <tr>
+            <td>ENETDOWN</td><td>WSABASEERR＋50</td><td>网络断开</td>
+        </tr>
+        <tr>
+            <td>ENETUNREACH</td><td>WSABASEERR＋51</td><td>网络不可达</td>
+        </tr>
+        <tr>
+            <td>ENETRESET</td><td>WSABASEERR＋52</td><td>网络重置</td>
+        </tr>
+        <tr>
+            <td>ECONNABORTED</td><td>WSABASEERR＋53</td><td>软件导致网络断开</td>
+        </tr>
+        <tr>
+            <td>ECONNRESET</td><td>WSABASEERR＋54</td><td>对端重置连接</td>
+        </tr>
+        <tr>
+            <td>ENOBUFS</td><td>WSABASEERR＋55</td><td>缓冲区空间不足</td>
+        </tr>
+        <tr>
+            <td>EISCONN</td><td>WSABASEERR＋56</td><td>套接口已经连接</td>
+        </tr>
+        <tr>
+            <td>ENOTCONN</td><td>WSABASEERR＋57</td><td>套接口未连接</td>
+        </tr>
+        <tr>
+            <td>ESHUTDOWN</td><td>WSABASEERR＋58</td><td>套接口已经关闭，无法发送</td>
+        </tr>
+        <tr>
+            <td>ETOOMANYREFS</td><td>WSABASEERR＋59</td><td>保留值</td>
+        </tr>
+        <tr>
+            <td>ETIMEDOUT</td><td>WSABASEERR＋60</td><td>连接超时</td>
+        </tr>
+        <tr>
+            <td>ECONNREFUSED</td><td>WSABASEERR＋61</td><td>连接拒绝</td>
+        </tr>
+        <tr>
+            <td>ELOOP</td><td>WSABASEERR＋62</td><td>保留值</td>
+        </tr>
+        <tr>
+            <td>ENAMETOOLONG</td><td>WSABASEERR＋63</td><td>保留值</td>
+        </tr>
+        <tr>
+            <td>EHOSTDOWN</td><td>WSABASEERR＋64</td><td>主机断开</td>
+        </tr>
+        <tr>
+            <td>EHOSTUNREACH</td><td>WSABASEERR＋65</td><td>没有到达主机的通路</td>
+        </tr>
+        <tr>
+            <td>ENOTEMPTY</td><td>WSABASEERR＋66</td><td>保留值</td>
+        </tr>
+        <tr>
+            <td>EPROCLIM</td><td>WSABASEERR＋67</td><td>进程过多</td>
+        </tr>
+        <tr>
+            <td>EUSERS</td><td>WSABASEERR＋68</td><td>保留值</td>
+        </tr>
+        <tr>
+            <td>EDQUOT</td><td>WSABASEERR＋69</td><td>保留值</td>
+        </tr>
+        <tr>
+            <td>ESTALE</td><td>WSABASEERR＋70</td><td>保留值</td>
+        </tr>
+        <tr>
+            <td>EREMOTE</td><td>WSABASEERR＋71</td><td>保留值</td>
+        </tr>
+        <tr>
+            <td>SYSNOTREADY</td><td>WSABASEERR＋91</td><td>网络子系统不可用</td>
+        </tr>
+    </table>
+
+<script>footer("chinese")</script>
+</body>
+</html>

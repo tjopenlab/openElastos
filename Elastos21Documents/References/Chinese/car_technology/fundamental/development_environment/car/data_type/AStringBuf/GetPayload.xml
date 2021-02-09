@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method> GetPayload </method>
+
+    <description>
+        <para> 返回指向此对象字符串指针。</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val> char* </return_val>
+        <modifier>const</modifier>
+        <NoArguments/>
+    </syntax_nopara>
+   
+    <return>
+        <para>返回指向窄字符串的指针。</para>
+    </return>
+<example>
+<pre>
+char *pstr="1234";
+AStringBuf asbuf(pstr,20);
+CConsole::WriteLine(asbuf);  //Display : "1234"
+CConsole::WriteLine((Int32)asbuf.GetPayload());  //Display : 4202604
+CConsole::WriteLine((Int32)pstr);  //Display : 4202604
+</pre>
+</example> 
+ <references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::GetPayload</ref_name>
+        <ref_url>../WStringBuf/GetPayload</ref_url>
+    </reference>
+</references>    
+  
+</manpage>

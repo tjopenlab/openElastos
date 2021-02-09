@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+
+<volume>同步</volume>
+<interface>DzCondition</interface><method> TryWait </method>
+    <description>
+        <para>
+            尝试在指定时间间隔内使调用线程在条件变量对象上等待。
+        </para>
+    </description>
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DzMutex * </param_type>
+                <param_name> pMutex</param_name>
+                <param_note>
+                    <para>
+                    传入的互斥体对象接口指针。本参数不可以为NULL。调用线程必须是本参数所指向的互斥体对象的属主，并且获取本互斥体对象时只成功调用了一次<link url="../DzMutex/Lock.htm">DzMutex::Lock</link>或<link url="../DzMutex/TryLock.htm">DzMutex::TryLock</link>成员函数
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> uint_t  </param_type>
+                <param_name> ticks </param_name>
+                <param_note>
+                    <para>
+                    指定一个时间间隔，单位是tick。本参数不可为零
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>
+                    指向<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址，不能为空。如果成员函数调用成功，则返回WaitResult_OK；如果事件对象仍处于未通知状态，则返回WaitResult_TimedOut；如果在等待事件对象变为已通知状态期间被打断，则返回WaitResult_Interrupted。本参数不能为NULL
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>
+        本成员函数使调用线程在条件变量对象上等待，并原子地释放传入的已经获取了一次的互斥体对象。只要等待时间不超过指定的时间间隔，调用线程将一直处于等待状态，直到被其它线程通过调用<link url="Pulse.htm">DzCondition::Pulse</link>或<link url="PulseAll.htm">DzCondition::PulseAll</link>成员函数唤醒为止，才从此成员函数中成功返回。如果等待时间超过指定的时间间隔，调用线程将立即结束等待，从本成员函数中返回。在调用线程结束等待后，本成员函数在返回前将重新获取一次所传入的互斥体对象。
+        </para>
+        <para>
+        线程在条件变量对象上等待期间可以被打断。
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

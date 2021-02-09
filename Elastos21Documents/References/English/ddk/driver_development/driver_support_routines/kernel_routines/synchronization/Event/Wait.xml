@@ -1,0 +1,72 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>Event</interface><method> Wait </method>
+    <description>
+        <para>
+           Makes an Event object wait, from changing into notified state.
+        </para>
+    </description>
+    <syntax>
+        <return_val>ECODE </return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[out]</param_inout>
+                <param_type> uint_t * </param_type>
+                <param_name> puState </param_name>
+                <param_note>
+                    <para>
+                       Pointer which holds the value of notified state of <b>Event</b> object. It means
+                       waiting thread ignores <i>puState</i> if it is NULL. It will make sense only when this function
+                       succeeds in waiting the <b>Event</b> object changing into notified state.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+
+    	<table>
+            <th>
+                <td>Return Value</td>
+                <td>Hex Value</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>S_OK</td>
+                <td>0x00000000</td>
+                <td>Function succeeds in waiting for the event object to notify. </td>
+            </tr>
+            <tr>
+                <td>S_INTERRUPTED</td>
+                <td>0x00060014</td>
+                <td>Waiting is interrupted</td>
+            </tr>
+
+        </table>
+        <para>References <link url="/sdk/hresult.htm">ECODE</link> related help for more details</para>
+	</return>
+
+	<remarks>
+		<para>
+           This member function is to make Event object wait, from changing into notified state. If Event object is
+           not in notified state, calling thread will get into waiting state, it won't stop waiting until Event object
+           is changed into notified state, and return from this function. If Event object is in notified state, this
+           function returns at once. Mean while, if Event object is reset automatically, it will reset as not notified.
+           If it is reset manually, Event object will keep notified state. Thread waiting period can be interrupted.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

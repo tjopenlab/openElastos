@@ -1,0 +1,37 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>自定义列集/散集</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>CAR构件运行时接口机制</h2>
+    <p>CAR构件运行时接口机制（runtime&nbsp;interface）是CAR构件运行平台提供给开发者的一种在构件实例中伪造接口指针的方法。</p>
+    <p>引入该机制是因为存在这样的应用：一方面客户需要在构件中伪造出一些接口指针返回给用户使用；而另一方面这些接口指针可能又通过CAR&nbsp;RPC机制被传输到远程（例如另一个进程等）。举一个具体的例子，在目前的系统实现中用户可通过API函数<a class="style1" href="../../../../../SoftwareDevelopmentManual/CoreServices/CARServices/NamingService/CSystem/FindRunningObject.htm">FindRunningObject</a>取得远程CAR构件实例接口指针，而实际上用户获得的是一个代理远程服务的IProxy对象指针，该指针由CAR构件运行平台伪造。如果用户调用Probe(IID_IProxy,…)方法获得IProxy对象指针，然后试图将该指针跨进程传递到另外一个进程X，那么该指针被传递到进程X后应该是一个什么类型的接口指针呢？原有CAR构件中并没有实现IProxy对象！</p>
+    <p>类似的例子可以列举出来很多，另一个典型的例子是基于SOAP的CAR构件跨机器实现中使用到的IRpcProxy接口指针的例子，其基本思想与上例类似。</p>
+    <p>考虑到上面的原因，我们提出了CAR构件运行时接口机制（runtime&nbsp;interface）。从设计思想上看，它是一种<a class="style1" href=cust_marshal_intro.htm>基于CAR构件自定义列集/散集机制</a>之上的扩展机制。</p>
+    <p>从使用上，要使用CAR构件运行时接口机制，需要在构件中声明并实现ICustomMarshal和IRuntimeInterface两个接口。其中，IRuntimeInterface接口定义如下：</p>
+    <pre class="code">
+IRuntimeInterface {
+    ECODE RI_QueryIndex([in] IUnknown *pUnk, [out] int *pIndex);
+    ECODE RI_QueryInterface([in] int pIndex, [out] IUnknown **ppUnk);
+    ECODE RI_QueryMetadata([out] EzVar* pevMetadata);
+}
+</pre>
+    <p>从实现上，CAR构件运行平台对CAR构件自定义列集/散集机制作出了以下的调整以支持CAR构件运行时接口机制：</p>
+    <ul>
+        <li>在第一阶段建立标准CAR&nbsp;RPC的过程中，如果CAR构件运行平台发现被作为参数传递的接口指针（设为pA）与该构件所支持的所有构件实例接口指针都不相等（CAR规范要求在同一个进程内，所有代理同一构件实例同一接口的指针都必须相等），则认为该指针是一个运行时动态接口，它会调用该构件实例的IRuntimeInterface接口的RI_QueryIndex方法获得其运行时接口Index（<font color="color">注意：在实现IRuntimeInterface接口的RI_QueryIndex方法时必须以小于0的整数作为接口index返回</font>）。
+        <li>在第三阶段的自定义列集/散集机制完成后，还需要调用ppNewProxy指针（ppNewProxy即<a class="style1" href="cust_marshal_elements.htm#jpg3">图三</a>中Custom&nbsp;component&nbsp;proxy的对象指针）所代理构件（即Custom&nbsp;component&nbsp;proxy构件对象）IRuntimeInterface接口的RI_QueryInterface方法，并将其接口指针返回参数返回给用户。
+        <li>在第四阶段的清理过程结束后，CAR构件运行平台还会调用ppNewProxy指针的Release方法释放其引用计数。
+    </ul>
+    <p>以上就是CAR构件运行平台对运行时接口的支持细节。最后需要补充的是，IRuntimeInterface接口的RI_QueryMetadata方法目前并没有使用，从设计思想上它被考虑用来导出运行时动态接口的元数据。</p>
+
+
+<script>footer("chinese")</script>
+</body>
+</html>

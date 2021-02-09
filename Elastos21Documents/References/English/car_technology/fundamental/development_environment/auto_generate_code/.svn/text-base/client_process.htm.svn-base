@@ -1,0 +1,31 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Automatic Code Framework Generation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<h2>Internal Process Of Client Compilation</h2>
+    <p>Using emake&nbsp;-v , one can examine the internal process of client compilation.</p>
+    <p>First use mkimport tool to process client program, replaces the "#import&nbsp;&lt;hello.dll&gt;" in client.cpp with #include&nbsp;"~_hello_~.h", generates new client.cpp file in the mirror directory, generates header file "~_hello_~.h" according to information in hello.dll component and also generates client.imp file.</p>
+    <pre class="code">
+mkimport -o client.imp -c client.cpp …\client.cpp
+</pre>
+    <p><font color="red"><b>Note: </b>Smart pointer code is defined and implemented in both client side and in header files of the component, but actually client header file "~_hello_~.h" is used to implement smart pointer.</font></p>
+    <p>Then, gcc tool is used to compile client.cpp in the mirror directory and client.o is generated.</p>
+    <pre class="code">
+gcc  … -o client.o client.cpp …
+</pre>
+    <p>Next hello_c.def file is generated, there is only one exit point function <b>mainCRTStartup</b>.</p>
+    <p>Then ld is used to link to hello_c.exe, while hello_c.map file is generated to record link information in hello_c.exe .</p>
+    <pre class="code">
+ld  … -Map hello_c.map -d hello_c.def …-o hello_c.exe
+</pre>
+    <p>Finally depend.mk file is generated using gcc, this file records dependency of client.cpp file in the mirror directory to other programs.</p>
+
+<body><script>footer("english")</script>
+</body>
+</html>

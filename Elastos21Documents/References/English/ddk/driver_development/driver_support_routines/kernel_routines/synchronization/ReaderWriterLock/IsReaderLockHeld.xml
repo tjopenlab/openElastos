@@ -1,0 +1,53 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>ReaderWriterLock</interface><method> IsReaderLockHeld </method>
+    <description>
+        <para>
+            Checks whether the thread has acquired the reader lock.
+        </para>
+    </description>
+    <syntax>
+        <return_val>ECODE</return_val>
+        <NoArguments/>
+    </syntax>
+
+	<return>
+	    <table>
+	    <th>
+		<td>Return Value </td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>S_OK</td>
+		<td>0x00000000</td>
+		<td>The calling thread has acquired the reader lock</td>
+	    </tr>
+	    <tr>
+	    <td>S_FALSE</td>
+	    <td>0x00000001</td>
+	    <td>The calling thread has not acquired the reader lock</td>
+	    </tr>
+	</table>
+	</return>
+
+	<remarks>
+		<para>
+        	This method is used to determine whether the calling thread has acquired the reader lock
+        	(ie., the <b>ReaderWriterLock</b> object as a reader).
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

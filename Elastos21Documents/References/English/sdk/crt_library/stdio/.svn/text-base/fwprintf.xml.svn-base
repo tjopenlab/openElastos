@@ -1,0 +1,146 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fprintf">fprintf</sample>
+    <title> fprintf, fwprintf</title>
+    <volume>C Run-Time Libary Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Prints formatted data to a stream.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format[, argument]...</param_name>
+                <param_note>
+                    <para>Format control (argument is optional parameter).</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fwprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format[, argument]...</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>fprintf returns the number of bytes written. fwprintf returns the number of wide-characters written. Each of these functions returns a negative value instead when an output error occurs.</para>
+    </return>
+
+    <remarks>
+        <para>fprintf formats and prints a series of characters and values to the output stream. Each function argument (if any) is converted and output according to the corresponding <link url="printf/FormatSpec.htm">Format Specification</link> in format. For fprintf, the format argument has the same syntax and use that it has in printf.</para>
+	<para>fwprintf is a wide-character version of fprintf; in fwprintf, format is a wide-character string. These functions behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>fwprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fprintf.cpp: This program uses fprintf to format various
+ * data and print it to the file named FPRINTF.OUT. It
+ * then displays FPRINTF.OUT on the screen using the system
+ * function to invoke the operating-system TYPE command.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+FILE *stream;
+
+int main()
+{
+    int     i = 10;
+    double fp = 1.5;
+    char    s[] = &quot;this is a string&quot;;
+    char    c = &apos;\n&apos;;
+    char buffer[100];
+
+    if ((stream = fopen(&quot;fprintf.out&quot;, &quot;w&quot;)) == NULL)
+        printf(&quot;problem open the file!&quot;);
+    else {
+        fprintf(stream, &quot;%s%c&quot;, s, c);
+        fprintf(stream, &quot;%d\n&quot;, i);
+        fprintf(stream, &quot;%f\n&quot;, fp);
+        fclose(stream);
+    }
+    if ((stream = fopen(&quot;fprintf.out&quot;, &quot;r&quot;)) != NULL) {
+        if (fread(buffer, sizeof(char),100, stream) == NULL)
+            printf(&quot;fread error\n&quot;);
+        else {
+            printf(&quot;input is :\n&quot;);
+            printf(&quot;%s\n&quot;, buffer);
+        }
+        fclose(stream);
+    }
+    else
+        printf(&quot;problem open the file!\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+to the &apos;fprintf.out&apos;
+input is :
+this is a string
+10
+1.500000
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wprintf</ref_name>
+            <ref_url>wprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>swprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,251 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Elastos Memory Leak Automatic Monitoring Tool</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+</head>
+
+<body>
+<h2>Elastos Memory Leak Automatic Monitoring Tool</h2>
+    <p>Memory leak creates serious problem to the system. The entire operating system crashes because of memory leak. It is also very hard to detect. Elastos provides a memory leak automatic monitoring tool memtrace. By using this tool, one can solve problems such as memory leak, releasing the memory that never been allocated before, repeatedly freeing the same memory and so on.</p>
+
+    <h3>Requisite knowledge for a developer: </h3>
+        <p>The reader is required to be able to use the <a class="style1" href="../../../../resource_debug_kits/gdb/gdb.htm">GDB</a> debugging tool.</p>
+
+    <h3>Basic Functionality Of memtrace </h3>
+        <p>When the program exits, the memtrace tool can list all the memory blocks that are not released and also can list its allocation index information etc.From these information one can pin point lines in the source code that allocate these memory blocks.</p>
+        <p>The memtrace reports any overflow of memory block when releasing memory.</p>
+        <p>During the execution of program, if an invalid pointer is invoked to free memory that is not allocated or if a program repeatedly frees the same memory then the memory leak automatic mornitoring tool alerts the developer using <b>assert</b>.Then the program will enter debug mode.</p>
+        <p>DEBUG version and RELEASE version Elastos have memory leak automatic monitoring feature by default. For efficiency concern, NAKE version Elastos by default does not have this feature.</p>
+
+    <h3>How to use memtrace ? </h3>
+        <ul>
+            <li><a class="style1" href="#memleak">Detect memory leak problem.</a>
+            <li><a class="style1" href="#freemem">Solve freeing not allocated memory and repeatedly release the same memory problems.</a>
+            <li><a class="style1" href="#overflow">Detect memory overflow problem.</a>
+        </ul>
+
+<A NAME="memleak"></A>
+        <h4>Detection of Memory Leak  </h4>
+        <p>User application uses memory leak automatic monitoring function in the operating system without any change in the program source code.</p>
+        <p>The following example describes how to find memory leak. The following program is a program with memory leak problem. The source code is as the following: </p>
+        <pre class="code">
+// memleak.cpp
+// This program allocates memory once but does not free it. When running the DEBUG version OS
+// memory leak automatic monitoring system detects the memory leak. It can pin point
+// the location in the source code by using eladbg.
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+wchar_t *AllocString(size_t siz)
+{
+    wchar_t *wstr = (wchar_t *)malloc(siz);  // allocate memory but does not free.
+    wcscpy(wstr, L"Alloc memory succeeded!\n");
+    return wstr;
+}
+
+EXTERN_C int __cdecl wmain(int argc, wchar_t* argv[])
+{
+    int RequestSize = 1234;
+    wchar_t *string;
+
+    wprintf( L"Alloc request size: %d\n",RequestSize);
+
+    // allocates RequestSize number of characters, assign the character pointer to string.
+    string = AllocString(RequestSize);
+
+    wprintf(string);
+
+    // does not free string in order to test memory leak
+    //free(string);
+
+    return 0;
+}
+</pre>
+
+        <p>Compile memleak under Elastos SDK envrionment and the executable file memleak.exe can be created. Run memleak.exe file on DEBUG version or RELEASE version Elastos.</p>
+
+        <p>The screen display is as the following (<font color=blue>blue</font> is keyboard input): </p>
+        <pre class="code">
+[/ $]<font color="blue">memleak.exe</font>
+Alloc request size: 1234
+Alloc memory succeeded!
+
+<b>**************** Memory Leak Detected ****************
+
+------------------------------------------------------
+index = 0x16    address = 0x0001183c    size=1234
+Total memory leaks: 1
+Use "memtrace -v" to show a detailed report and "memtrace -d" to debug leaks.
+
+------------------------------------------------------
+
+******************************************************</b>
+
+[/ $]
+
+</pre>
+        <p> Here it is the memory leak, <b>"</b><b>index=0x52 addr=0x20003d08 size=1234</b><b>"</b> the index, address, size (displayed in hex) of memory block that is not released. Size of the memory block is bigger than the requested allocation size because related information also needs to be stored.</p>
+        <p>Memory monitoring tool also lists the number of memory leaks. It prompts the user to use "memtrace -v" or "memtrace -d" command to further debugging the memory leak.</p>
+        <ul>
+            <li><b>"memtrace -v" command</b>
+                <p>memtrace&nbsp;-v&nbsp;ProgramName&nbsp;[ProgramArgument]</p>
+                <pre class="code">
+[/ $] <font color="blue">memtrace -v  memleak.exe</font>
+Alloc request size: 1234
+Alloc memory succeeded!
+
+<b>**************** Memory Leak Detected ****************
+
+------------------------------------------------------
+index = 0x16    address = 0x0001303c    size=1234
+CallStack:
+0 : 0x2038a0af   1 : 0x2038a1be   2 : 0x7ffff828   3 : 0x00015000
+Use "memtrace -v" to show detailed report, "memtrace -d" to debug
+leaks.
+
+------------------------------------------------------
+
+******************************************************</b>
+
+[/ $]
+
+</pre>
+
+        <p>Comparing with the default case, memtrace -v command displays more information -- call stack listing ClassStack. It displays function call situation at the moment the memory block is allocated. The hex number is function pointer of each layer of call stack. In this listing, the ith level function calls the (i-1)th level function. Thus, the 0 level is the address pointer of the function that eventually allocated the memory block.</p>
+
+            <li><b>"memtrace -d" command</b>
+                <p>memtrace&nbsp;-d&nbsp;index=&nbsp;[address=]&nbsp;ProgramName&nbsp;[ProgramArgument]</p>
+                <p>If the user wants to debug memory leak in which index is the memory leak index number, he/she can input the memory address in <i>address</i>.</p>
+                <pre class="code">
+[/ $] <font color="blue">memtrace  -d  index=0x16  memleak.exe</font>
+Alloc request size: 1234
+
+
+<b>******************************************************
+
+Stop at: index = 0x16
+
+The debugger gdb may offer what you want, start it up!
+
+******************************************************</b>
+User debugger!
+Program Fault. Debug Or Terminate[D/T]? <font color="blue">d</font> Wait for remote debugger.
+
+</pre>
+
+                <p>Starts GDB on the Windows 2000 side (you can see <a class="style1" href="../../../../resource_debug_kits/gdb/gdb.htm">GDB debugger</a> for details), as the following diagram illustrates: </p>
+                <center><img src="images\memtrace1.jpg"></center>
+                <p> Program halts at the memory monitoring location and check the value of pRequestHeapBlock as the following: </p>
+                <center><img src="images\memtrace2.jpg"></center>
+                <p>This value is the same as the address = 0x0001303c in the memory monitoring report. Let us look at the function stack: </p>
+                <center><img src="images\memtrace3.jpg"></center>
+                <p>It is <b>AllocString</b> that calls <b>malloc</b> which causes this memory allocation. Examine each function code through function stack.The memory allocated in AllocString function is not released.</p>
+
+<A NAME="freemem"></A>
+        <h4>Solve the problem of freeing not allocated memory, and repeatedly releasing the same memory.</h4>
+        <p>Another feature is to solve the problem of releasing not allocated memory and repeatedly releasing the same memory as the following: </p>
+        <pre class="code">
+// This program releases allocated memory block twice . The memory leak automatic monitoring system can detect release error when running DEBUG version or RELEASE version.
+// program, .
+//free2.cpp
+//free2.exe
+
+#include &lt;stdlib.h&gt;
+
+wchar_t *AllocString(size_t siz)
+{
+    wchar_t *wstr = (wchar_t *)malloc(siz);  // allocate memory but does not free.
+    return wstr;
+}
+
+EXTERN_C int __cdecl wmain(int argc, wchar_t* argv[])
+{
+    int RequestSize = 1234;
+    wchar_t *string;
+
+    //allocates RequestSize number of characters, assign the character pointer to string.
+    string = AllocString(RequestSize);
+    free(string);
+    free(string);
+    return 0;
+}
+</pre>
+        <p>Compile this program and run it and the screen displays the following: (<font color=blue>blue</font> is keyboard input): </p>
+        <p>On Elastos side: </p>
+        <pre class="code">
+[/ $]
+<b>ERROR:</b> free a non-spyed block. Freeing an invalid memory block or freeing a
+valid block twice will cause this error.User debugger!
+<b>Program Fault. Debug Or Terminate[D/T]? <font color="blue">d</font> Wait for remote debugger.</b>
+
+</pre>
+
+        <p>On Windows 2000 side: </p>
+        <center><img src="images\memtrace4.jpg"></center>
+        <p>Through function call stack window, we can pin point the location of repeatedly freed memory.</p>
+
+    <A NAME="overflow"></A>
+    <h4>Detecting Memory Leak Problem</h4>
+        <p>During program execution, if a certain segment of memory overflows,then memory leak monitoring tool will detect the memory overflow and reports the overflow after program execution. The following program is an example: </p>
+        <pre class="code">
+// During the second memset in this program pch, the memory block pointed to by pch overflowed, pch is also
+// not freed.
+//overflow.cpp
+//overflow.exe
+#include &lt;string.h&gt;
+
+EXTERN_C int __cdecl wmain(int argc, wchar_t* argv[])
+{
+    char *pch = new char[2];
+
+    memset(pch, 0, 2);
+
+    memset(pch, 0, 3);
+
+    return 0;
+}
+
+</pre>
+        <p>Two bytes are allocated to pch in the above program. The second memset initializes the memory one more time and the memory overflows. The memory test report is as the following: </p>
+        <pre class="code">
+[/ $]<font color="blue">overflow.exe</font>
+
+<b>***********Memory Leak Detected Report***********
+
+-------------------------------------------------
+
+index = 0xe    address = 0x0001053c    size=2
+
+AND, this heap field overflowed!
+Total memory leaks: 1
+Use "memtrace -v" to show detailed report, "memtrace -d" to debug leaks.
+
+-------------------------------------------------
+
+*************************************************</b>
+[/ $]
+
+</pre>
+        <p>Use memtrace&nbsp;-d&nbsp;index=&nbsp;[address=]&nbsp;ProgramName&nbsp;[ProgramArgument] command:&nbsp;memtrac&nbsp;-d&nbsp;index=0xe&nbsp;address=0x0001053c&nbsp;overflow.exe. Now the program enters debug mode, start windows2000 side GDB as the following: </p>
+        <center><img src="images\memtrace5.jpg"></center>
+        <p>First of all, the program stops at line number 7 since we have set the memory address when using the memtrace&nbsp;-d command. Thus no matter the program does read or write operation to this memory address, it needs to stop memory overflow occured when and where. Since pch only allocated two bytes, line number 7 of the program does not make it overflow. Run the continue command and continue the program execution. The program will stop at line number 9 (as the above diagram), line number 9 initialized 3 bytes.This adds one more byte to the original memory and the memory has one extra byte.Then the program responsible for pch overflow is line number 9.</p>
+
+<script>footer("english")</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

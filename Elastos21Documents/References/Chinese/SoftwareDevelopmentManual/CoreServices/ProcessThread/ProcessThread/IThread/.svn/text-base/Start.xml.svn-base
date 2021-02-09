@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IThread\start">Start</sample>
+<volume>线程</volume>
+<interface>IThread</interface><method> Start </method>
+    <description>
+        <para>
+            启动线程，从线程入口点开始执行。
+        </para>
+    </description>
+    <syntax_nopara>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功启动线程</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_PROCESS_ALREADY_EXITED</td>
+	    	    <td>线程所在进程已经退出</td>
+	        </tr>
+
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		    用<link url="../Function/CThread/New.htm">CThread::New</link>创建一个线程。flags值为ThreadCreationFlag_Unstarted时，需调用IThread::Start方法。flags值为ThreadCreationFlag_Started时，系统将自动调用IThread::Start方法执行。
+		</para>
+		<para>该方法被调用后，新的线程将启动并进入ThreadState_Running状态。</para>
+		<para>
+		   当线程终止后，不能再次调用<link url="Start.htm">IThread::Start</link>方法启动线程。
+		</para>
+
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

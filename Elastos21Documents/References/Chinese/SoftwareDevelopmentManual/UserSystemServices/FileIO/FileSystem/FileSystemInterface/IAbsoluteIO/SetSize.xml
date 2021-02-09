@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IAbsoluteIO</interface><method> SetSize </method>
+    <description>
+        <para>
+            设置文件对象的长度。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>
+设置的文件大小                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果文件对象为只读属性，返回E_FS_NO_PERMISSION； </para>
+    <para>如果没有足够的磁盘空间，返回E_FS_NO_SPACE; </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+<remarks>
+	  <para> 若设置的size大于文件大小，则将用未定义的bytes的值填充文件将其扩大到size指定的大小；若设置的size小于文件大小，则将从文件末缩减，使文件达到size指定的大小。</para>
+</remarks>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+</manpage>

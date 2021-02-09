@@ -1,0 +1,48 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> ArrayOf   </interface>
+    <method> Replace </method>
+
+    <description>
+        <para>用源数据覆盖指定位置的内容。</para>
+    </description>
+
+    <syntax>
+        <return_val>ArrayOf &amp; </return_val>
+        <parameters>
+            <api_param>
+                <param_type> Int32 </param_type>
+                <param_name> offset </param_name>
+                <param_note>
+                    <para> 覆盖位置相对于ArrayOf对象储存区起始位置的偏移量，单位为sizeof(T)</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> const <i>T</i>*</param_type>
+                <param_name>pBuf </param_name>
+                <param_note>
+                    <para> 源T类型数组 </para>
+                </param_note>
+            </api_param>
+            
+            <api_param>
+                <param_type> Int32 </param_type>
+                <param_name> n </param_name>
+                <param_note>
+                    <para> 待覆盖的数组的元素个数</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回当前ArrayOf对象。</para>
+    </return>
+</manpage>

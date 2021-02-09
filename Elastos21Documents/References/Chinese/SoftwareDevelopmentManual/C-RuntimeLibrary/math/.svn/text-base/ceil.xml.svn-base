@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\ceil">ceil</sample>
+    <title> ceil</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>计算x的上限整数。</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>ceil</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>浮点数值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回一个浮点数值，表示大于或等于x的最小整数。无错误返回值。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>ceil</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ceil.cpp: This example shows the smallest integers greater
+ * than or equal to 2.8 and -2.8.
+ */
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double y;
+
+    y = ceil(2.8);
+    printf(&quot;The ceil of 2.8 is %f\n&quot;, y);
+    y = ceil(-2.8);
+    printf(&quot;The ceil of -2.8 is %f\n&quot;, y);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The ceil of 2.8 is 3.000000
+The ceil of -2.8 is -2.000000
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>floor</ref_name>
+            <ref_url>floor</ref_url>
+        </reference>
+    </references>
+
+</manpage>

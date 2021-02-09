@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strcpy">strcpy</sample>
+    <title> strcpy, wcscpy </title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Copy a string.</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strcpy</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strDestination</param_name>
+                <param_note>
+                    <para>Destination string.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strSource</param_name>
+                <param_note>
+                    <para>Null-terminated source string.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>wcscpy</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>strDestination</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>strSource</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Both functions returns the destination string. No return value is reserved to indicate an error.</para>
+    </return>
+
+    <remarks>
+        <para>The strcpy function copies strSource, including the terminating null character, to the location specified by strDestination. No overflow checking is performed when strings are copied or appended. The behavior of strcpy is undefined if the source and destination strings overlap.</para>
+        <para>wcscpy is the wide-character version of strcpy. The arguments and return value of wcscpy are wide-character strings. These two functions behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strcpy</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcscpy</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strcpy.cpp: This program uses strcpy
+ * and strcat to build a phrase.
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[80];
+    strcpy(string, &quot;Hello world from &quot;);
+    strcat(string, &quot;strcpy &quot;);
+    strcat(string, &quot;and &quot;);
+    strcat(string, &quot;strcat!&quot;);
+    printf(&quot;String = %s\n&quot;, string);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+String = Hello world from strcpy and strcat!
+</result>
+
+
+    <references>
+       <reference>
+            <ref_name> wcscat </ref_name>
+            <ref_url> wcscat </ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcscmp </ref_name>
+            <ref_url> wcscmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncat </ref_name>
+            <ref_url> wcsncat </ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncmp </ref_name>
+            <ref_url> wcsncmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncpy </ref_name>
+            <ref_url> wcsncpy </ref_url>
+        </reference>
+        <reference>
+            <ref_name> _wcsnicmp </ref_name>
+            <ref_url> _wcsnicmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url> strrchr </ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,86 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\EzMemory"> CVirtualMemory::Query </sample>
+    <volume>虚拟内存管理</volume>
+    <title>CVirtualMemory::Query</title>
+    <routine_idx>../VirtualMemoryManagement.htm</routine_idx>
+
+    <description>
+        <para>查询指定地址所在虚拟内存块的信息。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name> address </param_name>
+                <param_note>
+                    <para>[in]指定要查询的虚拟地址。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name> *pBaseAddr </param_name>
+                <param_note>
+                    <para>[out]指向虚拟内存块首址的指针，用以获取指定地址所在虚拟内存块的首址。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemorySize </param_type>
+                <param_name> *pSize </param_name>
+                <param_note>
+                    <para>[out]指向虚拟内存块大小的指针，用以获取指定地址所在虚拟内存块的大小</para>
+
+                </param_note>
+            </api_param>
+
+
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_DOES_NOT_EXIST</td><td>指定的虚拟地址不在任何已分配的虚拟内存块中</td>
+            </tr>
+
+        </table>
+        <para>参见<link url="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+    <para><link url="Query.htm">CVirtualMemory::Query</link>提供指定虚拟地址所对应的虚拟内存块的相关信息，包括首址和大小。所得到的首址和大小可以传给<link url="Free.htm">CVirtualMemory::Free</link>函数去释放这个虚拟内存块。</para>
+
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

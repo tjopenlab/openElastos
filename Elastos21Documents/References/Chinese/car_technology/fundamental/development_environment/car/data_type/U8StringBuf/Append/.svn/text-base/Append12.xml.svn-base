@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>U8StringBuf</class>
+    <method> Append </method>
+
+    <description>
+        <para>按指定字符格式在U8StringBuf对象字符串中追加布尔值所对应的字符串("True"或"False")。</para>
+    </description>
+
+    <syntax>
+        <return_val> U8StringBuf &amp;</return_val>
+        <parameters>
+        <api_param>
+            <param_type>Boolean </param_type>
+            <param_name>boolean</param_name>
+            <param_note>
+                <para> 布尔数值 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回U8StringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>超过U8StringBuf对象可用的长度会被省略掉。 </para>
+    </remarks>
+
+<example>
+<pre>
+U8StringBuf_&lt;10&gt; asbuf;
+Boolean bl = 1;
+asbuf.Append(bl);
+CConsole::WriteLine(asbuf.GetLength());  //Display : 4
+CConsole::WriteLine(asbuf);  //Display : True 
+
+Boolean boolean = 0;
+asbuf.Append(boolean);
+CConsole::WriteLine(asbuf.GetLength());  //Display : 9
+CConsole::WriteLine(asbuf);  //Display : TrueFalse  
+</pre>
+</example>
+
+
+</manpage>

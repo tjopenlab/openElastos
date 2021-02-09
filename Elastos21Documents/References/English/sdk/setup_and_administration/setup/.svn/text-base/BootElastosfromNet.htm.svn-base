@@ -1,0 +1,64 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>Boot Elastos Through Network</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Boot Elastos Through Network</h2>
+    <h3>Advantages of boot from network</h3>
+        <ul>
+            <li>Boot Elastos through network.Since booting is fast and installation is easy, you need not copy system file to target machine.
+            <li>Once booting of Elastos is over, use <a class="style1" href="../../environment_and_tools/tools/tfs.htm">TFTP file system</a>, so that on the target machine you can directly browse and execute files under Windows&nbsp;2000 side Elastos.SDK directory. Windows&nbsp;2000 side file changes can be instantly reflected on target machine.It does not need to update manually and it can greatly improves efficiency.
+
+        </ul>
+    <h3>Requirement</h3>
+        <ul>
+            <li>Windows&nbsp;2000 side needs to install TFTPD service and start this service. Users who need to boot from the network please contact Koretide Corp.We can provide detail configuration method for TFTPD service.
+            <li>In order to start corresponding network service, Windows&nbsp;2000 side must modify configuration file under SDK environment config directory and pack related configuration file into elastos.img file.
+        </ul>
+    <h3>Network start up process</h3>
+        <ol>
+            <li>First changes drv.cfg and startup.cfg files under config directory of SDK environment, then use <a class="style1" href="../../../resource_debug_kits/tools/mkpkg.htm">mkpkg</a> command to pack these configuration files into elastos.img file.
+            <p>Remarks: For details about changes to <a class="style1" href="../configure.htm#drv">drv.cfg</a> and <a class="style1" href="../configure.htm#start">startup.cfg</a> files please see <a class="style1" href="../configure.htm">"system configuration"</a> documentation.</p>
+            <li>Bootstrap floppy drive through GRUB or boot the target machine through hard disk. No matter how you boot the computer, after computer boot up, the monitor displays GRUB start up menu.The content is as the following: </p>
+                <pre class="code">
+Elastos 2.0 from Network (dbg)
+Elastos 2.0 from Network (rls)
+Elastos 2.0 from Hd
+Boot from C:
+</pre>
+                <p>The content of the menu is determined by the <a class="style1" href="intr_menu.htm">menu.lst</a> file.Each item represents a boot method, they are: </p>
+                <pre class="code">
+Elastos 2.0 from Network (dbg)    : Boot debug version Elastos through network
+Elastos 2.0 from Network (rls)    : Boot release version Elastos through network
+Elastos 2.0 from Hd               : Boot Elastos from C drive
+Boot from C:                      : Boot the operating system through C bootstrap
+</pre>
+
+                <p>Among which "Elastos&nbsp;from&nbsp;Network&nbsp;(dbg)" or "Elastos&nbsp;from&nbsp;Network&nbsp;(rls)", boot Elastos from TFTPD service on the Windows&nbsp;2000 side. You can select boot method you need through up and down scroll bar. Select "Elastos&nbsp;from&nbsp;Network&nbsp;(dbg)" or "Elastos&nbsp;from&nbsp;Network&nbsp;(rls)" and hit enter.</p>
+
+            <li>The system, after boot up can use TFTP file system (abbreviated to TFS) to visit Windows&nbsp;2000 side files through network, see <a class="style1" href="../../environment_and_tools/tools/tfs.htm">TFTP file system</a>.</p>
+                <p>If use TFTP file system, you need to change the elacmd.cfg file (Configuration file of elacmd command interpreter program) under D:\Elastos.SDK\elastos\_ix86.dbg and D:\Elastos.SDK\elastos\_ix86.rls directories of the host machine to the following: </p>
+                <pre class="code">
+ifconfig lo0 127.0.0.1 netmask 255.255.255.0
+ifconfig eth0 192.168.0.10 netmask 255.255.255.0 broadcast 192.168.0.255
+set ElastosDir=tfs://tfs
+tfs tfs
+</pre>
+                <ul>Remarks: 
+                    <li>eth0&nbsp;192.168.0.10 in elacmd.cfg file is the target machine IP address.Users need to fill in the value of eth0 according to the actual situation of their own machine. Other content does not need to be changed.
+                    <li>The last line of elacmd.cfg file "tfs&nbsp;tfs" is for directly enter tfs://tfs directory after Elastos system boot from the network, so start to use TFTP file system.
+                </ul>
+            <li>After system start up, you can execute a <a class="style1" href="../configure.htm#elacmd">elacmd command</a> to check the system execution status.</p>
+    <p>Execute and debug program on Elastos please see <a class="style1" href="../../../resource_debug_kits/debug_kits.htm">related article</a>.</p>
+   </ol>
+
+<script>footer("english")</script>
+</body>
+</html>

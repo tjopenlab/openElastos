@@ -1,0 +1,28 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Component Version Control Default Rules</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>CAR Component Version Control Default Rules</h2>
+        <p>Diagram 2 is version control flow of CAR component load process. In CAR component version control, by default use the rules in the order of major version compatible rule, default latest rule, version all the same rule.The process flow is illustrated in diagram 3.</p>
+        <center><img src="images/flow.jpg"></center>
+        <center>Diagram 2: Version Control Flow During CAR Component Load</center>
+    <h3>Rule 1: Major version compatibility rule</h3>
+        <p>Major version number is considered compatible version, for normal applications, component referenced may already upgraded or changed, as long as the major version number is the same, you can correctly load and run the component.</p>
+        <center><img src="images/formula.jpg"></center>
+        <center>Diagram 3: Default Rule When Multiple Versions Exists</center>
+    <h3>Rule 2: Default Latest Rule</h3>
+        <p>For some application, if the refered component is already upgraded or changed,then Elastos operating system first makes certain that the major version is the same, by default load component with the latest minor version number, generate number and modification number.</p>
+    <h3>Rule 3: Version All The Same Rule</h3>
+        <p>If after applied the first and the second rule, the system still cannot correctly load corresponding component or after load application cannot run correctly and some functionality fault occurs,then at that moment version controller uses the version all the same rule.Thus searches for component with all four levels of version number the same in local or in specified remote URL.If exists, then load this version of component.</p>
+
+<script>footer("english")</script>
+</body>
+</html>        

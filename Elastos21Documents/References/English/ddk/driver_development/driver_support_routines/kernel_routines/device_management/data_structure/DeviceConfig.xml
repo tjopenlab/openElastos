@@ -1,0 +1,38 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/custom_type.xsl"?>
+
+<manpage>
+    <volume>Device Management Data Structures</volume>
+    <types>DeviceConfig</types>
+
+    <description>
+        <para> Device configuration information. </para>
+    </description>
+
+    <struct>
+        <struct_alias>DeviceConfig</struct_alias>
+        <struct_member>
+            <mem_type>wchar_t </mem_type>
+            <mem_name>wszDeviceName[c_uMaxLengthOfDeviceName + 1] </mem_name>
+            <mem_description>Device name character array. </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t </mem_type>
+            <mem_name> uDeviceNo </mem_name>
+            <mem_description>Device number. </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>void * </mem_type>
+            <mem_name>pvParameter </mem_name>
+            <mem_description>Pointer to additional parameter. </mem_description>
+        </struct_member>
+    </struct>
+    
+    <remarks>
+        <para>Constant c_uMaxLengthOfDeviceName in device name character array is 31.</para>
+    </remarks>
+</manpage>

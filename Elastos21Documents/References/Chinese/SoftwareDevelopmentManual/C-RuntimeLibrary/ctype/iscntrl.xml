@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\iscntrl">iscntrl</sample>
+    <title>iscntrl iswcntrl</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>判断一个字符是否为控制字符（0x00 – 0x1F 或 0x7F）。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>iscntrl</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>需要判断的整型值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果指定参数值在ASCII码表中的对应值为控制字符（0x00 – 0x1F 或 0x7F），则函数返回非零，否则返回零。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>iscntrl</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* iscntrl.cpp: This program uses iscntrl to verify c
+ * whether it is a control character(0x00 – 0x1F or 0x7F).
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+{
+    int c, d;
+    c = 0x1f;
+    d = -3;
+    if (iscntrl(c)) {
+        printf(&quot;c is a Ctrl character.\n&quot;);
+    }
+    else {
+        printf(&quot;error01!\n&quot;);
+    }
+    if (!iscntrl(d)) {
+        printf(&quot;d is not a Ctrl character.\n&quot;);
+    }
+    else {
+        printf(&quot;error02!\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+c is a Ctrl character.
+d is not a Ctrl character.
+</result>
+
+
+
+</manpage>

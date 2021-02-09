@@ -1,0 +1,60 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\EzArray">EzArray</sample>
+    <volume> Common data structure </volume>
+    <method>template&lt;class T&gt; EzArray::EzArray</method>
+
+    <description>
+        <para> Constructor of EzArray is used to create an EzArray Object.</para>
+    </description>
+
+    <syntax>
+        <NoArguments/>
+    </syntax>
+
+    <remarks>
+        <para>EzArray is a template class，template parameter T determines the type of array elements.</para>
+        <para>Calling the Constructor only create a pointer to EzArray array，user may call <b><link url="CreateObject.htm">CreateObject</link></b> to allocate memory for the array</para>
+    </remarks>
+
+   <example><pre><![CDATA[
+#include <EzArray.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+
+    EzArray<int> MyArray = EzArray<int>::CreateObject(4);
+
+    for (int i = 0; i < MyArray.GetLength(); i++){
+        MyArray[i] = i + 20;
+        printf("MyArray %d = %d\n", i, MyArray[i]);
+    }
+
+    MyArray.Dispose();
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+MyArray 0 = 20
+MyArray 1 = 21
+MyArray 2 = 22
+MyArray 3 = 23
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Constructor（allocating memory） </ref_name>
+            <ref_url> EzArray_ </ref_url>
+        </reference>
+    </references>
+
+</manpage>

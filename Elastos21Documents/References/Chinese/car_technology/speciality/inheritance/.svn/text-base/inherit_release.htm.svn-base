@@ -1,0 +1,168 @@
+<html>
+	
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>inherit_release</title>	
+	</head>
+
+	<body>
+		<h2>编写DLL </h2>
+		  <p>下面是一个构件继承的示例程序，图5-18为示例图示。</p>
+		  <center><img src="images/inherit1.JPG"/></center>
+		  <center>图5-18</center>
+		  <p>本例中，Animal.dll中包括了三个构件类，分别为CAnimal、CDog与CCat。</p> 
+		  <p>构件类CAniaml对外提供两个接口，IAniaml与ISay。接口IAniaml包括接口方法SetName()与GetName()，用户可调用SetName()为所创建的对象设置名称；以及调用GetName()得到当前对象的名称。被关键字virtual修饰的ISay为虚接口，虚接口方法可被派生类重载。</p>
+		  <p>构件类CDog与CCat是CAniaml的派生类，所以这两个类能够调用基类已实现的接口方法SetName()与GetName();并且，因为CDog、CCat都继承了CAniaml的ISay接口，因此派生类重载了基类虚接口ISay的接口方法。</p>
+		  <P>实现Animal.dll的步骤如下：</P>
+		  <P>为了统一管理编写和调用，可以先建一个Farm目录，在此目录下再分别建一个Animal和Sing目录，在Animal目录下实现如何编写一个Animal.dll的例子，在Sing目录下实现如何调用该DLL。</P>
+		<h3>1.编写car文件</h3>
+	    <p> 在dll定义文件中，开发者需为基类和派生类声明继承关系，语法为class XXX:YYY(XXX为派生类，YYY为基类)。在基类中必须定义可被派生类重载的虚接口。在派生类中可定义继承于基类的虚接口，也可增添新接口。</p>
+      <P>Animal.car文件</P>
+<pre class = code>
+module www.elastos.com/CAR/Animal.dll
+{
+    interface ISay {
+      Say();
+    }
+
+    interface IAnimal {
+      SetName(WString name);
+      GetName(WStringBuf<50> name);
+    }
+
+    class CAnimal {
+      virtual interface ISay;        //定义虚接口
+      interface IAnimal;             
+    }                                
+                                     
+    class CDog inherits CAnimal {           //声明继承关系
+      interface ISay;                //继承基类的虚接口
+    }                                
+                                     
+    class CCat inherits CAnimal {           //声明继承关系
+      interface ISay;                //继承基类的虚接口
+    }
+}
+</pre>
+    <h3>2.emake Animal.car文件</h3>
+      <p>对car文件进行编译后，在生成的代码框架中主要包括以下这些文件： </p>
+      <p><a href= "code/CAnimal_cpp.htm">CAnimal.h</a></p>
+      <p><a href= "code/CAnimal_h.htm">CAnimal.cpp</a> </p>
+      <p><a href= "code/CDog_cpp.htm">CDog.h</a></p>
+      <p><a href= "code/CDog_h.htm">CDog.cpp</a></p>
+      <p><a href= "code/CCat_cpp.htm">CCat.h</a></p>
+      <p><a href= "code/CCat_h.htm">CCat.cpp</a></p>
+      <p><a href= "code/sources.htm">sources </a></p>
+    <h3>3.为构件类实现文件添加代码</h3>      
+		  <p>注:下述代码片断中粗体部分是自动生成的代码，非粗体部分是用户添加的代码。</p>
+		  <p>添加实现代码的步骤如下：</p>
+		  <P>(1)实现基类CAnimal的接口方法</P>
+		  <P>在CAnimal.h中添加私有变量声明。</P>
+		  <P>CAnimal.h文件</P>
+<pre class= code><B>
+#ifndef __CANIMAL_H__
+#define __CANIMAL_H__
+
+#include "_CAnimal.h"
+
+CarClass(CAnimal)
+{
+public:
+    CARAPI Say();
+
+    CARAPI SetName(
+        /* [in] */ WString name);
+
+    CARAPI GetName(
+        /* [out] */ WStringBuf * pName);
+
+private:</B>
+    WStringBuf_<100> m_name;
+<B>};
+
+#endif // __CANIMAL_H__</B>
+</pre>
+      <p>在CAnimal.cpp中分别为基类的SetName()和GetName()添加了代码实现，并修改了函数的返回值。SetName()功能：输入动物名称。GetName()功能：输出动物名称。</p>
+      <P>CAnimal.cpp文件</P>
+<pre class=code><B>
+#include "CAnimal.h"
+#include "_CAnimal.cpp"
+
+ECode CAnimal::Say()
+{
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode CAnimal::SetName(</B>              //实现基类的接口方法SetName()
+    <B>/* [in] */ WString name)          
+{</B>                                    
+    m_name.Copy(name);                   
+    return NOERROR;<B>                   
+}                                        
+                                         
+ECode CAnimal::GetName(</B>              //实现基类的接口方法GetName()
+    <B>/* [out] */ WStringBuf * pName)
+{</B>
+    pName->Copy(m_name);
+    return NOERROR;<B>
+}</B>
+</pre>
+		  <P>(2)实现派生类CDog的接口方法</P>
+		  <P>例中，派生类CDog重载了基类CAnimal的接口方法Say()，使其模拟出Dog特有的叫声，并在Say()中调用基类实现的接口方法GetName()，得到当前动物名称，调用语法为Super::XXX(XXX为基类接口方法名)。</P>
+		  <P>CDog.cpp文件</P>
+<pre class= code><B>
+#include "CDog.h"
+#include "_CDog.cpp"
+
+ECode CDog::Say()</B>                     //对CAnimal::Say()的重载
+<B>{</B>
+    WStringBuf_<100> out;
+    Super::GetName(&out);               //调用基类已有实现
+    out << "say : Wang Wang~~~\n";
+    CConsole::WriteLine(out);
+    return NOERROR;
+<B>}</B>
+</pre>
+		  <P>(3)实现派生类CCat的接口方法</P>
+		  <P>CCat.cpp文件</P>
+<pre class=code><B>
+#include "CCat.h"
+#include "_CCat.cpp"
+
+ECode CCat::Say()</B>                    //对CAnimal::Say()的重载
+<B>{</B>
+    WStringBuf_<100> out;
+    Super::GetName(&out);              //调用基类已有实现
+    out << "say : Miao Miao~~~\n";
+    CConsole::WriteLine(out);
+    return NOERROR;
+<B>}</B>
+</pre>
+    <h3>4.生成相应的dll</h3>    
+      <p>进入正确的XDK目录，emake后会在对应镜像目录中生成构件animal.dll。</p> 
+    <h3>备注：</h3>  
+      <p>如基类与派生类分属不同构件，派生类可通过以下方式继承基类。</p>
+<pre class=code>
+module www.elastos.com/CAR/Pig.dll
+{
+importlib("Animal.dll");                //导入构件Aniaml
+                                        
+class CPig : CAnimal{                   //声明继承关系
+        interface ISay;                 //继承基类的虚接口
+    }
+}
+</pre>
+      <p>上例为构件Pig.dll的car文件，如要使构件Pig.dll中的构件类CPig能够继承构件Animal.dll中的构件类CAnimal，必须在此car文件中导入被继承类所在构件的元数据。语法为importlib(“XXX.dll”)。编译该car后添加实现代码、生成构件等步骤在上文已有叙述，此处不再作说明。</p>
+      
+<pre>
+
+
+
+
+
+</pre>
+	</body>
+	
+</html>

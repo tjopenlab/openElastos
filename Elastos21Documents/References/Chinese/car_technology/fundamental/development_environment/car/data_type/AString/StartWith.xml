@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AString</interface>
+    <method> StartWith </method>
+
+    <description>
+        <para> 使用指定的比较选项进行比较，确定AString实例的开头是否与指定的字符串匹配。</para>
+    </description>
+    <syntax>
+        <return_val> Boolean </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const AString &amp;</param_type>
+            <param_name> substr </param_name>
+            <param_note>
+                <para> 用来比较的AString对象。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive </param_default>
+            <param_note>
+                <para> 大小写标示符。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name> encoding  </param_name>
+            <param_default>Encoding_Default  </param_default>
+            <param_note>
+                <para> 指定字符编码方式。 参见<link url="../../others/Encoding.htm">Encoding</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>如果此字符串的开头与substr参数匹配，则为TRUE；否则为FALSE。</para>
+    </return>
+
+    <remarks>
+        <para>1.若substr参数为空字符串("")，则返回TRUE。</para>
+      <para>2.若AString实例或substr包含的字符串指针为NULL，则返回FALSE。</para>
+    </remarks>
+<example>
+<pre>
+AString as1("abcd");
+AString as2("abc");
+AString as3("ABC");
+CConsole::WriteLine(as1.StartWith(as2));  //Display : Ture
+CConsole::WriteLine(as1.StartWith(as3));  //Display : False
+CConsole::WriteLine(as1.StartWith(as3, StringCase_Insensitive));  //Display : Ture
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::EndWith </ref_name>
+        <ref_url>../AString/EndWith</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::StartWith </ref_name>
+        <ref_url>../WString/StartWith</ref_url>
+    </reference>
+</references>
+
+</manpage>

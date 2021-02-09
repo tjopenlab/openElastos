@@ -1,0 +1,52 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字-- inherits </title>
+</head>
+
+<body>
+	<h2>inherits</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于表示<a class="style1" href= "keywords_class.htm">普通类class</a>继承<a class="style1" href= "keywords_class.htm">普通类class</a>。</p>
+	
+	    <b>语法 </b>
+	    	<p>class ClassName <b>inherits</b> ClassA {...}</p>
+	    <b>使用说明 </b>
+	        <p>1.被继承的基类必须包含虚接口。 </p>
+	        <p>2.此关键字只用于表示普通类之间的继承，至于用户的applet继承于系统实现的TApplet，是一种特殊情况。 </p>
+	        <p>3.此关键字只能用于单继承。 </p>
+	        <p>4.inherits结构、aggregates结构以及substitutes结构都可以修饰普通类class，这三者的顺序是先inherits结构，再aggregates结构，再substitutes结构。 </p>
+	        	    
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IFoo {
+        Foo();
+    }
+    
+    interface IBar  {
+        Bar();
+    }
+    class CFoo {
+        virtual interface IFoo;
+    }
+
+    class CBar <b>inherits</b> CFoo {
+        interface IBar;
+    }
+}
+
+</pre>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

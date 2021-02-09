@@ -1,0 +1,84 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <volume>Kernel Provided Method</volume>
+    <title>KernelSetup</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>Sets up kernel.</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> physaddr_t</param_type>
+                <param_name> paKernelPhysBase </param_name>
+                <param_note>
+                    <para>Kernel used physical memory base address.</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> physaddr_t</param_type>
+                <param_name> paKernelImagePhysBase </param_name>
+                <param_note>
+                    <para>Physical memory base address occupied by the kernel image file. </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> physaddr_t</param_type>
+                <param_name> paMemoryMappedIoBase </param_name>
+                <param_note>
+                    <para>Physical memory base address occupied by memory mapped I/O.</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> physaddr_t</param_type>
+                <param_name> paMemoryMappedIoLimit </param_name>
+                <param_note>
+                    <para>Physical memory terminal address occupied by memory mapped I/O. This terminal address itself is not included in memory mapped I/O zone.</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> int</param_type>
+                <param_name> reserved1 </param_name>
+                <param_note>
+                    <para>Reserved parameter 1.</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> int</param_type>
+                <param_name> reserved2 </param_name>
+                <param_note>
+                    <para>Reserved parameter 2.</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>This method is used to set kernel. Set up kernel completed tasks are independent.It does not depend on board supporting interface. After boot load you must invoke this method as fast as possible. Specific task completed in kernel setup phase depends on specific hardware platform. The kernel becomes initializable after invoking this method and all kernel provided global variable becomes available.</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>
+    

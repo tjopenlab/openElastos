@@ -1,0 +1,80 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\float\_logb">_logb</sample>
+    <title> _logb</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> float_idx.htm </routine_idx>
+
+    <description>
+	<para>The function allows users to test conformance to IEEE Standard 754-1985. Otherwise it's use is not recommended.</para>
+        <para>_logb(x) returns x's exponent n, a signed integer converted to double-precision floating-point. _logb(±infinity) = +infinity; _logb(0) = -infinity with a division by zero exception.</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>_logb</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>Double-precision floating-point value.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_logb returns the unbiased exponential value of x.</para>
+    </return>
+
+    <remarks>
+        <para>The _logb function extracts the exponential value of its double-precision floating-point argument x, as though x were represented with infinite range. If the argument x is denormalized, it is treated as if it were normalized.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_logb</routine_name>
+            <headerfile>float.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _logb.cpp: This program extracts exponential value of f1.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;float.h&gt;
+#include &lt;math.h&gt;
+
+int main()
+{
+    double f, f1;
+
+    f1 = 16.00;
+    f = _logb(f1);
+    printf(&quot;_logb(%f) = %f\n&quot;, f1, f);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+_logb(16.000000) = 4.000000
+</result>
+
+
+
+</manpage>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fputs">fputs</sample>
+    <title> fputs, fputws</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>将字符串写入文件流。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fputs</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>指向要写入文件流的字符串的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fputws</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果成功，返回非负值；否则，fputs返回EOF，fputws返回WEOF。</para>
+    </return>
+
+    <remarks>
+        <para>两个函数都是将string拷贝到输出文件流的当前位置。根据文件是以文本模式还是以二进制模式打开，fputws将宽字串分别拷贝成多字节字符串和宽字符串。两个函数都不拷贝终结符。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fputs</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>fputws</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fputs.cpp: TThis program uses fputs to write
+ * a single line to the stdout stream.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    fputs(&quot;Hello world from fputs.\n&quot;, stdout);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Hello world from fputs.
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>fgetws</ref_name>
+            <ref_url>fgetws</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_getws</ref_name>
+            <ref_url>_getws</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_putws</ref_name>
+            <ref_url>_puts</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,69 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> mstat </title>
+    <volume>Commands Supported by Shell</volume>
+
+    <description>
+        <para> Checks the current distribution of system memory.</para>
+    </description>
+
+    <examples>
+        <example>
+            <eg_line>mstat</eg_line>
+            <eg_note>
+            	Directly input mstat command in shell. The following is the output information of execution of mstat: 
+            </eg_note>
+            <eg_result><![CDATA[
+						Cache: Allocated bytes = 244096, total pages = 62
+						Pages: Allocated kernel pages = 150, AllocatedPhysicalPages = 4249
+						Total pages = 14320, Free pages = 9015
+						]]>
+			</eg_result>
+        </example>
+    </examples>
+    <remarks>
+        <para>
+        	In the sample output information, the first line is the current allocation of kernel Cache. <i>Allocated 
+        	bytes</i> is the number of bytes in kernel that was allocated by using <link url=
+        	"../../../../ddk/driver_development/driver_support_routines/kernel_routines/memory_management/method/malloc.htm">
+        	malloc</link>function. <i>total pages</i> is the total number of pages used by the current kernel Cache. 
+        	The second line represents the current allocation situation of page allocator. <i>Allocated kernel pages</i> 
+        	is the current allocated number of pages of kernel page allocator (kernel function <link url=
+        	"../../../../ddk/driver_development/driver_support_routines/kernel_routines/memory_management/method/AllocKernelPages.htm">
+        	AllocKernelPages</link>). <i>AllocatedPhysicalPages</i> is the current allocated number of pages of physical 
+        	page allocator (kernel function <link url="../../../../ddk/driver_development/driver_support_routines/kernel_routines/memory_management/method/AllocPages.htm">
+        	AllocPages</link>). The <i>Total pages</i> in the third line is the total number of pages in system memory. 
+        	<i>Free pages</i> is the total number of current useable pages.
+        </para>
+        <para>
+        	If you want to check if kernel leak really exists, you need to know the internal connection of output 
+        	information first. The pages of kernel Cache is allocated by kernel page allocator. Eventually the 
+        	pages allocated by kernel page-allocator is allocated by the physical page allocator. The system total 
+        	memory number of pages does not change. Therefore, the following points should be noted when checking 
+        	memory allocation: 
+        </para>
+        <para>
+        	1. The total number of current free page. Decrease in free pages does not mean that there is kernel leak.
+        </para>
+        <para>
+        	2. Increase in page allocator's number of pages does not mean there is kernel leak.
+        </para>
+        <para>
+        	3. Increase in total number of pages used by Cache does not means that there is kernel leak.
+        </para>
+        <para>The following indicates memory leak: </para>
+        <para>
+        	1. Increase in allocated bytes while running stat many times.
+        </para>
+        <para>
+        	2. Decrease in the current total useable number of pages and increase in page-allocator number of 
+        	pages while running stat many times.
+        </para>
+    </remarks>
+</manpage>

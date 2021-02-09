@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> Move </method>
+    <description>
+        <para>
+            将控件移动到指定位置。（根据偏移量移动）
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> offsetX </param_name>
+                <param_note>
+                    <para>
+控件左顶点在 x 方向上需要移动的距离</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> offsetY </param_name>
+                <param_note>
+                    <para>
+控件左顶点在 y 方向上需要移动的距离</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_CONTROL_NO_PARENT</td>
+	    	    <td>控件没有父控件</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法的成功调用由于改变了控件在其父控件内的位置，故将触发 <link url="../JControlEvents/BoundsChanged.htm">BoundsChanged</link> 事件。
+    </para>
+    <para>
+        直接将控件移动到指定位置，可以通过 <link url="MoveTo.htm">MoveTo</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>MoveTo</ref_name>
+        <ref_url>MoveTo</ref_url>
+    </reference>
+    <reference>
+        <ref_name>BoundsChanged</ref_name>
+        <ref_url>../JControlEvents/BoundsChanged</ref_url>
+    </reference>
+</references>
+</manpage>

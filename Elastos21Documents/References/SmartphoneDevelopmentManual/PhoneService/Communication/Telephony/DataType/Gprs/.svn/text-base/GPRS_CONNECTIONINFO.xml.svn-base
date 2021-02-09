@@ -1,0 +1,39 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>通讯引擎</volume>
+    <types> GPRS_CONNECTIONINFO </types>
+    <description>
+        <para>
+            连接信息。
+        </para>
+    </description>
+
+  <struct>
+        <struct_member>
+            <mem_type>GPRS_PDP_CONTEXT </mem_type>
+            <mem_name>pdpContext</mem_name>
+            <mem_description>PDP上下文信息，参见<link url="GPRS_PDP_CONTEXT.htm"> GPRS_PDP_CONTEXT</link>结构 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>BOOL</mem_type>
+            <mem_name>bRequestedQOSSettingsValid</mem_name>
+            <mem_description>服务质量设定是否有效</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>GPRS_QOSSETTINGS</mem_type>
+            <mem_name> cgqsRequestedQOSSettings </mem_name>
+            <mem_description>服务质量设定，参见<link url="GPRS_QOSSETTINGS.htm"> GPRS_QOSSETTINGS</link>结构 </mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>BOOL</mem_type>
+            <mem_name>bMinimumQOSSettingsValid</mem_name>
+            <mem_description>可接受的最低服务质量设定是否有效</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>GPRS_QOSSETTINGS</mem_type>
+            <mem_name>cgqsMinimumQOSSettings</mem_name>
+            <mem_description>最低服务质量设定, 参见<link url="GPRS_QOSSETTINGS.htm"> GPRS_QOSSETTINGS</link>结构</mem_description>
+        </struct_member>
+    </struct>
+
+</manpage>

@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>设备管理</volume>
+    <types>DzConfig</types>
+
+    <description>
+        <para> 驱动配置信息。</para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type>DeviceConfig *</mem_type>
+            <mem_name>pDeviceConfigs</mem_name>
+            <mem_description>指向全局设备配置信息表的指针，设备配置表是一个以<link url="..\data_structure\DeviceConfig.htm">DeviceConfig</link>结构为元素类型的全局数组</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t</mem_type>
+            <mem_name>uNumberOfDeviceConfigs</mem_name>
+            <mem_description>设备配置的总数，该变量指定了pDeviceConfigs指向的数组的大小</mem_description>
+        </struct_member>
+
+        <struct_member>
+            <mem_type>DriverConfig *</mem_type>
+            <mem_name>pDriverConfigs</mem_name>
+            <mem_description>指向全局驱动配置信息表的指针，驱动配置表是一个以<link url="..\data_structure\DriverConfig.htm">DriverConfig</link>结构为元素类型的全局数组</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t</mem_type>
+            <mem_name>uNumberOfDriverConfigs</mem_name>
+            <mem_description>驱动配置的总数，该变量指定了pDriverConfigs指向的数组的大小</mem_description>
+        </struct_member>
+
+    </struct>
+</manpage>

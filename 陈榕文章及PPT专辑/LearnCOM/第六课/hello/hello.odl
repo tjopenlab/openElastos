@@ -1,0 +1,24 @@
+[
+    uuid(B09BAFDA-18B7-43c3-9922-D5386EAB6C34), 
+    version(1.0)
+]
+library Hello
+{
+    importlib("stdole2.tlb");
+    [
+      uuid(47E59635-F673-4802-92E1-CF0E50AC604D), 
+      oleautomation
+    ]
+    interface IHello : IUnknown
+    {
+        HRESULT Hello([in] BSTR inStr, [out,retval] BSTR * outStr);
+    }
+    [
+        uuid(0716E650-442D-4aa7-B5C7-E415AFBC1275)
+    ]
+    coclass CHello
+    {
+        [default]  interface IHello;
+    }
+}
+

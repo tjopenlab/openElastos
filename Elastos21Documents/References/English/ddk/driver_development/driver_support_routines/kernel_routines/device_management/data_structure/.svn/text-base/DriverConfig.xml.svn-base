@@ -1,0 +1,34 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/custom_type.xsl"?>
+
+<manpage>
+    <volume>Device Management Data Structures </volume>
+    <types>DriverConfig</types>
+
+    <description>
+        <para> Driver configuration information. </para>
+    </description>
+
+    <struct>
+        <struct_alias>DriverConfig</struct_alias>
+        <struct_member>
+            <mem_type>wchar_t </mem_type>
+            <mem_name>wszDeviceName[c_uMaxLengthOfDeviceName + 1] </mem_name>
+            <mem_description>Corresponding device name character array of device driver. </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>createdriverroutine_t </mem_type>
+            <mem_name> routine </mem_name>
+            <mem_description>Driver object creation method. </mem_description>
+        </struct_member>
+    </struct>
+
+    <remarks>
+        <para>Constant c_uMaxLengthOfDeviceName in device name character array is 31.</para>
+    </remarks>
+</manpage>
+

@@ -1,0 +1,84 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\AStringBuf\Replace">Replace</sample>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method>Replace</method>
+
+    <description>
+        <para>将此对象的字符串从指定位置开始替换为另一子串。</para>
+    </description>
+
+    <syntax>
+        <return_val> AStringBuf &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name>offset</param_name>
+            <param_note>
+                <para> 开始的偏移量 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name>count</param_name>
+            <param_note>
+                <para>替换的字符个数</para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>const AString &amp;</param_type>
+            <param_name>as</param_name>
+            <param_note>
+                <para>子串</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回AStringBuf对象引用</para>
+    </return>
+    <remarks>
+        <para>超过AStringBuf对象可用的长度会被省略掉。 </para>
+    </remarks>
+<example>
+<pre>
+AStringBuf_&lt;10&gt; asbuf;
+asbuf.Copy("123456");
+AString as="abcd";
+asbuf.Replace(2, 2, as);
+CConsole::WriteLine(asbuf); //Display : "12ab56"
+
+asbuf.Copy("123456");
+asbuf.Replace(1, 5, as);
+CConsole::WriteLine(asbuf); //Display : "1abcd6"
+</pre>
+</example>
+ <references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Copy</ref_name>
+        <ref_url>../AStringBuf/Copy/index/Copy</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf:Append</ref_name>
+        <ref_url>../AStringBuf/Append/index/Append</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Replace</ref_name>
+        <ref_url>../WStringBuf/Replace</ref_url>
+    </reference>
+</references>   
+ 
+
+</manpage>

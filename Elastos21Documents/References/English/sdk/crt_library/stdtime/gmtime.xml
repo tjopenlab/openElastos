@@ -1,0 +1,127 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\gmtime">gmtime</sample>
+    <title>gmtime</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>Convert a time value to a structure  of type tm</para>
+    </description>
+
+    <syntax>
+        <return_val>struct tm *</return_val>
+        <func_name>gmtime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const time_t *</param_type>
+                <param_name>timer</param_name>
+                <param_note>
+                <para>Pointer to stored time</para>
+                </param_note>
+            </func_param>
+       </parameters>
+    </syntax>
+
+    <return>
+        <para>Return a pointer to a structure of type tm</para>
+        <table>
+            <th>
+               <td>指针域</td>
+               <td>Description</td>
+            </th>
+            <tr>
+               <td>tm_sec</td>
+               <td>Seconds after minute (0 – 59). </td>
+            </tr>
+            <tr>
+               <td>tm_min</td>
+               <td>Minutes after hour (0 – 59). </td>
+            </tr>
+            <tr>
+               <td>tm_hour</td>
+               <td>Hours since midnight (0 – 23).</td>
+            </tr>
+            <tr>
+               <td>tm_hour</td>
+               <td>Hours since midnight (0 – 23).</td>
+            </tr>
+            <tr>
+               <td>tm_hour</td>
+               <td>Hours since midnight (0 – 23).</td>
+            </tr>
+            <tr>
+               <td>tm_mday</td>
+               <td>Day of month (1 – 31).</td>
+            </tr>
+            <tr>
+               <td>tm_mon</td>
+               <td>Month (0 – 11; January = 0</td>
+            </tr>
+            <tr>
+               <td>tm_year</td>
+               <td>Year (current year minus 1900).</td>
+            </tr>
+            <tr>
+               <td>tm_wday</td>
+               <td>Day of week (0 – 6; Sunday = 0).</td>
+            </tr>
+            <tr>
+               <td>tm_ydayr</td>
+               <td>Day of year (0 – 365; January 1 = 0.</td>
+            </tr>
+            <tr>
+               <td>tm_isdst</td>
+               <td>Always 0 for gmtime.</td>
+            </tr>
+        </table>
+     </return>
+
+    <remarks></remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>gmtime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+
+
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+  
+
+int main(void)
+{
+struct tm *local;
+time_t t;
+t=time(NULL);
+local=localtime(&amp;t);
+printf(&quot;Local hour is: %d\n&quot;,local-&gt;tm_hour);
+local=gmtime(&amp;t);
+printf(&quot;UTC hour is: %d\n&quot;,local-&gt;tm_hour);
+return 0;
+}
+</pre>
+    </example>
+<result>
+local hour is:11
+UTC hour is:3
+</result>
+
+
+</manpage>

@@ -1,0 +1,86 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>shutdown</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>禁止在一个套接口上进行数据的接收或发送，但并不释放套接口占用的系统资源。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>套接口。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>how</param_name>
+                <param_note>
+                    <para>标志，用于描述禁止哪些操作。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，返回0；否则返回SOCKET_ERROR，通过调用WSAGetLastError()可以得到具体的错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>shutdown()函数可对任何类型的套接口禁止接收、禁止发送或禁止收发。</para>
+        <para>如果how参数为SD_RECEIVE，则该套接口上的后续接收操作将被禁止。对套接口接收功能的禁止并不影响低层协议。对于TCP协议，TCP窗口将继续接收数据（但不确认）直至窗口满。对于UDP协议，仍将接收并排队到来的数据。任何情况下都不会产生ICMP错误包。</para>
+        <para>若how为SD_SEND，则禁止后续发送操作。对于TCP，将发送FIN。</para>
+        <para>若how为SD_BOTH，则同时禁止收和发。</para>
+        <para>shutdown()函数并不关闭套接口，套接口占用的资源将被一直保持到closesocket()调用。</para>
+        <para>注意：无论SO_LINGER设置与否，shutdown()函数不会阻塞。</para>
+        <para>应用程序不应该使用一个已被shutdown()关闭服务的套接口。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>closesocket</ref_name>
+            <ref_url>closesocket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>connect</ref_name>
+            <ref_url>connect</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

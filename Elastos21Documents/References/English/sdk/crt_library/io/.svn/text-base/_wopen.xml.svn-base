@@ -1,0 +1,188 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_wopen">_wopen</sample>
+    <title> _open, _wopen</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>The file name specified by path is opened for reading and/or writing as specified by the argument flags and the file descriptor returned to the calling process. The flags argument may indicate that the file is to be created if it does not exist (by specifying the O_CREAT flag).</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_open</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>Pointer to file name.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>oflag</param_name>
+                <param_note>
+                    <para>Type of operations allowed.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+                <param_note>
+                    <para>Permission mode.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wopen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>oflag</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns a file descriptor for the opened file. A return value of -1 indicates an error, in which case errno is set to one of the following values: </para>
+        <table>
+    	    <th>
+    	        <td>Errno</td>
+    	        <td>Description</td>
+    	    </th>
+            <tr>
+                <td>EACCES</td>
+                <td>Tried to open read-only file for writing or file's sharing mode does not allow specified operations, or given path is directory.</td></tr>
+            <tr>
+                <td>EEXIST</td>
+                <td>_O_CREAT and _O_EXCL flags specified, but filename already exists.</td></tr>
+            <tr>
+                <td>EINVAL</td>
+                <td>Invalid oflag or pmode argument.</td></tr>
+            <tr>
+                <td>EMFILE</td>
+                <td>No more file handles available (too many open files).</td></tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>File or path not found.</td></tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The _open function opens the file specified by filename and prepares the file for reading or writing, as specified by oflag. _wopen is a wide-character version of _open; the filename argument to _wopen is a wide-character string. _wopen and _open behave identically otherwise.</para>
+        <para>oflag is an integer expression formed from one or more of the following manifest constants or constant combinations defined in fcntl.h: </para>
+        <table>
+    	    <th>
+    	        <td>oflag parameter value</td>
+    	        <td>Description</td>
+    	    </th>
+            <tr>
+                <td>_O_APPEND</td>
+                <td>Moves file pointer to end of file before every write operation.</td>
+            </tr>
+            <tr>
+                <td>_O_BINARY</td>
+                <td>Opens file in binary (untranslated) mode. (See fopen for a description of binary mode.)</td>
+            </tr>
+            <tr>
+                <td>_O_CREAT</td>
+                <td>Creates and opens new file for writing. Has no effect if file specified by filename exists. pmode argument is required when _O_CREAT is specified.</td>
+            </tr>
+            <tr>
+                <td>_O_CREAT | _O_EXCL</td>
+                <td>Returns error value if file specified by filename exists. Applies only when used with _O_CREAT.</td>
+            </tr>
+            <tr>
+                <td>_O_RDONLY</td>
+                <td>Opens file for reading only; cannot be specified with _O_RDWR or _O_WRONLY.</td>
+            </tr>
+            <tr>
+                <td>_O_RDWR</td>
+                <td>Opens file for both reading and writing; you cannot specify this flag with _O_RDONLY or _O_WRONLY.</td>
+            </tr>
+            <tr>
+                <td>_O_TEXT</td>
+                <td>Opens file in text (translated) mode. (For more information, see <link url="../File_IO.htm">Text and Binary Mode File I/O</link> and <link url="../stdio/_wfopen.htm">fopen</link>.)</td>
+            </tr>
+            <tr>
+                <td>_O_TRUNC</td>
+                <td>Opens file and truncates it to zero length; file must have write permission. You cannot specify this flag with _O_RDONLY. _O_TRUNC used with _O_CREAT opens an existing file or creates a new file.
+                Note: Use _O_TRUNC parameter will destroy file content.</td>
+            </tr>
+            <tr>
+                <td>_O_WRONLY</td>
+                <td>Opens file for writing only; cannot be specified with _O_RDONLY or _O_RDWR.</td>
+            </tr>
+        </table>
+        <para>To specify the file access mode, you must specify either _O_RDONLY, _O_RDWR, or _O_WRONLY. There is no default value for the access mode.</para>
+        <para>When two or more manifest constants are used to form the oflag argument, the constants are combined with the bitwise-OR operator (|). See Text and Binary Mode File I/O for a discussion of binary and text modes.</para>
+        <para>The pmode argument is required only when _O_CREAT is specified. If the file already exists, pmode is ignored. Otherwise, pmode specifies the file permission settings, which are set when the new file is closed the first time. _open applies the current file-permission mask to pmode before setting the permissions (for more information, see _umask). pmode is an integer expression containing one or both of the following manifest constants, defined in SYS\STAT.H: </para>
+        <table>
+    	    <th>
+    		    <td>pmode Parameter Value</td>
+            	<td>Description</td>
+    	    </th>
+            <tr>
+                <td>_S_IREAD</td>
+                <td>Read only permission.</td>
+            </tr>
+            <tr>
+                <td>_S_IWRITE</td>
+                <td>Write only permission(same effect as read and write permission).</td>
+            </tr>
+            <tr>
+                <td>_S_IREAD | _S_IWRITE</td>
+                <td>Read and write permission.</td>
+            </tr>
+        </table>
+        <para>
+             When both constants are given, they are joined with the bitwise-OR operator (|). In Windows NT, all files are readable, so write-only permission is not available; thus the modes _S_IWRITE and _S_IREAD | _S_IWRITE are equivalent.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_open</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wopen</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example></example>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_wcreat</ref_name>
+            <ref_url>_wcreat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_close</ref_name>
+            <ref_url>_close</ref_url>
+        </reference>
+    </references>
+
+</manpage>

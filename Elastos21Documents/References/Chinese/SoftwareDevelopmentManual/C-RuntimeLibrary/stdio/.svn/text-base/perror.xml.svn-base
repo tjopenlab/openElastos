@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\perror">perror</sample>
+    <title>perror</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>打印错误信息。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>perror</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>指向错误信息字符串的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>perror函数是打印一个错误信息，string首先被打印，紧跟着是冒号“：”然后是系统错误信息，它由最后库调用产生的，最后是一个换行符。如果string是空指针或指向空串，perror 仅打印系统错误信息。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>perror</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* perror.cpp: This program attempts to open a file which doesn&apos;t exist,
+ * then attempts to use sqrt to calculates the square root of a negative.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main()
+{
+    FILE *fp;  //file pointer
+    double x = -10;
+    double y;
+    //f:\file.txt doesn&apos;t exist.
+    fp = fopen(&quot;U:\\file.txt&quot;, &quot;w&quot;);
+    if (fp == NULL) {
+        perror(&quot;perror says open the file failed&quot;);
+    }
+    else {
+        perror(&quot;perror says open file no error&quot;);
+        fclose(fp);
+    }
+    //the sqrt&apos;s argument is minor to zero
+    y = sqrt(x);
+    perror(&quot;The argument of the funtion is out of domian&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+perror says open the file failed:No such file of directory
+The argument of the function is out of domian:Domain error
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>strerror</ref_name>
+            <ref_url>..\string\strerror</ref_url>
+        </reference>
+    </references>
+
+</manpage>

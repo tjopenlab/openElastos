@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>U8String</class>
+    <method> Substring </method>
+
+    <description>
+        <para> 从此实例检索子字符串。子字符串从指定的字符位置开始。 </para>
+    </description>
+    <syntax>
+        <return_val> U8String </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> start </param_name>
+            <param_note>
+                <para> 此实例中子字符串的起始字符位置（从零开始）。  </para>
+            </param_note>
+        </api_param>
+           
+        </parameters>        
+    </syntax>
+    <return>
+        <para>一个U8String对象，它等于此实例中从start开始的子字符串，如果start等于此实例的长度，则为空字符串("")。 
+</para>
+    </return>
+<remarks>
+	<para>1.索引编号从零开始。 </para>
+	<para>2.若start小于0或大于实例中字符串的长度， 返回的U8String对象包含的字符串指针为NULL。 </para>
+	</remarks>
+<example>
+<pre>
+U8String u8s("abcdef");
+Int32 start = 4;
+CConsole::WriteLine(u8s.Substring(start));  //Display : "ef"
+</pre>
+</example>
+
+
+  
+</manpage>

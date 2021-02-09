@@ -1,0 +1,50 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字-- virtual </title>
+</head>
+
+<body>
+	<h2>final</h2>
+	    <b>含义 </b>
+	        <p> 此关键字用于修饰普通构件类<a class="style1" href= "..\keywords\keywords_class.htm">class</a>，表示该类不允许被继承。</p>
+	
+	    <b>语法 </b>
+	    	<p><b>final</b> class CBar {...}  </p>
+	    <b>使用说明 </b>
+	        <p>1. final只能修饰<a class="style1" href= "..\keywords\keywords_class.htm">class</a>，不能修饰其它构件类。</p>
+            <p>2. final可以和关键字<a class="style1" href= "..\keywords\keywords_singleton.htm">singleton </a>同时修饰构建类，使用顺序是<a class="style1" href= "..\keywords\keywords_singleton.htm">singleton</a>在前，final在后。 </p>
+
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IFoo {
+        Foo();
+    }
+    
+    interface IBar  {
+        Bar();
+    }
+    <b>final</b> class CFoo {
+        virtual interface IFoo;
+    }
+
+    class CBar inherits CFoo {   //Error：can’t inherits final class
+        interface IBar;
+    }
+}
+
+</pre>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

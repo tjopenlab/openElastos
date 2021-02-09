@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IGraphics</interface><method> FillPolygon </method>
+    <description>
+        <para>
+            填充多边形的内部（边框由Point数据结构指定的点数组所定义）。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Color </param_type>
+                <param_name> color </param_name>
+                <param_note>
+                    <para>
+确定填充特性的画笔颜色                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> BufferOf&lt;Point&gt; </param_type>
+                <param_name> points </param_name>
+                <param_note>
+                    <para>
+指定多边形各个顶点的EzPoint数组                   </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统           </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            填充颜色的取值指定为            <link url="../../datatype/Color.htm">            Color            </link>            数据类型。</para><para>            points数组中每两个相邻点指定多边形的一个边。另外，如果最后一个点和第一个点不重合，则这两个点指定多边形的闭合边。</para><para>            该方法暂未实现。
+        </para>
+    </remarks>
+</manpage>

@@ -1,0 +1,19 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>IApplet接口方法介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>Snooze()与Wakeup()</h2>
+    <p>Snooze/Wakeup不强制Applet实现，默认的实现是返回E_NOT_IMPLEMENTED；</p>
+    <p>Snooze的语义是希望Applet在后台不再活动时，保存必要的现场信息，然后释放可能释放的资源，进入一种蛰伏的状态，在这个状态下，可以通过Wakeup调用，通过之前保存的现场信息，恢复到之前的活动状态。这个设计主要是为了在运行的应用数量大了以后，内存可能会不足，如果Applet支持Snooze/Wakeup机制，那么AppletManager就会调用Snooze让Applet休眠，释放可能释放的内存等系统资源，然后根据需要调用Wakeup唤醒。</p>
+<script>footer("chinese")</script>
+</body>
+</html>

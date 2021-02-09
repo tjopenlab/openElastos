@@ -1,0 +1,77 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\Exit">WaitForExit</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> WaitForExit </method>
+    <description>
+        <para>
+            在指定的时间内等待进程的退出。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Millisecond </param_type>
+                <param_name> timeout </param_name>
+                <param_note>
+                    <para>
+						指定要等待的时间，单位为毫秒
+                    </para>
+                </param_note>
+            </api_param>
+          <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult  * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>
+						指向<link url="../../../DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址，允许为空。如果成功等待进程结束，则返回WaitResult_OK；如果在指定时间内进程还没退出，等待超时，则返回WaitResult_TimedOut；如果等待被打断，则返回WaitResult_Interrupted
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_PROCESS_NOT_STARTED</td>
+	    	    <td>进程还没启动</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION</td>
+	    	    <td>进程对自己使用WaitForExit</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		    <para>
+           使用<link url="WaitForExit.htm">IProcess::WaitForExit</link>方法确认进程退出，是一个同步调用，直到超时或进程结束后返回。
+        </para>
+        <para>
+            如果ms为零，直接返回WaitResult_TimedOut，可传入INFINITE做为参数，表示无限等待进程的退出。
+        </para>
+        <para>进程不能自身等待自身退出。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

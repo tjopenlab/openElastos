@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>短信彩信引擎</volume>
+<interface>ISmsEngine</interface><method> SetMessageNotification </method>
+    <description>
+        <para>
+            设置新到信息的提示方式。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UInt32 </param_type>
+                <param_name> dwSmsOptions </param_name>
+                <param_note>
+                    <para>
+新到短信提示选项</para><para>SMS_NEWMSG_INDICATOR_NONE——无提示</para><para>SMS_NEWMSG_INDICATOR_SIM——提示，并存至SIM卡中</para><para>SMS_NEWMSG_INDICATOR_NOTIFICATION——提示，附加短信原始PDU信息                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UInt32 </param_type>
+                <param_name> dwBroadcastOptions </param_name>
+                <param_note>
+                    <para>
+新小区广播选项</para><para>SMS_NEWCBM_INDICATOR_NONE——无提示</para><para>SMS_NEWCBM_INDICATOR_NOTIFICATION——提示，附加短信原始PDU信息                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UInt32 </param_type>
+                <param_name> dwSmsStatusReportOptions </param_name>
+                <param_note>
+                    <para>
+新短信状态报告选项</para><para>SMS_STATUSREPORT_INDICATOR_NONE——无提示</para><para>SMS_STATUSREPORT_INDICATOR_NOTIFICATION——提示，附加短信原始PDU信息                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回S_OK；
+         如果有参数无效，则方法调用失败，并返回E_INVALIDARG；</para><para>            更多返回值，参见            <link url="../../sms_error.htm">            短信彩信返回值            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elatype.h、stdlib.h、mmsdef.h、mmstype.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElDatabase.lib、elastos.lib、ElCRuntime.lib、ElUtilities.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

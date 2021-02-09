@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\gen\_utime">_utime</sample>
+    <title>_utime, _wutime</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> gen_idx.htm </routine_idx>
+
+    <description>
+        <para>通过文件名来设置文件的修改时间和最后访问时间。</para>
+    </description>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_utime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char *</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>文件名或路径</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>struct _utimbuf *</param_type>
+                <param_name>times</param_name>
+                <param_note>
+                    <para>存储的时间值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wutime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t *</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+            <func_param>
+                <param_type>struct _utimbuf *</param_type>
+                <param_name>times</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果函数调用成功，返回0；否则，则返回-1，此时，错误号被设置为如下的常量之一：</para>
+        <table>
+    	    <th>
+    	        <td>错误号</td>
+    	        <td>描述</td>
+    	    </th>
+            <tr>
+                <td>EACCES</td>
+                <td>文件名指定了一个只读文件或一个目录</td>
+            </tr>
+            <tr>
+                <td>EINVAL</td>
+                <td>非法参数</td>
+            </tr>
+            <tr>
+                <td>EMFILE</td>
+                <td>打开了过多文件</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>指定文件或路径不存在</td>
+            </tr>
+   	    </table>
+    </return>
+
+    <remarks>
+        <para>_utime函数通常是通过文件名来设置文件修改时间和最后访问时间。为了修改时间，进程必须有文件的可写权限。如果times参数为空，那么文件修改时间被设置为当前时间；否则times参数指向一个_utimbuf结构体。</para>
+        <para>_utime函数和_futime函数不同之处在于，_utime函数是通过文件名或路径来操作的，而不是文件句柄。</para>
+        <para>_wutime是_utime的宽字符版本。_wutime的参数都是宽字符串，除此之外，_wutime和_utime是一样的。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_utime</routine_name>
+            <headerfile>utime.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wutime</routine_name>
+            <headerfile>utime.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _utime.cpp: TThis program uses _utime to set the
+ * file-modification time to the current time.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;utime.h&gt;
+
+int main()
+{
+    if (_utime(&quot;_utime.exe&quot;, NULL) == -1)
+        printf(&quot;_wutime failed\n&quot;);
+    else
+        printf(&quot;File time modified\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File time modified
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>_ftime</ref_name>
+            <ref_url>../stdtime/_ftime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_futime</ref_name>
+            <ref_url>_futime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_fstat</ref_name>
+            <ref_url>../stat/_fstat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>localtime</ref_name>
+            <ref_url>../stdtime/localtime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_stat</ref_name>
+            <ref_url>../stat/_stat</ref_url>
+        </reference>
+    </references>
+
+</manpage>

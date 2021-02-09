@@ -1,0 +1,54 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzWCharBuf\DECL">EzWCharBuf_</sample>
+    <volume> Common Data Structure </volume>
+    <method>template&lt;int SIZE&gt; EzWCharBuf_::EzWCharBuf_</method>
+
+    <description>
+        <para> Constructor of a EzWCharBuf object; constructs a EzWCharBuf object and allocates memory blocks for it. </para>
+    </description>
+
+    <syntax>
+        <NoArguments/>
+    </syntax>
+
+    <remarks>
+        <para> EzWCharBuf_ is a template class; a EzWCharBuf subclass. The template parameter "SIZE" specifies number of Unicode characters in the buffer. </para>
+        <para> This function allocates memory in STACK (if declared the EzByteBuf object as local variable) or in DATA SEGMENT (if declared the EzByteBuf object as static or global variable).</para>
+        <para> [NOTE] Cannot create EzWCharBuf object with this function while in the scope of the function started with extern "C".</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzWCharBuf_<100> buf;
+    int capa;
+
+    capa = buf.Capacity();
+    printf("EzWCharBuf is declared and capacity is %d.\n", capa);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+EzWCharBuf is declared and capacity is 100.
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Constructor(without allocating memory space) </ref_name>
+            <ref_url> EzWCharBuf </ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,98 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Socket Interface </volume>
+<interface>Isocket</interface><method> RecvFrom </method>
+    <description>
+        <para>
+         接收一个数据报并保存其源地址
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32  </param_type>
+                <param_name> flags </param_name>
+                <param_note>
+                    <para>
+						调用方式标志位，普通方式为0。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32  </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>
+						用户期望接收到的数据长度。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+       <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzByteBuf   </param_type>
+                <param_name> ebbBuffer </param_name>
+                <param_note>
+                    <para>
+						用户分配的接收缓冲区大小，其capacity不能小于size，返回的used值是其实际接收数据字节数。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzByteBuf   </param_type>
+                <param_name> ebbFrom </param_name>
+                <param_note>
+                    <para>
+						得到对方的地址信息，它的capacity在应当至少大于sizeof(SOCKADDR)，得到的数据结构为struct sockaddr。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Returns </td>
+		<td>Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>S_OK</td>
+		<td>0x00000000</td>
+		<td>方法调用成功。 </td>
+	    </tr>
+	    <tr>
+		<td>STATUS_WIN32_ERROR(error)</td>
+		<td>见附录</td>
+		<td>见附录</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本; 《和欣2.0》或更高版本
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

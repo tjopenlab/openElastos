@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> GrabStylus </method>
+    <description>
+        <para>
+            抢鼠标事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_ALREADY_EXIST</td>
+	    	    <td>已经存在捕获鼠标事件的 Form</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_CLOSED</td>
+	    	    <td>窗体已关闭</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法和 <link url="GrabKey.htm">GrabKey</link> 方法类似，窗口一旦设置为捕获鼠标事件后，当前窗口可以获得鼠标的所有事件，而 activeForm 不再接收鼠标事件，其它欲抢鼠标事件的 Form调用该方法将失败直至当前抢鼠标事件的 Form 调用 <link url="UngrabStylus.htm">UngrabStylus</link> 取消抢鼠标事件或者被关闭。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>UngrabStylus</ref_name>
+        <ref_url>UngrabStylus</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GrabKey</ref_name>
+        <ref_url>GrabKey</ref_url>
+    </reference>
+</references>
+</manpage>

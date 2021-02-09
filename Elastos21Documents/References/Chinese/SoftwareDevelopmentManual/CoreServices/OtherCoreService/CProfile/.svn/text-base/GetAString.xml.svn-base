@@ -1,0 +1,80 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\Other"> CProfile::GetAString </sample>
+    <volume>配置文件</volume>
+    <title>CProfile::GetAString</title>
+    <routine_idx>../../Profile.htm</routine_idx>
+
+    <description>
+        <para>从配置文件elastos.cfg 中指定section段里的关键字里获得窄字符串值。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> AString   </param_type>
+                <param_name> appName </param_name>
+                <param_note>
+                    <para>[in]指向一个以“\0”为终止符的字符串的指针，用来指向包含关键字的section的名字。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> AString </param_type>
+                <param_name> keyName </param_name>
+                <param_note>
+                    <para>[in]指向一个以“\0”为终止符的字符串的指针，用来指向将被获取的字符型的关键字的名称。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> AStringBuf *</param_type>
+                <param_name>  pReturnedString </param_name>
+                <param_note>
+                    <para>[out]指向一个获取字符串的缓冲区的指针</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_DOES_NOT_EXIST</td><td>所要查找的值不存在</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>appName,keyName,pReturnedString为NULL或length等于0时。或appName,keyName中含有非法字符。</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para></para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>
+

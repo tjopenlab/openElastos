@@ -1,0 +1,92 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+
+<volume>线程与调度</volume>
+<interface>IThread</interface><method> SetPriority </method>
+    <description>
+        <para>
+            设置线程优先级。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ThreadPriority  </param_type>
+                <param_name> priority  </param_name>
+                <param_note>
+                    <para>
+                        指定要设置的线程优先级数值，类型为ThreadPriority。ThreadPriority类型为取值范围从0到1023的整数类型，数值越大代表的线程优先级也就越高
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值 </td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>成功设置线程优先级</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>参数错误</td>
+            </tr>
+            <tr>
+                <td>E_THREAD_ALREADY_FINISHED</td>
+                <td>线程已经退出</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>
+            一般情况下，系统优先执行高优先级的线程。默认的线程优先级是511（即ThreadPriority_Normal）。
+        </para>
+        <para>
+            合法的线程优先级的值在0（即ThreadPriority_Lowest）和1023（即ThreadPriority_Highest）之间。如果超出这个范围，方法将返回E_INVALID_ARGUMENT；如果线程已经结束，方法将不起作用并返回E_THREAD_ALREADY_FINISHED。参见以下标准的线程优先级枚举值的定义。
+        </para>
+        <table>
+            <th>
+                <td>优先级</td>
+                <td>值</td>
+            </th>
+            <tr>
+                <td>ThreadPriority_Lowest</td>
+                <td>0x000</td>
+            </tr>
+            <tr>
+                <td>ThreadPriority_BelowNormal</td>
+                <td>0x0ff</td>
+            </tr>
+            <tr>
+                <td>ThreadPriority_Normal</td>
+                <td>0x1ff</td>
+            </tr>
+            <tr>
+                <td>ThreadPriority_AboveNormal</td>
+                <td>0x2ff</td>
+            </tr>
+            <tr>
+                <td>ThreadPriority_Highest</td>
+                <td>0x3ff</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

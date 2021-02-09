@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> CApplet相关API介绍 </volume>
+    <interface>CApplet</interface>
+    <method> GetCurrent </method>
+
+    <description>
+        <para>获取当前applet的IApplet指针，不带引用计数</para>
+    </description>
+
+   <syntax_nopara>
+        <return_val>STATIC CARAPI_(IApplet *)</return_val>
+
+    </syntax_nopara>
+    <return>
+         <para>返回当前applet的IApplet指针。</para>
+     </return>
+    <remarks>
+        <para>applet和在applet中创建的子线程都属于同一个applet，如果在这些线程执行CApplet::GetCurrent()，那么获得的IApplet指针是相同的。</para>
+        <para>如果在ElastosMain及其创建的子线程里调用CApplet::GetCurrent()时会得到系统为elastosMain生成一份默认的TApplet对象。 </para>
+    </remarks>
+
+</manpage>

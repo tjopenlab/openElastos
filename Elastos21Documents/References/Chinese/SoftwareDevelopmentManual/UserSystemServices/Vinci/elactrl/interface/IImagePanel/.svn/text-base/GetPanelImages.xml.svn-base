@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IImagePanel</interface><method> GetPanelImages </method>
+    <description>
+        <para>
+            获取窗格在各个状态的图片对象的接口。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IImage ** </param_type>
+                <param_name> upImage </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口的指针的指针，用于获取窗格未被按下时的图片对象的接口</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IImage ** </param_type>
+                <param_name> downImage </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口的指针的指针，用于获取窗格被按下时的图片对象的接口</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IImage ** </param_type>
+                <param_name> activeUpImage </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口的指针的指针，用于获取窗格处于活动状态且未被按下时的图片对象的接口                    </para>
+                </param_note>
+            </api_param> 
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IImage ** </param_type>
+                <param_name> activeDownImage </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口的指针的指针，用于获取窗格处于活动状态且被按下时的图片对象的接口                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IImage ** </param_type>
+                <param_name> disabledImage </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口的指针的指针，用于获取窗格处于失效状态时的图片对象的接口</para>
+                </param_note>
+            </api_param>                                    
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        若不需要获取某个状态的图片，则参数地址可以为 NULL；但当参数地址全为 NULL 时，方法将调用失败。
+    </para>
+    <para>
+    	  成功调用该方法获取到控件某个状态时的图片对象的接口时，会自动对该接口的引用计数加 1，故一旦不再需要该接口，需要调用 Release() 方法释放该接口，否则在销毁 ImagePanel 对象时会造成内存泄漏。
+    </para>
+    <para>
+    	 控件所表现出的视觉效果是是通过控件处于不同状态的图片的切换来实现的。例如需要产生象 Button 一样被鼠标点击的效果，则需要由一张 Button 处于正常状态的图片和一张 Button 被按下时候的图片。故使用 ImagePanel 模拟控件的某些效果时，需要用户自行指定窗格各个状态的图片，设置窗格在各个状态下的图片可通过 <link url="SetPanelImages.htm">SetPanelImages</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CImagePanel 类介绍 </ref_name>
+        <ref_url>../../class/ImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IImagePanel 接口方法列表</ref_name>
+        <ref_url>../IImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetPanelImages</ref_name>
+        <ref_url>SetPanelImages</ref_url>
+    </reference>
+</references>
+</manpage>

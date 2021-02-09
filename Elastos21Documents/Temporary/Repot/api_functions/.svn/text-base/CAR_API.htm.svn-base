@@ -1,0 +1,183 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR中的数据类型</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</head>
+
+<body>
+<h2 align="left">CAR基本函数</h2>
+
+    <h3 align="left">CAR基本函数对比表</h3>
+    <p align="left">下表列出CAR基本函数分别在2.0和2.1上的对比以及在其它语言中的映射：</p>
+
+
+    <table class="MsoNormalTable" border="1" cellpadding="0" style="width: 771px" id="table1">
+		<thead>
+			<tr>
+				<td style="width:201px;padding:.75pt; ">
+				<p class="MsoNormal" align="left">2.1</td>
+				<td style="width:178px;padding:.75pt">
+				<p class="MsoNormal" align="left"><span lang="EN-US">2.0</span></td>
+				<td style="padding:.75pt .75pt .75pt .75pt">
+				<p class="MsoNormal" align="left"><span lang="EN-US">C++</span>数据类型</td>
+			</tr>
+		</thead>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CProcess::FreeUnusedModules</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">
+			EzFreeUnusedComponents</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">_</span><span lang="EN-US" style="font-family: 宋体">CProcess_FreeUnusedModules(TRUE);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="28">
+			<span style="font-family: 宋体">释放当前没在使用的构件<span lang="EN-US">DLL</span></span> </td>
+		</tr>
+		<tr style="height: 13.2pt">
+			<td style="padding:.75pt;" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CObject::CreatesInstances</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt;height:13.2pt">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">
+			EzCreateObject</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt;height:13.2pt">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">_CObject_CreateInstance(rclsid, 
+			pContext, riid, ppObj);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="32">
+			实例化一个对象</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CObject::Compare </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="31">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">
+			EzCompareObjects</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="31">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">_CObject_Compare(pObjectA, 
+			pObjectB);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="31">
+			<p align="left">比较两个对象</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CObject::ReleaseAtProcessExit</span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+		<p class="MsoNormal" align="left">
+		没有对应</td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+		<p class="MsoNormal" align="left">
+		<span lang="EN-US">_</span><span lang="EN-US" style="font-family: 宋体">CObject_ReleaseAtProcessExit(pObject);</span></td>
+		</tr>
+		<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="35">
+		<p class="MsoNormal" align="left">进程退出时释放对象</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CObject::EnterContext </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: Times New Roman">
+			_EzEnterContext</span><span lang="EN-US" style="font-family: 宋体">();</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">_CObject_EnterContext(pObject, 
+			pContext);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38" colspan="2">
+			对象进入context语境</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CObject::LeaveContext&nbsp;</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: Times New Roman">
+			_EzLeaveContext</span><span lang="EN-US" style="font-family: 宋体">();</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38">
+			<span lang="EN-US" style="font-family: 宋体">_CObject_LeaveContext(pObject, 
+			pContext);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="37" colspan="2">
+			<p class="MsoNormal" align="left">对象离开context语境</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="66" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CObject::AttachAspect </span>
+			<a class="style1" href=data_type/AString.htm>
+			</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			没有对应</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">_CObject_AttachAspect(pAggregator, 
+			pAspect); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33" colspan="2">
+			<p class="MsoNormal" align="left">
+			对象和aspect聚合</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="66" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CObject::DetachAspect</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="26">
+			<p class="MsoNormal" align="left">
+			没有对应</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="26">
+			<span lang="EN-US" style="font-family: 宋体">_CObject_AttachAspect(pAggregator, 
+			pAspect);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="30" colspan="2">
+			对象和aspect分离</td>
+		</tr>
+		</table>
+
+
+    </body>
+</html>

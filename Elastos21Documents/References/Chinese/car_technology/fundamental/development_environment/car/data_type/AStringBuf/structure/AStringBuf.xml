@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/structuremanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>AStringBuf</class>
+    <function> AStringBuf </function>
+
+    <description>
+        <para> AStringBuf的构造函数，用于构造一个AStringBuf对象，并指向用户分配的内存块。</para>
+    </description>
+
+    <syntax>
+        <apiname>AStringBuf</apiname>
+        <parameters>
+        <api_param>
+            <param_type>char * </param_type>
+            <param_name> pstr </param_name>
+            <param_note>
+                <para> 指向用户分配的内存块。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>Int32 </param_type>
+            <param_name> size </param_name>
+            <param_note>
+                <para> 用户分配的内存块的大小。单位为sizeof(char)。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    
+    <remarks>
+       <para> 此函数是一个Box的函数，只分配五元组的内存，数据的内存是放在pstr指向的内存块。详细参见<link url="../Alloc/Alloc1.htm">Alloc</link>函数。 </para>
+  </remarks>
+
+
+<example>
+<pre>
+char *pstr="1234";
+AStringBuf asbuf(pstr,20);
+ASSERT(asbuf == "1234");
+ASSERT(asbuf.GetCapacity() == 19);
+ASSERT(asbuf.GetLength() == 4);
+ASSERT(asbuf.GetAvailableSpace() == 15);
+</pre>
+</example>
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::AStringBuf_&lt;length &gt; </ref_name>
+        <ref_url>AStringBuf_</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::WStringBuf</ref_name>
+        <ref_url>../../WStringBuf/structure/WStringBuf</ref_url>
+    </reference>
+</references>
+   
+</manpage>

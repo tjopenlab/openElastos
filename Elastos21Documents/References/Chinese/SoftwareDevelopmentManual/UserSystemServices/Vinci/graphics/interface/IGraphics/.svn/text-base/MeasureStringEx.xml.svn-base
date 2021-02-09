@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IGraphics</interface><method> MeasureStringEx </method>
+    <description>
+        <para>
+            测量指定字符串的高度和宽度（该字符串由IFont接口指针指定的字体对象绘制）。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+要测量的字符串                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> count </param_name>
+                <param_note>
+                    <para>
+用户实际所需text被测量的字符个数,-1表示整个字符串                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IFont * </param_type>
+                <param_name> font </param_name>
+                <param_note>
+                    <para>
+指向I<link url="../IFont.htm">IFont</link>接口类型的指针，用于定义字符串的文本格式                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> maxWidth </param_name>
+                <param_note>
+                    <para>
+绘制text的目标宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> fitCharNum </param_name>
+                <param_note>
+                    <para>
+maxWidth范围内能容纳的完整字符个数                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> adoptLenInPixels </param_name>
+                <param_note>
+                    <para>
+maxWidth范围内能容纳的完整字符像素宽度                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+                        <link url="MeasureString.htm">            MeasureString            </link>            方法旨在与个别字符串一起使用，它在字符串前后包括少量额外的空格供突出的标志符号使用。
+        </para>
+    </remarks>
+</manpage>

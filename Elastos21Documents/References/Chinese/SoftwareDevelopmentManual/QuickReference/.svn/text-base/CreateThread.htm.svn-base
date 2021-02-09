@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <title>如何创建线程</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <link rel= "stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+    <h2>如何创建线程</h2>
+    <h3>线程和线程对象</h3>
+        <p>线程是程序执行的单位，用来执行进程地址空间中的代码。一个进程包含1个或多个线程，每个线程有自己的执行上下文环境，包括CPU寄存器和栈，因此各个线程之间的执行互不干扰。同进程类似，每个线程都有在操作系统内核中对应的线程对象，用户通过线程对象控制、管理、监视线程。线程对象生命期大于等于它所对应的线程。 </p>
+        <p>通过API中的<a class="style1" href="../CoreServices/ProcessThread/ProcessThread/Function/CThread/New.htm">CThread::New</a>方法可以创建并启动一个新的线程，并返回一个指向线程对象接口的指针。</p>
+        <pre class="code">
+#include &lt;elastos.h&gt;
+#include &lt;stdio.h&gt;
+using namespace Elastos;
+
+ECode ThreadRoutine(void *arg)
+{
+    printf("This is print in thread\n");
+    return 0;
+}
+
+int __cdecl main(int argc, char** argv)
+{
+    ECode ec = NOERROR;
+    IThread *iThread;
+
+    // 创建新的线程
+    ec = CThread::New(&ThreadRoutine, NULL, ThreadCreationFlag_Started, &iThread);
+    if (FAILED(ec)) {
+        return -1;
+    }
+    
+    // 等待线程结束
+    WaitResult wr;
+    ec = iThread->Join(INFINITE, &wr);
+    iThread->Release();
+
+    return 0;
+}
+</pre>
+
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> mkead 工具</title>
+    <volume>XDK常用工具</volume>
+
+    <description>
+        <para>mkead 工具用于生成手机应用部署所需的ead文件。</para>
+    </description>
+
+    <syntax>
+        <cmd_name>mkead</cmd_name>
+        <cmd_param>[EADName FullTag Value] [-?] [ -h ] [--help] [/?] [/h]</cmd_param>
+    </syntax> 
+    <param>
+        <param_name> EADName FullTag Value  </param_name>
+        <param_note>
+        <para>EADName：EAD文件名，如：Notepad.ead </para> 
+        <para>FullTag：ag全名，外层tag和内层tag之间以.号分隔，如： EAD_Info.EAS_Name.Simplified_Chinese</para> 
+        <para>Tag property:
+              EAD_INFO、EAS_NAME、EAS_VERSION、EAS_VENDOR、EAS_ICON、AUTO SIMPLE_CHINESE、ENGLISH、TRADITIONAL_CHINESE、
+              BIG_ICON、SMALL_ICON EAS_DESCRIPTION、EAS_SIZE、EAS_DATA_SIZE、EAS_URL、EAS_SERVICE
+              EAS_CERTIFICATE、EAS_RSA_SHA1、EAS_PERMISSIONS、EAS_RESOURCES_NAME EAS_MICROEDITION_PROFILE、EAS_DELETE_CONFIRM、EAS_AUXILIARY</para>
+         <para>Value: Tag值 </para>      
+        </param_note>
+    </param>
+    <param>
+        <param_name> 无参数  </param_name>
+        <param_note>  </param_note>
+    </param>
+    <param>
+        <param_name> -?  </param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+    <param>
+        <param_name> -h  </param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+    <param>
+        <param_name> --help  </param_name>
+        <param_note> 显示gdb用法 </param_note>
+    </param>
+    <param>
+        <param_name> /?  </param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+    <param>
+        <param_name> /h  </param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+
+    <remarks>
+        <para>mkead 每次调用生成一个tag，若该ead还不存在，则新建它，若已存在该ead，则将tag追加到该ead末尾。</para>  
+    </remarks>
+    
+</manpage>

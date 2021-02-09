@@ -1,0 +1,85 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Character String Enumerator Interface</volume>
+<interface>IEzStrEnumerator</interface><method> Current </method>
+    <description>
+        <para>
+            Gets the copy of EzStr object to which EzStr object enumerator is currently pointing.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf </param_type>
+                <param_name> psa </param_name>
+                <param_note>
+                    <para>
+                        Gets the copy of EzStr object.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    <table>
+        <th>
+        <td>Return Value </td>
+        <td>Description</td>
+        </th>
+        <tr>
+        <td>S_OK</td>
+        <td>Function succeeds in getting the current object.</td>
+        </tr>
+        <tr>
+        <td>E_INVALIDARG</td>
+        <td>Invalid argument(s). psa is null or the size of psa is less than the size actually needed.</td>
+        </tr>
+        <tr>
+        <td>E_INVALID_OPERATION</td>
+        <td>
+            Invalid operation. EzStr enumerator points before the first object of EzStr object set; or
+            EzStr object set is modified; or call Current method before calling MoveNext and it returns S_FALSE.
+        </td>
+        </tr>
+    </table>
+    </return>
+
+    <remarks>
+        <para>
+            EzStr object enumerator points before the first object of EzStr object set after creating an
+            EzStr object enumerator or calling <link url="Reset.htm">Reset</link>. Calling <b>Current</b> at
+            this point in time is invalid and will return false. So you should call <link url="MoveNext.htm">
+            MoveNext</link> to make EzStr object forward to the corresponding object and then
+            call <b>Current</b> to get any copy of EzStr object.
+        </para>
+        <para>
+            Before calling <link url="MoveNext.htm">MoveNext</link> or <link url="Reset.htm">Reset</link> again,
+            if the object pointed to EzStr object enumerator is not changed, one can get the same copy of EzStr
+            object by calling <b>Current</b> many times.
+        </para>
+        <para>
+            If some modifications are made to EzSstr object set (adding or deleting EzStr object), it is a must
+            to call <link url="Reset.htm">Reset</link> to reset EzStr object enumerator, otherwise it will return
+            false while calling <b>Current</b> and <link url="MoveNext.htm">MoveNext</link>.
+        </para>
+        <para>
+            If <link url="MoveNext.htm">MoveNext</link> returns S_FALSE and then calling <b>Current</b> will
+            return E_INVALID_OPERATION.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+    </requirements>
+</manpage>

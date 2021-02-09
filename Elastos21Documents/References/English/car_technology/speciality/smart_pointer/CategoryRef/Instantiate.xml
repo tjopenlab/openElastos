@@ -1,0 +1,78 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <volume> Category Smart Pointer Class Shared Method </volume>
+    <interface> CategoryRef </interface>
+    <method>Instantiate</method>
+
+    <description>
+        <para>Creates Category category object and makes corresponding category smart pointer points to this object. This method has two forms, as the following: </para>
+    </description>
+    <syntax_nopara>
+        <return_val>ECODE</return_val>
+    </syntax_nopara>
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+        <api_param>
+            <param_type>DWORD</param_type>
+            <param_name>dwClsContext </param_name>
+            <param_note>
+                <para> Relative location of object with client. There are five possible values, as the following: </para>
+                <para_table>
+                    <th>
+                        <td>Parameter Options</td><td>Description</td>
+                    </th>
+                    <tr>
+                        <td>CTX_SAME_DOMAIN</td><td>Object and client are located in the same address space</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_DIFF_DOMAIN</td><td>Object and client are located in different address spaces, but they are located in the same process</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_KERN_DOMAIN</td><td>Object and client are located in different address spaces and object runs in the kernel</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_DIFF_PROCESS</td><td>Object and client are located in different process spaces, but they are located in the same machine</td>
+                    </tr>
+                    <tr>
+                        <td>CTX_DIFF_MACHINE</td><td>Object and client are located in different machines</td>
+                    </tr>
+                </para_table>
+                <para>For details please see <link url="../code_running_env.htm">executable code run-time environment (context)</link>. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+     <return>
+        <para>The return value of this method has the following situations: </para>
+        <table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>S_OK</td><td>Method invocation successful</td>
+            </tr>
+            <tr>
+                <td>CO_S_NOTALLINTERFACES</td><td>Interface pointer in specified class did not completely successfully obtained</td>
+            </tr>
+            <tr>
+                <td>E_NOINTERFACE</td><td>All interface pointers are not successfully obtained in specified class</td>
+            </tr>
+        </table>
+        <para>See <link url="../../../../sdk/reference/basic_data_type/hresult.htm">ECODE</link> related help.</para>
+    </return>
+
+    <remarks>
+        <para> When user does not care the relative location of created object and client, the first method is selected. No parameter is needed when invoking <b>Instantiate</b> method. System default value is one of the three values CTX_SAME_DOMAIN, CTX_DIFF_DOMAIN and CTX_DIFF_PROCESS. Relative location of created object and client is determind by priority.</para>
+        <para> When user need to specify relative location of created object and client, the second method is selected. Corresponding parameter need to be set when invoking <b>Instantiate</b> method. </para>
+        <para> Note:If the user wants to create file system object, the second method is selecte and parameter <i>dwClsContext</i> must be set to CTX_KERN_DOMAIN.</para>
+    </remarks>
+
+</manpage>

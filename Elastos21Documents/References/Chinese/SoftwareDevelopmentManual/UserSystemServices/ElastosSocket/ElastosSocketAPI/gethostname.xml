@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\user_com_interface\elasock\sam02">gethostname</sample>
+    <volume>elasock API</volume>
+    <title>gethostname</title>
+    <routine_idx>ElastosSocketIndex.htm</routine_idx>
+
+    <description>
+        <para>返回本地主机的标准主机名。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>char*</param_type>
+                <param_name>name</param_name>
+                <param_note>
+                    <para>[out]存放主机名的缓冲区。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>namelen</param_name>
+                <param_note>
+                    <para>[in]缓冲区长度。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果成功，gethostname返回0。否则，返回SOCKET_ERROR，应用程序可通过<link url="WSAGetLastError.htm">WSAGetLastError()</link>获取相应错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>暂不支持。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>gethostbyname</ref_name>
+            <ref_url>gethostbyname</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> SetEnabled </method>
+    <description>
+        <para>
+            设置控件是否能接收事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Boolean </param_type>
+                <param_name> enabled </param_name>
+                <param_note>
+                    <para>
+若为TRUE，则控件能接收事件，若为FALSE，则控件不能接收事件</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        通过该方法，可以在运行时启用或禁用控件。例如，可以禁用对应用程序的当前状态不适用的那些控件。还可以禁用一个控件，以限制其使用。例如，可以禁用一个按钮，以防止用户单击它。如果控件被禁用，就无法选中它。
+    </para>
+    <para>
+        当一个控件不能接收事件时，它将不能不会具有焦点，并且其包含的所有控件也都被禁用。当禁用可滚动的控件时，滚动条也被禁用。例如，一个被禁用的多行文本框无法滚动以显示所有文本行。
+    </para>
+    <para>
+        成功调用该方法改变控件的 Enabled 状态时将触发 <link url="../JControlEvents/EnabledChanged.htm">EnabledChanged</link> 事件。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IsEnabled</ref_name>
+        <ref_url>IsEnabled</ref_url>
+    </reference>
+</references> 
+</manpage>

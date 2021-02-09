@@ -1,0 +1,92 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzSetTime">GetWString
+  </sample>
+    <volume>System API</volume>
+    <title>CProfile::GetWString</title>
+    <routine_idx> ..\other_service.htm</routine_idx>
+
+    <description>
+        <para>
+         Acquires  value of key words in specified  section segament of elastos.cfg of configuring file of WString type 	
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type>WString </param_type>
+                <param_name> appName </param_name>
+                <param_note>
+                    <para>
+                    	[in]Pointer to a string terminating as “\0”,points to the name of section of  key word 
+                    </para>
+                </param_note>
+            </api_param>
+           <api_param>
+                <param_type> WString </param_type>
+                <param_name> keyName  </param_name>
+                <param_note>
+                    <para>
+                   [in]Pointer to a string terminating as “\0”,points to the name of  key word to be acquired
+                     </para>
+                </param_note>
+            </api_param>
+         <api_param>
+                <param_type> WStringBuf * </param_type>
+                <param_name>pReturnedString  </param_name>
+                <param_note>
+                    <para>
+                    [out]Pointer to a buffer to get strings
+                     </para>
+                </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        
+        <table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in setting the current UTC.</td>
+            </tr>
+        <tr>
+                <td>E_DOES_NOT_EXIST</td>
+                <td>The value to search is not found</td>
+            </tr>
+        <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>appName,keyName or pBuffer is NULL or length is 0 or appName,keyName contains illegal characters </td>
+            </tr>
+        </table>
+        <para>See <link url="/sdk/hresult.htm">ECODE</link> related help for more details.</para>
+    </return>
+   
+   <remarks></remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

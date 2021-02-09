@@ -1,0 +1,93 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="../../../xsl/xsl_e/interfaceman.xsl"?>    <manpage>
+    <volume>System COM Interface</volume>
+    <interface> IEvent </interface>
+    <description>
+        <para>
+			Event object interface.
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Wait</method_name>
+        <method_url>IEvent\Wait</method_url>
+    <m_description>
+		Waits for the event object to notify.
+    </m_description>
+    </method>
+    <method>
+        <method_name>TryWait</method_name>
+        <method_url>IEvent\TryWait</method_url>
+    <m_description>
+		Tries to wait for the event object to notify.
+    </m_description>
+    </method>
+    <method>
+        <method_name>Notify</method_name>
+        <method_url>IEvent\Notify</method_url>
+    <m_description>
+		Triggers the event object on a specified notification.
+    </m_description>
+    </method>
+    <method>
+        <method_name>Clear</method_name>
+        <method_url>IEvent\Clear</method_url>
+    <m_description>
+       Clears the notification of the event object.
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+
+    <remarks>
+        <para>
+        	An <b>Event</b> is a synchronization object that allows one thread to notify other threads that the event 
+        	occurred. An event object provides its service by exposing an <b>IEvent</b> interface.
+        </para>
+	<para>
+			By default, an event object is in cleared or notified state. If an event object is cleared, all threads
+			that wait for the event object will be blocked. If an event object is notified, the waiting threads
+			will not be blocked.
+	</para>
+        <para>
+        	A thread uses the <link url="../synchronization/function/EzCreateEvent.htm">CEvent::New</link> function to
+        	create an event object. And <link url="../synchronization/function/EzCreateNamedEvent.htm">CEvent::New
+        	</link> function to create a named event object, other threads can call the <link url="sdk/base_service/car_naming_service/naming_service_api/FindRunningObject.htm">CSystem::FindRunningObject</link> function to get a pointer to the event object's interface
+        	by its name.
+        </para>
+        <para>
+        	The event object has two modes: manual cleared and auto cleared, which can be specified through the
+        	function arguments when it is created. A manual cleared event object can make a specific notification
+        	by calling the <link url="IEvent/Notify.htm">IEvent::Notify</link> method, and can be cleared by calling
+        	the <link url="IEvent/Clear.htm">IEvent::Clear</link> method. A manual event object keeps its
+        	notification until the <link url="IEvent/Clear.htm">IEvent::Clear</link> method is called. An auto cleared
+        	event object clears its notification automatically when it wakes up a waiting thread.
+        </para>
+        <para>
+        	The event object has only one predefined cleared state, but has arbitrary number of the notified states;
+        	user defines a non-zero unsigned integer to represent the state. The notified state is specified while
+        	calling the <link url="IEvent/Notify.htm">IEvent::Notify</link> method. And a woken up thread gets the
+        	specified notification state from the <link url="IEvent/Wait.htm">IEvent::Wait</link> method or
+        	<link url="IEvent/TryWait.htm">IEvent::TryWait</link> method.
+        </para>
+        <para>
+        	If several threads wait for an auto cleared event object, and when the event object makes a
+        	notification, the operating system will wake up the waiting thread with the highest priority.
+        	If any waiting threads have same priorities, the thread with the longest waiting time will be woken up.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 and later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,72 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzFlushInstructionCache"> CProcess::FlushInstructionCache</sample>
+    <volume>进程</volume>
+    <title>CProcess::FlushInstructionCache</title>
+    <routine_idx>../../../Process.htm</routine_idx>
+
+    <description>
+        <para>刷出当前进程所对应的指令缓存。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> PVoid </param_type>
+                <param_name> baseAddr </param_name>
+                <param_note>
+                    <para>[in]需要刷新的cache块的基址 </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemorySize </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>[in]需要刷新的cache块的大小</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>所要刷新的Cache块超出了进程空间的地址范围</td>
+            </tr>
+
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+    	<para>如果用户修改了内存中的代码，而cpu不能检测到此改动，则有可能去执行缓存中老的代码。此时就需要调用<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/ProcessThread/Function/CProcess/FlushInstructionCache.htm">CProcess::FlushInstructionCache</link>用以将数据缓存中的代码部分刷出到内存中，并强制使指令缓存中相应的部分失效，使其必须重新去读内存。此方法只能用于当前进程上下文中。</para>
+
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

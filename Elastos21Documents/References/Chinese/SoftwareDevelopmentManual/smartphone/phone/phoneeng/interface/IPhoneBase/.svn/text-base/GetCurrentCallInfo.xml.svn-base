@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>电话引擎</volume>
+<interface>IPhoneBase</interface><method> GetCurrentCallInfo </method>
+    <description>
+        <para>
+            获取当前所有通话的信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> TAPI_CALLINFO_TBL * </param_type>
+                <param_name> lpciCallInfo </param_name>
+                <param_note>
+                    <para>
+指向TAPI_CALLINFO_TBL类型的指针，用于获取当前所有通话的信息，不能为NULL                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数lpciCallInfo为NULL，返回E_INVALIDARG；如果调用通讯模块API失败，返回E_GEN_FAIL。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>telephony.dll,database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>phonedef.h,database.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib,ElCRuntime.lib</lib_name>
+        </library>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>GetIncomingCallInfo</ref_name>
+            <ref_url>GetIncomingCallInfo</ref_url>
+        </reference>
+        <reference>
+            <ref_name>GetActiveCallInfo</ref_name>
+            <ref_url>GetActiveCallInfo</ref_url>
+        </reference>
+        <reference>
+            <ref_name>GetHeldCallInfo</ref_name>
+            <ref_url>GetHeldCallInfo</ref_url>
+        </reference>
+        <reference>
+            <ref_name>GetDialingCallInfo</ref_name>
+            <ref_url>GetDialingCallInfo</ref_url>
+        </reference>
+        <reference>
+            <ref_name>GetConversationCallInfo</ref_name>
+            <ref_url>GetConversationCallInfo</ref_url>
+        </reference>
+    </references>
+</manpage>

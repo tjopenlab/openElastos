@@ -1,0 +1,171 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>
+
+<manpage>
+    <volume> Common Data Structure </volume>
+    <interface> EzArray </interface>
+
+    <description>
+        <para>EzArray is a template data structure designed for component-oriented programming. It can be used to define a multidimensional, fixed length and self-described array.</para>
+    </description>
+
+    <constructs>
+        <construct>
+            <construct_name>template&lt;class T&gt; EzArray::EzArray</construct_name>
+            <construct_url>EzArray/structure/EzArray</construct_url>
+            <construct_description>Constructor of EzArray is used to create a EzArray object.</construct_description>
+        </construct>
+        <construct>
+            <construct_name>template&lt;class T&gt; EzArray::EzArray(EzArray&lt;T&gt;&amp;)</construct_name>
+            <construct_url>EzArray/structure/EzArrayCopy</construct_url>
+            <construct_description>Copy constructor gets a EzArray object light copy, thus only copies array pointer.</construct_description>
+        </construct>
+        <construct>
+            <construct_name>template&lt;class T, size_t SIZE&gt; EzArray_::EzArray_</construct_name>
+            <construct_url>EzArray/structure/EzArray_</construct_url>
+            <construct_description>Constructor of EzArray is used to create a EzArray object，allocate memory for them on stack</construct_description>
+        </construct>
+        <construct>
+            <construct_name>template&lt;class T, size_t SIZE&gt; EzArray_::EzArray_(EzArray_&lt;T, SIZE&gt;&amp;)</construct_name>
+            <construct_url>EzArray/structure/EzArrayCopy_</construct_url>
+            <construct_description>The copy constructor of EzArray gets a deep copying of an EzArray object，namely copying EzArray array on stack.</construct_description>
+        </construct>
+        <construct>
+            <construct_name>template&lt;T&gt; EzArray::EzArray_Box(T *pArray, size_t SIZE, size_t used)</construct_name>
+            <construct_url>EzArray/structure/EzArray_Box1</construct_url>
+            <construct_description>Constructs an EzArray array using T type array, sets its size and used size</construct_description>
+        </construct>
+        <construct>
+            <construct_name>template&lt;T&gt; EzArray::EzArray_Box(T *pArray, size_t SIZE)</construct_name>
+            <construct_url>EzArray/structure/EzArray_Box2</construct_url>
+            <construct_description>Constructs an EzArray array using T type array, sets both size and used size to SIZE</construct_description>
+        </construct>
+        <construct>
+            <construct_name>template&lt;T&gt; EzArray::EzArray_Box(EzArray_Box&lt;T&gt; &amp; src)</construct_name>
+            <construct_url>EzArray/structure/EzArray_Box3</construct_url>
+            <construct_description>EzArray copy constructor, gets a light copy of EzArray object, thus only copies the array pointer</construct_description>
+        </construct>
+        <para>EzArray and EzArray_ are both template classes;template parameter T determines the type of array element;SIZE determines the size of array. </para>
+    </constructs>
+
+    <methods>
+        <self>
+        <method>
+        <method_name>Append</method_name>
+        <method_url>EzArray/Append</method_url>
+        <m_description> Appends data to the end of EzArray object data area used space. </m_description>
+        </method>
+        <method>
+        <method_name>CreateObject</method_name>
+        <method_url>EzArray/CreateObject</method_url>
+        <m_description> Dynamic creates EzArray Obejects and allocate memory for them on heap. </m_description>
+        </method>
+        <method>
+        <method_name>Clone</method_name>
+        <method_url>EzArray/Clone</method_url>
+        <m_description>Gets a deep copying of EzArray object，namely copying EzArray array on stack. </m_description>
+        </method>
+        <method>
+        <method_name>Copy</method_name>
+        <method_url>EzArray/Copy</method_url>
+        <m_description> Copies the EzArray elements from source to destination; and point out the number of the elements copyied.  </m_description>
+        </method>
+        <method>
+        <method_name>CopyEx</method_name>
+        <method_url>EzArray/CopyEx</method_url>
+        <m_description> Copies T type data type array to the current EzArray array, specifies the number of array elements to copy.</m_description>
+        </method>
+        <method>
+        <method_name> Dispose</method_name>
+        <method_url> EzArray/Dispose</method_url>
+        <m_description> Deletes the EzArray Objects which are created on heap by <b>CreateObject</b>or<b> Clone</b> and free memory.</m_description>
+        </method>
+        <method>
+        <method_name> GetLength</method_name>
+        <method_url> EzArray/GetLength</method_url>
+        <m_description> Gets the length of current EzArray array. </m_description>
+        </method>
+        <method>
+        <method_name> IsEmpty</method_name>
+        <method_url> EzArray/IsEmpty</method_url>
+        <m_description> Checks if EzArray object data area is empty</m_description>
+        </method>
+        <method>
+        <method_name> IsNull</method_name>
+        <method_url> EzArray/IsNull</method_url>
+        <m_description> Checks if the current value of EzArray type is null or not. </m_description>
+        </method>
+        <method>
+        <method_name> Insert</method_name>
+        <method_url> EzArray/Insert</method_url>
+        <m_description> Inserts source data to specified position</m_description>
+        </method>
+        <method>
+        <method_name> Realloc</method_name>
+        <method_url> EzArray/Realloc</method_url>
+        <m_description>Reallocates memory for current EzArray array. </m_description>
+        </method>
+        <method>
+        <method_name>Replace</method_name>
+        <method_url>EzArray/Replace</method_url>
+        <m_description>Overwrites specified location with specified source data</m_description>
+        </method>
+        <method>
+        <method_name> SetUsed</method_name>
+        <method_url> EzArray/SetUsed</method_url>
+        <m_description> Sets used number of bytes in the data area</m_description>
+        </method>
+        <method>
+        <method_name> Used</method_name>
+        <method_url> EzArray/Used</method_url>
+        <m_description> Gets size of used space in data area, in sizeof(T) </m_description>
+        </method>
+    </self>
+    </methods>
+
+    <operators>
+        <operator>
+            <operator_name>operator[]</operator_name>
+            <operator_url>EzArray/operator</operator_url>
+            <operator_description>Accessing array element operator of EzArray object is used to access array elements.</operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator=(EzArray&lt;T&gt;&amp;)</operator_name>
+            <operator_url>EzArray/operator1</operator_url>
+            <operator_description>Assignment operator of EzArray object gets a fleet copy of an EzArray object，namely only copying pointers to EzArray.</operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator=(EzArray_&lt;T, SIZE&gt;&amp;)</operator_name>
+            <operator_url>EzArray/operator2</operator_url>
+            <operator_description>Assignment operator of EzArray object gets a deep copy of an EzArray object，namely copying EzArray arrays on stack.</operator_description>
+        </operator>
+    </operators>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later version; Elastos 2.0 or later version.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ezarray.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <remarks>
+        <para>
+             EzArray is compatible with Microsoft SAFEARRAY. Its self-described information can be initialized while defining the data.Thus, users need not to handle this.
+        </para>
+        <para>
+             [Note]EzArray only support one-dimensional array at present.
+        </para>
+    </remarks>
+
+</manpage>

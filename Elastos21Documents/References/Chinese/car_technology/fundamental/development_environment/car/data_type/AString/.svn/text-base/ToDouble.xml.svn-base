@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AString</interface>
+    <method>ToDouble </method>
+
+    <description>
+        <para>将当前AString对象的值转换为双精度浮点数字。</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>Double </return_val>
+        <modifier>const</modifier>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para>返回转换后的浮点型数值。</para>
+
+    </return>
+    <remarks>
+        <para>如果AString对象包含的字符串指针指向NULL，则返回0.000000。</para>
+    </remarks>
+
+
+<example>
+<pre>
+AString as1("123");
+AString as2("abc");
+AString as3("123abc");
+AString as4("abc123");
+CConsole::WriteLine(as1.ToDouble());  //Display : 123.000000
+CConsole::WriteLine(as2.ToDouble());  //Display : 0.000000
+CConsole::WriteLine(as3.ToDouble());  //Display : 123.000000
+CConsole::WriteLine(as4.ToDouble());  //Display : 0.000000
+</pre>
+</example>
+
+
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::ToBoolean </ref_name>
+        <ref_url>../AString/ToBoolean</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::ToDouble </ref_name>
+        <ref_url>../WString/ToDouble</ref_url>
+    </reference>
+</references>
+
+</manpage>

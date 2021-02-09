@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\memcmp">memcmp</sample>
+    <title> memcmp</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>比较两个缓冲区的字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>memcmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>buf1</param_name>
+                <param_note>
+                    <para>指向第一个缓冲区的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>buf2</param_name>
+                <param_note>
+                    <para>指向第二个缓冲区的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>要比较的字符数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回值反映两个缓冲区之间的关系：</para>
+        <table>
+	        <th>
+               <td>返回值</td>
+               <td>buf1 和 buf2 之间的第一个不同字节的关系</td>
+            </th>
+            <tr>
+               <td>&lt;0</td>
+               <td>buf1 小于 buf2</td>
+            </tr>
+            <tr>
+               <td>0</td>
+               <td>buf1 等于 buf2</td>
+            </tr>
+            <tr>
+               <td>&gt;0</td>
+               <td>buf1 大于 buf2</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>函数memcmp比较buf1和buf2前count个字符，返回值反映出它们之间的关系。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>memcmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* memcmp.cpp: This program uses memcmp to compare
+ * the strings named first and second. If the first
+ * 19 bytes of the strings are equal, the program
+ * considers the strings to be equal.
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char first[]  = &quot;12345678901234567890&quot;;
+    char second[] = &quot;12345678901234567891&quot;;
+    int result;
+
+    printf(&quot;Compare &apos;%.19s&apos; to &apos;%.19s&apos;:\n&quot;, first, second);
+    result = memcmp(first, second, 19);
+    if (result &lt; 0)
+        printf(&quot;First is less than second.\n&quot;);
+    else if (result == 0)
+        printf(&quot;First is equal to second.\n&quot;);
+    else if (result &gt; 0)
+        printf(&quot;First is greater than second.\n&quot;);
+    printf(&quot;Compare &apos;%.20s&apos; to &apos;%.20s&apos;:\n&quot;, first, second);
+    result = memcmp(first, second, 20);
+    if (result &lt; 0)
+        printf(&quot;First is less than second.\n&quot;);
+    else if (result == 0)
+        printf(&quot;First is equal to second.\n&quot;);
+    else if (result &gt; 0)
+        printf(&quot;First is greater than second.\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Compare &apos;1234567890123456789&apos; to &apos;1234567890123456789&apos;:
+First is equal to second.
+Compare &apos;12345678901234567890&apos; to &apos;12345678901234567891&apos;:
+First is less than second.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_memccpy</ref_name>
+            <ref_url>_memccpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memchr</ref_name>
+            <ref_url>memchr</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_memicmp</ref_name>
+            <ref_url>_memicmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memcpy</ref_name>
+            <ref_url>memcpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memset</ref_name>
+            <ref_url>memset</ref_url>
+        </reference>
+    </references>
+
+</manpage>

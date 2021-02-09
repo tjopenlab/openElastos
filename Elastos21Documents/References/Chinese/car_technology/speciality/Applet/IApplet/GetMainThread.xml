@@ -1,0 +1,39 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> IApplet接口方法介绍 </volume>
+    <interface>IApplet</interface>
+    <method> GetMainThread </method>
+
+    <description>
+        <para>获取applet的主线程，即其消息处理线程。</para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>[out] IThread ** </param_type>
+            <param_name>thread </param_name>
+            <param_note>
+                <para>
+        applet主线程的IThread接口
+ </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <remarks>
+        <para>用户进程通常会等待applet的Finishing事件，然后退出进程，但Finished是异步消息，可能applet的主线程还处于清理资源的阶段，这时立即退出会debug.此时，可以通过IApplet::GetMainThread获得线程句柄，再等待该线程结束。</para>
+    </remarks>
+<references>
+        <reference>
+            <ref_name>IApplet::Finish()</ref_name>
+            <ref_url> Finish</ref_url>
+        </reference>
+        <reference>
+            <ref_name>IThread::Join()</ref_name>
+            <ref_url>../../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/ProcessThread/IThread/Join</ref_url>
+        </reference>
+    </references>
+</manpage>

@@ -1,0 +1,53 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>程序调试工具</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+    <h2>GDB图形调试界面</h2>
+        <p>使用GDB的图形界面(gdb&nbsp;insight)调试程序比完全命令行方式更为简单，直观。</p>
+        <p>通过gdb&nbsp;insight，我们可设置断点，运行程序，查看寄存器、程序运行栈、dump内存和程序变量。既可进行源程序调试，也可基于汇编及调试；既可显示源代码，也可显示汇编代码，还可显示源代码和汇编代码相对应的混合代码。以下将逐一介绍gdb&nbsp;insight的调试界面：</p>
+        <h4>主窗口</h4>
+            <center><img src="images/gdb4.jpg"></center>
+            <center>图4-4：gdb&nbsp;insight主窗口</center>
+            <p>1.单步运行；2.执行到下一条指令；3.执行程序直到完毕；4.执行程序直到遇到断点；5.基于汇编集的step；6.基于汇编集的next；7.寄存器的查看窗口；8.查看内存窗口；9.程序栈窗口；10.程序变量查看窗口；11.局部变量查看窗口；12.断点设置窗口；13.控制台窗口，可直接使用GDB命令；14.当前所在程序源文件；15.源程序，汇编代码，混合代码选择下拉框；16.当前函数名；17.当前程序所停行。</p>
+        <h4>寄存器查看窗口</h4>
+            <center><img src="images/gdb5.jpg"></center>
+            <center>图4-5：gdb&nbsp;insight寄存器查看窗口</center>
+            <p>目前，STUB（桥头堡程序）仅提供图二中最左列寄存器的值。这是程序员平时最为关心和常用的一组寄存器。</p>
+        <h4>dump内存查看窗口</h4>
+            <center><img src="images/gdb6.jpg"></center>
+            <center>图4-6：gdb&nbsp;insight&nbsp;dump内存查看窗口</center>
+            <p>dump内存查看窗口的最左上角有一个address选择框。选择框内既可以是变量名也可以是内存地址。每个内存地址所对应的行显示16个字节的内容，其后紧跟所对应的ASCII码。</p>
+        <h4>程序栈窗口</h4>
+            <center><img src="images/gdb7.jpg"></center>
+            <center>图4-7：gdb&nbsp;insight程序栈窗口</center>
+            <p>通过双击光标所在行，就可以在主窗口查看光标行所在函数的源代码。<font color="red">两个问号“？？”表示STUB未知的函数，这个问题经常在程序跨模块和跨态（用户态和内核态）运行时出现。目前，STUB尚未解决这个问题。</font></p>
+        <h4>程序变量查看窗口</h4>
+            <center><img src="images/gdb8.jpg"></center>
+            <center>图4-8：gdb&nbsp;insight程序变量查看窗口</center>
+            <p>程序变量查看窗口的下面有一个编辑框。用户可以在编辑框内输入所要查看的变量名或表达式，对应的信息将显示在编辑框上方的窗口中。</p>
+        <h4>局部变量查看窗口</h4>
+            <center><img src="images/gdb9.jpg"></center>
+            <center>图4-9：gdb&nbspinsight程序变量查看窗口</center>
+            <p>局部变量查看窗口显示当前函数内所有的局部变量。</p>
+        <h4>断点设置窗口</h4>
+            <center><img src="images/gdb10.jpg"></center>
+            <center>图4-10：gdb&nbsp;断点设置窗口</center>
+            <p>断点设置窗口显示了当前所有断点的信息，包括断点是否有效，断点对哪个线程有效，断点所在的内存地址，断点所在的源文件，断点所在行及断点所在函数。是否为有效断点用红勾来标识，有红勾表示断点有效，否则表示断点无效。目前断点对所有的线程都有效。</p>
+            <p>如果想要设置或者取消断点，只需在相应断点所在行单击左键即可。</p>
+            <p>Breakpoint菜单是对单个单点的操作，包括断点使能，禁止断点和删除断点等。</p>
+            <p>Global菜单是对当前所有断点的操作，包括所有断点使能，禁止所有断点和删除所有断点等。</p>
+        <h4>控制台窗口</h4>
+            <center><img src="images/gdb11.jpg"></center>
+            <center>图4-11：gdb&nbsp;控制台窗口</center>
+            <p>通过控制台窗口，用户可以使用GDB的命令来调试程序。GDB命令的介绍请参看<a class="style1" href="gdb_command.htm">GDB基本命令集</a>。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

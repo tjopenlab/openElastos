@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>短信彩信引擎</volume>
+<interface>IMmsParser</interface><method> ParseRetrieveConf </method>
+    <description>
+        <para>
+            解析接收到的彩信PDU数据。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzByteBuf </param_type>
+                <param_name> ezRcvData </param_name>
+                <param_note>
+                    <para>
+接收到的彩信数据，EzByteBuf类型                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IMmsRetrieveConfRef * </param_type>
+                <param_name> ppIRetrieveConf </param_name>
+                <param_note>
+                    <para>
+指向<link url="../IMmsRetrieveConf.htm">IMmsRetrieveConf</link>接口类型的二级指针，用于获取解析完后数据集封装                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回S_OK；如果pIRetrieveConf为空参数为空，则方法调用失败，并返回E_FAIL；如果有参数无效，则方法调用失败，并返回E_INVALIDARG；如果模块正在被使用，则方法调用失败，并返回E_MMS_PARSER_BADHTTPSTATUS；如果解析器模块正在使用中，则方法调用失败，并返回E_MMS_PARSER_MODULEISUSING。</para><para>            更多返回值，参见            <link url="../../sms_error.htm">            短信彩信返回值            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elatype.h、stdlib.h、mmsdef.h、mmstype.h、CMmsParser.h、_CMmsParser.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElDatabase.lib、elastos.lib、ElCRuntime.lib、ElUtilities.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            方法内部流程：</para><para>            (1)使用GetRetrieveConfSize方法获取各buffer的大小</para><para>            (2)传入相应的参数，获取siml文档信息</para><para>            (3)获取的ezBodyBuffer项供SmilParserEntry使用
+        </para>
+    </remarks>
+</manpage>

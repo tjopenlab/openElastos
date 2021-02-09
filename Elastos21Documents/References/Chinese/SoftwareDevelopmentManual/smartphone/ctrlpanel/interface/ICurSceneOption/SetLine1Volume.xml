@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICurSceneOption</interface><method> SetLine1Volume </method>
+    <description>
+        <para>
+            设置线路1音量的大小，写入配置文件中。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> int </param_type>
+                <param_name> nVolume </param_name>
+                <param_note>
+                    <para>
+用于存放音量大小等级                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            nVolume取0代表是0%，1代表是10%，10代表是100%，音量大小共分成10个等级，从最小的0%(没有声音)到最大的100%(声音最大)，对于nVolume值的范围，这里不作判断，由UI去保证是在0——10这个范围内。
+        </para>
+    </remarks>
+</manpage>

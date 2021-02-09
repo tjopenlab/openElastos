@@ -1,0 +1,44 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+     <volume> Callbacks相关API </volume>
+    <method>RemoveXXXCallback</method>
+
+    <description>
+        <para>向server对象注销一个异步回调事件。</para>
+    </description>
+    <syntax>
+        <return_val>static _ELASTOS  ECode </return_val>
+        <parameters>
+        <api_param>
+            <param_type>PInterface</param_type>
+            <param_name>pServerObj</param_name>
+            <param_note>
+                <para>指向server对象的接口指针，回调事件的抛出者。</para>
+            </param_note>
+        </api_param>
+       <api_param>
+            <param_type>ECode</param_type>
+            <param_name> (*pFunc)(_ELASTOS PVoid, PInterface)  </param_name>
+            <param_note>
+                <para> 函数指针，指向响应该回调事件的回调函数</para>
+            </param_note>
+        </api_param>     
+        <api_param>
+            <param_type>PVoid</param_type>
+            <param_name> pUserData  </param_name>
+            <param_default> NULL</param_default>
+        </api_param>      
+        </parameters>
+    </syntax>
+    
+    <remarks>
+        <para>1.其中XXX对应回调接口中声明的方法名。</para>
+        <para>2.回调接口中的每个方法，都对应一个RemoveXXXCallback函数。</para>
+
+        <para>3.使用方法：CServer::RemoveXXXCallback（......）,其中CServer表示抛出回调事件的server对象的类名。 </para>
+    </remarks> 
+     
+</manpage>

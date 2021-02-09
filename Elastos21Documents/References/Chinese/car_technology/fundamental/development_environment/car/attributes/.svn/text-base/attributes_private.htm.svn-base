@@ -1,0 +1,57 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字-- private</title>
+</head>
+
+<body>
+	<h2>private</h2>
+	    <b>含义 </b>
+	        <p>此属性修饰任意构件类，表示该构件类只能在该类所属的dll或lib中被实例化，在其它任何地方都不能实例化该构件类。 </p>
+	
+	    <b>语法 </b>
+<pre class= code>
+[private]
+class CClassName {
+    ...
+}
+</pre>
+	    <b>使用说明 </b>
+	        <p>构件编写者要明确知道哪些构件是给外部用的，哪些是外部用不到的，外部用不到的构件，要将其定义为private。 </p>
+	        <p> </p>
+	        <p> </p>
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IFoo {
+        Foo();
+    }
+
+    class CFoo {
+        interface IFoo;
+    }
+
+    [private]
+    class CBar {
+    interface IFoo;
+    }
+}
+
+</pre>
+	        <p> 上述car构件定义了两个类CFoo和CBar,由于CBar具有private属性，因此不能在客户端调用CBar::New（&pIFoo）创建对象，只能在服务器端创建。而CFoo对象在客户端和服务端均可创建。</p>
+
+        <b>备注 </b>
+            <p></p>
+        <b><a class="style1" href="../attribute.htm">【CAR属性关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

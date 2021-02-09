@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+   
+    <volume>内存管理函数</volume>
+    <title>DzFreePage</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>释放一个已分配的物理页。</para>
+    </description>
+
+    <syntax>
+        <return_val>void </return_val>
+        <parameters>
+            <api_param>
+                <param_type> physaddr_t </param_type>
+                <param_name> pa </param_name>
+                <param_note>
+                    <para>要释放的物理页的首地址（物理地址）</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>此函数释放一个通过调用<link url="DzAllocPage.htm">DzAllocPage</link>或<link url="DzAllocPages.htm">DzAllocPages</link>分配的物理页。试图释放无效的物理页（并非由DzAllocPage或DzAllocPages函数分配的物理页），将引起未知错误。</para>
+        <para>事实上FreePage(pa)等价于FreePages(pa, 0)。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>DzAllocPage</ref_name>
+            <ref_url>DzAllocPage</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzAllocPages</ref_name>
+            <ref_url>DzAllocPages</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzFreePages</ref_name>
+            <ref_url>DzFreePages</ref_url>
+        </reference>
+    </references>
+
+</manpage>

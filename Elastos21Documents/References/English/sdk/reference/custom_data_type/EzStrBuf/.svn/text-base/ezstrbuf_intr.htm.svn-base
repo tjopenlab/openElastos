@@ -1,0 +1,42 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>EzStrBuf Data Type</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>EzStrBuf Data Type</h2>
+
+    <h3>EzStrBuf Summary</h3>
+        <p>EzStrBuf is a subclass of EzByteBuf. Comparing with EzByteBuf, the most significant difference between them is that EzStrBuf can hold EzStr object, while EzByteBuf can hold any data type. In CAR criterion, EzStr is in parameter of all string type, EzStrBuf is out parameter of all string type and EzByteBuf is in-out parameter of all byte type buffer. Similar to EzByteBuf, creating and releasing an EzStrBuf object are controlled by client.</p>
+    <h3>EzStrBuf Storage Structure </h3>
+        <p>EzStrBuf is a C++ class. Declare an EzStrBuf_<size> buf method of this class object in stack, buf is the name of this variable,size is valid size of EzStr encapsulated.</p>
+        <p>Storage Structure of EzStrBuf is illustrated below:</p>
+        <center><img src="../images/ezstrbuf.jpg"></img></center>
+        <p>According to this figure we can see that, except the darker portion, the rest are as same as the storage structure of EzByteBuf. The darker portion is an EzStr data structure. The Length of this EzStr can be changed dynamically in the range of capacity of EzStrBuf variable.</p>
+        <p>EzStrBuf and EzByteBuf are generally the same in function and usage. </p>
+
+    <h3>Case Study of EzStrBuf Applications in Elastos</h3>
+        <p>In CAR component programming, EzStrBuf mainly is <a class="style1" href="../../car/car_file/attributes/attributes_out.htm">[out]property</a> string parameter of interface method. Creating and releasing this object are controlled by client. </p>
+        <pre class="code">
+example 1:
+EzStrBuf_<256> buf;
+
+IProcessRef iProcessRef = EzGetCurrentProcess();
+iProcessRef.GetProcessName(buf);
+</pre>
+        <p>GetProcessName is a interface member method of process component object. It's declaration is: </p>
+        <pre class="code">
+ECODE __stdcall GetProcessName(
+        /* [out] */ EzStrBuf nameStrBuf)
+</pre>
+        <p>Example 1 creates a EzStrBuf object in stack whose valid buffer size is 256 wide characters (512 bytes), then call<a class="style1" href="../../elastos/prc_thr/EzGetCurrentProcess.htm">EzGetCurrentProcess</a> function to get interface smart pointer of current process object. At last call <a class="style1" href="../../zee/interface/IProcess/GetProcessName.htm">IProcess::GetProcessName</a> method and transfer buf parameter to this method, so one can get the name of current process.</p>
+<script>footer("english")</script>
+</body>
+</html>

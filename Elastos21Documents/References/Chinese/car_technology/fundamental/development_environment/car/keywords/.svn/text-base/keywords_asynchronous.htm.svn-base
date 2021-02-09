@@ -1,0 +1,143 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--asynchronous </title>
+</head>
+
+<body>
+	<h2>asynchronous</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于修饰接口，表示被修饰的接口包含的方法将以异步方式被调用。 </p>
+	        <p>如果某个接口包含比较耗时的操作，则可以将该接口声明为异步接口。当该接口的方法被调用时，调用者不必等待被调方法执行完成就可以继续后面的操作。被调用的接口方法则由后台线程负责执行。 </p>
+	    <b>语法 </b>
+	    	<p><b>asynchronous</b> interface IInterfaceName;  </p>
+
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IFooFile{
+        FooWrite([in] WString name, [in] MemoryBuf buffer);
+    }
+    
+    callbacks JFooFileEvents {
+        FooCompleted([in] Int32 writtenBytes);
+    }
+    
+    class CFooFile {
+        <b>asynchronous</b> interface IFooFile;
+        callbacks JFooFileEvents;
+    }
+}
+
+</pre>
+	        <p>编译上述asynchronousDemo.car文件将生成CFooFile.h和 CFooFile.cpp文件。 </p>
+            <p>填充CFooFile.cpp文件如下：(其中黑体部分是编译器自动生成的代码框架) </p>
+<pre class= code>
+<b>#include "CFooFile.h"
+#include "_CFooFile.cpp"</b>
+#include &lt;String.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+<b>ECode CFooFile::FooWrite(
+    /* [in] */ WString name,
+    /* [in] */ const MemoryBuf & buffer)
+{
+    // TODO: Add your code here</b>
+   
+    FILE *fp = _wfopen(name, L"w");
+    int i;
+    
+    if (NULL == fp) {
+        CConsole::WriteLine("open error");
+        return -1;
+    }
+    
+    for (i = 0; i < 50; i ++) {
+        fwrite(buffer.GetPayload(), 1, buffer.GetCapacity(), fp);
+    }
+   
+    Callback::FooCompleted(1);
+     
+     
+    time_t Cuntime;
+    time(&Cuntime);
+    
+    CConsole::Write(L"Current time is ");
+    CConsole::WriteLine(Cuntime);     
+    
+    return NOERROR;
+<b>}</b>
+
+</pre>
+	        <p>客户端代码如下： </p>            
+<pre class= code>
+#include "asynchronousDemo.h"
+using namespace Elastos;
+#include &lt;time.h&gt;
+
+ECode OnFooCompleted(PVoid userData, PInterface pSender, Int32 nWrittenBytes)
+{
+    CConsole::Write(L"callback time: ");
+    time_t begTime;
+    time(&begTime);
+
+    CConsole::WriteLine(begTime);
+
+    CFooFile::RemoveAllCallbacks(pSender);
+    CApplet::Finish(AppletFinish_ASAP);
+
+    return NOERROR;
+}
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    IFooFile * pIFooFile;
+    ECode ec;
+    MemoryBuf_<994851> buffer; 
+    WStringBuf_<64> out;
+
+    time_t begTime;
+    time(&begTime);
+    
+    CConsole::Write (L"Begin time is   ");
+    CConsole::Write(begTime);
+
+    ec = CFooFile::New(&pIFooFile);
+    CFooFile::AddFooCompletedCallback(pIFooFile, &OnFooCompleted);
+    
+    pIFooFile->FooWrite(L"user.dat",  buffer);
+    CConsole::WriteLine(out);
+    
+    CObject::ReleaseAtThreadQuit(pIFooFile);
+    
+    return NOERROR;
+}
+
+</pre>
+	        <p>运行结果如下： </p>          
+<pre class= code>
+Begin time is   1234777792
+
+Current time is 1234777794
+callback time: 1234777794
+</pre>
+	        <p>示例asynchronousDemo.car文件中，声明了asynchronous接口，当IFile的Write方法被调用时，系统自动通过后台线程完成，调用者线程直接继续后面的操作，所以我们看到在Write调用前后的time(0)返回的时间相同。 </p>       
+	    <b>使用说明 </b>
+	        <p>1.asynchronous的接口方法参数不能包含<a class= "style1" href= "..\attributes\attributes_out.htm">out参数</a>。 </p>
+	        <p>2.实现asynchronous接口与普通接口一样，但要注意，用户的实现代码是被其所属的回调线程调用执行。 </p>
+	        <p> </p>
+            <p></p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

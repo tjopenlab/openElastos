@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_creat">_creat</sample>
+    <title> _creat, _wcreat</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>创建一个新文件。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_creat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>指向要创建的文件名的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+                <param_note>
+                    <para>创建文件的属性设置</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wcreat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果程序运行成功，它将返回所创建的文件的句柄。否则，函数返回-1，并将错误号 设置为如下常量之一：</para>
+        <table>
+    	    <th>
+    	        <td>错误号</td>
+    	        <td>描述</td>
+    	    </th>
+            <tr>
+                <td>EACCES</td>
+                <td>文件名指定了一个只读文件或一个目录</td>
+            </tr>
+            <tr>
+                <td>EMFILE</td>
+                <td>无可用的文件句柄</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>找不到指定的文件</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>_creat函数创建新文件或者打开并截取已存在的文件。_wcreat是宽字符版本的_creat，它的参数pmode是宽字符串。 _wcreat和_creat的其他方面是相同的。</para>
+        <para>如果文件名指定的文件不存在，就按给定的属性创建新文件，并且处于打开状态，可以写入。如果文件已经存在，且属性设置为可写，_creat将文件长度截短至0，破坏原来的内容，并处于打开状态，等待写入。pmode属性设置仅适用于新创建的文件，指定的文件属性会在新文件第一次关闭之后生效。</para>
+        <para>参数pmode被设置成下列值中的一种：</para>
+        <table>
+            <th>
+                <td>pmode参数值</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>_S_IWRITE</td>
+                <td>允许写</td>
+            </tr>
+            <tr>
+                <td>_S_IREAD</td>
+                <td>允许读</td>
+            </tr>
+            <tr>
+                <td>_S_IREAD | _S_IWRITE</td>
+                <td>允许读和写</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_creat</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wcreat</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _creat.cpp: This program uses _creat to create
+ * the file (or truncate the existing file)
+ * named data and open it for writing.
+ */
+
+#include &lt;fcntl.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int fh;
+
+    fh = _creat(&quot;data&quot;, _S_IREAD | _S_IWRITE);
+    if (fh == -1)
+        perror(&quot;Couldn&apos;t create data file&quot;);
+    else {
+        printf(&quot;Created data file.\n&quot;);
+        _close(fh);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Created data file.
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>_close</ref_name>
+            <ref_url>_close</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wopen</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

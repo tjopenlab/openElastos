@@ -1,0 +1,124 @@
+<html>
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>aggregate_use</title>
+	</head>
+	
+	<body>
+		<h2>调用DLL</h2>
+		  <P>对于使用Phone.dll的用户来说，通过Attach方法可以使CPhone对象动态聚合AAutoChecking对象，调用ICheckingPhone接口的服务；并且，当使用完AAutoChecking对象后可通过Detach方法将其卸载。</P>
+		  <P>客户端在Check目录下调用Phone.dll的步骤如下：</P>
+		<h3>1.编写客户端实现文件</h3>
+		  <P>(1)用户要将所引用到的dll信息包括到实现文件中去。</P>
+		  <P>(2)编写ElastosMain()。该函数流程为：创建手机对象new()--->测试手机功能CheckPhone()--->查看手机测试报告Report()--->释放对象。其中CheckPhone()的流程为聚合aspect对象Attach()--->测试通话功能CheckCall()--->测试短信功能CheckSms()--->拆卸aspect对象Detach()。</P>
+		  <P>client.cpp文件</P>
+<pre class= code>
+#include &lt;elastos.h&gt;
+#include "phone.h"                               //包含所使用的dll信息
+
+using namespace Elastos;
+
+Boolean bCalling, bSms;
+
+ECode CheckPhone(IPhone* pPhone)
+{
+    ICheckingPhone* pChecking;
+
+    ECode ec = AAutoChecking::Attach(pPhone);    //聚合AAutoChecking对象
+    if (FAILED(ec)) return ec;
+
+    pChecking = ICheckingPhone::Probe(pPhone);   //通过手机的pPhone指针得到用于测试的pChecking指针
+    if (pChecking == NULL) return E_NO_INTERFACE;
+
+    pChecking->CheckCall(&bCalling);             //测试手机通话功能
+    pChecking->CheckSms(&bSms);                  //测试手机短信功能
+
+    AAutoChecking::Detach(pPhone);               //拆卸AAutoChecking对象
+
+    return NOERROR;
+}
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    IPhone* pCC28 = NULL;
+    IPhone* pCGingko = NULL;
+
+    ITestReport* pTestReport = NULL;
+
+    ECode ec = CC28Phone::New(&pCC28);          //创建CC28Phone手机对象
+    if (FAILED(ec)) {
+        CConsole::WriteLine("Can't create CC28\n");
+        return ec;
+    }
+
+    ec = CheckPhone(pCC28);                     //测试手机功能
+    if (FAILED(ec)) {
+        CConsole::WriteLine("Can't cherk CC28\n");
+        return ec;
+    }
+
+    pTestReport = ITestReport::Probe(pCC28);
+    pTestReport->Report(bCalling, bSms);        //查看手机测试报告
+
+    ec = CGingkoPhone::New(&pCGingko);          //创建CGingkoPhone手机对象
+    if (FAILED(ec)) {
+        CConsole::WriteLine("Can't create CCGingko\n");
+        return ec;
+    }
+
+    ec = CheckPhone(pCGingko);                  //测试手机功能
+    if (FAILED(ec)) {
+        CConsole::WriteLine("Can't cherk CCGingko\n");
+        return ec;
+    }
+
+    pTestReport = ITestReport::Probe(pCGingko);
+    pTestReport->Report(bCalling, bSms);        //查看手机测试报告
+
+
+    if (pCC28) pCC28->Release();
+    if (pCGingko) pCGingko->Release();
+
+    CProcess::Exit(0);                          //退出当前进程
+    return NOERROR;
+}
+</pre>
+		<h3>2.编写客户端sources文件</h3>
+			<P>(1)添加目标程序名以及程序类型。</P>
+		  <P>(2)添加所引用到的动态链接库以及编译所要用到的源文件。</P>
+		  <P>(3)添加库文件</P>
+		  <P>sources文件</P>
+<pre class=code>
+TARGET_NAME = client
+TARGET_TYPE = exe
+
+IMPORTS = Phone.dll
+
+SOURCES = client.cpp
+
+ELASTOS_LIBS= elastos.lib
+</pre>
+		<h3>screen out</h3>
+<pre class=code>
+Testing the phone's call function...
+Calling No: 13915468598
+Testing the phone's texting function...
+Texting message : 'What a wonderful world!' to No: 13915468598
+C28--081219AC  Test Report:
+Calling function is OK!
+Texting function is OK!
+
+Testing the phone's call function...
+Calling No: 13915468598
+Testing the phone's texting function...
+Texting message : 'What a wonderful world!' to No: 13915468598
+Gingko--081219BF  Test Report:
+Calling function is OK!
+Texting function is OK!
+</pre>
+
+		
+	</body>
+</html>

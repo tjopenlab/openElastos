@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\conio\_getch">_getch</sample>
+    <title> _getch</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> conio_idx.htm </routine_idx>
+
+    <description>
+        <para>Gets a character from the console without echo.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_getch</func_name>
+        <NoArguments/>
+        <parameters>
+            <func_param>
+                <param_type>void</param_type>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns the character read. There is no error return.</para>
+    </return>
+
+    <remarks>
+        <para>The _getch function read a single character from the console without echoing. It cannot be used to read CTRL+C. This function must be called twice, while reading a function key or an arrow key; the first call returns 0 or 0xE0 and the second call returns the actual key code. </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_getch</routine_name>
+            <headerfile>conio.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _getch.cpp: This program reads characters from
+ * the keyboard until it receives a &apos;Y&apos; or &apos;y&apos;.
+ */
+
+#include &lt;conio.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+
+
+int main()
+{
+    int ch;
+
+    puts(&quot;Type &apos;Y&apos; when finished typing keys: &quot;);
+    do {
+        ch = _getch();
+        ch = toupper(ch);
+    } while (ch != &apos;Y&apos;);
+
+    _putch(ch);
+    _putch(&apos;\r&apos;);     /* Carriage return */
+    _putch(&apos;\n&apos;);     /* Line feed         */
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Type &apos;Y&apos; when finished typing keys:
+Y
+</result>
+
+    <references>
+        <reference>
+            <ref_name>getc</ref_name>
+            <ref_url>../stdio/getwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_putch</ref_name>
+            <ref_url>_putch</ref_url>
+        </reference>
+    </references>
+
+</manpage>

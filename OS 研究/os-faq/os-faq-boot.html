@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>Operating Systems FAQ :: Bootloaders and Bootmenus</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="easier_load">Is there an easier way to boot my kernel?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Yes, there is an easier way to boot your kernel, and
+        that is is by using an existing boot loader!
+<P>GRUB is
+        probably the best bootloader around (and its GNU), and
+        will take away the hassle of booting your kernel for you.</P>
+<P>You will no longer need to worry about trying to
+        enable the A20 line, finding your kernel file on the disk
+        or what filesystem your kernel is on!</P>
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="boot_loadmenu">Boot Loaders / Boot Menus</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Boot Loaders and Boot Menus... two similar but different types of programs.
+		<p>The distinction between the two is simple, a boot menu allows you to
+		select the operating system you want to boot but does not load anypart
+		of that os into memory.</p>
+		<p>A boot loader will allow you to select the os you want to boot AND
+		load parts of it into memory.</p>
+		<p>For example; System Commander is a boot menu. GRUB is a bootloader.
+		</p>
+		<p>By using a boot loader over a boot menu, you alleviate alot of
+		the early angst hobbyist OS programmers usually get when trying to
+		load their kernel. The boot loader loads your kernel for you,
+		regardless of filesystem. Good boot loaders also recognise
+		some executable fileformats.
+		</p>
+		<p>If you ignore using a boot loader, you have to write your
+		own loader to read in your kernel file from the file system.</p>
+		</TD>
+	</TR>
+</TABLE>
+
+</body>
+</html>

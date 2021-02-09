@@ -1,0 +1,95 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzGetProcesses"> EzGetProcesses </sample>
+    <volume>System API</volume>
+    <title>CSystem::GetAllProcesses</title>
+    <routine_idx> ..\system_api_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	Gets an enumerator for all processes in the system.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> IObjectEnumerator **</param_type>
+                <param_name> ppProcesses </param_name>
+                <param_note>
+                    <para>
+                    	[out] The enumerator for all processes in the system. Can not be NULL.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in getting an enumerator for all processes in the system. </td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARG</td>
+                <td>Invalid argument(s)</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>Insufficient memory</td>
+            </tr>
+        </table>
+        <para>See <link url="/sdk/hresult.htm">ECODE</link> related help for more details.</para>
+    </return>
+
+    <remarks>
+        <para>
+        	The function caller can retrieve all running process objects in the system from the enumerator.
+        </para>
+        <para>
+        	If the enumerator object is not used any more, the Release method of the object should be called to 
+        	release it.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> IObjectEnumerator</ref_name>
+        <ref_url>sdk\base_service\proc_and_thd\proc_thd\IObjectEnumerator</ref_url>
+    </reference>
+    <reference>
+        <ref_name> IProcess</ref_name>
+        <ref_url>sdk\base_service\proc_and_thd\proc_thd\IProcess</ref_url>
+    </reference>
+    </references>
+
+</manpage>

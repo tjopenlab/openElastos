@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\Modules">GetAllModules</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> GetAllModules </method>
+    <description>
+        <para>
+            获取进程已装载模块的集合。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IObjectEnumerator  **</param_type>
+                <param_name> ppModules </param_name>
+                <param_note>
+                    <para>
+						<link url="../IObjectEnumerator.htm">IObjectEnumerator</link>接口的指针的指针，用于获取模块的对象枚举器接口指针，不能为空。
+                    </para>
+                </param_note>
+            </api_param>
+
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取进程中已装载模块的集合</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	         <tr>
+	    	    <td>E_OUT_OF_MEMORY</td>
+	    	    <td>内存不足</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para> 模块一般指装载到进程空间中的.dll或.exe。每个进程都有一个主模块，主模块是指用于启动进程的执行文件的内存映象，可以由<link url="Start.htm">IProcess::Start</link>方法指定。一般情况下，进程都有一个exe模块或多个dll模块。</para>
+     <para>通过此方法获得的对象枚举器接口指针，可以通过<link url="../IObjectEnumerator.htm">IObjectEnumerator</link>的接口方法枚举出进程中每一个已装载模块，得到每个module的名字，文件名字以及内存细节</para>
+		</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

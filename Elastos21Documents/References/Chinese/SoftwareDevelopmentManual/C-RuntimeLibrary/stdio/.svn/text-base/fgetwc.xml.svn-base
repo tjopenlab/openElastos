@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fgetc">fgetc</sample>
+    <title> fgetc, fgetwc</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>从文件中读一个字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fgetc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>fgetwc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数fgetc以整型返回读取的字符，或者返回EOF表明出错或文件结束。函数fgetwc以wint_t形式返回，读取的字符对应的宽字符，或者返回WEOF表明出错或文件结束。对于这两个函数，调用ferror可以检测是哪种错误；如果发生读错误，就设置文件的错误指针。</para>
+    </return>
+
+    <remarks>
+        <para>两个函数都是从文件的当前位置读入一个字符，此文件是和文件流相关联的；并且将相关文件指针加1（一个字符单位），指向下一个字符。如果流已经到文件尾，就为流设置文件结束指针。fgetwc是fgetc的宽字符版本。如果文件流以文本模式打开，fgetwc按多字节字符方式读字符；如果以二进制模式打开，按宽字符方式读字符。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fgetc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>fgetwc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fgetc.cpp: This program uses getc to read the first
+ * 80 input characters (or until the end of input)
+ * and place them into a string named buffer.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    FILE *stream;
+    char buffer[81];
+    int  i, ch;
+
+    /* Open file to read line from: */
+    if ((stream = fopen(&quot;fgetc.exe&quot;, &quot;r&quot;)) == NULL) {
+        printf(&quot;problem open the file!&quot;);
+        return 1;
+    }
+
+    /* Read in first 80 characters and place them in &quot;buffer&quot;: */
+    ch = fgetc(stream);
+    for (i = 0; (i &lt; 80) &amp;&amp; (feof(stream) == 0); i++) {
+        buffer[i] = (char)ch;
+        ch = fgetc(stream);
+    }
+
+    /* Add null to end string */
+    buffer[i] = &apos;\0&apos;;
+    printf(&quot;%s\n&quot;, buffer);
+    fclose(stream);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+MZ?
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>fputc</ref_name>
+            <ref_url>fputc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getc</ref_name>
+            <ref_url>getwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getwchar</ref_name>
+            <ref_url>getwchar</ref_url>
+        </reference>
+    </references>
+
+</manpage>

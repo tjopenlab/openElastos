@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>照相摄像引擎模块</volume>
+<interface>ICamera</interface><method> GetParam </method>
+    <description>
+        <para>
+            获取指定类型的照相机参数。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> CamParam </param_type>
+                <param_name> eType </param_name>
+                <param_note>
+                    <para>
+<link url="../../datatype/CamParam.htm">CamParam</link>枚举类型，用于保存获取的参数类型                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pnVal1 </param_name>
+                <param_note>
+                    <para>
+指向参数1的指针，不能为空                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pnVal2 </param_name>
+                <param_note>
+                    <para>
+指向参数2的指针，可以为空                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果方法调用失败，返回E_FAIL；如果参数1指针为空或获取“变焦”/“具体分辨率”时参数2指针为空，返回E_INVALIDARG    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>camera.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib，ElCRuntime.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            目前获取“变焦”和“具体分辨率”需要用到参数2指针，并且不能为NULL。
+        </para>
+    </remarks>
+    <references>
+        <reference>
+            <ref_name>SetParam</ref_name>
+            <ref_url>SetParam</ref_url>
+        </reference>
+    </references>
+</manpage>

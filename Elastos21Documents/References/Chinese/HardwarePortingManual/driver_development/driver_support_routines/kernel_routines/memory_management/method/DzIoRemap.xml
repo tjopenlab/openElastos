@@ -1,0 +1,152 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+
+    <volume>内存管理函数</volume>
+    <title>DzIoRemap</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>将指定的IO内存地址段映射到当前进程虚存段上。</para>
+    </description>
+
+    <syntax>
+        <return_val>virtaddr_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name> virtualAddr </param_name>
+                <param_note>
+                    <para>[in]想要映射的虚存首地址</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemorySize </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>[in]映射的内存块的大小</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name> physicalAddr </param_name>
+                <param_note>
+                    <para>[in]IO地址段的起始物理地址</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemoryMap </param_type>
+                <param_name> flags </param_name>
+                <param_note>
+                    <para>[in]映射选项标识，参见数据结构中的<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/DataStructure/MemoryMap.htm">MemoryMap</link>枚举类型说明</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Int32 </param_type>
+                <param_name> protect </param_name>
+                <param_note>
+                    <para>[in]映射保护权限，包含如下保护权限：</para>
+                    <para_table>
+                        <th>
+	                    <td>  权限 </td>
+	                    <td>  值 </td>
+	                    <td> 含义 </td>
+	                </th>
+	                <tr>
+	                    <td>Protect_Read</td>
+	                    <td>0x01</td>
+	                    <td>读</td>
+	                </tr>
+	                <tr>
+	                    <td>Protect_Write</td>
+	                    <td>0x02</td>
+	                    <td>写</td>
+	                </tr>
+	                <tr>
+	                    <td>Protect_Exec</td>
+	                    <td>0x04</td>
+	                    <td>执行</td>
+	                </tr>
+	                <tr>
+	                    <td>Protect_IO</td>
+	                    <td>0x08</td>
+	                    <td>IO</td>
+	                </tr>
+	                <tr>
+	                    <td>Protect_RW</td>
+	                    <td>0x03</td>
+	                    <td>读，写</td>
+	                </tr>
+	                <tr>
+	                    <td>Protect_RX</td>
+	                    <td>0x05</td>
+	                    <td>读，执行</td>
+	                </tr>
+	                <tr>
+	                    <td>Protect_RWX</td>
+	                    <td>0x07</td>
+	                    <td>读，写，执行</td>
+	                </tr>
+	                <tr>
+	                    <td>Protect_RWIO</td>
+	                    <td>0x0b</td>
+	                    <td>读，写， IO</td>
+	                </tr>
+	                </para_table>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Address * </param_type>
+                <param_name> pVirtualAddr </param_name>
+                <param_note>
+                    <para>[out]指向虚存首地址的指针，用以获取虚存首地址，参数不能为空</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_ALREADY_EXIST</td><td>指定的虚存地址已经分配</td>
+            </tr>
+            <tr>
+                <td>E_NOT_ENOUGH_ADDRESS_SPACE</td><td>没有足够的虚存地址</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>没有足够的内存</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+    	<para>本函数用于将指定的IO内存地址段映射到当前进程的虚存段上。</para>
+    	<para>参数size为0时，返回E_INVALID_ARGUMENT；virtualAddr 和size必须页对齐，否则返回E_INVALID_ARGUMENT。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

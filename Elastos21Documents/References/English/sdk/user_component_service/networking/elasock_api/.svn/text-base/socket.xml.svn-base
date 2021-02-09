@@ -1,0 +1,138 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>socket</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>创建套接口。</para>
+    </description>
+
+    <syntax>
+        <return_val>SOCKET</return_val>
+        <parameters>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>af</param_name>
+                <param_note>
+                    <para>地址族。目前只支持IF_INET。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>type</param_name>
+                <param_note>
+                    <para>套接口的类型描述。</para>
+                    <para>elasock 2.0 支持的两类套接口如下表：</para>
+                    <para_table>
+                        <th>
+                            <td>参数值</td><td>描述</td>
+                        </th>
+                        <tr>
+                            <td>SOCK_STREAM</td><td>使用TCP协议（有连接）</td>
+                        </tr>
+                        <tr>
+                            <td>SOCK_DGRAM</td><td>使用UDP协议（无连接）</td>
+                        </tr>
+                    </para_table>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>protocol</param_name>
+                <param_note>
+                    <para>套接口使用的协议。如果使用缺省协议可以设为IPPROTO_IP，其值为0。或者根据套接口类型指定相应的协议，SOCK_STREAM对应的协议为IPPROTO_TCP，SOCK_DGRAM对应的协议为IPPROTO_UDP。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>执行成功时返回新套接口的描述字；否则返回SOCKET_ERROR错误，调用WSAGetLastError函数可以得到具体的错误信息。</para>
+    </return>
+
+    <remarks>
+        <para>socket()根据给出的地址族、数据类型和协议分配一个套接口及相关资源。</para>
+        <para>SOCK_STREAM为全双向字节流套接口，它们在接收或发送数据前必需处于已连接状态。可用connect()函数建立与另一套接口的连接，连接成功后将可以用send()和recv()传送数据。当会话结束后，必须调用closesocket()以释放套接口资源。</para>
+        <para>字节流套接口可保证数据在收发过程中不丢失和重复。在缺省情况下连接过程中如果数据不能成功发送将一直阻塞。</para>
+        <para>数据报套接口允许使用sendto()和recvfrom()向任意套接口发送或接收数据报。如果已通过connect()与某套接口连接，套接口可使用send()和recv()直接进行数据报的发送和接收。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>accept</ref_name>
+            <ref_url>accept</ref_url>
+        </reference>
+        <reference>
+            <ref_name>bind</ref_name>
+            <ref_url>bind</ref_url>
+        </reference>
+        <reference>
+            <ref_name>closesocket</ref_name>
+            <ref_url>closesocket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>connect</ref_name>
+            <ref_url>connect</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getsockname</ref_name>
+            <ref_url>getsockname</ref_url>
+        </reference>
+        <reference>
+            <ref_name>ioctlsocket</ref_name>
+            <ref_url>ioctlsocket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>recvfrom</ref_name>
+            <ref_url>recvfrom</ref_url>
+        </reference>
+        <reference>
+            <ref_name>select</ref_name>
+            <ref_url>select</ref_url>
+        </reference>
+        <reference>
+            <ref_name>send</ref_name>
+            <ref_url>send</ref_url>
+        </reference>
+        <reference>
+            <ref_name>sendto</ref_name>
+            <ref_url>sendto</ref_url>
+        </reference>
+        <reference>
+            <ref_name>setsockopt</ref_name>
+            <ref_url>setsockopt</ref_url>
+        </reference>
+        <reference>
+            <ref_name>shutdown</ref_name>
+            <ref_url>shutdown</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IImage</interface><method> GetThumbnailImage </method>
+    <description>
+        <para>
+            获取缩略图。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+缩略图宽度                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+缩略图高度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IImage ** </param_type>
+                <param_name> thumbnail </param_name>
+                <param_note>
+                    <para>
+指向<link url="../IImage.htm">           IImage             </link> 接口指针的指针，用于获取缩略图对象的IImage接口的指针                   </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+<para>            如果方法调用成功，则返回NOERROR；如果参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+<para>
+    	      更多返回值信息，参见 <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统           </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            缩略图的数据必须和位图的尺寸、象素格式匹配。
+        </para>
+    </remarks>
+</manpage>

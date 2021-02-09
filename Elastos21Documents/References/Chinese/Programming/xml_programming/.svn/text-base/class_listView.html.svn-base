@@ -1,0 +1,351 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>listView标签/控件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li class="current"><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li class="current"><a href="annotated.html"><span>图形标签(控件)列表</span></a></li>
+    <li><a href="attribute.html"><span>图形标签通用属性</span></a></li>
+    <li><a href="event.html"><span>图形标签通用事件</span></a></li>
+    <li><a href="genstyle_8car.html"><span>图形标签通用风格</span></a></li>
+  </ul>
+</div>
+<h1>listView标签/控件参考</h1><!-- doxytag: class="window" -->
+<center> <img src="images/listview.jpg"> </center>
+<center><small>listView控件</small></center>
+    <p>控件显示一个列表，允许与指定数据源绑定。
+<a href="#_details">更多...</a>
+
+<hr><h2>命名空间</h2>
+http://www.elastos.com/XmlGlue/Widgets
+
+<hr><a name="_details"></a><h2>详细描述</h2>
+控件显示一个列表，与<a href="class_listBox.html">listBox</a>类似，只是listBox不能显示图标，而listView允许。
+<p>允许使用<a href="data.html">data</a>标签将数据源与listView绑定，数据源的设置详见：<a href="class_dataset.html">dataset标签参考</a>。
+<p>当为listView指定<a href="item.html">item</a>后，item的索引值index会自动从0开始依次编号，例如第一个创建的item的index为0，第二个创建的item的index为1，依次类推。
+<p>listView标签使用格式必须如下：
+<table border="0" cellpadding="0" cellspacing="0"><tr><td class="memitem" valign="bottom"><pre>&lt;listView x:id="lv" x="0" y="60" width="240" height="80" selected="print(selected)"&gt;
+    &lt;model&gt;
+        &lt;column width="50" text="column1" image="filepath"/&gt;
+        &lt;column width="100" text="column2" image="filepath"/&gt;
+        &lt;column width="90" text="column3" image="filepath"/&gt;
+    &lt;/model&gt;
+    &lt;data source="ens" max="xxx"&gt;
+        &lt;item text="Name" image="filepath"&gt;
+            &lt;prop text="Gender" image="filepath"/&gt;
+            &lt;prop text="Size" image="filepath"/&gt;
+        &lt;/item&gt;
+    &lt;/data&gt;
+&lt;/listView&gt;</td></tr></table>
+<p><a href="model.html">model</a>标签创建列表模板，<a href="column.html">column</a>设置列信息，<a href="data.html">data</a>为listView创建具体显示的数据（可以与数据源绑定，此时需要指定source属性。），<a href="item.html">item</a>添加具体的数据行，<a href="prop.html">prop</a>为该item指定行中的列。
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>属性</h2></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>text</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置控件显示的文本。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>text="textString"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" text="textString"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>itemHeight</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置其选项<a href="item.html">item</a>的垂直高度。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>itemHeight="30"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" itemHeight="30"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>viewStyle</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置列表视图控件显示风格，<a href="ListViewStyle.html">ListViewStyle</a>枚举数据类型，使用形式为：枚举名:枚举值。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>ListViewStyle</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>viewStyle="ListViewStyle:Details"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" viewStyle="ListViewStyle:Details"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>focusIndex</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">通过设置其选项<a href="item.html">item</a>的索引值，从而使该选项处于选中状态。在listView中每个item都有一个索引值，并按添加的先后顺序相应的索引值从0开始累加。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>focusIndex="1"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" selectedIndex="1"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>topIndex</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">通过设置其选项<a href="item.html">item</a>的索引值，从而使其该选项获取焦点。在listView中每个item都有一个索引值，并按添加的先后顺序相应的索引值从0开始累加。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>topIndex="2"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" topIndex="2"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>multiSelect</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置列表视图控件是否为多选状态及选中项的风格，<a href="MultiSelectStyle.html">MultiSelectStyle</a>枚举数据类型，使用形式为：枚举名:枚举值。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>MultiSelectStyle</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>multiSelect="MultiSelectStyle:None"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" multiSelect="MultiSelectStyle:None"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><h3>其他属性，见<a class="el" href="attribute.html">通用属性</a></h3></td></tr>
+</table>
+
+<hr><h2>事件</h2>
+<p>
+<b>注：</b>在xml部分注册回调事件时，可以写一个具体的执行语句，也可以写在脚本中定义的事件处理函数。
+   若在xml部分注册回调事件时，给该回调事件写了一个具体的执行语句，之后又在脚本中定义了该事件的事件处理函数，则触发该事件后会直接调用事件处理函数而忽略xml部分的具体的执行语句。
+   具体在xml部分注册回调事件的方法，可参照如下代码，示例中为listView注册了一个reselected事件。
+<table border="0" cellpadding="0" cellspacing="10">
+<tr><td class="memitem" valign="bottom">
+    &lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" <font color=red>reselected="print('reselected')"</font>/&gt;（事件发生时，若脚本中没有另外定义事件处理函数，执行该可执行语句）
+</td></tr>
+<tr><td class="memitem" valign="bottom">
+    &lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" <font color=red>reselected="onreselected()"</font>/&gt;（事件发生时，执行事件处理函数）
+</td></tr>
+</table>
+<p>
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">reselected</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当列表视图中的项被重新选择时，产生reselected事件。同时reselected指定的事件处理程序将被执行。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">reselected = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.reselected = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" reselected="on_reselected()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_reselected() {
+...
+...
+}
+mylistView.reselected = on_reselected
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">selected</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当列表视图中的项被选中时，产生selected事件。同时selected指定的事件处理程序将被执行。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">selected = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.selected = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" selected="on_selected()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_selected() {
+...
+...
+}
+mylistView.selected = on_selected
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unselected</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当列表视图中的选中项被取消选中状态时，产生unselected事件。同时unselected指定的事件处理程序将被执行。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">unselected = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.unselected = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" unselected="on_unselected()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_unselected() {
+...
+...
+}
+mylistView.unselected = on_unselected
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">topIndexChanged</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当列表视图中第一个可见行被改变时，产生topIndexChanged事件。同时topIndexChanged指定的事件处理程序将被执行。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">topIndexChanged = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.topIndexChanged = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" topIndexChanged="on_topIndexChanged()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_topIndexChanged() {
+...
+...
+}
+mylistView.topIndexChanged = on_topIndexChanged
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">focusIndexChanged</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当列表视图中焦点行被改变时，产生focusIndexChanged事件。同时focusIndexChanged指定的事件处理程序将被执行。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">focusIndexChanged = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.focusIndexChanged = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" focusIndexChanged="on_focusIndexChanged()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_focusIndexChanged() {
+...
+...
+}
+mylistView.focusIndexChanged = on_focusIndexChanged
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">itemClick</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+点击列表视图中某一项时，产生itemClick事件。同时itemClick指定的事件处理程序将被执行。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">itemClick = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.itemClick = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;listView x:id="mylistView" x="0" y="60" width="240" height="80" itemClick="on_itemClick()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_itemClick() {
+...
+...
+}
+mylistView.itemClick = on_itemClick
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a><!-- doxytag: member="IDatabase::IsClosed" ref="80f8bf3a49657380380f1cf7ba46dec0" args="([out] Boolean *closed)" -->
+<b>其他事件</b>: 见<a class="el" href="event.html">通用事件</a>
+
+<hr><h2>控件风格</h2>
+<div class="memitem">
+<dl compact><dt><b>枚举值: </b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><em>Details = 0x00000000,</em>&nbsp;</td><td>详细信息（默认） </td></tr>
+    <tr><td valign="top"><em>LargeIcon = 0x00000001,</em>&nbsp;</td><td>大图标</td></tr>
+    <tr><td valign="top"><em>List = 0x00000002,</em>&nbsp;</td><td>列表 </td></tr>
+    <tr><td valign="top"><em>SmallIcon = 0x00000003,</em>&nbsp;</td><td>小图标</td></tr>
+    <tr><td valign="top"><em>AutoWrap = 0x00000004,</em>&nbsp;</td><td>自动换行 </td></tr>
+    <tr><td valign="top"><em>MultiLine = 0x00000005,</em>&nbsp;</td><td>多行显示</td></tr>
+    <tr><td valign="top"><em>Grid = 0x00000006,</em>&nbsp;</td><td>九宫图</td></tr>
+    <tr><td valign="top"><em>NoSelection = 0x00000010,</em>&nbsp;</td><td>没有选择项</td></tr>
+    <tr><td valign="top"><em>HideSelection = 0x00000020,</em>&nbsp;</td><td>隐藏选项</td></tr>
+    <tr><td valign="top"><em>AcceleratorKey = 0x00000040,</em>&nbsp;</td><td>快捷键</td></tr>
+    <tr><td valign="top"><em>Loop = 0x00000080,</em>&nbsp;</td><td>上下键循环，不切焦点</td></tr>
+    <tr><td valign="top"><em>Sort = 0x00000100,</em>&nbsp;</td><td>自动排序</td></tr>
+    <tr><td valign="top"><em>GridLines = 0x00000200,</em>&nbsp;</td><td>分割线</td></tr>
+    <tr><td valign="top"><em>AutoSize = 0x00000400,</em>&nbsp;</td><td>自动调整大小</td></tr>
+  </table>
+</dl>
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a>
+<b>其他风格</b>：见<a class="el" href="genstyle_8car.html">通用风格</a></td></tr>
+</div>
+<p>
+<b>注：</b>控件风格允许配合使用，例如将listView的风格设置成具有焦点并自动排序，可以这样：
+<center><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+    &lt;listView ... style="ListViewStyle:Sort ControlStyle:Focused" .../&gt;
+</td></tr></table></center>
+枚举名:枚举值的形式表示，且大小写敏感，不同风格间用空格分开。也可以将两种风格的枚举值作或运算，得到的结果赋给style，例如ListViewStyle:Sort = 0x00000100，ControlStyle:Focused = 0x00400000，将两者进行或运算得0x00400100，于是style="0x00400100"。建议采用第一种写法，清晰明了。
+
+ <script>footer("chinese")</script>
+</body>
+</html>

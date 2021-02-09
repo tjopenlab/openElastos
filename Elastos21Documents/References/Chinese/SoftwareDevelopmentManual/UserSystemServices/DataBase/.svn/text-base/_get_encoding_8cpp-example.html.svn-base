@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: GetEncoding.cpp</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<h1>GetEncoding.cpp</h1>This is an example of how to use function: <a class="el" href="interface_i_database.html#5473b0397d1302d862e7eeab53fbf515" title="获取在主数据库中使用的字符编码方式。 该字符编码只能在数据库创建时设...">IDatabase::GetEncoding()</a> .<p>
+<div class="fragment"><pre class="fragment"><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<span class="preprocessor">#include &lt;ElDatabase.h&gt;</span>
+
+<span class="keyword">using namespace </span>Elastos;
+
+<span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)
+{
+    <span class="comment">// 打开数据库文件“samples.db”。</span>
+    <span class="comment">// 如果该文件不存在，则创建一个名为“samples.db”的文件。</span>
+    <a name="_a0"></a><a class="code" href="interface_i_database.html" title="特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。...">IDatabase</a> *pDatabase;
+    ECode ec = CDatabase::New(L<span class="stringliteral">"samples.db"</span>, &amp;pDatabase);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        <span class="keywordflow">return</span> -1;
+    }
+
+    <a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19" title="支持的字符编码。">DbEncoding</a> encoding;
+    ec = pDatabase-&gt;<a name="a1"></a><a class="code" href="interface_i_database.html#5473b0397d1302d862e7eeab53fbf515" title="获取在主数据库中使用的字符编码方式。 该字符编码只能在数据库创建时设...">GetEncoding</a>(&amp;encoding);
+    <span class="keywordflow">if</span> (SUCCEEDED(ec)) {
+        printf(<span class="stringliteral">"Encoding: %d"</span>, encoding);
+    }
+
+    pDatabase-&gt;Release();
+
+    <span class="keywordflow">return</span> 0;
+}
+
+<span class="comment">/*</span>
+<span class="comment">Output</span>
+<span class="comment">        Encoding: 2</span>
+<span class="comment">*/</span>
+</pre></div>
+<script>footer("chinese")</script>
+</body>
+</html>

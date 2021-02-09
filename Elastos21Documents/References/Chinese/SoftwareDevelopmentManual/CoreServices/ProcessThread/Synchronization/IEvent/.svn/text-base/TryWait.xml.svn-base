@@ -1,0 +1,149 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IEvent\TryWait">TryWait</sample>
+<volume>事件</volume>
+<interface>IEvent</interface><method> TryWait </method>
+    <description>
+        <para>尝试在指定时间间隔内等待事件对象变成已通知状态。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Millisecond  </param_type>
+                <param_name> timeout </param_name>
+                <param_note>
+                    <para>指定一个时间间隔，单位是毫秒</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>指向<link url="../../../DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址,不能为空。如果方法调用成功，则返回WaitResult_OK；如果事件对象仍处于未通知状态，则返回WaitResult_TimedOut；如果在等待事件对象变为已通知状态期间被打断，则返回WaitResult_Interrupted</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EventState * </param_type>
+                <param_name> pState </param_name>
+                <param_note>
+                    <para>指向一个变量，用于存放取得的事件对象的已通知状态</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数不正确</td>
+	        </tr>
+	    </table>
+	   <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+        <para> 如果参数timeout为零，则此方法立即返回。此时，如果事件对象处于已通知状态，则返回NOERROR且 pResult 返回WaitResult_OK；如果事件对象处于未通知状态，则返回NOERROR且 pResult 返回WaitResult_TimedOut。</para>
+		<para>如果参数pState为返回的通知状态，其值如果为NULL，则表明当前线程忽略此参数。此参数仅在成功等待到事件对象变为已通知状态时，才有意义。已通知状态允许有任意多个，其在调用<link url="Notify.htm">IEvent::Notify</link>方法时被指定。</para>
+		<para>如果事件正处于未通知状态且等待时间不超过指定的时间间隔，当前线程将一直处于等待状态，直到事件对象变成已通知状态，才结束等待并从此方法中成功返回；如果等待时间超过指定的时间间隔，当前线程将立即结束等待，并从方法中返回。</para>
+		<para>如果事件对象正处于已通知状态，此方法将立即成功返回时，此时，如果事件对象是自动重置的，则事件对象将被重置为未通知状态；如果事件对象是手动重置的，则事件对象将保持已通知状态。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+//==========================================================================
+// Description  : This program shows how to use the methods of IEvent
+//                TryWait.
+//==========================================================================
+
+#include &lt;stdio.h&gt;
+#include &lt;elastos.h&gt;
+
+void HandleError(const char* msg, ECode ec)
+{
+    printf(&quot;%s (ec = 0x%08x)\n&quot;, msg, ec);
+}
+
+Int32 main()
+{
+    ECode ec;
+    IEvent*  iEvent;
+    EventState dwState;
+    WaitResult wr;
+    // Creates event, cleared automatically, initial not signaled.
+    ec = CEvent::New(FALSE, FALSE, &amp;iEvent);
+    if (FAILED(ec)) {
+        HandleError(&quot;Create event failed&quot;, ec);
+        return 1;
+    }
+
+    // Makes a notification.
+    iEvent-&gt;Notify(1);
+
+    // Tries to wait for notification the first time.
+    printf(&quot;Try to wait for notification for 2000 ms...\n&quot;);
+    ec = iEvent-&gt;TryWait(2000, &amp;wr, &amp;dwState);
+    if (NOERROR == ec &amp;&amp; WaitResult_OK == wr) {
+        printf(&quot;Receives the notification, state is %d, &quot;
+            &quot;the event is cleared automatically.\n&quot;, dwState);
+    }
+    else if (NOERROR == ec &amp;&amp; WaitResult_TimedOut == wr) {
+        printf(&quot;TryWait timeout\n&quot;);
+    }
+    else {
+        HandleError(&quot;TraWait failed&quot;, ec);
+    }
+
+    // Tries to wait for notification the second time.
+    printf(&quot;Try to wait for notification for 2000 ms again...\n&quot;);
+    ec = iEvent-&gt;TryWait(2000, &amp;wr, &amp;dwState);
+    if (NOERROR == ec &amp;&amp; WaitResult_OK == wr) {
+        printf(&quot;Receives the notification, state is %d, &quot;
+            &quot;the event is cleared automatically.\n&quot;, dwState);
+    }
+    else if (NOERROR == ec &amp;&amp; WaitResult_TimedOut == wr) {
+        printf(&quot;TryWait timeout\n&quot;);
+   }
+    else {
+        HandleError(&quot;TraWait failed&quot;, ec);
+    }
+
+    // Releases objects.
+    iEvent-&gt;Release();
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+Try to wait for notification for 2000 ms...
+Receives the notification, state is 1, the event is cleared automatically.
+Try to wait for notification for 2000 ms again...
+TryWait timeout
+</result>
+
+</manpage>

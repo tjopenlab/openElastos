@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> 常用数据结构 </volume>
+    <interface>AStringTokenizer</interface>
+    <method>  HasMoreTokens </method>
+
+    <description>
+        <para>测试是否还有Token可取 </para>
+    </description>
+
+    <syntax_nopara>
+        <return_val> Bollean </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+    
+    <return>
+   <para>有Token可取返回True，否则返回False。</para>
+   </return>
+<example>
+<pre>
+AString astr("There is$a,book.");
+//分割符设置为空格、逗号、$符，且不返回分割符。
+AStringTokenizer astrToken(astr, " ,$"); 
+for( ; astrToken.HasMoreTokens(); ) {
+    CConsole::WriteLine(astrToken.NextToken());
+}
+
+运行结果：
+There
+is
+a
+book.
+</pre>
+</example>  
+   <references>
+    <reference>
+        <ref_name>AStringTokenizer</ref_name>
+        <ref_url>../AStringTokenizer</ref_url>
+    </reference>        
+    </references>
+
+</manpage>

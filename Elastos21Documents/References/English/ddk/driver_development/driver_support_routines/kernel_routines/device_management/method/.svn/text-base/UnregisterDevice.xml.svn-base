@@ -1,0 +1,112 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <volume>Device Management Methods</volume>
+    <title>UnregisterDevice</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>
+        	Unregisters device.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> const wchar_t *</param_type>
+                <param_name> wszDeviceName </param_name>
+                <param_note>
+                    <para>
+                    	Registered device name.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> uint_t</param_type>
+                <param_name> uDeviceNo </param_name>
+                <param_note>
+                    <para>
+                    	Device number of the unregistered device.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	
+    	<table>
+            <th>
+                <td>Return Value</td>
+                <td>Hex Value</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>S_OK</td>
+                <td>0x00000000</td>
+                <td>Function succeeds in unregistering device.</td>
+            </tr>
+            <tr>
+                <td>ELADRV_E_DEVICENAME_TOO_LONG</td>
+                <td>0x80401001</td>
+                <td>Specified device name exceeds the maximum allowable length.</td>
+            </tr>
+            <tr>
+                <td>ELADRV_E_DEVICE_NOT_FOUND</td>
+                <td>0x80401003</td>
+                <td>Specified device is not found.</td>
+            </tr>
+            <tr>
+                <td>ELADRV_S_UNREGISTER_DRIVER_FAILED</td>
+                <td>0x00401004</td>
+                <td>
+                	Unregisters the device successfully, but fails to unregister the corresponding registered 
+                	driver object.
+                </td>
+            </tr>
+        </table>
+        <para>See <link url="/sdk/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+    <remarks>
+    	<para>
+    		UnregisterDevice unregisters a device to the device configuration table <link url=
+    		"..\global_var\g_deviceConfigs.htm">g_deviceConfigs</link>. Also unregisters corresponding driver
+    		from the driver configuration table <link url="..\global_var\g_driverConfigs.htm">g_driverConfigs</link>.
+    	</para>
+    	<para>
+    		If device to be unregistered was not registered through <link url="RegisterDevice.htm">
+    		RegisterDevice</link>, ELADRV_E_DEVICE_NOT_FOUND will be returned.
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>RegisterDevice</ref_name>
+            <ref_url>RegisterDevice</ref_url>
+        </reference>
+    </references>
+
+</manpage>

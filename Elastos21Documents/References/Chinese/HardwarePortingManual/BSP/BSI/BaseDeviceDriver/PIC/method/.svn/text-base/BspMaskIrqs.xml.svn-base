@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>中断控制器函数</volume>
+    <title>BspMaskIrqs</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>屏蔽或激活某个或某些中断请求</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> irqs_t</param_type>
+                <param_name> irqs</param_name>
+                <param_note>
+                    <para>指定所有需要屏蔽或激活的中断请求的集合，由相应的中断号所组成。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> bool_t</param_type>
+                <param_name> bEnable </param_name>
+                <param_note>
+                    <para>指定屏蔽还是激活所指定的中断请求。如果为TRUE，则激活所指定的中断请求；如果为FALSE，则屏蔽所指定的中断请求。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>此函数用于屏蔽或激活某个或某些中断请求。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                《Elastos2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>BspAcknowledgeIrq</ref_name>
+            <ref_url>BspAcknowledgeIrq</ref_url>
+        </reference>
+        <reference>
+            <ref_name>BspGetIrqs</ref_name>
+            <ref_url>BspGetIrqs</ref_url>
+        </reference>
+        <reference>
+            <ref_name>BspMaskAllIrqs</ref_name>
+            <ref_url>BspMaskAllIrqs</ref_url>
+        </reference>
+    </references>
+
+</manpage>
+  

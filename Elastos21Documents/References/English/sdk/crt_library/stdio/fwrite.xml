@@ -1,0 +1,118 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fwrite">fwrite</sample>
+    <title> fwrite</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes data to a file stream.</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>fwrite</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>Pointer to data buffer.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>Item size in bytes.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Maximum number of items to be written.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Function fwrite returns the number of full items actually written, which may be less than count if an error occurs. Also, if an error occurs, the file-position indicator cannot be determined.</para>
+    </return>
+
+    <remarks>
+        <para>The fwrite function writes up to count items, of size length each, from buffer to the output stream. The file pointer associated with stream (if there is one) is incremented by the number of bytes actually written. If stream is opened in text mode, each carriage return is replaced with a carriage-return - linefeed pair. The replacement has no effect on the return value.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fwrite</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fwrite.cpp: This program uses fwrite to write a string to a file.
+ */
+
+#include &lt;io.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;fcntl.h&gt;
+
+
+int main()
+{
+    FILE *stream;
+    char list[30] = &quot;this is a test&quot;;
+    int  numwritten;
+
+
+    if ((stream = fopen(&quot;fwrite.out&quot;, &quot;wt&quot;)) != NULL) {
+        numwritten = fwrite(list, sizeof(char), 25, stream);
+        printf(&quot;Wrote %d items\n&quot;, numwritten);
+        fclose(stream);
+    }
+    else {
+        printf(&quot;Problem opening the file\n&quot;);
+        return 1;
+    }
+
+    return 0;
+
+}
+</pre>
+    </example>
+<result>
+Wrote 25 items
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fread</ref_name>
+            <ref_url>fread</ref_url>
+        </reference>
+    </references>
+
+</manpage>

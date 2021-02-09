@@ -1,0 +1,96 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzCreateObject">EzCreateObject</sample>
+    <volume></volume>
+    <title>CVirtualMemory::Query</title>
+    <routine_idx>.../mem_management_idx.htm</routine_idx>
+
+    <description>
+        <para>
+         Quereys virtual memory block information specified by the specified address
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECode  </return_val>
+        <api_name>CVirtualMemory::Query</api_name>
+       <parameters>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name>baseAddr</param_name>
+                <param_note>
+                    <para>
+                    	[in] The specified virtual address
+                    </para>
+                </param_note>
+            </api_param>
+              <api_param>
+                <param_type>Address </param_type>
+                <param_name>*pBaseAddr</param_name>
+                <param_note>
+                    <para>
+                    	[out] The base address of the allocated virtual memory block, if the function succeeds
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemorySize </param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>
+                    	[in] Size, in bytes, of the virtual memory block
+                    </para>
+                </param_note>
+            </api_param>
+          
+      </parameters>      
+    </syntax>
+
+    <return>
+       <table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Funtion succeeds in registering a named service interface in the operating system.</td>
+            </tr>
+           <tr>
+                <td>E_INVALID_ARGUMENT </td>
+                <td>Invalid argument(s)</td>
+            </tr>
+            <tr>
+                <td>E_DOES_NOT_EXIST </td>
+                <td></td>
+            </tr>
+        </table>
+        <para>See <link url="/sdk/reference/basic_data_type/hresult.htm">ECODE</link> related help for more details.</para>
+    </return>   	
+   
+
+    <remarks>
+         <para>
+         </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

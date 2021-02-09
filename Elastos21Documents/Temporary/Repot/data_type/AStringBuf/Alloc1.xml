@@ -1,0 +1,46 @@
+
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\AStringBuf\Alloc">Alloc</sample>
+    <volume> 常用数据结构 </volume>
+    <interface> AStringBuf </interface>
+    <method> Alloc </method>
+
+    <description>
+        <para> 动态创建(在堆上) AStringBuf对象,并分别设置字符串和其长度。</para>
+    </description>
+
+    <syntax>
+        <return_val> static AStringBuf * </return_val>
+        <parameters>
+        <api_param>
+            <param_type>char*</param_type>
+            <param_name> pstr </param_name>
+            <param_note>
+                <para> 指定的源字符串 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> size </param_name>
+            <param_note>
+                <para> 分配的字符数  </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果分配成功，返回指向AStringBuf对象的指针，否则返回NULL。</para>
+    </return>
+
+    <remarks>
+        <para>调用此函数分配的空间，需要调用Free函数来释放内存。 </para>
+    </remarks>
+    
+</manpage>

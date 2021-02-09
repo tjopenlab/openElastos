@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AString</interface>
+    <method>ToBoolean </method>
+
+    <description>
+        <para>将当前AString对象的值转换成布尔值。 </para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>Boolean</return_val>
+        <modifier>const</modifier>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para> 返回转换后的Boolean型数值。</para>
+    </return>
+    <remarks>
+    <para>如果AString对象包含的字符串为"1"、"TRUE"或"True"，则返回TRUE,否则返回FALSE。</para>
+    <para>如果AString对象包含的字符串指针指向NULL，则返回FALSE。</para>
+    </remarks>
+
+<example>
+<pre>
+AString as1("1");
+AString as2("0");
+AString as3("10");
+CConsole::WriteLine(as1.ToBoolean());  //Display : True
+CConsole::WriteLine(as2.ToBoolean());  //Display : False
+CConsole::WriteLine(as3.ToBoolean());  //Display : False
+</pre>
+</example>
+
+
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::ToDouble </ref_name>
+        <ref_url>../AString/ToDouble</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::ToBoolean </ref_name>
+        <ref_url>../WString/ToBoolean</ref_url>
+    </reference>
+</references>
+
+</manpage>

@@ -1,0 +1,78 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>CAR Keyword--importlib</title>
+</head>
+
+<body>
+<h2>importlib</h2>
+    <p>This keyword is used in this component to import other component (.dll) documents. Thus, this component can be directly used in interfaces defined in the imported component, class, category etc. other information. The syntax is: importlib("XXX"), the XXX means path of the component to be imported. For example: </p>
+    <p><b>Component ImportlibDemo: </b></p>
+    <pre class="code">
+[
+    uuid(8bdcfed4-ee0e-4ccb-96a4-54525db30269),
+    uunm(http://www.koretide.com/car/ImportlibDemo.dll)
+]
+component ImportlibDemo
+{
+    [uuid(aa813de4-5fef-4809-89f7-2c6e367e8ac6)]
+    interface IInterface3 {
+        ……
+    }
+
+    <b>importlib</b>("Demo.dll");
+
+    [uuid(0ee30fd1-64e9-4c2d-8d76-c4e685f646d6)]
+    class CClass1 : CatCategory{
+        interface IInterface1;
+        interface IInterface3;
+    }
+    [uuid(f1cb44e0-ea96-4b9a-8a3e-7b08f62bbde8)]
+    class CClass2{
+        interface IInterface2;
+    }
+
+}
+</pre>
+    <ul>In sample component ImportlibDemo, a interface IInterface3 was defined, two classes: CClass1 and CClass2 are also defined, also imported a component Demo.dll .
+        <li>Class CClass1 inherits category CatCategory defined in component Demo.dll, so it must implement interface IInterface1 provided by category CatCategory. Also, component class CClass1 also provides interface IInterface3.
+        <li>Class CClass2 provides interface IInterface2 . Since category CatCategory, interface IInterface1 and interface IInterface2 are already defined in component Demo, so they do not need to be defined again in this component.
+        <li>When importing component, if the user does not specify the path imported component located, we then search the system default path for this component.
+    </ul>
+    <p>The following is the definition information of imported component Demo: </p>
+    <p><b>Imported component Demo.car: </b></p>
+    <pre class="code">
+[
+    uuid(8721fa8e-0343-43dc-82be-c1b0c69048fb),
+    uunm(http://www.koretide.com/car/Demo.dll)
+]
+component Demo
+{
+    [uuid(e03586b0-e3db-4511-b598-b4b8ffae4070)]
+    interface IInterface1 {
+        ……
+    };
+    [uuid(7b39b376-a896-4a81-9a70-7a782b538744)]
+    interface IInterface2 {
+        ……
+    };
+    [uuid(57b0279d-b657-41b4-9fa6-5a427ca92fe1)]
+    Category CatCategory {
+        interface IInterface1
+    };
+}
+</pre>
+    <p>In sample component Demo, two interfaces IInterface1 and IInterface2 are defined, one category CatCategory, category CatCategory provides interface IInterface1 .</p>
+    <ul><b>Remarks: </b>Before using this keyword to import component, you need to make sure the component exists. Otherwise it gives out warning during compilation.</ul>
+    <b><a class="style1" href="../keyword.htm">CAR Keyword Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

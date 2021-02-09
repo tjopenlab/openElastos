@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\realloc">realloc</sample>
+    <title> realloc</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>重新分配内存块。</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <func_name>realloc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>memblock</param_name>
+                <param_note>
+                    <para>指向以前分配内存块的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>所需重新分配的字节数</para>
+                </param_note>
+            </func_param>
+         </parameters>
+    </syntax>
+
+    <return>
+        <para>realloc函数返回void型指针，该指针指向重新分配的空间（可能已经移动）。如果参数size为0而且参数memblock不为NULL，或者内存不足以扩充到指定大小，返回NULL。在第一种情况下，已分配的内存块被释放。在第二种情况下，已分配的内存块不变。返回值指向的存储空间会被恰当地分配，以保证存储任一类型的对象。为了返回void类型以外的指针，要对返回值进行类型转换。</para>
+    </return>
+
+    <remarks>
+        <para>函数realloc改变已分配的内存块的大小。参数memblock指向已分配的内存块的起始位置。如果memblock为NULL，realloc函数执行与malloc函数相同的操作，分配一个size大小的新内存块。如果memblock不为NULL，它应该是前面调用函数calloc、malloc或者realloc所返回的指针。参数size为重新分配的字节数。尽管新分配的内存块可能不在原来的位置，但其容量不会变为新块与原块中容量较小的那个，即其容量大于或等于原块容量。新的内存块可能分配在新的内存区，因此函数realloc返回的指针，不一定是通过参数memblock传递的指针（指向原内存块）。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>realloc</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* realloc.cpp: This program allocates a block of memory for
+ * buffer and then uses _msize to display the size of that
+ * block. Next, it uses realloc to expand the amount of
+ * memory used by buffer and then calls _msize again to
+ * display the new amount of memory allocated to buffer.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;malloc.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    long *buffer;
+    size_t size = 1000;
+
+    if ((buffer = (long *)malloc(1000 * sizeof(long))) == NULL)
+        exit(1);
+
+
+    printf(&quot;The malloc is success.\n&quot;);
+
+    /* Reallocate and show new size: */
+    if ((buffer = (long *) realloc(buffer, size + (1000 * sizeof(long))))
+        ==  NULL)
+        exit(1);
+
+    printf(&quot;The realloc is succcess.\n&quot;);
+
+    free(buffer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The malloc is success.
+The realloc is succcess.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>malloc</ref_name>
+            <ref_url>malloc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>free</ref_name>
+            <ref_url>free</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_alloca</ref_name>
+            <ref_url>../malloc/_alloca</ref_url>
+        </reference>
+    </references>
+
+</manpage>

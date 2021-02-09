@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>WStringBuf</class>
+    <method> DecodeURL </method>
+
+    <description>
+        <para>按UTF-8编码格式对URL进行解码，从 application/x-www-form-urlencoded MIME 格式解码。</para>
+    </description>
+
+    <syntax>
+        <return_val> WStringBuf &amp;</return_val>
+        <parameters>
+        <api_param>
+            <param_type>const AString &amp; </param_type>
+            <param_name>as</param_name>
+            <param_note>
+                <para> AString对象 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name> encoding  </param_name>
+            <param_default>Encoding_UTF8  </param_default>
+            <param_note>
+                <para> 编码格式。 参见<link url="../../others/Encoding.htm">Encoding</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回WStringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>对 String 编码时，使用以下规则：</para>
+        <para>字母数字字符 "a" 到 "z"、"A" 到 "Z" 和 "0" 到 "9" 保持不变。  </para>
+        <para>特殊字符 "."、"-"、"*" 和 "_" 保持不变。  </para>
+        <para>空格字符 " " 转换为一个加号 "+"。 </para>
+        <para>所有其他字符都是不安全的，因此首先使用一些编码机制将它们转换为一个或多个字节。然后每个字节用一个包含 3 个字符的字符串 "%xy" 表示，其中 xy 为该字节的两位十六进制表示形式。推荐的编码机制是 UTF-8。但是，出于兼容性考虑，如果未指定一种编码，则使用相应平台的默认编码。  </para>
+        <para>例如，使用 UTF-8 编码机制，字符串 "The string ü@foo-bar" 将转换为 "The+string+%C3%BC%40foo-bar"，因为在 UTF-8 中，字符 ü 编码为两个字节，C3 （十六进制）和 BC （十六进制），字符 @ 编码为一个字节 40 （十六进制）。 </para>
+        <para>解码规则与上述编码规则相反。 </para>
+    </remarks>
+
+<example>
+<pre>
+    WStringBuf_&lt;20&gt; asbuf;
+    asbuf.DecodeURL("www.abd.+d+");  
+    CConsole::WriteLine(asbuf); //"www.abd. d "
+</pre>
+</example>
+
+</manpage>

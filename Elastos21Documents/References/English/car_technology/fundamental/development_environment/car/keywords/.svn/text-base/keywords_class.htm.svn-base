@@ -1,0 +1,71 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>CAR Keywords--class</title>
+</head>
+
+<body>
+<h2>class</h2>
+    <p>This keyword is used to define class. For example: </p>
+    <pre class="code">
+[
+    uuid(9b9d422d-b9cc-4658-9f94-3dff2667e89b),
+    uunm(http://www.koretide.com/car/ComponentDemo.dll)
+]
+component ComponentDemo
+{
+    [uuid(6bd80415-d91b-44f2-9e44-b3e11ed50d65)]
+    interface IInterface {
+        ECODE Func([in] int num,[out] long* sum);
+    }
+    [uuid(8bc5829e-ad6e-4b2f-91c5-8c17f38e9110)]
+    <b>class</b> CClass {
+        interface IInterface;
+    }; (this semicolon is not required here)
+}
+</pre>
+    <p>In sample component ComponentDemo, a class CClass is defined.This class provides interface IInterface .</p>
+    <p>In the "[]" before the class keyword, is the class attribute of this class. Class attribute modifies class, of which the <a class="style1" href="../attributes/attributes_uuid.htm">uuid</a> attribute is required. uuid in class attribute is called class ID (CLSID).It is used to uniquely identify a class. Class attribute also includes other attributes, please see <a class="style1" href="../attribute.htm">CAR Attribute</a> for details.</p>
+    <p>After the class keyword is the name of the class.</p>
+    <p>In the "()" of class keyword is the definition of this class. Class definition includes interface provided by this class. Since in the class object only interface can interact with the outside world, a class object is meaningless without interface.</p>
+    <p>In a CAR file, one or more classes can be defined. For example: </p>
+    <pre class="code">
+[
+    version(1.0),uuid(f1036818-b060-4766-ada5-e7b60e1ac722),
+    uunm(http://www.koretide.com/car/ClassDemo1.dll)
+]
+component ClassDemo1
+{
+    [uuid(9e4bc3b9-6e64-4a78-885e-c9da33517fd5)]
+    interface IInterface1 {
+        ……
+    };
+    [uuid(6c5c4d28-23f3-4a9e-a0e6-98b01a553ee2)]
+    interface IInterface2 {
+        ……
+    };
+    [uuid(a1223d8f-6e88-477e-af10-a0907d421313)]
+    <b>class CClass1</b> {
+        interface IInterface1;
+    };
+    [uuid(1c36e03c-3f5b-49de-8aee-cc43719de5e4)]
+    <b>class CClass2</b> {
+        interface IInterface1;
+        interface IInterface2;
+    };
+}
+</pre>
+    <p>In sample component ClassDemo1, two interfaces are defined: Interface IInterface1 and interface IInterface2. Two classes are defined: Class CClass1 and class CClass2. Class CClass1 provides interface IInterface1 and class CClass2 provides interface IInterface1 and interface IInterface2. Both class CClass1 and class CClass2 provide interface IInterface1.This interface can have different implementation in this two classes.</p>
+    <p>Class can also inherit category defined by category keyword. Another keyword <b>category</b> was defined in CAR.This keyword is used to define category. For details please see <a class="style1" href="keywords_category.htm">category</a>.</p>
+    <b><a class="style1" href="../keyword.htm">CAR Keyword Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

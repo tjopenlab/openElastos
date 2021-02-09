@@ -1,0 +1,128 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fscanf">fscanf</sample>
+    <title>fscanf</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Reads input from the stream pointer stream.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fscanf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format[, argument]...</param_name>
+                <param_note>
+                    <para>Format control string (argument is optional parameter).</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns the number of fields successfully converted and assigned; the return value does not include fields that were read but not assigned. A return value of 0 indicates that no fields were assigned. If an error occurs or if the end of the file stream is reached before the first conversion, the return value is EOF for fscanf or WEOF for fwscanf.</para>
+    </return>
+
+    <remarks>
+        <para>The fscanf function reads data from the current position of stream into the locations given by argument (if any). Each argument must be a pointer to a variable of a type that corresponds to a type specifier in format. format controls the interpretation of the input fields and has the same form and function as the format argument for scanf; see scanf for a description of format. If copying takes place between strings that overlap, the behavior is undefined.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fscanf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fscanf.cpp: This program writes formatted
+ * data to a file. It then uses fscanf to
+ * read the various data back from the file.
+ */
+
+#include &lt;stdio.h&gt;
+
+FILE *stream;
+
+int main()
+{
+    long l;
+    float fp;
+    char s[81];
+    char c;
+
+    stream = fopen(&quot;fscanf.out&quot;, &quot;w+&quot;);
+    if (stream == NULL)
+        printf(&quot;The file fscanf.out was not opened\n&quot;);
+    else {
+        fprintf(stream, &quot;%s %ld %f%c&quot;, &quot;a-string&quot;,
+                    65000, 3.14159, &apos;x&apos;);
+
+        /* Set pointer to beginning of file: */
+        fseek(stream, 0L, SEEK_SET);
+
+        /* Read data back from file: */
+        fscanf(stream, &quot;%s&quot;, s);
+        fscanf(stream, &quot;%ld&quot;, &amp;l);
+
+        fscanf(stream, &quot;%f&quot;, &amp;fp);
+        fscanf(stream, &quot;%c&quot;, &amp;c);
+
+        
+        printf(&quot;%s\n&quot;, s);
+        printf(&quot;%ld\n&quot;, l);
+        printf(&quot;%f\n&quot;, fp);
+        printf(&quot;%c\n&quot;, c);
+
+        fclose(stream);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+data read:
+a-string
+65000
+3.141590
+x
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>scanf</ref_name>
+            <ref_url>scanf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

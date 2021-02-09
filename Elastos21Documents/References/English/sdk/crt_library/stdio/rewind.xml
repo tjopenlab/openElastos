@@ -1,0 +1,104 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\rewind">rewind</sample>
+    <title> rewind</title>
+    <volume>C Run-Time Libaray Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Resets a file pointer to the beginning of file.</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>rewind</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>A pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>The rewind function resets the file pointer associated with stream to the beginning of file. It is similar to (void) fseek(stream, 0L, SEEK_SET), but it doesn't return any value that indicates whether the pointer succeeds to be moved and it will clear the error sign and the end-of-file sign.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>rewind</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* rewind.cpp: This program first opens a file named
+ * REWIND.OUT for input and output and writes two
+ * integers to the file. Next, it uses rewind to
+ * reposition the file pointer to the beginning of
+ * the file and reads the data back in.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE *stream;
+    int data1, data2;
+
+    data1 = 1;
+    data2 = -37;
+
+    if ((stream = fopen(&quot;rewind.out&quot;, &quot;w+&quot;)) != NULL) {
+        fprintf(stream, &quot;%d %d&quot;, data1, data2);
+        printf(&quot;The values written are: %d and %d\n&quot;, data1, data2);
+        rewind(stream);
+        fscanf(stream, &quot;%d %d&quot;, &amp;data1, &amp;data2);
+        printf(&quot;The values read are: %d and %d\n&quot;, data1, data2);
+        fclose(stream);
+    }
+    else
+        printf(&quot;problem open the file!!!&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The values written are: 1 and -37
+The values read are: 1 and -37
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fseek</ref_name>
+            <ref_url>fseek</ref_url>
+        </reference>
+        <reference>
+            <ref_name>ftell</ref_name>
+            <ref_url>ftell</ref_url>
+        </reference>
+    </references>
+
+</manpage>

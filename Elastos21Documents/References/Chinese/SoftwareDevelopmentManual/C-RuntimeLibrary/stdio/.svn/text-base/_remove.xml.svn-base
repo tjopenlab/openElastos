@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_remove">_wremove</sample>
+    <title>_wremove</title>
+    <volume>C 运行库函数</volume>
+  	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>删除文件。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wremove</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>path</param_name>
+                <param_note>
+                    <para>指向要删除的文件名的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果删除成功，返回0；否则，返回-1，并设置error值。当文件为只读或者文件正在使用时（error被置为EACCES ）、文件或路径找不到或给定参数filename为目录名（error被置为ENOENT ），此函数运行失败。</para>
+    </return>
+<!--
+    <requirements>
+        <routine>
+            <routine_name>remove</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+         <routine>
+            <routine_name>wremove</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* remove.cpp: This program uses remove to delete REMOVE.OBJ. */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    if (remove(&quot;remove.obj&quot;) == -1)
+        printf(&quot;Could not delete &apos;REMOVE.OBJ&apos;\n&quot;);
+    else
+        printf(&quot;Deleted &apos;REMOVE.OBJ&apos;\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Deleted &apos;REMOVE.OBJ&apos;
+</result>
+
+
+-->   
+
+</manpage>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\iscsymf">iscsymf</sample>
+    <title>iscsymf</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>iscsymf判断参数c是否是字符或下划线。条件满足返回非零，否则返回零。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>iscsymf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>需要判断的整型值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>条件满足返回非零，
+        否则返回零。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>iscsymf</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+    
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* iscsymf.cpp: This program uses iscsym to verify c
+ * whether it is an english character or UnderLine Character.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+
+   {
+    int c = &apos;a&apos;;
+    if(iscsymf(c))
+        printf(&quot;%c is an English character or UnderLine Character! \n&quot;,c);
+    else
+        printf(&quot;%c is not an English character and UnderLine Character!\n&quot;,c);
+    
+    c = &apos;_&apos;;
+    if(iscsymf(c))
+        printf(&quot;%c is an English character or UnderLine Character! \n&quot;,c);
+    else
+        printf(&quot;%c is not an English character and UnderLine Character!\n&quot;,c);
+
+    c = &apos;1&apos;;
+    if(iscsymf(c))
+        printf(&quot;%c is an English character or UnderLine Character!\n&quot;,c);
+    else
+        printf(&quot;%c is not an English character and UnderLine Character!\n&quot;,c);
+
+    c = &apos;?&apos;;
+    if(iscsymf(c))
+        printf(&quot;%c is an English character or UnderLine Character!\n&quot;,c);
+    else
+        printf(&quot;%c is not an English character and UnderLine Character!\n&quot;,c);
+        
+    return 0;
+
+}
+</pre>
+    </example>
+<result>
+a is an English character or UnderLine Character!
+_ is an English character or UnderLine Character!
+1 is not an English character and UnderLine Character!
+? is not an English character and UnderLine Character!
+</result>
+    
+</manpage>

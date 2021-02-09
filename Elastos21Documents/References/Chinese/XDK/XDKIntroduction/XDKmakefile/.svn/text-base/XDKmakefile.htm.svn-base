@@ -1,0 +1,257 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>XDK的makefile</title>
+<meta http-equiv="Content-Type" content="text/xmll; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>XDK的makefile</h2>
+<p>在整个编译过程中，环境变量和makefile变量是混合使用的（很多环境变量转化成makefile的变量），我们使用环境变量的主要目的是拼接路径和标识当前的具体开发环境。</p>
+<p>Elastos XDK的集成编译工具emake负责递归编译当前目录及子目录。emake的编译过程是：若待编译目录A中存在dirs文件，emake将按dirs文件中列出的顺序，递归编译A中各个子目录；随后，若目录A中存在sources文件，则按sources文件中指定的内容，对目录A下的文件进行编译，否则对目录A下的文件不做任何操作；完成sources中交待的工作后，如果目录A下存在makefile.inc文件，则再完成makefile.inc中交待的工作。在编译过程中，emake一旦发现任何错误，都将停止编译。如果待编译目录A中存在名为“makefile”的文件，emake会忽略该目录中的dirs和sources文件，而去完成makefile中交待的工作。</p>
+<p>其中sources、dirs、makefile.inc都是makefile文件，以下我们将详细介绍这些makefile文件。</p>
+        <ul>
+            <li><a class="style1" href="#sources">sources文件</a>
+            <li><a class="style1" href="#dirs">dirs文件</a>
+            <li><a class="style1" href="#micro">附：常用宏定义</a>
+            <li><a class="style1" href="#makefile">makefile.inc</a>
+            <li><a class="style1" href="#path">附：常用路径宏定义</a>
+        </ul>
+<a NAME="sources">
+<h3>sources文件</h3>
+<p>sources文件（无扩展名）是位于编译目录下的一个文本文件。它为编译当前目录设置了宏定义：包括当前目录的源程序文件，产生的目标文件类型、目标文件名称等等。除此之外，还有一些关于编译器和链接器的FLAG的宏定义。所有这些开关配置控制着编译器和链接器的行为。</p>
+<p><b>文件示例</b></p>
+
+<pre class = code>
+TARGET_NAME = hello
+TARGET_TYPE = exe
+
+SOURCES = hello.c
+
+ELASTOS_LIBS = ElCRuntime.lib
+ELASTOS_LIBS += elastos.lib
+
+LIBRARIES = d:\lib\userB.lib
+</pre>
+<p>以上是一个sources文件示例，其中:</p>
+<ul>
+  <li>TARGET_NAME指明了编译过程产生的目标文件名为hello。
+  <li>TARGET_TYPE指明了产生的目标文件类型为exe文件。这个文件会在当前目录对应的镜像目录下生成。若要生成一个lib或dll类型文件，则只需在sources文件中指定TARGET_TYPE = lib或TARGET_TYPE = dll即可。
+  <li>SOURCES指明了需要编译和链接的源程序文件为hello.c。
+  <li>LIBRARIES指明了链接程序库为d:\lib\userB.lib，需要在这里写出该文件的全路径(可以通过环境变量进行路径的自动拼接)。本关键字在编译时会检查有关库的依赖关系。
+</ul>
+
+<p><b>导入静态链接库</b></p>
+<p>通过ELASTOS_LIBS或LIBRARIES可以指定程序中需导入的静态链接库。</p>
+
+<p>ELASTOS_LIBS与LIBRARIES的用法是有区别的：
+<ul>
+<li>前者所含的库，在编译时并不计入依赖关系，SDK的用户使用系统所提供的库时用ELASTOS_LIBS；后者则会查找有关库文件的依赖关系，使用的库是自己开发的，希望在这个库更改后及时地重新编译Target。
+
+<li>ELASTOS_LIBS指定的库文件是Elastos平台提供的系统库文件，它们的准确位置在环境变量XDK_LIB_PATH所指定的路径中；LIBRARIES指定的库文件是用户自行开发编译的库文件，它们的准确位置在环境变量XDK_USER_LIB所指定的路径中。
+<li>因为XDK采用增量式递归编译，考虑到系统库文件是Elastos平台提供的，而用户自行开发编译的库文件是用户自己生成的，所以系统库文件不会在编译过程中进行依赖关系的相关计算，而用户库文件则会在每次编译过程中计算依赖关系。原因是：系统提供的每个库文件只有一份，在安装XDK的时候就已经存在，并且在整个开发过程中是不会被改变的；而用户自行开发编译的库文件，则不能保证是否存在以及时间戳的变化等问题。
+<li>ELASTOS_LIBS指定的库文件可以不写路径，由编译托管的MAKEFILE流程在默认的系统库文件路径中搜索(注：这种方式不会检查有关库文件的依赖关系)；LIBRARIES指定的库文件必须写路径，可以是相对路径，也可以是绝对路径。
+<li>ELASTOS_LIBS只在SDK开发环境中使用。
+</ul>
+
+<p>Elastos系统常用的库文件有：</p>
+<ul>
+<li>ElCRuntime.lib：Elastos的C运行库函数，是标准CRT函数的一个有效子集。
+<li>ElSocket.lib：提供用于网络编程的函数，实现了基本的网络通讯功能。
+<li>elastos.lib：Elastos提供的运行库，含有elastos系统API。
+</ul>
+
+<p><b>追加头文件搜索路径</b></p>
+<p>系统默认的头文件搜索路径为环境变量XDK_INC_PATH以及XDK_USER_INC所指定的目录，前者用于存放当前开发环境中所有的系统头文件；后者用于存放用户自定义头文件。如果程序中使用了不在默认搜索路径下的头文件，则需要在sources文件中修改INCLUDES变量，追加头文件搜索路径，如增加以下一行，表示追加搜索当前目录下Dll以及Dll\LibDemo两个目录。</p>
+<pre class = code>
+INCLUDES += $(MAKEDIR)\Dll;$(MAKEDIR)\Dll\LibDemo;</pre >
+<p>或者：</p>
+<pre class = code>
+INCLUDES := $(MAKEDIR)\Dll;$(MAKEDIR)\Dll\LibDemo;$(INCLUDES);
+</pre >
+<p><ul>
+“+=”和“:=”符号是有区别的：<br>
+<li>使用“+＝”指定INCLUDES值时，系统默认的INCLUDES值在用户指定的路径的前面，在本例中，在搜索头文件时，就会先搜索默认的搜索路径，再搜索当前目录下的Dll，Dll\LibDemo二个目录。<br>
+<li>使用“:＝”指定INCLUDES值时，系统默认的INCLUDES值的位置由用户指定，在本例中，原INCLUDES的值放在了用户的2个目录之后，在搜索头文件时，就会先搜索当前目录下的Dll，Dll\LibDemo二个目录，再搜索默认的搜索路径。<br>
+当有多个要说明的搜索路径时，在不同的路径之间，用分号（‘;’）隔开。
+</p></ul>
+
+<p><b>导入动态链接库</b></p>
+<p>如果程序需要调用其它动态链接库，可以通过IMPORTS环境变量指明该链接库。</p>
+<p>注意：通过这种方式导入动态链接库时，用户需在源文件中添加与动态链接库对应的头文件信息。</p>
+<pre class = code>
+sources文件
+......
+IMPORTS= ElDevices.dll
+
+hello.cpp文件
+include &lt;ElDevices.h&gt;
+</pre>
+<p>如上例所示，在sources文件中引入ElDevices.dll时，需要在源文件中include&lt;ElDevices.h&gt;。</p>
+
+<p><b>导出静态链接库以及头文件</b></p>
+<p>如果当前目标文件类型为静态链接库文件类型(lib)，可以通过将EXPORT_LIBRARY环境变量的值设为非零的方式把生成的目标静态链接库文件导出至用户自定义库文件目录(XDK_USER_LIB)，以便其它程序调用该库文件。</p> 
+<p>用户可以通过EXPORT_HEADERS环境变量指明当前目录下需导出的头文件，系统将复制该头文件至用户自定义头文件目录(XDK_USER_INC)，以便其它程序调用该文件。请参见以下示例：</p>
+<pre class = code>
+TARGET_NAME = Sample 
+TARGET_TYPE = lib 
+
+SOURCES = LibDemo.cpp
+ 
+EXPORT_LIBRARY = 1  //导出Sample.lib库文件至XDK_USER_LIB
+EXPORT_HEADERS = LibDemo.h  //导出LibDemo.h头文件至XDK_USER_INC
+
+ELASTOS_LIBS = ElCRuntime.lib 
+ELASTOS_LIBS+ = elastos.lib 
+</pre>
+
+<p><b>追加编译资源文件</b></p>
+<p>如果当前源代码目录下有资源文件需要参与编译，可通过RESOURCES环境变量指明这些文件。</p>
+<p>注：目前编译支持的资源文件有数据库文件类型(.sql)以及多语言文件类型(.loc)。编译器将根据这些文件，分别生成sqlite数据库或多语言文件包。请参见以下示例：</p>
+
+<pre class = code>
+RESOURCES += table.sql  //追加编译table.spl数据库文件
+
+RESOURCES += root.loc  //追加编译root.loc多语言文件
+RESOURCES += zh_CN.loc
+RESOURCES += zh_TW.loc
+</pre>
+
+<p><b>说明1</b>：'#'是注释符，需要添加注释行时，以#为该行开头。
+</p>
+<a NAME="micro">
+<h3>常用宏定义：</h3>
+<table width=75%>
+<tr align="left" ><th>宏名<th>说明
+<tr><td>C_DEFINES<td>c/cpp/asm/s文件相关的define
+<tr><td>C_FLAGS<td>c文件相关的FLAGS
+<tr><td>CPP_FLAGS<td>cpp文件相关的FLAGS
+<tr><td>INCLUDES<td>编译器查找头文件的路径（编译器头文件目录为EXTERN_INC
+<tr><td>RES_FLAGS<td>rc文件编译参数
+<tr><td>CAR_FLAGS<td>car编译器的参数
+<tr><td>AR_FLAGS<td>打包成lib的工具的参数
+<tr><td>SEARCH_LIB<td>链接时查找lib文件的路径
+<tr><td>DLLTOOL_FLAGS<td>编译def文件的参数
+<tr><td>LINK_FLAGS<td>指定传入到链接器的参数
+<tr><td>DLL_FLAGS<td>当TARGET_TYPE为dll时, 指定传入到链接器的参数
+<tr><td>EXE_FLAGS<td>当TARGET_TYPE为exe时, 指定传入到链接器的参数
+<tr><td>SUBSYSTEM<td>指定传入到链接器的subsystem选项的值
+<tr><td>EXE_ENTRY<td>当TARGET_TYPE为exe时，指定传入到链接器的entry选项的值
+<tr><td>DLL_ENTRY<td>当TARGET_TYPE为dll时, 指定传入到链接器的entry选项的值
+<tr><td>DLL_BASE<td>当TARGET_TYPE为dll时, 指定传入到链接器的base选项的值
+<tr><td>EXE_BASE<td>当TARGET_TYPE为exe时, 指定传入到链接器的base选项的值
+</table>
+<p><b>说明</b>：以上这组参数都有编译系统自带的默认值。如果不替换默认值请用“+＝”否则使用“：=”
+
+<p>target相关宏定义如下表所示：</p>
+<table width=75%>
+<tr align="left" ><th>宏名<th>说明
+<tr><td>TARGET_NAME<td>要生成的目标的名称
+<tr><td>TARGET_TYPE<td>要生成的目标类型。例如dll、exe、lib。
+<tr><td>SPECIAL_TARGET<td>一些特殊的处理，例如将资源文件拷贝到当前开发环境所对应的Targets目录下等。该宏定义须与makefile.inc文件配套使用
+</table>
+<p>其它关键字如下表所示：</p>
+<table width=80%>
+<tr align="left" ><th>宏名<th>说明
+<tr><td>ELASTOS_LIBS<td>指要引用的Lib.不需要指明lib的路径，编译系统自动去$(XDK_LIB_PATH)下去查找。
+<tr><td>IMPORTS<td>要引用的构件化的dll，按PATH路径去查找
+<tr><td>LIBRARIES<td>指要引用的Lib.需要指明lib的路径（编译器LIB目录为EXTERN_LIB）
+<tr><td>EXPORT_HEADERS<td>当前目录下要导出的头文件列表。导出到$(XDK_USER_INC)目录下
+<tr><td>SOURCES<td>指定要编译的源文件
+<tr><td>RESOURCES<td>用于支持多语言环境编译以及数据库编译
+<tr><td>NODEPEND<td>指定编译时不检查文件依赖关系。
+</table>
+<p>以上这些变量是供makefile专用的变量，用于在makefile文件中标识路径。除此以外，有一些XDK环境变量（如XDK_LIB_PATH等）也用于makefile，比如上文sources文件中用环境变量XDK_USER_LIB来指出程序库的路径，对于这些XDK和makefile公用的环境变量请参见XDK常用环境变量的说明。</p>
+
+<a NAME="dirs">
+<h3>dirs文件</h3>
+<p>dirs文件（无扩展名）是位于编译目录下的一个文本文件, 用于指定当前目录下需要参与编译的子目录列表。如果一个目录中含有需要编译的子目录，可以将所有要编译的子目录名列在当前目录dirs文件中。emake会在每一个目录中寻找dirs文件，并根据DIRS的子目录列表进行深度优先的递归编译，先编译子目录然后再编译当前目录。如果当前目录没有需要编译的子目录，无需编写dirs文件。</p>
+<p><b>文件示例：</b></p>
+<pre class = code>
+DIRS = idl
+DIRS += inc
+</pre>
+<p>dirs文件通过DIRS关键字指定目录列表，并用“+=”或”:=”符号对DIRS进行追加，可使用GNU的MAKEFILE规范的条件分支。在dirs文件中还可通过”#”号注释当前行，若行尾有续行符，会影响后续的所有行。</p>
+<p>“+=”和“:=”符号是有区别，在使用时两者的书写格式不同，下面给出使用这两种符号的dirs文件：</p>
+<ul><li>使用“+=” 符号：</ul>
+<pre class = code>
+DIRS = Command
+    ifeq "$(XDK_TARGET_CPU)" "arm"
+        ifeq "$(XDK_TARGET_BOARD)" "sharp"
+            DIRS += CrossDev
+        else
+            DIRS += Packing
+            DIRS += Testing
+        endif
+    endif
+</pre>
+<ul><li>使用“:=” 符号：</ul>
+<pre class = code>
+DIRS = Command
+    ifeq "$(XDK_TARGET_CPU)" "arm"
+        ifeq "$(XDK_TARGET_BOARD)" "sharp"
+            DIRS := $(DIRS) CrossDev
+        else
+            DIRS := $(DIRS) Packing
+            DIRS := $(DIRS) Testing
+        endif
+    endif
+</pre>
+
+<a NAME="makefile">
+<h3> makefile.inc文件</h3>
+<p>如果某一个项目需要用到特殊的工具和方法产生目标文件，或是要在编译好Target后运行某些命令。可以在当前目录的makefile.inc文件中指定。这是非常特殊的情况，大部分程序员不会遇到。有关makefile的语法和使用请参阅GNU Make的相关文档。</p>
+
+</p>
+
+<a NAME="path">
+<h4>附：常用路径宏定义</h4>
+    <table>
+        <thead>
+            <td>常用路径宏定义</td>
+            <td>说明</td>
+        </thead>
+            <tr>
+            <td>XDK_ROOT</td>
+            <td>ElastosXDK根目录</td>
+        </tr>
+        <tr>
+            <td>MAKEDIR</td>
+            <td>当前编译目录</td>
+        </tr>
+
+        <tr>
+            <td>XDK_RUNTIME_PLATFORM</td>
+            <td>ElastosXDK运行所需的kernel.exe以及elastos.dll的存放路径，（对应当前的开发环境），<br>如：<br>%XDK_ROOT%\DevKit\runtime\win32\x86.msvc.pc.GK100.dbg</td>
+        </tr>
+        <tr>
+            <td>XDK_LIB_PATH</td>
+            <td>ElastosXDK的静态库路径（对应当前的开发环境）</br>如：<br>%XDK_ROOT%\DevKit\pdk\lib\win32\x86.msvc.pc.GK100.dbg</br></td>
+        </tr>
+        <tr>
+            <td>XDK_INC_PATH</td>
+            <td>导出头文件路径</br>%XDK_ROOT%\DevKit\pdk\inc</td>
+        </tr>
+        <tr>
+            <td>XDK_TARGETS</td>
+            <td>可执行文件的存放路径（对应当前的开发环境）</br>如：<br> %XDK_ROOT%\Targets\pdk\win32\x86.msvc.pc.GK100.dbg</td>
+        </tr>
+        <tr>
+            <td>XDK_USER_INC</td>
+            <td>目标头文件的存放路径（对应当前的开发环境）</br>如：<br> %XDK_SOURCE_PATH%\obj\pdk\win32\x86.msvc.pc.GK100.dbg\inc</td>
+        </tr>
+        <tr>
+            <td>XDK_USER_LIB </td>
+            <td>目标库文件的存放路径（对应当前的开发环境）</br></br>如：<br> %XDK_SOURCE_PATH%\obj\pdk\win32\x86.msvc.pc.Product1.dbg\lib</td>
+        </tr>
+    </table>
+
+<script>footer("chinese")</script>
+</body>
+</html>
+

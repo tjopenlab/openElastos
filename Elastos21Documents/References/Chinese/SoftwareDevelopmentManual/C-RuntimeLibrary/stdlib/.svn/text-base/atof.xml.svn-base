@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\atof">atof</sample>
+    <title> atof, atoi, _atoi64, _wtoi, _wtoi64, atol, _wtol</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>将字符串转换为双精度浮点数（atof）、整型数（atoi，_atoi64，_wtoi和_wtoi64）或长整型数（atol和_wtol）。</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>atof</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>待转换字符串</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>atoi</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>__int64</return_val>
+        <func_name>_atoi64</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wtoi</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>__int64</return_val>
+        <func_name> _wtoi64</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>atol</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>_wtol</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>每个函数分别返回由输入字符串转换成的双精度浮点数（atof）、整型数（atoi，_atoi64，_wtoi和_wtoi64）或长整型数（atol和_wtol）。当不能转换成相应类型值时，函数分别返回0.0(atof)、0(atoi，_atoi64，_wtoi和_wtoi64)、0L(atol和_wtol)。发生溢出时返回值均未定义。</para>
+    </return>
+
+    <remarks>
+        <para>这些函数将字符串转化为双精度浮点数（atof）、整型数（atoi，_atoi64，_wtoi和_wtoi64）或长整型数（atol和_wtol）。</para>
+        <para>输入字符串是由一组可以被解释为指定类型数值的字符序列组成的。所有函数在读到输入串的第一个非数字字符时，停止读操作。这个非数字字符可能是字符串结束符('\0'或L'\0')。</para>
+        <para>函数atof的参数string应符合如下形式：</para>
+        <para>[whitespace] [sign] [digits] [.digits] [ {d | D | e | E }[sign]digits]</para>
+        <para>whitespace指空格或tab键，本函数忽略这部分字符；sign指加号(+)或减(–)号；digits是指一个或多个十进制数字，如果小数点前没有数字，那么其后必须至少有一个数字。数字后可跟指数，指数是包含前导字符( d, D, e, 或 E)和符号位的整数。</para>
+        <para>atoi，_atoi64，atol，_wtoi，_wtoi64和_wtol不能识别小数点和指数。其参数string应符合如下格式：</para>
+        <para>[whitespace] [sign]digits</para>
+        <para>其中whitespace，sign，digits含义同上。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>atof</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>atoi</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_atoi64</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wtoi</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wtoi64</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>atol</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wtol</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* atof.cpp: This program shows how numbers stored
+ * as strings can be converted to numeric values
+ * using the atof, atoi, and atol functions.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char *s; double x; int i; long l;
+
+    s = &quot;  -2309.12E-15&quot;;     /* Test of atof */
+    x = atof(s);
+    printf(&quot;atof test: ASCII string: %s\tfloat:  %e\n&quot;, s, x);
+
+    s = &quot;7.8912654773d210&quot;;  /* Test of atof */
+    x = atof(s);
+    printf(&quot;atof test: ASCII string: %s\tfloat:  %e\n&quot;, s, x);
+
+    s = &quot;  -9885 pigs&quot;;        /* Test of atoi */
+    i = atoi(s);
+    printf(&quot;atoi test: ASCII string: %s\t\tinteger: %d\n&quot;, s, i);
+
+    s = &quot;98854 dollars&quot;;      /* Test of atol */
+    l = atol(s);
+    printf(&quot;atol test: ASCII string: %s\t\tlong: %ld\n&quot;, s, l);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+atof test: ASCII string:   -2309.12E-15 float:  -2.309120e-012
+atof test: ASCII string: 7.8912654773d210       float:  7.891265e+210
+atoi test: ASCII string:   -9885 pigs           integer: -9885
+atol test: ASCII string: 98854 dollars          long: 98854
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcstod</ref_name>
+            <ref_url> wcstod</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcstol</ref_name>
+            <ref_url>  wcstol</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _ecvt</ref_name>
+            <ref_url>  _ecvt</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _fcvt</ref_name>
+            <ref_url>  _fcvt</ref_url>
+        </reference>
+    </references>
+
+</manpage>

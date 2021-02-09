@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>枚举类型</volume>
+    <types>AppletFinish</types>
+
+    <enum>
+        <enum_member>
+            <mem_name>AppletFinish_Nice</mem_name>
+            <mem_value>0x01</mem_value>
+            <mem_description>不再接收新事件，等当前消息队列中事件都处理完再退出</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>AppletFinish_ASAP</mem_name>
+            <mem_value>0x02</mem_value>
+            <mem_description>等当前正在处理的事件处理完就退出</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>AppletFinish_Immediately</mem_name>
+            <mem_value>0x03</mem_value>
+            <mem_description>立即退出，类似于线程的abort(暂时未实现)</mem_description>
+        </enum_member>
+    </enum>
+</manpage>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <!--<sample url="sdk\operating_system\crt\libc\stdio\fcntl">fcntl</sample>-->
+    <title>fcntl   ------此函数在Elastos操作系统中尚无完全实现。</title>
+    <volume>C 运行库函数 </volume>
+    <routine_idx> fcntl_idx.htm </routine_idx>
+
+    <description>
+        <para>根据文件描述词来操作文件的特性。 </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name> fcntl</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>fd</param_name>
+                <param_note>
+                    <para>欲设置的文件描述词</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>cmd</param_name>
+                <param_note>
+                    <para>欲操作的指令</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name> fcntl</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>fd</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>cmd</param_name>
+            </func_param>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>arg</param_name>
+                <param_note>
+                    <para>供命令使用的参数</para>
+                </param_note>               
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name> fcntl</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>fd</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>cmd</param_name>
+            </func_param>
+            <func_param>
+                <param_type>struct flock *</param_type>
+                <param_name>lock</param_name>
+                <param_note>
+                    <para>供命令使用的参数</para>
+                </param_note> 
+            </func_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>成功则返回0，若有错误则返回-1，错误原因存于errno.</para>
+    </return>
+    <remarks>
+     <para>可供使用的操作命令如下：</para>
+        <table>
+            <th>
+                <td>参数值</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>F_DUPFD </td>
+                <td>F_DUPFD用来查找大于或等于参数arg的最小且仍未使用的文件描述词，并且复制参数fd的文件描述词。执行成功则返回新复制的文件描述词。</td>
+            </tr>
+            <tr>
+                <td>F_GETFD</td>
+                <td>获得close-on-exec标志。若此标志的FD_CLOEXEC位为0，代表在调用exec()相关函数时文件将不会关闭。</td>
+            </tr>
+            <tr>
+                <td>F_SETFD</td>
+                <td>设置close-on-exec标志。该标志以参数arg 的FD_CLOEXEC位决定。</td>
+            </tr>
+            <tr>
+                <td>F_GETFL </td>
+                <td>获得文件描述词状态标志，此旗标为open（）的参数flags。</td>
+            </tr>
+            <tr>
+                <td>F_SETFL</td>
+                <td>设置文件描述词状态标志，参数arg为新标志，但只允许O_APPEND、O_NONBLOCK和O_ASYNC位的改变，其他位的改变将不受影响。</td>
+            </tr>
+            <tr>
+                <td>F_GETLK</td>
+                <td>获得文件锁定的状态。</td>
+            </tr>
+            <tr>
+                <td>F_SETLK</td>
+                <td>设置文件锁定的状态。此时flcok 结构的l_type 值必须是F_RDLCK、F_WRLCK或F_UNLCK。如果无法建立锁定，则返回-1，错误代码为EACCES 或EAGAIN。</td>
+            </tr>
+            <tr>
+                <td>F_SETLKW</td>
+                <td>与F_SETLK作用相同，但是无法建立锁定时，此调用会一直等到锁定动作成功为止。若在等待锁定的过程中被信号中断时，会立即返回-1，错误代码为EINTR。</td>
+            </tr>
+            <tr>
+                <td>F_UNLCK</td>
+                <td>释放文件锁。</td>
+            </tr>
+             
+        </table>    
+        </remarks>
+</manpage>

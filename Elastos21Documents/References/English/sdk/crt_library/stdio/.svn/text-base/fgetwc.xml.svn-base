@@ -1,0 +1,128 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fgetc">fgetc</sample>
+    <title> fgetc, fgetwc</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Reads a character from a stream (fgetc, fgetwc).</para>
+	<para>The fgetwc function obtains the next input wide-character (if present) from the stream pointed at by stream or the next character pushed back on the stream via <link class="style1" url="../stdio/ungetwc.htm">ungetwc</link>.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fgetc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>fgetwc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>fgetc returns the character read as an int or return EOF to indicate an error or end of file. fgetwc returns, as a wint_t, the wide character corresponding to the character read or return WEOF to indicate an error or end of file. For all two functions, use feof or ferror to distinguish between an error and an end-of-file condition. For fgetc and fgetwc, if a read error occurs, the error indicator for the stream is set.</para>
+    </return>
+
+    <remarks>
+        <para>Each of these functions reads a single character from the current position of a file; in the case of fgetc and fgetwc, this is the file associated with stream. The function then increments the associated file pointer (if defined) to point to the next character. If the stream is at end of file, the end-of-file indicator for the stream is set. Routine-specific remarks follow.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fgetc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>fgetwc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fgetc.cpp: This program uses getc to read the first
+ * 80 input characters (or until the end of input)
+ * and place them into a string named buffer.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    FILE *stream;
+    char buffer[81];
+    int  i, ch;
+
+    /* Open file to read line from: */
+    if ((stream = fopen(&quot;fgetc.exe&quot;, &quot;r&quot;)) == NULL) {
+        printf(&quot;problem open the file!&quot;);
+        return 1;
+    }
+
+    /* Read in first 80 characters and place them in &quot;buffer&quot;: */
+    ch = fgetc(stream);
+    for (i = 0; (i &lt; 80) &amp;&amp; (feof(stream) == 0); i++) {
+        buffer[i] = (char)ch;
+        ch = fgetc(stream);
+    }
+
+    /* Add null to end string */
+    buffer[i] = &apos;\0&apos;;
+    printf(&quot;%s\n&quot;, buffer);
+    fclose(stream);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+MZ?
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fputc</ref_name>
+            <ref_url>fputc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getc</ref_name>
+            <ref_url>getwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getwchar</ref_name>
+            <ref_url>getwchar</ref_url>
+        </reference>
+    </references>
+
+</manpage>

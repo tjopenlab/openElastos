@@ -1,0 +1,99 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_getw">_getw</sample>
+    <title> _getw </title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>The _getw function obtains the next int (if present) from the stream pointed at by fp.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_getw</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>fp</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_getw returns the integer value read. A return value of EOF indicates either an error or end of file. However, because the EOF value is also a legitimate integer value, use feof or ferror to verify an end-of-file or error condition.</para>
+    </return>
+
+    <remarks>
+        <para>The _getw function reads the next binary value of type int from the file associated with stream and increments the associated file pointer (if there is one) to point to the next unread character. _getw does not assume any special alignment of items in the stream. Problems with porting may occur with _getw because the size of the int type and the ordering of bytes within the int type differ across systems.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_getw</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _getw.cpp: This program uses _getw to read a word
+ * from a stream, then performs an error check.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    FILE *stream;
+    int i;
+
+    if ((stream = fopen(&quot;_getw.exe&quot;, &quot;rb&quot;)) == NULL)
+        printf(&quot;Couldn&apos;t open file\n&quot;);
+    else {
+        /* Read a word from the stream: */
+        i = _getw(stream);
+
+        /* If there is an error... */
+        if (ferror(stream)) {
+            printf(&quot;_getw failed\n&quot;);
+            clearerr(stream);
+        }
+        else
+            printf(&quot;First data word in file: 0x%.4x\n&quot;, i);
+        fclose(stream);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+First data word in file: 0x905a4d
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_putw</ref_name>
+            <ref_url>_putw</ref_url>
+        </reference>
+    </references>
+
+</manpage>

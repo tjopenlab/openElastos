@@ -1,0 +1,86 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>配置文件</volume>
+    <title>CPrivateProfile::SetWString</title>
+    <routine_idx>../../Profile.htm</routine_idx>
+
+    <description>
+        <para>在用户指定文件中指定的section段里设置宽字符串值。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString   </param_type>
+                <param_name> fileName </param_name>
+                <param_note>
+                    <para>[in]指向一个以“\0”为终止符的字符串的指针，用来指向配置文件的名字。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> appName </param_name>
+                <param_note>
+                    <para>[in]指向一个以“\0”为终止符的字符串的指针，用来指向包含关键字的section的名字。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> keyName </param_name>
+                <param_note>
+                    <para>[in]指向一个以“\0”为终止符的字符串的指针，用来指向将被获取的字符型的关键字的名称。</para>
+                </param_note>
+            </api_param>            
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> value </param_name>
+                <param_note>
+                    <para>[in]指向一个获取宽字符串的值， value不能超过260个字符。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_DOES_NOT_EXIST</td><td>所要查找的值不存在</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>appName,keyName,pBuffer为NULL或length等于0时。或appName,keyName中含有非法字符。</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para></para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>
+

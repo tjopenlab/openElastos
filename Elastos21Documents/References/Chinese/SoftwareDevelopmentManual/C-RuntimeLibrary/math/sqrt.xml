@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\sqrt">sqrt</sample>
+    <title> sqrt</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>计算平方根。</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>sqrt</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>非负的浮点数值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回x的平方根，如果x是一个负数，函数将返回一个不确定的数。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>sqrt</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* sqrt.cpp: This program calculates a square root. */
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    double question = 45.35, answer;
+
+    answer = sqrt(question);
+    if (question &lt; 0)
+        printf(&quot;Error: sqrt returns %.2f\n, answer&quot;);
+    else
+        printf(&quot;The square root of %.2f is %.2f\n&quot;, question, answer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The square root of 45.35 is 6.73
+</result>
+
+   
+
+    <references>
+        <reference>
+            <ref_name>exp</ref_name>
+            <ref_url>exp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>log</ref_name>
+            <ref_url>log</ref_url>
+        </reference>
+        <reference>
+            <ref_name>log10</ref_name>
+            <ref_url>log10</ref_url>
+        </reference>
+        <reference>
+            <ref_name>pow</ref_name>
+            <ref_url>pow</ref_url>
+        </reference>
+    </references>
+
+</manpage>

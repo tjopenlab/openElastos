@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WString</interface>
+    <method> IndexOfAny </method>
+
+    <description>
+        <para> 报告指定WString对象中的任意字符在此实例中第一个匹配项的索引。</para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const WString &amp;</param_type>
+            <param_name> strCharSet </param_name>
+            <param_note>
+                <para> 指定字符集,包含一个或多个要查找的字符。  </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive </param_default>
+            <param_note>
+                <para> 大小写标示符。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。(StringCase_Insensitive暂不支持)  </para>
+            </param_note>
+        </api_param>               
+        </parameters>        
+    </syntax>
+    <return>
+        <para>此实例中第一个匹配项的从零开始的索引位置，在此处找到了strCharSet中的任意字符；否则，如果未找到strCharSet中的字符，则为 -1。 </para>
+    </return>
+
+<remarks>
+	<para>1.索引编号从零开始。 </para>
+	<para>2.若WString实例或strCharSet包含的字符串指针为NULL，则返回-1。</para>
+  <para>3.若WString实例或strCharSet为空字符串("")，则返回-1。</para>
+</remarks>
+
+<example>
+<pre>
+请参见：<link url="../AString/IndexOfAny.htm">AString::IndexOfAny</link>
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>WString</ref_name>
+        <ref_url>../WString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::IndexOf</ref_name>
+        <ref_url>IndexOf/index/IndexOf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>WString::IndexOfChar </ref_name>
+        <ref_url>../WString/IndexOfChar</ref_url>
+    </reference>
+
+</references>   
+</manpage>

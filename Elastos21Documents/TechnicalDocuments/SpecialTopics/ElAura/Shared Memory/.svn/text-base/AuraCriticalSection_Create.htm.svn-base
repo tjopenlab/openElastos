@@ -1,0 +1,136 @@
+<HTML>
+<HEAD>
+<TITLE>AuraCriticalSection_Create</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<H3>AuraCriticalSection_Create</H3>
+<p>
+        	Creates shared memory.
+        </p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="4" class="datatype">AURA_API AuraCriticalSection_Create(
+        </TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">WString</TD>
+<TD class="param">name<span style="color:black; font-size:110%">,</span></TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">MemorySize</TD>
+<TD class="param">size<span style="color:black; font-size:110%">,</span></TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">Boolean</TD>
+<TD class="param">commit<span style="color:black; font-size:110%">,</span></TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">ISharedMemory **</TD>
+<TD class="param">ppSharedMemory<span style="color:black; font-size:110%">,</span></TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">Boolean *</TD>
+<TD class="param">pAlreadyExists</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">);</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<H4>Parameters</H4>
+<DL><DT class="param" style="color:#222222;margin-left:42">name</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+                    	[in] The object name of the shared memory
+                    <BR /><BR />
+</font></DD>
+<DT class="param" style="color:#222222;margin-left:42">size</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+                    	[in] Specifies the size of the shared memory block
+                    <BR /><BR />
+</font></DD>
+<DT class="param" style="color:#222222;margin-left:42">commit</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+                    	[in] Specifies whether to allocate all the physical memory of the shared memory upon 
+                    	creation.
+                    <BR /><BR />
+</font></DD>
+<DT class="param" style="color:#222222;margin-left:42">ppSharedMemory</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+                    	[out] Interface pointer to the shared memory object, if the function succeeds.
+					<BR /><BR />
+</font></DD>
+<DT class="param" style="color:#222222;margin-left:42">pAlreadyExists</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+                    	[out] Used to acquire whether the specified SharedMemory object already existed, Ignore the parameter if it is null
+					<BR /><BR />
+</font></DD>
+</DL>
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return value</TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">Function succeeds in creating a named event object</TD>
+</TR>
+<TR><TD class="cell">E_INVALID_ARGUMENT</TD>
+<TD class="cell">Invalid argument(s)</TD>
+</TR>
+<TR><TD class="cell">E_SERVICE_NAME_TOO_LONG</TD>
+<TD class="cell">The service name is beyond the confines (256 characters)</TD>
+</TR>
+<TR><TD class="cell">E_ALREADY_EXIST</TD>
+<TD class="cell">A non-SharedMemory  object  already existed ,whose name is the same as the Event one</TD>
+</TR>
+<TR><TD class="cell">E_OUT_OF_MEMORY</TD>
+<TD class="cell">Insufficient memory</TD>
+</TR>
+</table></p>
+<h4>Remarks</h4>
+<p>
+    		esName can not be null, and also cant be the same name as other named service object in system,
+    		if so, return E_ALREADY_EXISTS.
+    	</p>
+<p><i>ppSharedMemory</i>
+ can be set as null when this process does not operate on this shared memory；Release must 
+        	be called to release this pointer after user operate on this shared memory by <i>ppSharedMemory</i>
+.
+        </p>
+<p>
+    		Other process can access and use this object through the name specified by <i>esName</i>
+ and by EzFindService</a> function.
+    	 </p>
+<h4>Requirements</h4>
+<p><table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>Windows 2000 or later; Elastos2.0 or later</td>
+<td></td>
+</tr>
+<tr>
+<td>Header Files: </td>
+<td>elastos.h</td>
+<td></td>
+</tr>
+<tr>
+<td>Library: </td>
+<td>elastos.lib</td>
+<td></td>
+</tr>
+</table></p>
+<p style="font-size:90%;font-weight:bold;margin-left:0">　</p><script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>
+

@@ -1,0 +1,124 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_findfirst">_findfirst</sample>
+    <title> _findfirst, _wfindfirst</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>Gets matching file information for parameter filespec.</para>
+    </description>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>_findfirst</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>filespec</param_name>
+                <param_note>
+                    <para>Pointer to target file name, wildcard is allowed.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>struct _finddata_t*</param_type>
+                <param_name>fileinfo</param_name>
+                <param_note>
+                    <para>File information buffer.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>_wfindfirst</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>filespec</param_name>
+            </func_param>
+            <func_param>
+                <param_type>struct _wfinddata_t*</param_type>
+                <param_name>fileinfo</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If the _findfrist function is successful, an unique search file descriptor for the file will be returned, or a file search file descriptor matching parameter filespec information, the handle can be used in <link url="_findnext.htm">_findnext</link> function that follows it; if execution failed, returns -1, set error number to the following: </para>
+        <table>
+            <th>
+                <td>Error Number</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>ENOENT</td>
+                <td>Matching file information not found.</td></tr>
+            <tr>
+                <td>EINVAL</td>
+                <td>Illegal file name</td></tr>
+        </table>
+        <para>When _findfirst function or _findnext function was successfully called, <link url="_findclose.htm">_findclose</link> function must be called. This will release the resources created by invoking _findfirst and _findnext in the application.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>_findfirst</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>_findnext</ref_name>
+            <ref_url>_findnext</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_findclose</ref_name>
+            <ref_url>_findclose</ref_url>
+        </reference>
+    </references>
+  <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _getch.cpp: This program uses _findfirst to find first instance of
+ * a filename that matches the file specified in the filespec argument.
+
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;io.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+    long hFile;
+    struct _finddata_t fileinf;
+
+    /* Find first findf*.exe file in current directory */
+    if ((hFile = _findfirst(&quot;findf*.exe&quot;, &amp;fileinf)) == -1L)
+        printf(&quot;No findf*.exe files in current directory!\n&quot;);
+    else {
+        printf(&quot;findf*.exe: %-18s %.24s  %9ld\n&quot;, fileinf.name,
+            ctime(&amp;(fileinf.time_write)), fileinf.size);
+        _findclose(hFile);
+    }
+
+    return 0;
+}
+</pre>
+  </example>
+<result>
+findf*.exe: findfst.exe        Tue Nov 23 13:56:08 2004     248886
+</result>
+</manpage>

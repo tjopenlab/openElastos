@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Time</volume>
+<interface>Timer</interface><method> Restart </method>
+    <description>
+        <para>
+            Restarts Timer object.
+        </para>
+    </description>
+    <syntax>
+        <return_val> void </return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> uint_t  </param_type>
+                <param_name> uRelativeDueTicks  </param_name>
+                <param_note>
+                    <para>
+                        Specified relative time-out period, the unit is ticks. <i>uRelativeDueTicks</i> must be 
+                        greater than zero.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+
+    </syntax>
+
+	<return>
+	    <NoReturnValue/>
+    </return>
+
+	<remarks>
+		<para>
+			This member function is used to restart Timer object by using specified relative time-out period. Before 
+			calling <b>Restart</b> the Timer object must be timed-out or cancelled running; otherwise it cause 
+			unpredictable results. A typical usage of <b>Restart</b> is in Timer callback routines.
+		</para>
+		<para>
+			<b>Restart</b> function can be used in the top half of driver programs, in the bottom half of driver 
+			programs or in Timer callback routines.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

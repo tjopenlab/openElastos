@@ -1,0 +1,39 @@
+
+
+<html>
+<head>
+<title>AStringBuf数据类型</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>AStringBuf数据类型</h2>
+
+    <h3>AStringBuf概述</h3>
+        <p>AStringBuf中存放的是一个(char)类型的字符数组。在CAR规范中，AString是所有字符串类型的入口参数，AStringBuf是所有字符串类型的出口参数。AStringBuf的对象由客户端负责创建及释放。</p>
+        <p>AStringBuf是C++实现的类，若在栈中声明该类的一个对象的方法为AStringBuf_&lt;size&gt;&nbsp;buf，其中buf为该对象变量名称，size是被封装的AString的有效容量。</p>
+
+    <h3>AStringBuf在Elastos中的应用实例分析</h3>
+        <p>AStringBuf在CAR的构件编程中主要作为接口方法的<a class="style1" href="../../attributes/attributes_inout.htm">[out]属性</a>的字符串输出参数，对象的创建与释放由客户端完成。</p>
+        <pre class="code">
+例：
+AStringBuf_<256> esbName;
+
+IProcess *pIProcess;
+EzGetCurrentProcess(&pIProcess);
+pIProcess->GetStartInfo(esbName, AStringBuf_NULL);
+pIProcess->Release();
+</pre>
+        <p>其中GetStartInfo为进程构件对象的接口成员方法，声明如下：</p>
+        <pre class="code">
+ECode GetStartInfo (
+ /*[out]*/AStringBuf esbName,
+ /*[out]*/AStringBuf esbArgs
+);
+</pre>
+        <p>上述示例首先在栈中创建一个有效容量为256的宽字符缓存空间（共512字节）的AStringBuf对象，然后调用<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/ProcessThread/Function/CProcess/GetCurrent.htm">CProcess:GetCurrent</link>函数获取当前进程对象的接口智能指针，最后调用<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/ProcessThread/IProcess/GetStartInfo.htm">IProcess::GetStartInfo</a>方法，将esbName参数传递给该方法从而获取当前进程的名称。</p>
+<script>footer("KoreTide")</script>
+</body>
+</html>

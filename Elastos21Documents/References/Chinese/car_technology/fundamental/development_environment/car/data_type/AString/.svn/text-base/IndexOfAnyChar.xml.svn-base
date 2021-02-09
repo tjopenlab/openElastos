@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AString</interface>
+    <method> IndexOfAnyChar</method>
+
+    <description>
+        <para> 获得strCharSet中任意一个字符在当前对象字符串的第一次出现的索引值。</para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>Char32 *</param_type>
+            <param_name> strCharSet </param_name>
+            <param_note>
+                <para> 指定字符集。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive </param_default>
+            <param_note>
+                <para> 大小写标示符。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。(暂未实现) </para>
+            </param_note>
+        </api_param> 
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name> encoding  </param_name>
+            <param_default>Encoding_Default  </param_default>
+            <param_note>
+                <para> 指定字符编码方式。 参见<link url="../../others/Encoding.htm">Encoding</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>                
+        </parameters>        
+    </syntax>
+    <return>
+        <para>返回指定字符串中任意一个字符在当前对象字符串的第一次出现的索引值，若没有出现则返回-1。</para>
+    </return>
+<remarks>
+	<para> 若当前AString对象字符串指针为NULL或内容为空，则返回-1。</para>
+	<para> 若strCharSet指针为NULL或内容为空，则返回-1。</para>
+	</remarks>
+
+ 
+</manpage>

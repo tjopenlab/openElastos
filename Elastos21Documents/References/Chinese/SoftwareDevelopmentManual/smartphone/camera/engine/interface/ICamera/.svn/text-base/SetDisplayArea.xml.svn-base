@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>照相摄像引擎模块</volume>
+<interface>ICamera</interface><method> SetDisplayArea </method>
+    <description>
+        <para>
+            设置取景窗口区域。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nX </param_name>
+                <param_note>
+                    <para>
+窗口矩形框左上顶点横坐标值                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nY </param_name>
+                <param_note>
+                    <para>
+窗口矩形框左上顶点纵坐标值                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nWidth </param_name>
+                <param_note>
+                    <para>
+窗口矩形框宽                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nHeight </param_name>
+                <param_note>
+                    <para>
+窗口矩形框高                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数无效，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>camera.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib，ElCRuntime.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

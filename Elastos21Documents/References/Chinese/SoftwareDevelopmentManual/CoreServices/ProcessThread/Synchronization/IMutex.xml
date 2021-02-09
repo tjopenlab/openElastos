@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>    <manpage>
+    <volume>同步</volume>
+    <interface> IMutex</interface>
+    <description>
+        <para>互斥体对象接口</para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Lock</method_name>
+        <method_url>IMutex\Lock</method_url>
+    <m_description>
+        获取互斥体对象
+    </m_description>
+    </method>
+    <method>
+        <method_name> TryLock</method_name>
+        <method_url>IMutex\TryLock</method_url>
+    <m_description>
+        尝试在指定时间间隔内获取互斥体对象
+    </m_description>
+    </method>
+ <method>
+        <method_name>Unlock</method_name>
+        <method_url>IMutex\Unlock</method_url>
+    <m_description>
+		释放已占有的互斥体对象
+	</m_description>
+    </method>
+</self>
+    </methods>
+
+	<remarks>
+		<para>一个互斥体对象代表一个"互斥体" －－ 一种同步对象，通过它可允许几个线程互斥的访问一个资源。互斥体对象通过暴露出IMutex接口来提供服务。</para>
+        <para>互斥体对象在某个时刻仅可以被一个线程所占有，当前占有该对象的线程被称为该对象的属主，其它去获取此互斥体对象的线程将全部进入等待状态。直到互斥体对象的属主释放它，才允许这些等待线程中的一个成功获得它，其余线程将继续保持等待状态。</para>
+        <para>当前线程可以通过调用<link url="Function/CMutex/New0.htm">CMutex::New</link>函数来创建一个互斥体对象；或是调用另一个<link url="Function/CMutex/New.htm">CMutex::New</link>函数来创建一个命名的互斥体对象；其它线程可以通过调用<link url="../../CARServices/NamingService/CSystem/FindRunningObject.htm">CSystem::FindRunningObject</link>函数以其名字来获得此互斥体对象的接口指针。</para>
+        <para>当前线程通过调用IMutex::Lock方法或IMutex::TryLock方法获取或尝试获取互斥体对象，通过调用IMutex::Unlock方法释放已占有的互斥体对象。</para>
+        <para>互斥体对象是递归的。这意味着一个已经占有互斥体对象的线程可以再次成功的获取此互斥体对象，但是需要调用与已经调用过的IMutex::Lock方法和IMutex::TryLock方法次数相等的IMutex::Unlock方法才能最终释放此互斥体对象。</para>
+        <para>当互斥体对象的属主线程退出或被杀死时，会自动释放此互斥体对象。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,95 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> carc 工具</title>
+    <volume>XDK常用工具</volume>
+
+    <description>
+        <para>carc工具用于由CAR文件生成所需要的cls文件，提供样式库的支持。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> CARC </cmd_name>
+        <cmd_param> [-?] [-F url][-L dir-list][-I dir-list][-c [filename]][-a][-r filename][-i [filename]][-t][-w][-s][-e][-d] </cmd_param>
+    </syntax>
+    <parameters>
+		<param>
+		    <param_name>-? </param_name>
+		    <param_note>显示帮助信息 </param_note>
+		</param>
+		<param>
+		    <param_name>-F url </param_name>
+		    <param_note>指定对象工厂的url </param_note>
+		</param>
+		<param>
+		    <param_name>-L dir-list </param_name>
+		    <param_note>为库文件路径指定目录清单 </param_note>
+		</param>
+		<param>
+		    <param_name>-I dir-list </param_name>
+		    <param_note>为源文件路径指定目录清单 </param_note>
+		</param>
+		<param>
+		    <param_name>-A</param_name>
+		    <param_note>编译器将忽略所有线程模型关键字而使用无保护的模型</param_note>
+		</param>
+		<param>
+		    <param_name>-c [filename] </param_name>
+		    <param_note>生成cls格式的目标文件 </param_note>
+		</param>
+		<param>
+		    <param_name>-E [filename]</param_name>
+		    <param_note>生成扩展cls格式的目标文件</param_note>
+		</param>
+		<param>
+		    <param_name>-a </param_name>
+		    <param_note>输出压缩格式的cls文件 </param_note>
+		</param>
+		<param>
+		    <param_name>-r filename </param_name>
+		    <param_note>把编译结果转化为CAR源文件 </param_note>
+		</param>
+		<param>
+		    <param_name>-t </param_name>
+		    <param_note>把警告作为错误来处理 </param_note>
+		</param>
+		<param>
+		    <param_name>-w </param_name>
+		    <param_note>关闭编译器的警告信息 </param_note>
+		</param>
+		<param>
+		    <param_name>-s </param_name>
+		    <param_note>不使用系统的样式库 </param_note>
+		</param>
+		<param>
+		    <param_name>-e </param_name>
+		    <param_note>不默认装载elastos.dll </param_note>
+		</param>
+		<param>
+		    <param_name>-d </param_name>
+		    <param_note>当.car文件引入其它的.cls或者.car文件时创建依赖关系</param_note>
+		</param>
+    </parameters>
+    <remarks>
+        <para>这里提到的样式库就是提供接口、类、方法、结构、枚举等的定义。在ElastosXDK中构件的样式库就是cls文件。</para>
+    </remarks>
+    <examples>
+     <example>
+        <eg_line>carc -a -t -c hello.cls hello.car </eg_line>
+        <eg_note> 由hello.car生成对应的压缩格式的cls文件hello.cls，同时把编译器的警告信息作为错位信息来处理。</eg_note>
+    </example>
+    </examples>
+
+    <references>
+        <reference>
+            <ref_name> CAR构件技术简介 </ref_name>
+            <ref_url>../../../preface/elastos_technic/elastos_car</ref_url>
+        </reference>
+        <reference>
+            <ref_name> 自动代码生成框架</ref_name>
+            <ref_url> ../../../car_technology/fundamental/development_environment/auto_generate_code/auto_generate</ref_url>
+        </reference>
+    </references>
+
+</manpage>

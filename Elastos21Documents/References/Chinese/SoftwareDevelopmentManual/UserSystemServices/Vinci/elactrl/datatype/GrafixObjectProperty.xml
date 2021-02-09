@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>图形系统</volume>
+    <types> GrafixObjectProperty </types>
+    <description>
+        <para>
+            窗口属性。
+        </para>
+    </description>
+    <enum>
+<enum_member>    <mem_name>        GrafixObjectProperty_None                                     </mem_name>   <mem_value> 0x00000000    </mem_value>    <mem_description>  清空所有属性  </mem_description>    </enum_member> 
+<enum_member>    <mem_name>        GrafixObjectProperty_Moveable                                     </mem_name>   <mem_value> 0x00000001    </mem_value>    <mem_description> 可移动   </mem_description>    </enum_member> 
+<enum_member>    <mem_name>        GrafixObjectProperty_Resizeable                              </mem_name>   <mem_value>  0x00000002   </mem_value>    <mem_description> 大小可变   </mem_description>    </enum_member> 
+<enum_member>    <mem_name>        GrafixObjectProperty_CoalesceStylusMove                                  </mem_name>   <mem_value>  0x00000004   </mem_value>    <mem_description>  合并鼠标移动  </mem_description>    </enum_member>
+<enum_member>    <mem_name>        GrafixObjectProperty_Main                                  </mem_name>   <mem_value>  0x80000000   </mem_value>    <mem_description>  此属性不能设置，只能得到，Get出此属性的窗口为主窗口  </mem_description>    </enum_member> 
+    </enum>
+    <remarks>
+        <para>
+            每个Applet里第一个创建出来的窗口为主窗口，拥有GrafixObjectProperty_Main属性。
+        </para>   
+    </remarks>
+</manpage>

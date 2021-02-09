@@ -1,0 +1,62 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\malloc"> malloc </sample>
+    <volume>内存管理函数</volume>
+    <title>malloc</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>分配指定大小的内存块。</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <parameters>
+            <api_param>
+                <param_type> size_t </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>需要分配的内存块的大小（单位：字节）。如果为零，则malloc分配一个大小为零的内存块，并且返回一个正确的指针指向它。size不能超过c_uMaxAllocationSize常量所指定的最大分配字节数。可以规定c_uMaxAllocationSize的最小实现值为4092。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NULL</td><td>分配失败，没有足够的内存</td>
+            </tr>
+            <tr>
+                <td>非NULL值</td><td>分配成功，返回所分配的内存块的首地址</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>此函数用于分配指定大小的内存块。实际分配的内存块可能会大于指定的大小，因为可能需要额外的空间来存放维护信息。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>free</ref_name>
+            <ref_url>free</ref_url>
+        </reference>
+    </references>
+</manpage>

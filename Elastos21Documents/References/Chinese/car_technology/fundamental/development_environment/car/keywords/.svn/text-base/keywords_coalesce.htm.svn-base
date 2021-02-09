@@ -1,0 +1,144 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--coalesce </title>
+</head>
+
+<body>
+	<h2>coalesce</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于合并同类回调事件。 </p>
+	        <p>比如下载文件的进度条，每下载一定量的文件，服务器端可以抛出消息，客户端可以合并和处理这些消息（截获消息并计算总共下载量），以更新下载进度条。 </p>
+	    <b>语法 </b>
+	    	<p><b>coalesce</b> callback methodName;  </p>
+
+	    <b>使用范例 </b>
+	        <p>示例coalesceDemo.car文件如下： </p>
+<pre class= code>
+module 
+{
+    interface IFoo {
+        Foo();
+    }
+    callbacks JFooEvent {
+        FooEvent([in] Int32 nId);
+    }
+
+    class CFoo {
+        interface IFoo;
+        callbacks JFooEvent;
+        <b>coalesce</b> callback FooEvent;
+    }
+}
+
+</pre>
+	        <p> 编译此car文件，生成的代码框架CFoo.cpp和 CFoo.h。其中CFoo.h文件中包含一个用来处理合并回调事件的函数如下：</p>
+<pre class= code>
+<b>ECode FooEventCoalescer(const IFooEvent_FooEvent_Params* pNew)
+{
+    return NOERROR;
+}</b>
+
+</pre>
+	        <p>用户可补充该函数，用以合并消息的同时完成一些处理工作，例如下述表示： </p>
+<pre class= code>
+<b>ECode FooEventCoalescer(const IFooEvent_FooEvent_Params* pNew)
+{</b>
+    CConsole::Write("calling coalescer!");
+    CConsole::WriteLine(pNew->m_nId);
+        	
+    <b>return NOERROR; 
+}</b>
+
+</pre>
+	        <p>另外，修改CFoo.cpp文件，多次激发FooEvent回调。(其中黑体部分是编译器自动生成的代码框架) </p>
+<pre class= code>
+<b>#include "CFoo.h"
+#include "_CFoo.cpp"
+
+ECode CFoo::Foo()
+{
+    // TODO: Add your code here</b>
+     CConsole::WriteLine(L"Foo");
+    	
+    Callback::FooEvent(1);
+    Callback::FooEvent(2);
+    Callback::FooEvent(3);
+    
+    Callback::UpdatingFooEvent(4); 
+
+    return NOERROR;
+<b>}</b>
+
+</pre>
+	        <p>上述代码中，执行函数Callback::UpdatingFooEvent()时，服务端对回调事件队列的处理流程是这样的：首先查找事件队列的尾部事件(是FooEvent(3))，与当前的新事件FooEvent(4)进行比较，由于是同类事件，所以调用事件合并处理函数FooEventCoalescer(4)，将这两条事件合并为事件FooEvent(3)。然后继续依次比较队列中的事件，有同类的FooEvent事件就调用相应的事件合并处理函数，直至最后合并为事件FooEvent(1)，并根据该事件的优先级塞入事件队列的适当位置上。 </p>
+            <p> 客户端代码如下：</p>
+<pre class= code>
+#include "coalesceDemo.h"
+using namespace Elastos;
+
+ECode OnFooEvent(PVoid userData, PInterface pSender,Int32 nId)
+{
+    CConsole::Write(L"callback event:FooEvent");
+    CConsole::WriteLine(nId);
+      
+    if (1 == nId) {
+        CFoo::RemoveAllCallbacks(pSender);
+        CApplet::Finish(AppletFinish_ASAP);
+    }    
+    return NOERROR;
+}
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    IFoo *pIFoo;
+    ECode ec;
+	
+    ec = CFoo::New(&pIFoo);
+    if (FAILED(ec)) {
+        CConsole::WriteLine("error");
+        return ec;
+    }
+    
+    pIFoo->Foo();
+    
+    ec = CFoo::AddFooEventCallback(pIFoo, OnFooEvent, NULL);
+    if (FAILED(ec)) {
+        CConsole::WriteLine("error");
+        return ec;
+    }
+    
+    pIFoo->Foo();
+    
+    CObject::ReleaseAtThreadQuit(pIFoo);
+    
+    return NOERROR;
+
+}
+
+</pre>
+	        <p>运行结果如下： </p>
+<pre class= code>
+Foo
+Foo
+calling coalescer!4
+calling coalescer!3
+calling coalescer!2
+callback event:FooEvent1
+</pre>
+	    <b>使用说明 </b>
+	        <p>1.coalesce方法必须包含参数。</p>
+	        <p>2.Coalescer函数必须配合UpdatingXXX()函数使用。如果不调用UpdatingXXX()函数，则Coalescer函数不会被执行。函数UpdatingXXX（参数列表）可单独使用。如果此处是单独使用UpdatingXXX(参数列表)，即在car文件中未声明相应的coalesce关键字，执行此处语句，查找消息后若有同类消息将直接丢弃原来的消息，最后消息队列里保留的是FooEvent(4)。 </p>
+	        <p>3.当用户实现的coalesce函数返回E_CANCLE_BOTH_EVENTS这个返回值时，将要合并的新旧两个事件消息都抛弃。 </p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

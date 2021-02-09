@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<method>CListBox::New </method>
+    <description>
+        <para>
+            创建一个 ListBox 对象。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> caption </param_name>
+                <param_note>
+                    <para>
+ListBox 的文字说明                     </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> style </param_name>
+                <param_note>
+                    <para>
+ListBox 的风格，详见 <link url="../../datatype/ControlStyle.htm">ControlStyle</link> 和 <link url="../../datatype/ListBoxStyle.htm">ListBoxStyle。</link>
+不同风格可以通过“|”（或）配合使用</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> x </param_name>
+                <param_note>
+                    <para>
+ListBox 的左顶点在其父类控件中的横坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> y </param_name>
+                <param_note>
+                    <para>
+ListBox 的左顶点在其父类控件中的纵坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+ListBox 的宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+ListBox 的高度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IControl *  </param_type>
+                <param_name> parent </param_name>
+                <param_note>
+                    <para>
+ListBox 的父类控件接口指针                     </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IListBox**   </param_type>
+                <param_name> ListBox </param_name>
+                <param_note>
+<para>指向 <link url="../../interface/IListBox.htm">IListBox</link> 接口指针的指针，
+用于获取 IListBox 接口指针</para>
+                </param_note>
+            </api_param>                                                             
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>ListBox 创建成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  当创建了一个 ListBox 对象后，就可以获取 <link url="../../interface/IListBox.htm">IListBox</link> 接口指针，通过该接口指针，您就可以调用给种方法对该 ListBox 设置各种属性值。
+	  </para>
+	  <para>
+	  	  用户可以通过 <link url="../../interface/IListBox/InsertItem.htm">InsertItem</link> 以及 <link url="../../interface/IListBox/AddItem.htm">AddItem</link> 方法向 ListBox 内添加选项。若项总数超出可以显示的项数，可以通过将 style 属性指定为 <link url="../../datatype/ControlStyle.htm">ControlStyle_VScroll</link>，则会向 ListBox 控件添加垂直滚动条。
+	  </para>
+	  <para>
+	  	  ListBox 中每一项的文本样式受 <link url="../../../graphics/class/CFont.htm">Font</link> 控制，有关更多信息请参考：<link url="../../reference/SetText.htm">如何设置控件所显示的文本</link>。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CListBox 类介绍</ref_name>
+        <ref_url>../ListBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListBox 接口方法列表</ref_name>
+        <ref_url>../../interface/IListBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ListBox 的回调事件</ref_name>
+        <ref_url>../../interface/JListBoxEvents</ref_url>
+    </reference>
+    <reference>
+        <ref_name>如何设置控件所显示的文本</ref_name>
+        <ref_url>../../reference/SetText</ref_url>
+    </reference>
+</references>
+</manpage>

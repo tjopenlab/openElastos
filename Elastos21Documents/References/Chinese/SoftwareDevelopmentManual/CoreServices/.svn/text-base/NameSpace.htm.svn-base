@@ -1,0 +1,52 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>系统基本服务</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>Elastos命名空间 </h2>
+
+    <h3>Elastos命名空间简介 </h3>
+        <p>在Elastos之上的开发是基于CAR构件技术及其编程模型的，和其他编程语言一样，如果不加任何约束措施，就可能发生命名冲突的问题。为了解决在开发过程中可能出现的和其他系统的命名冲突，Elastos规定了自己的命名空间，它包含了CAR基本数据类型，字符串及数组和EzAPI的C++包装类等。 </p>
+    <h3>Elastos命名空间的范围 </h3>
+        <p>(1)基本数据类型：ECode、Void、PVoid、Int8、UInt8、Byte、PInt8、PByte、PUInt8、AChar、WChar、PAChar、PWChar、Int16、UInt16、PInt16、PUInt16、Int32、UInt32、PInt32、PUInt32、Int64、UInt64、PInt64、PUInt64、Float、Double、PFloat、PDouble等； </p>
+        <p>(2)字符串及数组：AString、WString、AStringBuf、WStringBuf、CarQuintet、StructArray、MemoryBuf、PMemoryBuf、PCarQuintet、AStringArray、Int8Array_等； </p>
+        <p>(3)EzAPI的C++包装类：CSystem、CProcess、CModule、CThread、CMemoryHeap、CVirtualMemory、CMutex、CCondition、CEvent、CReaderWriterLock、CSharedMemory、CErrorReport、CReflector、CObject、CProfile、CPrivateFile、CConsole等。 </p>
+    <h3>Elastos命名空间的使用方法 </h3>
+    <p>Elastos命名空间的使用方法和其他命名空间的使用方法一样，需要 "using namespace Elastos"，或者全拼类型，比如Elastos::Int32、Elastos::CThread::New(...). </p>
+    <h3>备注 </h3>
+     <p>关于Elastos命名空间的例程，请参见Documents下的Samples。在此，给出一个使用Elastos命名空间的例程。 </p>
+     <pre class="code">
+#include &lt;elastos.h&gt;
+using namespace Elastos;
+
+Int32 main()
+{
+    AString as;
+    if (as.IsNull()) {
+        CConsole::WriteLine("The string is NULL.");
+    }
+    else {
+        CConsole::WriteLine("The string is not NULL.");
+    }
+    as = "Great Wall of China";
+    if (as.IsNull()) {
+        CConsole::WriteLine("The string is NULL.");
+    }
+    else {
+        CConsole::WriteLine("The string is not NULL.");
+    }
+
+    return 0;
+}
+</pre>
+<script>footer("KoreTide")</script>
+</body>
+</html>

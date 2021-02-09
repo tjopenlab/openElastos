@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> tee </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para> 把输入文件的内容写到指定的输出文件中。</para>
+    </description>
+
+    <syntax>
+        <cmd_name>TEE</cmd_name>
+        <cmd_param>[-?] [-a] OutputFileName(s)...</cmd_param>
+    </syntax>
+
+    <parameters>
+    <param>
+        <param_name>-?</param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+    <param>
+        <param_name>-a</param_name>
+        <param_note>把输入文件的内容追加到指定输出文件的末尾</param_note>
+    </param>
+    <param>
+        <param_name>OutputFileName</param_name>
+        <param_note>指定输出文件名。如果此文件不存在，则创建它</param_note>
+    </param>
+    </parameters>
+
+    <examples>
+    <example>
+        <eg_line>type file1.txt | tee file2.txt</eg_line>
+        <eg_note>屏幕显示file1.txt的内容，并将file1.txt的内容写到file2.txt中。</eg_note>
+    </example>
+    </examples>
+
+    <references>
+    <reference>
+        <ref_name>head</ref_name>
+        <ref_url>head</ref_url>
+    </reference>
+    <reference>
+        <ref_name>tail</ref_name>
+        <ref_url>tail</ref_url>
+    </reference>
+    </references>
+</manpage>

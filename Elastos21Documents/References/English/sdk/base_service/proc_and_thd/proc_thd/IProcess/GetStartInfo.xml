@@ -1,0 +1,84 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IProcess</interface><method> GetStartInfo	 </method>
+    <description>
+        <para>
+			Gets the start information of the associated process, including the process name and arguments.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type>WStrBuf  </param_type>
+                <param_name> wName </param_name>
+                <param_note>
+                    <para>
+						The process name.
+                    </para>
+                </param_note>
+            </api_param>       			
+			    
+			<api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStrBuf  </param_type>
+                <param_name> wArgs </param_name>
+                <param_note>
+                    <para>
+						The arguments passed, when the associated process starts.
+                    </para>
+                </param_note>
+            </api_param>       
+        </parameters>
+    </syntax>
+	
+	<return>
+	<table>            
+	    <th>            
+		<td>Return Value </td>            
+		<td>Hex Value</td>
+		<td>Description</td>            
+	    </th>            
+	    <tr>            
+		<td>NOERROR</td>            
+		<td>0x00000000</td>
+		<td>Function succeeds in getting the start information of the associated process.</td>            
+	    </tr>               
+	    <tr>            
+		<td>E_INVALIDARG</td>            
+		<td>0x80070057</td>
+		<td>Invalid argument(s)</td>            
+	    </tr>               
+	</table> 
+		    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>           	
+    </return>
+
+	<remarks>
+		<para>
+			esbName also represents the name of the main module and an existing executable binary assembly file. It 
+			is normally a ".exe" module name.
+		</para>		
+		<para>
+			esbArgs specifies the command line arguments to be passed when starting the process resource. It is set 
+			by the method IProcess-> Start([in] EzStr esName, [in] EzStr esArgs)
+		</para>
+		<para>
+			The two parameters esbName and esbArgs should not be NULL at same time. Otherwise the return value would 
+			be E_INVALIDARG.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.            
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

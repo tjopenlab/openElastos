@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>JImagePanelEvents</interface><method></method>
+    <description>
+        <para>
+            JImagePanelEvents中方法所涉及的回调函数
+        </para>
+    </description>
+    <callback>
+<pre>
+//这里以PaneClick方法对于ImagePanel控件的操作为例，其他方法同理。
+    //添加该方法回调
+    static  ECode AddPaneClickCallback(
+                    PObject pServerObj,
+                     ECode (*pFunc)( PVoid, IImagePanel *,  Int32,  Int32),
+                     PVoid pUserData=NULL){……}
+    //删除该方法回调
+    static  ECode RemovePaneClickCallback(
+                    PObject pServerObj,
+                     ECode (*pFunc)( PVoid, IImagePanel *,  Int32,  Int32),
+                     PVoid pUserData=NULL){……}
+
+    template &lt;class T&gt;
+    static  ECode AddPaneClickCallback(
+                PObject pServerObj,
+                T *pThis,
+                 ECode (CARAPICALLTYPE T::*pFunc)(
+                        IImagePanel *,  Int32,  Int32)){……}
+
+    template &lt;class T&gt;
+    static  ECode RemovePaneClickCallback(
+                    PObject pServerObj,
+                T *pThis,
+                 ECode (CARAPICALLTYPE T::*pFunc)(
+                        IImagePanel *,  Int32,  Int32)){……}
+                        
+    //删除所有回调                    
+    static  ECode RemoveAllCallbacks(PObject pServerObj){……}
+</pre>
+    </callback>
+</manpage>

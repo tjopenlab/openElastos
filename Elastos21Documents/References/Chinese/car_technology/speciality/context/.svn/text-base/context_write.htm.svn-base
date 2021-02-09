@@ -1,0 +1,238 @@
+<html>
+	
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title> context_use</title>	
+	</head>
+	
+	<body>
+		<h2>编写DLL </h2>
+		  <p> 下面举一个Child进入school（语境）变成student（语境特征）的例子。</p>
+		  <p> context作为关键字用来定义一个普通语境构件类。普通语境构件类的名字必须以K打头,它所具有的语境特征由其属性aspect来决定，并且context一般情况下要带属性aspect。</p> 
+		<h3> 编写context的CAR文件</h3>
+	     <p> 为了统一管理编写和调用，可以先建一个GoingToSchool目录，在此目录下再分别建一个GoToSchoolDll和GoToSchoolExe目录，在GoToSchoolDll目录下实现如何编写一个context的例子，在GoToSchoolExe目录下实现如何调用该DLL。</p>
+       <P> 下面在GoToSchoolDll目录下新建一个GoToSchoolDemo.car文件，并在文件中添加如下内容：</P>
+<pre class = code>
+module
+{
+    interface IChild {
+        Play();
+        GetName([out] WStringBuf<10> nameBuf);
+    }
+
+    class CChild {
+        constructor([in] WString name);
+        interface IChild;
+    }
+
+    interface IStudent {
+        Study();
+        GetID([out] Int32* pId);
+    }
+
+    interface IStudentAdmin {
+        SetID([in] Int32 id);
+    }
+
+    aspect AStudent {
+        interface IStudent;
+        privileged interface IStudentAdmin;
+    }
+
+    interface ISchool {
+        Open();
+    }
+
+    context KSchool pertainsto AStudent {
+        interface ISchool;
+    }
+}
+</pre>
+	    <p> 在该示例中定义了一个方面构件类（AStudent）和一个普通语境构件类（KSchool）。KSchool语境拥有特征AStudent。当一个CChild对象被创建时，他是一个“小孩”，具有小孩的行为“玩”（Play），而把“小孩”送到学校，他就变成了学生，具有了学生的行为“学习”（Study），而当他从学校毕业，在进入新的环境（语境context）前他又变成了“小孩”。</p>
+		  <p> 换成代码描述就是：一个构件对象（CChild）被创建，它只具有Play()方法，在它进入了一个语境（KSchool），那么该对象会聚合语境的特征（AStudent），也就是聚合了语境属性里的aspect对象（AStudent），从而具有了Study()方法；如果该对象离开此语境，那么会拆卸聚合该语境属性里的aspect对象。</p>
+<h3> 编译此CAR文件</h3>
+    <p>在XDK环境下编译该CAR文件，自动代码框架会生成如下几个文件： </p>
+    <p><a href= "code\Astudent_cpp.htm">Astudent.cpp </a></p>
+    <p><a href= "code\Astudent_h.htm">Astudent.h </a> </p>
+    <p><a href= "code\CChild_cpp.htm">CChild.cpp </a></p>
+    <p><a href= "code\CChild_h.htm">CChild.h </a></p>
+    <p><a href= "code\KSchool_cpp.htm">KSchool.cpp </a></p>
+    <p><a href= "code\KSchool_h.htm">KSchool.h </a></p>
+    <p><a href= "code\sources.htm">sources </a></p>
+    <p>可以看到，生成的这几个cpp文件中自动包含了其接口的方法。所以，接下来的工作只需要添加应用代码即可。</p>
+    
+    
+    
+    
+<h3> 修改自动代码生成框架生成的相应代码 </h3>
+      
+		  <p>下面分别修改自动代码生成框架生成的KSchool.cpp、AStudent.cpp、CChild.cpp文件，以完成应用功能。</p>
+		 <p><b>注：</b>下述代码片断中粗体部分是自动生成的代码，非粗体部分是用户添加的代码。</p>
+		  <pre class= code><b>
+#include "KSchool.h"
+#include "_KSchool.cpp"</b>
+
+ECode KSchool::OnObjectEntering(
+    /* [in] */ PInterface pObject)
+{
+    CConsole::WriteLine(L"-> KSchool::OnObjectEntering()...");
+
+    // Make sure that only a child can enter the school.
+    //
+    IChild* pChild;
+    pChild = IChild::Probe(pObject);
+    if (pChild) return NOERROR;
+    else return E_NO_INTERFACE;
+}
+
+ECode KSchool::OnObjectEntered(
+    /* [in] */ PInterface pObject)
+{
+    CConsole::WriteLine(L"-> KSchool::OnObjectEntered()...");
+
+    // The aspect of the KSchool context, i.e., AStudent, has a "protected"
+    // interface, i.e., IStudentAdmin.  The protected keyword, in this case,
+    // means that the interface may only be queried by its context or
+    // its peer component or aspect.  In addition, a protected interface
+    // may only be queried inside one of the following functions:
+    // OnObjectEntering(), OnObjectEntered(),
+    // OnAspectAttaching(), OnAspectDetaching(),
+    // OnObjectLeaving(), OnObjectLeft().
+    //
+    IStudentAdmin* pStudentAdmin;
+    pStudentAdmin = IStudentAdmin::Probe(pObject);
+    if (!pStudentAdmin) {
+        return E_NO_INTERFACE;
+    }
+
+    static Int32 s_totalStudents = 0;
+    s_totalStudents++;
+    pStudentAdmin->SetID(s_totalStudents+100);  // student ID starts with 101
+
+    return NOERROR;
+}
+
+ECode KSchool::OnObjectLeaving(
+    /* [in] */ PInterface pObject)
+{
+    CConsole::WriteLine(L"-> KSchool::OnObjectLeaving()...");
+    return NOERROR;
+}
+
+ECode KSchool::OnObjectLeft(
+    /* [in] */ PInterface pObject)
+{
+    CConsole::WriteLine(L"-> KSchool::OnObjectLeft()...");
+    return NOERROR;
+}
+<b>
+ECode KSchool::Open()
+{</b>
+    CConsole::WriteLine(L"The school opens.");
+    return NOERROR;
+<b>}</b>
+</pre>
+<p>
+对于aspect方面对象AStudent，我们希望在它被自动聚合时也能够做一些相应的工作，编写AStudent.cpp如下：
+</p>
+<pre class=code>
+<b>#include "AStudent.h"
+#include "_AStudent.cpp"</b>
+
+ECode AStudent::OnAspectAttaching(
+    /* [in] */ PInterface pObject)
+{
+    CConsole::WriteLine(L"-> AStudent::OnAspectAttaching()...");
+
+    m_pChild = IChild::Probe(pObject);
+    if (m_pChild) return NOERROR;
+    else return E_NO_INTERFACE;
+}
+
+ECode AStudent::OnAspectDetaching(
+    /* [in] */ PInterface pObject)
+{
+    CConsole::WriteLine(L"-> AStudent::OnAspectDetaching()...");
+    return NOERROR;
+}
+<b>
+ECode AStudent::Study()
+{</b>
+    WStringBuf_<40> wstrBuf;
+    m_pChild->GetName(&wstrBuf);
+    wstrBuf.Append(L"'s studying.");
+    CConsole::WriteLine(wstrBuf);
+    return NOERROR;
+<b>}</b>
+
+<b>ECode AStudent::GetID(
+    /* [out] */ Int32 * pId)
+{</b>
+    *pId = m_studentID;
+    return NOERROR;
+<b>}</b>
+
+<b>ECode AStudent::SetID(
+    /* [in] */ Int32 id)
+{</b>
+    m_studentID = id;
+    return NOERROR;
+<b>}</b>
+</pre>
+
+
+<p>最后，实现一个普通的构件对象CChild，希望这个构件对象进入KSchool这个context的时候能够自动的聚合AStudent这个方面对象，并在聚合了这个对象之后打印出一些信息：
+</p>
+<pre class= code>
+<b>#include "CChild.h"
+#include "_CChild.cpp"</b>
+
+ECode CChild::OnAspectAttaching(
+    /* [in] */ PInterface pAspect)
+{
+    CConsole::WriteLine(L"-> CChild::OnAspectAttaching()...");
+    return NOERROR;
+}
+
+ECode CChild::OnAspectDetaching(
+    /* [in] */ PInterface pAspect)
+{
+    CConsole::WriteLine(L"-> CChild::OnAspectDetaching()...");
+    return NOERROR;
+}
+
+<b>ECode CChild::Play()
+{</b>
+    WStringBuf_<40> wstrBuf;
+    this->GetName(&wstrBuf);
+    wstrBuf.Append(L"'s playing.");
+    CConsole::WriteLine(wstrBuf);
+    return NOERROR;
+<b>}</b>
+
+<b>ECode CChild::GetName(
+    /* [out] */ WStringBuf * pnameBuf)
+{</b>
+    if (pnameBuf == NULL) {
+        return E_INVALID_ARGUMENT;
+    }
+    pnameBuf->Copy(m_childName);
+    return NOERROR;
+<b>}</b>
+
+
+<b>ECode CChild::constructor(
+    /* [in] */ WString name)
+{</b>
+    m_childName.Copy(name);
+    return NOERROR;
+<b>}</b>
+
+</pre>
+<h3>生成相应的dll</h3>
+    <p>进入正确的XDK目录，emake编译后会生成car文件对应的dll。</p> 
+	</body>
+	
+</html>

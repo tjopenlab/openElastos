@@ -1,0 +1,116 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>I/O interface</volume>
+<interface>IAbsoluteIO</interface><method> Write </method>
+    <description>
+        <para>
+        	Writes the data in the buffer to the file object, and returns the size of the data actually written.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> offset </param_name>
+                <param_note>
+                    <para>
+						The distance from the begining (starting from 0 )of the file object measured in byte.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzByteBuf </param_type>
+                <param_name> ezbBuf </param_name>
+                <param_note>
+                    <para>
+						The buffer storing data.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UINT* </param_type>
+                <param_name> pWrite </param_name>
+                <param_note>
+                    <para>
+						Returns the data size which is actually written.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value </td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>S_OK</td>
+		        <td>Function succeeds in writing the data in the buffer to the file object.</td>
+	        </tr>
+	        <tr>
+		        <td>E_INVALIDARG</td>
+		        <td>Invalid argument(s); parameter ezbBuf or pWrite is NULL.</td>
+	        </tr>
+	        <tr>
+		        <td>ECODE_FROM_ERROR(EINVAL)</td>
+		        <td>ezbBuf.Used() is greater than 0x7fffffff.</td>
+	        </tr>
+	        <tr>
+		        <td>ECODE_FROM_ERROR(EACCES)</td>
+		        <td>The file is read-only.</td>
+	        </tr>
+	        <tr>
+		        <td>ECODE_FROM_ERROR(EFBIG)</td>
+		        <td>offset + ezbBuf.Used() > 0x70000000.</td>
+	        </tr>
+	        <tr>
+		        <td>ECODE_FROM_ERROR(ENOSPC)</td>
+		        <td>Insufficient disk space.</td>
+	        </tr>
+	        <tr>
+		        <td>ECODE_FROM_ERROR(EROFS)</td>
+		        <td>The file is mounted as read-only.</td>
+	        </tr>
+	        <tr>
+		        <td>ECODE)FROM_ERRNO(ENOLCK)</td>
+		        <td>Read-Write Lock is abnormal.</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			1. The file should be opened in <b>write</b> mode before doing any write operation; 
+			Sync should be called to store the data into permanent storage after writing.
+		</para>
+		<para>
+        	2. <i>offset</i> should be equal to or greater than the current size of the object file. This function
+        	appends the file with 0, and write from the offset. The size of the file object will also be
+        	changed into the newly written value.ezbBuf.Used(), which means the number of the characters need 
+        	to be written.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

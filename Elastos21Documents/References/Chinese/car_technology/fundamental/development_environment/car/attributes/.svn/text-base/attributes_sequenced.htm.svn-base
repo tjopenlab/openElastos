@@ -1,0 +1,150 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--sequenced </title>
+</head>
+
+<body>
+	<h2>sequenced</h2>
+	    <b>含义 </b>
+	        <p> 此属性修饰构件类，表示被修饰构件对象同一时刻只允许一个线程执行该对象的方法，其它访问该构件对象的线程将被阻塞并等待。</p>
+	
+	    <b>语法 </b>
+<pre class = code>
+ [<b>sequenced</b>]
+ class className classBody;
+</pre>
+	    <b>使用说明 </b>
+	        <p>1.sequenced属性和<a class="style1" href= "attributes_synchronized.htm">synchronized属性</a>不能同时使用。 </p>
+	        <p>2.使用sequenced属性或<a class="style1" href= "attributes_synchronized.htm">synchronized属性</a>，构件对象都是通过加锁来保证方法调用的互斥，但使用sequenced属性时，线程会在被修饰构件对象方法访问其它对象时临时释放锁，允许其它线程进入对象。比如：当线程一从A构件的的X方法中调用B构件的Y方法时，会自动释放掉与A构件相关联的锁并且自动获取与B构件相关联的锁。此时，当线程一释放掉与A构件相关联的锁并获取了B构件相关联的锁后再等待线程二调用A构件的Z方法时，线程二可以获取与A构件相关联的锁而并不会引起死锁。 </p>
+	        <p>3.Sequenced与函数已有的Mutex混用，会导致加锁顺序混乱，有潜在死锁的危险。 </p>
+	        <p>4.<a class="style1" href= "attributes_synchronized.htm">synchronized属性</a>和sequenced属性不能修饰<a class="style1" href= "../keywords/keywords_applet.htm">applet类</a>。</p>
+	    <b>使用范例 </b>
+	        <p>例如foo.car: </p>
+<pre class= code>
+module
+{
+    interface IFoo{
+        Foo1();
+        Foo2();
+    }
+
+    [<b>sequenced</b>]
+    class CFoo {
+        interface IFoo;
+    }
+}
+
+</pre>
+	        <p>上面的foo.car构件编译生成后的cpp文件后，修改如下：(其中黑体部分是编译器自动生成的代码框架) </p>
+<pre class= code>
+<b>#include " CFoo.h"
+#include "_ CFoo.cpp"</b>
+
+#define Sleep(ms) CThread::Sleep(ms, NULL)
+
+<b>ECode CFoo::Foo1()
+{</b>
+    CConsole::WriteLine("Enter CFoo::Foo1()");
+    Sleep(20);
+    CConsole::WriteLine("Leave CFoo::Foo1()");
+    return NOERROR;
+<b>}</b>
+
+<b>ECode CFoo::Foo2()
+{</b>
+    CConsole::WriteLine("Enter CFoo::Foo2()");
+    Sleep(20);
+    CConsole::WriteLine("Leave CFoo::Foo2()");
+    return NOERROR;
+<b>}</b>
+
+</pre>
+	        <p>Sequenced为每个方法加了锁。与<a class="style1" href= "attributes_synchronized.htm">synchronized</a>区别在于在方法内部如果调用了另一个带Sequenced的构件类的方法或跨域调用前会先解锁；调用完成，返回后又重新加上锁。 </p>
+	        <p>例如，执行上述Foo1()方法的伪代码如下： </p>
+<pre class= code>
+CFoo::Foo1()
+{
+    EnterCriticalSection(&_m_CFooLock);
+    CConsole::WriteLine("Enter CFoo::Foo1()");
+    LeaveCriticalSection(&_m_CFooLock);
+   
+    EnterCriticalSection(&_m_CFooLock);
+    Sleep(20);
+    LeaveCriticalSection(&_m_CFooLock);
+
+    EnterCriticalSection(&_m_CFooLock);
+    CConsole::WriteLine("Leave CFoo::Foo2()");
+    LeaveCriticalSection(&_m_CFooLock);
+    return NOERROR;
+}
+
+</pre>
+	        <p>编写客户端代码如下： </p>
+<pre class= code>
+#include "foo.h"
+using namespace Elastos;
+
+//线程函数
+ELFUNC Thread1(void *pArg)
+{
+    IFoo *pIFoo = (IFoo *)pArg;
+    for (int n = 0; n < 2; n++) {
+        pIFoo->Foo1();
+    }
+    return NOERROR;
+}
+
+int main()
+{
+    ECode ec;
+    IFoo* pIFoo;
+    IThread *pThread;
+    int n;
+
+    //创建一个构件对象
+    ec = CFoo::New(&pIFoo);
+    if (FAILED(ec)) return ec;
+
+    //创建一个线程
+    ec = CThread::New(Thread1, pIFoo, 0, &pThread);
+    if (FAILED(ec)) {
+        pIFoo->Release();
+        return ec;
+    }
+
+    for (n = 0; n < 2; n++) {
+        pIFoo->Foo2();
+    }
+    pThread->Join(INFINITE, NULL);
+    pThread->Release();
+    pIFoo->Release();
+    return NOERROR;
+}
+
+</pre>
+	        <p>运行后的结果为： </p>
+<pre class= code>
+Enter CFoo::Foo2()
+Enter CFoo::Foo1()
+Leave CFoo::Foo2()
+Leave CFoo::Foo1()
+Enter CFoo::Foo2()
+Enter CFoo::Foo1()
+Leave CFoo::Foo2()
+Leave CFoo::Foo1()
+</pre>
+	        <p>上述客户端代码中，主线程两次调用接口方法Foo2()，并新开一新线程，该新线程两次调用接口方法Foo1()。从运行结果可以看出，Foo1()与Foo2()并发执行，Foo2()方法未执行完就可能会执行Foo1()。 </p>
+
+        <b><a class="style1" href="../attribute.htm">【CAR属性关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

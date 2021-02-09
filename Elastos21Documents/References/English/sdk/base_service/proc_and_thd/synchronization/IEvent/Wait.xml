@@ -1,0 +1,80 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface </volume>
+<interface>IEvent</interface><method> Wait </method>
+    <description>
+        <para>
+         	Waits for the event object to notify.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult *</param_type>
+                <param_name>pResult </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EventState * </param_type>
+                <param_name> pState </param_name>
+                <param_note>
+                    <para>
+						Pointer to a DWORD, to store the notification state. The state is specified when calling 
+						the <link url="Notify.htm">IEvent::Notify</link> method. <i>pState</i> can be NULL to ignore 
+						the state. This value is valid only if the event object is in notified state.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>	
+	<table>
+	    <th>
+			<td>Return Value</td>
+			<td>Hex Value</td>
+			<td>Description</td>
+	    </th>
+	    <tr>
+			<td>NOERROR</td>
+			<td>0x00000000</td>
+			<td>Function succeeds in making the event object to wait.</td>
+	    </tr>
+	    <tr>
+			<td>E_INVALID_ARGUMENT</td>
+			<td>0x00060014</td>
+			<td>Invalid arguument(s).</td>
+	    </tr>
+	</table>
+       <para>See <link url="..\..\..\..\reference\basic_data_type\hresult.htm">ECODE</link> for related help.</para>     
+    </return>
+
+	<remarks>
+		<para>
+			This function makes the event object to wait till it become the notified state. If the 
+			event object is in cleared state, the calling thread will be blocked until the event object 
+			makes a notification. If the event object is in notified state, the method will return 
+			successfully, and if the event object is auto cleared, the event object will become cleared 
+			state. If the event object is manual cleared, the event object will keep the notified state. 
+			The calling thread can be interrupted while waiting.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

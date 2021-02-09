@@ -1,0 +1,97 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>ITapiEventHandler</interface><method> OnCallStatus </method>
+    <description>
+        <para>
+           电话呼叫状态提示事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwStatus </param_name>
+                <param_note>
+                    <para>
+                       电话事件的类型
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> TAPI_CALLEVENTTBL * </param_type>
+                <param_name> pcetCallEvent </param_name>
+                <param_note>
+                    <para>
+                        指向<link url="../../DataType\Gsm\TAPI_CALLEVENTTBL.htm">TAPI_CALLEVENTTBL</link>结构类型的指针，用于表示发生事件的电话信息列表
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwTime </param_name>
+                <param_note>
+                    <para>
+                      发生事件的时间
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    <remarks>
+      <para>
+        dwStatus取值定义如下：（注意：会话指的是电话接通后的状态。）
+      </para>
+      <table>
+        <th>
+	    	  <td>取值 </td>
+	    	  <td>描述</td>
+	      </th>
+	      <tr>
+	    	  <td>NOERROR</td>
+	    	  <td>程序执行成功</td>
+	      </tr>
+      </table>
+        <tr>
+	    	  <td>TAPI_CALLSTATUS_INCOMING</td><td>来电事件</td>
+	      </tr>
+        <tr>
+	    	  <td>TAPI_CALLSTATUS_DIALING</td><td>拨打电话事件</td>
+	      </tr>
+        <tr>
+	    	  <td>TAPI_CALLSTATUS_CONNECTED</td><td>会话连接事件</td>
+	      </tr>
+        <tr>
+	    	  <td>TAPI_CALLSTATUS_CONVERSATIONUPDATE</td><td>会话更新事件</td>
+	      </tr>
+        <tr>
+	    	  <td>TAPI_CALLSTATUS_INCOMINGDISMISS</td><td>来电未接听事件</td>
+	      </tr>
+        <tr>
+	    	  <td>TAPI_CALLSTATUS_DIALINGDISMISS</td><td>取消拨打电话，拨打失败或者被对方拒绝事件</td>
+	      </tr>
+        <tr>
+	    	  <td>TAPI_CALLSTATUS_DISCONNECTED</td><td>会话结束事件</td>
+	      </tr>
+        <tr>
+	    	  <td>TAPI_CALLSTATUS_ALERTING</td><td>MO呼叫后对方振铃事件</td>
+	      </tr>
+
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

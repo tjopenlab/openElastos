@@ -1,0 +1,130 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzCreateObject">EzCreateObject</sample>
+    <volume></volume>
+    <title>CVirtualMemory::IoRemap</title>
+    <routine_idx>.../mem_management_idx.htm</routine_idx>
+
+    <description>
+        <para>
+        Maps the specified IO address segment to the process virtual memory segment. 
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECode  </return_val>
+        <api_name>CVirtualMemory::IoRemap</api_name>
+       <parameters>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name> virtualAddr </param_name>
+                <param_note>
+                    <para>
+                    	[in] The starting address of the virtual memory which is to be mapped. 
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemorySize </param_type>
+                <param_name>size </param_name>
+                <param_note>
+                    <para>
+                    	[in] The size of the mapped memory block
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name> physicalAddr</param_name>
+                <param_note>
+                    <para>
+                    	[in] The starting physical address of IO address block. 
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemoryMap</param_type>
+                <param_name> flags </param_name>
+                <param_note>
+                    <para>
+                    [in] Optional flag for virtual memory mapping. See <link url="\sdk\base_service\data structer\MemoryMap.html">MemoryMap</link> related help for more details.	
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>MemoryProtection </param_type>
+                <param_name>protection</param_name>
+                <param_note>
+                    <para>
+                    [in] Specifies the type of virtual memory access protection.See <link url="\sdk\base_service\data structer\MemoryProtection.html">MemoryProtection</link> related help for more details.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>Address *</param_type>
+                <param_name>pVirtualAddr</param_name>
+                <param_note>
+                    <para>
+                    	[out] The starting address which will return if mapping succeeds. 
+                    </para>
+                </param_note>
+            </api_param>
+           </parameters>
+    </syntax>
+
+    <return>
+       <table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Funtion succeeds in mapping the specified IO address segment to the process virtual memory segment</td>
+            </tr>
+            
+            <tr>
+                <td>E_INVALIDARG</td>
+                <td>Invalid argument(s)</td>
+            </tr>
+            <tr>
+                <td>E_ALREADY_EXISTS </td>
+                <td>The name of the service  already registered</td>
+            </tr>
+           <tr>
+                <td>E_DOES_NOT_EXIST </td>
+                <td>The service dosen't exist</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY </td>
+                <td>Out of memory</td>
+            </tr>
+        </table>
+        <para>See <link url="/sdk/reference/basic_data_type/hresult.htm">ECODE</link> related help for more details.</para>
+    </return>   	
+
+    <remarks>
+         <para>
+         </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

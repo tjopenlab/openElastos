@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>Open (IHttpRequest)</volume>
+<interface>IHttpRequest</interface><method> Open </method>
+    <description>
+        <para>
+            初始化 http 请求，前三个是必要的，后两个是可选的(在服务器需要进行身份验证时提供)。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> U8String </param_type>
+                <param_name> method </param_name>
+                <param_note>
+                    <para>
+打开链接的 HTTP 方式，可以是：GET、HEAD、POST、PUT，不能为 NULL 或空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> U8String </param_type>
+                <param_name> url </param_name>
+                <param_note>
+                    <para>
+请求的 URL，必须是绝对路径，如："http://www.kortide.com.cn"，不能为 NULL 或空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Boolean </param_type>
+                <param_name> isAsync </param_name>
+                <param_note>
+                    <para>
+Boolean 型，用于设置客户端与服务器端的通信方式；若为 TRUE，则通信方式为异步，若为 FALSE，则通信方式为同步，默认为异步方式。连接在异步状态下，需要同时注册一个 <link url="../JHTTPRequestEvents/OnReadyStateChange.htm">OnReadyStateChange</link> 回调事件，当数据返回时会触发该事件，这样就能通过这个回调事件知道通讯的各个阶段</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> U8String </param_type>
+                <param_name> user </param_name>
+                <param_note>
+                    <para>
+权限用户名，可以为 NULL 或空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> U8String </param_type>
+                <param_name> password </param_name>
+                <param_note>
+                    <para>
+权限密码，可以为 NULL；当 user 参数为 NULL 或空时，可忽略该参数</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION</td>
+	    	    <td>无效操作</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	      只有在 HTTP 请求状态为 <link url="../../datatype/ReadState.htm">ReadState_UNINITIALIZED</link> 或 <link url="../../datatype/ReadState.htm">ReadState_COMPLETED</link> 时才能调用该方法，否则将返回错误。该方法调用后，必须调用 <link url="Send.htm">Send</link> 方法发送请求和数据给服务器端。
+	  </para>
+	  <para>
+	      该方法的成功调用会改变 HTTP 请求的状态为 <link url="../../datatype/ReadState.htm">ReadState_LOADING</link>，同时触发 <link url="../JHTTPRequestEvents/OnReadyStateChange.htm">OnReadyStateChange</link> 事件，并复位请求头部，更多请求头信息可参考：<link url="../../reference/HTTPHeaders.htm">HTTP 请求头概述</link>。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CHttpRequest 类介绍 </ref_name>
+        <ref_url>../../HttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IHttpRequest 接口方法列表</ref_name>
+        <ref_url>../IHttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>OnReadyStateChange</ref_name>
+        <ref_url>../JHTTPRequestEvents/OnReadyStateChange</ref_url>
+    </reference>
+    <reference>
+        <ref_name>OpenW</ref_name>
+        <ref_url>../IHttpRequestEx/OpenW</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Send</ref_name>
+        <ref_url>Send</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Abort</ref_name>
+        <ref_url>Abort</ref_url>
+    </reference>
+</references>
+</manpage>

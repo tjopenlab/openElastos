@@ -1,0 +1,88 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<method> InterlockedCompareExchangePointer </method>
+    <description>
+        <para>
+            The <b>InterlockedCompareExchangePointer</b> function performs an atomic comparison of the specified values of
+            parameters and exchanges the values, based on the outcome of the comparison. More than one thread
+            cannot use the same variable simultaneously.
+        </para>
+    </description>
+    <syntax>
+        <return_val>PVOID</return_val>
+        <parameters>
+            <api_param>
+                <param_type> PVOID * </param_type>
+                <param_name> Destination</param_name>
+                <param_note>
+                    <para>
+                        Pointer to the pointer of the destination value.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> PVOID </param_type>
+                <param_name> Exchange</param_name>
+                <param_note>
+                    <para>
+                        Specifies the exchange value.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> PVOID </param_type>
+                <param_name> Comperand</param_name>
+                <param_note>
+                    <para>
+                        Specifies the value to compare with <i>Destination</i>.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <para>
+	    	Initial value of the <i>Destination</i>.
+	    </para>
+	</return>
+
+	<remarks>
+		<para>
+		    The Interlocked functions provide a simple mechanism for synchronizing access to a variable that is
+		    shared by multiple threads. The threads of different processes can use this mechanism if the variable
+		    is in shared memory.
+        </para>
+        <para>
+        	InterlockedCompareExchangePointer completes atomic comparison between the value of <i>Comperand</i> and the 
+        	value pointer <i>Destination</i> points to.If the value <i>Destination</i> points to equals to the value of 
+        	<i>Comperand</i>, the value of <i>Exchange</i> is stored in address specified by <i>Destination</i>. 
+        	Otherwise, the value of data pointed to <i>Destination</i> won't be changed.
+        </para>
+        <para>
+            The parameters must be aligned on a 32-bit boundary; otherwise, this function will fail on multiprocessor
+            x86 systems or any non-x86 systems.
+        </para>
+
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>

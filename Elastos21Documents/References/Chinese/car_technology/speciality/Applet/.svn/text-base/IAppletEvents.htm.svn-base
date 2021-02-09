@@ -1,0 +1,65 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>JAppletEvents异步回调接口方法介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>JAppletEvents异步回调接口介绍</h2>
+    <p>系统TApplet中声明了JAppletEvents回调接口，调用者可以注册这些回调事件获得applet相应事件发生时的通知。详见下表：</p>
+        <table>
+            <thead>
+                <td>方法</td>
+                <td>事件</td>
+            </thead>
+            <tr>
+                <td>Started()</a></td>
+                <td>applet的线程已经启动，在applet线程启动运行后，调用Applet::Main之前发出</td>
+            </tr>
+            <tr>
+                <td>MainCompleted([in] ECode mainReturned)</td>
+                <td>当applet的main执行结束后，会激发这个事件，并将main的返回值作为参数，如果关心main的执行结果，可以注册这个回调</td>
+            </tr>
+            <tr>
+                <td>LayoutReady();</td>
+                <td> </td>
+
+            </tr>
+            <tr>
+                <td>Finishing()</td>
+                <td>applet的线程正在准备退出，在applet消息循环结束后发出</td>
+           </tr>
+            <tr>
+                <td>Activated()</td>
+                <td>applet被激活，比如窗口被置顶</td>
+            </tr>
+            <tr>
+                <td>Deactivated()</td>
+                <td>applet被无效，比如窗口最小化</td>
+            </tr>
+            <tr>
+                <td>Snoozed()</td>
+                <td>applet被休眠，applet可能将运行时结果保存到磁盘，最大程度释放资源</td>
+            </tr>
+            <tr>
+                <td>Wakenup()</td>
+                <td>applet被从Snooze状态唤醒，可能会从磁盘读取snooze之前的状态，并恢复</td>
+            </tr>
+            <tr>
+                <td>Idling()</td>
+                <td>applet的回调线程处于空闲状态，消息队列为空</td>
+            </tr>
+
+        </table>
+        <p></p>
+    <p></p>
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\gen\_futime">_futime</sample>
+    <title>_futime</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> gen_idx.htm </routine_idx>
+
+    <description>
+        <para>通过文件句柄来设置文件的修改时间和最后访问时间。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_futime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>文件的句柄</para>
+                </param_note>
+            </func_param>
+        </parameters>
+        <parameters>
+            <func_param>
+                <param_type>struct _timeb*</param_type>
+                <param_name>filetime</param_name>
+                <param_note>
+                    <para>新的文件修改时间</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果函数调用成功，返回0；否则，返回–1，并把错误号设置为EBADF，EBADF表示的是一个无效的文件句柄参数。</para>
+    </return>
+
+    <remarks>
+        <para>_futime函数通常是通过文件的句柄来设置文件修改时间和最后访问时间。如果times参数为空，那么文件修改时间被设置为当前时间。否则times参数指向一个指向一个_utimbuf结构体。</para>
+        <para>_futime函数和_utime函数不同之处在于，_futime函数是通过文件句柄来操作的，而不是文件名或路径。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_futime</routine_name>
+            <headerfile>utime.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _futime.cpp: This program uses _futime to set the
+ * file-modification time to the current time.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;utime.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+
+int main()
+{
+    int hFile;
+
+    hFile = _open(&quot;_futime.exe&quot;, _O_RDWR, _S_IREAD | _S_IWRITE);
+    if (-1 == hFile) {
+        printf(&quot;_open error.\n&quot;);
+        return 1;
+    }
+
+    if (_futime(hFile, NULL) == -1)
+        printf(&quot;_futime failed.\n&quot;);
+    else
+        printf(&quot;File time modified.\n&quot;);
+
+    _close(hFile);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File time modified.
+</result>
+
+   
+
+    <references>
+        <reference>
+            <ref_name>_ftime</ref_name>
+            <ref_url>../stdtime/_ftime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_utime</ref_name>
+            <ref_url>_utime</ref_url>
+        </reference>
+    </references>
+
+</manpage>

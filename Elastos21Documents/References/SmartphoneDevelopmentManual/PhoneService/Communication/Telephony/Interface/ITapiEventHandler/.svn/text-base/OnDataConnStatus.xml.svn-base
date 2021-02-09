@@ -1,0 +1,43 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>ITapiEventHandler</interface><method> OnDataConnStatus </method>
+    <description>
+        <para>
+          数据连接状态提示事个。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> status </param_name>
+                <param_note>
+                    <para>
+                      数据连接状态
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    <remarks>
+      <para>
+        status为TAPI_DATACONN_CONNECTED表示数据连接连上;为TAPI_DATACONN_DISCONNECTED表示数据连接断开。
+      </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

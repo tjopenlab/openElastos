@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IFileMgr</interface><method> GetItemCountInDir </method>
+    <description>
+        <para>
+            获取指定文件夹下的子文件夹数量和文件数量。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esDir </param_name>
+                <param_note>
+                    <para>
+包含全路径的文件夹名                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> pnSubDirCount </param_name>
+                <param_note>
+                    <para>
+包含的子文件夹的总数                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> pnFileCount </param_name>
+                <param_note>
+                    <para>
+包含的文件的总数，含所有子文件夹下的文件                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果方法失败，返回E_FAIL；如果参数无效，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

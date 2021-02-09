@@ -1,0 +1,71 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="thread\DisablePreemption">DisablePreemption</sample>
+    <volume>Thread and Scheduling</volume>
+    <title>DisablePreemption</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>Disables the preemption of the operating system.</para>
+    </description>
+
+    <syntax>
+        <return_val>bool_t</return_val>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>
+        	The return value is the previous preemption state. TRUE, if previous state is enabled; False, if previous 
+        	state is disabled.
+        </para>
+    </return>
+
+    <remarks>
+        <para>
+        	The real time kernel of Elastos 2.0 is entirely preemptive, so a favorable system response time is 
+        	guaranteed. Usually, it is possible that other threads preempt a thread with higher priority when it 
+        	is executing the bottom half codes of a driver. It means that if multiple users access a driver 
+        	simultaneously, the shared data structures should be protected to avoid the competition. Besides all 
+        	kinds of minute operations and synchronization objects, drivers can temporarily disable the preemption 
+        	of the system to keep its codes from being preempted.
+        </para>
+        <para>
+        	This function disables the preemption of the operating system, until call the <link url=
+        	"RestorePreemption.htm">RestorePreemption</link> function with the specified open status.
+        </para>
+        <para>
+        	Note: During the period that the preemption of the system is disabled, all the kernel services are 
+        	unavailable, if no special declaration exists. In addition, after the preemption has been disabled, the 
+        	driver should execute the needed operations as quick as possible, and once finished, the <link url=
+        	"RestorePreemption.htm">RestorePreemption</link> function should be called to restore the preemption of 
+        	the system.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>RestorePreemption</ref_name>
+            <ref_url>RestorePreemption</ref_url>
+        </reference>
+    </references>
+
+
+</manpage>

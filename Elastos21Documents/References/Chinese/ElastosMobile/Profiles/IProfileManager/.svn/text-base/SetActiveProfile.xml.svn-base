@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>CProfileManager Functions</volume>
+<interface>IProfileManager</interface><method> SetActiveProfile </method>
+    <description>
+        <para>启动情景模式项。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> <link url="../IProfile.htm">IProfile</link>* </param_type>
+                <param_name> profile </param_name>
+                <param_note>
+                    <para>情景模式接口指针。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功调用该方法</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>    
+<para>由于系统只允许一个激活的情景模式存在，所以执行该函数会将使当前已启动的情景模式改为非激活状态，并激活指定ID所标识的情景模式。</para>
+</remarks>
+<example>
+<pre>
+#include &lt;elastos.h&gt;
+using namespace Elastos;
+
+#include &lt;stdio.h&gt;
+
+#include "EmProfiles.h"
+
+#define ACTIVE_PROFILE_ID (5)
+
+ECode PrintProfileData(IProfile* pIProfile)
+{
+    printf("============ Printing Profile Data =============\n");
+
+    if (NULL == pIProfile) return E_INVALID_ARGUMENT;
+
+    Int32 nValue = -1;
+    WStringBuf_&lt;256&gt; wsbValue;
+    Boolean bValue = FALSE;
+
+    ECode ec = pIProfile->GetID(&amp;nValue);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    printf("=== Profile ID: %d.\n", nValue);
+
+    ec = pIProfile->GetName(&amp;wsbValue);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    printf("=== Profile Name: %S.\n", wsbValue.GetPayload());
+
+    ec = pIProfile->IsActivated(&amp;bValue);
+    if (FAILED(ec)) {
+        return ec;
+    }
+    printf("=== Profile Activated: %d.\n", bValue);  
+
+    return NOERROR;
+}
+
+ECode SetActiveProfileDemo()
+{
+    IProfileManager* pIProfileMgr = NULL;
+    ECode ec = CProfileManager::AcquireSingleton(&amp;pIProfileMgr);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    IProfile* pIProfile = NULL;
+    ec = pIProfileMgr->GetProfileByID(ACTIVE_PROFILE_ID, &amp;pIProfile);
+
+    ec = pIProfileMgr->SetActiveProfile(pIProfile);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    PrintProfileData(pIProfile);
+
+    if (NULL != pIProfile) {
+       pIProfile->Release();
+    }
+
+    if (NULL != pIProfileMgr) {
+        pIProfileMgr->Release();
+    }
+
+    return NOERROR;
+}
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;&amp; args)
+{
+     SetActiveProfileDemo();
+
+     CProcess::Exit(0);
+
+     return NOERROR;
+}
+</pre>
+<pre>
+输出：
+============ Getting Profile Data =============
+=== Profile Id: 5.
+=== Profile Name: Custom.
+=== Profile Activated: 1.
+</pre>    
+</example>
+<references>
+    <reference>
+        <ref_name>Profiles构件模块介绍 </ref_name>
+        <ref_url>../../Contacts</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CProfileManager构件类介绍</ref_name>
+        <ref_url>../CProfileManager</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IProfileManager接口方法列表</ref_name>
+        <ref_url>../IProfileManager</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetActiveProfileByID</ref_name>
+        <ref_url>SetActiveProfileByID</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetActiveProfile</ref_name>
+        <ref_url>GetActiveProfile</ref_url>
+    </reference>
+</references>
+</manpage>

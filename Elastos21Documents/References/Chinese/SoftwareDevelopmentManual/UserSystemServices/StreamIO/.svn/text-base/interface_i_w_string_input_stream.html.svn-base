@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Stream IO API: IWStringInputStream接口参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script></head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>类&接口</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>IWStringInputStream接口参考</h1><!-- doxytag: class="IWStringInputStream" --><!-- doxytag: inherits="IInputStream" -->该接口表示宽字符串输入流，在该流中读取的字节由字符串内容提供。
+<a href="#_details">更多...</a>
+<p>
+<div class="dynheader">
+继承图，类IWStringInputStream</div>
+<div class="dynsection">
+<p><center><img src="interface_i_w_string_input_stream__inherit__graph.png" border="0" usemap="#_i_w_string_input_stream__inherit__map" alt="Inheritance graph"></center>
+<map name="_i_w_string_input_stream__inherit__map">
+<area shape="rect" href="interface_i_input_stream.html" title="该接口表示基本输入流,用于从二进制流中读取输入字节。" alt="" coords="29,5,128,32"></map>
+</div>
+
+<p>
+<a href="interface_i_w_string_input_stream-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_w_string_input_stream.html#ae6239b3db54006560cf0ca6e8e477d0">ReadWChar</a> ([out] WChar *character)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">读取一个WChar类型的数据。  <a href="#ae6239b3db54006560cf0ca6e8e477d0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_w_string_input_stream.html#ae8077fc3924e53ed16b7e9a8269f8e4">ReadWCharArray</a> ([out] BufferOf&lt; WChar &gt; *charArray)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">读取WChar数组类型的数据。  <a href="#ae8077fc3924e53ed16b7e9a8269f8e4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_w_string_input_stream.html#e940a52be7388ebf0273fc240818985a">ReadWCharArrayEx</a> ([in] Int32 offset,[in] Int32 length,[out] BufferOf&lt; WChar &gt; *charArray)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将字符读入数组的某一部分。  <a href="#e940a52be7388ebf0273fc240818985a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_w_string_input_stream.html#d23a2ccb0220063d3dcd26bddfade98a">ReadWString</a> ([out] WStringBuf *string)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将字符串读入到指定缓冲区中。  <a href="#d23a2ccb0220063d3dcd26bddfade98a"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+该接口表示宽字符串输入流，在该流中读取的字节由字符串内容提供。 <hr><h2>成员函数文档</h2>
+<a class="anchor" name="ae6239b3db54006560cf0ca6e8e477d0"></a><!-- doxytag: member="IWStringInputStream::ReadWChar" ref="ae6239b3db54006560cf0ca6e8e477d0" args="([out] WChar *character)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IWStringInputStream::ReadWChar           </td>
+          <td>(</td>
+          <td class="paramtype">[out] WChar *&nbsp;</td>
+          <td class="paramname"> <em>character</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+读取一个WChar类型的数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>character</em>&nbsp;</td><td>- 指向所读取的数据的指针。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ae8077fc3924e53ed16b7e9a8269f8e4"></a><!-- doxytag: member="IWStringInputStream::ReadWCharArray" ref="ae8077fc3924e53ed16b7e9a8269f8e4" args="([out] BufferOf&lt; WChar &gt; *charArray)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IWStringInputStream::ReadWCharArray           </td>
+          <td>(</td>
+          <td class="paramtype">[out] BufferOf&lt; WChar &gt; *&nbsp;</td>
+          <td class="paramname"> <em>charArray</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+读取WChar数组类型的数据。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>charArray</em>&nbsp;</td><td>- 指向目标缓冲区的指针，该缓冲区由于存储读取的数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e940a52be7388ebf0273fc240818985a"></a><!-- doxytag: member="IWStringInputStream::ReadWCharArrayEx" ref="e940a52be7388ebf0273fc240818985a" args="([in] Int32 offset,[in] Int32 length,[out] BufferOf&lt; WChar &gt; *charArray)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IWStringInputStream::ReadWCharArrayEx           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] BufferOf&lt; WChar &gt; *&nbsp;</td>
+          <td class="paramname"> <em>charArray</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将字符读入数组的某一部分。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>offset</em>&nbsp;</td><td>- 目标缓冲区的初始偏移量。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>length</em>&nbsp;</td><td>- 要读取的最大字符数。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>charArray</em>&nbsp;</td><td>- 指向目标缓冲区的指针。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d23a2ccb0220063d3dcd26bddfade98a"></a><!-- doxytag: member="IWStringInputStream::ReadWString" ref="d23a2ccb0220063d3dcd26bddfade98a" args="([out] WStringBuf *string)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IWStringInputStream::ReadWString           </td>
+          <td>(</td>
+          <td class="paramtype">[out] WStringBuf *&nbsp;</td>
+          <td class="paramname"> <em>string</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将字符串读入到指定缓冲区中。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>string</em>&nbsp;</td><td>- 指向目标缓冲区的指针。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<script>footer("chinese")</script>
+</body>
+</html>

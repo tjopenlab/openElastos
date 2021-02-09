@@ -1,0 +1,147 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>类别智能指针</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+    <h2>类别智能指针</h2>
+        <p>就像接口智能指针是对接口的封装一样，类别智能指针是对类别的封装。物以类聚，具有相同特点的对象，我们可以把它们划分成一类。譬如，各种型号的声卡，它们是用于记录和播放声音的硬件，我们统称它们为声卡，那么声卡就是一个类别。</p>
+        <p>计算机上，每种型号的声卡都具有相应的驱动程序，但应用程序在使用驱动程序时，通常不关心正在使用的具体是什么声卡的驱动程序，而只希望使用系统中的可用的声卡。为解决这样的问题，在CAR中提出了类别的概念，CAR类别是一组接口的集合，这组接口体现了该类别的共有特性。这样，CAR充许构件客户在创建构件对象时通过指定具体的构件类来创建对象，也可以通过指定一个构件类别来创建对象。</p>
+        <p>同样以声卡为例，可以把声卡的共用接口抽象出来，并定义为一个类别。当构件客户指定创建声卡类别的构件对象时，系统将自动为客户创建一个当前可用的声卡驱动构件对象。</p>
+        <p>如前所述，一个类别是一个接口的集合，它可以被构件类和类别继承。所有继承这个类别的构件类，我们把它们划分成一类。继承这个类别的构件类将实现这个类别包含的所有接口。</p>
+        <p>继承这个类别的类别，它的接口集合就变为两个接口集合的并集。</p>
+        <p>类别和构件类的区别是：类别是一个接口的集合，但不需要直接实现这些接口；构件类也是一个接口的集合，构件的开发者必须实现构件类所包含的所有接口。同时，所有继承类别的构件类还必须实现该类别包括的所有接口。因此，也可以把构件类别看作是虚基类或超类。</p>
+        <p>类别智能指针的实现和类智能指针是基本相同的。但是它们某些方法的具体实现不同，比如它们创建构件对象的方法的实现是不同的。</p>
+        <p>本文主要包括以下内容：</p>
+    <ul>
+        <li><a class="style1" href="#form">类别智能指针的表示形式</a>
+        <li><a class="style1" href="#create">类别智能指针的创建</a>
+        <li><a class="style1" href="#validity">类别智能指针的有效性的判断</a>
+        <li><a class="style1" href="#use">类别智能指针的使用方法</a>
+    </ul>
+    <h4><a name="form"></a>类别智能指针的表示形式</h4>
+        <p>类别智能指针的表示形式：CatxxxRef，其中Catxxx表示类别名称。</p>
+        <p>下面以CatDemo构件为例，介绍类别智能指针的创建和使用。先请看CatDemo.car文件内容：</p>
+        <pre class="code">
+[
+    uuid(31824084-3b23-4cbb-90f3-652eb992279c),
+    uunm(http://www.koretide.com/car/CatDemo.dll)
+]
+component CatDemo
+{
+    //接口IHello
+    [uuid(c320e651-6bbd-4ed6-b5a8-d3ebf6f8a863)]
+    interface IHello {
+        ECODE SayHello();
+    }
+
+    //接口IWorld
+    [uuid(7ec00dd3-54a2-4d64-8327-e4d92eb100a4)]
+    interface IWorld {
+        ECODE SayWorld();
+    }
+
+    //类别CatHello
+    [uuid(8955065b-d939-4cdd-af9a-bd8aa42d8424)]
+    category CatHello {
+        interface IHello;
+    }
+
+    //类CHelloWorld
+    [uuid(1627061a-36b9-4dcb-b9af-5967db085d17)]
+    class CHelloWorld : CatHello {
+        interface IWorld;
+    }
+}
+</pre>
+        <p>CatDemo.car文件中定义了一个类别CatHello。在客户程序中使用import语句引用CatDemo构件，方法如下：</p>
+        <pre class="code">
+#import &lt;CatDemo.dll&gt;
+</pre>
+        <p>则客户程序中即拥有这个类别智能指针类型：CatHelloRef。</p>
+
+    <h4><a name="create"></a>类别智能指针的创建</h4>
+        <p>创建合法的类别智能指针只有一种方法：创建一个类别智能指针，调用Instantiate方法实例化该类别智能指针相应的类别，并使该类别智能指针指向该对象。</p>
+        <ul>
+            <li>当用户需要指定创建的对象与客户程序的相对位置时，调用Instantiate方法时需要设置相应的参数，例如：</p>
+            <pre class="code">
+CatHelloRef catHello;   //创建类别智能指针catHello
+//实例化类别CatHello，并使类别智能指针catHello指向该对象
+ECODE ec = catHello.<b>Instantiate(CTX_SAME_DOMAIN);</b>
+if (FAILED(ec)) {   //利用返回值判断智能指针的有效性
+    printf("catHello initialize failed\n");
+    return 1;
+}
+</pre>
+            <p>参数CTX_SAME_DOMAIN指定对象与客户程序的相对位置，该参数的可选值及每种值表示的意义请参见<a class="style1" href="code_running_env.htm">可执行代码的运行环境（context）</a>。</p>
+
+            <li>当用户不关心创建的对象与客户程序的相对位置时，调用Instantiate方法时不需要加参数。例如：</p>
+            <pre class="code">
+CatHelloRef catHello;   //创建类别智能指针catHello
+//实例化类别CatHello，类别智能指针catHello指向该对象
+ECODE ec = catHello.<b>Instantiate();</b>
+if (FAILED(ec)) {   //利用返回值判断智能指针的有效性
+    printf("catHello initialize failed\n");
+    return 1;
+}
+</pre>
+            <p>示例中调用Instantiate方法时没有设置参数，系统默认值为CTX_SAME_DOMAIN、CTX_DIFF_DOMAIN和CTX_DIFF_PROCESS三值之一，由优先级来确定创建的对象与客户程序的相对位置。</p>
+        </ul>
+
+    <h4><a name="validity"></a>类别智能指针有效性的判断</h4>
+        <p>用户在创建新的类别智能指针后必须判断其有效性，只有有效的类别智能指针才是合法的类别智能指针。方法如下：</font></p>
+        <ul>
+            <li>方法一：利用返回值进行判断，例如：</p>
+                <pre class="code">
+……
+CatHelloRef catHello;
+<b>ECODE ec = catHello.Instantiate();
+if (FAILED(ec)) {   //利用返回值判断类别智能指针catHello的有效性
+    printf("catHello initialize failed\n");
+    return 1;
+}</b>
+……
+</pre>
+
+            <li>方法二：调用IsValid方法进行判断，例如：</p>
+                <pre class="code">
+……
+CatHelloRef catHello;
+ECODE ec = catHello.Instantiate();
+<b>if (!catHello.IsValid()) { //调用IsValid方法判断类别智能指针catHello的有效性
+    assert(0 && "Can't create catHello");
+    return 1;
+}</b>
+……
+</pre>
+                <p><b>备注：</b>当调用Instantiate()方法初始化智能指针时，建议利用返回值判断智能指针的有效性。因为，通过返回值可以获得更加详尽的信息，例如：接口没有找到、或内存不足等。IsValid()方法只是简单的判断智能指针是否有效，无法得到具体的出错信息。</p>
+            </ul>
+
+    <h4><a name="use"></a>类别智能指针的使用方法</h4>
+        <p>类别智能指针使用“.”点操作符调用其所指向的对象中所有接口的方法。例如：</p>
+        <pre class="code">
+//使用类别智能指针catHello调用类别CatHello的对象中的接口方法
+CatHelloRef catHello;
+ECODE ec;
+ec = catHello.Instantiate();
+if (FAILED(ec)) {   //利用返回值判断类别智能指针catHello的有效性
+    printf("catHello initialize failed\n");
+    return 1;
+}
+
+//通过类别智能指针catHello调用类别CatHello的对象中IHello接口的方法SayHello()
+<b>catHello.SayHello();</b>
+</pre>
+        <p>通过类别智能指针可以直接调用其所指向的对象中所有接口的方法。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

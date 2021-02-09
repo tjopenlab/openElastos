@@ -1,0 +1,73 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>同步</volume>
+<method> InterlockedCompareExchange </method>
+    <description>
+        <para>
+            InterlockedCompareExchange用来对指定的值进行原子比较，并根据比较后的结果进行数值交换。该函数可以防止多个（一个以上）线程同时对一个变量进行操作。
+        </para>
+    </description>
+    <syntax>
+        <return_val>Int32</return_val>
+        <parameters>
+            <api_param>
+                <param_type> PInt32 </param_type>
+                <param_name> destination </param_name>
+                <param_note>
+                    <para>
+                        指定目标的指针
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Int32 </param_type>
+                <param_name> exchange </param_name>
+                <param_note>
+                    <para>
+                        交换值
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Int32 </param_type>
+                <param_name> comperand </param_name>
+                <param_note>
+                    <para>
+                        比较值
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回目标的初始值。</para>
+    </return>
+
+    <remarks>
+        <para>
+            Interlocked系列函数提供一个简单的机制来同步访问被多个线程共享的变量。如果变量处于共享内存中，不同进程的线程可以使用这种机制。
+        </para>
+        <para>
+            InterlockedCompareExchange完成comperand的值和destination指向的值的原子比较，如果destination指向的值等于comperand的值，exchange的值就被存储在destination指定的地址。否则，destination指定的值不会发生改变。
+        </para>
+        <para>
+            destination参数指向的目标变量必须是32位对齐的；否则该函数在多处理器的x86系统和任何非x86系统运行时可能会失败。
+        </para>
+        <para>
+            如果需要调换指针的值，可以用<link url="InterlockedCompareExchangePointer.htm">InterlockedCompareExchangePointer</link>代替该函数。
+        </para>
+
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>

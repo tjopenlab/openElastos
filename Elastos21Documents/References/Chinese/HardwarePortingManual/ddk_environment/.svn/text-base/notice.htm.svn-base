@@ -1,0 +1,28 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>环境概述</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>DDK开发环境的注意事项及使用说明</h2>
+        <h3>DDK开发环境的注意事项</h3>
+        <ol>
+            <li>DDK的编译必须按照libpub->kernel->elastos的顺序来进行。
+            <li>用户的驱动程序要存放在kernel下的drivers目录。例如，kernel\drivers\x86\pc\ethercard目录是用来存放支持x86体系结构CPU的PC主板上使用的网卡驱动程序。如果用户需要自己开发驱动程序，可以类似地设置目录结构。
+            <li>有关模块各子目录的相关简介可以参考对应源码目录下的readme.txt。
+        </ol>
+        <h3>驱动程序的存放目录说明</h3>
+            <p>Elastos2.0的驱动程序位于Elastos\src\kernel\drivers下，根据CPU的体系结构分成不同的目录，例如ARM（Elastos\src\kernel\drivers\arm）、MIPS（Elastos\src\kernel\drivers\mips）和X86（Elastos\src\kernel\drivers\x86）。在对应的CPU体系结构目录下又根据板卡来分成不同的目录，例如x86体系结构的通用PC主板（Elastos\src\kernel\drivers\x86\pc）。在对应的主板目录下存放的是各种硬件的驱动程序，例如鼠标（Elastos\src\kernel\drivers\x86\pc\mouse）等。</p>
+            <p>建议用户根据这种目录结构开发和存放自己的有关驱动程序。</p>
+        <h3>部分支持的硬件说明</h3>
+            <p>Elastos2.0在使用x86体系结构CPU的通用PC主板上支持rtl8139芯片和rtl4usnet芯片的网卡。如果需要使用其他芯片的网卡，则需要用户自己使用DDK环境开发网卡驱动程序或者在遵守相关版权约定下移植相应的驱动程序。同样，对于其他CPU和硬件设备，也需要用户通过DDK环境开发自己的驱动程序。程序代码存放模式和结构可以参考已有的Elastos2.0提供的驱动代码和目录结构。Elastos2.0支持的硬件设备可以从驱动存放目录Elastos\src\kernel\drivers中逐级查找。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

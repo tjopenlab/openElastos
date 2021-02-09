@@ -1,0 +1,87 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>IsocketEx Interface </volume>
+<interface>IsocketEx</interface><method> Ioctl </method>
+    <description>
+        <para>
+            Controls socket mode.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32  </param_type>
+                <param_name> cmd </param_name>
+                <param_note>
+                    <para>
+						Command to socket description.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzByteBuf    </param_type>
+                <param_name> ebbData </param_name>
+                <param_note>
+                    <para>
+						cmd command parameter.
+						cmd parameter supports the following commands: 
+                        FIONBIO
+                        Enable or disable socket non-blocked mode. ebbData is an unsigned long integer.If non-blocked mode is enabled then its value is non-zero and if disabled non-blocked mode,then the value is zero. When creating a socket, by default it is in blocked mode (thus non-blocked mode is disabled).
+                        FIONREAD
+                        Sets the data size that can be read from socket. ebbData is an unsigned long integer and keeps the value.If s is SOCKET_STREAM type socket,then FIONREAD returns data size that can be received in one recv() invocation. Usually this equals to the total data size of queues in the socket.If s is SOCK_DGRAM type socket, then FIONREAD returns the first datagram size of the queue in the socket.
+                        SIOCATMARK
+                        Makes sure if all the out of band data is read in. This command is only used on SOCK_STREAM type sockets and this socket is already set to out of band data (SO_OOBINLINE).If no out of band data is waiting for read in,then this operation returns TRUE; otherwise returns FALSE. The next recv() or recvfrom() operation searches for data before the "mark". Application can use SIOCATMARK operation to determine whether there is data left.If there is a regular data before "emergency" (out of band) data, then receives these data according to order (please note, recv() and recvfrom() operation does not mix up regular data and out of band data in one invocation). argp points to a BOOL type number, ioctlsocket() saves return value in it.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int *  </param_type>
+                <param_name> pError </param_name>
+                <param_note>
+                    <para>
+						If function execution has error,then this parameter gets the error return value.See <link url="../socket_wsa.htm">network interface error return value</link> documents for the return value.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value </td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>S_OK</td>
+		        <td>Method invocation successful. </td>
+	        </tr>
+	        <tr>
+		        <td>S_FALSE</td>
+		        <td>Method execution fails.</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later. Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/custom_type.xsl"?>
+
+<manpage>
+    <sample url=""></sample>
+    <volume>Elastos Network Programming Interface (elasock API)</volume>
+    <types> WSADATA</types>
+
+    <routine_idx> elasock_idx.htm </routine_idx>
+    <description>
+        <para>This structure is to save the related information of elasock library.</para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> wVersion </mem_name>
+            <mem_description> The provided version number and it is equal to 0x0101 in Elastos 2.0 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> wHighVersion </mem_name>
+            <mem_description> The latest version of the current elasock library and it is generally equal to the value of wVersion. It is 0x0101 in Elastos 2.0 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char </mem_type>
+            <mem_name> szDescription </mem_name>
+            <mem_description> ASCII string ended with NULL,which records the description of elasock.</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char </mem_type>
+            <mem_name> szSystemStatus </mem_name>
+            <mem_description> ASCII string ended with NULL,which records the state and configuration of elasock.</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> iMaxSockets </mem_name>
+            <mem_description> The numbers of the socket that can be open at the same time and it is 64 in Elastos 2.0</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> iMaxUdpDg </mem_name>
+            <mem_description> The maximum length of the datagram and it is 65507 (not includes UDP header size) in Elastos 2.0</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char * </mem_type>
+            <mem_name> lpVendorInfo </mem_name>
+            <mem_description>The description field left for the cooperator.</mem_description>
+        </struct_member>
+    </struct>
+
+</manpage>

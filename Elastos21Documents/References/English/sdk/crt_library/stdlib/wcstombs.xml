@@ -1,0 +1,105 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\wcstombs">wcstombs</sample>
+    <title>wcstombs</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Converts a sequence of wide characters to a corresponding sequence of multibyte characters.</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>wcstombs</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>mbstr</param_name>
+                <param_note>
+                    <para>The address of a sequence of multibyte characters.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>wcstr</param_name>
+                <param_note>
+                    <para>The address of a sequence of wide characters.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>The maximum number of bytes that can be stored in the multibyte output string.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If wcstombs successfully converts the multibyte string, it returns the number of bytes written into the multibyte output string, excluding the terminating NULL (if any). If the mbstr argument is NULL, wcstombs returns the required size of the destination string. If wcstombs encounters a wide character it cannot be converted to a multibyte character, it returns –1 cast to type size_t.</para>
+    </return>
+
+    <remarks>
+        <para>The wcstombs function converts the wide-character string pointed to by wcstr to the corresponding multibyte characters and stores the results in the mbstr array. The count parameter indicates the maximum number of bytes that can be stored in the multibyte output string (that is, the size of mbstr). In general, it is not known how many bytes will be required when converting a wide-character string. Some wide characters will require only one byte in the output string; others require two. If there are two bytes in the multibyte output string for every wide character in the input string (including the wide character NULL), the result is guaranteed to fit.</para>
+        <para>If wcstombs encounters the wide-character null character (L'\0') either before or when count occurs, it converts it to an 8-bit 0 and stops. Thus, the multibyte character string at mbstr is null-terminated only if wcstombs encounters a wide-character null character during conversion. If the sequences pointed to by wcstr and mbstr overlap, the behavior of wcstombs is undefined.</para>
+        <para>If the mbstr argument is NULL, wcstombs returns the required size of the destination string.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>wcstombs</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* wcstombs.cpp: this program use wcstombs to converts the multibyte string */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    int i;
+    char    pmbhello[13];
+    wchar_t *pwchello = L&quot;Hello,world!&quot;;
+
+    printf(&quot;Convert to multibyte string:%S\n&quot;, pwchello);
+    i = wcstombs(pmbhello, pwchello, 13);
+    printf(&quot;\tCharacters converted: %d\n&quot;, i);
+    printf(&quot;\tmultibyte character: %s\n\n&quot;, pmbhello);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Convert to multibyte string:Hello,world!
+Characters converted: 12
+multibyte character: Hello,world!
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>mbstowcs</ref_name>
+            <ref_url>mbstowcs</ref_url>
+        </reference>
+    </references>
+
+</manpage>

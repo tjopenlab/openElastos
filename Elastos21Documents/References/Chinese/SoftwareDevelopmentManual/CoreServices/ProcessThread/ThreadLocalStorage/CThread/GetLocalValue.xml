@@ -1,0 +1,71 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>TLS</volume>
+    <title>CThread::GetLocalValue</title>
+
+    <description>
+        <para>
+            根据指定的TLS索引号，获取调用线程的相应TLS槽（slot）中存储的数据（立即数指针）。
+        </para>
+    </description>
+
+   <syntax>
+        <return_val> ECode   </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32   </param_type>
+                <param_name> slotIndex </param_name>
+                <param_note>
+                    <para>由<link url="AcquireLocalSlot.htm">CThread::AcquireLocalSlot</link>函数所分配得到的TLS索引号       </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type>TLValue *</param_type>
+                <param_name> pValue </param_name>
+                <param_note>
+                    <para>指向TLValue型指针，用于存放所需数据的TLS槽的地址   </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    
+      <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>函数调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>指定的参数无效：该TLS槽不是用来存放立即数指针（ThreadLocalSlotType_Value）或slotIndex&gt;=56(每个进程可用的slot Index为0~55)。</td>
+	        </tr>
+
+
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+ 
+
+    <remarks>
+        <para>对应于每个TLS索引号(0~55)，进程中的每一个线程都有其私有的一个TLS槽。在Elastos中，每个线程有56个TLS slot。</para>
+		    <para>进程中的每个线程都有相应的TLS槽来对应于每个TLS索引号。</para>
+        <para>TLS索引号通常是在进程或DLL初始化时由<link url="AcquireLocalSlot.htm">CThread::AcquireLocalSlot</link>函数分配的。TLS索引号一旦被分配，进程中每个线程都能根据该索引号来访问自己的私有TLS槽。每个线程的TLS槽都被初始化为NULL。 在调用<link url="SetLocalValue.htm">CThread::SetLocalValue</link>函数时，线程通过指定的TLS索引号，将数据存储到与该TLS索引号相对应的TLS槽中。之后，该线程便可以通过调用<link url="GetLocalValue.htm">CThread::GetLocalValue</link>函数，根据相同的索引号来重新获取存放在该槽中的数据。</para>
+		</remarks>
+	<requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

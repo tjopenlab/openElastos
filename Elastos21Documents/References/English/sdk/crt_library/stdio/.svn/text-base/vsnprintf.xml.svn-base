@@ -1,0 +1,88 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\vsnprintf">vsnprintf</sample>
+    <title>vsnprintf</title>
+    <volume>C Run-Time Library Functions</volume>
+  	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes formatted output using a pointer to a list of arguments.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>vsnprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char *</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>Storage location for output.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Maximum number of characters to write.</para>
+                </param_note>
+            </func_param>
+        <func_param>
+                <param_type>const char *</param_type>
+                <param_name>format</param_name>
+                <param_note>
+                    <para>Format specification.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+                <param_note>
+                    <para>Pointer to list of arguments.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+      </syntax>
+
+    <return>
+        <para>return the number of characters written if the number of characters to write is less than or equal to count; if the number of characters to write is greater than count, these functions return -1 indicating that output has been truncated. The return value does not include the terminating null, if one is written.</para>
+       <para>If buffer or format is NULL, or if count is less than or equal to zero, the function invokes the invalid parameter handler. If execution is allowed to continue, the function returns -1 and sets errno to EINVAL.</para>
+    </return>
+
+    <remarks>
+        <para>It takes a pointer to an argument list, then formats the data, and writes up to count characters to the memory pointed to by buffer. If there is room at the end (that is, if the number of characters to write is less than count), the buffer will be null-terminated.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>printf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example></example>
+
+<references>
+      <reference>
+            <ref_name>swprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>vswnprintf</ref_name>
+            <ref_url>vswprintf</ref_url>
+        </reference>
+</references>
+
+</manpage>

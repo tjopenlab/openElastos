@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--out</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>out</h2>
+    <p>The out attribute can only be used to modify interface method parameter, which means that this parameter is an output parameter. This parameter allocates and releases memory by client. The syntax is: [out]. For example: </p>
+    <pre class="code">
+[
+    uuid(627c8ed7-121a-40d6-934f-7382c2dda21d),
+    uunm(http://www.koretide.com/car/OutDemo1.dll)
+]
+component OutDemo1
+{
+    [uuid(becde2f1-cb75-436b-9929-48cc991017b0)]
+    interface IInterface {
+        ECODE Func([<b>out</b>] int* pi);
+    }
+    [uuid(2450ce6a-895a-4a37-8a8c-0203156c2aa4)]
+    class CClass {
+        interface IInterface;
+    }
+}
+</pre>
+    <p>In sample component OutDemo1, a Func method is defined in interface IInterface.The parameter pi of this method is a output parameter.</p>
+    <ol><font color="red"><b>Note: </b>
+        <li>The out attribute cannot be used to modify callback event parameter in the callback interface defined by the <a class="style1" href="../keywords/keywords_icallback.htm">icallback</a> keyword.
+        <li>For parameters modified by the out attribute and if this parameter is interface smart pointer, then the smart pointer value must be NULL.Otherwise the compiled DEBUG version program produces unpredictable run-time error. Please see the article <a class="style1" href="../../../../../sdk/environment_and_tools/compile_environment/sdk_environment.htm">Elastos.SDK development environment guide</a> for details about run-time environment.
+        <li>For parameters modified by the out attribute, it has to be of pointer type unless it is of <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzStrBuf.htm">EzStrBuf</a>, <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzByteBuf.htm">EzByteBuf</a>, <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzPoint.htm">EzPoint</a>, <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzArray.htm">EzArray</a>, and <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzWCharBuf.htm">EzWCharBuf</a> types.
+        <li>Parameters modified by the out attribute cannot be of the <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzStr.htm">EzStr*</a> type.
+        </font></ol>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

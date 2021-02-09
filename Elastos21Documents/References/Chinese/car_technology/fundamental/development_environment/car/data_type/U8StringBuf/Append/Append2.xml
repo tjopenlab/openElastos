@@ -1,0 +1,44 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+
+    <volume> 常用数据结构 </volume>
+    <class>U8StringBuf</class>
+    <method> Append </method>
+
+    <description>
+        <para>在U8StringBuf对象字符串中追加窄字符。</para>
+    </description>
+
+    <syntax>
+        <return_val> U8StringBuf &amp;</return_val>
+        <parameters>
+        <api_param>
+            <param_type>AChar</param_type>
+            <param_name>ac</param_name>
+            <param_note>
+                <para> 指定的窄字符。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回U8StringBuf对象引用。</para>
+    </return>
+
+    <remarks>
+        <para>超过U8StringBuf对象可用的长度会被省略掉。 </para>
+    </remarks>
+<example>
+<pre>
+U8StringBuf_&lt;5&gt; asbuf;
+AChar ch = 'a';
+asbuf.Append(ch);
+CConsole::WriteLine(asbuf);  //Display : "a"
+</pre>
+</example>
+
+
+</manpage>

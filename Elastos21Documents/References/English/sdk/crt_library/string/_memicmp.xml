@@ -1,0 +1,121 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_memicmp">_memicmp</sample>
+    <title> _memicmp</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Compares characters in two buffers (case-insensitive).</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_memicmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>buf1</param_name>
+                <param_note>
+                    <para>First buffer.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>buf2</param_name>
+                <param_note>
+                    <para>Second buffer.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>unsigned int</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Number of characters.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The return value indicates the relationship between the buffers.</para>
+        <table>
+            <th>
+                <td>Return Value</td>
+                <td>Relationship of First count Bytes of buf1 and buf2</td>
+            </th>
+            <tr>
+                <td>&lt; 0</td>
+                <td>buf1 less than buf2.</td></tr>
+            <tr>
+                <td>0</td>
+                <td>buf1 identical to buf2.</td></tr>
+            <tr>
+                <td>&gt; 0</td>
+                <td>buf1 greater than buf2.</td></tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The _memicmp function compares the first count characters of the two buffers buf1 and buf2 byte by byte. The comparison is not case sensitive.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_memicmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    int result;
+    char first[] = &quot;Those Who Will Not Learn from History&quot;;
+    char second[] = &quot;THOSE WHO WILL NOT LEARN FROM their mistakes&quot;;
+    /* Note that the 29th character is right here ^ */
+
+    printf(&quot;Compare &apos;%.29s&apos; to &apos;%.29s&apos;\n&quot;, first, second);
+    result = _memicmp(first, second, 29);
+    if (result &lt; 0)
+        printf(&quot;First is less than second.\n&quot;);
+    else if (result == 0)
+        printf(&quot;First is equal to second.\n&quot;);
+    else if (result &gt; 0)
+        printf(&quot;First is greater than second.\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Compare &apos;Those Who Will Not Learn from&apos; to &apos;THOSE WHO WILL NOT LEARN FROM&apos;
+First is equal to second.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>memcmp</ref_name>
+            <ref_url>memcmp</ref_url>
+        </reference>
+    </references>
+
+</manpage>

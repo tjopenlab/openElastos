@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\user_com_interface\elasock\sam06">select</sample>
+    <volume>elasock API</volume>
+    <title>select</title>
+    <routine_idx>ElastosSocketIndex.htm</routine_idx>
+
+    <description>
+        <para>确定一个或多个套接口的状态，并等待同步I/O事件发生。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>nfds</param_name>
+                <param_note>
+                    <para>[in]本参数忽略，仅用于兼容Berkleysocket。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>fd_set *</param_type>
+                <param_name>readfds</param_name>
+                <param_note>
+                    <para>[in,out]（可选）指针，指向一组等待可读性检查的套接口。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>fd_set *</param_type>
+                <param_name>writefds</param_name>
+                <param_note>
+                    <para>[in,out]（可选）指针，指向一组等待可写性检查的套接口。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>fd_set *</param_type>
+                <param_name>exceptfds</param_name>
+                <param_note>
+                    <para>[in,out]（可选）指针，指向一组等待异常检查的套接口。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const struct timeval *</param_type>
+                <param_name>timeout</param_name>
+                <param_note>
+                    <para>[in]select()的最大等待时间，设为NULL将一直阻塞。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果在限定时间内成功返回，返回值表示满足条件的待检查套接口总数；超时返回0；失败将返回SOCKET_ERROR。调用<link url="WSAGetLastError.htm">WSAGetLastError()</link>可得到具体的错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>本函数用于确定一个或多个套接口的状态。调用者可查询每个待检查套接口的可读性、可写性及异常状态信息。使用<link url="DataType\fd_set.htm">fd_set</link>结构来表示一组待检查套接口。当调用返回时，满足条件的套接口将被保留在该结构中，并返回满足条件的套接口总数。有一组与Berkeley Unix兼容的宏可用于对fd_set的操作。</para>
+        <para>readfds参数指向一组等待可读性检查的套接口。如果套接口事先处于监听<link url="listen.htm">listen()</link>状态，当有连接请求到达时将满足可读条件。这样可以实现<link url="accept.htm">accept()</link>的无阻塞调用。在其他情况下，可读条件被满足意味着有数据到来。此时调用<link url="recv.htm">recv()</link>或<link url="recvfrom.htm">recvfrom()</link>均可以无阻塞完成。</para>
+        <para>对于字节流套接口（SOCK_STREAM），满足可读条件还可能是已收到连接对方发出的关闭连接请求。当虚拟电路中所有数据接收完毕并成功中断，调用recv()将立即返回已读取0字节；如果虚拟电路被强制复位，recv()将以WSAECONNRESET错误立即返回。</para>
+        <para>writefds参数指向一组等待可写性检查的套接口。如果非阻塞套接口正在调用<link url="connect.htm">connect()</link>，连接顺利建立时将满足可写条件。在其他情况下，可写性意味着<link url="send.htm">send()</link>和<link url="sendto.htm">sendto()</link>准备就绪并可以无阻塞完成，即意味着可用的系统缓冲区空间大于发送低潮限度。相反的例子是，如果阻塞套接口的len参数大于输出系统缓冲空间大小时，将导致send()和sendto()产生阻塞。</para>
+        <para>exceptfds参数设置为NULL，不支持带外数据。</para>
+        <para>可将readfds、writefds或exceptfds中任两个置为NULL。但是需要至少一个不为NULL，而且所有非空套接口组必须含有至少一个套接口。</para>
+        <para>在winsock.h头文件中定义了四个宏来操作和检查套接口组，它们是：</para>
+        <para>FD_CLR(s,*set)：从套接口组中删除套接口s。</para>
+        <para>FD_ISSET(s,*set)：若s为套接口组中一员，则为非零；否则为零。</para>
+        <para>FD_SET(s,*set)：向套接口组添加套接口s。</para>
+        <para>FD_ZERO(*set)：将套接口组初始化为空集NULL。</para>
+        <para>FD_SETSIZE用于设置一个套接口组可容纳套接口的最大数目。FD_SETSIZE缺省值为64，可在包含winsock.h前用#define FD_SETSIZE n来改变该值(n为修改后的套接口组容量）。Berkleysocket、Windowssocket和elasock均兼容这些宏。</para>
+        <para>timeout参数控制select()的最大等待时间。若timeout为空指针，select()将一直阻塞直到至少有一个套接口满足条件。timeout指向一个timeval结构，该结构给出了select()的最大等待时间。当timeval为{0,0}时select()会立即返回，这种方式可用于探询所选套接口的状态，此时select()是非阻塞的。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>accept</ref_name>
+            <ref_url>accept</ref_url>
+        </reference>
+        <reference>
+            <ref_name>connect</ref_name>
+            <ref_url>connect</ref_url>
+        </reference>
+        <reference>
+            <ref_name>recv</ref_name>
+            <ref_url>recv</ref_url>
+        </reference>
+        <reference>
+            <ref_name>recvfrom</ref_name>
+            <ref_url>recvfrom</ref_url>
+        </reference>
+        <reference>
+            <ref_name>send</ref_name>
+            <ref_url>send</ref_url>
+        </reference>
+        <reference>
+            <ref_name>sendto</ref_name>
+            <ref_url>sendto</ref_url>
+        </reference>
+        <reference>
+            <ref_name>setsockopt</ref_name>
+            <ref_url>setsockopt</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

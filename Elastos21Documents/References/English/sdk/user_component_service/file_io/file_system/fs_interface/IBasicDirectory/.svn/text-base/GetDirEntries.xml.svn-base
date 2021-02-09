@@ -1,0 +1,65 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Directory Object Interface</volume>
+<interface>IBasicDirectory</interface><method> GetDirEntries </method>
+    <description>
+        <para>
+        	Reads all the subdirectories and files in the current directory object.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IEzStrEnumerator** </param_type>
+                <param_name> piEzStrEnumerator </param_name>
+                <param_note>
+                    <para>
+						Enumerator of all the subentries.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value </td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>S_OK</td>
+		        <td>Function succeeds in reading the directories.</td>
+	        </tr>
+	        <tr>
+		        <td>E_INVALIDARG</td>
+		        <td>Parameter piEzStrEnumerator is NULL.</td>
+	        </tr>
+	        <tr>
+		        <td>E_OUTOFMEMORY</td>
+		        <td>Not enough memory, enumerator object creation fails.</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			Release <i>piEzStrEnumerator</i> by calling piEzStrEnumerator->Release(); to avoid memory leak.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

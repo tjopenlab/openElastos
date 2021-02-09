@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>Boot Elastos Locally</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Boot Elastos Locally</h2>
+    <h3>Hard disk boot process.</h3>
+    <ol>
+        <li>Copy all files needed under Windows&nbsp;2000 Elastos.SDK D:\Elastos.SDK\obj\ela20.gnu\x86_pc.dbg\bin directory to C:\elastos directory of machine used to run Elastos (target machine). Then, modifies the startup.cfg file (configuration file to load service or for an automatic execution after system start up) under D:\Elastos.SDK\src\config directory and use <a class="style1" href="../../../resource_debug_kits/tools/mkpkg.htm">mkpkg</a> command to package this configuration file to elastos.img file. At last, copy successfully packaged elastos.img file to C:\elastos directory of machine (target machine) to run Elastos.
+          <p>Remarks: Detailed modification content about <a class="style1" href="../configure.htm#start">startup.cfg</a> file please see <a class="style1" href="../configure.htm">"system configuration"</a> documentation.</p>
+        <li>Bootstrap floppy disk or hard disk to start the target machine through GRUB.It does not matter which method you use to start computer.Once the computer is started, GRUB start up menu is displayed on screen and the content is as  follows: 
+        <pre class="code">
+Elastos 2.0 from Network (dbg)
+Elastos 2.0 from Network (rls)
+Elastos 2.0 from Hd
+Boot from C:
+</pre>
+        <p>The content of the menu is determined by the <a class="style1" href="intr_menu.htm">menu.lst</a> file, each entry in the file represents a start up method, they are: </p>
+        <pre class="code">
+Elastos 2.0 from Network (dbg)    : Boot debug version Elastos through network
+Elastos 2.0 from Network (rls)    : Boot release version Elastos through network
+Elastos 2.0 from Hd               : Boot Elastos from C drive
+Boot from C:                      : Boot operating system through C drive bootstrap
+</pre>
+
+        <p><font color="red"><b>Note: </b>Boot Elastos through hard disk.This hard disk must be master and must be connected to the IDE1 port of the motherboard.</font></p>
+        <p>You can scroll up and down through the up and down arrows to select the boot method you want. Select "Elastos&nbsp;from&nbsp;Hd" and enter to confirm.</p>
+    </ol>
+
+    <h3>After system start up,the user checks for the system execution status.</h3>
+        <p>After system start up, you can run a <a class="style1" href="../configure.htm#elacmd">elacmd command</a> to check system execution status.</p>
+        <p>For executing and debugging programs on Elastos please see <a class="style1" href="../../../resource_debug_kits/debug_kits.htm">related document</a> for details.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

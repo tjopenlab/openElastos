@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Stream IO API: FileIO.cpp</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script></head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="annotated.html"><span>类&接口</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<h1>FileIO.cpp</h1>该例程演示了如何使用stream进行文件IO，使用到了函数 <a class="el" href="interface_i_input_stream.html#93dff50df17e9e4556d9583ac790c406" title="从输入流中读取一定数量的字节并将其存储在缓冲区中。">IFileInputStream::ReadBuffer()</a> 和 <a class="el" href="interface_i_output_stream.html#e1dcde5afd166f5a30dba78cb99c9fd4" title="将指定的缓冲区中的数据写入此输出流。">IFileOutputStream::WriteBuffer()</a>。<p>
+<div class="fragment"><pre class="fragment"><span class="preprocessor">#include &lt;elastos.h&gt;</span>
+
+<span class="keyword">using namespace </span>Elastos;
+
+ECode ElastosMain(<span class="keyword">const</span> BufferOf&lt;WString&gt;&amp; args)
+{
+    <a name="_a0"></a><a class="code" href="interface_i_file_input_stream.html" title="该接口表示从文件系统中的某个文件中获取的文件输入流，用于读取诸如图?.">IFileInputStream</a> *is;
+    ECode ec = <a name="a1"></a><a class="code" href="interface_c_file_input_stream.html#c8b98a0fda9c62cd55a8d31b5db06cfb" title="创建一个从指定文件读取数据的文件输入流。">CFileInputStream::New</a>(L<span class="stringliteral">"in.dat"</span>, &amp;is);
+    <span class="keywordflow">if</span> (FAILED(ec))
+        <span class="keywordflow">return</span> ec;
+
+    <a name="_a2"></a><a class="code" href="interface_i_file_output_stream.html" title="该接口表示从文件系统中的某个文件中获取的文件输出流，用于将数据写入欮.">IFileOutputStream</a> *os;
+    ec = <a name="a3"></a><a class="code" href="interface_c_file_output_stream.html#29271bf402ddb8260fbbc2da5da0c5d8" title="创建一个向指定的文件中写入数据的文件输出流。如果第二个参数为...">CFileOutputStream::New</a>(L<span class="stringliteral">"out.dat"</span>, <span class="keyword">false</span>, &amp;os);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        is-&gt;Release();
+        <span class="keywordflow">return</span> ec;
+    }
+
+    BufferOf_&lt;Byte, 4096&gt; buffer;
+
+    <span class="keywordflow">while</span>(SUCCEEDED(ec = is-&gt;<a name="a4"></a><a class="code" href="interface_i_input_stream.html#93dff50df17e9e4556d9583ac790c406" title="从输入流中读取一定数量的字节并将其存储在缓冲区中。">ReadBuffer</a>(&amp;buffer))) {
+        Int32 bytesWritten;
+        ec = os-&gt;<a name="a5"></a><a class="code" href="interface_i_output_stream.html#e1dcde5afd166f5a30dba78cb99c9fd4" title="将指定的缓冲区中的数据写入此输出流。">WriteBuffer</a>(buffer, &amp;bytesWritten);
+        <span class="keywordflow">if</span> (FAILED(ec)) {
+            <span class="keywordflow">break</span>;
+        }
+    }
+    is-&gt;Close();
+    is-&gt;Release();
+    
+    os-&gt;Close();
+    os-&gt;Release();
+
+    CProcess::Exit(0);
+    <span class="keywordflow">return</span> NOERROR;
+}
+</pre></div> <script>footer("chinese")</script>
+
+</body>
+</html>

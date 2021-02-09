@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>电话控制</volume>
+<interface>IPhoneActs</interface><method> OnAcceptAndDropOne </method>
+    <description>
+        <para>
+            挂断一路通话，接听新来电。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nDropCallState </param_name>
+                <param_note>
+                    <para>挂断电话的状态</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功时，返回S_OK；调用通讯控制的API失败时，返回E_TELEMGR_ERR；输入的参数无效时，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            本方法用于在已有两路电话又有一个新来电的情况下，必需挂断一路电话才能接听新来电。
+        </para>
+    </remarks>
+</manpage>

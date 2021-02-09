@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_strnicmp">_strnicmp</sample>
+    <title>_strnicmp, _wcsnicmp</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Compare characters of two strings without regard to case.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_strnicmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string1 </param_name>
+                <param_note>
+                    <para>Null-terminated strings to compare.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string2 </param_name>
+                <param_note>
+                    <para>Null-terminated strings to compare.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type> size_t</param_type>
+                <param_name>count </param_name>
+                <param_note>
+                    <para>Number of characters to compare.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wcsnicmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t *</param_type>
+                <param_name>string1 </param_name>
+                <param_note>
+                    <para>Null-terminated strings to compare.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t *</param_type>
+                <param_name>string2 </param_name>
+            </func_param>
+            <func_param>
+                <param_type> size_t</param_type>
+                <param_name>count </param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Indicates the relationship between the substrings as follows.</para>
+        <table>
+            <th>
+               <td>Return Value</td>
+               <td>Description</td>
+            </th>
+            <tr>
+               <td><![CDATA[< 0]]></td>
+               <td>string1 substring less than string2 substring</td>
+            </tr>
+            <tr>
+               <td>0</td>
+               <td>string1 substring identical to string2 substring.</td>
+            </tr>
+            <tr>
+               <td><![CDATA[> 0]]></td>
+               <td>string1 substring greater than string2 substring.</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The _strnicmp function lexicographically compares, at most, the first count characters of string1 and string2. The comparison is performed without regard to case; _strnicmp is a case-insensitive version of strncmp. The comparison ends if a terminating null character is reached in either string before count characters are compared. If the strings are equal when a terminating null character is reached in either string before count characters are compared, the shorter string is lesser.</para>
+        
+        <para>The characters from 91 to 96 in the ASCII table ('[', '\', ']', '^', '_', and '`') will evaluate as less than any alphabetic character. This ordering is identical to that of stricmp</para>
+        
+        <para>_wcsnicmp is  wide-character  version of _strnicmp. The arguments and return value of _wcsnicmp are wide-character strings.These three functions behave identically otherwise</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_strnicmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wcsnicmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+// strnicmp.cpp:this program compares, at most, the first count characters of string1 and string2
+
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+char string1[] = &quot;The quick brown dog jumps over the lazy fox&quot;;
+char string2[] = &quot;The QUICK brown fox jumps over the lazy dog&quot;;
+
+int main()
+{
+    char tmp[20];
+     int result;
+     printf(&quot;Compare strings:\n\t\t%s\n\t\t%s\n\n&quot;, string1, string2);
+
+     printf(&quot;Function:\tstrnicmp _strnicmp (first 10 characters only)\n&quot;);
+     result = _strnicmp(string1, string2, 10);
+     if (result &gt; 0)
+         strcpy(tmp, &quot;greater than&quot;);
+     else if (result &lt; 0)
+         strcpy(tmp, &quot;less than&quot;);
+     else
+         strcpy(tmp, &quot;equal to&quot;);
+     printf(&quot;Result:\t\tString 1 is %s string 2\n\n&quot;, tmp);
+
+     return 0;
+}
+</pre>
+    </example>
+<result>
+
+Compare strings:
+The quick brown dog jumps over the lazy fox
+The QUICK brown fox jumps over the lazy dog
+
+Function:       strnicmp _strnicmp (first 10 characters only)
+Result:         String 1 is equal to string 2
+</result>
+
+    <references>
+        <reference>
+            <ref_name> wcscmp </ref_name>
+            <ref_url> wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>  wcscpy </ref_name>
+            <ref_url>  wcscpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name>  wcsncat </ref_name>
+            <ref_url>  wcsncat</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncmp  </ref_name>
+            <ref_url> wcsncmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncpy  </ref_name>
+            <ref_url> wcsncpy  </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strspn   </ref_name>
+            <ref_url> strspn   </ref_url>
+        </reference>
+        <reference>
+            <ref_name>strcspn    </ref_name>
+            <ref_url>strcspn    </ref_url>
+        </reference>
+    </references>
+
+</manpage>

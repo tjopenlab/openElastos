@@ -1,0 +1,35 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/custom_type.xsl"?>
+
+<manpage>
+    <sample url=""></sample>
+    <volume>Elastos Network Programming Interface（elasock API）</volume>
+    <types>linger</types>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>This structure is to confirm the implementation mode of closesocket and then determine how to operate on the data in an unsent array.</para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> l_onoff </mem_name>
+            <mem_description> It determines whether the socket interface is closed after all the data array sent by closesocket or shut the socket interface by force and lose the unsent data.</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> u_short </mem_type>
+            <mem_name> l_linger </mem_name>
+            <mem_description> Overtime Value </mem_description>
+        </struct_member>
+    </struct>
+
+    <remarks>
+        <para>If it is needed to close the socket interface after all data in array sent, then application program needs to set 1 onoff as non zero.It set l_linger as 0 or the needed overtime value and then call setsockopt(). SO_LINGER socket interface is forbidden to be optional if l_onoff set as 0, which is the default case. Besides, it is not recommended to set SO_LINGER options at a unblocked socket interface and set non-zero overtime value.</para>
+    </remarks>
+
+</manpage>

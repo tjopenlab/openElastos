@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>电话控制</volume>
+<interface>IPhoneActs</interface><method> OnHoldActiveButOne </method>
+    <description>
+        <para>
+            除指定ID的通话外，保持所有激活的通话。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nIndex </param_name>
+                <param_note>
+                    <para>
+需要单独处理的通话ID                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功时，返回S_OK；调用通讯控制的API失败时，返回E_TELEMGR_ERR；输入的参数无效时，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>照相摄像引擎模块</volume>
+<interface>ICamera</interface><method> SetParam </method>
+    <description>
+        <para>
+            设置指定类型的照相机参数。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> CamParam </param_type>
+                <param_name> eType </param_name>
+                <param_note>
+                    <para>
+<link url="../../datatype/CamParam.htm">CamParam</link>枚举类型，指定设置的参数类型                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nVal1 </param_name>
+                <param_note>
+                    <para>
+参数1的值                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> nVal2 </param_name>
+                <param_note>
+                    <para>
+参数2的值                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果方法调用失败，返回E_FAIL；如果变焦分母为“0”，返回E_ZOOMDENOM_ZERO    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>camera.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib，ElCRuntime.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            目前只有设置“变焦”需要用到参数2且不允许为“0”，其他情况参数2均可设为“0”。
+        </para>
+    </remarks>
+    <references>
+        <reference>
+            <ref_name>GetParam</ref_name>
+            <ref_url>GetParam</ref_url>
+        </reference>
+    </references>
+</manpage>

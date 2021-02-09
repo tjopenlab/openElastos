@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>U8StringBuf</interface>
+    <method> GetChar </method>
+
+    <description>
+        <para>按UTF-8编码格式返回此对象字符串中Index位置的字符。</para>
+    </description>
+
+    <syntax>
+        <return_val> Char32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>Int32 </param_type>
+            <param_name> idx </param_name>
+            <param_note>
+                <para> 索引位置 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+ 
+        </parameters>
+        
+    </syntax>
+
+    <return>
+        <para>返回Index位置的字符，Index取值从0开始。如果对象包含的字符串指针为NULL，返回0xFFFFFFFF;Index小于0或大于字符串有效长度返回0xFFFFFFFF。</para>
+    </return>
+<example>
+<pre>
+U8StringBuf_&lt;20&gt; u8sbuf;
+u8sbuf.Copy("123456");
+AChar ch=u8sbuf.GetChar(1);
+CConsole::WriteLine(ch);  //Display :  2
+</pre>
+</example>
+  
+    
+
+</manpage>

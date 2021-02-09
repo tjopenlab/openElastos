@@ -1,0 +1,53 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>U8StringBuf</interface>
+    <method> Contains </method>
+    
+   
+
+    <description>
+        <para> 按UTF-8编码格式返回一个值，该值指示指定的U8String字符串是否出现在此对象中。</para>
+    </description>
+    <syntax>
+        <return_val> Boolean </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const U8String &amp;</param_type>
+            <param_name> substr </param_name>
+            <param_note>
+                <para> 待查找的字符串 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive</param_default>
+            <param_note>
+                <para> 是否区分大小写标志。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。(StringCase_Insensitive暂不支持)  </para>
+            </param_note>
+        </api_param> 
+              
+        </parameters>        
+    </syntax>
+    <return>
+        <para>若U8StringBuf对象字符串中包含指定字符串,返回True；如果源U8StringBuf对象或substr对象中包含的字符串指针为NULL，那返回FALSE。</para>
+    </return>
+
+<example>
+<pre>
+U8StringBuf_&lt;10&gt; u8sbuf;
+u8sbuf.Copy("ABCD");
+U8String as1 = "AB";
+U8String as2 = "ab";
+CConsole::WriteLine(u8sbuf.Contains(as1));  //Display : True
+CConsole::WriteLine(u8sbuf.Contains(as2));  //Display : False	
+</pre>
+</example>
+
+
+ 
+</manpage>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>INetworkOption</interface><method> ListConnections </method>
+    <description>
+        <para>
+            列表显示网络配置的设备名称。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WapType </param_type>
+                <param_name> uWapType </param_name>
+                <param_note>
+                    <para>
+网络连接的类型（GPRS或CSD），具体参见<link url="../../datatype/WapType.htm">WapType</link>                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf </param_type>
+                <param_name> esbConName </param_name>
+                <param_note>
+                    <para>
+所有网络配置的配置名称                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；uWapType的类型不是GPRS或CSD，返回E_INVALIDARG；环境变量出错，返回E_INVALID_ENVIRONMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

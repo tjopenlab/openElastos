@@ -1,0 +1,144 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Devkit的目录结构介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>tools</h2>
+    <p>tools目录下主要存放科泰世纪提供的相关工具，包括了与开发环境设置有关的批处理和辅助编译以及预处理工具。</p>
+
+<p>tools目录下的alias.pub文件描述了编译Elastos程序时常用CMD命令的别名，详细信息见下表</p>
+<table align=center BORDER=1 WIDTH=80% > 
+<thead>  
+<td>命令</td> 
+<td>描述</td> 
+ </thead> 
+
+<TR>
+<TD>root       </TD>
+<TD>pushd %XDK_ROOT%\$1</TD>
+</TR>
+
+<TR>
+<TD>devkit     </TD>
+<TD>pushd %XDK_DEVKIT%\$1</TD>
+</TR>
+
+<TR>
+<TD>inc        </TD>
+<TD>pushd %XDK_INC_PATH%\$1</TD>
+</TR>
+
+<TR>
+<TD>lib        </TD>
+<TD>pushd %XDK_LIB_PATH%\$1</TD>
+</TR>
+
+<TR>
+<TD>misc       </TD>
+<TD>pushd %XDK_ROOT%\DevKit\misc\$1</TD>
+</TR>
+
+<TR>
+<TD>tools      </TD>
+<TD>pushd %XDK_ROOT%\DevKit\tools\$1</TD>
+</TR>
+
+<TR>
+<TD>target     </TD>
+<TD>pushd %XDK_TARGETS%\$1</TD>
+</TR>
+
+<TR>
+<TD>src        </TD>
+<TD>pushd %XDK_DEFAULT_PATH%\$1</TD>
+</TR>
+
+<TR>
+<TD>obj        </TD>
+<TD>pushd %XDK_USER_OBJ%\%XDK_BUILD_KIND%\$1</TD>
+</TR>
+
+<TR>
+<TD>uinc       </TD>
+<TD>pushd %XDK_USER_INC%\$1</TD>
+</TR>
+
+<TR>
+<TD>ulib       </TD>
+<TD>pushd %XDK_USER_LIB%\$1</TD>
+</TR>
+
+<TR>
+<TD>platform   </TD>
+<TD>pushd %XDK_RUNTIME_PLATFORM%</TD>
+</TR>
+
+<TR>
+<TD>runtime    </TD>
+<TD>pushd %XDK_RUNTIME_COMPONENTS%</TD>
+</TR>
+
+<TR>
+<TD>ddk        </TD>
+<TD>chv ddk</TD>
+</TR>
+
+<TR>
+<TD>pdk        </TD>
+<TD>chv pdk</TD>
+</TR>
+
+<TR>
+<TD>sdk        </TD>
+<TD>chv sdk</TD>
+</TR>
+
+<TR>
+<TD>dbg        </TD>
+<TD>chv dbg</TD>
+</TR>
+
+<TR>
+<TD>rls        </TD>
+<TD>chv rls</TD>
+</TR>
+
+<TR>
+<TD>opt        </TD>
+<TD>chv opt</TD>
+</TR>
+
+<TR>
+<TD>pre        </TD>
+<TD>chv pre</TD>
+</TR>
+
+<TR>
+<TD>ls         </TD>
+<TD>%XDK_TOOLS%\public\ls.exe -p $*</TD>
+</TR>
+
+<TR> 
+<TD>version </TD> 
+<TD>type %XDK_ROOT%\sdk.ver</TD> 
+</TR>
+
+
+</TBODY> 
+</TABLE>
+<p>对public与private的说明：</p>
+      <ul>
+         <li>public：主要用于存放一些来自于GNU或其他开源组织的工具。
+         <li>private：主要用于存放一些内部开发工具、用户自己开发、修改或者经常使用的工具，在XDK中暂时细分为x86和ARM。对于不同平台，可以细分成不同的子目录，通过不同的环境设置，可以使用相应的工具。
+      </ul>
+    
+<script>footer("chinese")</script>
+</body>
+</html>

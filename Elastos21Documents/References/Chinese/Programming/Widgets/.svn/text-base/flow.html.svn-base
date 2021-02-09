@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Widgets:标签/控件列表</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>基于XmlGlue编程模型下的Widgets开发介绍</span></a></li>
+    <li class="current"><a href="flow.html"><span>Widgets开发流程</span></a></li>
+    <li><a href="dataset.html"><span>Widgets开发专题介绍</span></a></li>
+    <li><a href="sample.html"><span>Widgets开发示例</span></a></li>
+  </ul>
+</div>
+
+<h1>Widgets开发流程</h1>
+<h2>◆	知识准备</h2>
+<ul>
+   <li>基本的XML知识。
+   <li>掌握一门脚本语言。如Lua,JavaScript等。
+   <li>了解CAR构件技术。
+   <li>熟悉图形系统的服务。
+   <li>熟悉XmlGlue编程模型。
+</ul> 
+<h2>◆  Widgets应用的文件组成</h2>
+<table  border="1" cellspacing="0" cellpadding="3">
+	<tr bgcolor="#D3D3D3"><th>文件</th><th>是否必须使用</th><th>存放的位置</th><th>描述</th></tr>
+	<tr><td>main.xgl</td><td>必选</td><td>当前项目文件的根目录</td><td>.xgl是一个视图文件，其内容包括UI设计和相关用户操作等逻辑实现的代码。main.xgl是一个Widgets应用的主视图或入口视图文件，在开发时必须定义之。详细请参考<a href="../xml_programming/form.html">main.xgl中XML编程的一般格式</td></tr>
+	<tr><td>其他.xgl</td><td>可选</td><td>当前项目的根目录</td><td>在实际开发中，开发者可能需要从一个主视图或其他视图中加载一个或多个视图文件。视实际需求，开发者可选用之。</td></tr>
+  <tr><td>.	css</td><td>可选</td><td>当前项目的根目录或子目录</td><td>.css为xgl文件中创建的图形控件提供样式支持以实现界面设计。XmlGlue支持外部CSS。视开发需要用户可选用之。</td></tr>
+  <tr><td>.lua</td><td>可选</td><td>当前项目的根目录或子目录</td><td>.lua一个脚本文件，其内容为用户操作等逻辑代码，即将逻辑代码从xgl文件中剥离出来并封装到一个lua脚本文件中，实际使用中在xgl文件中再通过script标签加载之。当在开发时使用Lua作为脚本开发语言，用户可选用之。</td></tr>
+  <tr><td>.png/.jpg......</td><td>可选</td><td>当前项目的根目录或子目录</td><td>支持多种图片格式，以将这些图片资源用于实际开发，如作为背景图片等。</td></tr>
+  <tr><td>manifest.xml</td><td>必选</td><td>当前项目的根目录</td><td>mainfest.xml是一个当前项目的配置文件，其内容记录当前Widget项目的相关配置信息，如使用的脚本语言，使用的用户自定义的CAR构件，使用的多语言包等。视实际开发需要，开发者一一配置这些信息。</td></tr>
+	<tr><td>多语言包及已编译的多语言资源文件</td><td>可选</td><td>当前项目的子目录</td><td>针对目标用户的不同，在实际开发时，开发者需提供相应的多语言资源。目前我们支持英文，中文简体，中文繁体3种语言环境及相应的语言资源文件。详细请参考<a href="locale.html">多语言的使用</a>一节。</td></tr>
+  <tr><td>数据库文件</td><td>可选</td><td>当前项目的子目录</td><td>XmlGlue模型支持将数据库文件与相关图形控件的绑定，此时用户须使用SQLite制作相应的文件。详细请参考<a href="dataset.html">数据集的使用</a>一节。</td></tr>
+</table>
+
+<h2>◆	Widgets开发流程</h2>
+<ul>
+   <li>设计阶段。在此阶段开发人员须明确用户对将要进行开发的Widgets的需求分析。继而进行界面、逻辑设计。在界面设计时需明确此Widgets的界面及界面元素的布局。在逻辑设计时着重围绕此Widgets要实现的功能整理出技术实现方案。
+   <li>实现阶段。依据设计阶段的设计，按照MVC框架，分别实现模型(Model)程序、视图(View)布局、控制器(Controller)程序。编写main.xgl、manifest.xml。因为在实现模型(Model)程序时，涉及到CAR构件技术，此时请用户根据实际开发需要，选择由系统提供的相关构件(如ElGrafix)或用户自定义的CAR构件或二者兼有。如果开发人员需要自定义一个或多个CAR构件以用于实际开发，那必须编写.car文件及其它相关的文件。
+   <li>将main.xgl、manifest.xml及其他文件(图片资源文件、CAR文件)保存在一个文件夹内，并请确认main.xgl和manifest.xml在同一级目录。在建立的SDK命令行开发环境中，输入命令:SuperExe [-Debug] &lt;filepath&gt;，filepath绝对/相对路径均可。如果开发人员需要自定义一个或多个CAR构件以用于实际开发。请先编译相应的编译已编写的CAR文件，再运行main.xgl文件。若CAR文件编译不通过，则在脚本编程中也将不能正确调用其定义的相关函数方法。
+</ul>
+
+<h2>◆	Widgets开发其他命令行</h2>
+<ul>
+  <li>Superexe ElWidgetRuntime.dll <absolute widget dir> [-a &lt;arguments&gt;]:传递参数给Widget的主视图（main.xgl）。其中arguments为参数及其值的字符串，须以“arg1=val1&arg2=val2”形式列出。
+  <li>Superexe ElWidgetRuntime.dll <absolute widget dir> [-u &lt;target dir&gt;]：执行压缩包。target dir为目标路径。把压缩包解压到目标路径再运行；如果不指定-u参数并且Widgets项目是一个压缩包，则把Widgets项目解压到缺省位置再运行。缺省位置与压缩包所在目录相同。
+  <li>Superexe ElWidgetRuntime.dll <absolute widget dir> [-t &lt;target dir&gt;]:将.xml/.xgl文件翻译为脚本文件。target dir为目标路径。目标路径不能是一个已经存在的路径。
+</ul>
+
+<h2>◆	Widgets开发参考资料</h2>
+<ul>
+   <li><a href="../XmlGlue_introduction/index.html">XmlGlue模型介绍</a>
+   <li><a href="../xml_programming/index.html">XmlGlue中的XML编程</a>
+   <li><a href="../script_programming/index.html">XmlGlue中的脚本编程</a>
+</ul>   
+<script>footer("chinese")</script>
+</body>
+</html>

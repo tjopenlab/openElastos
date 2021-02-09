@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicDirectory</interface><method> CreateFile </method>
+    <description>
+        <para>
+            在当前目录对象中创建一个文件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> filename </param_name>
+                <param_note>
+                    <para>
+要创建的文件名                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> FileAccessMode </param_type>
+                <param_name> mode </param_name>
+                <param_note>
+                    <para>
+创建的文件的读写模式，参见数据结构<link url="../../FileSystemDataType/FileAccessMode.htm">FileAccessMode</link>                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Boolean </param_type>
+                <param_name> exclusive </param_name>
+                <param_note>
+                    <para>
+如果exclusive设置为TRUE，则其它用户在该目录下再次创建同名文件时，将无法得到该文件对象的接口指针，ppBasicFile返回NULL，并提示文件已存在的信息；如果exclusive设置为FALSE，则其它用户在该目录再次创建同名文件时，ppBasicFile返回该文件对象的接口指针                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IBasicFile ** </param_type>
+                <param_name> ppBasicFile </param_name>
+                <param_note>
+                    <para>
+指向<link url="../IBasicFile.htm">IBasicFile</link>类型指针的指针。如果文件创建成功，用于返回找到的文件对象的接口指针；否则返回NULL                     </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果参数filename为空，或filename所指向的字符串为空，或参数filename超过256个字符，或directoryname出现限制字符（详见备注）;或参数ppBasicFile为NULL，或参数mode为非法值，返回E_INVALID_ARGUMENT；</para>
+    <para>如果参数exclusive为TRUE时，同名文件或目录已存在，返回E_FS_FILE_EXISTS； </para>
+    <para>如果参数exclusive为FALSE时同名目录已存在，返回E_FS_IS_DIRECTORY； </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+    	  <para>
+    	  	  该方法只能在当前目录下创建一个文件对象，参数filename的限制字符为：‘ &lt;  ’、‘ &gt; ’、‘ / ’、‘ \\ ’、‘ ? ’、‘ * ’、‘ \" ’、‘ | ’、‘ : ’。
+    	  </para>
+        <para>
+            若成功获取ppBasicFile接口指针，请注意对其的释放，否则可能造成内存泄漏。释放方式为：ppBasicFile->Release()。
+        </para>
+    </remarks>
+</manpage>

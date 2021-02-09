@@ -1,0 +1,82 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>短信彩信引擎</volume>
+<interface>IMessageManager</interface><method> EnumUnread </method>
+    <description>
+        <para>
+         枚举未读信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum MessageType </param_type>
+                <param_name> uMsgType </param_name>
+                <param_note>
+                    <para>
+                    MessageType类型的枚举值，用于表示信息类型
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzArray&lt;INT&gt; </param_type>
+                <param_name> eaExceptBoxId </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IObjectEnumeratorRef * </param_type>
+                <param_name> ppIEntityEnum </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT </td>
+	    	    <td>参数错误 </td>
+	        </tr>
+	        <tr>
+	    	    <td>E_DB_INTERNAL_ERROR </td>
+	    	    <td>数据库错误 </td>
+	        </tr>
+	    </table>
+	    <para>更多返回值，参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>、<link url="../../SmsMmsError.htm">短信彩信错误码</link>、<link url="../../../../../QuickReference/DBError.htm">E_DB_INTERNAL_ERROR</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>  </para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+            《Elastos 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elatype.h、stdlib.h、mmsdef.h、mmstype.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>database.lib、elastos.lib、elacrt.lib、elautil.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

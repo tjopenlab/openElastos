@@ -1,0 +1,98 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\ezThread"> CThread::New </sample>
+    <volume>线程</volume>
+    <title>CThread::New</title>
+    <routine_idx>../../../Thread.htm</routine_idx>
+
+    <description>
+        <para>创建一个运行在调用进程（本进程）的虚拟空间上运行的线程 。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> PThreadMain </param_type>
+                <param_name> pEntry </param_name>
+                <param_note>
+                    <para>[in]线程例程的入口，表明新线程开始执行的函数起始地址。此参数必须是一个合法的函数地址，否则将产生不可预料的结果。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> PVoid </param_type>
+                <param_name> pArg </param_name>
+                <param_note>
+                    <para>[in]指向线程启动的入口参数的指针，可以为空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> ThreadCreationFlags </param_type>
+                <param_name> flags </param_name>
+                <param_note>
+                    <para>[in]创建线程时的可选标识，决定线程的运行状态。</para>
+                    <para>flags必须为下列值之一：</para>
+                    <para>1. ThreadCreationFlag_Started：表示线程创建后直接运行。</para>
+                    <para>2. ThreadCreationFlag_Unstarted：表示线程创建成功后处于挂起状态，直到调用<link url="../../IThread/Start.htm">IThread::Start()</link>方法后运行。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> IThread ** </param_type>
+                <param_name> ppThread </param_name>
+                <param_note>
+                    <para>[out]指向IThread接口指针的指针，用以获取所创建线程的IThread接口的指针，可以为空</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para> 线程的栈大小以及可创建的线程的具体数目是由具体系统实现决定。在Elastos Zener平台上，一个用户线程栈不可超过4M-4K字节大小，并且一个进程最多只能创建THREAD_MINIMUM_AVAILABLE个线程。 </para>
+        <para>新线程的线程接口IThread能用来请求这个线程对象的所有方法。线程从pEntry参数指定的入口开始执行，当函数执行完后，一个QuitCode的返回值将通过隐式调用CThread::Quit方法来指定。通过IThread的GetQuitCode能得到线程的返回值（QuitCode的值）。</para>
+        <para>线程创建后默认的优先级为ThreadPriority_Normal。可以调用IThread的GetPriority方法来获取线程的优先级，也可以调用IThread的SetPriority方法来设置线程的优先级。</para>
+        <para>可以通过<link url="../../IThread/Join.htm">IThread::Join</link>方法来等待指定的线程执行结束。</para>
+        <para>线程对象将一直保持到线程执行体结束，同时使用这个线程的所有线程接口都已经调用IThread的Release方法释放后。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CProcess::New</ref_name>
+        <ref_url>../CProcess/New</ref_url>
+    </reference>
+    </references>
+</manpage>

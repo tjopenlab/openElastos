@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/classmanual.xsl"?>    <manpage>
+    <volume>图形系统</volume>
+    <description>
+        <para>
+              ※ 有关设置风格中“|”操作符的使用
+        </para>
+    </description>
+    <description>
+        <para>
+            由于很多控件都是继承自IControl接口，因此IControl的一些风格在继承自它的控件中也同样适用，这时可以通过“|”操作符将几个风格联合使用。
+        </para>
+        <para>
+            举例1：CButton::New(L"Exit", ButtonStyle_Autosize | ControlStyle_Transparent, 0, 292, 80, 28, m_pMainForm,&amp;m_pIBtnClose);
+        </para>
+        <para>
+            举例2：CTextBox::New(L"SL TextBox", TextBoxStyle_Password | ControlStyle_Border, 10, 60, 120, 30,  m_pMainForm,&amp;m_pISTextBox);
+        </para>                 
+    </description>
+
+</manpage>

@@ -1,0 +1,31 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Callback Event Mechanism</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Custom Callback Mechanism For CAR Components</h2>
+    <h3>Necessity of custom callback mechanism</h3>
+        <p>The usage of component is the same as  c/s model, in which components act as servers.</p>
+        <p>In common CAR components, the communication between client and component is unidirectional. User creates component object, then calls interface functions provided by object. During the communication process client is the active part, while component object is the passive one.</p>
+        <p>For a general interactive process, unidirectional communication usually cannot satisfy the practical needs. Sometimes component have to actively communicate with client. Therefore, relative to common interface, component also provides callback interface (icallback, also called out interface), by call which user can communicate with clients.</p>
+    <h3>Fundamental Principle Of CAR Component</h3>
+        <p>If a CAR component can support one or more callback interface, it is called <b>connectable object (or connectable component)</b>, or sometimes <b>source object (source component)</b>. In callback interface every member function represents a callback event. If a given event happened, such as timing events or mouse moving event, component object would generate an event, and user program can deal with these events. The implementation of member function of component object's event interface is not through object, but through client program. Client program implements these event handlers, and registers function pointer to component object. If condition has matured, object will trigger event and call event handler.</p>
+        <p>Connectable object technique provided by Microsoft can allow the call of clients from components. However this technique requires that client implement the connection of user program and component object, trigger of events, crafting of receiver, and etc. it also only allows registration in unit of interfaces, not the member functions in interfaces. In CAR callback mechanism, user program can register a specific event handler in events, which greatly ease the work of programmers.</p>
+        <p>In CAR callback programming model, the process of the dispatch of events, save function pointers, linkage to source object and callback functions are all implemented. So in writing component program, user only cares when to trigger callback events, and in writing client part programs, user only needs to register event handler events in certain condition. The remaining works, such as dispatch of events, the process of callback event handler, etc., have been implemented by CAR. Therefore user will feel quite easy when writing component with callback ability and client program using such components.</p>
+    <p>This chapter mainly consists of the following: <p>
+        <ul>
+            <li><a class="style1" href=callbackcar.htm>Writes CAR file of guesssvr.</a>
+            <li><a class="style1" href=callbackcode.htm>Generates framework of source program and fills in implementation code.</a>
+            <li><a class="style1" href=callbackclient.htm>Writes client console program.</a>
+        </ul>
+
+<script>footer("english")</script>
+</body>
+</html>

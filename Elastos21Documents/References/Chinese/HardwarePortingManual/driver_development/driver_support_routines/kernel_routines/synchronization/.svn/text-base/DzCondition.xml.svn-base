@@ -1,0 +1,71 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?><manpage>
+    <volume>同步</volume>
+    <interface> DzCondition Class </interface>
+    <description>
+        <para>条件变量类。</para>
+    </description>
+    <methods>
+<self>
+
+    <method>
+        <method_name>Condition Constructor</method_name>
+        <method_url>DzCondition\structure\Condition</method_url>
+    <m_description>
+        构造条件变量对象
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Wait</method_name>
+        <method_url>DzCondition\Wait</method_url>
+    <m_description>
+        使调用线程在条件变量对象上等待
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>TryWait</method_name>
+        <method_url>DzCondition\TryWait</method_url>
+    <m_description>
+        尝试在指定时间间隔内使调用线程在条件变量对象上等待
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Pulse</method_name>
+        <method_url>DzCondition\Pulse</method_url>
+    <m_description>
+        唤醒一个等待着的线程
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>PulseAll</method_name>
+        <method_url>DzCondition\PulseAll</method_url>
+    <m_description>
+       唤醒所有等待着的线程
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+    <remarks>
+        <para>一个条件变量类的对象代表一个“条件变量”（一种同步对象），它提供了一种与某些共享数据的谓词（其结果为布尔逻辑表达式）相关的机制。</para>
+        <para>为了使用条件变量对象，必须在需要时通过条件变量类构造函数<link url="DzCondition/structure/Condition.htm">DzCondition::Condition</link>构造它。条件变量对象可以被定义为全局或局部变量，或是被创建在内核堆上。</para>
+        <para>条件变量对象允许线程在必要时（通常是完成测试谓词后）通过调用<link url="DzCondition/Wait.htm">DzCondition::Wait</link>或<link url="DzCondition/TryWait.htm">DzCondition::TryWait</link>成员函数进入等待状态。并且在谓词结果改变时，通过调用<link url="DzCondition/Pulse.htm">DzCondition::Pulse</link>成员函数唤醒在此条件变量对象上等待着的一个线程；或是通过调用<link url="DzCondition/PulseAll.htm">DzCondition::PulseAll</link>成员函数唤醒在此条件变量对象上等待着的全部线程。</para>
+        <para>条件变量对象通过与一个互斥体对象共同使用以提供谓词测试操作和等待操作的原子性。此互斥体对象保护了共享数据，避免唤醒丢失等问题。用户线程一般先占有了此互斥体对象，然后测试谓词，如果需要等待，则以已占有的互斥体对象为参数调用DzCondition::Wait或DzCondition::TryWait成员函数。DzCondition::Wait或DzCondition::TryWait成员函数将原子地使调用线程等待并释放传入的互斥体对象。当谓词结果改变时，其它线程通过调用DzCondition::Pulse或DzCondition::PulseAll成员函数唤醒等待着的线程。DzCondition::Wait或DzCondition::TryWait成员函数调用在返回前将重新占有所传入的互斥体对象。</para>
+        <para>在条件变量对象析构前必须保证没有任何线程在此条件变量对象上等待。</para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>
+

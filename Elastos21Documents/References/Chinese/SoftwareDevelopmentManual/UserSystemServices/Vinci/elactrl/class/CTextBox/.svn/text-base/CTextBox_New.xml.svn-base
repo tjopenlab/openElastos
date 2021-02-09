@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<method>CTextBox::New </method>
+    <description>
+        <para>
+            创建一个 TextBox 对象。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> caption </param_name>
+                <param_note>
+                    <para>
+TextBox 显示的文本</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> style </param_name>
+                <param_note>
+                    <para>
+CheckBox 的风格，详见 <link url="../../datatype/ControlStyle.htm">ControlStyle</link> 和 <link url="../../datatype/TextBoxStyle.htm">TextBoxStyle</link>。不同风格可以通过“|”（或）配合使用</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> x </param_name>
+                <param_note>
+                    <para>
+TextBox 的左顶点在其父类控件中的横坐标</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> y </param_name>
+                <param_note>
+                    <para>
+TextBox 的左顶点在其父类控件中的纵坐标</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+TextBox 的宽度</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+TextBox 的高度</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IControl *  </param_type>
+                <param_name> parent </param_name>
+                <param_note>
+                    <para>
+TextBox 的父类控件接口指针</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ITextBox**   </param_type>
+                <param_name> textbox </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../interface/ITextBox.htm">ITextBox</link> 接口指针的指针，用于获取 ITextBox 接口指针</para>
+                </param_note>
+            </api_param>                                                             
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  当创建了一个 TextBox 对象后，就可以获取 <link url="../../interface/ITextBox.htm">ITextBox</link> 接口指针，通过该接口指针，您就可以调用给种方法对该 TextBox 设置各种属性值。
+	  </para>
+	  <para>
+	  	由于 TextBox 存在边距以及行间距，故当 TextBox 没有添加垂直滚动条时，height 参数的取值应适当大于由字体高度和行数得到的高度值，即 height > FontHeight * RowCount + LineSpacing，其中 FontHeight 为字体高度、RowCount 为行数、LineSpacing 为行间距。
+	  </para>
+	  <para>
+	  	可以将 style 参数指定为 <link url="../../datatype/ControlStyle.htm">ControlStyle_VScroll</link> 和 <link url="../../datatype/TextBoxStyle.htm">TextBoxStyle_MultiLine</link> 风格，从而能够显示或输入多行文本。若需要 TextBox 接受密码和其他敏感信息，则可将 style 参数指定为 <link url="../../datatype/TextBoxStyle.htm">TextBoxStyle_Password</link>。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTextBox 类介绍</ref_name>
+        <ref_url>../TextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITextBox 接口方法列表</ref_name>
+        <ref_url>../../interface/ITextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>TextBox 的回调事件</ref_name>
+        <ref_url>../../interface/TextBoxEvents</ref_url>
+    </reference>
+</references>
+</manpage>

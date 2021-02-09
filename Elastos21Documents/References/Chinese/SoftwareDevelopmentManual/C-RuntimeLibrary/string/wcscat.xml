@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strcat">strcat</sample>
+    <title> strcat, wcscat</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>在目标字符串的末尾追加源字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strcat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strDestination</param_name>
+                <param_note>
+                    <para>被追加的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strSource</param_name>
+                <param_note>
+                    <para>用来追加的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>wcscat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>strDestination</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>strSource</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回指向目标字符串的指针，如无返回值则指示错误。</para>
+    </return>
+
+    <remarks>
+        <para>函数strcat把strSource串追加到strDestination串的后面，并以NULL结束。strSource的第一个字符覆盖strDestination的结束符NULL。字符串的拷贝和追加过程不进行溢出检查。对于strSource和strDestination重叠的情况strcat没有定义。</para>
+        <para>函数wcscat是函数strcat的宽字符版本。函数wcscat的参数和返回值，都是宽字符串，除此之外，和函数strcat一样。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strcat</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcscat</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strcat.cpp:  This program uses strcpy
+ * and strcat to build a phrase.
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[80];
+    strcpy(string, &quot;Hello world from &quot;);
+    strcat(string, &quot;strcpy &quot;);
+    strcat(string, &quot;and &quot;);
+    strcat(string, &quot;strcat!&quot;);
+    printf(&quot;String = %s\n&quot;, string);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+String = Hello world from strcpy and strcat!
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>strncmp</ref_name>
+            <ref_url>wcsncmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>strncpy</ref_name>
+            <ref_url>wcsncpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name>strncat</ref_name>
+            <ref_url>wcsncat</ref_url>
+        </reference>
+    </references>
+
+</manpage>

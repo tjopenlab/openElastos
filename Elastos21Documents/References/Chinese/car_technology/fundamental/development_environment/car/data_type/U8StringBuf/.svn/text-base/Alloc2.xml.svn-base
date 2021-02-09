@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\AStringBuf\Alloc">Alloc</sample>
+    <volume> 常用数据结构 </volume>
+    <class>U8StringBuf</class>
+    <method> Alloc </method>
+
+    <description>
+        <para> (在堆上)动态创建 U8StringBuf对象，并分配指定字符数大小的内存块。</para>
+    </description>
+
+    <syntax>
+        <return_val> static U8StringBuf * </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> length</param_name>
+            <param_note>
+                <para> 分配的字符数。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果分配成功，返回指向U8StringBuf对象的指针，否则返回NULL。</para>
+    </return>
+
+    <remarks>
+        <para>调用此函数分配的空内存，需要调用Free函数来释放。 </para>
+    </remarks>
+
+<example>
+<pre>
+U8StringBuf *u8sbuf;
+u8sbuf = U8StringBuf::Alloc(10);
+CConsole::WriteLine(u8sbuf->GetCapacity());  //Display : 10
+CConsole::WriteLine(u8sbuf->GetLength());  //Display : 0
+U8StringBuf::Free(u8sbuf);
+</pre>
+</example>
+
+<references>
+
+    <reference>
+        <ref_name>U8StringBuf::Alloc</ref_name>
+        <ref_url>Alloc1</ref_url>
+    </reference>
+
+
+</references>
+
+</manpage>

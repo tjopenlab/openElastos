@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stat\_fstat">_fstat</sample>
+    <title>_fstat </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stat_idx.htm </routine_idx>
+
+    <description>
+        <para>获取已打开文件的描述信息。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_fstat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>已打开文件的句柄</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>struct stat*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>指向存储结果的结构指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>成功获得文件描述信息返回0，出错则返回-1，并将errno设为ENOENT，说明句柄无效。</para>
+    </return>
+
+    <remarks>
+        <para>_fstat函数通过打开文件句柄获取文件信息，并把它存储在由buffer参数指定的结构里。</para>
+
+        <table>
+            <th>
+                <td>stat域</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td> st_atime</td>
+                <td>最后访问文件时间。</td>
+            </tr>
+
+            <tr>
+                <td> st_ctime </td>
+                <td>创建文件时间。</td>
+            </tr>
+
+            <tr>
+                <td> st_mtime</td>
+                <td>最后修改文件时间。</td>
+            </tr>
+
+            <tr>
+                <td> st_dev </td>
+                <td>如果为设备，返回设备句柄，否则为0。目前无效。</td>
+            </tr>
+
+            <tr>
+                <td> st_mode </td>
+                <td>文件模式信息的比特掩码， 如果句柄指向设备，_S_IFCHR位被设置；如果句柄指向普通文件，_S_IFREG位被设置；并根据文件访问权限来设置用户写/读位。_S_IFCHR以及其它常量在stat.h中定义。 </td>
+            </tr>
+
+            <tr>
+                <td> st_nlink</td>
+                <td>在非NTFS文件系统中设置为1。目前无效。</td>
+            </tr>
+
+            <tr>
+                <td> st_size </td>
+                <td>文件字节大小。</td>
+            </tr>
+
+            <tr>
+                <td> st_rdev </td>
+                <td>如果为设备，返回设备句柄，否则为0。目前无效。</td>
+            </tr>
+        </table>
+        <para>如果handle参数指向设备，则stat结构中的st_size，st_ctime，st_atime，st_mtime域是无效的。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_fstat</routine_name>
+            <headerfile>stat.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _fstat.cpp: This program uses _fstat to report
+ * the size of a file named F_STAT.OUT.
+ */
+
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    struct stat buf;
+    int fh, result;
+    char buffer[] = &quot;A line to output&quot;;
+
+    if ((fh = _open(&quot;_fstat.out&quot;, _O_CREAT | _O_WRONLY | _O_TRUNC ,
+            _S_IREAD | _S_IWRITE)) ==  -1) {
+        printf(&quot;problem open the file!\n&quot;);
+        return 1;
+    }
+
+    _write(fh, buffer, strlen(buffer));
+
+    /* Get data associated with &quot;fh&quot;: */
+    result = _fstat(fh, &amp;buf);
+
+    /* Check if statistics are valid: */
+    if (result != 0)
+        printf(&quot;Bad file handle\n&quot;);
+    else {
+        printf(&quot;File size      : %ld\n&quot;, buf.st_size);
+        printf(&quot;Time modified : %s&quot;, ctime(&amp;buf.st_ctime));
+    }
+
+    _close(fh);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File size      : 16
+Time modified : Tue Nov 06 10:20:12 2007
+</result>
+
+ 
+
+    <references>
+        <reference>
+            <ref_name>_access</ref_name>
+            <ref_url>../io/_waccess</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_stat</ref_name>
+            <ref_url>_stat</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>textBox标签/控件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li class="current"><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li class="current"><a href="annotated.html"><span>图形标签(控件)列表</span></a></li>
+    <li><a href="attribute.html"><span>图形标签通用属性</span></a></li>
+    <li><a href="event.html"><span>图形标签通用事件</span></a></li>
+    <li><a href="genstyle_8car.html"><span>图形标签通用风格</span></a></li>
+  </ul>
+</div>
+<h1>textBox标签/控件参考</h1><!-- doxytag: class="window" -->
+<center> <img src="images/text.jpg"> </center>
+<center><small>textBox控件</small></center>
+    <p>文本框，供用户输入文本。
+<a href="#_details">更多...</a>
+
+<hr><h2>命名空间</h2>
+http://www.elastos.com/XmlGlue/Widgets
+
+<hr><a name="_details"></a><h2>详细描述</h2>
+文本框，供用户输入文本。
+<p>
+如:可输入密码。
+
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>属性</h2></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>maxLength</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置文本框中用户最多可以键入的字符数。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>maxLength="80"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;textBox x:id="mytextBox" x="50" y="50" width="100" height="30" maxLength="80"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>selectionLength</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置文本框中选定的字符数，即当前光标位置以后被选中的字符数。默认值为0。一般与<a href="attribute.html#text">text</a>(或caption),selectionStart属性同时使用。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>selectionLength="40"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;textBox x:id="mytextBox" x="50" y="50" width="100" height="30" text="you" selectionStart="0" selectionLength="3"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>selectedText</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将选定的文本替换成新的文本，可为空。一般需与<a href="attribute.html#text">text</a>(或caption)、selectionStart、selectionLength属性同时使用，当这三个属性分别取空、0、0或不设置这三个属性时，selectedText属性的值将作为文本框中的文本内容。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>selectedText="newText"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;textBox x:id="mytextBox" x="50" y="50" width="100" height="30" text="you" selectionStart="0" selectionLength="3" selectedText="newText"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>selectionStart</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置选定文本的起始位置，即设定光标的位置。取0表示光标位置为在文本的第1个字符之前或空文本框的第1个输入位置，取1表示光标位置为在文本第2个字符之前或第1个字符之后，依此类推。一般需与<a href="attribute.html#text">text</a>(或caption)属性同时使用。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>selectionStart="0"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;textBox x:id="mytextBox" x="50" y="50" width="100" height="30" text="you" selectionStart="0"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>passwordChar（暂不支持）</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置在密码风格下显示的文本。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>WChar</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>passwordChar="abc"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;textBox x:id="mytextBox" x="50" y="50" width="100" height="30" passwordChar="abc"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>lineSpacing</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">在textBox多行显示风格下，该属性可以设置行间距。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>lineSpacing="5"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;textBox x:id="mytextBox" x="50" y="50" width="100" height="30" lineSpacing="5"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>readOnly</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置文本框中的文本内容是否只读状态，若为true则文本框中的文本内容只读，若为false则文本框中的文本内容可编辑。默认为false,即可编辑。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Boolean</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>readOnly="true"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;textBox x:id="mytextBox" x="50" y="50" width="100" height="30" readOnly="true"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><h3>其他属性：见<a class="el" href="attribute.html">通用属性</a></h3></td></tr>
+</table>
+
+<hr><h2>事件</h2>
+
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a><!-- doxytag: member="IDatabase::IsClosed" ref="80f8bf3a49657380380f1cf7ba46dec0" args="([out] Boolean *closed)" -->
+见<a class="el" href="event.html">通用事件</a>
+
+<hr><h2>控件风格</h2>
+<div class="memitem">
+<dl compact><dt><b>枚举值: </b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><em>MultiLine = 0x00000001,</em>&nbsp;</td><td>多行显示 </td></tr>
+    <tr><td valign="top"><em>Password = 0x00000020,</em>&nbsp;</td><td>密码风格 </td></tr>
+    <tr><td valign="top"><em>AutoVScroll = 0x00000008,</em>&nbsp;</td><td>自动出现垂直滚动条（与多行显示同时使用才有效） </td></tr>
+    <tr><td valign="top"><em>AutoHScroll = 0x00000010,</em>&nbsp;</td><td>自动出现水平滚动条</td></tr>
+    <tr><td valign="top"><em>Readonly = 0x00000004,</em>&nbsp;</td><td>只读</td></tr>
+    <tr><td valign="top"><em>HideSelection = 0x00000080,</em>&nbsp;</td><td>选择状态保持</td></tr>
+    <tr><td valign="top"><em>Number = 0x00000040,</em>&nbsp;</td><td>数字</td></tr>
+    <tr><td valign="top"><em>WordWrap = 0x00000002,</em>&nbsp;</td><td>自动换行（与多行显示同时使用才有效）</td></tr>
+    <tr><td valign="top"><em>AutoSize = 0x00000100,</em>&nbsp;</td><td>自动根据文本设置大小</td></tr>
+  </table>
+</dl>
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a>
+<b>其他风格</b>：见<a class="el" href="genstyle_8car.html">通用风格</a></td></tr>
+</div>
+<p>
+<b>注：</b>控件风格允许配合使用，例如将textBox的风格设置成具有焦点并是只读状态，代码如下所示：
+<center><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+    &lt;textBox ... style="TextBoxStyle:Readonly ControlStyle:Focused" .../&gt;
+</td></tr></table></center>
+枚举名:枚举值的形式表示，且大小写敏感，不同风格间用空格分开。也可以将两种风格的枚举值作或运算，得到的结果赋给style，例如TextBoxStyle:Readonly = 0x00000004，ControlStyle:Focused = 0x00400000，将两者进行或运算得0x00400004，于是style="0x00400004"。建议采用第一种写法，清晰明了。
+
+ <script>footer("chinese")</script>
+</body>
+</html>

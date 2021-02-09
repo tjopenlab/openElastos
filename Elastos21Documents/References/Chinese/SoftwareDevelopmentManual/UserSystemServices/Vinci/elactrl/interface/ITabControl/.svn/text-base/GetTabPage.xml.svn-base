@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITabControl</interface><method> GetTabPage </method>
+    <description>
+        <para>
+            获取指定选项卡的信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+指定选项卡的索引值，有效值为 0～页数-1</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf_&lt;&gt; </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+<link url="../../../../../../car_technology/fundamental/development_environment/car/data_type/WStringBuf.htm">WStringBuf_</link> 类型，用于获取选项卡显示的文本</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IImage** </param_type>
+                <param_name> image </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口的指针的指针，用于获取选项卡上显示的图标</para>
+                </param_note>
+            </api_param>                        
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IPanel** </param_type>
+                <param_name> panel </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../IPanel.htm">IPanel</link> 接口指针的指针，用于获取选项卡页中 Panel 的 IPanel 接口</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        成功调用该方法获取选项卡页的 <link url="../IPanel.htm">IPanel</link> 或 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口后，这些接口的引用计数将自动增加1，故当这些接口不再需要时，需要调用 Release() 方法释放接口，否则在销毁 TabControl 对象时将造成内存泄漏。每个选项卡页由一个类似于标签的选项卡和一个 Panel 组成，故可以将该 Panel 做为父类控件，为选项卡页添加其它控件。
+    </para>
+    <para>
+        添加选项卡页可以通过 <link url="AddTabPage.htm">AddTabPage</link> 或 <link url="InsertTabPage.htm">InsertTabPage</link> 方法，设置选项卡页可以通过 <link url="SetTabPage.htm">SetTabPage</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTabControl 类介绍 </ref_name>
+        <ref_url>../../class/TabControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITabControl 接口方法列表</ref_name>
+        <ref_url>../ITabControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetTabPage</ref_name>
+        <ref_url>SetTabPage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AddTabPage</ref_name>
+        <ref_url>AddTabPage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>InsertTabPage</ref_name>
+        <ref_url>InsertTabPage</ref_url>
+    </reference>
+</references>
+</manpage>

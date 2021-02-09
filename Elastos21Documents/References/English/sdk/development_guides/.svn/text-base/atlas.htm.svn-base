@@ -1,0 +1,192 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>Atlas Graphics System Introduction</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+    <h2>Atlas Graphics System Introduction</h2>
+        <p>Atlas, a GUI is embedded system oriented that runs on Elastos 2.0 operating system. Since it is compatible with WindowCE its major characteristics are as follows: </p>
+    <ol>
+        <li>Supports starting of multiple graphics applications.
+        <li>Designed based on multiple windows, complete window trimming support provided.
+        <li>Multiple windows can run in a single thread.
+        <li>Pre-defines various controls and dialog boxes.
+        <li>Messaging mechanism.
+        <li>Support for Windows source file, various graphics format support, support for multiple fonts.
+    </ol>
+    <h3>Atlas Graphics System Programming: </h3>
+        <p>Atlas graphics system is compatible with WindowsCE and hence writing Atlas graphics system applications is the same as writing WindowCE (or Windows) application.These programs have the same message loop,windows,resources and controls (for the majority of programs).</p>
+        <p>Basic steps for programming graphics applications are the following: </p>
+    <ol>
+        <li>Generates sources, .h and .cpp files.
+        <li>Fill in sources, .h and .cpp files.
+        <li>Compiles and generates executable file.
+        <li>Execute under command line mode or execute through graphics shell.
+    </ol>
+        <p>Note: The first window automatically becomes the desktop when executed under command line mode.</p>
+        <p>The following is a simple "Hello" program as a demonstration of Atlas graphics system programming principle: </p>
+        <p>The steps of writing the program is as the following: </p>
+    <ol>
+        <li>Generates sources, .h and .cpp files.
+        <li>Write these files.
+    </ol>                
+        <p>source file content: </p>
+        <pre class="code">
+//*******************************
+//
+TARGET_NAME= hello
+TARGET_TYPE= exe
+
+SOURCES= \
+    hello.cpp \
+
+ELASTOS_LIBS= \
+    elastos.lib \
+    elacrt.lib \
+    winmain.lib \
+    elagdi32.lib \
+    elausr32.lib \
+    elactl32.lib \
+    eladlg32.lib \
+    elagsvr.lib \
+</pre>
+        <p>hello.h file: </p> 
+        <pre class="code">
+//*****************************
+//Header file
+//Function prototypes
+//
+int MyRegisterClass(HINSTANCE hInstance);
+HWND InitInstance(HINSTANCE hInstance, int nCmdShow);
+
+//window procedures
+LRESULT CALLBACK MainWndProc(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam);
+</pre>
+        <p>hello.cpp file: </p>
+        <pre class="code">
+#include <elacewin.h>     //header file required by Atlas graphics
+#include <stdio.h>
+#include "hello.h"
+
+//
+//Global data
+//
+const WCHAR g_szAppName[] = TEXT("HelloClass");
+HINSTANCE g_hInst;//Program instance handle
+
+//
+//Program entry point
+//
+EXTERN_C int __stdcall WinMain(HINSTANCE hInstance,
+                                HINSTANCE hPrevInstance,
+                                LPTSTR lpCmdLine,
+                                int nCmdShow)
+{
+    //Register Class
+    int rc = MyRegisterClass(hInstance);
+    if (!rc) {
+        return rc;
+    }
+
+    //Initialize this instance
+    HWND hWndMain = InitInstance(hInstance, nCmdShow);
+    if (NULL == hWndMain) {
+        return 0x10;
+    }
+
+    MSG msg;
+    while (GetMessage(&msg, NULL, 0, 0)) {
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+    }
+
+    return 0;
+}
+
+int MyRegisterClass(HINSTANCE hInstance)
+{
+    WNDCLASS stWndClass;
+
+    //Register application main window class
+    stWndClass.style = 0;
+    stWndClass.lpfnWndProc = (WNDPROC)MainWndProc;
+    stWndClass.cbClsExtra = 0;
+    stWndClass.cbWndExtra = 0;
+    stWndClass.hInstance = hInstance;
+    stWndClass.hIcon = 0;
+    stWndClass.hCursor = 0;
+    stWndClass.hbrBackground = (HBRUSH)GetStockObject(GRAY_BRUSH);
+    stWndClass.lpszMenuName = NULL;
+    stWndClass.lpszClassName = g_szAppName;
+
+    return RegisterClass(&stWndClass);;
+}
+
+HWND InitInstance(HINSTANCE hInstance, int nCmdShow)
+{
+    //Save program instance handle
+    g_hInst = hInstance;
+
+    //Create main window.
+    HWND hWnd = CreateWindow(g_szAppName, TEXT("Hello"), \
+            WS_CAPTION | WS_BORDER | WS_VISIBLE, 200, 150, 400, 300, \
+            NULL, NULL, hInstance, NULL);
+    if (!hWnd) {
+        return 0;
+    }
+
+    return hWnd;
+}
+
+
+LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, \
+                            LPARAM lParam)
+{
+    PAINTSTRUCT stPaint;
+    HDC hDC;
+    int x, y;
+
+    switch (message) {
+        case WM_LBUTTONDOWN:
+            x = LOWORD(lParam);
+            y = HIWORD(lParam);
+
+            hDC = GetDC(hWnd);
+            ExtTextOut(hDC, x, y, ETO_OPAQUE, NULL, TEXT("Hello"), \
+                    sizeof(TEXT("Hello")), NULL);
+            ReleaseDC(hWnd, hDC);
+    	break;
+        case WM_PAINT:
+            hDC = BeginPaint(hWnd, &stPaint);
+            RECT rt;
+			 GetClientRect(hWnd, &rt);
+            DrawText(Hdc, TEXT("Hello"), -1, &rt, DT_CENTER | DT_VCENTER  | DT_SINGLELINE);
+            EndPaint(hWnd, &stPaint);
+        break;
+        default:
+        return DefWindowProc(hWnd, message, wParam, lParam);
+    }
+
+    return 0;
+}
+</pre>
+        <p>Similar to Windows program, the entry point of this program is <b>WinMain</b>. At <b>WinMain</b> entry point, <b>MyRegisterClass</b> will be invoked. Here we register windows class used in main window by invoking <b>RegisterClass</b> (You can refer,<b> RegisterClass</b> description for details). After this, <b>InitInstance</b> will be invoked in this function, main window will be created through <b>CreateWindow</b>. After the main window is created, <b>WinMain</b> will enter a message loop, which is at the core of each and every Windows application. This loop is very simple and invokes <b>GetMessage</b> to get the next message in application message queue. If there is no message,then the invocation will wait and application thread will be paused until next message is avaliable. When certain message is available, the invocation returns with message data in the MSG structure.</p>
+        <p><b>TranslateMessage</b> will convert relevant keyboard message to character message. <b>DispatchMessage</b>  informs Windows to forward messages to relevant windows in application.</p>
+        <p>This message loop terminates until <b>GetMessage</b> receives a WM_QUIT message. This program will do some cleaning and exit after the message loop is terminated.</p>
+        <p>When you write a Atlas graphics application, the majority of your time will be spent on windows process. <b>WinMain</b> mostly consists of initialization and code cleaning, of which mostly are template files. The first parameter to pass to the window process is the window handle and parameter <i>wMsg</i> represents messages sent to the window. This is not MSG structure used in <b>WinMain</b> message loop but an unsigned integer including the value of the message. The remaining two parameters <i>wParam</i> and <i>lParam</i> are used to pass data structure specially made for message to windows process.</p>
+        <p>Draw window is the key functionality of any Atlas graphics program which means it handle WM_PAINT message. WM_PAINT message will draw the invalid area of the whole window using the window background color. Besides, the user can also perform other draw graph operations, but the draw graph line must be between the <b>BeginPaint</b> and the <b>EndPaint</b> functions. This example draws "Hello" in the center of the window. First the program gets the client window dimension by using <b>GetClientRect</b> and then invokes <b>DrawText</b> to draw "Hello" in the center of the client area.</p>
+        <p>This sample also handles another message WM_LBUTTONDOWN -- mouse left button pressed down message. When clicking mouse left button in the window,then the message loop will get WM_LBUTTONDOWN message and pass it to main window.The parameter <i>lParam</i> contains the location information of mouse left click;lower byte is horizontal co-ordinate and higher byte is vertical co-ordinate location. Invoking <b>ExtTextOut</b> will draw character "Hello" in the mouse current location.</p>
+        <p>Program result will be as in the following diagram: </p>   
+        <center><img src="images/run.jpg"></center>     
+         
+<script>footer("english")</script>
+</body>
+</html>                              

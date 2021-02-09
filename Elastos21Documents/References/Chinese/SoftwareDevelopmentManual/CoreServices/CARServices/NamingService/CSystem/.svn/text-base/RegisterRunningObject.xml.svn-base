@@ -1,0 +1,99 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\ezNamingService"> CSystem::RegisterRunningObject </sample>
+    <volume>命名服务函数</volume>
+    <title>CSystem::RegisterRunningObject</title>
+
+    <description>
+        <para>向操作系统注册命名服务接口。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>[in]标识服务接口的名字，不能为空,长度不能超过256个字符</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> PObject </param_type>
+                <param_name> pRunningObject </param_name>
+                <param_note>
+                    <para>[in]指向服务接口的指针，不能为空</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>向操作系统注册命名成功</td>
+            </tr>
+            <tr>
+                <td>E_ALREADY_EXIST</td><td>已存在同名的服务接口</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>输入的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_DOES_NOT_EXIST</td><td>指定的服务不存在</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+            <tr>
+                <td>E_SERVICE_NAME_TOO_LONG</td><td>标识服务接口的名字太长</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>命名服务是一种以字符串为标识的服务。服务程序可以通过CSystem::RegisterRunningObject向操作系统注册自己的服务接口，而服务的使用者（即客户端程序）则可以通过<link url="FindRunningObject.htm">CSystem::FindRunningObject</link>来获取指定的服务接口。</para>
+        <para>对于服务名字的命名没有特别限制，但当名字的长度超过256个字符时，返回E_SERVICE_NAME_TOO_LONG。若所取的名字与系统中已经注册的服务名字相同，则返回E_ALREADY_EXIST。服务名字可以为空字符串，但建议不使用。</para>
+        <para>当用户进程退出时（包括异常退出），用户没有注销的服务将会被强制退出。</para>
+        <para>系统现有的命名服务包括tcpip和filesys。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+           <system_name>
+                Windows 2000 或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CSystem::FindRunningObject </ref_name>
+        <ref_url>FindRunningObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CSystem::WaitForRunningObject </ref_name>
+        <ref_url>WaitForRunningObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CSystem::UnregisterRunningObject </ref_name>
+        <ref_url>UnregisterRunningObject</ref_url>
+    </reference>
+    </references>
+
+</manpage>

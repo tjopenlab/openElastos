@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> SetInputMethod </method>
+    <description>
+        <para>
+            设置控件的输入法。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> editorName </param_name>
+                <param_note>
+                    <para>
+输入法编辑器名</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> methodName </param_name>
+                <param_note>
+                    <para>
+输入法名</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+<para>输入法编辑器名称，如陈桥五笔；输入法名，如陈桥五笔里有五笔、拼音等</para>
+<para>editorName空，methodName空：去除输入法;</para>
+<para>editorName空，methodName有值：将当前输入法的类型改成methodName</para>
+<para>editorName有值，methodName空：将当前输入法编辑器设为editorName，类型为默认，这里的“默认”是指，当用户设了一个输入法编辑器，但没有指定具体的类型，那就用这个输入法里默认的类型处理了。比如“陈桥五笔”这个输入法编辑器包含了“五笔”和“拼音”两个类型，如果用户只设置了“陈桥五笔”这个编辑器，没有设置类型名，那它运行时就直接是“陈桥五笔”的“五笔”输入法。 </para>
+<para>editorName有值，methodName有值：设置为指定的输入法 </para>
+<para>请注意：具体的编辑器名和类型名是输入法自己定的，只有输入法去公布它的名字让用户使用。 </para>
+</remarks>    
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetInputMethod</ref_name>
+        <ref_url>GetInputMethod</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetInputEditorName</ref_name>
+        <ref_url>SetInputEditorName</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetInputMethodName</ref_name>
+        <ref_url>SetInputMethodName</ref_url>
+    </reference>
+</references>  
+</manpage>

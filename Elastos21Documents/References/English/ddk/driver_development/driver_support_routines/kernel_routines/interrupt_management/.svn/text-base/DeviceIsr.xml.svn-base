@@ -1,0 +1,68 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <volume>Interrupt Management</volume>
+    <title>DeviceIsr</title>
+    <routine_idx> ../interrupt_management.htm </routine_idx>
+
+    <description>
+        <para>Standard form of interrupt service routine callback method. </para>
+    </description>
+
+    <syntax>
+        <return_val>void CDECL</return_val>
+        <parameters>
+            <api_param>
+                <param_type> irq_t</param_type>
+                <param_name> irq </param_name>
+                <param_note>
+                    <para>Generated hardware interrupt number. </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type>void *</param_type>
+                <param_name>pvDevice</param_name>
+                <param_note>
+                    <para>Device additional information pointer. </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type>InterruptContext *</param_type>
+                <param_name>pContext</param_name>
+                <param_note>
+                    <para>Pointer to current interrupt context. </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>Parameter and return value of interrupt service routine callback method must follow this standard type. </para>
+        <para>This method receives three parameters. Parameter <i>irq</i> is generated hardware interrupt number, this parameter allows one interrupt service routine that handles multiple different hardware interrupt requests. Parameter <i>pDevice</i> is additional information pointer when registering interrupt service routine. Parameter <i>pContext</i> is the current interrupt context and the type of this parameter is struct InterruptContex.Its specific definition depends on the actual hardware architecture. Actually, most interrupt service routine does not use these parameters. </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>

@@ -1,0 +1,61 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--importlib </title>
+</head>
+
+<body>
+	<h2>importlib</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于在本构件中引入用到的其它构件（.dll）。这样，本构件就可以直接使用在引入构件中定义的接口，类，类别等信息。 </p>
+	
+	    <b>语法 </b>
+	    	<p><b>importlib</b>("构件名.dll")  </p>
+	    	<p>或<b>importlib</b>("构件名.cls")  </p>
+	    <b>使用说明 </b>
+	        <p>1.所引用的.dll或.cls须存在，否则编译报错。 </p>
+	        <p>2.可使用carc –c xxx.car命令根据xxx.car文件生成其.cls文件。 </p>
+	        <p>3.不能指定路径名。 </p>
+	    <b>使用范例 </b>
+	        <p>假设在本示例importlibDemo.car文件的上级目录中存在一个foo.car文件，内容如下： </p>
+<pre class= code>
+module 
+{
+    interface IFoo {
+        Foo();
+    }
+    class CFoo {
+        interface IFoo;
+    } 
+}
+
+</pre>
+	        <p>编写如下importlibDemo.car示例内容如下： </p>
+<pre class= code>
+module 
+{
+    <b>importlib</b>("foo.dll");
+    interface IBar {
+        Bar();
+    }
+    class CBar {
+        interface IFoo;
+        interface IBar;
+    } 
+}
+
+</pre>
+	        <p>示例car中，由于importlibDemo.car中引入了foo.car，便可使用foo.car的成员IFoo接口。 </p>
+
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

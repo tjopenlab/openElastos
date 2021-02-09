@@ -1,0 +1,120 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Virtual File System Object Interface.</volume>
+<interface>IVfsFileSystem</interface><method> Mount </method>
+    <description>
+        <para>
+       		Mount a File System.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> type </param_name>
+                <param_note>
+                    <para>
+						The type of the file system to be mounted.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> dir </param_name>
+                <param_note>
+                    <para>
+						 Path of file system node to be mounted. 
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> vDevName </param_name>
+                <param_note>
+                    <para>
+						The name of the file system to be mounted.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> flags </param_name>
+                <param_note>
+                    <para>
+						Mount flag.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value </td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>S_OK</td>
+		        <td>Function succeeds in mounting a file system.</td>
+	        </tr>
+	        <tr>
+		        <td>E_INVALIDARG</td>
+		        <td>Invalid argument(s).</td>
+	        </tr>
+	        <tr>
+		        <td>E_OUTOFMEMORY</td>
+		        <td>Not enough memory, root directory node creation fails.</td>
+	        </tr>
+	        <tr>
+		        <td>E_FAIL</td>
+		        <td>Operation fails, or the file system with the same name is already mounted.</td>
+	        </tr>
+	        <tr>
+	    	    <td>ECODE_FROM_ERRNO(EINVAL)</td>
+	    	    <td>Not root file system MNT_UPDATE flag opened</td>
+	        </tr>
+	        <tr>
+	    	    <td>ECODE_FROM_ERRNO(EOPNOTSUPP)</td>
+	    	    <td>Not read only file system MNT_RELOAD flag opened</td>
+	        </tr>
+	        <tr>
+	    	    <td>ECODE_FROM_ERRNO(ENOTDIR)</td>
+	    	    <td>File system mount node not directory node</td>
+	        </tr>
+	        <tr>
+	    	    <td>ECODE_FROM_ERRNO(ENODEV)</td>
+	    	    <td>File system was not registered in registry</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../../reference/basic_data_type/hresult.htm">ECODE</link> related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

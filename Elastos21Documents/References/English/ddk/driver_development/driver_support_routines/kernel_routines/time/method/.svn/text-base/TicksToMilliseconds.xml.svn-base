@@ -1,0 +1,69 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="time\TicksToMilliseconds">TicksToMilliseconds</sample>
+    <volume>Time</volume>
+    <title>TicksToMilliseconds</title>
+    <routine_idx> ../../time.htm </routine_idx>
+
+    <description>
+        <para>
+        	Converts the time from number of ticks to equivalent number of milliseconds.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>uint_t</return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> uint_t</param_type>
+                <param_name> uTicks </param_name>
+                <param_note>
+                    <para>
+                    	Time to be converted, in ticks.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<para>
+    		The equivalent time in milliseconds.
+    	</para>
+    </return>
+
+    <remarks>
+        <para>
+        	This method converts time in ticks to equivalent time in milliseconds. The unit of tick varies on different 
+        	systems. Usually, unit of tick is greater than the unit of millisecond. If unit of tick is greater than the 
+        	unit of millisecond, then it is possible for the converted time value to overflow. However, the implementation 
+        	does not check for overflow, because overflow is not going to happen in proper operations.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>MillisecondsToTicks</ref_name>
+            <ref_url>MillisecondsToTicks</ref_url>
+        </reference>
+    </references>
+
+
+</manpage>

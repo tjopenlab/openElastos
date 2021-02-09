@@ -1,0 +1,54 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Thread and Scheduling</volume>
+<interface>IThread</interface><method> Suspend  </method>
+    <description>
+        <para>
+        	Suspends the specified thread.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+    </syntax>
+
+	<return>
+    	<table>
+    	    <th>
+    		<td>Return Value </td>
+    		<td>Hex Value</td>
+    		<td>Description</td>
+    	    </th>
+    	    <tr>
+    		<td>S_OK</td>
+    		<td>0x00000000</td>
+    		<td>Function succeeds in suspending the specified thread.</td>
+    	    </tr>
+    	    <tr>
+    		<td>E_FAIL</td>
+    		<td>0x80004005</td>
+    		<td>Thread execution is over.</td>
+    	    </tr>
+    	</table>
+    </return>
+
+	<remarks>
+		<para>
+			If the specified thread is in ThreadState_Running state, the method removes it from running list and 
+			the list is rescheduled. If the thread is already suspended, this method just increments the count of threads, 
+			which need to suspend the associated thread. If the execution of the thread is finished, this method has no 
+			effect and return E_FAIL. After suspending a thread, the corresponding thread with higher priority	continues its  execution.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,73 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>ITapi</interface><method> SetVolume </method>
+    <description>
+        <para>
+          设置听筒或耳机的音量。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwDevID </param_name>
+                <param_note>
+                    <para>
+                      设备ID
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwVolumePercent </param_name>
+                <param_note>
+                    <para>
+                       音量百分比
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+      <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	         <tr>
+	    	    <td>FAMILY_GEN 类或FAMILY_CME类错误值</td>
+	    	    <td>表示指令发送到通讯模块过程中遇到错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../Telephony_Error.htm">Telephony_Error</link>相关帮助。</para>
+	   </return>
+	   <remarks>
+	     <para>
+	       dwDevId为TAPI_PHONEVOLUME_INCOMING表示来电音量;为TAPI_PHONEVOLUME_OUTGOING表示发送给对方的音量。对Cellon模块，只能取来电音量（TAPI_PHONEVOLUME_INCOMING）。
+	     </para>
+	     <para>
+	       dwVolumePercent的取值范围1～100。Cellon模块可设置的音量有十个等级，因此实际设置的等级为dwVolumePercent/10。
+	     </para>
+	   </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+         <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

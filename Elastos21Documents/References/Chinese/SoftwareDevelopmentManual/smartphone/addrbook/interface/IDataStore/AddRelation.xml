@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址簿引擎</volume>
+<interface>IDataStore</interface><method> AddRelation </method>
+    <description>
+        <para>
+            添加组和联系人的关系。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> long </param_type>
+                <param_name> nSourceEntityId </param_name>
+                <param_note>
+                    <para>
+联系人ID                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> long </param_type>
+                <param_name> nDestinationEntityId </param_name>
+                <param_note>
+                    <para>
+组ID                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK。</para><para>            其他参见            <link url="../../ab_error.htm">            地址簿错误返回值列表            </link>            。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CDBStore.h, CContact.h, CContactGroup.h, abdata.h, CEntityEnumeration.h, spcomm.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElCRuntime.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>RemoveRelation</ref_name>
+            <ref_url>RemoveRelation</ref_url>
+        </reference>
+    </references>
+</manpage>

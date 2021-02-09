@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+    <sample url=""></sample>
+<volume>IArgumentList接口函数</volume>
+<interface>IArgumentList</interface><method> SetOutputArgumentOfECodePtr </method>
+    <description>
+        <para>
+            通过序号设置ECode指针类型的输出参数。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+                    参数序号
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ECode * </param_type>
+                <param_name> value </param_name>
+                <param_note>
+                    <para>
+                    所设置的ECode指针型参数
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    <return>
+        <table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序正确执行</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>输入的参数序号超出方法的参数个数或设置的参数数据类型与对应方法参数数据类型不匹配</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_OPERATION</td><td>参数列表没有创建成功或者设值没成功</td>
+            </tr>
+
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+<remarks>
+        <para></para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+    </requirements>
+</manpage>

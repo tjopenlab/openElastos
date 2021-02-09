@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址簿引擎</volume>
+<interface>IContact</interface><method> GetTelValuebySerial </method>
+    <description>
+        <para>
+            通过序号获取电话号码及号码类型。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> nSerial </param_name>
+                <param_note>
+                    <para>
+指定的序号                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UINT * </param_type>
+                <param_name> iTelType </param_name>
+                <param_note>
+                    <para>
+指向UINT类型的指针，用于获取返回的号码类型                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf * </param_type>
+                <param_name> esbValue </param_name>
+                <param_note>
+                    <para>
+指向EzStrBuf类型的指针，用于获取返回的电话号码                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数nSerial无效，返回E_AB_INVALIDARG；如果指定的内容不存在，返回E_AB_NOVALUE。</para><para>            其他参见            <link url="../../ab_error.htm">            地址簿错误返回值列表            </link>            。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            每个联系人最多可以拥有8个电话号码，因此参数nSerial的取值范围为1~8，表示此电话号码的排序。
+        </para>
+    </remarks>
+    <references>
+        <reference>
+            <ref_name>SetTelValuebySerial</ref_name>
+            <ref_url>SetTelValuebySerial</ref_url>
+        </reference>
+    </references>
+</manpage>

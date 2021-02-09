@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>INetworkOption</interface><method> ModifyConSetting </method>
+    <description>
+        <para>
+            更新某个网络配置。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esOldDeviceName </param_name>
+                <param_note>
+                    <para>
+网络配置名称                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IConnectionSettingRef </param_type>
+                <param_name> pIConSetting </param_name>
+                <param_note>
+                    <para>
+更新网络配置                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；esOldDeviceName或pIConSetting为空或esOldDeviceName的长度为0，返回E_INVALIDARG；环境变量出错，返回E_INVALID_ENVIRONMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_open">_wopen</sample>
+    <title> _open, _wopen</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>打开一个文件。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_open</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>指向文件名的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>oflag</param_name>
+                <param_note>
+                    <para>允许的操作类型</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+                <param_note>
+                    <para>允许使用文件的模式（读/写等）</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wopen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>oflag</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>pmode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>运行成功返回已经打开文件的句柄。出错则返回-１，将错误号设置为下列常量之一：</para>
+        <table>
+    	    <th>
+    	        <td>错误号</td>
+    	        <td>描述</td>
+    	    </th>
+            <tr>
+                <td>EACCES</td>
+                <td>试图打开一个只读文件来写，或文件的共享模式不允许指定的操作，或所给路径为一目录</td></tr>
+            <tr>
+                <td>EEXIST</td>
+                <td>指定了_O_CREAT 和 _O_EXCL参数，但是文件已存在</td></tr>
+            <tr>
+                <td>EINVAL</td>
+                <td>非法参数</td></tr>
+            <tr>
+                <td>EMFILE</td>
+                <td>文件句柄不可用（打开了过多文件）</td></tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>指定文件或路径不存在</td></tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>_open以oflag指定的方式打开名为filename的文件以供读写。_wopen 是 _open的宽字符版本。_wopen的filename  参数是宽字符字符串，除此外两者相同。</para>
+        <para>oflag是由一个或多个下列常量（定义在fcntl.h中）或其组合形成的整数表达式:</para>
+        <table>
+    	    <th>
+    	        <td>oflag参数值</td>
+    	        <td>描述</td>
+    	    </th>
+            <tr>
+                <td>_O_APPEND</td>
+                <td>在每次“写”操作前将文件指针移到文件尾</td>
+            </tr>
+            <tr>
+                <td>_O_BINARY</td>
+                <td>以二进制（没有转化过的）的方式打开文件。参看fopen中关于二进制方式的描述</td>
+            </tr>
+            <tr>
+                <td>_O_CREAT</td>
+                <td>创建并打开新文件来写。如果给出的文件已存在则不起作用。当指定了_O_CREAT 时需要pmode参数</td>
+            </tr>
+            <tr>
+                <td>_O_CREAT | _O_EXCL</td>
+                <td>如果所给文件存在则返回错误值。仅与_O_CREAT一起使用</td>
+            </tr>
+            <tr>
+                <td>_O_RDONLY</td>
+                <td>以只读方式打开文件</td>
+            </tr>
+            <tr>
+                <td>_O_RDWR</td>
+                <td>以读写方式打开文件</td>
+            </tr>
+            <tr>
+                <td>_O_TEXT</td>
+                <td>以文本方式（转化过的）打开文件。（参看<link url="../File_IO.htm">文本和二进制方式文件I/O</link>和<link url="../stdio/_wfopen.htm">fopen</link>。）</td>
+            </tr>
+            <tr>
+                <td>_O_TRUNC</td>
+                <td>打开文件并使长度为零； 文件必须允许写。不能与 _O_RDONLY一起使用。_O_TRUNC 和 _O_CREAT 一起使用打开一个已存在的文件或创建一个新文件。
+                注意：使用_O_TRUNC 参数会破坏文件的内容</td>
+            </tr>
+            <tr>
+                <td>_O_WRONLY</td>
+                <td>以只写方式打开文件</td>
+            </tr>
+        </table>
+        <para>要指定访问文件的方式，必须指定_O_RDONLY，_O_RDWR或 _O_WRONLY。访问方式没有默认值。</para>
+        <para>当oflag参数使用了两个或更多常量，常量间通过“按位或”操作（|）组合。参见文本和二进制方式文件I/O。</para>
+        <para>只有指定了 _O_CREAT 时才需要pmode参数。如果文件已存在，忽略pmode参数。其他情况，pmode指明使用文件方式的设置。这些设置在文件第一次被关闭时生效。open 函数在设置使用方式前应用当前文件使用方式到pmode。pmode 包含一个或两个下列在STAT.H中定义的常量的整数表达式：</para>
+        <table>
+    	    <th>
+    		    <td>pmode参数值</td>
+            	<td>描述</td>
+    	    </th>
+            <tr>
+                <td>_S_IREAD</td>
+                <td>只允许读</td>
+            </tr>
+            <tr>
+                <td>_S_IWRITE</td>
+                <td>只允许写（效果上相当于允许读和写）</td>
+            </tr>
+            <tr>
+                <td>_S_IREAD | _S_IWRITE</td>
+                <td>允许读和写</td>
+            </tr>
+        </table>
+        <para>
+             当两个常量都给出时，他们通过按位或（| ）联结。在Elastos中，所有文件都是可读的，故“只允许写”并不真正生效； 所以 _S_IWRITE 和 _S_IREAD | _S_IWRITE 是等价的。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_open</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wopen</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _open.cpp: This program uses _open to open a file
+ * named _open.cpp for input and a file named OPEN.OUT
+ * for output. The files are then closed.
+ */
+
+#include &lt;fcntl.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int fh1, fh2;
+
+    fh1 = _open(&quot;_open.exe&quot;, _O_RDONLY);
+    if (fh1 == -1)
+        perror(&quot;open failed on input file&quot;);
+    else {
+        printf(&quot;open succeeded on input file\n&quot;);
+        _close(fh1);
+    }
+
+    fh2 = _open(&quot;OPEN.OUT&quot;, _O_WRONLY | _O_CREAT, _S_IREAD | _S_IWRITE);
+    if (fh2 == -1)
+        perror(&quot;Open failed on output file&quot;);
+    else {
+        printf(&quot;Open succeeded on output file\n&quot;);
+        _close(fh2);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Open succeeded on input file
+Open succeeded on output file
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_wcreat</ref_name>
+            <ref_url>_wcreat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_close</ref_name>
+            <ref_url>_close</ref_url>
+        </reference>
+    </references>
+
+</manpage>

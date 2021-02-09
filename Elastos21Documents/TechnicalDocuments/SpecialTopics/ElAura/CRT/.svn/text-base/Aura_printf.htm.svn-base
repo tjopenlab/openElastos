@@ -1,0 +1,183 @@
+<HTML>
+<HEAD>
+<title>
+Aura_printf
+</title>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<H3>Aura_printf</H3>
+</div>
+<p>Print formatted output to the standard output stream.</p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">EXTERN_C int CDECL Aura_printf
+                    (
+                 </TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">const char*</TD>
+<TD class="param">format[, argument]...</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">);</TD>
+</TR>
+</TABLE>
+</div>
+<p>
+<br />
+</p>
+<H4>Parameters</H4>
+<DL><DT class="param" style="color:#222222;margin-left:42">format[, argument]...</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">Format control (argument is optional)<BR /><BR />
+</font></DD>
+</DL>
+<DL></DL>
+<h4>Return Value</h4>
+<p>Each of these functions returns the number of characters printed or a negative value if an error occurs.</p>
+<h4>Remarks</h4>
+<p>The printf function formats and prints a series of characters and values to the standard output stream, stdout. If arguments follow the format string, then the format string must contain specifications that determine the output format for the arguments. printf and fprintf behave identically except that printf writes output to stdout rather than to a destination of type FILE. wprintf is a wide-character version of printf; format is a wide-character string. wprintf and printf behave identically otherwise.</p>
+<p>The format is a character string which contains ordinary characters, which are simply copied to standard output, character escape sequences, which are converted and copied to the standard output and format specifications</a>, each of which causes printing of the next successive argument.</p>
+<h4>Requirements</h4>
+<table class="methodtbl" cellspacing="0" cellpadding="0">
+<THEAD class="head">
+<TD width="20%" class="cell">
+Routine</TD>
+<TD width="20%" class="cell">
+Required header</TD>
+<TD class="cell">
+Compatibility</TD>
+</THEAD>
+<TR>
+<TD class="cell"><B>printf</B></TD>
+<TD class="cell">stdio.h</TD>
+<TD class="cell">ANSI, Windows 2000, Elastos 2.0</TD>
+</TR>
+<TR>
+<TD class="cell"><B>wprintf</B></TD>
+<TD class="cell">stdio.h</TD>
+<TD class="cell">ANSI, Windows 2000, Elastos 2.0</TD>
+</TR>
+</table>
+<p></p>
+<table class="methodtbl" cellspacing="0" cellpadding="0">
+<THEAD class="head">
+<TD width="30%" class="cell">
+                Library
+            </TD>
+<TD class="cell">
+                Description
+            </TD>
+</THEAD>
+<TR>
+<TD class="cell">
+                libc.lib
+            </TD>
+<TD class="cell">
+                Single thread static library
+            </TD>
+</TR>
+<TR>
+<TD class="cell">
+                elacrt.lib
+            </TD>
+<TD class="cell">
+                Import library for elacrt.dll
+            </TD>
+</TR>
+</table>
+<h4>Example</h4>
+<p><script>showButton_e()</script></p>
+<pre class="codeview">
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* printf.cpp: This program uses the printf and wprintf functions
+ * to produce formatted output.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char    ch = 'h', *string = "computer";
+    int     count = -9234;
+    double fp = 251.7366;
+    wchar_t wch = L'w', *wstring = L"Unicode";
+
+    /* Display integers. */
+    printf("Integer formats:\n"
+              "\tDecimal: %d  Justified: %.6d  Unsigned: %u\n",
+              count, count, count, count);
+
+    printf("Decimal %d as:\n\tHex: %Xh  C hex: 0x%x  Octal: %o\n",
+                count, count, count, count);
+
+    /* Display in different radixes. */
+    printf("Digits 10 equal:\n\tHex: %i  Octal: %i  Decimal: %i\n",
+                0x10, 010, 10);
+
+    /* Display characters. */
+
+    printf("Characters in field (1):\n%10c%5hc%5C%5lc\n", ch, ch, wch, wch);
+    wprintf(L"Characters in field (2):\n%10C%5hc%5c%5lc\n", ch, ch, wch, wch);
+
+    /* Display strings. */
+
+    printf("Strings in field (1):\n%25s\n%25.4hs\n\t%S%25.3ls\n",
+    string, string, wstring, wstring);
+    wprintf(L"Strings in field (2):\n%25S\n%25.4hs\n\t%s%25.3ls\n",
+         string, string, wstring, wstring);
+
+    /* Display real numbers. */
+    printf("Real numbers:\n\t%f %.2f %e %E\n", fp, fp, fp, fp);
+
+    /* Display pointer. */
+    printf("\nAddress as:\t%p\n", &amp;count);
+
+    /* Count characters printed. */
+    printf("\nDisplay to here:\n");
+    printf("1234567890123456%n78901234567890\n", &amp;count);
+    printf("\tNumber displayed: %d\n\n", count);
+
+    return 0;
+}
+</pre>
+<h4>Output</h4>
+<pre class="codeview">Integer formats:
+Decimal: -9234  Justified: -009234  Unsigned: 4294958062
+Decimal -9234 as:
+Hex: FFFFDBEEh  C hex: 0xffffdbee  Octal: 37777755756
+Digits 10 equal:
+Hex: 16  Octal: 8  Decimal: 10
+Characters in field (1):
+h    h    w    w
+Characters in field (2):
+h    h    w    w
+Strings in field (1):
+computer
+comp
+Unicode                      Uni
+Strings in field (2):
+computer
+comp
+Unicode                      Uni
+Real numbers:
+251.736600 251.74 2.517366e+002 2.517366E+002
+
+Address as:     0x1ffffd48
+
+Display to here:
+123456789012345678901234567890
+Number displayed: 16</pre>
+</DIV>
+</BODY>
+</HTML>
+

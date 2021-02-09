@@ -1,0 +1,227 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>通讯引擎</volume>
+    <types> GPRS_QOSSETTINGS </types>
+    <description>
+        <para>
+            服务质量。
+        </para>
+    </description>
+
+  <struct>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwPrecedenceClass</mem_name>
+            <mem_description>标识GPRS优先级别 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwDelayClass</mem_name>
+            <mem_description>标识GPRS延迟级别</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name> dwReliabilityClass </mem_name>
+            <mem_description>数据包可靠性级别 </mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>wdwPeakThruClass</mem_name>
+            <mem_description>标识期望的数据传输率，和数据包可靠性级别相关</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwMeanThruClass</mem_name>
+            <mem_description>最低的每小时传输量</mem_description>
+        </struct_member>
+    </struct>
+
+  <remarks>
+		<para>标识GPRS优先级别:</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSPRECEDENCECLASS_UNKNOWN</td><td>未知</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSPRECEDENCECLASS_SUBSCRIBED</td><td>序列号值存储在网络中</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSPRECEDENCECLASS_HIGH</td><td>高优先级，服务将优先于先前的所有等级</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSPRECEDENCECLASS_NORMAL</td><td>正常优先级，服务将优先于所有低优先级等级</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSPRECEDENCECLASS_LOW</td><td>低优先级，服务只有在高优先级和正常优先级服务执行完成后才开始</td>
+    </tr>
+    </table>
+
+    <para>标识GPRS延迟级别:</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSDELAYCLASS_UNKNOWN</td><td>未知</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSDELAYCLASS_SUBSCRIBED</td><td>序列号值存储在网络中</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSDELAYCLASS_PREDICTIVE1</td><td>当为128字节的安全数据单元时，表示传送延时小于0.5秒，95%的传送延时为小于1.5秒; 当为1024字节的安全数据单元时，表示传送延时小于2秒，95%的传送延时小于7秒; </td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSDELAYCLASS_PREDICTIVE2</td><td>当为128字节的安全数据单元时，表示传送延时小于5秒，95%的传送延时为小于25秒; 当为1024字节的安全数据单元时，表示传送延时小于5秒，95%的传送延时小于75秒; </td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSDELAYCLASS_PREDICTIVE3</td><td>当为128字节的安全数据单元时，表示传送延时小于50秒，95%的传送延时为小于250秒; 当为1024字节的安全数据单元时，表示传送延时小于75秒，95%的传送延时小于375秒;</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSDELAYCLASS_</td>最佳效率<td>;</td>
+    </tr>
+    </table>
+
+    <para>数据包可靠性级别:</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSRELIABILITYCLASS_UNKNOWN</td><td>未知</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSRELIABILITYCLASS_SUBSCRIBED</td><td>序列号值存储在网络中</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSRELIABILITYCLASS_1</td><td>请求对错误敏感，不能处理数据丢失，不能发送实时信息 </td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSRELIABILITYCLASS_2</td><td>请求对错误敏感，可以处理数据丢失，不能发送实时信息 </td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSRELIABILITYCLASS_3</td><td>请求对错误敏感，可以处理数据丢失、GMM/SM和短信服务，不能发送实时信息</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_GPRSRELIABILITYCLASS_4</td>请求对错误敏感，可以发送实时信息<td>;</td>
+    </tr>
+     <tr>
+       <td>CELLDEVCONFIG_GPRSRELIABILITYCLASS_5</td>请求可以容错，且可以处理数据丢失，可以实时通讯（要求对延时和吞吐量进行适当的设置）<td>;</td>
+    </tr>
+    </table>
+
+    <para>标识期望的数据传输率，和数据包可靠性级别相关：</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>CELLDEVCONFIG_PEAKTHRUCLASS_UNKNOWN</td><td>未知</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_PEAKTHRUCLASS_SUBSCRIBED</td><td>序列号值存储在网络中</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_PEAKTHRUCLASS_8000</td><td>每秒8k字节（8 kbps） </td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_PEAKTHRUCLASS_16000</td><td>每秒16k字节（16 kbps）</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_PEAKTHRUCLASS_32000</td><td>每秒32k字节（32 kbps）</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_PEAKTHRUCLASS_64000</td><td>每秒64k字节（64 kbps）</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_PEAKTHRUCLASS_128000</td><td>每秒128k字节（128 kbps）</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_PEAKTHRUCLASS_256000</td><td>每秒256k字节（256k bps）</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_PEAKTHRUCLASS_512000</td><td>每秒512k字节（512 kbps）</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_PEAKTHRUCLASS_1024000</td><td>每秒1,024 k字节（1,024 kbps）</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_PEAKTHRUCLASS_2048000</td><td>每秒2,048 k字节（2,048 kbps）</td>
+    </tr>
+    </table>
+
+    <para>最低的每小时传输量:</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_UNKNOWN</td><td>未知</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_SUBSCRIBED</td><td>序列号值存储在网络中</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_100</td><td>每小时100字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_200</td><td>每小时200字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_500</td><td>每小时500字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_1000</td><td>每小时1,000 字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_2000</td><td>每小时2,000 字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_5000</td><td>每小时5,000 字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_10000</td><td>每小时10,000 字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_20000</td><td>每小时20,000 字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_50000</td><td>每小时50,000 字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_100000</td><td>每小时100,000 字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_200000</td><td>每小时200,000 字节</td>
+    </tr>
+
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_500000</td><td>每小时500,000 字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_1000000</td><td>每小时1,000,000 字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_2000000</td><td>每小时2,000,000 字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_5000000</td><td>每小时5,000,000 字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_10000000</td><td>每小时10,000,000字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_20000000</td><td>每小时20,000,000字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_50000000</td><td>每小时50,000,000字节</td>
+    </tr>
+    <tr>
+       <td>CELLDEVCONFIG_MEANTHRUCLASS_DONTCARE</td><td>最佳效率</td>
+    </tr>
+    </table>
+ </remarks>
+
+</manpage>

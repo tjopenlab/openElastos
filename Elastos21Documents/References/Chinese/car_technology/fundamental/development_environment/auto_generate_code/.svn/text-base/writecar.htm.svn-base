@@ -1,0 +1,83 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>自动生成代码框架</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>编写构件的CAR文件</h2>
+    <p>开发CAR构件的第一步是编写CAR文件。CAR文件用于定义构件中的类、接口、方法及其参数等信息。关于CAR文件的详细内容请您先阅读<a class="style1" href="../car/car_file.htm">CAR文件结构</a>一文，以及<a class="style1" href="../car/keyword.htm">CAR关键字</a>和<a class="style1" href="../car/attribute.htm">CAR属性</a>等相关章节内容。</p>
+    <p>下面请看本章范例hello构件的CAR文件（hello.car）内容：</p>
+    <pre class="code">
+
+module hello
+{
+
+    interface IHello {
+        ECODE Hello([in] EzStr InStr, [out, retval] EzStr *pOutStr);
+    }
+
+
+    class CHello {
+        interface IHello;
+    }
+}
+</pre>
+    <p>示例hello.car文件中，定义了构件hello。该构件定义了接口IHello和类CHello：IHello接口提供Hello方法；类CHello实现接口IHello。</p>
+    <p><b>备注：</b>如果考虑到文件系统的兼容性问题，建议构件名（不包含扩展名）小于等于8个字符。由于最后生成的构件名与CAR文件名是相同的，因此CAR文件名首先要小于等于8个字符。</p>
+    <h3>构件hello的属性</h3>
+        <p>示例中，构件hello的属性为：</p>
+        <pre class="code">
+[
+    version(1.0),
+
+]
+</pre>
+        <p>示例中，构件hello的属性说明如下：</p>
+        <ul>
+            <li>version(1.0)：标识构件的版本为1.0。详细情况请参见<a class="style1" href="../car/attributes/attributes_version.htm">version</a>属性。</li>
+        </ul>
+        <p>构件属性中还可以有其它属性，详细情况请参见<a class="style1" href="../car/attribute.htm">CAR属性</a>一文中的用于修饰构件的属性的相关内容。</p>
+    <h3>构件hello的定义</h3>
+        <p>在构件hello中，定义了一个接口IHello和一个类CHello。</p>
+        <ul>
+            <li><b>接口定义</b>
+                <p>示例hello.car中的接口IHello定义如下:</p>
+                <pre class="code">
+……
+interface IHello {
+    <b>ECODE</b> Hello([<b>in</b>] EzStr InStr, [<b>out, retval</b>] EzStr *pOutStr);
+}
+……
+</pre>
+                <p>接口属性中，必须要有<a class="style1" href="../car/attributes/attributes_uuid.htm">uuid</a>属性，否则不能通过编译。接口属性中还有其它属性，详细情况请参见CAR属性一文中的<a class="style1" href="../car/attribute.htm#interface">用于修饰接口的属性</a>的内容。</p>
+                <p>接口IHello中定义了方法Hello。在CAR文件中，方法的定义与C++语言中方法的定义类似。在编写接口方法时，建议用户使用<a class="style1" href="../car/data_type.htm">CAR支持的数据类型</a>作为接口方法的参数类型，否则客户程序与构件程序无法进行远程通信。但是需要遵守如下规定：</p>
+                <ol>
+                    <li>接口方法必须使用<a class="style1" href="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECODE</a>作为返回值；
+                    <li>接口方法参数必须显式指明接口方法的参数是输入参数（in）或输出参数（out）或作为返回值使用（retval），详细情况请参见CAR属性中的<a class="style1" href="../car/attribute.htm#para">用于修饰接口方法参数的属性</a>。
+                </ol>
+                        <p>示例中Hello方法的第一个参数InStr的属性为[in]，表示InStr为一个输入参数；第二个参数pOutStr的属性为[out]，表示pOutStr为一个输出参数。</p>
+                        <!--<p><b>备注：</b>示例中的参数使用了<a class="style1" href="../../../../sdk/reference/custom_data_type/EzStr.htm">EzStr</a>数据类型，EzStr数据类型为CAR自定义的数据类型，关于其它自定义数据类型详细情况请参见<a class="style1" href="../../../../SoftwareDevelopmentManual\QuickReference/CustomDataType.htm">Elastos系统自定义的自描述数据类型</a>。</p>-->
+            <li><b>类定义</b>
+                <p>示例hello.car中的类CHello定义如下:</p>
+                <pre class="code">
+……
+<b>class</b> CHello {
+    interface IHello;
+}
+……
+</pre>
+                <p>类的属性中除必须使用的uuid属性外，还可以使用其它属性。例如示例类CHello的属性中使用了<a class="style1" href="../car/attributes/attributes_scriptable.htm">scriptable</a>属性，标识类CHello的对象可以在网页上执行。在后面的文章中可以看到使用情况的说明。关于其它可以用于修饰类的属性的详细情况请参见<a class="style1" href="../car/attribute.htm">CAR属性</a>一文中相关介绍。</p>
+                <p>类的定义中包括该类对象可提供的接口的声明。例如示例中，类CHello的定义中声明了接口IHello，则该类可以提供IHello接口中的方法。</p>
+        </ul>
+
+    <p>通过阅读以上内容，您已经了解了如何编写简单CAR构件的CAR文件。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

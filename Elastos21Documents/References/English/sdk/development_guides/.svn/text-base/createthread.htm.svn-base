@@ -1,0 +1,50 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>How To Create Thread?</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+    <h2>How To Create Thread?</h2>
+    <h3>Thread And Thread Object</h3>
+        <p>Thread is the smallest unit of program execution and it is used to execute code in process address space. One process itself contains one or more threads and each thread has its own execution contex environment, which includes CPU register and stack. Hence these threads do not affect in the execution of another. Similar to process, each thread has corresponding thread object in the kernel of operating system and the user controls, manages and monitors thread through thread object.Lifespan of Thread object is longer than or equal to the lifespan of its corresponding thread. </p>
+        <p>Through <b><a class="style1" href="../base_service/proc_and_thd/proc_thd/function/EzCreateThread.htm">EzCreateThread</a></b> method in the API, one can create and start a new thread and return a pointer to thread object interface.</p>
+        <pre class="code">
+#include <elastos.h>
+#include <stdio.h>
+
+ECODE __stdcall ThreadRoutine(void *arg)
+{
+printf(“This is print in thread\n”);
+    return 0;
+}
+
+int __cdecl main(int argc, char** argv)
+{
+    ECODE ec = S_OK;
+    IThread *iThread;
+
+	//create new thread
+    ec = EzCreateThread(ThreadRoutine, NULL, 0, &iThread);
+    if (FAILED(ec)) {
+        return -1;
+}
+//wait for the thread to finish
+    ec = iThread->Join(INFINITE);
+    iThread->Release();
+
+    return 0;
+
+}
+</pre>   
+
+<script>footer("english")</script>
+</body>
+</html>      

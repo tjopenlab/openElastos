@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>同步</volume>
+<interface>DzEvent</interface><method> Wait </method>
+    <description>
+        <para>等待事件对象变成已通知状态。</para>
+    </description>
+    <syntax>
+        <return_val>void </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>指向<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址，不能为空。如果方法调用成功，则返回WaitResult_OK；如果在等待事件对象变为已通知状态期间被打断，则返回WaitResult_Interrupted</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EventState * </param_type>
+                <param_name> pState </param_name>
+                <param_note>
+                    <para>指向一个EventState变量的指针，用于存放取得的事件对象的已通知状态。如果本参数为NULL，则表明当前线程忽略本参数。本参数仅在成功等待到事件对象变为已通知状态时，才有意义</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>
+        本方法用于等待事件对象变成已通知状态。如果事件对象处于未通知状态，当前线程将进入等待状态，直到事件对象变成已通知状态，才结束等待并从本方法中成功返回。如果事件对象正处于已通知状态，本方法将立即成功返回。此时，如果事件对象是自动重置的，则事件对象将被重置为未通知状态；如果事件对象是手动重置的，则事件对象将保持已通知状态。
+        </para>
+        <para>
+        当前线程在等待事件期间可以被打断。
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

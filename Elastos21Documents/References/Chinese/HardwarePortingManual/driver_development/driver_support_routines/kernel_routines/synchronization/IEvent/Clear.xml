@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IEvent">Clear</sample>
+<volume>同步</volume>
+<interface>IEvent</interface><method> Clear </method>
+    <description>
+        <para>将事件对象重新设置为未通知状态。</para>
+    </description>
+    <syntax_nopara>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+	<return>
+	    <para>方法调用成功，返回NOERROR。</para>
+	    <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>本方法会将事件对象重置为未通知状态，从而使其后所有等待此事件对象的线程进入等待状态。</para>
+		<para>本方法主要用于手动重置的事件对象，以重置此事件对象为未通知状态；自动重置的事件对象在唤醒一个等待线程后，会自动被重置为未通知状态。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

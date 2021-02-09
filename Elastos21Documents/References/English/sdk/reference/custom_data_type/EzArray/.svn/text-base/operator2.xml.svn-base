@@ -1,0 +1,71 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\operator2">operator2</sample>
+    <volume> Common data structure  </volume>
+    <method> EzArray_::operator=(EzArray_&lt;T, SIZE&gt;&amp;)</method>
+
+    <description>
+        <para>Assignment operator of EzArray object gets a deep copy of an EzArray object，namely copying EzArray arrays on stack. </para>
+    </description>
+    <syntax>
+        <return_val> EzArray_&lt;T, SIZE&gt;&amp;</return_val>
+        <parameters>
+        <api_param>
+
+            <param_type> EzArray_&lt;T, SIZE&gt;&amp; </param_type>
+            <param_name> src </param_name>
+            <param_note>
+                <para>Reference of EzArray objects. </para>
+            </param_note>
+
+        </api_param>
+
+        </parameters>
+    </syntax>
+
+    <return>
+             <para> Returns the reference of EzArray objects. </para>
+    </return>
+
+    <remarks>
+        <para> EzArray is a template class; template parameter T determines the type of an array element; SIZE determines the size of the array.</para>
+        <para> Using the operator gets a deep copy of an EzArray object，namely copying EzArray array on the stack.
+        The memory allocated need not call <b><link url="Dispose.htm">Dispose</link></b> method to be released. </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <EzArray.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+    EzArray_<int, 50> a;
+    EzArray_<int, 50> b;
+    a[12] = 321;
+    b = a;
+    printf("b[12] = %d\n", b[12]);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+b[12] = 321
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name> Assignment operator(fleet copying) </ref_name>
+            <ref_url> operator1 </ref_url>
+        </reference>
+    </references>
+
+</manpage>

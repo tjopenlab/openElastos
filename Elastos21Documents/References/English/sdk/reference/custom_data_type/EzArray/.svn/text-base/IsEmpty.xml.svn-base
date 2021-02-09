@@ -1,0 +1,100 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\IsEmpty">IsEmpty</sample>
+    <volume>  Common data structures  </volume>
+    <interface> EzArray </interface>
+    <method>IsEmpty </method>
+
+    <description>
+        <para>
+        	Checks whether the elements of <b>EzArray</b> object are empty.
+        </para>
+    </description>
+    <syntax>
+        <return_val>BOOL</return_val>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>
+        	Returns TRUE if elements are empty or else return FALSE.
+        </para>
+    </return>
+
+    <remarks>
+        <para>
+        	NOTE:- The difference between this method and <link url="IsNull.htm">IsNull</link> is:
+        	1. before calling <b>IsEmpty</b>, it must be guaranteed that calling <b>IsNull</b> should return FALSE；
+        	2. <b>IsEmpty</b> is to check if the elements of <b>EzArray</b> object is empty, and <b>IsNull</b> is 
+        	   to check if <b>EzArray</b> pointer is NULL.
+        </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <EzArray.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+    EzArray_<int, 4> myArray;
+
+    if (!myArray.IsNull()) {
+        printf("myArray is not Null.\n");
+
+        if (!myArray.IsEmpty()) {
+            printf("myArray is not Empty.\n");
+        }
+        else {
+            printf("myArray is Empty.\n");
+        }
+    }
+    else {
+        printf("myArray is Null.\n");
+    }
+
+    int array[4] = {0, 1, 2, 3};
+
+    myArray.CopyEx(array, 4);
+    for (int i = 0; i < myArray.GetLength(); i++){
+        printf("myArray[%d] = %d\n", i, myArray[i]);
+    }
+    printf("The used size of myArray is : %d.\n", myArray.Used());
+
+    if (!myArray.IsEmpty()) {
+        printf("Now, myArray is not Empty.\n");
+    }
+    else {
+        printf("Now, myArray is still Empty.\n");
+    }
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+myArray is not Null.
+myArray is Empty.
+myArray[0] = 0
+myArray[1] = 1
+myArray[2] = 2
+myArray[3] = 3
+The used size of myArray is : 4.
+Now, myArray is not Empty.
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name> IsNull </ref_name>
+            <ref_url> IsNull </ref_url>
+        </reference>
+    </references>
+
+</manpage>

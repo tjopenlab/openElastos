@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\libpsx\getopt">getopt</sample>
+    <title>getopt</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> libp_idx.htm </routine_idx>
+
+    <description>
+        <para>解析命令行中给出的选择项（option），并且检查这些option是否合法。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>getopt</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>nargc</param_name>
+                <param_note>
+                    <para>命令行中参数的个数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char**</param_type>
+                <param_name>nargv</param_name>
+                <param_note>
+                    <para>指向命令行参数地址的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char**</param_type>
+                <param_name>ostr</param_name>
+                <param_note>
+                    <para>指向合法的option集合地址的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>struct_opt*</param_type>
+                <param_name>opt_data</param_name>
+                <param_note>
+                    <para>指向记录信息的结构体的指针。其中opt_data.opterr值为如果错误信息被打印，opt_data.optind值为原始参向量的索引，opt_data.optarg值为当前读取的带参数的option的参数，opt_data.pErr值为出错的全路径文件名及出错信息</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果getopt读取到的option中“-”符号后的字符为合法的，则返回此读取到“-”符号后的字符；如果“-”符号后的字符为不合法字符，则返回“？”；如果读取到的命令行参数为“--”，或者读取到的命令行参数不以“-”开头，返回END_OF_PARA。</para>
+    </return>
+
+    <remarks>
+        <para>使用getopt解析option必须有一个合法的option的集合，如“a:bcd:”。</para>
+        <para>其中，“a:”表示“-a”是一个合法的option，同时这个option还必须带一个参数，如果命令行中有“-a”，则其后从第一个非空格字符开始，到下一个空格符为止，这之间的所有字符都作为“-a”的参数。而“b”表示“-b”是一个合法的option，而且不带参数。依此类推。当读到的命令参数是“--”，或者读到第一个未以“-”符号开头的字符串时，表明已经读取到了option的末尾。</para>
+        <para>getopt只能解析以“-”符号开头的option。例如“-a”。但也有情况例外，例如前面的option集合中表明c是不带参数的option，那么“-cb”也被视为合法的，相当于“-c -b”；“ -cd123”也被视为合法的，相当于“-c -d123”。</para>
+        <para>因此，以下几条命令中的option都被视为合法的。（1）cmd -aopg -b -c -d 123 file file （2）cmd -a opg -b -cd123 file file  （3）cmd -b -aopg file file  （4）cmd -a opg -b -d123 -- file file </para>
+        <para>【注意】目前，此函数在Windows 2000上未实现。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>getopt</routine_name>
+            <headerfile>getopt.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* getopt.cpp: This program uses getopt to analyse the command line, and check
+ * these option.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;getopt.h&gt;
+
+struct_opt opt_data = {1, 1, 0, NULL, NULL};
+int main(int argc, char* argv[])
+{
+    int c, num = 1;
+    if (argc &lt; 2) {
+        printf(&quot;Usage %s output-file\n&quot;, argv[0]);
+        return 1;
+    }
+
+    while ((c = getopt(argc, argv, &quot;a:bcd:&quot;, &amp;opt_data)) != END_OF_PARA) {
+        switch (c) {
+            case &apos;a&apos;:
+                printf(&quot;the input option %d is %c !\n&quot;, num++, c);
+                break;
+            case &apos;b&apos;:
+                printf(&quot;the input option %d is %c !\n&quot;, num++, c);
+                break;
+            case &apos;c&apos;:
+                printf(&quot;the input option %d is %c !\n&quot;, num++, c);
+                break;
+            case &apos;d&apos;:
+                printf(&quot;the input option %d is %c !\n&quot;, num++, c);
+                break;
+            case &apos;?&apos;:
+                printf(&quot;the input option %d is wrong!\n&quot;, num++);
+                printf(&quot;error: %s\n&quot;, opt_data.pErr);
+                break;
+            default:
+                printf(&quot;error!\n&quot;);
+                break;
+        }
+        if (opt_data.optarg) {
+            printf(&quot;the argument is %s.\n&quot;, opt_data.optarg);
+            opt_data.optarg = NULL;
+        }
+    }
+    printf(&quot;%s \n&quot;, &quot;getopt testing is over!&quot;);
+
+    return 0;
+}
+
+
+/* getopt -a 123 -b c */
+</pre>
+    </example>
+<result>
+the input option 1 is a !
+the argument is 123.
+the input option 2 is b !
+getopt testing is over!
+</result>
+
+   
+
+</manpage>

@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>CAR Keyword--component</title>
+</head>
+
+<body>
+<h2>component</h2>
+    <p>This keyword is used to define component. For example: </p>
+    <pre class="code">
+[
+    uuid(9b9d422d-b9cc-4658-9f94-3dff2667e89b),
+    uunm(http://www.koretide.com/car/ComponentDemo.dll)
+]
+<b>component</b> ComponentDemo
+{
+    [uuid(6bd80415-d91b-44f2-9e44-b3e11ed50d65)]
+    interface IInterface {
+        ECODE Func([in] int num);
+    }
+    [uuid(8bc5829e-ad6e-4b2f-91c5-8c17f38e9110)]
+    class CClass {
+        interface IInterface;
+    }
+}
+</pre>
+    <p>In the sample, a component ComponentDemo was defined. This component defines a interface IInterface and a class CClass.</p>
+    <p>In the "[]" before the component keyword is the attribute of this component. Component attributes modify component.The <a class="style1" href="../attributes/attributes_uuid.htm">uuid</a> and <a class="style1" href="../attributes/attributes_uunm.htm">uunm</a> attribute are essential. This uuid in component attribute is called component ID and it uniquely identifies a component. uunm specifies the Internet location of the dll file that the component is in. Other attributes can be included in component attribute. Please see <a class="style1" href="../attribute.htm">CAR Attribute</a> for details.</p>
+    <p>After the component keyword comes the name of the component. <b>Remarks: </b>When defining component name, in order to avoid confusion, it is better to use component name similar to this CAR file name.</p>
+    <p>Inside the "{}" of component keyword is the definition of this component. Component definition includes interface definition to be implemented, class definition and type definition.</p>
+    <ul><font color="red"><b>Note: </b>In a CAR file there can be one and only one component keyword.Thus there can be only one component in a CAR file.</font></ul>
+    <b><a class="style1" href="../keyword.htm">CAR Keyword Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

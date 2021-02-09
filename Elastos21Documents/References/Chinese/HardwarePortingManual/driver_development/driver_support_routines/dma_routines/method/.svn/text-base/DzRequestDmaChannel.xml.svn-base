@@ -1,0 +1,83 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="dma_routines\RequestDmaChannel">RequestDmaChannel</sample>
+    <volume>DMA例程</volume>
+    <title>DzRequestDmaChannel</title>
+    <routine_idx> ../../dma_routines.htm </routine_idx>
+
+    <description>
+        <para>申请一个指定的DMA通道。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_type> uint_t </param_type>
+                <param_name> uNo </param_name>
+                <param_note>
+                    <para>指定的DMA通道号</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> DzDmaChannel ** </param_type>
+                <param_name> ppDmaChannel </param_name>
+                <param_note>
+                    <para>用于获取的DMA通道的DzDmaChannel对象的指针</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>申请指定的DMA通道成功</td>
+            </tr>
+            <tr>
+                <td>E_DMAC_NOT_FOUND</td>
+                <td>系统不支持DMA</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>申请的通道号不合法</td>
+            </tr>
+            <tr>
+                <td>E_DRIVER_BUSY</td>
+                <td>申请的通道号忙碌</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para> 本函数向系统申请一个DMA通道，并将申请成功的<link url="..\DzDmaChannel.htm">DzDmaChannel</link>类的指针赋给ppDmaChannel指向的地址。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>dma.h</file_name>
+        </headerfile>
+
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>DzDmaChannel</ref_name>
+            <ref_url>..\DzDmaChannel</ref_url>
+        </reference>
+    </references>
+
+</manpage>

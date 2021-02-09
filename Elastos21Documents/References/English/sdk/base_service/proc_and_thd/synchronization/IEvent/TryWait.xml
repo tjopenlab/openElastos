@@ -1,0 +1,104 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface </volume>
+<interface>IEvent</interface><method> TryWait </method>
+    <description>
+        <para>
+        	Tries to wait for the event object to notify.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Millisecond  </param_type>
+                <param_name> timeout </param_name>
+                <param_note>
+                    <para>
+						Specifies a waiting time, in milliseconds. If time is out, the calling thread will return 
+						from the method immediately. 
+                    </para>
+                </param_note>
+            </api_param>
+          <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>
+						
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EventState * </param_type>
+                <param_name> pState </param_name>
+                <param_note>
+                    <para>
+						Pointer to a DWORD, to store the notification state. 
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>	    
+	<table>
+	    <th>
+			<td>Return Value</td>
+			<td>Hex Value</td>
+			<td>Description</td>
+	    </th>
+	     <tr>
+			<td>NOERROR</td>
+			<td>0x00000000</td>
+			<td>Function succeeds in attempting to make the event object to wait.</td>
+	    </tr>
+	    <tr>
+		    <td>E_INVALID_ARGUMENT</td>
+		    <td>0x00060003</td>
+		    <td>Invalid argument(s)</td>
+		    </tr>
+	</table>
+       		    <para>See <link url="..\..\..\..\reference\basic_data_type\hresult.htm">ECODE</link> for related help.</para>    
+    </return>
+
+	<remarks>
+		<para>
+			Uses the method to try to wait for the event object to become the notified state. 
+		</para>
+		<para>
+			If <i>msTimeout</i> is 0, the method will return immediately. If the 
+			event object is in notified state, the return value will be S_OK, or the return value will 
+			be S_TIMED_OUT.
+		</para>
+		<para>
+			The state is specified when calling the 
+			<link url="Notify.htm">IEvent::Notify</link> method. <i>pState</i> can be NULL to ignore the state. 
+			This value is valid only if the event object is in notified state.
+		</para>
+		<para>
+			If the event 
+			object is in cleared state and the waiting time is not out, the calling thread will be blocked 
+			until the event object makes a notification. If the waiting time is out, the method will return
+			immediately. If the event object is in notified state, the method will return successfully, and 
+			if the event object is auto cleared, the event object will become cleared state. If the event 
+			object is manual cleared, the event object will keep the notified state. The calling thread 
+			can be interrupted while waiting.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

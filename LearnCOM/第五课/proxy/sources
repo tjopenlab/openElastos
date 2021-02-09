@@ -1,0 +1,21 @@
+TARGET_NAME= proxy
+TARGET_TYPE= dll
+SPECIAL_TARGET= regdll
+
+INCLUDES=$(EXTERN_INC);$(EXTERN_INC)\crt
+
+C_FLAGS= -MD -DREGISTER_PROXY_DLL -DWIN32 -D_WIN32_DCOM
+
+SOURCES= \
+     proxy.def \
+     dlldata.c \
+     hello_i.c \
+     hello_p.c \
+
+WIN32_LIBS= \
+    $(EXTERN_LIB)\msvcrt.lib \
+    $(EXTERN_LIB)\rpcrt4.lib \
+    $(EXTERN_LIB)\oleaut32.lib \
+    $(EXTERN_LIB)\kernel32.lib \
+
+NO_MKDEPEND=1

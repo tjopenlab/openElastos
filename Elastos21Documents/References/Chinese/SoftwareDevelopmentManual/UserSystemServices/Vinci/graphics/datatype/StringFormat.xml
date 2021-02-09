@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume></volume>
+    <types> StringFormat </types>
+    <description>
+        <para>
+            字符串的格式化信息（如行距）。
+        </para>
+    </description>
+<enum>    <enum_member>    <mem_name> StringFormat_Top </mem_name>    <mem_value> 0x0 </mem_value>    <mem_description>   顶端对齐    </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> StringFormat_Middle </mem_name>    <mem_value> 0x1 </mem_value>    <mem_description>  居中     </mem_description>    </enum_member> 
+          <enum_member>    <mem_name> StringFormat_Bottom </mem_name>    <mem_value> 0x2 </mem_value>    <mem_description>  底端对齐    </mem_description>    </enum_member>   
+          <enum_member>    <mem_name> StringFormat_Left </mem_name>    <mem_value> 0x0 </mem_value>    <mem_description>   居左   </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> StringFormat_Center </mem_name>    <mem_value> 0x10 </mem_value>    <mem_description> 中心位置   </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> StringFormat_Right </mem_name>    <mem_value> 0x20 </mem_value>    <mem_description>  居右  </mem_description>    </enum_member>   
+          <enum_member>    <mem_name> StringFormat_Wrap </mem_name>    <mem_value> 0x100 </mem_value>    <mem_description> 多行   </mem_description>    </enum_member>    
+          <enum_member>    <mem_name> StringFormat_SingleLine </mem_name>    <mem_value> 0x200 </mem_value>    <mem_description> 单行   </mem_description>    </enum_member>
+          <enum_member>    <mem_name> StringFormat_Ellipsis </mem_name>    <mem_value> 0x0400 </mem_value>    <mem_description> 省略号   </mem_description>    </enum_member>  
+</enum>
+<remarks>
+    <para>
+            如果在Drawstring中不指定StringFormat_Wrap且指定StringFormat_Ellipsis。则会是省略号风格，(如：StringFormat_SingleLine | StringFormat_Ellipsis),即在每一行的末尾如果显示不完，则这行显示不全部分用省略号代替。
+    </para>
+</remarks>
+</manpage>

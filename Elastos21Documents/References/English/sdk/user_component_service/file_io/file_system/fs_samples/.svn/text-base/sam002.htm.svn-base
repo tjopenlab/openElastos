@@ -1,0 +1,212 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Example 2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>The use of the basic directory functions.</h2>
+    <p>
+    	Some of the basic directory operations includes searching, creating, deleting, renaming of the 
+    	directory and getting the information of directory structure.
+    </p>
+    <p>
+    	You can get the root directory pointer using GetRoot after getting vfs pointer, and create a directory 
+    	as write-only, and get the name of this directory from the command's parameters. Search for this 
+    	directory object pointer after Sync and create two subdirectories sub1 and sub2 inside it. Rename sub1 
+    	to sub3, delete sub2. Then get the directory structure information and output it. Obviously, the 
+    	result should be: There are only three subdirectories .,.., sub3 in the current directory.
+    </p>
+    <h3>sam002.cpp</h3>
+    <p>The following is the content of sam002.cpp at compling:</p>
+    <pre class = "code">
+//sam002.cpp
+#define _USECOMPTR
+#include    &lt;stdio.h&gt;
+#include    &lt;vfs.h&gt;
+
+int Usage(wchar_t name[])
+{
+    printf("usage: %S input\n", name);
+    return 0;
+}
+
+EXTERN_C int __cdecl wmain(int argc, wchar_t* argv[])
+{
+    // Check the arguments.
+    if (argc < 2) {
+        Usage(argv[0]);
+        return -1;
+    }
+
+    // variables definition
+    IBasicFileSystem *pvfs;
+    IBasicDirectory *pRoot = NULL;
+    IBasicFile *pFile = NULL;
+    IBasicDirectory *pDir = NULL;
+    IEzStrEnumerator *pList = NULL;
+    EzStrBuf_<1000> DirEntry;
+    EzStr filePath;
+    EzStrBuf_<20> subdir1, subdir2, oldPath, newPath;
+    ECODE ec;
+
+    // Get the IFileSystem pointer
+    ec = EzFindService(EZCSTR("filesys"), (IUnknown **)&pvfs);
+    if (FAILED(ec)) {
+        printf(">>>>>>>>>>failed to find IBasicFileSystem, ec = 0x%08x\n", ec);
+        return 1;
+    }
+
+    // Get the input
+    filePath = EzStr::AllocString(argv[1]);
+    subdir1.Copy(L"sub1");
+    subdir2.Copy(L"sub2");
+    oldPath.Copy(L"sub1");
+    newPath.Copy(L"sub3");
+
+    // GetRoot
+    ec = pvfs->GetRoot(&pRoot);
+    if (FAILED(ec)) {
+        printf("Error in GetRoot! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // CreateDirectory
+    ec = pRoot->CreateDirectory(filePath, FileAccessMode_Write);
+    if (ec == S_OK) {
+        printf("CreateDirectory: %S (Write) Success.\n", (wchar_t *)filePath);
+    } else {
+        printf("Error in CreateDirectory! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // Sync
+    ec = pRoot->Sync();
+    if (ec == S_OK) {
+        printf("Sync success.\n");
+    } else {
+        printf("Error in Sync! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // Lookup for the IBasicFile pointer
+    ec = pvfs->Lookup(filePath, &pFile);
+    if (FAILED(ec)) {
+        printf("Error in Lookup! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // QueryInterface to get pDir pointer
+    ec = pFile->QueryInterface(IID_IBasicDirectory, (void **)&pDir);
+    if (FAILED(ec)) {
+        printf("Error in QueryInterface! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // CreateDirectory sub1
+    ec = pDir->CreateDirectory(subdir1, FileAccessMode_Write);
+    if (ec == S_OK) {
+        printf("CreateDirectory: %S (Write) Success.\n", (wchar_t *)subdir1);
+    } else {
+        printf("Error in CreateDirectory! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // CreateDirectory sub2
+    ec = pDir->CreateDirectory(subdir2, FileAccessMode_Write);
+    if (ec == S_OK) {
+        printf("CreateDirectory: %S (Write) Success.\n", (wchar_t *)subdir2);
+    } else {
+        printf("Error in CreateDirectory! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // Rename
+    ec = pDir->Rename(oldPath, pDir, newPath);
+    if (ec == S_OK) {
+        printf("Rename: %S to %S Success.\n", (wchar_t *)oldPath, (wchar_t *)newPath);
+    } else {
+        printf("Error in Rename! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // DeleteDirectory
+    ec = pDir->DeleteDirectory(subdir2);
+    if (ec == S_OK) {
+        printf("DeleteDirectory: %S Success.\n", (wchar_t *)subdir2);
+    } else {
+        printf("Error in DeleteDirectory! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // GetDirEntries
+    ec = pDir->GetDirEntries(&pList);
+    if (ec == S_OK) {
+        printf("GetDirEntries Success.\n");
+    } else {
+        printf("Error in GetDirEntries! ec = 0x%08x\n", ec);
+        goto myexit;
+    }
+
+    // Output the IEzStrEnumerator
+    pList->Reset();
+    while (pList->MoveNext() == S_OK) {
+        ec = pList->Current(DirEntry);
+        if (SUCCEEDED(ec)) {
+            printf("%S\n", (wchar_t*)DirEntry);
+        }
+        else {
+            goto myexit;
+        }
+    }
+
+myexit:
+    if (!filePath.IsNull()) EzStr::FreeString(filePath);
+    if (pList) pList->Release();
+    if (pFile) pFile->Release();
+    if (pDir) pDir->Release();
+    if (pRoot) pRoot->Release();
+    if (pvfs) pvfs->Release();
+    return 0;
+}
+
+
+    </pre>
+    <p>Description：</p>
+    <p>1. Gets the pointer of IBasicFileSystem by EzFindService;</p>
+    <p>2. Reads the parameter and names the subdirectory;</p>
+    <p>3. Gets root directory pointer by GetRoot;</p>
+    <p>4. Creates the directory represented by parameter 1 as writable by CreateDirectory under root directory; </p>
+    <p>5. Call Sync, and writes the result to hard disk;</p>
+    <p>6. Find this directory by Lookup;</p>
+    <p>7. Gets the directory pointer by QueryInterface;</p>
+    <p>8. Creates subdirectory "sub1" as writable by CreateDirectory;</p>
+    <p>9. Creates subdirectory "sub2" as writable by CreateDirectory;</p>
+    <p>10. Rename "sub1" by "sub3" by Rename;</p>
+    <p>11. Delete "sub2" by DeleteDirectory;</p>
+    <p>12. The directory structure checked by calling GetDirEntries;</p>
+    <p>13. Outputs the records in IEzStrEnumerator;</p>
+    <p>14. Release moderately, and exits the program.</p>
+
+    <p>Result：</p>
+    <p>$   sam002.exe testdir</p>
+    <p>CreateDirectory: testdir (Write) Success.</p>
+    <p>Sync success.</p>
+    <p>CreateDirectory: sub1 (Write) Success.</p>
+    <p>CreateDirectory: sub2 (Write) Success.</p>
+    <p>Rename: sub1 to sub3 Success.</p>
+    <p>DeleteDirectroy: sub2 Success.</p>
+    <p>GetDirEntries Success.</p>
+    <p>.</p>
+    <p>..</p>
+    <p>sub3</p>
+
+<script>footer("english")</script>
+</body>
+</html>

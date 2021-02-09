@@ -1,0 +1,71 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzDebugPrint"> EzDebugPrint </sample>
+    <volume>System API</volume>
+    <title>EzDebugPrint</title>
+    <routine_idx> ..\other_service.htm</routine_idx>
+
+    <description>
+        <para>
+        	Redirects the results to the console.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> EzStr </param_type>
+                <param_name> esMsg </param_name>
+                <param_note>
+                    <para>
+                    	[in] Specifies the character string to display in the Debug Output window.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+		<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+			<tr>
+                <td>S_OK</td><td>Function succeeds in redirecting the results to the console.</td>
+            </tr>
+            <tr>
+                <td>E_INVALIDARG</td><td>Invalid argument(s)</td>
+            </tr>
+        </table>
+        <para>references <link url="/sdk/hresult.htm">ECODE </link> correlative help.</para>
+    </return>
+
+    <remarks>
+        <para>
+        	This function prints the message string to the console and to the com port simultaniously, and is 
+        	independent from any kernel object. So it is suitable for debuging the code.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

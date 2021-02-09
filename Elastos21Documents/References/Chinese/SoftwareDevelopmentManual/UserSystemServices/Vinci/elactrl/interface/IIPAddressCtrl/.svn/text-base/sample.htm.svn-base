@@ -1,0 +1,308 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>图形控件IIPAddressDemo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> IIPAddressDemo 范例程序 </h2>
+
+
+<h3> TIPAddressDemo.h</h3>
+<pre class = "code">
+
+#ifndef __TIPAddressDemo_H__
+#define __TIPAddressDemo_H__
+
+#include "_TIPAddressDemo.h"
+
+CarClass(TIPAddressDemo)
+{
+public:
+    TIPAddressDemo();
+    ~TIPAddressDemo();
+
+    CARAPI Main(
+        /* [in] */ const BufferOf<WString> & argcv);
+
+    CARAPI OnClear(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI OnGetAddress(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI OnSetAddress(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI OnSetFocus(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI OnSetRange(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI OnClose(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI Quit();
+
+    CARAPI Terminate();
+
+    CARAPI Activate();
+
+    CARAPI Deactivate();
+
+    CARAPI IsActivated(
+        /* [out] */ Boolean * pActivated);
+
+    CARAPI Snooze();
+
+    CARAPI Wakeup();
+
+    CARAPI GetName(
+        /* [out] */ WStringBuf * pName);
+
+private:
+    IForm        * m_pMainForm;
+    IIPAddressCtrl      * m_pIAddressCtrl;
+    IButton *m_pIClear;
+    IButton *m_pIGetAddress;
+    IButton *m_pIBlank;
+    IButton *m_pISetAddress;
+    IButton *m_pISetFocus;
+    IButton *m_pISetRange;
+
+    IButton      * m_pIBtnClose;
+};
+
+#endif // __TIPAddressDemo_H__
+</pre>
+<h3> TIPAddressDemo.cpp </h3>
+<pre class = "code">
+
+#include "TIPAddressDemo.h"
+#include "_TIPAddressDemo.cpp"
+#include "stdio.h"
+
+TIPAddressDemo::TIPAddressDemo()
+{
+    m_pIBtnClose = NULL;
+    m_pISetRange = NULL;
+    m_pISetFocus = NULL;
+    m_pISetAddress = NULL;
+    m_pIBlank = NULL;
+    m_pIGetAddress = NULL;
+    m_pIClear = NULL;
+    m_pIAddressCtrl = NULL;
+    m_pMainForm = NULL;
+}
+
+TIPAddressDemo::~TIPAddressDemo()
+{
+    if (m_pIBtnClose) m_pIBtnClose->Release();
+
+    if (m_pISetRange) m_pISetRange->Release();
+
+    if (m_pISetFocus) m_pISetFocus->Release();
+
+    if (m_pISetAddress) m_pISetAddress->Release();
+
+    if (m_pIBlank) m_pIBlank->Release();
+
+    if (m_pIGetAddress) m_pIGetAddress->Release();
+
+    if (m_pIClear) m_pIClear->Release();
+
+    if (m_pIAddressCtrl) m_pIAddressCtrl->Release();
+
+    if (m_pMainForm) m_pMainForm->Release();
+}
+
+ECode TIPAddressDemo::Main(
+    /* [in] */ const BufferOf<WString> & argcv)
+{
+
+//////////  form
+    CForm::New(L"MAIN", 0,
+               0, 0, 240, 320,  NULL,&m_pMainForm);
+
+    CIPAddressCtrl::New(L"IPAddressCtrl", 0,
+                       70, 50, 120, 21, m_pMainForm,&m_pIAddressCtrl);
+    printf("m_pIButton = %x\n", m_pIAddressCtrl);
+
+////////////////m_pIClear
+    CButton::New(L"ClearAddress", 0, //ButtonStyle_Gradient
+                 30, 100, 80, 21,  m_pMainForm,&m_pIClear);
+
+    CButton::AddClickCallback(m_pIClear,
+                 this, &TIPAddressDemo::OnClear);
+
+/////////////////m_pIGetAddress
+    CButton::New(L"GetAddress", 0, //ButtonStyle_Gradient
+                            130, 100, 80, 21,  m_pMainForm,&m_pIGetAddress);
+
+    CButton::AddClickCallback(m_pIGetAddress,
+                 this, &TIPAddressDemo::OnGetAddress);
+
+/////////////////////m_pIBlank
+    CButton::New(L"IsBlank", 0, //ButtonStyle_Gradient
+                            30, 130, 80, 21, m_pMainForm,&m_pIBlank);
+
+///////////////////m_pISetAddress
+    CButton::New(L"SetAddress", 0, //ButtonStyle_Gradient
+                            130, 130, 80, 21,  m_pMainForm,&m_pISetAddress);
+
+    CButton::AddClickCallback(m_pISetAddress,
+                 this, &TIPAddressDemo::OnSetAddress);
+
+////////////////////m_pISetFocus
+    CButton::New(L"SetFieldFocus", 0, //ButtonStyle_Gradient
+                            30, 160, 80, 21,  m_pMainForm,&m_pISetFocus);
+
+    CButton::AddClickCallback(m_pISetFocus,
+                 this, &TIPAddressDemo::OnSetFocus);
+
+//////////////////////m_pISetRange
+    CButton::New(L"SetFieldRange", 0, //ButtonStyle_Gradient
+                            130, 160, 80, 21,  m_pMainForm,&m_pISetRange);
+
+    CButton::AddClickCallback(m_pISetRange,
+                 this, &TIPAddressDemo::OnSetRange);
+
+///////////////  Exit Button
+    CButton::New(L"Exit", 0, 0, 0, 80, 30, m_pMainForm,&m_pIBtnClose);
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 this, &TIPAddressDemo::OnClose);
+
+///////////////////////////
+    m_pMainForm->Show();
+
+    return NOERROR;
+}
+
+ECode TIPAddressDemo::OnClear(
+    /* [in] */ PInterface pIObject)
+{
+    m_pIAddressCtrl->ClearAddress();
+    return NOERROR;
+}
+
+ECode TIPAddressDemo::OnGetAddress(
+    /* [in] */ PInterface pIObject)
+{
+    Int32 a, b, c, d;
+    m_pIAddressCtrl->GetAddress(&a, &b, &c, &d);
+    printf("address: %d %d %d %d\n", a, b, c, d);
+    return NOERROR;
+}
+
+ECode TIPAddressDemo::OnSetAddress(
+    /* [in] */ PInterface pIObject)
+{
+    m_pIAddressCtrl->SetAddress(-1, 256, 12,255);
+    return NOERROR;
+}
+
+ECode TIPAddressDemo::OnSetFocus(
+    /* [in] */ PInterface pIObject)
+{
+    m_pIAddressCtrl->SetFieldFocus(3);
+    return NOERROR;
+}
+
+ECode TIPAddressDemo::OnSetRange(
+    /* [in] */ PInterface pIObject)
+{
+    m_pIAddressCtrl->SetFieldRange(3, 30, 123);
+    m_pIAddressCtrl->SetFieldRange(1, 30, 123);
+    return NOERROR;
+}
+
+ECode TIPAddressDemo::OnClose(
+    /* [in] */ PInterface pIObject)
+{
+    m_pMainForm->Close();
+    return NOERROR;
+}
+
+ECode TIPAddressDemo::Quit()
+{
+    return NOERROR;
+}
+
+ECode TIPAddressDemo::Terminate()
+{
+    return NOERROR;
+}
+
+ECode TIPAddressDemo::Activate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TIPAddressDemo::Deactivate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TIPAddressDemo::IsActivated(
+    /* [out] */ Boolean * pActivated)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TIPAddressDemo::Snooze()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TIPAddressDemo::Wakeup()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TIPAddressDemo::GetName(
+    WStringBuf * name)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+
+</pre>
+<h3> ipaddsam.car </h3>
+<pre class = "code">
+module
+{
+    importlib("elcontrols.dll");
+
+    applet TIPAddressDemo {}
+}
+</pre>
+
+<h3> sources </h3>
+<pre class = "code">
+TARGET_NAME= ipaddsam
+TARGET_TYPE= dll
+
+SOURCES= \
+    ipaddsam.car \
+    TIPAddressDemo.cpp \
+
+LIBRARIES = $(XDK_USER_LIB)\ElCRuntime.lib     $(XDK_LIB_PATH)\elastos.lib \
+</pre>
+<script>footer("KoreTide")</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<htmll>
+<head>
+<title> PPP协议</title>
+<meta http-equiv="Content-Type" content="text/xmll; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>PPP的帧格式</h2>
+<p>PPP的帧格式如下图：</p>
+<center><img src="images/ppp.jpg"></center>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;标志字段F为0x7E（0x表示7E），但地址字段A和控制字段C都是固定不变的，分别为0xFF、0x03。PPP协议不是面向比特的，因而所有的PPP帧长度都是整数个字节。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;与HDLC不同的是多了2个字节的协议字段。协议字段不同，后面的信息字段类型就不同。如：</p>
+<table>
+	<tr>
+		<td>0x0021</td>
+		<td>信息字段是IP数据报</td>
+	</tr>
+	<tr>
+		<td>0xC021</td>
+		<td>信息字段是链路控制数据LCP</td>
+	</tr>
+	<tr>
+		<td>0x8021</td>
+		<td>信息字段是网络控制数据NCP</td>
+	</tr>
+	<tr>
+		<td>0xC023</td>
+		<td>信息字段是安全性认证PAP</td>
+	</tr>
+	<tr>
+		<td>0xC025</td>
+		<td>信息字段是LQR</td>
+	</tr>
+	<tr>
+		<td>0xC223</td>
+		<td>信息字段是安全性认证CHAP</td>
+	</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;当信息字段中出现和标志字段一样的比特0x7E时，就必须采取一些措施。因PPP协议是面向字符型的，所以它不能采用HDLC所使用的零比特插入法，而是使用一种特殊的字符填充。具体的做法是将信息字段中出现的每一个0x7E字节转变成2字节序列（0x7D，0x5E）。若信息字段中出现一个0x7D的字节，则将其转变成2字节序列（0x7D，0x5D）。若信息字段中出现ASCII码的控制字符，则在该字符前面要加入一个0x7D字节。这样做的目的是防止这些表面上的ASCII码控制字符被错误地解释为控制字符.</p>
+<script>footer("chinese")</script>
+</body>
+</html>

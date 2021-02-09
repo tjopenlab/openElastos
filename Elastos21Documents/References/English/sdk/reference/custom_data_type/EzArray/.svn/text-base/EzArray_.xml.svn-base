@@ -1,0 +1,59 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\EzArray_">EzArray_</sample>
+    <volume> Common data structure </volume>
+    <method>template&lt;class T, size_t SIZE&gt; EzArray_::EzArray_</method>
+
+    <description>
+        <para> Constructor of EzArray is used to create a EzArray Object; allocating memory on stack. </para>
+    </description>
+
+    <syntax>
+        <NoArguments/>
+    </syntax>
+
+    <remarks>
+        <para> EzArray_ is a template class; template parameter T determines the type of array element; SIZE determines the size of array.
+        </para>
+        <para> The constructor creates an array and allocate memory for the array.Hence we do not need to call <b><link url="Dispose.htm">Dispose</link></b> function to release memory.
+        </para>
+        <para>[ Note ]The constructor do not create EzArray object in the function with extern "C" prefix.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <EzArray.h>
+
+int __cdecl main()
+{
+    EzArray_<int, 10> MyArray;
+
+    int i = MyArray.GetLength();
+    printf("MyArray's Length = %d", i);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+MyArray's Length = 10
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> copying Constructor（deep copy） </ref_name>
+            <ref_url> EzArrayCopy_ </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Constructor（allocating memory）</ref_name>
+            <ref_url> EzArray </ref_url>
+        </reference>
+    </references>
+
+</manpage>

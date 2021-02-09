@@ -1,0 +1,124 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>
+
+<manpage>
+    <volume> Common Data Structure </volume>
+    <interface> EzStrBuf  </interface>
+
+    <description>
+        <para>EzStrBuf is the data structure designed to support component programming. It is the combination of EzByteBuf and EzStr.EzStrBuf can not only be used as EzStr string, but also can do various operations as EzByteBuf. Please see <link url="EzStrBuf/ezstrbuf_intr.htm">EzStrBuf</link> data type to get the details.</para>
+    </description>
+
+    <constructs>
+        <construct>
+            <construct_name>EzStrBuf</construct_name>
+            <construct_url>EzStrBuf/structure/EzStrBuf</construct_url>
+            <construct_description>Constructs an EzStrBuf object.</construct_description>
+        </construct>
+        <construct>
+            <construct_name>template&lt;int SIZE&gt; EzStrBuf_::EzStrBuf_</construct_name>
+            <construct_url>EzStrBuf/structure/EzStrBuf_</construct_url>
+            <construct_description>Constructs an EzStrBuf object and allocates memory for it.</construct_description>
+        </construct>
+    </constructs>
+
+    <methods>
+        <self>
+        <method>
+        <method_name> AllocStrBuf </method_name>
+        <method_url> EzStrBuf/AllocStrBuf </method_url>
+        <m_description> Allocates new memory blocks of specified size for EzStrBuf string. </m_description>
+        </method>
+        <method>
+        <method_name> AllocStrBufLen </method_name>
+        <method_url> EzStrBuf/AllocStrBufLen </method_url>
+        <m_description> Allocates memory space specified size and initialized for EzStrBuf string. </m_description>
+        </method>
+        <method>
+        <method_name> Append </method_name>
+        <method_url> EzStrBuf/Append </method_url>
+        <m_description> Appends new string to the original string.</m_description>
+        </method>
+        <method>
+        <method_name> Capacity </method_name>
+        <method_url> EzStrBuf/Capacity </method_url>
+        <m_description>Gets the total size of the buffer(in number of characters).</m_description>
+        </method>
+        <method>
+        <method_name> Copy </method_name>
+        <method_url> EzStrBuf/Copy  </method_url>
+        <m_description> Sets new value for the EzStrBuf object. </m_description>
+        </method>
+        <method>
+        <method_name> FreeStrBuf </method_name>
+        <method_url> EzStrBuf/FreeStrBuf </method_url>
+        <m_description> Releases the memory space of the string. </m_description>
+        </method>
+        <method>
+        <method_name>  Insert </method_name>
+        <method_url> EzStrBuf/Insert  </method_url>
+        <m_description> Inserts a string at position specified in the buffer. </m_description>
+        </method>
+        <method>
+        <method_name> IsNull </method_name>
+        <method_url> EzStrBuf/IsNull </method_url>
+        <m_description> Checks if current EzStrBuf variable is NULL. </m_description>
+        </method>
+        <method>
+        <method_name> Length </method_name>
+        <method_url> EzStrBuf/Length </method_url>
+        <m_description>Gets the length of current string (in number of characters). </m_description>
+        </method>
+    </self>
+    </methods>
+
+    <operators>
+        <operator>
+            <operator_name> operator = </operator_name>
+            <operator_url> EzStrBuf/operator </operator_url>
+            <operator_description>Sets value for the EzStrBuf object.</operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator ==,!=,&lt;,&gt;,&lt;=,&gt;=</operator_name>
+            <operator_url>EzStrBuf/Relational_Operators</operator_url>
+            <operator_description> Compares the sequence of two strings. </operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator DATATYPE</operator_name>
+            <operator_url>EzStrBuf/operator1</operator_url>
+            <operator_description> Type conversion </operator_description>
+        </operator>
+    </operators>
+
+    <macros>
+        <macro>
+        <macro_name> EZSTRBUF_NULL </macro_name>
+        <macro_url> EzStrBuf/EZSTRBUF_NULL </macro_url>
+        <macro_description> Defines a null EzStrBuf object. </macro_description>
+        </macro>
+    </macros>
+
+    <remarks>
+        <para>When allocating memory for the EzStrBuf object, system makes the size an integral in terms of 4 bytes automatically. For example, if someone wants to allocate 997 bytes, then the memory space automatically becomes 1000 bytes. </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ezstr.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib   </lib_name>
+
+        </library>
+    </requirements>
+
+</manpage>

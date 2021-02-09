@@ -1,0 +1,98 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_wcsdup">_wcsdup</sample>
+    <title> _wcsdup, _strdup</title>
+    <volume>C Runn-Time Lirary</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Duplicate strings.</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>_strdup</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strSource</param_name>
+                <param_note>
+                    <para>Null-terminated source string.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_wcsdup</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>strSource</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns a pointer to the storage location
+              for the copied string or NULL if storage cannot be allocated.
+        </para>
+    </return>
+
+    <remarks>
+        <para>The _strdup function calls malloc to allocate storage space for a
+            copy of strSource and then copies strSource to the allocated space.
+            _wcsdup is a wide-character version of _strdup. The arguments and
+            return value of _wcsdup are wide-character strings; These two
+            functions behave identically otherwise.
+        </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_strdup</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wcsdup</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example></example>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcscat</ref_name>
+            <ref_url>wcscat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcsncat</ref_name>
+            <ref_url>wcsncat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcscmp</ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcsncpy</ref_name>
+            <ref_url>wcsncpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcscpy</ref_name>
+            <ref_url>wcscpy</ref_url>
+        </reference>
+    </references>
+
+</manpage>

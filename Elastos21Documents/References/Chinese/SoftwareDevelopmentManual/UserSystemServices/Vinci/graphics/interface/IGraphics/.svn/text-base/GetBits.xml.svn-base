@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IGraphics</interface><method> GetBits </method>
+    <description>
+        <para>
+            获取当前Graphics的帧缓冲起始地址（主要用于视频数据高速访问之用）。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UInt32 * </param_type>
+                <param_name> pitch </param_name>
+                <param_note>
+                    <para>
+指向UInt32型的指针，用于获取帧缓冲的跨度（一行数据的字节数），单位像素32位                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UInt32 *</param_type>
+                <param_name> address </param_name>
+                <param_note>
+                    <para>
+指向UInt32型的指针，用户获取帧缓冲的起始地址                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT；如果不是Double Buffer模式，则返回E_NOT_SUPPORTED。
+    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统           </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            本方法只在窗口属性含GrafixCapabilities_DoubleBuffer模式下有效。
+        </para>
+    </remarks>
+</manpage>

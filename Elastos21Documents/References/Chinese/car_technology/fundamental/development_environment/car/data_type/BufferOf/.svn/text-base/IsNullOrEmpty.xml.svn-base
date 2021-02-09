@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <!-- <sample url="sdk\eztypes\EzArray\IsEmpty">IsEmpty</sample>-->
+    
+    <volume> 常用数据结构 </volume>
+    <interface>BufferOf</interface>
+    <method>IsNullOrEmpty </method>
+
+    <description>
+        <para>判断BufferOf数组或指向数组的指针是否为空。</para>
+    </description>
+    <syntax_nopara>
+        <return_val>Boolean</return_val>
+        <modifier>const</modifier>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para>BufferOf数组或指向数组的指针为空时，返回True，否则返回False。</para>
+    </return>
+
+<example>
+<pre>
+BufferOf&lt;Int8&gt; *MyArray = BufferOf&lt;Int8&gt;::Alloc(0);
+CConsole::WriteLine(MyArray-&gt;IsNullOrEmpty());
+BufferOf&lt;Int8&gt;::Free(MyArray);
+
+BufferOf&lt;Int8&gt; MyArray1(NULL,0);
+CConsole::WriteLine(MyArray1.IsNullOrEmpty());
+</pre>
+</example>    
+
+<references>
+    <reference>
+        <ref_name>BufferOf</ref_name>
+        <ref_url>../BufferOf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>BufferOf::IsEmpty </ref_name>
+        <ref_url>IsEmpty</ref_url>
+    </reference>
+    <reference>
+        <ref_name>BufferOf::IsNull </ref_name>
+        <ref_url>IsNull</ref_url>
+    </reference>
+</references> 
+
+</manpage>

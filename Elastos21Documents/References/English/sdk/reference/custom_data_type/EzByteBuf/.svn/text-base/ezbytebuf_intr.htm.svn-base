@@ -1,0 +1,176 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>EzByteBuf Data Type</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>EzByteBuf Data Type</h2>
+
+    <h3>EzByteBuf Summary</h3>
+    <p>First, let us have a view of some code below:</p>
+        <pre class="code">
+Sample 1:：
+#define BUFLENGTH 997
+BYTE * buf;
+buf = malloc(BUFLENGTH);
+</pre>
+        <p>In Sample 1, we defined a pointer variable buf with type of BYTE *, then
+function <b>malloc</b> is called to allocate a continuous memory blocks with size
+of 997 bytes from the heap and point buf to the start address of this
+segment allocated. In our discussion earlier, BYTE* data type is not self-described
+data type.When we transferred it as the entry arguments of component service
+which required by user application, we need additional information to be transferred
+to help illustrate some other information about this data structure;for example the
+length of buf and so on. But it will surely add burdens when system marshaling
+and unmarshaling these additional helping arguments. In addition, another
+problem here is that the count of bytes allocated if 997, because we ignored appending
+size to multiple of 4 bytes,then some extra system consumption happens. To
+uniformly deal with these types of data and accord with the specification of CAR,
+Elastos define EzByteBuf class. It's a class implemented in some similarity
+with class EzStr, that is, described the object itself by some additional
+fields. In a word, EzByteBuf is implemented for CAR to encapsulate and self-appended 
+byte type buffer object and offer some functions for users to operate on these 
+encapsuled buffers.</p>
+
+
+    <h3>EzByteBuf's Storage Structure</h3>
+        <p>EzByteBuf is a class implemented by C++, the usage to declare an object of
+this class in stack is: EzByteBuf &lt;size&gt; buf; buf is the name of an object variable, size is
+the capacity of the encapsuled buffer.</p>
+        <p>EzByteBuf's storage structure is as shown below:</p>
+        <center><img src="../images/ezbytebuf.jpg"></img></center>
+        <p>If we wanted to rewrite sample 1 to define a EzByteBuf object in stack, we
+can do as shown below:</P>
+        <pre class="code">
+Sample 2:
+EzByteBuf_<997> buf；
+</pre>
+        <p>Here, buf is an EzByteBuf object, 997 is the count of byte required, it is
+appended to 1000 bytes (append to multiple of 4 bytes) when actually allocated.
+Considering Sample 2 and the figure of EzByteBuf's storage structure, we can see
+that: m_ppbuf is a member pointer of buf which points to the start address of
+buffer; the section with the tag of “Capacity” is the capacity of the memory allocated,
+it had a value of 1000 in sample 2; another section tagged by “Used” (the frame
+in deep blue in figure) is part which had been used of allocated memory. We initialize
+them to 0 and the section tagged by “Empty” is part of allocated memory which
+had not been used.</p>
+        <p>In addition, except for the memory allocated, EzByteBuf has three other
+fields: the first one located in the start position of EzByteBuf object, occupied
+4 bytes(a INT type variable), where stored the size of the buffer encapsuled
+plus the 4 bytes occupied by itself.In sample 2, the value store in this field
+is 1004. The second is Used field, occupied 4 bytes too. This field store the
+size information of the used part of allocated memory.In sample 2, the value
+in this field is 0. The last one is 4 bytes in the end of the object, with the
+content of two ‘/0’s.These four bytes show the end of object,cannot be overwritten and not included in 
+calculation.</p>
+        <p>In difference with EzStr, class EzByteBuf has no constructor. Like
+sample 3, compiler will report errors when declared an EzByteBuf object.</p>
+        <pre class="code">
+Sample 3:
+EzByteBuf  buf；              //error!
+</pre>
+
+    <h3>The implementation of EzByteBuf and its Member functions</h3>
+        <p>Be same as EzStr, there are two ways to implement an EzByteBuf object: one
+is implemented in the stack by usage of EzByteBuf &lt;size&gt; buf, it had been
+illustrated in sample 2. The other way is implemented in heap,which we will discuss
+in the following. Which way to be chosen is decided according to the real
+situation. In some degree, we encourage developers to work in the former way,
+in which compiler is in charge of the construction and destruction of the object.
+It needs no human interference. If there exists across-process or some other
+kinds of global call, we have to allocate memory blocks in heap. Allocating in
+heap requires using static member function of EzByteBuf: <b>AllocString</b>, and using
+<b>FreeByteBuf</b> to release the memory blocks allocated.</p>
+        <p>About the member functions of EzByteBuf, please view the 
+        <a class="style1" href="../ezbytebuf.htm">related reference
+document</a>.</p>
+
+    <h3>Examples and Analysis of EzByteBuf applications in Elastos</h3>
+        <p>Compared to EzStr, EzByteBuf has more complex structure. Here we would like
+to discuss it by several samples.</p>
+        <pre class="code">
+Sample 4:
+EzByteBuf_<100> buf;
+int iCount = 10;
+
+//iFileStreamRef is an intelligent pointer of interface IFileStream
+ec = iFileStreamRef.Read(buf, iCount);
+</pre>
+        <p>This sample described how to construct an EzByteBuf object named buf in stack, function <b>Copy</b> can store the string “Hello world!” into buf. By calling function <b><a class="style1" href="../../zee/interface/IBasicStream/Read.htm">IFileStream::Read</a></b> by the interface intelligent pointer iFileStreamRef, some content of filestream is read into buf, only 10 bytes will be read. We declare function <b>IFileStream::Read</b> as follow:</p>
+        <pre class="code">
+ECODE Read (
+             /*[out]*/EzByteBuf data,
+             /*[in]*/int count
+         );
+</pre>
+        <p>Here buf object is output type, server did not manage memory release, memory allocation and release of buf must proceed in client. That is why Elastos did not support sample 3, for CAR, transferring a null EzByteBuf object has no meaning. (EzStr is different here, as an argument, null string is meaningful).</p>
+        <p>Be same as EzStr, EzByteBuf can also create object in heap, EzByteBuf offered two static member functions to create a new object:<b> <a class="style1" href="AllocByteBuf.htm">AllocByteBuf</a></b> and <b><a class="style1" href="AllocByteBufLen.htm">AllocByteBufLen</a></b>, they are declared as follow:</p>
+        <pre class="code">
+EzByteBuf AllocByteBuf(int cb);
+
+EzByteBuf AllocByteBufLen(
+               const byte* pb,
+               int cb);
+</pre>
+        <p>We take some modification in the sample 4 as follow:</p>
+        <pre class="code">
+Sample 5:
+EzByteBuf buf = EzByteBuf::AllocByteBuf(100);
+int iCount = 10;
+
+//iFileStreamRef is an intelligent pointer of interface IFileStream
+ec = iFileStreamRef.Read(buf, iCount);
+
+EzByteBuf::FreeByteBuf(buf);
+</pre>
+        <p>Sample 5 had the same functions as those of sample 4; the difference exists in the way of creating EzByteBuf objects. In the former created it in stack, compiler managed the object's life-span and in the latter, all these done by programmer.</p>
+        <p><font color="red"><b>Warning:</b> The object created by function <b>AllocByteBuf</b> or <b>AllocByteBufLen</b> must release by function <b><a class="style1" href="FreeByteBuf.htm">FreeByteBuf</a></b>, otherwise memory leak problem will be caused.</font></p>
+        <p>To emphasize, we like to give another simple but completed operation on EzByteBuf example here:</p>
+        <pre class="code">
+Sample 6:
+#include &lt;ezbuf.h&gt;
+#include &lt;stdio.h&gt;
+
+int __cdecl main()
+{
+   EzByteBuf_<45> buf;
+
+   int capa = buf.Capacity();
+   printf("capacity: %d bytes.\n", capa);
+
+   buf.Copy("Good to you!", 13);
+   printf("Original: %s\n", (char*)buf);
+
+   buf.Insert("luck ", 5, 5);
+   printf("After inserting at pos=5: %s\n", (char*)buf);
+
+   return 0;
+}
+
+Output:
+       capacity: 48 bytes.
+       Original: Good to you!
+       After inserting at pos=5: Good luck to you!
+</pre>
+        <p>In sample 6, at the time of creating EzByteBuf object, system automatically 
+appends the buffer capacity required by users. Initially, system get the actual capacity of 
+buffer by function <b><a class="style1" href="Capacity.htm">Capacity</a></b>, here the value is 48 bytes. 
+Then function <b><a class="style1" href="Copy.htm">Copy</a></b> is called, string data “Good&nbsp;to&nbsp;you!”
+ is copied to the buffer of this object by character way, there are 13 bytes needed to be copied
+ (The string is an constant string, hide the end character ‘\0’). At last, function 
+ <b><a class="style1" href="Insert.htm">Insert</a></b> is called to insert new content “luck&nbsp;” 
+ to the object buffer.</p>
+        <ul><font color="red"><b>Warning:</b>
+            <li>Insert operation inserts no new memory blocks, but only insert new content “luck&nbsp;“. ;
+            <li>The data out of buffer (the extension of the buffer is 48 bytes) will be lost.
+        </font></ul>
+<script>footer("english")</script>
+</body>
+</html>    

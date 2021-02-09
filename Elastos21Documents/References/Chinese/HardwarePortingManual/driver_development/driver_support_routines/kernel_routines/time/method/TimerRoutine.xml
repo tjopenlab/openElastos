@@ -1,0 +1,47 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>时间</volume>
+    <title>TimerRoutine</title>
+    <routine_idx> ../../time.htm </routine_idx>
+
+    <description>
+        <para>定时器回调函数。</para>
+    </description>
+
+    <syntax>
+        <return_val>void CDECL</return_val>
+        <parameters>
+            <api_param>
+                <param_type> void * </param_type>
+                <param_name> pvParameter </param_name>
+                <param_note>
+                    <para>指向附加信息的指针。通过此参数，定时器回调函数可以取得构造定时器对象时传入的附加信息，参见<link url="..\DzTimer\structure\Timer.htm">DzTimer::DzTimer()</link>。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本函数为构造定时器对象时传入的定时器回调函数。定时器对象启动运行经过指定的时间间隔（即定时器对象运行到期）后，系统将调用本回调函数一次。</para>
+        <para>定时器回调函数是在系统上下文中被调用的。因此，如同驱动程序下半部分一样，它不能访问任何进程上下文，只能用于执行系统任务，并且定时器回调函数也必须被尽可能快的执行。可以认为：定时器回调函数的情况和中断服务例程回调函数DeviceIsr情况类似,可用的DDK API有：公用库、DzMillisecondsToTicks、DzTicksToMilliseconds、DzEvent::NotifyByIsr、DzNotifyEventObjByIsr。</para>
+        <para>另外，定时器回调函数的优先级低于所有中断，如果系统中没有任何需要处理的中断，内核将会尽可能快的调用执行所有已到期的定时器的回调函数。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>

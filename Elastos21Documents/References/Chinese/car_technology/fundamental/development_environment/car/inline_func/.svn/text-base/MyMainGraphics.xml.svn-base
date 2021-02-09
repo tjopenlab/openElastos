@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>内联函数</volume>
+    <title>MyMainGraphics</title>
+
+    <description>
+        <para>获取指向系统提供的<link url="../../../graphics/elagdi/class/CGraphics.htm">CGraphics</link>对象的类智能指针的引用。</para>
+    </description>
+
+    <syntax>
+        <return_val>CGraphicsRef&amp;</return_val>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>返回指向系统提供的CGraphics对象的类智能指针的引用。该返回值是<link url="../../../graphics/elagdi/class/CGraphicsRef.htm">CGraphicsRef</link>类型的引用。</para>
+    </return>
+    <remarks>
+        <para>在用户定义的CAR文件中，当且仅当构件具有了<link url="../attributes/attributes_graphics(lite).htm">graphics(lite)</link>属性时，用户才可以在程序中直接调用MyMainGraphics函数。此时，用户可以通过MyMainGraphics函数的返回值，调用<link url="../../../graphics/elagdi/class/CGraphics.htm">CGraphics</link>类里的方法直接在屏幕上做画点画线等操作。如果要退出用户程序，则需调用<link url="../../../graphics/elagdi/interface/IGraphics/Quit.htm">Quit</link>方法，语法为MyMainGraphics().Quit()。</para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《Elastos 1.1》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elactrl.h; elagdi.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib; ElCRuntime.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

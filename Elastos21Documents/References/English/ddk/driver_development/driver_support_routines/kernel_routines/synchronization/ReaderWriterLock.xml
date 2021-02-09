@@ -1,0 +1,189 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>    <manpage>
+    <volume>Synchronization</volume>
+    <interface> ReaderWriterLock </interface>
+    <description>
+
+
+        <para>ReaderWriterLock class</para>
+
+    </description>
+    <methods>
+<self>
+
+
+   <method>
+        <method_name>ReaderWriterLock constructor</method_name>
+        <method_url>ReaderWriterLock\structure\ReaderWriterLock</method_url>
+    <m_description>
+        Constructs a ReaderWriterLock object.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>ReaderTryLock</method_name>
+        <method_url>ReaderWriterLock\ReaderTryLock</method_url>
+    <m_description>
+        Tries to own a reader lock.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>ReaderLock</method_name>
+        <method_url>ReaderWriterLock\ReaderLock</method_url>
+    <m_description>
+        Acquires a reader lock.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>ReaderUnlock</method_name>
+        <method_url>ReaderWriterLock\ReaderUnlock</method_url>
+    <m_description>
+        Releases a reader lock.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>WriterTryLock</method_name>
+        <method_url>ReaderWriterLock\WriterTryLock</method_url>
+    <m_description>
+        Tries to own a writer lock.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>WriterLock</method_name>
+        <method_url>ReaderWriterLock\WriterLock</method_url>
+    <m_description>
+        Acquires a writer lock.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>WriterUnlock</method_name>
+        <method_url>ReaderWriterLock\WriterUnlock</method_url>
+    <m_description>
+        Releases a writer lock.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>IsWriterLockHeld</method_name>
+        <method_url>ReaderWriterLock\IsWriterLockHeld</method_url>
+    <m_description>
+        Determines if the object is locked by a writer.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>IsReaderLockHeld</method_name>
+        <method_url>ReaderWriterLock\IsReaderLockHeld</method_url>
+    <m_description>
+        Determines if the object is locked by a reader.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>UpgradeToWriter</method_name>
+        <method_url>ReaderWriterLock\UpgradeToWriter</method_url>
+    <m_description>
+       Upgrades to a writer.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>TryUpgradeToWriter</method_name>
+        <method_url>ReaderWriterLock\TryUpgradeToWriter</method_url>
+    <m_description>
+        Tries to upgrade to a writer.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>DowngradeFromWriter</method_name>
+        <method_url>ReaderWriterLock\DowngradeFromWriter</method_url>
+    <m_description>
+        Downgrades to a reader.
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+
+    <remarks>
+
+        <para>
+        	A <b>ReaderWriterLock</b> object represents a synchronization object that allows one thread to exclusively
+        	access a shared resource as a single writer, or multiple threads to inclusively access it as multiple readers.
+        </para>
+        <para>
+        	A single writer or multiple readers can lock the ReaderWriterLock object. When a writer
+        	locks the ReaderWriterLock object, other threads that try to become a writer or reader wait for it,
+        	until the writer releases it. When one or more readers lock the ReaderWriterLock object, all the threads
+        	that try to become a writer wait for it, until all the readers release it.
+        </para>
+         <para>
+            To use ReaderWriterLock, its constructor <link url="ReaderWriterLock\structure\ReaderWriterLock.htm">
+            ReaderWriterLock::ReaderWriterLock</link> must be called when necessary. ReaderWriterLock object can 
+            be defined as a global or local variable, or be created on kernel heap.
+        </para>
+        <para>
+        	The current thread can use the <link url="ReaderWriterLock/WriterLock.htm">ReaderWriterLock::WriterLock
+        	</link> method or the <link url="ReaderWriterLock/WriterTryLock.htm">ReaderWriterLock::WriterTryLock</link>
+        	method to lock the ReaderWriterLock as a writer. A writer thread uses the <link url=
+        	"ReaderWriterLock/WriterUnlock.htm">ReaderWriterLock::WriterUnlock</link> method to release the locked
+        	ReaderWriterLock object. Similarly, the current thread can use the <link url="ReaderWriterLock/ReaderLock.htm">
+        	ReaderWriterLock::ReaderLock</link> method or the <link url="ReaderWriterLock/ReaderTryLock.htm">
+        	ReaderWriterLock::ReaderTryLock</link> method to lock or to try to lock the ReaderWriterLock object as a
+        	reader. A reader thread uses the <link url="ReaderWriterLock/ReaderUnlock.htm">ReaderWriterLock::ReaderUnlock
+        	</link> method to release the locked ReaderWriterLock object. In addition, a writer thread uses the
+        	<link url="ReaderWriterLock/DowngradeFromWriter.htm">ReaderWriterLock::DowngradeFromWriter</link> method
+        	to become a reader and a reader thread uses the <link url="ReaderWriterLock/UpgradeToWriter.htm">
+        	ReaderWriterLock::UpgradeToWriter</link> method or the <link url="ReaderWriterLock/TryUpgradeToWriter.htm">
+        	ReaderWriterLock::TryUpgradeToWriter</link> method to become a writer. A thread can use the <link url=
+        	"ReaderWriterLock/IsReaderLockHeld.htm">ReaderWriterLock::IsReaderLockHeld</link> method to determine
+        	whether it has owned a reader-lock of the ReaderWriterLock object; similarly, a thread can use the
+        	<link url="ReaderWriterLock/IsWriterLockHeld.htm">ReaderWriterLock::IsWriterLockHeld</link> method to
+        	determine whether it has owned the writer-lock of the ReaderWriterLock object.
+        </para>
+
+        <para>
+        	To delete a ReaderWriterLock object, make sure that the object is not locked.
+        </para>
+
+        <para>
+        	If several threads wait for a ReaderWriterLock object and when the ReaderWriterLock object is released,
+        	the operating system wakes up the waiting thread with the highest priority. If any waiting threads
+        	have same priorities, then the thread with the longest waiting time is called.
+        </para>
+        <para>
+        	The priority inheritance is applicable on ReaderWriterLock objects. But the implementation is limited,
+        	if several readers own the ReaderWriterLock object, just the first reader inherits the priority.
+        </para>
+        <para>
+        	To protect the readers or the writer from starvation, the ReaderWriterLock object applies some method
+        	to switch between a writer and other readers. Therefore, you cannot assume that a reader can lock the
+        	ReaderWriterLock object without any waiting when another reader has locked the object.
+        </para>
+     </remarks>
+
+
+
+
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>

@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IReaderWriterLock\writerlock">WriterUnlock</sample>
+<volume>同步</volume>
+<interface>IReaderWriterLock</interface><method> WriterUnlock </method>
+    <description>
+        <para>释放已占有的写者锁。</para>
+    </description>
+    <syntax_nopara>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_NOT_WRITER</td>
+	    	    <td>调用失败，调用线程并未以写者身份占有读写锁对象</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+        <para>如果调用线程并未以写者身份占有读写锁对象，本方法将会返回失败。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

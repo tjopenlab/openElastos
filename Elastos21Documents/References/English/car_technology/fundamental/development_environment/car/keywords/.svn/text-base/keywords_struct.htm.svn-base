@@ -1,0 +1,41 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>CAR Keyword--struct</title>
+</head>
+
+<body>
+<h2>struct</h2>
+            <p>This keyword is used to define struct.The usage is similar to that in C/C++ programs. For example: </p>
+            <pre class="code">
+[
+    uuid(14376071-4b08-4874-b5f2-33c240c70495),
+    uunm(http://www.koretide.com/car/StructDemo1.dll)
+]
+component StructDemo1
+{
+    ……
+    <b>struct</b>  MyStruct  {
+        wchar_t  wcElem;
+        float  fElem;
+        long *plElem;
+        EzPoint pt;
+        EzArray(int);
+    }; (this semicolon is required)
+    ……
+}
+</pre>
+    <p>In the sample, a struct MyStruct is defined.</p>
+    <p>The data type defined by the struct keyword has to be <a class="style1" href="../types.htm">CAR&nbsp;supported data type</a>.</p>
+    <b><a class="style1" href="../keyword.htm">CAR Keyword Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

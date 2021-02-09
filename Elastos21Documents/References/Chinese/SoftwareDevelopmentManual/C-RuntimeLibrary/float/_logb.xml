@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\float\_logb">_logb</sample>
+    <title> _logb</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> float_idx.htm </routine_idx>
+
+    <description>
+        <para>计算浮点数以2为底的对数值。</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>_logb</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>浮点数值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回x的以2为底的对数值。</para>
+    </return>
+
+    <remarks>
+        <para>_logb的功能是计算浮点数x以2为底的对数值，x可以是无穷大的数。如果x未被规格化（例如：x为负数），则将x视为已经被规格化的值（例如：x为负数，调用_logb取x的对数时，先取x的绝对值，再做取对数的操作）。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_logb</routine_name>
+            <headerfile>float.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _logb.cpp: This program extracts exponential value of f1.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;float.h&gt;
+#include &lt;math.h&gt;
+
+int main()
+{
+    double f, f1;
+
+    f1 = 16.00;
+    f = _logb(f1);
+    printf(&quot;_logb(%f) = %f\n&quot;, f1, f);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+_logb(16.000000) = 4.000000
+</result>
+
+    
+
+</manpage>

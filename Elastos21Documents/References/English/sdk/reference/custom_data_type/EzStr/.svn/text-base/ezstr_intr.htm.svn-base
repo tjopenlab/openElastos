@@ -1,0 +1,79 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>EzStr Data Type</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>EzStr Data Type</h2>
+
+    <h3>EzStr introduction</h3>
+        <p>Elastos is an operating system based on the Unicode encoding standard. By default, all the output characters of Elastos are Unicode characters. Inside the Microsoft desktop operating system, the data type of the strings is mainly the pointer type of char* or wchar_t*. Although char* or wchar_t* is self-description in some way, for the component technique, these information are limited. For example, there are no information about the length of a string. Although the system can get these extra information from invoking the standard function wcslen in the library, it increases the load of the system when passing the Marshling and UnMarshling of the arguments for the server side. After all, the length of a string is decided when creation and the string type is one of the most frequently used data type. These extra load is waste for the operating system based on the component technique. We can consider such an object, which not only includes the content and the length of the string, but also includes a set of operation on it.It can also be a carrier when passing the string type in the arguments of the component. In "Elastos", we define such string object as EzStr.</p>
+    <h3>The storage structure of EzStr</h3>
+        <p>Before explaining the storage construction of EzStr, we take a look at char* and wchar_t*. the string of char* point to a buffer of ASCII characters, ending with '\0'. For example:</p>
+        <pre class="code">
+Sample 1:
+char* pStr = "Hello"
+</pre>
+        <p>The storage of the string is as following:</p>
+        <center><img src="../images/ezstr1.jpg"></img></center>
+        <p>pStr points to the starting address of the buffer, one byte for each character, ending with '\0'.</p>
+        <p>wchar_t* points to a Unicode wide string, for example:</p>
+        <pre class="code">
+Sample 2:
+wchar_t* pWStr = L"Hello"
+</pre>
+        <p>The storage of the string is as following:</p>
+        <center><img src="../images/ezstr2.jpg"></img></center>
+        <p>pWStr points to the starting address of the buffer which stores the wide string, two bytes for each character, ending with'\0\0'.</p>
+        <p>Inside "Elastos", EzStr is the basic data type implemented with C++. If a construction is needed for string constant in the stack, then the macro EZCSTR(str) should be used, for example:</p>
+        <pre class="code">
+Sample 3:
+EzStr  pStr = EZCSTR("Hello");
+</pre>
+        <p>The storage of the EzStr object is:</p>
+        <center><img src="../images/ezstr3.jpg"></img></center>
+        <p>The member variable of the EzStr type instance pStr points to a Unicode string which stores the wide string constant "Hello" which does not include the ending character '\0\0'. Length denotes the effective length in byte of the string. It is 10 bytes in the sample. The first 4 bytes(a INT type) store the effective length of the Unicode string, namely Length. In the sample 3, the size of the full EzStr instance is 16 bytes. These information constitutes the complete description of a string.</p>
+        <p>If declaring a EzStr instance with no initial conditions, then the compiler constructs an empty EzStr instance with the member pointer m_str be NULL.</p>
+        <p>EzStr  pStr; <img src="../images/arrowhead.jpg"></img>invokes <a class="style1" href="structure\EzStr.htm">EzStr constructor</a>.</p>
+    <h3>The implementation of EzStr</h3>
+        <p>EzStr object can be implemented in two ways. One is implemented in the stack by using EZCSTR(str), the other is implemented in the heap. One may decide which way should be chosen according to various conditions. When a string is created through a string constant, it is better to create it in the stack (shown as sample 3). The compiler manages the creation and releasing the object. If a dynamic construction through an implicit string is needed, then one must use the related member function of EzStr, such as AllocString.</p>
+        <p>For details about the member functions, please refer to the related part of the programming manual.</p>
+    <h3>Analysis of application sample in which EzStr is used</h3>
+        <p>Through the upper description, we learned about the self-description property of EzStr. Here we have explained the usage of EzStr further through the following sample (sample 4).</p>
+        <pre class="code">
+Sample 4:
+EzDebugPrint(EZCSTR("Hello world!\n"));
+</pre>
+        <p>The method EzDebugPrint is declared as the following: </p>
+        <pre class="code">
+ECODE EzDebugPrint(EzStr esMsg);
+</pre>
+        <p>In sample 4, we try to output on screen "Hello world!\n" string through system API. The API receiving parameter is esMsg of EzStr type. We can construct a EzStr object in the stack directly to pass the parameter.This EzStr object encapsulates string that needs to be printed out and other related information.</p>
+        <p>We can also use the static member function <a class="style1" href="AllocString.htm">AllocString</a> or <a class="style1" href="AllocStringLen.htm">AllocStringLen</a> of EzStr. AllocString is declared as the following:</p>
+        <pre class="code">
+static EzStr EzStr::AllocString(const wchar_t* sz);
+</pre>
+        <p>Return value EzStr is a data structure pointed by member variable m_str of EzStr.</p>
+        <pre class="code">
+Sample 5:
+EzStr str = EzStr::AllocString(L"Hello world!\n");
+EzDebugPrint(str);
+EzStr::FreeString(str);
+</pre>
+        <p>In sample 5, the static member function AllocString constructs a EzStr object in the heap, which encapsulates a wide string "Hello world!\n" EzStr object, the object is created by the constructor of EzStr, which is declared as the following: </p>
+        <pre class="code">
+EzStr::EzStr(const EzStr& str)；
+</pre>
+        <p>After the construction of the EzStr instance str which includes "Hello world!\n", it invokes the EzDebugPrint API to print "Hello world!\n" to screen.</p>
+        <p><font color="red"><b>Notie:</b> If AllocString or some other similar functions are invoked in the application, the <a class="style1" href="FreeString.htm">FreeString</a> function must be invoked before exiting the application to release the memory space in the system heap in order to avoid memory leak.</font></p>
+        <p>In addition, an object alias can be created through an existing EzStr object by invoking the EzStr constructor. The new object shares the memory with the original object.</p>
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListView</interface><method> InsertColumn </method>
+    <description>
+        <para>
+            在 ListView 指定位置处插入一列。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+插入列的索引值，有效值为 0～列数-1                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+插入列的宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+插入列的列名                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IImage* </param_type>
+                <param_name> image </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口的指针，用于插入列的图片（请先确定已经创建了该图片对象并获得了它的 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口，有关更多信息可参考：<link url="../../../graphics/class/CImage.htm">CImage 类介绍</link>）</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_OUT_OF_MEMORY</td>
+	    	    <td>没有足够的空间</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法只是用于创建列模版，方法中设置的图标信息并不会显示在 ListView 中。
+    </para>
+    <para>
+        该方法与 <link url="AddColumn.htm">AddColumn</link> 方法类似，都可以用于为 ListView 创建列模版，只是 InsertColumn 在指定位置处插入一列，AddColumn 是在当前 ListView 中按顺序添加一列。只有创建列模版后，方可调用 <link url="InsertItem.htm">InsertItem</link> 或 <link url="AddItem.htm">AddItem</link> 方法为列表视图插入行，同时行信息将显示在插入行的第一列，该行后续列的信息可以通过 <link url="SetItem.htm">SetItem</link> 方法设置。
+    </para>
+    <para>
+        当某一项需要显示的内容的长度超过 ListView 该列列宽，则显示内容将被自动剪裁。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CListView 类介绍 </ref_name>
+        <ref_url>../../class/ListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListView 接口方法列表</ref_name>
+        <ref_url>../IListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListViewPaint 接口方法列表</ref_name>
+        <ref_url>../IListViewPaint</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AddColumn</ref_name>
+        <ref_url>AddColumn</ref_url>
+    </reference>
+    <reference>
+        <ref_name>InsertItem</ref_name>
+        <ref_url>InsertItem</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AddItem</ref_name>
+        <ref_url>AddItem</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetItem</ref_name>
+        <ref_url>SetItem</ref_url>
+    </reference>
+</references>
+</manpage>

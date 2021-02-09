@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISceneOption</interface><method> CreateScene </method>
+    <description>
+        <para>
+            在内存中创建一个空的用户自定义情景模式数据块。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ISceneDataRef * </param_type>
+                <param_name> ppSceneData </param_name>
+                <param_note>
+                    <para>
+指向ISceneData类型指针的指针，用于存放情景模式中所有参数的数据模块                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；ppSceneData为空，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

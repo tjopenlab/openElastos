@@ -1,0 +1,38 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+	<head>
+		<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+		<title>dataTypeInfo</title>
+	</head>
+	<body>
+		<h2>CAR数据类型概述</h2>
+		  <b>1.	car数据类型的优点 </b>
+		    <p>Car数据类型的一个显著特点是其自描述性，客户程序与构件程序可以很方便地进行远程通信，详情请参见<a href="../../../../SoftwareDevelopmentManual/QuickReference/CustomDataType.htm">自描述数据类型</a>。 </p>
+
+		  <b>2. 使用方法 </b>	
+		    <p>在car文件中的使用规则： </p>
+            <p>Car文件支持按照car语法规则使用的Car数据类型，不支持C++等数据类型。CAR数据类型主要用于定义接口方法中的参数，具体使用规则请参见<a href="others/InOut.htm">CAR数据类型修饰方法参数的使用规则</a>。 </p>
+            <p>注意：car文件中不支持带下划线形式的数据类型，如BufferOf_&lt;&gt;，AStringBuf_&lt;&gt;等五元组类型。</p>
+            <p>在C++文件中的使用规则： </p>
+            <p>C++文件支持CAR数据类型和C++数据类型，也支持上述下划线形式BufferOf_&lt;&gt;等五元组类型，按照C++语法规范使用即可。 </p>
+            <p>注意：在Car或C++中使用时必须使用Elastos的命名空间。 </p>
+		  <b>3.	几种数据类型的关系 </b>	
+		    <p>AString与WString是封装了字符串的普通类，不是五元组。 </p>
+            <p>AString/WString倾向于读的操作，即不改变字符串的内容。如果需要对字符串操作则应该使用AStringBuf/WStringBuf。 </p>
+            <p>AStringBuf、WStringBuf 是继承自CAR五元组CarQuintet的类；ArrayOf、BufferOf是继承自CAR五元组CarQuintet的类模板；MermoryBuf是继承自BufforOf<Byte>的类。 </p>
+            <p>在C文件中五元组CarQuintet是个结构体，可以通过ASTRINGBUF_BOX\WSTRINGBUF_BOX初始化。 </p>
+            <p>U8String是继承自AString的结构，主要用于UTF-8编码格式的各种操作。 </p>
+            <p>U8StringBuf是继承自AStringBuf的结构，用于UTF-8编码格式的各种操作。 </p>
+
+		  <b>4.	注意事项</b>
+		    <p>1.对于调用alloc等函数在堆上分配的内存，要注意使用完后调用相应的Free函数来释放。例如使用MemoryBuf：：Alloc后，需要调用其Free释放。 </p>
+            <p>2.尽量避免使用crt的printf系列函数，因为其比较耗CPU，尽量使用CAR数据类型A/WStringBuf  CConsole::Write两者的组合替代，A/WStringBuf在格式化字符串性能方面比printf高很多。 </p>
+            <p>3.尽量避免使用CRT的wcstombs和mbstowcs等函数。Copy、Append比CRT这些函数功能增强很多，而且不容易使用出错；wcstombs和mbstowcs的使用代码中经常参数传错造成内存越界！ </p>
+            <p>4.尽量避免大量的宽窄字符串互转，减少不必要的W/AString的转换。 </p>
+            
+	</body>
+</html>

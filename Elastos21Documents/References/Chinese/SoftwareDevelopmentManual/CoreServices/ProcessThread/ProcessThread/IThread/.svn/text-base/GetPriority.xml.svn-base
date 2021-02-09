@@ -1,0 +1,69 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IThread\Priority">GetPriority</sample>
+<volume>线程</volume>
+<interface>IThread</interface><method> GetPriority </method>
+    <description>
+        <para>
+    		获取线程优先级。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ThreadPriority * </param_type>
+                <param_name> pPriority  </param_name>
+                <param_note>
+                    <para>
+						指向<link url="../../../DataStructure/ThreadPriority.htm">ThreadPriority</link>枚举类型的指针，用于存放所获取线程优先级,不能为空
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取线程优先级</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_THREAD_ALREADY_FINISHED</td>
+	    	    <td>线程已经退出</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		    ThreadPriority类型为取值范围从0到1023的整数类型，数值越大代表的线程优先级也就越高。
+		</para>
+		<para>
+		    线程优先级可以通过调用<link url="SetPriority.htm">SetPriority</link>方法改变。默认的线程优先级是511（即ThreadPriority_Normal）。
+		</para>
+		<para>
+		    具体的线程优先级定义参见数据结构中的<link url="../../../DataStructure/ThreadPriority.htm">ThreadPriority</link>枚举类型说明。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+   
+</manpage>

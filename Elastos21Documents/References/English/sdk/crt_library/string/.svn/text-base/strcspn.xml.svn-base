@@ -1,0 +1,114 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strcspn">strcspn</sample>
+    <title>strcspn</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Finds a substring in a string.</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>strcspn</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>Null-terminated searched string.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strCharSet</param_name>
+                <param_note>
+                    <para>Null-terminated character set.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The function returns an integer value specifying the length of the initial segment of string that consists entirely of characters not in strCharSet. If string begins with a character that is in strCharSet, the function returns 0. No return value is reserved to indicate an error.</para>
+    </return>
+
+    <remarks>
+        <para>Terminating null characters are included in the search.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strcspn</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+// strcspn.cpp:this program returns the index of the first occurrence of a character in string
+//               that belongs to the set of characters in strCharSet
+//
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[] = &quot;xyzabc&quot;;
+    int  pos;
+
+    pos = strcspn(string, &quot;abc&quot;);
+    printf(&quot;First a, b or c in %s is at character %d\n&quot;,
+              string, pos);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+First a, b or c in xyzabc is at character 3
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name> strncat </ref_name>
+            <ref_url>  wcsncat </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strncmp </ref_name>
+            <ref_url>  wcsncmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strncpy </ref_name>
+            <ref_url>  wcsncpy </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url>  strrchr </ref_url>
+        </reference>
+        <reference>
+            <ref_name> _strnicmp </ref_name>
+            <ref_url> _wcsnicmp  </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strspn </ref_name>
+            <ref_url>  strspn </ref_url>
+        </reference>
+    </references>
+
+</manpage>

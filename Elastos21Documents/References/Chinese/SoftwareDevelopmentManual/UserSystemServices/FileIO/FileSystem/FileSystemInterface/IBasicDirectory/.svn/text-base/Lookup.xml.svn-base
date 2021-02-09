@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicDirectory</interface><method> Lookup </method>
+    <description>
+        <para>
+            在当前目录对象中查找一个文件或子目录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>
+查找的一个文件名或子目录名                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IBasicFile ** </param_type>
+                <param_name> ppBasicFile </param_name>
+                <param_note>
+                    <para>
+指向<link url="../IBasicFile.htm">IBasicFile</link>接口指针的指针，用于获取找到的文件或子目录对象的接口                   </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果参数name未分配内存，或name所指向的字符串为空，或参数name超过256个字符，或参数ppBasicFile为NULL，返回E_INVALID_ARGUMENT； </para>
+    <para>如果name指定的文件或目录不存在，返回E_FS_NO_SUCH_FILE。 </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            若查找成功，请注意ppBasicFile对象的释放，否则可能造成内存泄漏。释放方式为：ppBasicFile->Release()。
+        </para>
+    </remarks>
+</manpage>

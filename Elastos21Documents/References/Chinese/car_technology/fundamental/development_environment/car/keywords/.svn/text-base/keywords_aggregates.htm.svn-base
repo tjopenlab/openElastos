@@ -1,0 +1,111 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--aggregates </title>
+</head>
+
+<body>
+	<h2>aggregates</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于修饰构件类（<a class="style1" href= "keywords_aspect.htm">aspect类</a>除外），表示被修饰的构件类创建对象时将自动聚合该属性中列举的方面构件对象。 </p>
+	
+	    <b>语法 </b>
+<pre class= code>
+
+class className <b>aggregates</b> AAspect1, AAspect2 {...}
+</pre>
+         <b>使用说明</b>
+	        <p>1.<a class="style1" href= "keywords_inherits.htm">inherits</a>结构、aggregates结构以及<a class="style1" href= "keywords_substitutes.htm">substitutes</a>结构都可以修饰普通类<a class="style1" href= "keywords_class.htm">class</a>，这三者的顺序是先<a class="style1" href= "keywords_inherits.htm">inherits</a>结构，再aggregates结构，再<a class="style1" href= "keywords_substitutes.htm">substitutes</a>结构。 </p>
+            <p>2.aggregates不能修饰<a class="style1" href= "keywords_generic.htm">generic</a>。 </p>
+	        <p>3.aggregates结构和<a class="style1" href= "keywords_pertainsto.htm">pertainsto</a>结构都可以修饰<a class="style1" href= "keywords_applet.htm">applet</a>和<a class="style1" href= "keywords_context.htm">context</a>，它们的顺序是先aggregates，再<a class="style1" href= "keywords_pertainsto.htm">pertainsto</a>结构。 </p>
+	        <p> </p>
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IFoo {
+        Foo();
+    }
+    aspect AFoo {
+        interface IFoo;
+    }
+    interface IBar {
+        Bar();
+    }
+
+    class CBar <b>aggregates</b> AFoo {
+        interface IBar;
+    }
+}
+
+</pre>
+	        <p>编译上述aggregateDemo.car文件，修改生成的代码框架如下：(其中黑体部分是编译器自动生成的代码框架) </p>
+<pre class= code>
+//CBar.cpp文件：
+
+<b>#include "CBar.h"
+#include "_CBar.cpp"
+ECode CBar::Bar()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("call CBar::Bar() success...");
+    return NOERROR;
+<b>}</b>
+
+//AFoo.cpp文件：
+
+<b>#include "AFoo.h"
+#include "_AFoo.cpp"
+ECode AFoo::Foo()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("call AFoo::Foo() success...");
+    return NOERROR;
+<b>} </b>
+</pre>
+            <p>客户端实现如下：</p>
+<pre class= code>
+#include "aggregateDemo.h"
+using namespace Elastos;
+
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    IFoo *pFoo = NULL;
+    IBar *pBar = NULL;
+    ECode ec;
+    
+    ec = CBar::New(&pBar);
+    if (FAILED(ec)) return ec;
+      
+    pBar->Bar();
+
+    pFoo = IFoo::Probe(pBar);
+    if (NULL == pFoo) return E_NO_INTERFACE;
+
+    pFoo->Foo();
+
+    pBar->Release();
+     
+    CProcess::Exit(0);
+    return NOERROR;
+}
+</pre>
+            <p>运行结果如下：</p>
+<pre class= code>
+call CBar::Bar() success...
+call AFoo::Foo() success...
+</pre>
+
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

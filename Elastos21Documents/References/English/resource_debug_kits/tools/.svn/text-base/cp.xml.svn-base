@@ -1,0 +1,59 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> cp </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para>Copies file.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> CP </cmd_name>
+        <cmd_param> [-?] [/p] [/a] source1 [ source2 ...] target </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name>   </param_name>
+        <param_note> Displays help information </param_note>
+    </param>
+    <param>
+        <param_name>  /p </param_name>
+        <param_note> Reminds the user before overwrite the file, confirmed by the user</param_note>
+    </param>
+
+    <param>
+        <param_name>  /a </param_name>
+        <param_note> Adds source file content into target file</param_note>
+    </param>
+
+    <param>
+        <param_name>  source1,source2 ... </param_name>
+        <param_note> Original file name</param_note>
+    </param>
+    <param>
+        <param_name>  target </param_name>
+        <param_note> Target name</param_note>
+    </param>
+    </parameters>
+
+    <examples>
+    <example>
+        <eg_line>cp /p file.txt  newfile.txt  </eg_line>
+        <eg_note> Copies file file.txt under the current directory to the current directory and renames it newfile.txt . (when copying, checks if newfile.txt file exists.If file exists, prompt the user before overwrite.)</eg_note>
+    </example>
+    </examples>
+
+    <references>
+    <reference>
+        <ref_name> mv </ref_name>
+        <ref_url> mv </ref_url>
+    </reference>
+    </references>
+
+</manpage>

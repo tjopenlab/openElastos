@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>内核提供的函数</volume>
+    <title>KrnInitialize</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>初始化内核</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>bool_t</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+	<return>
+	    <para>初始化内核成功，返回TRUE；否则，返回FALSE。</para>
+    </return>
+
+    <remarks>
+        <para>本函数用于初始化内核，如初始化中断异常系统调用、初始化GDB调试器、初始化第一个线程等。在初始化内核之前先要调用<link url="KrnSetup.htm">KrnSetup</link>函数设置内核。初始化内核阶段所完成的工作要依赖于板卡支持接口，所以在调用本函数之前要保持板卡支持接口所有的函数与变量都是可用的。在成功调用本函数以后，内核将处于可启动的状态。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                《Elastos2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>

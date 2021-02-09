@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>Abort (IHttpRequest)</volume>
+<interface>IHttpRequest</interface><method> Abort </method>
+    <description>
+        <para>
+            取消当前的 HTTP 请求，同时会将 HttpRequest 对象置成 ReadState_COMPLETED 状态。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	      该方法的成功调用会使 HttpRequest 对象回到 <link url="../../datatype/ReadState.htm">ReadState_COMPLETED</link> 状态，要重新连接客户端和服务器间的通信，需要再次调用 <link url="Open.htm">Open</link> 或 <link url="../IHttpRequestEx/OpenW.htm">OpenW</link>方法。
+	  </para>
+	  <para>
+	      HttpRequest 对象在非 ReadState_COMPLETED 状态下调用该方法将触发 <link url="../JHTTPRequestEvents/OnReadyStateChange.htm">OnReadyStateChange</link> 事件。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CHttpRequest 类介绍 </ref_name>
+        <ref_url>../../HttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IHttpRequest 接口方法列表</ref_name>
+        <ref_url>../IHttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>OnReadyStateChange</ref_name>
+        <ref_url>../JHTTPRequestEvents/OnReadyStateChange</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Open</ref_name>
+        <ref_url>Open</ref_url>
+    </reference>
+    <reference>
+        <ref_name>OpenW</ref_name>
+        <ref_url>../IHttpRequestEx/OpenW</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ReadState</ref_name>
+        <ref_url>../../datatype/ReadState</ref_url>
+    </reference>
+</references>
+</manpage>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<method>CForm::New </method>
+    <description>
+        <para>
+            创建一个 Form 对象。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> caption </param_name>
+                <param_note>
+                    <para>
+Form 的文字说明                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> style </param_name>
+                <param_note>
+                    <para>
+Form 的风格，详见 <link url="../../datatype/ControlStyle.htm">ControlStyle</link> 和 <link url="../../datatype/FormStyle.htm">FormStyle</link>。不同风格可以通过“|”（或）配合使用</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> x </param_name>
+                <param_note>
+                    <para>
+Form 的左顶点在其父类控件中的横坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> y </param_name>
+                <param_note>
+                    <para>
+Form 的左顶点在其父类控件中的纵坐标                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+Form 的宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+Form 的高度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IControl *  </param_type>
+                <param_name> parent </param_name>
+                <param_note>
+                    <para>
+Form 的父 Form 接口指针                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IForm**   </param_type>
+                <param_name> form </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../interface/IForm.htm">IForm</link> 接口指针的指针，用于获取 <link url="../../interface/IForm.htm">IForm</link> 接口指针</para>
+                </param_note>
+            </api_param>                                                             
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_CONTROL_STYLE_NOT_SUPPORT</td>
+	    	    <td>控件风格不支持</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+
+<remarks>
+        <para>
+               Form 的父类只能是另一个 Form 对象。创建了一个 form 对象后，父 Form 将默认成为该 Form 的默认 owner，优先级也将和父 Form 的优先级保持一致。但有一点需要注意，parentForm 和 ownerForm 的概念是有区别的。例如，FormA是FormC的父Form，则FormC的活动范围不会超出FormA的区域；而若FormB是FormC的owner，那么FormC可以在FormB之外。
+        </para>
+        <para>
+               若想获取 Form 的 BitmapBuf 信息，此时须将 style 设为 FormStyle_StickyBuffer 风格，否则无法调用 IBitmapBuf 接口的相应方法。 
+        </para>
+        <para>
+               在 FormStyle_PixelAlphaChannel 风格下，无论Form内数据是否透明，都被认为是透明的，所以其下面的窗口总认为自己可见，导致每次刷新会先刷下面的窗口，然后再刷新自己，使刷新速度变慢，基于这点建议在窗口各部分透明度不同的情况下使用该风格。将 Form 的 style 设为 FormStyle_PixelAlphaChannel 时，需同时使用 ControlStyle_Transparent 风格，否则不清除之前画的内容，会有重影。
+        </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍</ref_name>
+        <ref_url>../Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../../interface/IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Form 的回调事件</ref_name>
+        <ref_url>../../interface/JFormEvents</ref_url>
+    </reference>
+</references>
+</manpage>

@@ -1,0 +1,71 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>文件管理器</volume>
+<interface>IFileMgr</interface><method> GetFileUpdateTime </method>
+    <description>
+        <para>
+        取得文件修改时间
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> wsFileName </param_name>
+                <param_note>
+                    <para>包含全路径的文件名
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzArray&lt;INT&gt; </param_type>
+                <param_name> eaTimeArray </param_name>
+                <param_note>
+                    <para>文件建立或修改的时间:
+                    eaTimeArray[0] : year,
+                    eaTimeArray[1] : month,
+                    eaTimeArray[2] : day,
+                    eaTimeArray[3] : week,
+                    eaTimeArray[4] : hour,
+                    eaTimeArray[5] : minute,
+                    eaTimeArray[6] : second
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>无效的参数</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_PATH_INVALID_OR_NOT_FOUND</td>
+	    	    <td>路径不正确</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_OUT_OF_MEMORY</td>
+	    	    <td>内存不足</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

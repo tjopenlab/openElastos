@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>    <manpage>
+    <volume>短信彩信引擎</volume>
+    <interface> INotification </interface>
+    <description>
+        <para>
+            提供信息通讯接收方法的注册，用于短信、彩信通知消息、WAP信息通知数据的接收。
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>SimMessage</method_name>
+        <method_url>..\interface\INotification\SimMessage</method_url>
+    <m_description>
+            注册SIM卡信息的通讯接收方法。
+    </m_description>
+    </method>
+    <method>
+        <method_name>SmsMessage</method_name>
+        <method_url>..\interface\INotification\SmsMessage</method_url>
+    <m_description>
+            注册短信的通讯接收方法。
+    </m_description>
+    </method>
+    <method>
+        <method_name>CbmMessage</method_name>
+        <method_url>..\interface\INotification\CbmMessage</method_url>
+    <m_description>
+            注册广播消息的通讯接收方法。
+    </m_description>
+    </method>
+    <method>
+        <method_name>SmsStatusReport</method_name>
+        <method_url>..\interface\INotification\SmsStatusReport</method_url>
+    <m_description>
+            注册状态报告的通讯接收方法。
+    </m_description>
+    </method>
+    <method>
+        <method_name>AddEventHandler</method_name>
+        <method_url>..\interface\INotification\AddEventHandler</method_url>
+    <m_description>
+            为引擎注册事件处理函数
+    </m_description>
+    </method>
+    <method>
+        <method_name>RemoveEventHandler</method_name>
+        <method_url>..\interface\INotification\RemoveEventHandler</method_url>
+    <m_description>
+            注销引擎内注册事件处理函数。
+    </m_description>
+    </method>
+</self>
+    </methods>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elatype.h、stdlib.h、mmsdef.h、mmstype.h、tapidef.h、time.h、CNotification.h、_CNotification.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElDatabase.lib、elastos.lib、ElCRuntime.lib、ElUtilities.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

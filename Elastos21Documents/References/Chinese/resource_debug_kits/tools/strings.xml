@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> strings </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para> 屏幕显示文件内容。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> STRINGS </cmd_name>
+        <cmd_param>   [-?] [-a][-U][-O][-l &lt;length&gt;]&lt;file list&gt;</cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name>  -?  </param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+    <param>
+        <param_name>  -a  </param_name>
+        <param_note> 在每个匹配的文件中添加文件名及冒号的注解</param_note>
+    </param>
+    <param>
+        <param_name>  -U  </param_name>
+        <param_note> 显示文件全部内容，默认参数</param_note>
+    </param>
+    <param>
+        <param_name>  -O </param_name>
+        <param_note> 每行的行首显示当前文件在此行之前的所有字符的字符数，用16进制数表示</param_note>
+    </param>
+    <param>
+        <param_name> -l &lt;length&gt; </param_name>
+        <param_note> 只显示字符长度超过length的行</param_note>
+    </param>
+    <param>
+        <param_name> &lt;file list&gt; </param_name>
+        <param_note> 要显示的文件名列表</param_note>
+    </param>
+    </parameters>
+
+    <examples>
+    <example>
+        <eg_line>strings file.txt </eg_line>
+        <eg_note> 显示文件file.txt文件的内容。输出结果：</eg_note>
+        <eg_result><![CDATA[
+file.txt:
+This is the file.txt.
+]]></eg_result>
+    </example>
+    </examples>
+
+</manpage>

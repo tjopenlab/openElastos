@@ -1,0 +1,74 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\SetUsed">SetUsed</sample>
+    <volume>  Common data structures </volume>
+    <interface> EzArray   </interface>
+    <method> SetUsed </method>
+
+    <description>
+        <para>
+        	Sets the used elements in the EzArray.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type> int  </param_type>
+                <param_name> siz </param_name>
+                <param_note>
+                    <para>
+                    	Sets the count of the used elements, the unit is sizeof(T).  
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>
+        	Returns the count of the used elements which is already set, the unit is sizeof(T).
+        </para>
+    </return>
+
+    <example><pre><![CDATA[
+#include <EzArray.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+    int array1[4] = {0,1,2,3};
+    int old_used, new_used;
+
+    EzArray_Box<int> myArray(array1, 4, 4);
+    old_used = myArray.Used();
+    printf("Before modifying myArray's used size is: %d.\n", old_used);
+
+    myArray.SetUsed(2);
+    new_used = myArray.Used();
+    printf("Now myArray's used size is: %d.\n", new_used);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+Before modifying myArray's used size is: 4.
+Now myArray's used size is: 2.
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Used </ref_name>
+            <ref_url> Used </ref_url>
+        </reference>
+    </references>
+
+</manpage>

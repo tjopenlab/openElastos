@@ -1,0 +1,181 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>类智能指针</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+    <h2>类智能指针</h2>
+        <p>在COM编程中，如果一个CObject对象实现了IA，IB，IC三个接口，IA接口中有方法FA，IB接口中有方法FB，IC接口中有方法FC。这样如果用户要调用FA，FB，FC三个方法，那么需要写出下面的代码才能调用到FA，FB，FC三个方法（假定用户已经获得接口IA的接口指针pIA）：</p>
+        <pre class="code">
+……
+pIAàFA(…);
+IB *pIB;
+IC *pIC;
+pIAàQueryInterface(IID_IB, &pIB);
+pIAàQueryInterface(IID_IC, &pIC);
+pIBàFB(…);
+pICàFC(…);
+pIBàRelease();
+pICàRelease();
+……
+</pre>
+        <p>为了简单，这段代码没有考虑方法调用失败的情况。可以看出，只是简单地调用三个方法，却写了九行程序，代码过于麻烦。</p>
+        <p>为了解决这个问题，发明了类智能指针。类智能指针是对构件类的封装，构件类指的是一个构件中定义的类，具体解释参见“<a class="style1" href="../../fundamental/development_environment/car/about_car.htm">CAR语言</a>”部分。假定已经有了指向上面的CObject对象的类智能指针变量m_cObject。则调用以上三个方法的代码为：</p>
+        <pre class="code">
+m_cObject.FA(…);
+m_cObject.FB(…);
+m_cObject.FC(…);
+</pre>
+        <p>可以看出，使用类智能指针，代码简单，易懂了很多。</p>
+        <p>在C++语言中，类智能指针表现为类，这个类有若干个成员变量，每个成员变量用来指向对象的一个接口，成员变量的数目等于CAR对象实现的接口个数，成员变量和构件对象实现的接口一一对应。通过类智能指针，可以调用构件对象实现的所有接口方法，例如上例中，通过类智能指针m_cObject，就可以调用接口IA的接口方法FA，也可以调用接口IB的接口方法FB，也可以调用接口IC的接口方法FC。</p>
+        <p>采用类智能指针继承接口智能指针的方式，实现了类智能指针。图示如下：</p>
+        <center><img src="images/class.jpg"></center>
+        <p>在这种情况下，当用户调用CObjectRef::FA(…)时，事实上它调用的就是IARef::FA(…)。关于IARef::FA(…)的实现，参照本文上面一节关于接口智能指针的描述。</p>
+        <p>通过类智能指针可以创建出这个类智能指针对应的构件对象，并且使这个类智能指针继承来的成员变量指向这个新创建出的对象。</p>
+        <p>本文主要包括以下内容：</p>
+    <ul>
+        <li><a class="style1" href="#form">类智能指针的表示形式</a>
+        <li><a class="style1" href="#create">类智能指针的创建</a>
+        <li><a class="style1" href="#validity">类智能指针的有效性的判断</a>
+        <li><a class="style1" href="#use">类智能指针的使用方法</a>
+    </ul>
+    <h4><a name="form"></a>类智能指针的表示形式</h4>
+        <p>类智能指针的表示形式：CxxxRef，其中Cxxx表示类名。</p>
+        <p>下面以Hello构件为例，介绍类智能指针的创建和使用。先请看helloworld.car文件内容：</p>
+        <pre class="code">
+[
+    uuid(29899803-5da2-45f0-a4b7-387b76590abe),
+    uunm(http://www.koretide.com/car/helloworld.dll)
+]
+component Hello
+{
+    //接口IHello
+    [uuid(225c5629-5cd8-403a-97d9-204ffda2976d)]
+    interface IHello {
+        ECODE SayHello();
+    }
+
+    //接口IWorld
+    [uuid(ba85f03f-7f55-4595-9137-cee4ea43b404)]
+    interface IWorld {
+        ECODE SayWorld();
+    }
+
+    //类CHello
+    [uuid(3b1e3a47-9a78-4466-ab11-ad8512761e0d)]
+    class CHello {
+        interface IHello;
+    }
+
+    //类CHelloWorld
+    [uuid(1627061a-36b9-4dcb-b9af-5967db085d17)]
+    class CHelloWorld {
+        interface IHello;
+        interface IWorld;
+    }
+}
+</pre>
+        <p>helloworld.car文件中定义了两个类，CHello和CHelloWorld。在客户程序中使用import语句引用Hello构件，方法如下：</p>
+        <pre class="code">
+#import &lt;helloworld.dll&gt;
+</pre>
+        <p>则客户程序中即拥有这两个类智能指针类型：CHelloRef和CHelloWorldRef。</p>
+
+    <h4><a name="create"></a>类智能指针的创建</h4>
+        <p>创建合法的类智能指针只有一种方法：创建一个类智能指针，调用Instantiate方法实例化该类智能指针相应的类，并使该类智能指针指向该对象。</p>
+        <ul>
+            <li>当用户需要指定创建的对象与客户程序的相对位置时，调用Instantiate方法时需要设置相应的参数，例如：</p>
+            <pre class="code">
+CHelloRef cHello;   //创建类智能指针cHello
+//实例化类CHello，并使类智能指针cHello指向该对象
+ECODE ec = cHello.<b>Instantiate(CTX_SAME_DOMAIN);</b>
+if (FAILED(ec)) {   //利用返回值判断智能指针的有效性
+    printf("cHello initialize failed\n");
+    return 1;
+}
+</pre>
+            <p>参数CTX_SAME_DOMAIN指定对象与客户程序的相对位置，该参数的可选值及每种值表示的意义请参见<a class="style1" href="code_running_env.htm">可执行代码的运行环境（context）</a>。</p>
+
+            <li>当用户不关心创建的对象与客户程序的相对位置时，调用Instantiate方法时不需要加参数。例如：</p>
+            <pre class="code">
+CHelloRef cHello;   //创建类智能指针cHello
+//实例化类CHello，类智能指针cHello指向该对象
+ECODE ec = cHello.<b>Instantiate();</b>
+if (FAILED(ec)) {   //利用返回值判断智能指针的有效性
+    printf("cHello initialize failed\n");
+    return 1;
+}
+</pre>
+            <p>示例中调用Instantiate方法时没有设置参数，系统默认值为CTX_SAME_DOMAIN、CTX_DIFF_DOMAIN和CTX_DIFF_PROCESS三值之一，由优先级来确定创建的对象与客户程序的相对位置。</p>
+        </ul>
+
+    <h4><a name="validity"></a>类智能指针有效性的判断</h4>
+        <p>用户在创建新的类智能指针后必须判断其有效性，只有有效的类智能指针才是合法的类智能指针。方法如下：</font></p>
+        <ul>
+            <li>方法一：利用返回值进行判断，例如：</p>
+                <pre class="code">
+……
+CHelloRef cHello;
+<b>ECODE ec = cHello.Instantiate();
+if (FAILED(ec)) {   //利用返回值判断类智能指针cHello的有效性
+    printf("cHello initialize failed\n");
+    return 1;
+}</b>
+……
+</pre>
+
+            <li>方法二：调用IsValid方法进行判断，例如：</p>
+                <pre class="code">
+……
+CHelloRef cHello;
+ECODE ec = cHello.Instantiate();
+<b>if (!cHello.IsValid()) { //调用IsValid方法判断类智能指针cHello的有效性
+    assert(0 && "Can't create cHello");
+    return 1;
+}</b>
+……
+</pre>
+                <p><b>备注：</b>当调用Instantiate()方法初始化智能指针时，建议利用返回值判断智能指针的有效性。因为，通过返回值可以获得更加详尽的信息，例如：接口没有找到、或内存不足等。IsValid()方法只是简单的判断智能指针是否有效，无法得到具体的出错信息。</p>
+            </ul>
+
+    <h4><a name="use"></a>类智能指针的使用方法</h4>
+        <p>类智能指针使用“.”点操作符调用其所指向的对象中所有接口的方法。例如：</p>
+        <pre class="code">
+//使用类智能指针cHello调用类CHello的对象中的接口方法
+CHelloRef cHello;
+ECODE ec;
+ec = cHello.Instantiate();
+if (FAILED(ec)) {   //利用返回值判断类智能指针cHello的有效性
+    printf("cHello initialize failed\n");
+    return 1;
+}
+
+//通过类智能指针cHello调用类CHello的对象中IHello接口的方法SayHello()
+<b>cHello.SayHello();</b>
+
+//使用CHelloWorld类智能指针调用接口方法
+CHelloWorldRef cHelloWorld;
+ec = cHelloWorld.Instantiate();
+if (FAILED(ec)) {   //判断类智能指针cHelloWorld的有效性
+    printf("cHelloWorld initialize failed\n");
+    return 1;
+}
+
+//通过类智能指针cHelloWorld调用类CHelloWorld的对象中IHello接口的方法SayHello()
+<b>cHelloWorld.SayHello();</b>
+//通过类智能指针cHelloWorld调用类CHelloWorld的对象中IWorld接口的方法SayWorld()
+<b>cHelloWorld.SayWorld();</b>
+</pre>
+        <p>通过类智能指针可以直接调用其所指向的对象中所有接口的方法。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

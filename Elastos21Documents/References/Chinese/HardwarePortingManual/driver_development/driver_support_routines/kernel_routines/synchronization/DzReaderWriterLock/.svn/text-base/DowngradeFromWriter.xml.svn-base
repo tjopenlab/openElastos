@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+
+<volume>同步</volume>
+<interface>DzReaderWriterLock</interface><method> DowngradeFromWriter </method>
+    <description>
+        <para>将已占有的写者锁降级为读者锁。</para>
+    </description>
+    <syntax_nopara>
+        <return_val>void </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本方法用于将已占有的写者锁降级为读者锁（即已经以写者身份占有读写锁对象的调用线程降级为以读者身份占有读写锁对象的线程），期间不会引起调用线程等待。如果调用线程并未以写者身份占有读写锁对象，调用本成员函数将导致未定义的行为。调用本成员函数的线程必须保证其已拥有的读者锁少于MAXIMUM_OWNED_READER_LOCKS个。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>
+

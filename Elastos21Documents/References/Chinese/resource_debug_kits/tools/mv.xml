@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> mv </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para>移动文件。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> MV </cmd_name>
+        <cmd_param> [--help] [/l] [/x [/d] file1 [ file2 ...] target  </cmd_param>
+    </syntax>
+    <parameters>
+        <param>
+            <param_name>  --help    </param_name>
+            <param_note>  显示帮助信息 </param_note>
+        </param>
+        <param>
+            <param_name>   -f    </param_name>
+            <param_note>  若目标路径下存在同名文件，覆盖前不做声明</param_note>
+        </param>
+        <param>
+            <param_name>  -u </param_name>
+            <param_note> 更新文件，仅当待移动文件新于目标路径下同名文件名；或当目标路径下的同名文件已缺失时移动该文件</param_note>
+        </param>
+        <param>
+            <param_name>  file1, file2... </param_name>
+            <param_note> 待移动的文件</param_note>
+        </param>
+        <param>
+            <param_name>  target </param_name>
+            <param_note> 目标路径或目标文件名</param_note>
+        </param>
+    </parameters>
+
+    <remarks>
+        <para>当target为一个路径名时，mv会将所有待移动文件移动到该目录下。</para>
+        <para>若target是带路径的一个文件名，mv只能移动一个文件，并且会在移动文件同时将文件改名；如果移动了多个文件，操作将失败。</para>
+        <para>若target只是一个文件名，mv将在当前目录修改文件名。</para>
+    </remarks>
+
+    <examples>
+        <example>
+            <eg_line>mv file.txt d:\temp\newfile.txt </eg_line>
+            <eg_note> 将当前目录中的file.txt文件移至d盘temp目录下，并改名为newfile.txt。</eg_note>
+        </example>
+    </examples>
+
+    <references>
+        <reference>
+            <ref_name> ls</ref_name>
+            <ref_url> ls</ref_url>
+        </reference>
+        <reference>
+            <ref_name> cp</ref_name>
+            <ref_url> cp</ref_url>
+        </reference>
+    </references>
+
+</manpage>

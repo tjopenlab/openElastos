@@ -1,0 +1,53 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>中断管理</volume>
+    <title>DzRaiseCurrentIpl</title>
+    <routine_idx> ../interrupt_management.htm </routine_idx>
+
+    <description>
+        <para>提升当前系统中断优先级。</para>
+    </description>
+
+    <syntax>
+        <return_val>ipl_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> ipl_t</param_type>
+                <param_name> ipl </param_name>
+                <param_note>
+                    <para>当前系统中断优先级将被提升到的值，必须为IPL0到IPL31</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果提升了当前系统中断优先级，返回提升前的系统中断优先级；否则，返回当前系统中断优先级。</para>
+    </return>
+
+    <remarks>
+        <para>如果指定的中断优先级高于当前系统中断优先级，本函数将当前系统中断优先级提升到指定的中断优先级，并返回提升前的系统中断优先级。如果指定的中断优先级不高于当前系统中断优先级，本函数直接返回当前系统中断优先级。</para>
+        <para>提升当前系统中断优先级会使中断优先级与其相等或者比其更低的硬件中断的响应被屏蔽。提升了当前系统中断优先级后，代码必须被尽可能快的执行完毕并恢复原先的系统中断优先级。期间，只有如下的内核例程可被使用：公用库、DzMillisecondsToTicks、DzTicksToMilliseconds、DzDisableIrq、DzEnableIrq、DzRaiseCurrentIpl、DzLowerCurrentIpl。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>DzLowerCurrentIpl</ref_name>
+            <ref_url>DzLowerCurrentIpl</ref_url>
+        </reference>
+    </references>
+
+</manpage>

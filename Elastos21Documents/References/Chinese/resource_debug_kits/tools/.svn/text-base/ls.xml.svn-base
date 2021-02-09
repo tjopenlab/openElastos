@@ -1,0 +1,100 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> ls </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para>列出指定目录下的所有子目录及文件列表。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> LS </cmd_name>
+        <cmd_param> [--help] [/FrqRdlt1sSvu] [files] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> --help  </param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+    <param>
+        <param_name> -F  </param_name>
+        <param_note> 显示出文件和目录的全路径</param_note>
+    </param>
+    <param>
+        <param_name> -r  </param_name>
+        <param_note> 对目录反向排序</param_note>
+    </param>
+    <param>
+        <param_name> -q  </param_name>
+        <param_note> 不显示概要（查看的目录、文件数、合计大小等）</param_note>
+    </param>
+    <param>
+        <param_name>  -R </param_name>
+        <param_note> 逐步显示每层目录下的所有内容</param_note>
+    </param>
+    <param>
+        <param_name> -d  </param_name>
+        <param_note> 对参数中列出的目录只显示目录信息，不显示该目录下的内容</param_note>
+    </param>
+    <param>
+        <param_name> -l  </param_name>
+        <param_note> 显示文件和目录的详细信息</param_note>
+    </param>
+    <param>
+        <param_name> -t  </param_name>
+        <param_note> 按文件时间排序</param_note>
+    </param>
+    <param>
+        <param_name> -1 </param_name>
+        <param_note> 在一列输出</param_note>
+    </param>
+    <param>
+        <param_name> -s </param_name>
+        <param_note> 在一列输出（同/1）</param_note>
+    </param>
+    <param>
+        <param_name> -S </param_name>
+        <param_note> 按文件大小排序</param_note>
+    </param>
+    <param>
+        <param_name> -v  </param_name>
+        <param_note> 不显示隐藏文件和系统文件，不显示表示文件属性的‘*’号</param_note>
+    </param>
+    <param>
+        <param_name> -u  </param_name>
+        <param_note> 以UTC显示文件修改时间</param_note>
+    </param>
+    <param>
+        <param_name> files  </param_name>
+        <param_note> 文件名 </param_note>
+    </param>
+    </parameters>
+    <remarks>
+        <para>ls在显示隐含、系统和只读文件的时候会在文件名后面加一个‘*’表示它的属性，如果使用了/v参数，这个‘*’不会被显示出来。</para>
+    </remarks>
+    <examples>
+    <example>
+        <eg_line>ls -l  </eg_line>
+        <eg_note> 列出当前目录下的文件和子目录的详细信息。输出结果：</eg_note>
+          <eg_result><![CDATA[
+d--------         0 Wed Jul 23 15:44:00 2003 [tools]
+--a------       121 Wed Jul 16 09:52:17 2003 file.txt
+]]></eg_result>
+    </example>
+    </examples>
+
+    <references>
+    <reference>
+        <ref_name> mv</ref_name>
+        <ref_url> mv</ref_url>
+    </reference>
+    <reference>
+        <ref_name> cp</ref_name>
+        <ref_url> cp</ref_url>
+    </reference>
+
+    </references>
+
+</manpage>

@@ -1,0 +1,52 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>Contacts</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>CGroup</b></h2></center>
+<hr size="1">
+<h4><li><b>构件类定义</b></font></h4>
+<pre>
+    [<a class="doxygen" href="../../car_technology/fundamental/development_environment/car/attributes/attributes_sequenced.htm">sequenced</a>]
+    class CGroup {
+        interface IGroup;
+    }
+</pre>
+
+<h4><li><b>构造函数</b></font></h4>
+<p><a class="doxygen" href="CGroup_New.htm">CGroup::New</a></p>
+<P>当使用New方法创建了一个Group对象后，可以获得IGroup接口指针，通过该接口指针用户可以调用接口内的方法对Group进行一系列操作。</P>
+
+<P>注：新创建的群组对象没有标签，其联系人成员列表为空。</P>
+
+<p>在脚本中实例化构件类请参考：<a class="doxygen" href="../../Programming/script_programming/CAR_usage.html">CAR构件在脚本中的使用。</a></p>
+
+<h4><li><b>接口方法列表</b></font></h4>
+<p><a class="doxygen" href="IGroup.htm">IGroup</a></p>
+
+<h4><li><b>详细描述</b></font></h4>
+<p>CGroup构件类是对电话簿应用中联系人群组概念的抽象，其实例化后的对象可视为一条联系人群组记录。</p>
+<p>每一条群组记录都被群组ID(groupID)唯一标识，群组的成员可以是联系人或子群组。群组标签使得用户能够区分不同的联系人分组，例如：“家庭”或者“同事”。</p>
+<p>若要将某个联系人加入某个群组，可通过<a class="doxygen" href="IContact/JoinGroups.htm">JoinGroups</a>创建联系人与群组的关联。若要使联系人退出某个群组，可通过<a class="doxygen" href="IContact/QuitGroups.htm">QuitGroups</a>解除联系人与群组的关联。</p>
+
+<h4><li><b>构件相关信息</b></font></h4>
+<p>头文件：EmContacts.h</p>
+<p>程序库：EmContacts.dll</p>
+    
+<p>当在CAR文件中通过<a class="doxygen" href="../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a>加载EmContacts.dll构件模块时，无需在源文件中添加"include&lt;EmContacts.h&gt;"语句；若EmContacts.dll是在sources文件中被加载的，则需要在源文件中添加"include &lt;EmContacts.h&gt;"语句。更多有关信息请参考：<a class="doxygen" href="../../car_technology/car.htm">CAR编程入门</a>。</p>
+
+<h4><li><b>关于构件接口继承</b></font></h4>
+<p>若现有的构件接口无法满足应用开发的需求，您可以利用<a class="doxygen" href="../../car_technology/car.htm">CAR构件技术</a>的<a class="doxygen" href="../../car_technology/speciality/inheritance/index.htm">接口继承特性</a>，在继承已有接口的基础上拓展新的应用接口。</p>
+
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

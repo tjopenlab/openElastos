@@ -1,0 +1,57 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>web_service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>协议栈</h2>
+        <center><img src="images/stack.jpg"></center>
+        <center>图二：基本Web服务协议栈</center>
+        <p>图二给出了构建基本Web服务的标准协议栈。</p>
+    <ul>
+        <li><b>简单对象访问协议（Simple&nbsp;Object&nbsp;Access&nbsp;Protocol）：</b>简单对象访问协议（SOAP）是W3C组织的一个Note, 它描述了一种在分散的或分布式的环境中如何交换信息的轻量级协议。SOAP是一个基于XML的协议，它包括三个部分：SOAP封装(envelop)，封装定义了一个描述消息中的内容是什么，是谁发送的，谁应当接受并处理它以及如何处理它们的框架；SOAP编码规则（encoding&nbsp;rules），用于表示应用程序需要使用的数据类型的实例；SOAP&nbsp;RPC表示(RPC&nbsp;representation)，表示远程过程调用和应答的协定；SOAP可以和多种传输协议绑定（binding），使用底层协议交换信息。在这个文档中，目前只定义了SOAP如何和HTTP以及HTTP扩展进行绑定的框架。这个规范可以从W3C站点获得：<a class="style1" href="http://www.w3.org/TR/SOAP/">http://www.w3.org/TR/SOAP/</a>
+        <li><b>Web&nbsp;服务描述语言（Web&nbsp;Services&nbsp;Description&nbsp;Language，WSDL）：</b>Web服务描述语言（WSDL）是W3C的一个Note，WSDL用XML格式将网络服务定义为一组端点，这组端点是对包含面向文档或面向过程信息的消息进行操作的。这些操作和消息的描述是抽象的，然后将它们绑定到具体的网络协议和消息格式以定义端点。相关的具体端点都组合为抽象的端点服务。WSDL可扩展来允许描述端点及其消息，而不必考虑使用什么样的消息格式或网络协议来进行通信。这意味着使用XML模式来简要地定义接口而后将这些接口绑定到适用于该协议的具体表示法。目前，在该文档中仅描述了如何将WSDL和SOAP1.1，HTTP&nbsp;GET/POST以及MIME进行联合使用。本规范可以从W3C站点：<a class="style1" href="http://www.w3.org/TR/wsdl">http://www.w3.org/TR/wsdl</a>获得。
+        <li><b>UDDI（Universal&nbsp;Description，Discovery&nbsp;and&nbsp;Integration）：</b>统一描述、发现和集成规范(Universal&nbsp;Description，Discovery&nbsp;and&nbsp;Integration，UDDI)创建了一个平台独立，开放的框架，通过Internet来描述服务，发现商务，并且整合商业服务。它是一套基于Web的、分布式的、为Web服务提供的信息注册中心的实现标准规范，同时也包含一组使企业能将自身提供的Web服务注册以使得别的企业能够发现的访问协议的实现标准。本规范可以从Oasis&nbsp;Group：<a class="style1" href="http://www.oasis-open.org/committees/uddi-spec/">http://www.oasis-open.org/committees/uddi-spec/</a>获得。
+    </ul>
+        <p>事实上，在这些基本Web服务协议之上还存在着许许多多分别用于解决服务安全性，事务工作流等问题的标准协议，但考虑到不同的Web服务开发工具所支持的协议上也略有出入，因此在此不对该部分内容作详细描述。</p>
+        <p>您可以在以下位置获得一些主流Web服务开发工具支持的协议清单：</p>
+    <table>
+        <thead>
+            <td>名称</td>
+            <td>地址</td>
+        </thead>
+        <tr>
+            <td>Microsoft的Web服务协议清单：</td>
+            <td><a class="style1" href="http://msdn.microsoft.com/webservices/understanding/specs/default.aspx">http://msdn.microsoft.com/webservices/understanding/specs/default.aspx</a></td>
+        </tr>
+        <tr>
+            <td>SUN的Web服务协议清单：</td>
+            <td><a class="style1" href="http://developers.sun.com/techtopics/webservices/standards.html">http://developers.sun.com/techtopics/webservices/standards.html</a></td>
+        </tr>
+        <tr>
+            <td>IBM的Web服务协议清单：</td>
+            <td><a class="style1" href="http://www-106.ibm.com/developerworks/views/webservices/standards.jsp">http://www-106.ibm.com/developerworks/views/webservices/standards.jsp</a></td>
+        </tr>
+        <tr>
+            <td>BEA的Web服务协议清单：</td>
+            <td><a class="style1" href="http://dev2dev.bea.com/technologies/webservices/standards.jsp">http://dev2dev.bea.com/technologies/webservices/standards.jsp</a></td>
+        </tr>
+        <tr>
+            <td>Oracle的Web服务协议清单：</td>
+            <td><a class="style1" href="http://www.oracle.com/technology/tech/xml/htdocs/standard.html">http://www.oracle.com/technology/tech/xml/htdocs/standard.html</a></td>
+        </tr>
+        <tr>
+            <td>Apache的Web服务协议清单：</td>
+            <td><a class="style1" href="http://ws.apache.org/axis/ref.html">http://ws.apache.org/axis/ref.html</a></td>
+        </tr>
+    </table>
+
+<script>footer("chinese")</script>
+</body>
+</html>                  

@@ -1,0 +1,51 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址薄引擎</volume>
+<interface>IAddressBook</interface><method> LoadSimEntities </method>
+    <description>
+        <para>
+          加载Sim卡中的所有联系人或组记录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax>
+    <return>
+     <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        <tr>
+	    	    <td>地址簿错误码 </td>
+	    	    <td>地址簿操作错误 </td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../AddressBook_error.htm">地址簿错误码</link>相关帮助。</para>
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+         <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CAddressBook.h, CDBStore.h, CSimStore.h, CContact.h, CContactGroup.h,  Abdata.h, spcomm.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elacrt.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

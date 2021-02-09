@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+<TITLE>
+AuraThread_Suspend
+</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<h3>
+AuraThread_Suspend
+</h3>
+<p></p>
+</div>
+<p>
+			Suspends the specified thread.
+        </p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">
+AURA_API AuraThread_Suspend
+
+            (</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">)
+                    
+                ;</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<h4>Parameters</h4>
+<DL></DL>
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return Value </TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">Function succeeds in suspending the specified thread.</TD>
+</TR>
+<TR><TD class="cell">E_THREAD_ALREADY_FINISHED</TD>
+<TD class="cell">The thread is already finished.</TD>
+</TR>
+</table>
+<h4>Remarks</h4>
+<p>
+			If the specified thread is in ThreadState_Running state, the method will remove it from running list and
+			the list is rescheduled. If the thread is already suspended, this method increments the count of the
+			threads, which needs to suspend the associated thread. If the execution of the thread is finished, this
+			method has no effect and return E_THREAD_ALREADY_FINISHED. After suspending a thread, the corresponding thread with higher
+			priority will continue its execution.
+		</p>
+<h4>Requirements</h4>
+<p>
+<table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>
+Elastos 2.0 or later.
+</td>
+<td></td>
+</tr>
+</table></p>
+<script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>

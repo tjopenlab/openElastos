@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: PreSet.cpp</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<h1>PreSet.cpp</h1>This is an example of how to use the function: <a class="el" href="interface_i_database.html#8137012a31e4531f720a29a2222c40a9" title="创建一个用于向数据库传递参数化的SQL语句的预处理语句对象。...">IDatabase::PrepareStatement()</a>,<a class="el" href="interface_i_prepared_statement.html#b21ae4a1a70bcdc135f6e88c1156a74b" title="将预编译SQL语句中指定索引的参数设置为指定的ElaDB的String类型数据。...">IPreparedStatement::SetStringArgByIndex()</a>,<a class="el" href="interface_i_prepared_statement.html#c8edb84529a390878c23bfced090f671" title="将预编译SQL语句中指定名字的参数设置为指定的ElaDB的String类型数据。...">IPreparedStatement::SetStringArgByName()</a>,<a class="el" href="interface_i_prepared_statement.html#951fbd3423ad5766e2b8e6c6283c2cc7" title="将预编译SQL语句中指定索引的参数设置为指定的Int32类型数据。...">IPreparedStatement::SetInt32ArgByIndex()</a>,<a class="el" href="interface_i_prepared_statement.html#5b7477b6b580bbe9d856f90c8eed49cc" title="在当前的PreparedStatement对象中执行SQL语句，可以是任何类型的SQL语句。...">IPreparedStatement::Execute()</a>.<p>
+<div class="fragment"><pre class="fragment"><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<span class="preprocessor">#include &lt;ElDatabase.h&gt;</span>
+
+<span class="keyword">using namespace </span>Elastos;
+
+<span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)
+{
+    <span class="comment">// 打开数据库文件“samples.db”。</span>
+    <span class="comment">// 如果该文件不存在，则创建一个名为“samples.db”的文件。</span>
+    <a name="_a0"></a><a class="code" href="interface_i_database.html" title="特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。...">IDatabase</a> *pDatabase;
+    ECode ec = CDatabase::New(L<span class="stringliteral">"samples.db"</span>, &amp;pDatabase);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        <span class="keywordflow">return</span> -1;
+    }
+
+    <span class="comment">// 获取执行SQL预编译语句接口，students表已在Execute.cpp例程中创建</span>
+    <a name="_a1"></a><a class="code" href="interface_i_prepared_statement.html" title="Represents接口，该接口用于执行预编译的SQL语句。">IPreparedStatement</a> *pPreparedStatement;
+    ec = pDatabase-&gt;<a name="a2"></a><a class="code" href="interface_i_database.html#8137012a31e4531f720a29a2222c40a9" title="创建一个用于向数据库传递参数化的SQL语句的预处理语句对象。...">PrepareStatement</a>(
+            L<span class="stringliteral">"INSERT INTO students VALUES ( :number, :name, :sex, :age );"</span>,
+            &amp;pPreparedStatement);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        pDatabase-&gt;Release();
+        <span class="keywordflow">return</span> -1;
+    }
+
+    pPreparedStatement-&gt;<a name="a3"></a><a class="code" href="interface_i_prepared_statement.html#b21ae4a1a70bcdc135f6e88c1156a74b" title="将预编译SQL语句中指定索引的参数设置为指定的ElaDB的String类型数据。...">SetStringArgByIndex</a>(1, L<span class="stringliteral">"00012"</span>);
+    pPreparedStatement-&gt;<a name="a4"></a><a class="code" href="interface_i_prepared_statement.html#c8edb84529a390878c23bfced090f671" title="将预编译SQL语句中指定名字的参数设置为指定的ElaDB的String类型数据。...">SetStringArgByName</a>(L<span class="stringliteral">":name"</span>, L<span class="stringliteral">"Jacky"</span>);
+    pPreparedStatement-&gt;<a class="code" href="interface_i_prepared_statement.html#b21ae4a1a70bcdc135f6e88c1156a74b" title="将预编译SQL语句中指定索引的参数设置为指定的ElaDB的String类型数据。...">SetStringArgByIndex</a>(3, L<span class="stringliteral">"male"</span>);
+    pPreparedStatement-&gt;<a name="a5"></a><a class="code" href="interface_i_prepared_statement.html#951fbd3423ad5766e2b8e6c6283c2cc7" title="将预编译SQL语句中指定索引的参数设置为指定的Int32类型数据。...">SetInt32ArgByIndex</a>(4, 20);
+    pPreparedStatement-&gt;<a name="a6"></a><a class="code" href="interface_i_prepared_statement.html#5b7477b6b580bbe9d856f90c8eed49cc" title="在当前的PreparedStatement对象中执行SQL语句，可以是任何类型的SQL语句。...">Execute</a>();
+
+    pPreparedStatement-&gt;Release();
+    pDatabase-&gt;Release();
+
+    <span class="keywordflow">return</span> 0;
+}
+</pre></div>
+<script>footer("chinese")</script>
+</body>
+</html>

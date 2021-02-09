@@ -1,0 +1,119 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\direct\_rmdir">_rmdir</sample>
+    <title> _rmdir, _wrmdir</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> dir_idx.htm </routine_idx>
+
+    <description>
+        <para>The rmdir utility removes the directory entry specified by each directory argument, provided it is empty.</para>
+	<para>Arguments are processed in the given order. In order to remove both a parent directory and a subdirectory of that parent, the subdirectory must be specified first so that the parent directory is empty when rmdir tries to remove it.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_rmdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>dirname</param_name>
+                <param_note>
+                    <para>Path of directory to be deleted.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wrmdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>dirname</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns the value 0 if the directory is successfully removed. On an error the function returns -1 and sets errno as follows: </para>
+        <table>
+            <th>
+                <td>Error Number</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>ENOTEMPTY</td>
+                <td>Given path is not a directory, directory not empty, the directory to be removed is the current working directory or the root directory.</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>Path not found.</td>
+            </tr>
+            <tr>
+                <td>EACCESS</td>
+                <td>There is a file under the directory still open.</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The _rmdir function deletes a directory according to dirname. The directory has to be empty and  it must not be current working directory or the root directory and not directories under tfs://tfs directory. _wrmdir is the wide-character version of _rmdir; the dirname argument to _wrmdir is a wide-character string. _wrmdir and _rmdir behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_rmdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wrmdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _rmdir.cpp: This program uses the _mkdir function to created
+ * a new directory and then uses _rmdir function to remove this directory
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;direct.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(int argc, char *argv[])
+{
+    if (_mkdir(&quot;testtmp&quot;) == 0) {
+        printf(&quot;Directory &apos;testtmp&apos; was successfully created\n&quot;);
+        if (_rmdir(&quot;testtmp&quot;) == 0)
+            printf(&quot;Directory &apos;testtmp&apos; was successfully removed\n&quot; );
+        else
+            printf(&quot;Problem removing directory &apos;testtmp&apos;\n&quot;);
+    }
+    else
+        printf(&quot;Problem creating directory &apos;testtmp&apos;\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Directory &apos;testtmp&apos; was successfully created
+Directory &apos;testtmp&apos; was successfully removed
+</result>
+
+
+
+</manpage>

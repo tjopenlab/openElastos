@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IMenu</interface><method> RemoveAllItems </method>
+    <description>
+        <para>
+            删除全部菜单项。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法的调用只是删除所有菜单项，并不会将某个菜单项的子菜单资源给删除，故子菜单仍可重用。删除指定的菜单项可以通过 <link url="RemoveItem.htm">RemoveItem</link> 方法，添加菜单项可以通过 <link url="InsertItem.htm">InsertItem</link> 和 <link url="AddItem.htm">AddItem</link> 方法。若该菜单已经打开，则调用该方法删除所有菜单项的同时也会关闭整个菜单。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CMenu 类介绍 </ref_name>
+        <ref_url>../../class/Menu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IMenu 接口方法列表</ref_name>
+        <ref_url>../IMenu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AddItem</ref_name>
+        <ref_url>AddItem</ref_url>
+    </reference>
+    <reference>
+        <ref_name>InsertItem</ref_name>
+        <ref_url>InsertItem</ref_url>
+    </reference>
+    <reference>
+        <ref_name>RemoveItem</ref_name>
+        <ref_url>RemoveItem</ref_url>
+    </reference>
+</references>
+</manpage>

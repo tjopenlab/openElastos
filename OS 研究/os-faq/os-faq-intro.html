@@ -1,0 +1,114 @@
+
+<html>
+<head>
+	<title>Operating Systems FAQ :: Introduction</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="introduction">Introduction</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>There seems to be quite a few people out there who
+        want to create their own Operating System (OS), and more
+        power to them!! ^_^ The aim of this Frequently Asked
+        Questions (FAQ) is to hopefully provide enough
+        information to point people off in the right direction.
+<P>This
+        FAQ does not aim to teach you how to program a
+        multitasking, multithreaded, distributed micro kernel OS,
+        nor how to use C, C++ or any other programming language.</P>
+<P><STRONG>*SOME* knowledge of protected
+        mode (for i386 machines) is assumed. Sorry.</STRONG></P>
+<P>This FAQ does concentrate on using GCC compiler
+        however.</P>
+<P>This FAQ is aimed at hobbyist programmers who just
+        want to play around at creating an OS, actual theory on
+        operating systems design and implementation is ignored
+        ^_^. If you know it, good for you, if you don't, don't
+        worry.</P>
+<P>This FAQ is mostly a response to all the questions
+        that appeared on the Operating System message board run
+        by Josh McDonald.</P>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="getting_started">Getting Started</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>First things first, Its best to have a good setup of
+        GCC on your system. Linux automatically has all the
+        utilities you could want but for a MS-DOS DJGPP
+        installation, you may need to download some extra files.
+<P>Most
+        of these files are secondary and may only be used once or
+        twice but they come in very handy.</P>
+			<UL>
+				<LI>SED
+				<LI>GNU binutils
+				<LI>GNU File Utils
+				<LI>Grep
+				<LI>Patch / Diff
+				<LI>RCS / CVS
+				<LI>SH Utils / bash
+				<LI>Perl</LI>
+			</UL>
+<P>This assumes you already have GCC, GPP, LD, etc.</P>
+<P>It is highly recommended you get NASM assembler too.</P>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="what_bits_cant_i_make_in_c">What bits can't I make in C?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Depending on how you go about building your OS, you
+        can't build your bootsector (bootloader) code in C, you
+        have to resort to using someone else's code, or write your
+        own code in assembler, be that in x86 Intel style or
+        AT&amp;T GNU style assembly language.
+<P>There is also a
+        few CPU specific operations you cannot write in C, those
+        being Interrupt Service Routines that return with IRET
+        (on i386 machines) opcodes and other functions such as
+        commands to load the GDT (i386) can be inlined but still
+        require using assembly.</P>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="what_order_should_i_make_things_in">What order should I make things in?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>This is a style question. You can start at the start
+        and dig straight in by writing a bootsector then write a
+        minimal kernel and build from there. Or you can write
+        bits and pieces in no specific order and just put them
+        together at the very end. There is probably no right or
+        wrong way to go about doing it.
+<P>Myself, I started at
+        the start and did the boot sector, wrote a tiny micro
+        kernel loader, etc. I like to test and play with it as I
+        develop it, I like to see it working.</P>
+		</TD>
+	</TR>
+</TABLE>
+
+
+
+</body>
+</html>

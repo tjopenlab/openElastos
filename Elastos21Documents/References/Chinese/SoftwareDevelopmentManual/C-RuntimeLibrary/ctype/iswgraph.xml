@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\iswgraph">iswgraph</sample>
+    <title>isgraph iswgraph</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>判断字符是否是可打印的字符(除空格外)。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>isgraph</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>待判断的字符</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>iswgraph</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+              
+            </func_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>如果c是一个非空格的其它可打印字符,则isgraph返回一个非0值。如果c是一个非宽空格字符的其它可打印宽字符,iswgraph返回一个非0值。如果c不满足这个测试条件则函数返回0。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>isgraph</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>iswgraph</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+    
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* isgraph.cpp: This program uses isprint to verify c
+ * whether it is a printable character except blank.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+      {
+        int c;
+        
+        c=&apos;a&apos;;
+        printf(&quot;%c %s\n&quot;,c,isgraph(c)?&quot;is a printable character.&quot;:&quot;is not a printable character.&quot;);
+        c=&apos; &apos;;           // 0x20
+        printf(&quot;&apos;%c&apos; %s\n&quot;,c,isgraph(c)?&quot;is a printable character.&quot;:&quot;is not a printable character.&quot;);
+        c=0x7f;
+        printf(&quot;%c %s\n&quot;,c,isgraph(c)?&quot;is a printable character.&quot;:&quot;is not a printable character.&quot;);
+        
+        return 0;
+      }
+</pre>
+    </example>
+<result>
+a  is a printable character.
+&apos; &apos; is not a printable character.
+△ is not a printable character.
+</result>
+
+    
+</manpage>

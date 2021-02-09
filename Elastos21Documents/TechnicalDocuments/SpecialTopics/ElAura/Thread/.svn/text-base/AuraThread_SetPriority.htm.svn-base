@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+<TITLE>
+AuraThread_SetPriority
+</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<h3>
+&nbsp;AuraThread_SetPriority
+</h3>
+<p></p>
+</div>
+<p>
+			Sets the priority of a thread.
+        </p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">
+AURA_API AuraThread_SetPriority(</TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD>/*[in]*/<font class="datatype">ThreadPriority</font></TD>
+<TD class="param">priority</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype" height="21">)
+                    
+                ;</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<h4>Parameters</h4>
+<DL><DT class="param" style="color:#222222;margin-left:42">priority</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+			        	A ThreadPriority enum data that determines the priority.
+                    <BR /><BR />
+</font></DD>
+</DL>
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return Value </TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">Function succeeds in setting the priority of a thread.</TD>
+</TR>
+<TR><TD class="cell">E_INVALID_ARGUMENT</TD>
+<TD class="cell">Invalid argument(s)</TD>
+</TR>
+<TR><TD class="cell">E_THREAD_ALREADY_FINISHED</TD>
+<TD class="cell">The thread is already exited.</TD>
+</TR>
+</table></p>
+<p>　</p>
+<h4>Remarks</h4>
+<p>
+			Thread priorities are integers ranging between ThreadPriority_Lowest and ThreadPriority_Highest. If parameter
+			priority exceeds the range, the function will return E_INVALIDARG.
+		</p>
+<p>
+			At any given point in time, when multiple threads are ready to be executed, the runtime system chooses the
+			runnable thread with the highest priority for execution. A lower priority thread starts execution, only
+			when that thread exits, yields, or becomes not runnable for some reason. If two threads of the same priority
+			are waiting for the CPU, the scheduler chooses the thread which is created first, to run.
+		</p>
+<p>
+			If the associated thread has been finished, the function has no effect and return E_THREAD_STOPPED.
+		</p>
+<p>
+			The default priority is ThreadPriority_Normal.
+		</p>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Priority</TD>
+<TD class="cell">Value</TD>
+</THEAD>
+<TR><TD class="cell">ThreadPriority_Lowest</TD>
+<TD class="cell">1</TD>
+</TR>
+<TR><TD class="cell">ThreadPriority_BelowNormal</TD>
+<TD class="cell">2</TD>
+</TR>
+<TR><TD class="cell">ThreadPriority_Normal</TD>
+<TD class="cell">3</TD>
+</TR>
+<TR><TD class="cell">ThreadPriority_AboveNormal</TD>
+<TD class="cell">4</TD>
+</TR>
+<TR><TD class="cell">ThreadPriority_Highest</TD>
+<TD class="cell">5</TD>
+</TR>
+</table></p>
+<h4>Requirements</h4>
+<p>
+<table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>
+Elastos 2.0 or later.
+</td>
+<td></td>
+</tr>
+</table></p>
+<script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>

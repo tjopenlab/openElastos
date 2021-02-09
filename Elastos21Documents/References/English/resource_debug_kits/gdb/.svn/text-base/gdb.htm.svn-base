@@ -1,0 +1,87 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Program Debugging Tool</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+    <h2>Graphics Interface Debugger GDB</h2>
+        <p>
+        	GDB (GNU&nbsp;symbolic&nbsp;debugger), a GNU debugger is a free software which is protected by 
+        	general purpose license (GPL). GDB is powerful with two debugging modes: local debugging, 
+        	and remote cross debugging for embedded systems. This document will only introduce 
+        	remote cross debugging. For more details about GDB, please refer <a class="style1" 
+        	href="http://www.gnu.org/software/gdb/" target="_blank">http://www.gnu.org/software/gdb/</a> 
+        	related documentation for details.
+        </p>
+
+        <h3>Prerequisite Knowledge</h3>
+            <p>Readers are expected to have debugging related knowledge.</p>
+
+        <h3>GDB Remote Cross Debugging Principle </h3>
+            <p>
+            	GDB remote cross debugger is a debugger made for embedded systems. The debugging process is 
+            	accomplished over two computers. Communication between host and target is accomplished through 
+            	serial port (COM1, debugging port), network or other remote communication medium. Cross-debugging 
+            	means, debugging the target program on remote machine through debugger located on the host machine.
+            </p>
+            <p>
+            	<a name="stub"></a>A chunk of code was put into Elastos kernel in advance, this code is called <b>Stub</b>. 
+            	The stub program has two main purposes: The first purpose is to read/write target system memory and 
+            	registers. The second purpose is to communicate with the host.
+            </p>
+            <p>
+            	Stub and GDB communicates through GDB serial protocol. GDB serial protocol RSP(Remote&nbsp; 
+            	Serial&nbsp;Protocol) is a message based ASCII code protocol, which includes read/write memory, 
+            	search registers, program control commands. It is illustrated by the following diagram: 
+            </p>
+            <center><img src="images/gdb2.jpg"></center>
+            <p>
+            	Via STUB, we can use GDB not only to debug Elastos 2.0 applications, but also to debug Elastos 2.0 
+            	kernel. STUB runs in operating system kernel mode, it does not consume too much system resources, 
+            	but it is very important in engineering. Most software engineers are getting annoyed with system 
+            	crashes, and will start biting nails because they have no other choice than restart. But the 
+            	moment you press "Reset" key, you will loose site state of system crash, also loose chance to find 
+            	out the cause of system crash. In Elastos, when the whole system make a mistake or when an exception 
+            	is occurred (namely system crash), if the stub can run, the system programmer can use host to debug 
+            	target. This feature is extremely useful to find out some important errors of systme softwares, 
+            	applications, or to find out minimum repetitiveness of software error.
+            </p>
+
+        <h3>GDB Run-Time Environment</h3>
+            <p>
+            	As shown in the following diagram, GDB run-time environment needs a host connection to a target 
+            	through serial cable (RS232C).
+            </p>
+            <center><img src="images/gdb3.jpg"></center>
+            <table align=center>
+                <thead>
+                    <td>Host Running</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp</td>
+                    <td>Target Running</td>
+                </thead>
+                <tr>
+                    <td>
+                    Windows&nbsp;2000 Operating System<br>
+                    Elastos SDK<br>
+                    gdb
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp</td>
+                    <td>Elastos debugger and stub (communicate through COM) </td>
+                </tr>
+            </table>
+            <p>
+            	The gdb command running on host is a batch command. It starts up with gdb insight with graphical 
+            	interface. Both kernel and application debugging can be made easier by using insight graphical 
+            	interface. Insight will check if target is in debug mode before starting up. If it turns 
+            	into debug mode, insight will quickly establish connection with target machine, and pop up a 
+            	graphical debug window. Otherwise, insight will start up slowly.
+            </p>
+
+
+<script>footer("english")</script>
+</body>
+</html>

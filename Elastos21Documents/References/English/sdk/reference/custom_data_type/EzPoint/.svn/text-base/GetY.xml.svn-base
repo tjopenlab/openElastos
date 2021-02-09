@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding = "GB2312"?>
+<?xml:stylesheet type = "text/xsl" href = "/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url = "datatypes\EzPoint\GetY"> GetY </sample>
+    <volume> Common data structure </volume>
+    <interface> EzPoint </interface>
+    <method> GetY </method>
+
+    <description>
+        <para> This method is used to get the EzPoint object's Y-axis co-ordinate. </para>
+    </description>
+    <return>
+        <para> Returns the EzPoint object's Y-axis co-ordinate. </para>
+    </return>
+
+    <syntax>
+        <return_val> long </return_val>
+        <NoArguments/>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include "EzPoint.h"
+#include "stdio.h"
+
+int __cdecl main()
+{
+    EzPoint ThisPoint(1, 2);
+
+    EzPoint ThatPoint(ThisPoint);
+    long x = ThatPoint.GetX();
+    long y = ThatPoint.GetY();
+    printf("ThatPoint x=%d, y=%d", x, y);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+ThatPoint x=1, y=2
+]]>
+    </result>
+
+    <references>
+    <reference>
+        <ref_name> EzPoint::SetY </ref_name>
+        <ref_url> SetY </ref_url>
+    </reference>
+    </references>
+
+</manpage>

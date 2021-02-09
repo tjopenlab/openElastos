@@ -1,0 +1,64 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> Ezregsvr </title>
+    <volume>Commands Supported by Shell</volume>
+
+    <description>
+        <para>
+        	Creates a new component instance according to configuration file rules and registers it in
+        	the naming service.
+        </para>
+    </description>
+    <remarks>
+        <para>
+        	This command creates a new component instance according to configuration file rules and registers
+        	them to naming service. A parameter is needed at run-time, it is used to specify the configuration
+        	file used by this command.
+        </para>
+        <para>Configuration file rules as the following: </para>
+        <para>
+        	Put every line as a processing unit, each effective line should be ended with ";", line-continuation
+        	character is temporarily not supported. Lines begin with "#" are treated as comments. "RegisterService"
+        	keyword is used to define a naming service registration; it needs three parameters: Component EZCLSID,
+        	IID to register the interface and service name. Parameters are separated by ",". EZCLSID and IID are defined
+        	similar to automatic CAR code generating tool; it does not support line-continuation character. So if you
+        	cut and paste the automatically generated EZCLSID, IID code to configuration file, you need to delete
+        	line-continuation characters manually.
+        </para>
+        <para>
+        	Currently <b>Elastos</b> supports only reading files packaged in elastos.img. Try not to
+        	define configuration file with more than 4K in size.
+        </para>
+        <para>
+        	After naming service defined in configuration file is successfully registered, this command will go into
+        	sleep state, but it does not exit. So it is recommended to run the program in background mode.
+        </para>
+    </remarks>
+    <examples>
+        <example>
+            <eg_line>ezregsvr services.cfg</eg_line>
+            <eg_note>
+            	Through the configuration file services.cfg, naming service "tcpip" and "filesys" are registered
+            	into the system. Sample services.cfg configuration file:
+            </eg_note>
+            <eg_result><![CDATA[
+	CLSID_CSocketService = {{0xA7470725,0x6669,0x4F1D,{0x89,0x34,0x4C,0x6D,0x9F,0xAA,0x66,0x90}}, L"tcpip.dll"};
+	IID_ISocketService = {0xB4C5FF16,0x6E04,0x44E0,{0x9E,0x22,0xB5,0x32,0x0D,0xB8,0x93,0x4A}};
+	CLSID_CBasicFileSystem = {{0x00002125,0x0000,0x0000,{0xC0,0x00,0x00,0x00,0x00,0x00,0x00,0x66}}, L"vfs.dll"};
+	IID_IBasicFileSystem = {0x00002124,0x0000,0x0000,{0xC0,0x00,0x00,0x00,0x00,0x00,0x00,0x66}};
+
+	# This line is comment
+	RegisterService(CLSID_CSocketService, IID_ISocketService, "tcpip");
+	RegisterService(CLSID_CBasicFileSystem, IID_IBasicFileSystem, "filesys");
+					]]>
+			</eg_result>
+       </example>
+    </examples>
+
+</manpage>

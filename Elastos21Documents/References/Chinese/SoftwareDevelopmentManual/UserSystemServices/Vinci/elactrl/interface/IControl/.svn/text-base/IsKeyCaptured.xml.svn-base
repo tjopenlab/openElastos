@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> IsKeyCaptured </method>
+    <description>
+        <para>
+            判断指定键值是否已被其它控件设置成需要捕获的键值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> keyCode </param_name>
+                <param_note>
+                    <para>
+按键值</para>
+                </param_note>
+            </api_param>        
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Boolean* </param_type>
+                <param_name> captured </param_name>
+                <param_note>
+                    <para>
+指向 Boolean 型的指针，用于判断键值是否已被其它控件设置成需要捕获，不能为 NULL；若为TRUE，则该键值已被其它控件设置成需要捕获的键值，否则为 FALSE</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        OUT 参数不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        一般在为控件设置需要捕获的键值前调用此方法，以确定该键值是否可以被捕获。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CaptureKey</ref_name>
+        <ref_url>CaptureKey</ref_url>
+    </reference>
+    <reference>
+        <ref_name>UncaptureKey</ref_name>
+        <ref_url>UncaptureKey</ref_url>
+    </reference>
+</references> 
+</manpage>

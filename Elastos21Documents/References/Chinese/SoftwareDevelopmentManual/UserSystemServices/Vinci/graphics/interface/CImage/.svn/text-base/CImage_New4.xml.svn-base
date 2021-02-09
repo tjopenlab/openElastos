@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<method>CImage::New </method>
+    <description>
+        <para>
+            创建图片对象。
+        </para>
+    </description>
+    	
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+图片宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+图片高度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> PixelFormat </param_type>
+                <param_name> format </param_name>
+                <param_note>
+                    <para>
+像素格式， <link url="../../datatype/PixelFormat.htm">           PixelFormat             </link> 枚举数据类型                  </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IImage** </param_type>
+                <param_name> image </param_name>
+                <param_note>
+                    <para>
+指向图片对象的 <link url="../IImage.htm">IImage</link>接口指针的指针，用于获取图片对象IImage接口指针 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果PixelFormat无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+    <para>
+    	      更多返回值信息，参见 <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+    <requirements>
+                <system>
+            <system_name>
+Elastos操作系统           </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+<remarks>
+	      <para>
+             该方法用于创建一个空的图片对象；  
+        </para>
+        <para>
+             PixelFormat暂时只支持PixelFormat_Unknown、PixelFormat_RGB24、PixelFormat_ARGB三种格式；  
+        </para>    
+        <para>
+             举例声明一个图片：    ec = CImage::New(120, 120, PixelFormat_RGB24, &amp;m_pImage);   
+        </para>
+</remarks>
+</manpage>

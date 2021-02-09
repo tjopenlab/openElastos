@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicFile</interface><method> SetAccessMode </method>
+    <description>
+        <para>
+            设置操作对象的读写模式。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> FileAccessMode </param_type>
+                <param_name> mode </param_name>
+                <param_note>
+                    <para>
+获取文件读写模式，参见<link url="../../FileSystemDataType/FileAccessMode.htm">FileAccessMode</link> 数据类型                   </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果参数mode非法，返回E_INVALID_ARGUMENT; </para>
+    <para>如果读写模式异常，返回E_FS_IO_ERROR; </para>
+    <para>当文件的共享方式被其他用户设置为 FileShareMode_Deny 或 FileShareMode_Read 时，返回E_FS_FILE_BUSY。</para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+</manpage>

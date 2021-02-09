@@ -1,0 +1,46 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--const </title>
+</head>
+
+<body>
+	<h2>const</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于在CAR文件中定义整型常量。定义的常量可以在CAR文件中使用，也可以在自动生成代码框中的.cpp和.h文件中使用。 </p>
+	
+	    <b>语法 </b>
+	    	<p><b>const</b> ConstantName = IntegerLiteral   </p>
+
+	    <b>使用范例 </b>
+<pre class= code>
+module 
+{
+    ...
+    const SIZE = 16;
+    struct MyStruct{
+        WChar wchName[SIZE];
+        ...
+    }
+    
+    interface IMyStruct {
+        ECode Func([in] MyStruct eMyStruct);
+    }
+    ...
+}
+
+</pre>
+	        <p>上述示例定义了常量SIZE，用于指定结构体成员wchName数组的长度。 </p>
+
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

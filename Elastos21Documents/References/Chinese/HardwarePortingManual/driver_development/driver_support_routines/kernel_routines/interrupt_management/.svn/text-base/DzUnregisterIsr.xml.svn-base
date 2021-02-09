@@ -1,0 +1,53 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>中断管理</volume>
+    <title>DzUnregisterIsr</title>
+    <routine_idx> ../interrupt_management.htm </routine_idx>
+
+    <description>
+        <para>为指定的硬件中断注销相应的中断服务例程。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> irq_t</param_type>
+                <param_name> irq </param_name>
+                <param_note>
+                    <para>所指定的硬件中断的中断号</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本函数为指定的硬件中断注销相应的中断服务例程，调用本函数前必须先确保先前已经为指定的硬件中断注册了相应的中断服务例程。相应的中断服务例程一旦被注销，系统将不会再响应此指定的硬件中断（即，指定的硬件中断将重新回到未激活状态）。</para>
+        <para>如果曾经为其它硬件中断注册过相同的中断服务例程，那么为指定的硬件中断注销相应的中断服务例程将不会影响到其它硬件中断。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>DzRegisterIsr</ref_name>
+            <ref_url>DzRegisterIsr</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,109 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--constructor </title>
+</head>
+
+<body>
+	<h2>constructor</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于在构件中定义构造函数,使CAR构件类在实例化时传入初始化参数。 </p>
+	
+	    <b>语法 </b>
+	    	<p><b>constructor</b> ([Parameters])  </p>
+	    <b>使用说明 </b>
+	        <p>1．构造函数可以重载。 </p>
+	        <p>2. 构造函数参数只能具有<a class="style1" href= "..\attributes\attributes_in.htm">“in”属性</a>，不能具有<a class="style1" href= "..\attributes\attributes_out.htm">“out”属性</a>。 </p>
+	        <p> </p>
+	    <b>使用范例 </b>
+<pre class= code>
+module helloDemo.dll 
+{
+    interface IHello {
+        Hello();
+    }
+
+    class CHello {
+        <b>constructor()</b>;
+        <b>constructor([in] WString wstr);</b>
+        interface IHello;
+    }
+}
+
+</pre>
+	        <p>编译helloDemo.car后会为这两个构造函数生成如下代码框架： </p>
+<pre class= code>
+ECode CHello::<b>constructor</b>()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode CHello::<b>constructor</b>(
+    /* [in] */ WString wstr)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+</pre>
+	        <p>可在该代码框架中添加应用实现代码如下： </p>
+<pre class= code>
+ECode CHello::constructor()
+{
+    <b>CConsole::WriteLine("call constructor();");</b>
+    return <b>NOERROR</b>;
+}
+
+ECode CHello::constructor(
+    /* [in] */ WString wstr)
+{
+    <b>CConsole::WriteLine("call constructor(WString wstr);");</b>
+    return <b>NOERROR</b>;
+}
+
+</pre>
+	        <p>在客户端可调用相应的New函数： </p>
+<pre class= code>
+#include "keyDem.h"
+using namespace Elastos;
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    IHello *pIHello;
+    ECode ec;
+    ec = <b>CHello::New(&pIHello);</b>
+
+    if (FAILED(ec)) return ec;
+
+    pIHello->Release();
+
+    ec = <b>CHello::New(L"Hello", &pIHello);</b>
+    
+    if (FAILED(ec)) return ec;
+
+    pIHello->Release();
+    
+    CProcess::Exit(0);
+    return NOERROR;
+}
+
+</pre>
+	        <p>运行结果如下： </p>
+<pre class= code>
+call constructor();
+call constructor(WString wstr);
+</pre>
+
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

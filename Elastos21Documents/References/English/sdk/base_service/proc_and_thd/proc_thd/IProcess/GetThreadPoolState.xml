@@ -1,0 +1,83 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IProcess</interface><method> GetThreadPoolState </method>
+    <description>
+        <para>
+			Gets the state of thread pool. 
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> *puCapacity </param_name>
+                <param_note>
+                    <para>
+						Pointer to the capacity of thread pool.
+                    </para>
+                </param_note>
+            </api_param>       
+			
+			<api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> *pcThreads </param_name>
+                <param_note>
+                    <para>
+						Pointer to the number of threads in thread pool.
+                    </para>
+                </param_note>
+            </api_param>                 
+        </parameters>
+    </syntax>
+	
+	<return>
+	<table>            
+	    <th>            
+		<td>Return Value </td>            
+		<td>Hex Value</td>
+		<td>Description</td>            
+	    </th>            
+	    <tr>            
+		<td>NOERROR</td>            
+		<td>0x00000000</td>
+		<td>Function succeeds in getting the state of the thread pool.</td>            
+	    </tr>            
+	    <tr>            
+		<td>E_INVALIDARG</td>            
+		<td>0x80070057</td> 
+		<td>Invalid argument(s)</td>           
+	    </tr>            
+<para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>           	 
+	</table>            	
+    </return>
+
+	<remarks>
+		<para>
+			The two parameters puCapacity and pcThreads should not be NULL at same time. 
+		</para>
+		<para>
+			   The function is mainly used to get the state information of thread pool of the associated process. 
+			   The maximum number of idle threads in the thread pool is limited by pool capacity. The default value 
+			   is 3; however, we can change the value through interface method <link url="SetThreadPoolCapacity.htm">
+			   SetThreadPoolCapacity</link> ([in] uint uCapacity). The count of threads in the pool is available 
+			   through the parameter pcThreads. 				   
+		</para>
+		
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.            
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

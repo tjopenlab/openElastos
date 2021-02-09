@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> TApplet方法介绍 </volume>
+    <interface>TApplet</interface>
+    <method> Main </method>
+
+    <description>
+        <para>applet的主函数，默认直接返回E_NOT_IMPLEMENTED。用户可以重载此函数。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+        <api_param>
+            <param_type> /* [in] */ const BufferOf&lt;WString&gt; &amp; </param_type>
+            <param_name>wargs </param_name>
+            <param_note>
+                <para>IApplet::Start方法的参数将会被传递到此处。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <remarks>
+        <para>当applet的Main函数返回NOERROR即0时applet进入消息循环。注意：用户的ElastosMain也有自己的消息循环。</para>
+    </remarks>
+
+</manpage>

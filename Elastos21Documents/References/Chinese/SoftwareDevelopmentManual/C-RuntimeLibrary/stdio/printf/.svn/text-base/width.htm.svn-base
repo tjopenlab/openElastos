@@ -1,0 +1,21 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>width信息段说明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>width信息段说明</h2>
+    <p>format格式规范的第二个可选项是width，width信息段是一个非负十进制整数，用以控制字符显示的最小个数。如果输出值的字符数比指定的width值小，则在值的前面或末尾填充空格（取决于flag是否被指定为左对齐方式），直到达到最小width值。如果width前有一个0，则在达到最小width值前，一直在输出值前填充0（这种方式对左对齐方式的数字无用）。</p>
+    <p>width信息段不会改动任何一个值，如果输出值的字符数比width值大，或者没有给出width值，则显示所有字符的值（取决于精度）</p>
+    <p>如果width信息段是一个星号（*），则<a class="style1" href="../wprintf.htm">printf</a>函数的参数列表中必须提供int型参数替代width值。该int型参数必须放在参数列表中需格式化显示的值之前。如果width值不存在或太小，同样不会改动任何一个值，如果转换结果比width值宽，转换结果依然全部显示出来。</p>
+
+<script>footer("KoreTide")</script>
+</body>
+
+</html>

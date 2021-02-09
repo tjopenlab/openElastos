@@ -1,0 +1,103 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\ezstr\ReAlLen">ReAllocStringLen</sample>
+    <volume> Common data structure </volume>
+    <interface> EzStr </interface>
+    <method> ReAllocStringLen </method>
+
+    <description>
+        <para> Allocates indicated length memory space for the string again, initialized with sz and releases the original memory space allocated for the string.</para>
+    </description>
+
+    <syntax>
+        <return_val> static ECODE </return_val>
+        <parameters>
+        <api_param>
+            <param_type> EzStr&amp;</param_type>
+            <param_name> str </param_name>
+            <param_note>
+                <para> The EzStr, which already has memory space </para>
+            </param_note>
+        </api_param>
+
+        <api_param>
+            <param_type> const wchar_t* </param_type>
+            <param_name> sz </param_name>
+            <param_note>
+                <para> String of wchar_t type. </para>
+            </param_note>
+        </api_param>
+
+        <api_param>
+            <param_type> int </param_type>
+            <param_name> cch </param_name>
+            <param_note>
+                <para> The number in character to be allocated. </para>
+            </param_note>
+        </api_param>
+       </parameters>
+    </syntax>
+
+    <return>
+        <para>If succeed, S_OK is returned; Otherwise E_FAIL is returned.</para>
+    </return>
+
+    <remarks>
+        <para>If cch is lesser than the actual length of the string, then the substring which is beyond cch is deleted; If cch is 0, then a pointer points to an empty string is returned.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStr str1 = EzStr::AllocString(L"Hello, world!");
+
+    printf("Before change,str1 is: %S\n", (wchar_t*)str1);
+    ECODE ec = EzStr::ReAllocStringLen(str1, L"Now,world,hello!", 15);
+    if (!FAILED(ec)) {
+        printf("call ReAllocStringLen (cch=15),str1 is: %S\n", (wchar_t*)str1);
+    }
+    else {
+        printf("ReAllocString failed!\n");
+    }
+    EzStr::FreeString(str1);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+Before change,str1 is: Hello, world!
+call ReAllocStringLen (cch=15),str1 is: Now,world,hello
+]]>
+    </result>
+
+    <references>
+    <reference>
+        <ref_name> AllocString</ref_name>
+        <ref_url> AllocString</ref_url>
+    </reference>
+    <reference>
+        <ref_name> AllocStringLen</ref_name>
+        <ref_url> AllocStringLen</ref_url>
+    </reference>
+    <reference>
+        <ref_name> FreeString</ref_name>
+        <ref_url> FreeString</ref_url>
+    </reference>
+    <reference>
+        <ref_name> ReAllocString</ref_name>
+        <ref_url> ReAllocString</ref_url>
+    </reference>
+    </references>
+
+</manpage>

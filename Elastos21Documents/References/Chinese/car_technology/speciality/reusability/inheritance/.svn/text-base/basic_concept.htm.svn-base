@@ -1,0 +1,538 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+    <title>基本概念</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>构件继承机制基本概念、关键字、基本函数</h2>
+        <p>基本概念：<a class="style1" href ="#构件继承">构件继承</a>、<a class="style1" href ="#构件重载">构件重载</a>、<a class="style1" href ="#基构件">基构件</a>、<a class="style1" href ="#派生构件">派生构件</a>、<a class="style1" href ="#虚接口">虚接口</a>。</p>
+        <p>关键字：<a class="style1" href ="#public">public</a>、<a class="style1" href ="#private">private</a>、<a class="style1" href ="#protected">protected</a>、<a class="style1" href ="#virtual">virtual</a>。</p>
+        <p>基本函数：<a class="style1" href ="#MyParent">XXXRef &MyParentXXX()</a>、<a class="style1" href ="#MyVirtual">XXXRef &MyVirtualXXX()</a>。</p>
+    <h3>基本概念</h3>
+        <p><a name="构件继承">构件继承</a>：类似于c++的类继承，但构件继承是接口级别的二进制继承。也使用<a class="style1" href ="#public">public</a>、<a class="style1" href ="#private">private</a>、<a class="style1" href ="#protected">protected</a>限制关键字，用于指示该接口是否提供给外界或派生类使用。例子1：在构件A中我们定义了构件CA。</p>
+        <pre class="code">
+
+module www.elastos.com/car/A.dll
+
+{
+    
+    interface IA {
+        ECODE AFunc();
+}
+
+    
+    class CA{
+        interface IA;
+    }
+}
+</pre>
+        <p>类CA，如下：</p>
+        <pre class="code">
+
+module www.elastos.com/car/B.dll
+
+{
+importlib("A.dll"); //导入构件A的元数据
+
+
+interface IB {
+        ECODE BFunc();
+}
+
+
+class CB : CA{     //构件类CB继承了构件类CA，那么构件类CB
+                   //就拥有了接口IA和IB
+        interface IB;
+    }
+}
+</pre>
+        <p><a name="构件重载">构件重载</a>:类似于c++的函数重载，在构件继承机制里指的是接口方法的重载。在重载接口方法时一 定要注意，接口方法的参数和返回值类型必须与基类定义的一样。否则，将变成一个新的接口方法，而不是重载。如上面的例子1，如果构件类CA的接口IA的接口函数AFunc的实现如下：</p>
+        <pre class="code">
+…………………..
+// CA.cpp
+
+ECODE CA::AFunc()
+{
+    // TODO: Add your code here
+    printf(“CA::Afunc\n”);
+    return S_OK;
+}
+
+………………………
+</pre>
+        <p>在构件B中，自动代码生成工具不会在CB.cpp里生成函数AFunc()的定义，其默认实现在_CB.cpp里，就是调用基构件类中CA::AFunc()的实现</p>
+        <p>客户程序如下：</p>
+        <pre class="code">
+#include <stdio.h>
+#import <B.dll>
+
+EXTERN_C int __cdecl wmain(int argc,wchar_t **argv)
+{
+    //基构件类接口函数调用
+    CARef aRef;
+    aRef.Instantiate();
+aRef.AFunc();
+
+    //派生构件类接口函数调用
+    CBRef bRef;
+    bRef.Instantiate();
+    bRef.AFunc();
+
+return 1;
+}
+</pre>
+        <p>在构件B中我们没有对接口函数IA::AFunc()进行重载，所以客户程序输出结果如下：</p>
+        <pre class="code">
+CA::Afunc
+CA::Afunc
+</pre>
+        <p>如果我们对构件B中的接口函数IA::AFunc()进行重载如下：</p>
+        <pre class="code">
+…………………..
+// CB.cpp
+
+ECODE CB::AFunc()
+{
+// TODO: Add your code here
+// override
+printf(“CB::AFunc\n”);
+    return S_OK;
+}
+
+………………………
+</pre>
+        <p>那么客户程序的输出结果就变成：</p>
+        <pre class="code">
+CA::Afunc
+CB::Afunc
+</pre>
+        <p><a name="基构件">基构件</a>：类似C++的基类，在构件继承机制里是指用户定义的一个构件类。如用户定义了一个构件类A, A被另一构件类B继承，相对构件类B，我们说构件类A为基构件或基构件类，有时我们也称为父构件或父构件类。</p>
+        <p><a name="派生构件">派生构件</a>:类似c++的派生类，在构件继承机制里是指用户定义的一个构件类，而此构件类继承了另外一个构件类。如用户定义了一个构件类A, A被构件类B继承，相对构件类A，我们说构件类B为派生构件或派生构件类, 有时我们也称为子构件或子构件类。</p>
+        <p><a name="虚接口">虚接口</a>：在构件继承机制里，采用关键字virtual修饰的接口我们称为虚接口。虚接口有着类似c++函数的特性，就是运行时的多态性。在程序运行时，若在基构件里调用虚接口方法，程序会跳到派生构件里相应虚接口的方法中执行，而派生构件可以重载和直接调用基构件中相应虚接口的方法的实现。下面我们通过例子2来理解虚接口的运行时的多态性。</p>
+        <p>构件A的samplea.car文件如下：</p>
+        <pre class="code">
+
+module www.elastos.com/car/samplea.dll
+
+{
+
+    interface ICommonInterface {
+        ECODE PrintCommon();
+}
+
+    interface IVirtualInterface {
+        ECODE VirtualFunc();
+}
+
+    [  uuid(aed8e1d8-0bf4-4859-b554-761177abc7d5) ]
+    class CA{
+        virtual interface IVirtualInterface; //虚接口
+	interface ICommonInterface;          //普通接口，非虚接口
+    }
+}
+</pre>
+        <p> CA.cpp如下：</p>
+        <pre class="code">
+#include "CA.h"
+#include "_CA.cpp"
+
+DECLARE_CLASSFACTORY(CA)
+
+ECODE CA::VirtualFunc()
+{
+    return E_NOTIMPL;// 此虚接口方法在基构件类里不实现，让派生构件重载
+}
+
+ECODE CA::PrintCommon()
+{
+// 调用IvirturalInterface接口方法VirtualFunc()，会跳到派生构件重载的VirtualFunc()中
+//执行,即执行函数CB::VirtualFunc()
+    MyVirtualIVirtualInterface().VirtualFunc();
+    return S_OK;
+}
+</pre>
+        <p>CA.cpp中使用了<a class="style1" href ="#MyVirtual">MyVirtualXXX()</a>函数，其中XXX表示某个虚接口名称，这个函数返回的是派生构件重载了的虚接口智能指针的引用。</p>
+        <p>构件B的sampleb.car文件如下：</p>
+        <pre class="code">
+
+module www.elastos.com/car/sampleb.dll
+
+{
+    importlib("samplea.dll");
+
+    class CB : CA {
+    }
+}
+</pre>
+        <p>CB.CPP如下：</p>
+        <pre class="code">
+#include "CB.h"
+#include "_CB.cpp"
+#include <stdio.h>
+
+DECLARE_CLASSFACTORY(CB)
+
+ECODE CB::VirtualFunc()
+{
+    // TODO: Add your code here
+    printf("CB::VirtualFunc()\n");
+    return S_OK;
+}
+</pre>
+        <p>构件类CB重载了IVirtualInterface::VirtualFunc(),没有重载ICommonInterface::PrintCommon()；</p>
+        <p>客户程序如下：</p>
+        <pre class="code">
+#include <stdio.h>
+#import <sampleb.dll>
+
+EXTERN_C int __cdecl wmain(int argc, wchar_t **argv)
+{
+    CBRef bRef;
+    bRef.Instantiate();
+    bRef.VirtualFunc(); //调用的是CB::VirtualFunc()
+    bRef.PrintCommon(); //调用的是CA::PrintCommon()
+
+    return 1;
+}
+</pre>
+        <p>客户程序bRef.VirtualFunc()调用的是构件类CB重载了的VirtualFunc()；而bRef.PrintCommon()调用的是构件类CA的PrintCommon()，而CA::PrintCommon()调用的是虚接口函数IVirtualInterface::VirtualFunc(),这样会最终调用构件类CA的派生构件CB重载了的CB::VirtualFunc()，所以客户程序最终的输出接口如下：</p>
+        <pre class="code">
+CB::VirtualFunc()
+CB::VirtualFunc()
+</pre>
+    <h3>关键字</h3>
+        <p>专门用于构件继承机制的关键字有: <a class="style1" href ="#public">public</a>、<a class="style1" href ="#private">private</a>、<a class="style1" href ="#protected">protected</a>、<a class="style1" href ="#virtual">virtual</a>。前三者用于用户在定义构件类时，指示定义了的接口是否提供给外界或派生构件使用,而virtual关键字用于用户来定义一个<a class="style1" href ="#虚接口">虚接口</a>。<font color="red">要特别说明的是，这几个关键字在cdl语言中是属于构件类的属性，只能在定义构件类的时候修饰接口</font>。这几个关键字非常类似于c++中相应的关键字，但在构件继承机制里却有很大区别，下面分别介绍。</p>
+        <p><a name="public">public</a>:在构件类里用public修饰的接口，说明此接口可以被外界使用，也就是说外界能得到此接口的智能指针，并通过此接口的智能指针能调用此接口的接口函数。用public修饰的接口还能够被virtual所修饰。在默认的情况下，用户在定义构件类时，不使用<a class="style1" href ="#public">public</a>、<a class="style1" href ="#private">private</a>、<a class="style1" href ="#protected">protected</a>来修饰的接口都为public属性。
+        <p>在例子2中，构件A的两个接口IVirtualInterface和ICommonInterface都默认为public属性，都可给外界使用，所以客户程序能通过对象类的类智能调用这两个接口的方法。</p>
+        <p><a name="private">private</a>:在构件类里用private修饰的接口,该接口不能被别的构件类继承，不能被外界访问，也不能使用virtual关键字修饰。一般用于定义那些不想暴露给客户而只在构件内部使用的接口，就象c++类里定义的私有成员一样。</p>
+        <p>在例子2中，如果构件类A实现的接口ICommonInterface属性为private修饰，即</p>
+        <pre class="code">
+
+module www.elastos.com/car/samplea.dll
+
+{
+
+    interface ICommonInterface {
+        ECODE PrintCommon();
+}
+
+
+    interface IVirtualInterface {
+        ECODE VirtualFunc();
+}
+
+
+    class CA{
+        virtual interface IVirtualInterface;
+    private:
+	interface ICommonInterface; //私有接口，不能被外界使用，不能被派生构件继承
+    }
+}
+</pre>
+        <p>那么对于构件A的派生构件B,就仅仅继承了接口IVirtualInterface,构件A和构件B暴露给外界的都只有IVirtualInterface接口，ICommonInterface接口方法只能在构件A的内部使用。</p>
+        <p><a name="protected">protected</a>:在构件类里用protected修饰的接口,该接口只能用于该构件的派生构件当中，而不能提供给外界使用，就象c++类里定义的被保护成员一样。</p>
+        <p><font color="red">要注意的是，如果接口为事件接口，不能用protected属性来修饰</font>。</p>
+        <p>在例子2中，如果构件类A实现的接口ICommonInterface属性为protected修饰，即</p>
+        <pre class="code">
+
+module www.elastos.com/car/samplea.dll
+
+{
+
+    interface ICommonInterface {
+        ECODE PrintCommon();
+}
+
+
+    interface IVirtualInterface {
+        ECODE VirtualFunc();
+}
+
+
+    class CA{
+        virtual interface IVirtualInterface;
+    <font color="red">protected：</font>
+	<font color="red">interface ICommonInterface; //被保护接口，不能被外界使用，可被派生构件继承，其</font>
+                                    <font color="red">//接口方法可被基构件和派生构件调用</font>
+                     }
+}
+</pre>
+        <p>那么对于构件A和其派生构件B都拥有IVirtualInterface和ICommonInterface这两个接口，但被保护的接口ICommonInterface没有暴露给外界，其接口方法只能在构件A和其派生构件B中被调用，下面的客户程序对ICommonInterface接口方法的调用是错误的。</p>
+        <pre class="code">
+#include <stdio.h>
+#import <sampleb.dll>
+
+EXTERN_C int __cdecl wmain(int argc, wchar_t **argv)
+{
+    CBRef bRef;
+    bRef.Instantiate();
+    bRef.VirtualFunc(); //调用的是CB::VirtualFunc()
+<font color="red">bRef.PrintCommon(); //错误的调用，ICommonInterface是被保护的接口，</font>
+                    <font color="red">//外界不能使用此接口功能</font>
+    return 1;
+}
+</pre>
+        <p><a name="virtual">virtual</a>:在构件类里用virtual修饰的接口，该接口即为虚接口。在程序运行时，若在基构件里调用虚接口方法，程序会跳到派生构件里相应虚接口的方法中执行，而派生构件可以重载和直接调用基构件中相应虚接口的方法的实现。</p>
+        <p>用virtual关键字修饰的接口实现了构件级别的多态性，非常类似于c++虚函数的多态性。具体请参看<a class="style1" href ="#虚接口">虚接口</a>的介绍。</p>
+    <h3>基本函数</h3>
+        <p>这里说的基本函数是构件继承机制提供的用于开发构件的两个基本函数，它们是：</p>
+        <p><a class="style1" name="MyParent">XXXRef &MyParentXXX():</a>获取构件继承机制提供的指向父构件的接口XXX的智能指针的引用,在子构件里可调用此函数。命名规则是在接口XXX名前拼上MyParent，表示父构件类所实现的相应接口。所有从父构件类继承下来的public或protected关键字修饰的接口都有与之对应的MyParent函数，方便在重载或实现其它接口方法时调用父构件类的接口方法实现。</p>
+        <p><a class="style1" name="MyVirtual">XXXRef &MyVirtualXXX():</a>对于拥有虚接口的构件类，都可调用此函数来得到指向派生构件中对应的XXX接口智能指针的引用。命名规则是在虚接口名前拼上MyVirtual，所有虚接口都有类似的对应函数。</p>
+        <p>为了理解这两个函数的用法，让我们来看一下例子3。</p>
+        <p>例子3的功能是计算圆柱体和半圆柱体的体积，同时例子3也实现了构件继承机制的多层次继承。这个例子有三个构件类：基构件类CVolume，构件类CColumn(圆柱体构件类)和构件类CHalfColumn(半圆柱体构件类)，其中构件类CHalfColumn继承自构件类CColumn，而CColumn继承自基构件类CVolume。</p>
+        <p>基构件的描述文件volume.car如下：</p>
+        <pre class="code">
+
+module www.elastos.com/car/volume.dll
+
+{
+
+    interface ICrossSection {
+        ECODE CalcArea([out] double *pdfArea); //计算面积
+    }
+
+    interface IVolume {
+	     //设置圆柱体或半圆柱体的高度
+        ECODE SetHigh([in] double dfHigh);
+        ECODE CalcVolume([out] double *pdfVolume); //计算体积
+    }
+
+    class CVolume {
+        virtual interface ICrossSection;	// 虚接口
+        interface IVolume;				// 一般接口
+    }
+}
+</pre>
+        <p>CVolume.cpp如下：</p>
+        <pre class="code">
+#include "CVolume.h"
+#include "_CVolume.cpp"
+
+DECLARE_CLASSFACTORY(CVolume)
+
+ECODE CVolume::CalcArea(
+        /* [out] */ double * pdfArea)
+{
+    return E_NOTIMPL;   // 本基类不实现计算面积的方法，由派生类重载
+}
+
+ECODE CVolume::SetHigh(
+        /* [in] */ double dfHigh)
+{
+    m_dfHigh = dfHigh;
+    return S_OK;
+}
+
+ECODE CVolume::CalcVolume(
+        /* [out] */ double * pdfVolume)
+{
+    if (pdfVolume) {
+        double dfArea;
+        // 调用虚接口ICrossSection的CalcArea()方法计算面积
+        // 将会跳到派生构件类重载的CalcArea()方法执行
+        MyVirtualICrossSection().CalcArea(&dfArea);
+        // 柱状体体积 = 横截面面积 * 高度
+        *pdfVolume = dfArea * m_dfHigh;
+        return S_OK;
+    }
+    return S_FALSE;
+}
+</pre>
+        <p>CVolume.h如下：</p>
+        <pre class="code">
+#if _MSC_VER > 1000
+#pragma once
+#endif
+#if !defined(_CVOLUME_H_)
+#define _CVOLUME_H_
+#include "_CVolume.h"
+class CVolume : public _CVolume
+{
+public:
+    CARAPI CalcArea(
+        /* [out] */ double * pdfArea);
+
+    CARAPI SetHigh(
+        /* [in] */ double dfHigh);
+
+    CARAPI CalcVolume(
+        /* [out] */ double * pdfVolume);
+
+private:
+    double m_dfHigh;
+};
+</pre>
+        <p>派生圆柱体构件类CColumn的构件描述文件column.car：</p>
+        <pre class="code">
+
+module www.elastos.com/car/column.dll
+
+{
+    importlib("volume.dll"); 	// 导入基类的元数据
+
+    interface IColumn {
+        ECODE SetRadius([in] double dfRadius); //设置圆柱体横截面的半径
+    }
+
+    class CColumn : CVolume {	// 继承CVolume构件类
+        interface IColumn;
+    }
+}
+</pre>
+        <p>CColumn.cpp如下：</p>
+        <pre class="code">
+#include "CColumn.h"
+#include "_CColumn.cpp"
+
+DECLARE_CLASSFACTORY(CColumn)
+
+// 重载CalcArea()方法
+ECODE CColumn::CalcArea(
+        /* [out] */ double *pdfArea)
+{
+    if (pdfArea) {
+    // 圆的面积 = PI * 半径 * 半径
+        *pdfArea = 3.1415926 * m_dfRadius * m_dfRadius;
+        return S_OK;
+    }
+    return S_FALSE;
+}
+
+ECODE CColumn::SetRadius(
+        /* [in] */ double dfRadius)
+{
+    m_dfRadius = dfRadius;
+    return S_OK;
+}
+</pre>
+        <p>CColumn.h如下：</p>
+        <pre class="code">
+#if _MSC_VER > 1000
+#pragma once
+#endif
+
+#if !defined(_CCOLUMN_H_)
+#define _CCOLUMN_H_
+
+#include "_CColumn.h"
+
+class CColumn : public _CColumn
+{
+public:
+    CARAPI CalcArea(
+        /* [out] */ double *pdfArea);
+
+    CARAPI SetRadius(
+        /* [in] */ double dfRadius);
+
+private:
+    double m_dfRadius;
+};
+
+#endif //!(_CCOLUMN_H_)
+</pre>
+        <p>半圆主体构件类的构件描述文件halfcolumn.car：</p>
+        <pre class="code">
+
+module www.elastos.com/car/halfcolumn.dll
+
+{
+    importlib("volume.dll");    // 导入基类的元数据
+    importlib("column.dll");    // 导入基类的元数据
+
+    class CHalfColumn : CColumn {   // 继承CColumn构件类
+    }
+}
+</pre>
+        <p>CHalfColumn.cpp如下：</p>
+        <pre class="code">
+#include "CHalfColumn.h"
+#include "_CHalfColumn.cpp"
+
+DECLARE_CLASSFACTORY(CHalfColumn)
+
+// 重载CalcArea方法
+ECODE CHalfColumn::CalcArea(
+        /* [out] */ double *pdfArea)
+{
+    if (pdfArea) {
+        double dfArea;
+        // 获得父类CColumn横截面面积（圆的面积）
+        MyParentICrossSection().CalcArea(&dfArea);
+    // 半圆面积 = 圆的面积 / 2
+        *pdfArea = dfArea / 2;
+        return S_OK;
+    }
+    return S_FALSE;
+}
+</pre>
+        <p>半圆柱体构件类重载的CalcArea()方法的实现是，先计算父构件类CColumn的横截面面积再除以2。为了获得父类的横截面面积，我们先调用MyParentICrossSection()函数获得父类所实现的ICrossSection接口的智能指针，再执行其CalcArea()方法，这样我们就可得到父构件类CColumn的横截面的面积了。</p>
+        <p>CHalfColumn.h如下：</p>
+        <pre class="code">
+#if _MSC_VER > 1000
+#pragma once
+#endif
+
+#if !defined(_CHALFCOLUMN_H_)
+#define _CHALFCOLUMN_H_
+
+#include "_CHalfColumn.h"
+
+class CHalfColumn : public _CHalfColumn
+{
+public:
+    CARAPI CalcArea(
+        /* [out] */ double *pdfArea);
+};
+
+#endif //!(_CHALFCOLUMN_H_)
+</pre>
+        <p>最后让我们来看一下客户程序volclient.cpp：</p>
+        <pre class="code">
+#include <stdio.h>
+#import <column.dll>	// 导入构件DLL
+#import <halfcolumn.dll>
+
+    EXTERN_C int __cdecl wmain(int argc, wchar_t **argv)
+{
+    CColumnRef columnRef;
+    double dfColumnVolume;
+
+    columnRef.Instantiate(); // 实例化圆柱体构件
+    columnRef.SetRadius(3);	 // 设置圆柱体半径为3
+    columnRef.SetHigh(10);	 // 设置圆柱体高度为10
+    // 计算圆柱体体积
+    columnRef.CalcVolume(&dfColumnVolume);
+    printf("Column volume:%g\n", dfColumnVolume);
+
+    CHalfColumnRef halfcolumnRef;
+    double dfHalfColumnVolume;
+
+    halfcolumnRef.Instantiate();	// 实例化半圆柱体构件
+    halfcolumnRef.SetRadius(3);	// 设置半圆柱体半径为3
+    halfcolumnRef.SetHigh(10);	// 设置半圆柱体高度为10
+    // 计算半圆柱体体积
+    halfcolumnRef.CalcVolume(&dfHalfColumnVolume);
+    printf("Half Column volume:%g\n", dfHalfColumnVolume);
+
+    return 0;
+}
+</pre>
+        <p>最终运行结果如下：</p>
+        <pre class="code">
+Column volume:282.743
+Half Column volume:141.372
+</pre>
+        <p>为了深入理解<a class="style1" href ="#MyVirtual">MyVirtualXXX()</a>和<a class="style1" href ="#MyParent">MyParentXXX()</a>在虚接口调用流程中的作用，下面给出了计算半圆柱体体积的虚接口函数调用流程：</p>
+        <center><img src="images/flow.jpg"></center>
+        <p>其中MyVirtualICrossSection().CalcArea()函数就是派生构件类CHaltColumn的CalArea()函数。CHalfColumn::CalcArea()的实现里调用了MyParentICrossSection().CalcArea()函数，它对应的是基构件类CColumn的CalcArea()函数。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

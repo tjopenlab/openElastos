@@ -1,0 +1,68 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>CAR Keyword--icallback</title>
+</head>
+
+<body>
+<h2>icallback</h2>
+    <p>This keyword is used to define callback interface. Callback interface is one type of interface,in which each member function in that interface represents a callback event (Callback). For example: </p>
+    <pre class="code">
+[
+    uuid(9b9d422d-b9cc-4658-9f94-3dff2667e89b),
+    uunm(http://www.koretide.com/car/CallbackDemo1.dll)
+]
+component CallbackDemo1
+{
+    [uuid(6bd80415-d91b-44f2-9e44-b3e11ed50d65)]
+    <b>icallback</b> IXXCallback {
+        ECODE callback1();
+        ECODE callback2([in] int num);
+    }; (this semicolon is optional)
+    [uuid(8bc5829e-ad6e-4b2f-91c5-8c17f38e9110)]
+    class CClass {
+        icallback IXXCallback;
+    }
+}
+</pre>
+    <p>In sample component CallbackDemo1, a callback interface IXXCallback is defined. Two callback events were defined in the interface: callback1 event and callback2 event.</p>
+    <p>In the "[]" before the icallback keyword, is the attribute of this callback interface. Interface attribute modifies the callback, among which the <a class="style1" href="../attributes/attributes_uuid.htm">uuid</a> attribute is required. uuid in interface attribute is called interface ID (IID), it is used to uniquely identify a callback interface. Other attributes can be includede in interface attribute too. Please see <a class="style1" href="../attribute.htm">CAR Attributes</a> for details.</p>
+    <p>After the icallback keyword comes the name of the callback interface.</p>
+    <p>In the "()" the icallback keyword, is the definition of this callback interface. Callback interface definition includes callback event declaration. An interface without callback event is meaningless in reality.</p>
+    <ol><font color="red"><b>Note: </b>
+        <li>Callback interface defined by icallback keyword and the parameter attribute of its declared callback event must be [<a class="style1" href="../attributes/attributes_in.htm">in</a>].
+        <li>Callback interface defined by icallback keyword cannot inherit other interface.It also cannot be inherited by other interface.</font>
+    </ol>
+    <p>There is also a <b>interface</b> keyword in CAR which is used to define interface. Relative to callback interface, interfaces defined by the interface keyword is also called normal interface. For details please see <a class="style1" href="keywords_interface.htm">interface</a>.</p>
+    <p>In a CAR file, many interfaces can be defined including normal interfaces and callback interfaces. For example: </p>
+    <pre class="code">
+[
+    uuid(d688fca8-b102-4272-b3eb-cca371c257f2),
+    uunm(http://www.koretide.com/car/CallbackDemo2.dll)
+]
+component CallbackDemo2
+{
+    [uuid(64cf2c37-a9ae-4d1f-8dbf-eb783137c765)]
+    <b>interface IInterface</b> {
+    ……
+    };
+    [uuid(c455b489-e618-4c0f-be98-f04a1799d745)]
+    <b>icallback IXXCallback</b> {
+    ……
+    };
+}
+</pre>
+    <p>In sample component CallbackDemo2, a normal interface IInterface and a callback interface IXXCallback are defined.</p>
+    <p>For details about callback interface please see <a class="style1" href="../../../../speciality/callback/callback_intr.htm">Developing CAR component that using callback event mechanism</a>.</p>
+    <b><a class="style1" href="../keyword.htm">CAR Keyword Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

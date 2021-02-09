@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\_itoa">_itoa</sample>
+    <title> _itoa, _i64toa, _ui64toa, _itow, _i64tow, _ui64tow</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>将整型数据转化成字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <func_name>_itoa</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>value</param_name>
+                <param_note>
+                    <para>待转换整数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char *</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>指向转换后字符串的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+                <param_note>
+                    <para>基数（表示数的进制），在 2-36 之间</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <func_name>_i64toa</func_name>
+        <parameters>
+            <func_param>
+                <param_type>__int64 </param_type>
+                <param_name>value</param_name>
+            </func_param>
+            <func_param>
+                <param_type>char *</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <func_name>_ui64toa</func_name>
+        <parameters>
+            <func_param>
+                <param_type>unsigned _int64</param_type>
+                <param_name>value</param_name>
+            </func_param>
+            <func_param>
+                <param_type>char *</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t *</return_val>
+        <func_name>_itow</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>value</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t *</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t *</return_val>
+        <func_name>_i64tow</func_name>
+        <parameters>
+            <func_param>
+                <param_type>__int64</param_type>
+                <param_name>value</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t *</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t *</return_val>
+        <func_name> _ui64tow</func_name>
+        <parameters>
+            <func_param>
+                <param_type>unsigned __int64 </param_type>
+                <param_name>value</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t *</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>每个函数都返回指向string的字符指针，无错误返回值。</para>
+    </return>
+
+    <remarks>
+        <para>_itoa，_i64toa和_ui64toa都是将给定的参数value转换成以NULL结尾的字符串，并将结果存储在参数string中（至多65个字节）。如果radix的值等于10，且value为负数，则字符串的第一个字符是负号（-）。_itow，_i64tow和_ui64tow分别是_itoa，_i64toa和_ui64toa的宽字符版函数。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_itoa</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_i64toa</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_ui64toa</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_itow</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_i64tow</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_ui64tow</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _itoa.cpp: This program converts integers of various
+ * sizes to strings in various radixes.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buffer[20];
+    int  i = 3445;
+    long l = -344115L;
+    unsigned long ul = 1234567890UL;
+
+    _itoa(i, buffer, 10);
+    printf(&quot;String of integer %d (radix 10): %s\n&quot;, i, buffer);
+    _itoa(i, buffer, 16);
+    printf(&quot;String of integer %d (radix 16): 0x%s\n&quot;, i, buffer);
+    _itoa(i, buffer, 2 );
+    printf(&quot;String of integer %d (radix 2): %s\n&quot;, i, buffer);
+
+    _ltoa(l, buffer, 16);
+    printf(&quot;String of long int %ld (radix 16): 0x%s\n&quot;, l,
+                                                                     buffer);
+
+    _ultoa(ul, buffer, 16);
+    printf(&quot;String of unsigned long %lu (radix 16): 0x%s\n&quot;, ul,
+                                                                     buffer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+String of integer 3445 (radix 10): 3445
+String of integer 3445 (radix 16): 0xd75
+String of integer 3445 (radix 2): 110101110101
+String of long int -344115 (radix 16): 0xfffabfcd
+String of unsigned long 1234567890 (radix 16): 0x499602d2
+</result>
+
+    
+
+</manpage>

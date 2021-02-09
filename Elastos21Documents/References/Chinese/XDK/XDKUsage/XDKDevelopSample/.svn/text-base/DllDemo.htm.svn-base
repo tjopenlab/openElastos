@@ -1,0 +1,165 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>开发动态链接库程序</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>开发动态链接库程序：DllDemo.dll</h2>
+<p>1, 以如下结构建立目录：</p>
+<pre>
+        DLLDemo
+            \---Dll
+                \---LibDemo
+</pre>
+<p>2, 在LibDemo目录中，如上节所述,开发程序库LibDemo.lib，开发lib的3个文件都放在LibDemo目录中, 然后在其中的LibDemo.h中加入此行“typedef int (*funcptr)(int a, int b);”。</p>
+<p>本行是定义函数指针的类型funcptr，因为在可执行程序中使用GetProcAddressByName获得函数指针后，调用函数时，需要明确指出函数指针的类型。</p>
+<p>3, 写DLL，在Dll目录中。</p>
+   <p>编写4个文件，DllMain.cpp，  sources，dirs， DllDemo.def。</p>
+
+      <p>DllMain.cpp文件中编写了Dll的入口函数，内容如下：</p>
+<pre>
+
+        #include &lt;elastos.h&gt;
+        _ELASTOS_NAMESPACE_USING
+
+        #define DLL_PROCESS_DETACH 0
+        #define DLL_PROCESS_ATTACH 1
+
+        EXTERN_C Boolean __stdcall DllMain(
+            PVoid hDllHandle,
+            UInt32 dwReason,
+            PVoid preserved)
+        {
+            switch (dwReason) {
+                case DLL_PROCESS_ATTACH:
+                    break;
+
+                case DLL_PROCESS_DETACH:
+                    break;
+            }
+
+            return TRUE;
+        }
+
+</pre>
+
+     <p>sources文件的目标文件类型TARGET_TYPE应该为dll，即TARGET_TYPE = dll。</p>
+     <p>本例中，DllDemo.dll需要链接的程序库为LibDemo.lib，elastos.lib和ElCRuntime.lib，那么sources文件应该如下所示：</p>
+<pre>
+        TARGET_NAME = DllDemo
+        TARGET_TYPE = dll
+
+        SOURCES = DllMain.cpp
+        SOURCES += DllDemo.def
+
+        LIBRARIES = $(XDK_USER_LIB)\LibDemo.lib
+
+        ELASTOS_LIBS = ElCRuntime.lib
+        ELASTOS_LIBS += elastos.lib
+
+</pre>
+
+      <p>dirs文件内容如下：</p>
+<pre>
+        DIRS = LibDemo
+
+</pre>
+
+<p>DllDemo.def是def文件。在ElastosSDK开发环境中，def文件的含义和编写方法与VC中编写DLL所需的def文件一致，它可以用来定义该DLL将输出哪些函数供用户程序使用。DllDemo.def文件的内容如下：</p>
+<pre>
+        LIBRARY DllDemo.dll
+
+        EXPORTS
+                Func01
+                Func02
+
+</pre>
+     <p>从上面的文件可以看出，DllDemo.def定义了两个引出函数Func01和Func02，这样生成的DllDemo.dll有两个出口函数Func01和Func02。</p>
+     <p></p>
+
+<p>4, 在DLLDemo目录下写exe程序，调用DLL。</p>
+   <p>编写3个文件，HelloDllDemo.cpp，  sources，dirs。</p>
+      <p>HelloDllDemo.cpp文件内容如下：</p>
+        <pre>
+        #include &lt;stdio.h&gt;
+        #include "LibDemo.h"
+
+        _ELASTOS_NAMESPACE_USING
+
+        int main()
+        {
+            int a = 0, b = 1, c = 2;
+            IModule *pModule = NULL;
+            ModuleLoadFlags flags = 0;
+            WString name = WString(L"D:\\Elastos21\\XDK\\Targets\\sdk\\win32\\x86.msvc.pc.GK100.dbg\\DLLDemo.dll");
+            AString esName = AString("Func01");
+            funcptr pAddress = NULL;
+            ECode ec = NOERROR;
+
+            ec = CModule::Load(name, flags, &pModule);
+            if (FAILED(ec)) {
+                printf("Load ec = 0x%08x!\n", ec);
+                return ec;
+            }
+
+            ec = pModule->GetProcAddressByName(esName, (Address *)&pAddress);
+            if (FAILED(ec)) {
+                printf("Get  Func01 ec = 0x%08x!\n", ec);
+                return ec;
+            }
+
+            printf("addr=0x%08x\n", pAddress);
+            a = pAddress(b, c);
+            printf("Func01: %d + %d = %d\n", b, c, a);
+
+            esName = "Func02";
+            ec = pModule->GetProcAddressByName(esName, (Address *)&pAddress);
+            if (FAILED(ec)) {
+                printf("Get Func02 ec = 0x%08x!\n", ec);
+                return ec;
+            }
+
+            printf("addr=0x%08x\n", pAddress);
+            a = pAddress(b, c);
+            printf("Func02: %d - %d = %d\n", b, c, a);
+
+            return NOERROR;
+        }
+        </pre>
+      <p> 此处include "LibDemo.h"，是需要使用第2步中提及的函数指针类型funcptr的定义。 </p>
+      <p>sources文件内容如下：</p>
+        <pre>
+
+        TARGET_NAME = HelloDLLDemo
+        TARGET_TYPE = exe
+
+        INCLUDES += $(MAKEDIR)\Dll;$(MAKEDIR)\Dll\LibDemo
+
+        SOURCES = HelloDLLDemo.cpp
+
+        ELASTOS_LIBS = ElCRuntime.lib
+        ELASTOS_LIBS += elastos.lib
+
+        </pre>
+      <p>INCLUDES变量的使用，参看<a href='../../XDKIntroduction/XDKmakefile/XDKmakefile.htm'>XDK的makefile</a>一节</p>
+      <p>dirs文件内容如下：</p>
+        <pre>
+        DIRS = Dll
+        </pre>
+
+<p>5, 编译，执行命令，查看运行结果。如果不知如何编译运行，请去看此前的<a href='HelloExe.htm'> 开发应用程序</a>一节的“编译链接产生目标文件”、“运行可执行程序 hello.exe”这两个步骤。</p>
+
+<p>注：<br>
+    1，_ELASTOS_NAMESPACE_USING的定义：#define _ELASTOS_NAMESPACE_USING    using namespace Elastos;
+    <br>如果不是CAR文件生成的代码框架，需要添加此宏定义，否则会提示找不到相关数据类型。
+    <br>2，代码中dll路径"D:\\Elastos21\\XDK\\Targets\\sdk\\win32\\x86.msvc.pc.GK100.dbg\\DLLDemo.dll"，请根据自己安装XDK的目录相应修改，指向编译出的dll所在目录，即开发环境中，环境变量%XDK_TARGETS%的值。
+</p>
+<script>footer("chinese")</script>
+</body>
+</html>

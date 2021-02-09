@@ -1,0 +1,1128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: IPreparedStatement接口参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>IPreparedStatement接口参考</h1><!-- doxytag: class="IPreparedStatement" --><!-- doxytag: inherits="IStatementBase" -->Represents接口，该接口用于执行预编译的SQL语句。
+<a href="#_details">更多...</a>
+<p>
+<code>import &quot;<a class="el" href="database_8car-source.html">database.car</a>&quot;;</code>
+<p>
+<div class="dynheader">
+继承图，类IPreparedStatement</div>
+<div class="dynsection">
+<p><center><img src="interface_i_prepared_statement__inherit__graph.png" border="0" usemap="#_i_prepared_statement__inherit__map" alt="Inheritance graph"></center>
+<map name="_i_prepared_statement__inherit__map">
+<area shape="rect" href="interface_i_statement_base.html" title="IStatementBase接口" alt="" coords="17,5,135,32"></map>
+<center><font size="2">[<a href="graph_legend.html">图例</a>]</font></center></div>
+
+<p>
+<a href="interface_i_prepared_statement-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#c6d0fbb3ab8eaf26153da3b05e0bcc1d">Reset</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">在当前预编译语句对象中重新设置一个预编译的SQL语句。 此方法并不改变预处理语句中任何参数的值。  <a href="#c6d0fbb3ab8eaf26153da3b05e0bcc1d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#5b7477b6b580bbe9d856f90c8eed49cc">Execute</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">在当前的PreparedStatement对象中执行SQL语句，可以是任何类型的SQL语句。  <a href="#5b7477b6b580bbe9d856f90c8eed49cc"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#33e850f3d63c3a679ef20eff61269056">ExecuteQuery</a> ([out] <a class="el" href="interface_i_result_set.html">IResultSet</a> **resultSet)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">执行预编译的SQL语句并返回查询产生的结果集对象。  <a href="#33e850f3d63c3a679ef20eff61269056"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#d87126606012d6f574addbe17c1e2d07">ExecuteUpdate</a> ([out] Int32 *rowCount)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">执行预编译的SQL语句，并返回一个结果集接口。 可以是INSERT，UPDATE，DELETE 语句，或者其他没有结果集的SQL语句，如SQL DDL语句。  <a href="#d87126606012d6f574addbe17c1e2d07"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#871184936f265c450c76c2dbfa8abae0">GetParameterMetaData</a> ([out] <a class="el" href="interface_i_parameter_meta_data.html">IParameterMetaData</a> **metadata)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取当前预编译语句对象的参数的编号，类型和属性。  <a href="#871184936f265c450c76c2dbfa8abae0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#085f08a352d327756d098ca5a5b6dcf8">ClearParameters</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">立即清空当前预编译的SQL语句中绑定的参数。  <a href="#085f08a352d327756d098ca5a5b6dcf8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#0e1a3a5102c3669efc757e86053331cd">SetBlobArgByIndex</a> ([in] Int32 param,[in] const BufferOf&lt; Byte &gt; & value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设定预编译SQL语句中指定索引的参数的参数值。  <a href="#0e1a3a5102c3669efc757e86053331cd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#1d9681e453cfca01d055fe2173d115ec">SetBlobArgByName</a> ([in] WString param,[in] const BufferOf&lt; Byte &gt; & value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设定预编译SQL语句中指定名字的参数的参数值。  <a href="#1d9681e453cfca01d055fe2173d115ec"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#6154a208fa2fcdd19850b317bbe36137">SetBlobArgToZeroByIndex</a> ([in] Int32 param,[in] Int32 size)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定索引的参数设置为指定长度值，以0填充。  <a href="#6154a208fa2fcdd19850b317bbe36137"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#2592f90cdc85d52e0284742f5cca68c1">SetBlobArgToZeroByName</a> ([in] WString param,[in] Int32 size)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定名字的参数设置成指定大小，以0填充。  <a href="#2592f90cdc85d52e0284742f5cca68c1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#ef136a93d4df5aeeb6e3006e3f9565d1">SetBooleanArgByIndex</a> ([in] Int32 param,[in] Boolean value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定索引的参数设置为指定的Boolean类型数据。  <a href="#ef136a93d4df5aeeb6e3006e3f9565d1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#7c29eeee596290e0268db9348a2eec28">SetBooleanArgByName</a> ([in] WString param,[in] Boolean value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定名字的参数设置为指定的Boolean类型数据。  <a href="#7c29eeee596290e0268db9348a2eec28"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#953967db9b13159d73517f22e362e459">SetByteArgByIndex</a> ([in] Int32 param,[in] Byte value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定索引的参数设置为指定的Byte类型数据。  <a href="#953967db9b13159d73517f22e362e459"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#dfc1cc577748660fdc4b3208448f8c4b">SetByteArgByName</a> ([in] WString param,[in] Byte value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定名字的参数设置为指定的Byte类型数据。  <a href="#dfc1cc577748660fdc4b3208448f8c4b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#cb52f21c461356fc5ecc7cb7dde5751f">SetDateTimeArgOfStringByIndex</a> ([in] Int32 param,[in] WString value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定索引的参数用指定格式的字符串数据值设置为指定的DateTime类型数据。  <a href="#cb52f21c461356fc5ecc7cb7dde5751f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#98d35df493d1df5a0a02529ddfc59806">SetDateTimeArgOfStringByName</a> ([in] WString param,[in] WString value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定名字的参数用指定格式的字符串数据值设置为指定的DateTime类型数据。  <a href="#98d35df493d1df5a0a02529ddfc59806"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#f5a3eab64fce4f6a3d53d21c1ddf4524">SetDateTimeArgByIndex</a> ([in] Int32 param,[in] DateTime value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定索引的参数设置为指定的DateTime类型数据。  <a href="#f5a3eab64fce4f6a3d53d21c1ddf4524"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#6bfafcd2bb1e728920406b9906ca7cdd">SetDateTimeArgByName</a> ([in] WString param,[in] DateTime value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定名字的参数设置为指定的DateTime类型数据。  <a href="#6bfafcd2bb1e728920406b9906ca7cdd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#d621123841b730b2371175b4d8a41822">SetDoubleArgByIndex</a> ([in] Int32 param,[in] Double value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定索引的参数设置为指定的Double类型数据。  <a href="#d621123841b730b2371175b4d8a41822"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#fc1b1602822c61598ae3e1e2f6d91bdc">SetDoubleArgByName</a> ([in] WString param,[in] Double value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定名字的参数设置为指定的Double类型数据。  <a href="#fc1b1602822c61598ae3e1e2f6d91bdc"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#951fbd3423ad5766e2b8e6c6283c2cc7">SetInt32ArgByIndex</a> ([in] Int32 param,[in] Int32 value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定索引的参数设置为指定的Int32类型数据。  <a href="#951fbd3423ad5766e2b8e6c6283c2cc7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#f1682ba516e09b60f8b26d2f3d0dfeb8">SetInt32ArgByName</a> ([in] WString param,[in] Int32 value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定名字的参数设置为指定的Int32类型数据。  <a href="#f1682ba516e09b60f8b26d2f3d0dfeb8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#f81efcd0963954991148ef8ef817dfa5">SetInt64ArgByIndex</a> ([in] Int32 param,[in] Int64 value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定索引的参数设置为指定的Int64类型数据。  <a href="#f81efcd0963954991148ef8ef817dfa5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#4ec6c49ea366f6fc046ed1f014d59806">SetInt64ArgByName</a> ([in] WString param,[in] Int64 value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定名字的参数设置为指定的Int64类型数据。  <a href="#4ec6c49ea366f6fc046ed1f014d59806"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#31e7ca672f74af5fe00487763860645f">SetNullArgByIndex</a> ([in] Int32 param)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中由索引指定的参数设置为指定的ElaDB的NULL.  <a href="#31e7ca672f74af5fe00487763860645f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#67d33397e986d7b09266e688de6c98bf">SetNullArgByName</a> ([in] WString param)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定名字的参数设置为指定的ElaDB的NULL.  <a href="#67d33397e986d7b09266e688de6c98bf"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#b21ae4a1a70bcdc135f6e88c1156a74b">SetStringArgByIndex</a> ([in] Int32 param,[in] WString value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定索引的参数设置为指定的ElaDB的String类型数据。  <a href="#b21ae4a1a70bcdc135f6e88c1156a74b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html#c8edb84529a390878c23bfced090f671">SetStringArgByName</a> ([in] WString param,[in] WString value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">将预编译SQL语句中指定名字的参数设置为指定的ElaDB的String类型数据。  <a href="#c8edb84529a390878c23bfced090f671"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+Represents接口，该接口用于执行预编译的SQL语句。
+<p>
+一个SQL语句是一个预编译语句并存储在一个PreparedStatement对象中。 该对象可被用于多次有效地执行一个SQL语句。<p>
+SetInt32, SetString等方法设置的IN属性参数值必须指定与定义的SQL语句中的输入参数类型一致。 例如，如果SQL语句有INTEGER类型的IN属性参数,则应使用方法setInt32. <dl compact><dt><b>示例: </b></dt><dd>
+
+<p>
+<a class="el" href="_execute_update_8cpp-example.html#_a1">ExecuteUpdate.cpp</a>及<a class="el" href="_pre_set_8cpp-example.html#_a1">PreSet.cpp</a>.</dl>
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00575">575</a>行定义。</p>
+<hr><h2>成员函数文档</h2>
+<a class="anchor" name="c6d0fbb3ab8eaf26153da3b05e0bcc1d"></a><!-- doxytag: member="IPreparedStatement::Reset" ref="c6d0fbb3ab8eaf26153da3b05e0bcc1d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::Reset           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+在当前预编译语句对象中重新设置一个预编译的SQL语句。 此方法并不改变预处理语句中任何参数的值。
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="5b7477b6b580bbe9d856f90c8eed49cc"></a><!-- doxytag: member="IPreparedStatement::Execute" ref="5b7477b6b580bbe9d856f90c8eed49cc" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::Execute           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+在当前的PreparedStatement对象中执行SQL语句，可以是任何类型的SQL语句。
+<p>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_pre_set_8cpp-example.html#a6">PreSet.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="33e850f3d63c3a679ef20eff61269056"></a><!-- doxytag: member="IPreparedStatement::ExecuteQuery" ref="33e850f3d63c3a679ef20eff61269056" args="([out] IResultSet **resultSet)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::ExecuteQuery           </td>
+          <td>(</td>
+          <td class="paramtype">[out] <a class="el" href="interface_i_result_set.html">IResultSet</a> **&nbsp;</td>
+          <td class="paramname"> <em>resultSet</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+执行预编译的SQL语句并返回查询产生的结果集对象。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>resultSet</em>&nbsp;</td><td>- 包含查询操作所产生数据的结果集对象，不为空。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d87126606012d6f574addbe17c1e2d07"></a><!-- doxytag: member="IPreparedStatement::ExecuteUpdate" ref="d87126606012d6f574addbe17c1e2d07" args="([out] Int32 *rowCount)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::ExecuteUpdate           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>rowCount</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+执行预编译的SQL语句，并返回一个结果集接口。 可以是INSERT，UPDATE，DELETE 语句，或者其他没有结果集的SQL语句，如SQL DDL语句。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>rowCount</em>&nbsp;</td><td>- 执行INSERT, UPDATE或DELETE语句所影响的行数； 未产生任何值则返回0. 未使用则返回NULL. </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_execute_update_8cpp-example.html#a3">ExecuteUpdate.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="871184936f265c450c76c2dbfa8abae0"></a><!-- doxytag: member="IPreparedStatement::GetParameterMetaData" ref="871184936f265c450c76c2dbfa8abae0" args="([out] IParameterMetaData **metadata)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::GetParameterMetaData           </td>
+          <td>(</td>
+          <td class="paramtype">[out] <a class="el" href="interface_i_parameter_meta_data.html">IParameterMetaData</a> **&nbsp;</td>
+          <td class="paramname"> <em>metadata</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前预编译语句对象的参数的编号，类型和属性。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>metadata</em>&nbsp;</td><td>- 包含了预编译语句对象参数信息的ParameterMetaData对象。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="085f08a352d327756d098ca5a5b6dcf8"></a><!-- doxytag: member="IPreparedStatement::ClearParameters" ref="085f08a352d327756d098ca5a5b6dcf8" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::ClearParameters           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+立即清空当前预编译的SQL语句中绑定的参数。
+<p>
+一般地，为重复使用一条SQL语句，参数值将保持不变。 设置参数值时将自动清空先前的参数值。然而，有时需要立即释放当前参数所使用的资源，此时可调用此函数。<p>
+清除后所有的参数值为NULL.
+</div>
+</div><p>
+<a class="anchor" name="0e1a3a5102c3669efc757e86053331cd"></a><!-- doxytag: member="IPreparedStatement::SetBlobArgByIndex" ref="0e1a3a5102c3669efc757e86053331cd" args="([in] Int32 param,[in] BufferOf&lt; Byte &gt; value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetBlobArgByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] const BufferOf&lt; Byte &gt;&nbsp;&</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设定预编译SQL语句中指定索引的参数的参数值。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的BLOB值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数的索引，第一个参数索引为1. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- BLOB类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1d9681e453cfca01d055fe2173d115ec"></a><!-- doxytag: member="IPreparedStatement::SetBlobArgByName" ref="1d9681e453cfca01d055fe2173d115ec" args="([in] WString param,[in] BufferOf&lt; Byte &gt; value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetBlobArgByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] const BufferOf&lt; Byte &gt;&nbsp;&</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设定预编译SQL语句中指定名字的参数的参数值。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的BLOB值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数名字。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- BLOB类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="6154a208fa2fcdd19850b317bbe36137"></a><!-- doxytag: member="IPreparedStatement::SetBlobArgToZeroByIndex" ref="6154a208fa2fcdd19850b317bbe36137" args="([in] Int32 param,[in] Int32 size)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetBlobArgToZeroByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>size</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定索引的参数设置为指定长度值，以0填充。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的BLOB值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数的索引，第一个参数索引为1. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- BLOB类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="2592f90cdc85d52e0284742f5cca68c1"></a><!-- doxytag: member="IPreparedStatement::SetBlobArgToZeroByName" ref="2592f90cdc85d52e0284742f5cca68c1" args="([in] WString param,[in] Int32 size)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetBlobArgToZeroByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>size</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定名字的参数设置成指定大小，以0填充。
+<p>
+在将该值发送到数据库时，ElaDB会将其转换成一个SQL的BLOB值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数名字。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- BLOB类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ef136a93d4df5aeeb6e3006e3f9565d1"></a><!-- doxytag: member="IPreparedStatement::SetBooleanArgByIndex" ref="ef136a93d4df5aeeb6e3006e3f9565d1" args="([in] Int32 param,[in] Boolean value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetBooleanArgByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Boolean&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定索引的参数设置为指定的Boolean类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数的索引，第一个参数索引为1. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- Boolean类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="7c29eeee596290e0268db9348a2eec28"></a><!-- doxytag: member="IPreparedStatement::SetBooleanArgByName" ref="7c29eeee596290e0268db9348a2eec28" args="([in] WString param,[in] Boolean value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetBooleanArgByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Boolean&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定名字的参数设置为指定的Boolean类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数名字。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- Boolean类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="953967db9b13159d73517f22e362e459"></a><!-- doxytag: member="IPreparedStatement::SetByteArgByIndex" ref="953967db9b13159d73517f22e362e459" args="([in] Int32 param,[in] Byte value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetByteArgByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Byte&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定索引的参数设置为指定的Byte类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数的索引，第一个参数索引为1. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- Byte类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="dfc1cc577748660fdc4b3208448f8c4b"></a><!-- doxytag: member="IPreparedStatement::SetByteArgByName" ref="dfc1cc577748660fdc4b3208448f8c4b" args="([in] WString param,[in] Byte value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetByteArgByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Byte&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定名字的参数设置为指定的Byte类型数据。
+<p>
+在将该值发送到数据库时，数据库将会将其转换成一个SQL的INTEGER值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数名字。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- Byte类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="cb52f21c461356fc5ecc7cb7dde5751f"></a><!-- doxytag: member="IPreparedStatement::SetDateTimeArgOfStringByIndex" ref="cb52f21c461356fc5ecc7cb7dde5751f" args="([in] Int32 param,[in] WString value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetDateTimeArgOfStringByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定索引的参数用指定格式的字符串数据值设置为指定的DateTime类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的TEXT值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数的索引，第一个参数索引为1. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 时间类型数据。</td></tr>
+  </table>
+</dl>
+时间字符串可以为下列任意一种格式：<p>
+1. YYYY-MM-DD<p>
+2. YYYY-MM-DD HH:MM<p>
+3. YYYY-MM-DD HH:MM:SS<p>
+4. YYYY-MM-DD HH:MM:SS.SSS<p>
+5. YYYY-MM-DDTHH:MM<p>
+6. YYYY-MM-DDTHH:MM:SS<p>
+7. YYYY-MM-DDTHH:MM:SS.SSS<p>
+8. HH:MM<p>
+9. HH:MM:SS<p>
+10. HH:MM:SS.SSS<p>
+格式5到7中，"T"是一个用于隔开日期和时间的字符，正如ISO-8601标准中所需的一样。
+</div>
+</div><p>
+<a class="anchor" name="98d35df493d1df5a0a02529ddfc59806"></a><!-- doxytag: member="IPreparedStatement::SetDateTimeArgOfStringByName" ref="98d35df493d1df5a0a02529ddfc59806" args="([in] WString param,[in] WString value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetDateTimeArgOfStringByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定名字的参数用指定格式的字符串数据值设置为指定的DateTime类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的TEXT值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数名字。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- 时间类型数据。</td></tr>
+  </table>
+</dl>
+时间字符串可以为下列任意一种格式：<p>
+1. YYYY-MM-DD<p>
+2. YYYY-MM-DD HH:MM<p>
+3. YYYY-MM-DD HH:MM:SS<p>
+4. YYYY-MM-DD HH:MM:SS.SSS<p>
+5. YYYY-MM-DDTHH:MM<p>
+6. YYYY-MM-DDTHH:MM:SS<p>
+7. YYYY-MM-DDTHH:MM:SS.SSS<p>
+8. HH:MM<p>
+9. HH:MM:SS<p>
+10. HH:MM:SS.SSS<p>
+格式5到7中，"T"是一个用于隔开日期和时间的字符，正如ISO-8601标准中所需的一样。
+</div>
+</div><p>
+<a class="anchor" name="f5a3eab64fce4f6a3d53d21c1ddf4524"></a><!-- doxytag: member="IPreparedStatement::SetDateTimeArgByIndex" ref="f5a3eab64fce4f6a3d53d21c1ddf4524" args="([in] Int32 param,[in] DateTime value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetDateTimeArgByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] DateTime&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定索引的参数设置为指定的DateTime类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的TEXT值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数的索引，第一个参数索引为1. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- DateTime类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="6bfafcd2bb1e728920406b9906ca7cdd"></a><!-- doxytag: member="IPreparedStatement::SetDateTimeArgByName" ref="6bfafcd2bb1e728920406b9906ca7cdd" args="([in] WString param,[in] DateTime value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetDateTimeArgByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] DateTime&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定名字的参数设置为指定的DateTime类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的TEXT值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数名字 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- DateTime类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d621123841b730b2371175b4d8a41822"></a><!-- doxytag: member="IPreparedStatement::SetDoubleArgByIndex" ref="d621123841b730b2371175b4d8a41822" args="([in] Int32 param,[in] Double value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetDoubleArgByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Double&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定索引的参数设置为指定的Double类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQLBLOB值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数的索引，第一个参数索引为1. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- Double类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="fc1b1602822c61598ae3e1e2f6d91bdc"></a><!-- doxytag: member="IPreparedStatement::SetDoubleArgByName" ref="fc1b1602822c61598ae3e1e2f6d91bdc" args="([in] WString param,[in] Double value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetDoubleArgByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Double&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定名字的参数设置为指定的Double类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的FLOAT值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数名字。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- Double类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="951fbd3423ad5766e2b8e6c6283c2cc7"></a><!-- doxytag: member="IPreparedStatement::SetInt32ArgByIndex" ref="951fbd3423ad5766e2b8e6c6283c2cc7" args="([in] Int32 param,[in] Int32 value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetInt32ArgByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定索引的参数设置为指定的Int32类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的FLOAT值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数的索引，第一个参数索引为1. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- Int32类型数据。 </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_pre_set_8cpp-example.html#a5">PreSet.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="f1682ba516e09b60f8b26d2f3d0dfeb8"></a><!-- doxytag: member="IPreparedStatement::SetInt32ArgByName" ref="f1682ba516e09b60f8b26d2f3d0dfeb8" args="([in] WString param,[in] Int32 value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetInt32ArgByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定名字的参数设置为指定的Int32类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数名字。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- Int32类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="f81efcd0963954991148ef8ef817dfa5"></a><!-- doxytag: member="IPreparedStatement::SetInt64ArgByIndex" ref="f81efcd0963954991148ef8ef817dfa5" args="([in] Int32 param,[in] Int64 value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetInt64ArgByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int64&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定索引的参数设置为指定的Int64类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数的索引，第一个参数索引为1. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- Int64类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="4ec6c49ea366f6fc046ed1f014d59806"></a><!-- doxytag: member="IPreparedStatement::SetInt64ArgByName" ref="4ec6c49ea366f6fc046ed1f014d59806" args="([in] WString param,[in] Int64 value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetInt64ArgByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int64&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定名字的参数设置为指定的Int64类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数名字。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- Int64类型数据。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="31e7ca672f74af5fe00487763860645f"></a><!-- doxytag: member="IPreparedStatement::SetNullArgByIndex" ref="31e7ca672f74af5fe00487763860645f" args="([in] Int32 param)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetNullArgByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>param</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中由索引指定的参数设置为指定的ElaDB的NULL.
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的NULL。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数的索引，第一个参数索引为1. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="67d33397e986d7b09266e688de6c98bf"></a><!-- doxytag: member="IPreparedStatement::SetNullArgByName" ref="67d33397e986d7b09266e688de6c98bf" args="([in] WString param)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetNullArgByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>param</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定名字的参数设置为指定的ElaDB的NULL.
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的NULL。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数名字。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="b21ae4a1a70bcdc135f6e88c1156a74b"></a><!-- doxytag: member="IPreparedStatement::SetStringArgByIndex" ref="b21ae4a1a70bcdc135f6e88c1156a74b" args="([in] Int32 param,[in] WString value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetStringArgByIndex           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定索引的参数设置为指定的ElaDB的String类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的String类型数据。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数的索引，第一个参数索引为1. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- string类型数据。 </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_pre_set_8cpp-example.html#a3">PreSet.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="c8edb84529a390878c23bfced090f671"></a><!-- doxytag: member="IPreparedStatement::SetStringArgByName" ref="c8edb84529a390878c23bfced090f671" args="([in] WString param,[in] WString value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPreparedStatement::SetStringArgByName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+将预编译SQL语句中指定名字的参数设置为指定的ElaDB的String类型数据。
+<p>
+在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的String类型数据。<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>param</em>&nbsp;</td><td>- 参数名字。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>- string类型数据。 </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_pre_set_8cpp-example.html#a4">PreSet.cpp</a>.</dl>
+</div>
+</div><p>
+<hr>该接口的文档由以下文件生成：<ul>
+<li><a class="el" href="database_8car-source.html">database.car</a></ul>
+<script>footer("chinese")</script>
+</body>
+</html>

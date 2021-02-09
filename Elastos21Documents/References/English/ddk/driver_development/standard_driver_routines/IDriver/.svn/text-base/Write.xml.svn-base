@@ -1,0 +1,102 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Standard Driver Routine</volume>
+<interface>IDriver</interface><method> Write  </method>
+    <description>
+        <para>
+            Write data to device.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT64  </param_type>
+                <param_name> u64Offset  </param_name>
+                <param_note>
+                    <para>
+						The offset of the device that will be written to. For storage device (such as hard disk), 
+						it is sector related.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzByteBuf  </param_type>
+                <param_name> ebbData  </param_name>
+                <param_note>
+                    <para>
+						The data buffer that will be written to device.
+
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UINT *  </param_type>
+                <param_name> puNumberOfBytesWritten  </param_name>
+                <param_note>
+                    <para>
+						Pointer to the actual number of bytes written to the device.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IEvent**  </param_type>
+                <param_name> ppCompletionEvent </param_name>
+                <param_note>
+                    <para>
+                         The <b>IEvent</b> interface of the operation result.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value</td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>S_OK</td>
+		<td>0x00000000</td>
+		<td>Function succeeds in writing data to device.</td>
+	    </tr>
+	    <tr>
+		<td>E_FAIL</td>
+		<td>0x80004005</td>
+		<td>Unspecified error</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+			This method writes the data stored in <i>ebbData</i> to device at offset u64Offset.
+			If the function succeeds, S_OK is returned, if it fails, E_FAIL is returned.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

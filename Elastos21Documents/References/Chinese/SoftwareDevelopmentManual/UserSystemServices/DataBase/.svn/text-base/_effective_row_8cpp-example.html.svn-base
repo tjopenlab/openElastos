@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: EffectiveRow.cpp</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<h1>EffectiveRow.cpp</h1>This is an example of how to use function: <a class="el" href="interface_i_statement.html#2a17b6556ecbe1a3d1f75a5726986470" title="执行给定的SQL语句，可以是INSERT，UPDATE，DELETE语句， 或者其他不返回任何内...">IStatement::ExecuteUpdate()</a> .<p>
+<div class="fragment"><pre class="fragment"><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<span class="preprocessor">#include &lt;ElDatabase.h&gt;</span>
+
+<span class="keyword">using namespace </span>Elastos;
+
+<span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)
+{
+    <span class="comment">// 打开数据库文件“samples.db”。</span>
+    <span class="comment">// 如果该文件不存在，则创建一个名为“samples.db”的文件。</span>
+    <a name="_a0"></a><a class="code" href="interface_i_database.html" title="特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。...">IDatabase</a> *pDatabase;
+    ECode ec = CDatabase::New(L<span class="stringliteral">"samples.db"</span>, &amp;pDatabase);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        <span class="keywordflow">return</span> -1;
+    }
+
+    <span class="comment">// 获取执行SQL预编译语句接口，students表已在Execute.cpp例程中创建。</span>
+    <a name="_a1"></a><a class="code" href="interface_i_statement.html" title="Statement接口，该接口用来执行静态的SQL语句并返回相应的结果集。...">IStatement</a> *pStatement;
+    ec = pDatabase-&gt;<a name="a2"></a><a class="code" href="interface_i_database.html#b68a1bd86c5b4d996a9dde72b6ea3f9d" title="创建一个用于向数据库传递SQL语句的SQL语句对象。 没有参数的...">CreateStatement</a>(&amp;pStatement);
+    <span class="keywordflow">if</span> (FAILED(ec)) {
+        pDatabase-&gt;Release();
+        <span class="keywordflow">return</span> -1;
+    }
+
+    Int32 rowCount = 0;
+    ec = pStatement-&gt;<a name="a3"></a><a class="code" href="interface_i_statement.html#2a17b6556ecbe1a3d1f75a5726986470" title="执行给定的SQL语句，可以是INSERT，UPDATE，DELETE语句， 或者其他不返回任何内...">ExecuteUpdate</a>(L<span class="stringliteral">"UPDATE students SET age = age + 1"</span>, &amp;rowCount);
+    <span class="keywordflow">if</span> (SUCCEEDED(ec)) {
+        printf(<span class="stringliteral">"%d record(s) update.\n"</span>, rowCount);
+    }
+
+    pStatement-&gt;Release();
+    pDatabase-&gt;Release();
+
+    <span class="keywordflow">return</span> 0;
+}
+
+<span class="comment">/*</span>
+<span class="comment">Output</span>
+<span class="comment">    10 record(s) update.</span>
+<span class="comment">*/</span>
+</pre></div>
+<script>footer("chinese")</script>
+</body>
+</html>

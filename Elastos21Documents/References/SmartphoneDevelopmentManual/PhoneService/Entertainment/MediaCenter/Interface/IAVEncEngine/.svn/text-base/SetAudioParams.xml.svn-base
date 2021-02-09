@@ -1,0 +1,83 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心引擎</volume>
+<interface>IAVEncEngine</interface><method> SetAudioParams </method>
+    <description>
+        <para>
+          设置音频流的参数。包括需要采用的音频数据编码格式的FOURCC，原始音频数据的采样率，原始音频数据的样本大小，原始音频数据的声道数。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uFourCC </param_name>
+                <param_note>
+                    <para>
+                      音频编码格式的四字节代码
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uSampleRate </param_name>
+                <param_note>
+                    <para>
+                       原始音频数据的采样率
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uSampleSize </param_name>
+                <param_note>
+                    <para>
+                      原始音频数据的样本大小
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uChannelCount </param_name>
+                <param_note>
+                    <para>
+                       原始音频数据的声道数
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION </td>
+	    	    <td>文件合成器接口指针为空  </td>
+	        </tr>
+	        <tr>
+	    	    <td>媒体中心引擎错误码 </td>
+	    	    <td>根据uFourCC找不到匹配的编码器  </td>
+	        </tr>
+	    </table>
+	   <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../MediaCenter_Error.htm">MediaCenter_Error</link>相关帮助。</para>
+    </return>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+
+    </requirements>
+</manpage>

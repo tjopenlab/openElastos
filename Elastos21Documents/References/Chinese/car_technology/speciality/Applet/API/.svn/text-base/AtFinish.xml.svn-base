@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> CApplet相关API介绍 </volume>
+    <interface>CApplet</interface>
+    <method> AtFinish </method>
+
+    <description>
+        <para>注册当前applet退出时需要执行的函数</para>
+    </description>
+
+    <syntax>
+        <return_val>STATIC CARAPI</return_val>
+        <parameters>
+        <api_param>
+            <param_type>PThreadQuitRoutine</param_type>
+            <param_name>pEntry</param_name>
+            <param_note>
+                <para>[in]注册当前applet退出时需要执行的函数。</para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>[in] PVoid</param_type>
+            <param_name>pUserData</param_name>
+            <param_note>
+                <para>退出时要获取的一些上下文相关数据。</para>
+                <para>退出时传递给PThreadQuitRoutine的参数。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+  <remarks>
+        <para>PThreadQuitRoutine定义：typedef _ELASTOS Void (ELFUNCCALLTYPE *PThreadQuitRoutine)(_ELASTOS PVoid);</para>
+        <para>void PThreadQuitRoutine(void *a) </para>
+    </remarks>
+</manpage>

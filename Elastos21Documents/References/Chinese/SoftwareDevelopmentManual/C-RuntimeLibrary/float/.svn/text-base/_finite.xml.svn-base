@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\float\_finite">_finite</sample>
+    <title>_finite</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> float_idx.htm </routine_idx>
+
+    <description>
+        <para>判断浮点数值是否有限。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_finite</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>浮点数值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果参数x有限（-INF &lt; x &lt; +INF），则返回非零数（真）；否则返回0（假）。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>_finite</routine_name>
+            <headerfile>float.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _finite.cpp: This program uses _finite function to verify
+ * x is finite.
+ */
+
+#include &lt;float.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;elastos.h&gt;
+
+int main()
+{
+    double x;
+    Boolean TF;
+
+    x = -14.87654321;
+    if (_finite(x))
+        TF = TRUE;
+    else
+        TF = FALSE;
+    printf(&quot;For this x, is %s\n&quot;, TF ? &quot;finite&quot; : &quot;infinite&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+For this x, is finite
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>_isnan</ref_name>
+            <ref_url>_isnan</ref_url>
+        </reference>
+    </references>
+
+</manpage>

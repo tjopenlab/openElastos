@@ -1,0 +1,58 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Thread and Scheduling</volume>
+<interface>IThread</interface><method> Interrupt </method>
+    <description>
+        <para>
+        	Interrupts the blocked thread (Sleep, Join, Wait etc.).
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <NoArguments/>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value</td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>S_OK</td>
+		<td>0x00000000</td>
+		<td>Function succeeds in interrupting the blocked thread.</td>
+	    </tr>
+	    <tr>
+		<td>E_FAIL</td>
+		<td>0x80004005</td>
+		<td>Unspecified error.</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+        	This method interrupts the blocked thread (Sleep, Join, Wait etc.) to wake up and continue running. </para>
+        
+        <para>
+        	If the thread is not in Sleep, Join or Wait state while the method is being called, then the thread is 
+        	interrupted as soon as it becomes block state. If the thread has finished, then this method has no effect and 
+        	returns E_FAIL. If the thread is in a non-interruptable sleeping state, then method does nothing. If 
+        	the thread is in running list, then the method sets its state as RunningReason_WakeUp.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

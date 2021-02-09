@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_memccpy">_memccpy</sample>
+    <title> _memccpy</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>从缓冲区拷贝字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <func_name>_memccpy</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>dest</param_name>
+                <param_note>
+                    <para>指向目的缓冲区的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>src</param_name>
+                <param_note>
+                    <para>指向源缓冲区的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>最后一个要拷贝的字符</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>unsigned int</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>要拷贝的字符的个数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    
+    <return>
+        <para>若src中前count个字符中有参数c指定的字符，则_memccpy返回指针指向dest变量中c字符后一个字符地址，否则，返回NULL。</para>
+    </return>
+
+    <remarks>
+        <para>函数_memccpy将零个或多个字节从源缓冲区拷贝到目标缓冲区，拷贝到c指定的字符或是拷贝完count指定数目的字符，函数都将结束。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_memccpy</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+       
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _memccpy.cpp:this program function copies 0 or more bytes of string1 to buffer,
+                halting when the character c has been copied or when count bytes have been copied
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+char string1[60] = &quot;The quick brown dog jumps over the lazy fox&quot;;
+
+int main()
+{
+    char buffer[61];
+
+    printf(&quot;Function:\t_memccpy 60 characters or to character &apos;s&apos;\n&quot;);
+    printf(&quot;Source:\t\t%s\n&quot;, string1);
+   
+    _memccpy(buffer, string1, &apos;s&apos;, 60);
+    
+    pdest = (char *)_memccpy( buffer, string1, 's', 60 );
+    *pdest = '\0';
+   
+    printf(&quot;Result:\t\t%s\n&quot;, buffer);
+    printf(&quot;Length:\t\t%d characters\n\n&quot;, strlen(buffer));
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Function:       _memccpy 60 characters or to character &apos;s&apos;
+Source:         The quick brown dog jumps over the lazy fox
+Result:         The quick brown dog jumps
+Length:         25 characters
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>memchr</ref_name>
+            <ref_url>memchr</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memcmp</ref_name>
+            <ref_url>memcmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memcpy</ref_name>
+            <ref_url>memcpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memset</ref_name>
+            <ref_url>memset</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memmove</ref_name>
+            <ref_url>memmove</ref_url>
+        </reference>
+    </references>
+
+</manpage>

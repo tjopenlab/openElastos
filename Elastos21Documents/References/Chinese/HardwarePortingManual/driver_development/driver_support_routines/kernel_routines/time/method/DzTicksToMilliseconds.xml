@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>时间</volume>
+    <title>DzTicksToMilliseconds</title>
+    <routine_idx> ../../time.htm </routine_idx>
+
+    <description>
+        <para>把以tick为单位的时间长度转化为以毫秒为单位的等价时间长度。</para>
+    </description>
+
+    <syntax>
+        <return_val>uint_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> uint_t</param_type>
+                <param_name> ticks </param_name>
+                <param_note>
+                    <para>需要转化的时间长度，单位为tick</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回值是转化后的以毫秒为单位的等价时间长度。</para>
+    </return>
+
+    <remarks>
+        <para>本函数用于把以tick为单位的时间长度转化为以毫秒为单位的等价时间长度。在不同的系统上，tick单位大小是不同的。在典型情况下，tick单位会大于等于毫秒单位。如果tick单位大于毫秒单位，那么转化出来的时间长度有可能会发生溢出。但是，在正常的使用中不会发生此种溢出情况，所以本函数不对溢出进行处理。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>DzMillisecondsToTicks</ref_name>
+            <ref_url>DzMillisecondsToTicks</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,59 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>WSAGetLastError</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>获得上次失败操作的错误代码。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>void</param_type>
+                <param_name></param_name>
+                <param_note>
+                    <para>（无）</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，返回本线程最近一次elasock函数调用失败的错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>WSAGetLastError()返回最近一次elasock函数调用失败的错误代码。当某个elasock函数调用已经发生错误时，可调用本函数来获得具体的错误信息。这个代码可能和从getsockopt()里得到的SO_ERROR错误代码不同，因为SO_ERROR针对一个特殊的套接口，而WSAGetLastError()针对线程内的所有套接口。</para>
+        <para>一个函数成功调用，或者一个WSAGetLastError()调用，都不会重置错误代码。如果要复位错误代码，需要将iError设为零，再调用WSASetLastError()函数。此外通过getsockopr()和设置SO_ERROR选项也可以将错误代码复位为0。</para>
+        <para>在收到一个异步消息时，不应该调用WSAGetLastError()来检查错误信息。在这种情况下，异步消息的IParam参数里已经包含了相应的错误信息，而且它可能与和WSAGetLastError()返回的值不同。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+    </references>
+    <example>
+    </example>
+</manpage>

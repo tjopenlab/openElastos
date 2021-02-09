@@ -1,0 +1,34 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>web_service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Architecture</h2>
+        <p>Web service <a class="style1" href="../soa/soa.htm">service oriented architecture (SOA) based</a>.</p>
+        <p>Web service architecture consists of three roles, which are service provider, service registration center and service consumer. Interaction between roles involves three operations,which are broadcasting,searching and binding. These roles and operations make up for the two elements that consist of Web service: Web service software module implementation and Web service description. Under typical situations, service provider trusteeship can be achieved through Web service software module (i.e. one Web service implementation). Meanwhile, service provider also defines service description of Web service and service provider also broadcast the service description to service consumer or register it to service registration center. Service consumer invokes search operation to search service description from local or service registration center.Then the service consumer binds with service provider using service description and invokes Web service implementation or interact with web service implementation. Service provider and service consumer roles are logic structures.Hence one service can have both characteristics at the same time.Thus it can on one hand provide Web service to the outside and on the other hand it can use other Web service operation.</p>
+        <p>Image one describes Web service architecture.</p>
+        <center><img src="images/web.jpg"></center>
+        <center>Image one: Web service role, operation</center>
+        <p>As shown in image one, there are three roles in Web service architecture: </p>
+    <ul>
+        <li><b>Service provider: </b>In enterprise computing, service provider is the owner of the service. From architecture point of view, this is the platform where service can be visited.
+        <li><b>Service consumer: </b>In enterprise computing, this is  a role that needs to satisfy specific feature. From architecture point of view, this is to search and invoke service or starts application that interact with the service.
+        <li><b>Service registration center: </b>This is a searchable service description registration center and service provider releases their service descriptions. During static binding development or dynamic binding execution phase, the service consumer searches service and obtains service binding information (in service description). For static binding service consumer, service registration center is the optional role in the architecture, because service provider can directly send description to service consumer. Similarily, service consumer can obtain service description from other sources besides service registration center.For example local file, FTP site, Web site, advertisement&nbsp;and&nbsp;discovery&nbsp;of&nbsp;services (ADS) or discovery&nbsp;of&nbsp;Web&nbsp;Services, (DISCO).
+    </ul>
+        <p>As shown in image one, application using Web service has the following three actions: Releasing service description, search or search service description and binding or invoking service according to service description.</p>
+    <ul>
+        <li><b>Release: </b>In order to visit the service, service description needs to be released to make the service searchable by service consumer. Location to release service description can be changed according to application requirement.
+        <li><b>Search: </b>In search operation, service consumer directly searches service description or searches requested service type in service registration center. For service consumer, search operation can be involved in two different life cycle phases which are during design search service interface description for application development and during run-time search service binding and location description for invocation.
+        <li><b>Bind: </b>Finally we need to invoke service. In binding operation, service consumer locates, contacts and invokes service by using binding details in service description.Thus invokes or starts interaction with service in run-time.
+    </ul>
+
+<script>footer("english")</script>
+</body>
+</html>            

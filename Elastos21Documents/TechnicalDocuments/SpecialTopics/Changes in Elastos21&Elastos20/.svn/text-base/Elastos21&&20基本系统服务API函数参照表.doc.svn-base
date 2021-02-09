@@ -1,0 +1,2206 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="Elastos21&amp;&amp;20基本系统服务API函数参照表.files/filelist.xml">
+<link rel=Edit-Time-Data href="Elastos21&amp;&amp;20基本系统服务API函数参照表.files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>基本系统服务C/C++函数对照表</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Shen Jin</o:Author>
+  <o:LastAuthor>zhangjinhuan</o:LastAuthor>
+  <o:Revision>36</o:Revision>
+  <o:TotalTime>95</o:TotalTime>
+  <o:Created>2008-03-20T06:00:00Z</o:Created>
+  <o:LastSaved>2008-03-20T08:36:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1465</o:Words>
+  <o:Characters>8351</o:Characters>
+  <o:Company>koretide</o:Company>
+  <o:Lines>69</o:Lines>
+  <o:Paragraphs>19</o:Paragraphs>
+  <o:CharactersWithSpaces>9797</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:宋体;}
+h1
+	{mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:宋体;
+	font-weight:bold;}
+h2
+	{mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:宋体;
+	font-weight:bold;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{mso-style-noshow:yes;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	background:navy;
+	font-size:12.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:宋体;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:宋体;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+<script  src="/xsl/docstyles.js">
+</script>
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt'>
+
+<div class=Section1>
+
+<h1><span lang=EN-US>Elastos21&amp;&amp;20</span>基本系统服务<span lang=EN-US>API</span>函数对照表</h1>
+
+<h2>基本<span lang=EN-US>CAR</span>函数</h2>
+
+<p>　<span lang=EN-US><o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=816 style='width:611.7pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .75pt outset windowtext;mso-border-insidev:.75pt outset windowtext' id=table1>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=236 style='width:177.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=334 style='width:250.2pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=238 style='width:178.5pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>对应函数</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=236 style='width:177.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CProcess::FreeUnusedModules</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=334 style='width:250.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CProcess_FreeUnusedModules</span></span><span
+  lang=EN-US>(TRUE); </span></p>
+  </td>
+  <td width=238 style='width:178.5pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzFreeUnusedComponents</span></span><span
+  lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=812 colspan=3 style='width:608.7pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>释放当前没在使用的构件<span lang=EN-US>DLL</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=236 style='width:177.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CObject::CreatesInstances</span></span><span
+  lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=334 style='width:250.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CObject_CreateInstance</span>(<span
+  class=SpellE>rclsid</span>, <span class=SpellE>pContext</span>, <span
+  class=SpellE>riid</span>, <span class=SpellE>ppObj</span>);</span></p>
+  </td>
+  <td width=238 style='width:178.5pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzCreateObject</span></span><span
+  lang=EN-US> </span><span lang=EN-US style='mso-bidi-font-size:10.0pt;
+  color:red'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width=812 colspan=3 style='width:608.7pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>实例化一个对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=236 style='width:177.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CObject::Compare</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=334 style='width:250.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CObject_Compare</span>(<span
+  class=SpellE>pObjectA</span>, <span class=SpellE>pObjectB</span>); </span></p>
+  </td>
+  <td width=238 style='width:178.5pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzCompareObjects</span></span><span
+  lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td width=812 colspan=3 style='width:608.7pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>比较两个对象</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=236 style='width:177.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CObject::ReleaseAtProcessExit</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=334 style='width:250.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CObject_ReleaseAtProcessExit</span>(<span
+  class=SpellE>pObject</span>); </span></p>
+  </td>
+  <td width=238 style='width:178.5pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>　</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td width=812 colspan=3 style='width:608.7pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>当进程退出时释放对象</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td width=236 style='width:177.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CObject::EnterContext</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=334 style='width:250.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CObject_EnterContext</span>(<span
+  class=SpellE>pObject</span>, <span class=SpellE>pContext</span>); </span></p>
+  </td>
+  <td width=238 style='width:178.5pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>_<span
+  class=SpellE>EzEnterContext</span></span><span lang=EN-US>();</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10'>
+  <td width=812 colspan=3 style='width:608.7pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>对象进入<span lang=EN-US>context</span>语境</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11'>
+  <td width=236 style='width:177.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CObject::LeaveContext</span></span><span
+  lang=EN-US>&nbsp; </span></p>
+  </td>
+  <td width=334 style='width:250.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CObject_LeaveContext</span>(<span
+  class=SpellE>pObject</span>, <span class=SpellE>pContext</span>);</span></p>
+  </td>
+  <td width=238 style='width:178.5pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>_<span
+  class=SpellE>EzLeaveContext</span></span><span lang=EN-US>();</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12'>
+  <td width=812 colspan=3 style='width:608.7pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>对象离开<span lang=EN-US>context</span>语境</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13'>
+  <td width=236 style='width:177.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CObject::AttachAspect</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=334 style='width:250.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CObject_AttachAspect</span>(<span
+  class=SpellE>pAggregator</span>, <span class=SpellE>pAspect</span>); </span></p>
+  </td>
+  <td width=238 style='width:178.5pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>　</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14'>
+  <td width=812 colspan=3 style='width:608.7pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>对象与指定的<span lang=EN-US>Aspect</span>聚合</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15'>
+  <td width=236 style='width:177.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CObject::DetachAspect</span></span></p>
+  </td>
+  <td width=334 style='width:250.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CObject_DetachAspect</span>(<span
+  class=SpellE>pAggregator</span>, <span class=SpellE>rAspectClsid</span>);&nbsp;
+  </span></p>
+  </td>
+  <td width=238 style='width:178.5pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>　</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16;mso-yfti-lastrow:yes'>
+  <td width=812 colspan=3 style='width:608.7pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>对象与指定的<span lang=EN-US>Aspect</span>分离 </p>
+  </td>
+ </tr>
+</table>
+
+<h2>命名服务</h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=815 style='width:611.6pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=260 style='width:195.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=324 style='width:243.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>对应函数</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=260 style='width:195.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::RegisterRunningObject</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=324 style='width:243.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_RegisterRunningObject</span>(name,
+  <span class=SpellE>pRunningObject</span>); </span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzRegisterService</span></span><span
+  lang=EN-US>(); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>向操作系统注册命名服务接口 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=260 style='width:195.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::FindRunningObject</span></span><span
+  lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=324 style='width:243.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_FindRunningObject</span>(name,
+  <span class=SpellE>ppRunningObject</span>); </span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzFindService</span></span><span
+  lang=EN-US>(); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获取指定名字的服务接口 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=260 style='width:195.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::WaitForRunningObject</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=324 style='width:243.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_WaitForRunningObject</span>(name,
+  timeout, <span class=SpellE>pResult</span>); </span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzWaitForService</span></span><span
+  lang=EN-US>(); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>等待指定的命名服务被注册 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=260 style='width:195.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::UnregisterRunningObject</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=324 style='width:243.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_UnregisterRunningObject</span>(name);
+  </span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzUnregisterService</span></span><span
+  lang=EN-US>(); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8;mso-yfti-lastrow:yes'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>取消已注册的命名服务 </p>
+  </td>
+ </tr>
+</table>
+
+<h2>内存管理</h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=815 style='width:611.6pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=252 style='width:189.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=332 style='width:249.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>对应函数</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=252 style='width:189.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CProcess::FlushInstructionCache</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CProcess_FlushInstructionCache</span>(<span
+  class=SpellE>baseAddr</span>, size); </span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>&nbsp;<span
+  class=SpellE>EzFlushInstructionCache</span></span><span lang=EN-US>();</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>刷出当前进程所对应的指令缓存 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=252 style='width:189.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CVirtualMemory::IoRemap</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CVirtualMemory_IoRemap</span></span></p>
+  <p><span lang=EN-US>(<span class=SpellE>virtualAddr,size,physicalAddr,flags</span>,</span></p>
+  <p><span class=SpellE><span lang=EN-US>protection,pVirtualAddr</span></span><span
+  lang=EN-US>)</span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzIoRemap</span></span><span lang=EN-US>()</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>将指定的<span lang=EN-US>IO</span>地址段映射到进程虚存段上 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=252 style='width:189.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CVirtualMemory::Alloc</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CVirtualMemory_Alloc</span>(<span
+  class=SpellE>baseAddr</span>, size, flags, protection, <span class=SpellE>pBaseAddr</span>);
+  </span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzMemoryAlloc</span></span><span
+  lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>分配一个虚存块 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=252 style='width:189.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CVirtualMemory::CheckProtection</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CVirtualMemory_CheckProtection</span>(address,
+  protection, <span class=SpellE>pIsValid</span>); </span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzMemoryCheck</span></span><span lang=EN-US>();
+  </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>检查对指定的虚存地址是否具有指定的访问权限 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td width=252 style='width:189.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CVirtualMemory::Commit</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CVirtualMemory_Commit</span>(address);
+  </span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzMemoryCommit</span></span><span lang=EN-US>();
+  </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>要求系统提交指定虚存的物理内存 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11'>
+  <td width=252 style='width:189.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CVirtualMemory::Free</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CVirtualMemory_Free</span>(<span
+  class=SpellE>baseAddr</span>, size); </span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzMemoryFree</span></span><span lang=EN-US>();
+  </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>释放指定的虚存块 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13'>
+  <td width=252 style='width:189.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CVirtualMemory::SetProtection</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CVirtualMemory_SetProtection</span>(<span
+  class=SpellE>baseAddr</span>, size, protection); </span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzMemoryProtect</span></span><span lang=EN-US>();
+  </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>改变指定虚存的保护权限 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15'>
+  <td width=252 style='width:189.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CVirtualMemory::Query</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CVirtualMemory_Query</span>(address,
+  <span class=SpellE>pBaseAddr</span>, <span class=SpellE>pSize</span>); </span></p>
+  </td>
+  <td width=223 style='width:167.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzMemoryQuery</span></span><span lang=EN-US>();
+  </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16;mso-yfti-lastrow:yes'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>查询指定地址所在虚拟内存块的信息 </p>
+  </td>
+ </tr>
+</table>
+
+<h2>进程</h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=815 style='width:611.6pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=205 style='width:153.85pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=384 style='width:287.85pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=219 style='width:163.9pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>对应函数</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=205 style='width:153.85pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CProcess::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=384 style='width:287.85pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CProcess_NewUnstarted</span>(<span
+  class=SpellE>ppProcess</span>); </span></p>
+  </td>
+  <td width=219 style='width:163.9pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzCreateProcessObject</span></span><span
+  style='font-size:10.5pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman";mso-bidi-font-family:"Times New Roman"'>（）</span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>;</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建一个新进程对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=205 style='width:153.85pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CProcess::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CProcess_New</span>(name,
+  <span class=SpellE>args</span>, <span class=SpellE>ppProcess</span>); </span></p>
+  </td>
+  <td width=219 style='width:163.9pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzCreateProcess</span></span><span
+  style='font-size:10.5pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman";mso-bidi-font-family:"Times New Roman"'>（）</span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>;</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建一个新进程 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=205 style='width:153.85pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CProcess::Exit</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CProcess_Exit</span>(<span
+  class=SpellE>exitCode</span>); </span></p>
+  </td>
+  <td width=219 style='width:163.9pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>&nbsp;<span
+  class=SpellE>EzExitProcess</span></span><span style='font-size:10.5pt;
+  mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+  mso-bidi-font-family:"Times New Roman"'>（）</span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>;</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>退出当前进程 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=205 style='width:153.85pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CProcess::AtExit</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CProcess_AtExit</span>(<span
+  class=SpellE>pEntry</span>, <span class=SpellE>pUserData</span>); </span></p>
+  </td>
+  <td width=219 style='width:163.9pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>没有对应</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>退出当前进程 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td width=205 style='width:153.85pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CProcess::GetCurrent</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CProcess_GetCurrent</span>(<span
+  class=SpellE>ppCurrentProcess</span>); </span></p>
+  </td>
+  <td width=219 style='width:163.9pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzGetCurrentProcess</span></span><span
+  style='font-size:10.5pt;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman";mso-bidi-font-family:"Times New Roman"'>（）</span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>;</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获取当前进程接口<span class=SpellE><span lang=EN-US>IProcess</span></span>的指针
+  </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11'>
+  <td width=205 style='width:153.85pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::GetAllProcesses</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_GetAllProcesses</span>(<span
+  class=SpellE>ppProcesses</span>); </span></p>
+  </td>
+  <td width=219 style='width:163.9pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzGetProcesses</span></span><span
+  lang=EN-US>()</span><span lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12;mso-yfti-lastrow:yes'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获取系统中所有进程的枚举器 </p>
+  </td>
+ </tr>
+</table>
+
+<h2>线程</h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=815 style='width:611.6pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=205 style='width:154.1pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=388 style='width:291.2pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=214 style='width:160.3pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>函数名称</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=205 style='width:154.1pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=388 style='width:291.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_New</span>(<span
+  class=SpellE>pEntry</span>, <span class=SpellE>pArg</span>, flags, <span
+  class=SpellE>ppThread</span>); </span></p>
+  </td>
+  <td width=214 style='width:160.3pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzCreateThread</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>(...)</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建一个新线程 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=205 style='width:154.1pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::Delay</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_Delay</span>(us);
+  </span></p>
+  </td>
+  <td width=214 style='width:160.3pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzDelay</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>使当前线程进入忙等待 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=205 style='width:154.1pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::Quit</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_Quit</span>(<span
+  class=SpellE>quitCode</span>); </span></p>
+  </td>
+  <td width=214 style='width:160.3pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzExitThread</span></span><span
+  lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>退出当前线程 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=205 style='width:154.1pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::AtQuit</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_AtQuit</span>(<span
+  class=SpellE>pEntry</span>, <span class=SpellE>pUserData</span>); </span></p>
+  </td>
+  <td width=214 style='width:160.3pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>没有对应<span lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>退出当前线程 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td width=205 style='width:154.1pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::RequestToQuit</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_RequestToQuit</span>(<span
+  class=SpellE>quitCode</span>); </span></p>
+  </td>
+  <td width=214 style='width:160.3pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>没有对应</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>请求退出当前线程 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11'>
+  <td width=205 style='width:154.1pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::GetCurrent</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_GetCurrent</span>(<span
+  class=SpellE>ppCurrentThread</span>); </span></p>
+  </td>
+  <td width=214 style='width:160.3pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>&nbsp;<span
+  class=SpellE>EzGetCurrentThread</span>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获取当前线程接口的<span class=SpellE><span lang=EN-US>IThread</span></span>指针
+  </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13'>
+  <td width=205 style='width:154.1pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::Sleep</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_Sleep</span>(ms,
+  <span class=SpellE>pResult</span>); </span></p>
+  </td>
+  <td width=214 style='width:160.3pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>&nbsp;<span
+  class=SpellE>EzSleep</span>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>使当前线程进入睡眠状态 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15'>
+  <td width=205 style='width:154.1pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::Yield</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_Yield</span>();
+  </span></p>
+  </td>
+  <td width=214 style='width:160.3pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzYield</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>();</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16;mso-yfti-lastrow:yes'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>主动放弃当前线程的调度权 </p>
+  </td>
+ </tr>
+</table>
+
+<h2><span class=SpellE><span lang=EN-US>ThreadLocalStorage</span></span>（<span
+lang=EN-US>Thread Local Storage</span>）</h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=815 style='width:611.6pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=324 style='width:243.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=255 style='width:191.6pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>函数名称</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::AcquireLocalSlot</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=324 style='width:243.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_AcquireLocalSlot</span>(<span
+  class=SpellE>slotType</span>, <span class=SpellE>pSlotIndex</span>); </span></p>
+  </td>
+  <td width=255 style='width:191.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>　<span class=SpellE><span lang=EN-US>EzAcquireThreadLocalSlot</span></span><span
+  lang=EN-US>()</span><span lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>分配一个<span class=SpellE><span lang=EN-US>ThreadLocalStorage</span></span><span
+  lang=EN-US> index</span>（<span lang=EN-US>Thread Local Storage</span>索引号） </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::GetLocalMemory</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=324 style='width:243.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_GetLocalMemory</span>(<span
+  class=SpellE>slotIndex</span>, <span class=SpellE>ppMemory</span>); </span></p>
+  </td>
+  <td width=255 style='width:191.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>&nbsp;<span
+  class=SpellE>EzGetThreadLocalMem</span>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>根据指定的<span class=SpellE><span lang=EN-US>ThreadLocalStorage</span></span>索引号，获取调用线程的相应<span
+  class=SpellE><span lang=EN-US>tls</span></span>槽（<span lang=EN-US>slot</span>）中存储的数据（堆内存指针）
+  </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::GetLocalObject</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_GetLocalObject</span>(<span
+  class=SpellE>slotIndex</span>, <span class=SpellE>ppObj</span>); </span></p>
+  </td>
+  <td width=255 style='width:191.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzSetThreadLocalObj</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>根据指定的<span class=SpellE><span lang=EN-US>ThreadLocalStorage</span></span>索引号，获取调用线程的相应<span
+  class=SpellE><span lang=EN-US>tls</span></span>槽（<span lang=EN-US>slot</span>）中存储的数据（构件对象指针）
+  </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::GetLocalValue</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_GetLocalValue</span>(<span
+  class=SpellE>slotIndex</span>, <span class=SpellE>pValue</span>); </span></p>
+  </td>
+  <td width=255 style='width:191.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzGetThreadLocalValue</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>根据指定的<span class=SpellE><span lang=EN-US>ThreadLocalStorage</span></span>索引号，获取调用线程的相应<span
+  class=SpellE><span lang=EN-US>tls</span></span>槽（<span lang=EN-US>slot</span>）中存储的数据（立即数指针）
+  </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::RelinquishLocalSlot</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_RelinquishLocalSlot</span>(<span
+  class=SpellE>slotIndex</span>); </span></p>
+  </td>
+  <td width=255 style='width:191.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzRelinquishThreadLocalSlot</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>();</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>释放一个<span class=SpellE><span lang=EN-US>ThreadLocalStorage</span></span>索引号，使该索引号可以被重用，并回收堆内存<span
+  lang=EN-US>/</span>释放构件对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::SetLocalMemory</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_SetLocalMemory</span>(<span
+  class=SpellE>slotIndex</span>, <span class=SpellE>pMemory</span>); </span></p>
+  </td>
+  <td width=255 style='width:191.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzSetThreadLocalMem</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>通过指定的<span class=SpellE><span lang=EN-US>ThreadLocalStorage</span></span>索引号，将某个值（堆内存指针）存储在调用线程中对应的私有<span
+  class=SpellE><span lang=EN-US>tls</span></span>槽（<span lang=EN-US>slot</span>）中
+  </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::SetLocalObject</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_SetLocalObject</span>(<span
+  class=SpellE>slotIndex</span>, <span class=SpellE>pObject</span>); </span></p>
+  </td>
+  <td width=255 style='width:191.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzSetThreadLocalObj</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>通过指定的<span class=SpellE><span lang=EN-US>ThreadLocalStorage</span></span>索引号，将某个值（构件对象指针）存储在调用线程中对应的私有<span
+  class=SpellE><span lang=EN-US>tls</span></span>槽（<span lang=EN-US>slot</span>）中
+  </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CThread::SetLocalValue</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CThread_SetLocalValue</span>(<span
+  class=SpellE>slotIndex</span>, value); </span></p>
+  </td>
+  <td width=255 style='width:191.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>&nbsp;<span
+  class=SpellE>EzGetThreadLocalValue</span>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16;mso-yfti-lastrow:yes'>
+  <td width=811 colspan=3 style='width:608.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>通过指定的<span class=SpellE><span lang=EN-US>ThreadLocalStorage</span></span>索引号，将某个值（立即数指针）存储在调用线程中对应的私有<span
+  class=SpellE><span lang=EN-US>tls</span></span>槽（<span lang=EN-US>slot</span>）中
+  </p>
+  </td>
+ </tr>
+</table>
+
+<h2>同步</h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=912 style='width:684.0pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=452 style='width:339.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>函数名称</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CCondition::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=452 style='width:339.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CCondition_New</span>(<span
+  class=SpellE>ppCondition</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzCreateCondition</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建条件变量对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CCondition::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=452 style='width:339.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CCondition_NewWithName</span>(name,
+  <span class=SpellE>ppCondition</span>, <span class=SpellE>pAlreadyExists</span>);
+  </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzCreateNamedCondition</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建命名条件变量对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CEvent::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=452 style='width:339.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CEvent_New</span>(<span
+  class=SpellE>manualReset</span>, <span class=SpellE>initialState</span>, <span
+  class=SpellE>ppEvent</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzCreateEvent</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>(...); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建事件同步对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CEvent::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CEvent_NewWithName</span></span></p>
+  <p class=MsoNormal><span lang=EN-US>(name, <span class=SpellE>manualReset</span>,
+  <span class=SpellE>initialState</span>, <span class=SpellE>ppEvent</span>, <span
+  class=SpellE>pAlreadyExists</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>&nbsp;<span
+  class=SpellE>EzCreateNamedEvent</span>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建命名事件同步对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CMutex::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CMutex_New</span>(<span
+  class=SpellE>ppMutex</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzCreateMutex</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>(...); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建互斥锁对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CMutex::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CMutex_NewWithName</span>(name,
+  <span class=SpellE>ppMutex</span>, <span class=SpellE>pAlreadyExists</span>);
+  </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzCreateNamedMutex</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建命名互斥锁对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CReaderWriterLock::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CReaderWriterLock_New</span>(<span
+  class=SpellE>ppRWLock</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzCreateReaderWriterLock</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建读写锁对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CReaderWriterLock::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CReaderWriterLock_NewWithName</span>(name,
+  <span class=SpellE>ppRWLock</span>, <span class=SpellE>pAlreadyExists</span>);
+  </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzCreateNamedReaderWriterLock</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建命名读写锁对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:17'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CEvent::TryWaitForAnyEvent</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CEvent_TryWaitForAnyEvent</span>(&amp;events,
+  timeout, <span class=SpellE>pResult</span>, <span class=SpellE>pIndex</span>,
+  <span class=SpellE>pState</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzTryWaitForAnyEvent</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:18'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>尝试在指定时间间隔内同时等待多个事件对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:19'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CEvent::WaitForAnyEvent</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CEvent_WaitForAnyEvent</span>(&amp;events,
+  <span class=SpellE>pResult</span>, <span class=SpellE>pIndex</span>, <span
+  class=SpellE>pState</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzWaitForAnyEvent</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:20'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>同时等待多个事件对象 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:21'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CCriticalSection::Terminate</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CCriticalSection_Terminate</span>(*<span
+  class=SpellE>pCriticalSection</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzDeleteCriticalSection</span></span><span
+  lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:22'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>删除临界区，释放相关资源 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:23'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CCriticalSection::Enter</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CCriticalSection_Enter</span>(*<span
+  class=SpellE>pCriticalSection</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt'>EzEnterCriticalSection</span></span><span lang=EN-US
+  style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:24'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>以阻塞方式，进入临界区 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:25'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CCriticalSection::Initialize</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CCriticalSection_Initialize</span>(*<span
+  class=SpellE>pCriticalSection</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzInitializeCriticalSection</span></span><span
+  lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:26'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>初始化临界区 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:27'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CCriticalSection::TryEnter</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CCriticalSection_TryEnter</span>(*<span
+  class=SpellE>pCriticalSection</span>,*<span class=SpellE>pEntered</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt'>EzTryEnterCriticalSection</span></span><span lang=EN-US
+  style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:28'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>以非阻塞方式，进入临界区 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:29'>
+  <td width=228 style='width:171.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CCriticalSection::Leave</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CCriticalSection_Leave</span>(*<span
+  class=SpellE>pCriticalSection</span>); </span></p>
+  </td>
+  <td width=224 style='width:168.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt'>EzLeaveCriticalSection</span></span><span lang=EN-US
+  style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:30;mso-yfti-lastrow:yes'>
+  <td width=908 colspan=3 style='width:681.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>离开临界区 </p>
+  </td>
+ </tr>
+</table>
+
+<h2>其它系统服务</h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=753 style='width:564.6pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=206 style='width:154.2pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=375 style='width:281.4pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=154 style='width:115.8pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>函数名称</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=206 style='width:154.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::DebugPrint</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=375 style='width:281.4pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_DebugPrint</span>(message);
+  </span></p>
+  </td>
+  <td width=154 style='width:115.8pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzDebugPrint</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>(...); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>输出打印信息到控制台 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=206 style='width:154.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::GetGlobalMemorySizes</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_GetGlobalMemorySizes</span></span></p>
+  <p><span lang=EN-US>(<span class=SpellE>pTotalPhysicalMemorySize</span>,</span></p>
+  <p><span class=SpellE><span lang=EN-US>pAvailablePhysicalMemorySize</span></span><span
+  lang=EN-US>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>&nbsp;<span
+  class=SpellE>EzGetGlobalMemorySizes</span>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获取系统总的物理内存以及当前可用的物理内存。 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=206 style='width:154.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::GetElapsedTime</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_GetElapsedTime</span>(<span
+  class=SpellE>pTime</span>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzGetElapsedTime</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获取系统自启动以来流逝的总时间（以毫秒为单位） </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=206 style='width:154.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::GetIdleTime</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_GetIdleTime</span>(<span
+  class=SpellE>pTime</span>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzGetIdleTime</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>(...); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获取系统处于空闲状态的总时间（以毫秒为单位） </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td width=206 style='width:154.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::GetMachineTime</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_GetMachineTime</span>(<span
+  class=SpellE>pMachineTime</span>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt'>EzGetSystemTime</span></span><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>以微秒的精度获取当前的系统标准时间（<span lang=EN-US>UTC</span>） </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11'>
+  <td width=206 style='width:154.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::SetMachineTime</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_SetMachineTime</span>(<span
+  class=SpellE>machineTime</span>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzSetSystemTime</span></span><span
+  lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>设置当前的系统标准时间（<span lang=EN-US>UTC</span>） </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13'>
+  <td width=206 style='width:154.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSystem::Reboot</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSystem_Reboot</span>();
+  </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzReboot</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>();</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>重新启动机器 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15'>
+  <td width=206 style='width:154.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>CProfile::GetInt32 </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_CProfile_GetInt32(<span class=SpellE>appName</span>,
+  <span class=SpellE>keyName</span>, <span class=SpellE>pValue</span>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzGetProfileInt</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>(...); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获得整型的配置文件<span class=SpellE><span lang=EN-US>elastos.cfg</span></span><span
+  lang=EN-US> </span>中指定<span lang=EN-US>section</span>段里的关键字的值 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:17'>
+  <td width=206 style='width:154.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CProfile::GetAString</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CProfile_GetAString</span></span></p>
+  <p><span lang=EN-US>(<span class=SpellE>appName</span>, <span class=SpellE>keyName</span>,
+  <span class=SpellE>pReturnedString</span>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>没有对应</p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:18'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获得字符串格式的配置文件<span class=SpellE><span lang=EN-US>elastos.cfg</span></span><span
+  lang=EN-US> </span>中指定<span lang=EN-US>section</span>段里的关键字的值 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:19'>
+  <td width=206 style='width:154.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CProfile::GetWString</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CProfile_GetWString</span></span></p>
+  <p><span lang=EN-US>(<span class=SpellE>appName</span>, <span class=SpellE>keyName</span>,
+  <span class=SpellE>pReturnedString</span>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzGetProfileString</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);&nbsp;
+  </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:20;mso-yfti-lastrow:yes'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获得字符串格式的配置文件<span class=SpellE><span lang=EN-US>elastos.cfg</span></span><span
+  lang=EN-US> </span>中指定<span lang=EN-US>section</span>段里的关键字的值 </p>
+  </td>
+ </tr>
+</table>
+
+<h2>错误返回机制</h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=752 style='width:564.0pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=206 style='width:154.8pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=374 style='width:280.8pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=154 style='width:115.2pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>函数名称</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=206 style='width:154.8pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CErrorReport::SetWString</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CErrorReport_SetWString</span>(string);
+  </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzSetErrorString</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>根据传入的宽字符串，设置错误报告信息 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=206 style='width:154.8pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CErrorReport::SetAString</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CErrorReport_SetAString</span>(string);
+  </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>&nbsp;<span
+  class=SpellE>EzSetErrorStringA</span>(...); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>根据传入的<span lang=EN-US> ASCII </span>字符串，设置错误报告信息 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=206 style='width:154.8pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CErrorReport::SetUrl</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CErrorReport_SetUrl</span>(<span
+  class=SpellE>url</span>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzSetErrorUrl</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>(...); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>根据传入的<span lang=EN-US> URL </span>，设置错误报告信息 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=206 style='width:154.8pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CErrorReport::GetWString</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CErrorReport_GetWString</span>();
+  </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzGetErrorString</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8;height:13.2pt'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt;height:13.2pt'>
+  <p class=MsoNormal>获取错误报告信息 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td width=206 style='width:154.8pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CErrorReport::GetAString</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CErrorReport_GetAString</span>();
+  </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzGetErrorStringA</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获取错误报告信息 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11'>
+  <td width=206 style='width:154.8pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CErrorReport::GetUrl</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CErrorReport_GetUrl</span>();
+  </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzGetErrorUrl</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>(); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12;mso-yfti-lastrow:yes'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获取错误报告的<span lang=EN-US>URL </span></p>
+  </td>
+ </tr>
+</table>
+
+<h2>可执行文件和模块</h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=751 style='width:563.4pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=205 style='width:153.6pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=375 style='width:281.4pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=154 style='width:115.2pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>函数名称</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=205 style='width:153.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CModule::GetCurrent</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CModule_GetCurrent</span>(<span
+  class=SpellE>ppModule</span>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzGetCurrentModule</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>获取当前进程装载的映像模块 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=205 style='width:153.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CModule::Load</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CModule_Load</span>(name,
+  flags, <span class=SpellE>ppModule</span>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzLoadModule</span></span><span
+  lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4;mso-yfti-lastrow:yes'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>在当前进程中装载映像模块 </p>
+  </td>
+ </tr>
+</table>
+
+<h2><span style='color:black'>内存共享<span lang=EN-US><o:p></o:p></span></span></h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=750 style='width:562.8pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=205 style='width:153.6pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=376 style='width:282.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=152 style='width:114.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>函数名称</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=205 style='width:153.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CSharedMemory::New</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CSharedMemory_New</span>(name,
+  size, commit, <span class=SpellE>ppSharedMemory</span>, <span class=SpellE>pAlreadyExists</span>);
+  </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>　<span class=SpellE><span lang=EN-US>EzCreateSharedMemory</span></span><span
+  lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2;mso-yfti-lastrow:yes'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>创建共享内存 </p>
+  </td>
+ </tr>
+</table>
+
+<h2>堆内存</h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=752 style='width:564.0pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=204 style='width:153.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=378 style='width:283.2pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=153 style='width:114.6pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>函数名称</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=204 style='width:153.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CMemoryHeap::Alloc</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=378 style='width:283.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CMemoryHeap_Alloc</span>(size,
+  <span class=SpellE>zeroMemory</span>); </span></p>
+  </td>
+  <td width=153 style='width:114.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzTaskMemAlloc</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>(...); </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>分配一块内存。 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=204 style='width:153.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CMemoryHeap::Realloc</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=378 style='width:283.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CMemoryHeap_Realloc</span>(<span
+  class=SpellE>pMemory</span>, size); </span></p>
+  </td>
+  <td width=153 style='width:114.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzTaskMemRealloc</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>重新分配内存的大小。 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=204 style='width:153.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CMemoryHeap::Free</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=378 style='width:283.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CMemoryHeap_Free</span>(<span
+  class=SpellE>pMemory</span>); </span></p>
+  </td>
+  <td width=153 style='width:114.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzTaskMemFree</span></span><span lang=EN-US
+  style='font-size:10.5pt;font-family:"Times New Roman"'>(...);</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>释放此前由<span class=SpellE><span lang=EN-US>CMemoryHeap::Alloc</span></span>或<span
+  class=SpellE><span lang=EN-US>CMemoryHeap::Realloc</span></span>函数调用分配的内存块。 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=204 style='width:153.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CMemoryHeap::Trim</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=378 style='width:283.2pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CMemoryHeap_Trim</span>(pad);
+  </span></p>
+  </td>
+  <td width=153 style='width:114.6pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt'>EzTaskMemTrim</span></span><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>缩减用户堆，向系统返还物理内存。 </p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td width=204 style='width:153.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CMemoryHeap::GetStatistics</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CMemoryHeap_GetStatistics</span>(<span
+  class=SpellE>pInUseBytes</span>, <span class=SpellE>pSystemBytes</span>, <span
+  class=SpellE>pMaxSystemBytes</span>); </span></p>
+  </td>
+  <td style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt'>EzTaskMemStats</span></span><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10;mso-yfti-lastrow:yes'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>返回当前用户堆状态。 </p>
+  </td>
+ </tr>
+</table>
+
+<h2><span lang=EN-US>CAR</span>反射函数</h2>
+
+<table class=MsoNormalTable border=1 cellpadding=0 width=751 style='width:563.4pt;
+ mso-cellspacing:1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <thead>
+  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+   <td width=202 style='width:151.8pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal>函数名称</p>
+   </td>
+   <td width=379 style='width:284.4pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>C</span>语言对应函数</p>
+   </td>
+   <td width=152 style='width:114.0pt;padding:.75pt .75pt .75pt .75pt'>
+   <p class=MsoNormal><span lang=EN-US>2.0</span>函数名称</p>
+   </td>
+  </tr>
+ </thead>
+ <tr style='mso-yfti-irow:1'>
+  <td width=202 style='width:151.8pt;padding:.75pt .75pt .75pt .75pt'><!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireModuleInfo.htm">CReflector::AcquireModuleInfo</a>-->
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CReflector::AcquireModuleInfo</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=379 style='width:284.4pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CReflector_AcquireModuleInfo</span>(name,
+  <span class=SpellE>ppModuleInfo</span>); </span></p>
+  </td>
+  <td width=152 style='width:114.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='font-size:10.5pt;
+  font-family:"Times New Roman"'>EzAcquireModuleInfo</span></span><span
+  lang=EN-US style='font-size:10.5pt;font-family:"Times New Roman"'>(...);&nbsp;
+  </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>从模块的文件名中获得<span class=SpellE><span lang=EN-US>ModuleInfo</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+ </tr>
+<!--
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireIntrinsicTypeInfo.htm">CReflector::AcquireIntrinsicTypeInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireIntrinsicTypeInfo(intrinsicType, ppIntrinsicTypeInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的     中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireEnumInfo.htm">CReflector::AcquireEnumInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireEnumInfo(name, &itemNames, &itemValues, ppEnumInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的     中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireCppVectorInfo.htm">CReflector::AcquireCppVectorInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireCppVectorInfo(pElementTypeInfo, length, ppCppVectorInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的    中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireStructInfo.htm">CReflector::AcquireStructInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireStructInfo(name, &fieldNames, &fieldTypeInfos, ppStructInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的    中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireCarArrayInfo.htm">CReflector::AcquireCarArrayInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireCarArrayInfo(pElementTypeInfo, ppCarArrayInfo);
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan =2>
+            从模块的    中获得
+        </td>
+    </tr>
+    -->
+ <tr style='mso-yfti-irow:3'>
+  <td width=202 style='width:151.8pt;padding:.75pt .75pt .75pt .75pt'><!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CObject\ReflectClassInfo.htm">CObject::ReflectClassInfo</a>-->
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CObject::ReflectClassInfo</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=379 style='width:284.4pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CObject_ReflectClassInfo</span>(<span
+  class=SpellE>pObj</span>, <span class=SpellE>piClassInfo</span>); </span></p>
+  </td>
+  <td width=152 style='width:114.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>EzReflectClassInfo</span></span><span
+  lang=EN-US>()</span><span lang=EN-US style='mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>从构件对象指针中获得<span class=SpellE><span lang=EN-US>IClassInfo</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=202 style='width:151.8pt;padding:.75pt .75pt .75pt .75pt'><!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CObject\ReflectInterfaceInfo.htm">CObject::ReflectInterfaceInfo</a>-->
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CObject::ReflectInterfaceInfo</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=379 style='width:284.4pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CObject_ReflectInterfaceInfo</span>(<span
+  class=SpellE>pObj</span>, <span class=SpellE>piInterfaceInfo</span>); </span></p>
+  </td>
+  <td width=152 style='width:114.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>　<span class=SpellE><span lang=EN-US>EzReflectInterfaceInfo</span></span><span
+  lang=EN-US>()</span><span lang=EN-US style='mso-bidi-font-size:10.0pt;
+  background:yellow;mso-highlight:yellow'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>从构件对象指针中获得<span class=SpellE><span lang=EN-US>IInterfaceInfo</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=202 style='width:151.8pt;padding:.75pt .75pt .75pt .75pt'><!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CObject\ReflectModuleInfo.htm">CObject::ReflectModuleInfo</a>-->
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US>CObject::ReflectModuleInfo</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+  <td width=379 style='width:284.4pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span lang=EN-US>_<span class=SpellE>CObject_ReflectModuleInfo</span>(<span
+  class=SpellE>pObj</span>, <span class=SpellE>piModuleInfo</span>); </span></p>
+  </td>
+  <td width=152 style='width:114.0pt;padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal><span class=SpellE><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt'>EzReflectModuleInfo</span></span><span lang=EN-US style='mso-bidi-font-size:
+  10.0pt'>()<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8;mso-yfti-lastrow:yes'>
+  <td colspan=3 style='padding:.75pt .75pt .75pt .75pt'>
+  <p class=MsoNormal>从构件对象指针中获得<span class=SpellE><span lang=EN-US>IModuleInfo</span></span><span
+  lang=EN-US> </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US><script>
+footer("chinese")
+</script><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

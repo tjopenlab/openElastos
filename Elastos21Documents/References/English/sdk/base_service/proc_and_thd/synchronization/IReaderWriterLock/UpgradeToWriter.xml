@@ -1,0 +1,77 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>IReaderWriterLock</interface><method> UpgradeToWriter </method>
+    <description>
+        <para>
+         	Upgrades the acquired reader lock to writer lock.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+        <api_param>
+        <param_inout>[out]</param_inout>
+                <param_type> WaitResult *</param_type>
+                <param_name> pResult</param_name>
+                <param_note>
+                    <para>
+					         </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	
+	<table>
+	    <th>
+		<td>Return Value</td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>NOERROR</td>
+		<td>0x00000000</td>
+		<td>Function succeeds in upgrading the acquired reader lock to writer lock.</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALID_ARGUMENT</td>
+		<td>0x00060014</td>
+		<td>Invalid argument(s)</td>
+	    </tr>
+	    <tr>
+		<td>E_NOT_READER</td>
+		<td>0x80060093</td>
+		<td>Function call failed. The calling thread has not acquired the ReaderWriterLock object as a reader.</td>
+	    </tr>
+	</table>
+      <para>See <link url="..\..\..\..\reference\basic_data_type\hresult.htm">ECODE</link> for related help.</para> 
+    </return>
+
+	<remarks>
+		<para>
+			This function is used to upgrade the acquired reader lock to writer lock (Upgrades the calling thread 	
+			that has acquired the ReaderWriterLock object as a reader, to the one that has acquired the 
+			ReaderWriterLock object as a writer). If calling thread can not upgrade to acquire a writer lock of the 
+			ReaderWriterLock object (for example: A ReaderWriterLock object is acquired by one or more readers), 
+			it will enter the waiting state, until the writer lock of the ReaderWriterLock object is acquired, 
+			and the function returns successfully. If the calling thread has not acquired the ReaderWriterLock 
+			object as a reader, the function will fail. The waiting of upgrade from reader lock to writer lock of the 
+			calling thread can be interrupted. After interruption, the thread will continue with the aquired 
+			ReaderWriterLock object.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

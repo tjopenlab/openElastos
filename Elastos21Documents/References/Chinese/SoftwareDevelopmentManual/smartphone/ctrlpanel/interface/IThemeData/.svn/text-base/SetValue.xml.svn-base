@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IThemeData</interface><method> SetValue </method>
+    <description>
+        <para>
+            根据某一key值，设置其value值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ThemeData </param_type>
+                <param_name> key </param_name>
+                <param_note>
+                    <para>
+输入参数                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esValue </param_name>
+                <param_note>
+                    <para>
+根据key设置的值                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；key值不正确或者不在ThemeData定义的范围内或者esbValue为空，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            根据key这个参数，再设置其对应的返回值，该参数必须是            <link url="../../datatype/ThemeData.htm">            ThemeData            </link>            枚举类型。
+        </para>
+    </remarks>
+</manpage>

@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>如何创建进程</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel= "stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+    <h2>如何创建进程</h2>
+        <p>进程通常被定义为正在运行的程序实例，每个进程有自己的地址空间，包含可执行程序的代码和数据，还包含动态分配的内存空间。对于每个进程，在操作系统内核中都有唯一对应的进程对象，用来控制、管理、监视进程。它存放着关于进程的信息。用户必须通过进程对象访问进程。</p>
+        <p>从上述定义可以看出，进程对象和进程是不同的。进程对象是用户访问进程的桥梁，但不是进程本身。在一个进程结束以后，它所对应的进程对象可能仍然存在，直到用户将它从内存中删除。即进程对象的生命期大于等于它所对应的进程。</p>
+        <p>可以通过<a class="style1" href="../CoreServices/ProcessThread/ProcessThread/Function/CProcess/New.htm">CProcdss::New</a>方法创建一个进程对象，此时并没有创建运行的进程，只有调用进程接口的Start方法，才能创建出真正运行的进程。通过该函数返回的进程对象接口的指针，可以进行一些进程方法的调用，并选择在合适的时机运行该进程。</p>
+
+        <p>下面的例子将创建并启动一个进程：</p>
+        <pre class="code">
+#include &lt;elastos.h&gt;
+#include &lt;stdio.h&gt;
+using namespace Elastos;
+
+EXTERN_C int __cdecl main()
+{
+    IProcess * pIProcess;
+    ECode ec = NOERROR;
+
+    // 创建一个进程对象
+    ec = CProcess::New(&pIProcess);
+    if (FAILED(ec)) {
+        return - 1;
+    }
+
+    // 启动新进程hello.exe
+    ec = pIProcess->Start(L"hello.exe", NULL);
+    if (FAILED(ec)) {
+    pIProcess->Release();
+        return - 1;
+    }
+    
+    // 等待新进程运行结束
+    WaitResult wr;
+    pIProcess->WaitForExit(INFINITE, &wr);
+    pIProcess->Release();
+
+    return 0;
+}
+</pre>
+        <p>首先通过New创建一个进程对象，这时并没有启动一个运行的进程，之后通过返回的进程接口指针启动hello.exe，最后，进程对象的<a class="style1" href="../CoreServices/ProcessThread/ProcessThread/IProcess/WaitForExit.htm">WaitForExit</a>方法将挂起当前线程，直到该对象对应的进程退出，或者当前时间超过了WaitForExit的参数指定的时间值。本例中，时间值被设置为INFINITE，即永远等待，直到进程退出。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

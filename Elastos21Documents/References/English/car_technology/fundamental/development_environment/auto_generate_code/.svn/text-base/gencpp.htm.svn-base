@@ -1,0 +1,83 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Automatic Generation Of Code Framework</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Generating Component Source Program Framework And Fill In Implementation Code</h2>
+<h3>Generating source program framework: </h3>
+        <P>After writing CAR file, under Elastos.SDK development environment, the user use emake tool can generate component source program framework. This reduces the programmer input and effectively avoid spelling error in programming phase. To be more specific, execute the following lines: <BR>
+        <pre class="code">
+emake &lt;carfile&gt;
+</pre>
+    <p>&lt;carfile&gt; is CAR file path name. After executing this command, the system generates corresponding header files, cpp files and sources files in current directory. Header files and cpp files are program framework files and sources files are used to specify how to compile source code, generate what type of target file etc.Header file name and cpp file name are specified by class name defined in CAR file. When more than one class are defined in CAR file, multiple header files and .cpp files are generated correspondingly.</p>
+    <p>In this example, the following command is issued: </p>
+        <pre class="code">
+emake hello.car
+</pre>
+    <p>It generates CHello.h file, CHello.cpp file and sources file.Usually no modification is necessary after sources file is generated. The following is the content of generated sources file: <br></p>
+        <pre class="code">
+TARGET_NAME= hello
+TARGET_TYPE= <b>dll</b>
+
+SOURCES= \
+    hello.car \
+    CHello.cpp \
+
+ELASTOS_LIBS = \
+    elastos.lib \
+    elacrt.lib \
+</pre>
+    <p>TARGET_NAME specifies generated component name.This name must be identical with CAR file name.Otherwise compilation cannot be passed. Generated component type by default is dll, specified by TARGET_TYPE.</p>
+    <h3>Fill in implementation code: </h3>
+        <p>This sample does not need to modify generated header file. First let us see content of the generated cpp source program framework: </p>
+        <pre class="code">
+#include "CHello.h"
+#include "_CHello.cpp"
+
+<b>DECLARE_CLASSFACTORY(CHello)</b>
+
+ECODE CHello::Hello(
+        /* [in] */ EzStr InStr,
+        /* [out,retval] */ EzStr * pOutStr)
+{
+    // TODO: Add your code here
+    return <b>E_NOTIMPL</b>;
+}
+</pre>
+        <p>In generated code framework, besides included header file and method code, there is a macro: </p>
+        <pre class="code">
+DECLARE_CLASSFACTORY(CHello)
+</pre>
+    <p>This macro constructs a general class factory, generates an object according to class name passed in as parameter. In the above example, client program creates an object of class CHello. Usually the user does not need to change this macro. The definition of this macro is in the file Elastos.SDK\system\inc\ezcom.h .</p>
+    <ul><font color="red"><b>Note: </b>In generated file framework, method return value ECODE is E_NOTIMPL, which means this method is not implemented yet. After filling in implementation code, appropriate <a class="style1" href="../../../../sdk/reference/basic_data_type/hresult.htm">ECODE</a> value needs to be changed.</font></ul>
+    <p>Please see the following implementation of component hello, use the implementation code to replace TODO comment (<b>bold</b> part in the article is code that filled in by the user): </p>
+        <p>CHello.cpp file: </p>
+        <pre class="code">
+#include "CHello.h"
+#include "_CHello.cpp"
+
+DECLARE_CLASSFACTORY(CHello)
+
+ECODE CHello::Hello(
+        /* [in] */ EzStr InStr,
+        /* [out,retval] */ EzStr * pOutStr)
+{
+<b>    EzStrBuf_<50> buf;
+    buf.Copy(InStr);
+    buf.Append(L" world!");
+    *pOutStr = EzStr::AllocString(buf);</b>
+    return <b>S_OK;</b>
+}
+</pre>
+    <p>After executing the above steps, basically component hello is done.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

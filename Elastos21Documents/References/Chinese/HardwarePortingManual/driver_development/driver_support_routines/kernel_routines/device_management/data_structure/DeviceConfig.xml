@@ -1,0 +1,35 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>驱动支持例程 </volume>
+    <types>DeviceConfig</types>
+
+    <description>
+        <para> 设备配置信息。 </para>
+    </description>
+
+    <struct>
+        <struct_alias>DeviceConfig</struct_alias>
+        <struct_member>
+            <mem_type>wchar_t </mem_type>
+            <mem_name>wszDeviceName[c_uMaxLengthOfDeviceName + 1] </mem_name>
+            <mem_description>设备名称的字符数组 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>uint_t </mem_type>
+            <mem_name> uDeviceNo </mem_name>
+            <mem_description>设备编号 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>void * </mem_type>
+            <mem_name>pvParameter </mem_name>
+            <mem_description>指向附加的参数的指针 </mem_description>
+        </struct_member>
+    </struct>
+
+    <remarks>
+        <para>设备名称的字符数组中的常量c_uMaxLengthOfDeviceName为31。</para>
+    </remarks>
+</manpage>
+

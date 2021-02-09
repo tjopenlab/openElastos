@@ -1,0 +1,91 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+
+<volume>线程与调度</volume>
+<interface>IThread</interface><method> GetState </method>
+    <description>
+        <para>
+            获取线程状态。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ThreadState * </param_type>
+                <param_name> pState </param_name>
+                <param_note>
+                    <para>
+                        指向ThreadState枚举类型的指针，用于获取线程的状态
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>成功获取线程状态</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>参数错误</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>
+            初始化状态是ThreadState_Unstarted。
+        </para>
+        <table>
+            <th>
+                <td>状态</td>
+                <td>十六进制值</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>ThreadState_Running</td>
+                <td>0x00</td>
+                <td>线程正在运行</td>
+            </tr>
+            <tr>
+                <td>ThreadState_Sleeping</td>
+                <td>0x01</td>
+                <td>线程在睡眠中</td>
+            </tr>
+            <tr>
+                <td>ThreadState_Suspended</td>
+                <td>0x04</td>
+                <td>线程被挂起</td>
+            </tr>
+            <tr>
+                <td>ThreadState_Finished</td>
+                <td>0x10</td>
+                <td>线程已经结束</td>
+            </tr>
+            <tr>
+                <td>ThreadState_Unstarted</td>
+                <td>0x20</td>
+                <td>线程未启动</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

@@ -1,0 +1,62 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+
+    <volume>内存管理函数</volume>
+    <title>DzFreeKernelPage</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>释放一个已分配的内核页。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> virtaddr_t</param_type>
+                <param_name> va </param_name>
+                <param_note>
+                    <para>要释放的内核页的首地址（虚拟地址）</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para> 此函数释放一个通过调用<link url="DzAllocKernelPage.htm">DzAllocKernelPage</link>或<link url="DzAllocKernelPages.htm">DzAllocKernelPages</link>函数分配的内核页。试图释放无效的内核页（并非由DzAllocKernelPage或DzAllocKernelPages函数分配的内核页），将引起未知错误。 </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>DzAllocKernelPage</ref_name>
+            <ref_url>DzAllocKernelPage</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzAllocKernelPages</ref_name>
+            <ref_url>DzAllocKernelPages</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzFreeKernelPages</ref_name>
+            <ref_url>DzFreeKernelPages</ref_url>
+        </reference>
+    </references>
+
+</manpage>

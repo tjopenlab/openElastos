@@ -1,0 +1,116 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> AString/WString </interface>
+
+    <description>
+        <para>AString/WString是为了支持构件化编程而设计的数据结构。</para>
+        <para>AString可以转换成(AChar)类型的字符数组，也可以进行各种操作。 </para>  
+        <para>AString是由一个指针型成员变量m_string和一个存放char类型字符串的数据区组成. </para>
+        <para>AString/WString一个指向窄字符串，一个指向宽字符串，其构造函数、方法、操作符和宏定义都相似.所以以下只列出AString各构造函数、方法、操作符和宏定义： </para>
+       
+    </description>
+
+    <constructs>
+        <construct>
+            <construct_name>AString()</construct_name>
+            <construct_url>AString\structure\AString1</construct_url>
+            <construct_description>构造一个AString对象，并初始化字符串指针为NULL</construct_description>
+        </construct>
+        <construct>
+            <construct_name>AString(const char* pch)</construct_name>
+            <construct_url>AString\structure\AString2</construct_url>
+            <construct_description>构造一个AString对象，并初始化一指定字符串 </construct_description>
+        </construct>
+    </constructs>
+    
+    <methods>
+        <self>
+        <method>
+        <method_name>IsNull</method_name>
+        <method_url>AString\IsNull</method_url>
+        <m_description>判断当前AString对象的字符串指针是否为空 </m_description>
+        </method>
+        <method>
+        <method_name>Compare</method_name>
+        <method_url>AString\Compare</method_url>
+        <m_description> 把AString对象中原字符串与另一个给定的字符串作比较 </m_description>
+        </method>
+        <method>
+        <method_name>IsEmpty</method_name>
+        <method_url>AString\IsEmpty</method_url>
+        <m_description> 判断当前AString对象的字符串内容是否为空 </m_description>
+        </method>
+        <method>
+        <method_name>GetLength</method_name>
+        <method_url>AString\GetLength</method_url>
+        <m_description> 获取当前字符串的长度（字符数） </m_description>
+        </method>
+        
+        <method>
+        <method_name>CompareNoCase</method_name>
+        <method_url>AString\CompareNoCase</method_url>
+        <m_description> 把AString对象中原字符串与另一个给定的字符串作比较，不区分大小写 </m_description>
+        </method>
+        <method>
+        <method_name>ToInt32</method_name>
+        <method_url>AString\ToInt32</method_url>
+        <m_description> 将字符串转化为32位整数 </m_description>
+        </method>
+        <method>
+        <method_name>ToInt64</method_name>
+        <method_url>AString\ToInt64</method_url>
+        <m_description> 将字符串转化为64位整数 </m_description>
+        </method>
+        <method>
+        <method_name>ToDouble</method_name>
+        <method_url>AString\ToDouble</method_url>
+        <m_description> 将字符串转化为Double型 </m_description>
+        </method>
+        <method>
+        <method_name>ToBoolean</method_name>
+        <method_url>AString\ToBoolean</method_url>
+        <m_description> 将字符串转化为Bollean 型</m_description>
+        </method>
+        
+        <method>
+        <method_name>IsNullOrEmpty</method_name>
+        <method_url>AString\IsNullOrEmpty</method_url>
+        <m_description> 判断当前AString对象的字符串指针或者内容是否为空 </m_description>
+        </method>
+        
+    </self>
+    </methods>
+
+    <operators>
+        
+        <operator>
+            <operator_name>operator =</operator_name>
+            <operator_url>AString\operator2</operator_url>
+            <operator_description>给AString对象赋值 </operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator =</operator_name>
+            <operator_url>AString\operator3</operator_url>
+            <operator_description>给AString对象赋值 </operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator[]</operator_name>
+            <operator_url>AString\operator4</operator_url>
+            <operator_description>存取数组元素操作符 </operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator Achar*</operator_name>
+            <operator_url>AString\operator1</operator_url>
+            <operator_description>类型转换操作符，把AString对象转换成指向宽字符串的指针 </operator_description>
+        </operator>
+    </operators>
+    
+    
+</manpage>

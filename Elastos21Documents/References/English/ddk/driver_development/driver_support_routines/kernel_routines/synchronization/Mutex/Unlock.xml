@@ -1,0 +1,44 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>Mutex</interface><method> Unlock </method>
+    <description>
+        <para>
+           Releases the Mutex Lock.
+        </para>
+    </description>
+    <syntax>
+        <return_val>void</return_val>
+        <NoArguments/>
+    </syntax>
+
+	<return>
+	    <NoReturnValue/>
+	</return>
+
+	<remarks>
+		<para>
+           		The thread which calls this function must be the owner of this <b>Mutex</b> object, otherwise unexpected
+           		error will occur.
+		</para>
+		<para>
+			The mutex object is recursive. It means that a thread that has owned a mutex object can call
+			<link url="Lock.htm">Mutex::Lock</link> or <link url="TryLock.htm">Mutex::TryLock</link> to get
+			the mutex object again. However, it must call <b>Mutex::UnLock</b>, the same number of times as
+			it calls <link url="Lock.htm">Mutex::Lock</link> or <link url="TryLock.htm">Mutex::TryLock</link>,
+			in order to release the mutex object.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

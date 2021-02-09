@@ -1,0 +1,78 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址薄引擎</volume>
+<interface>IAddressBook</interface><method> CreateEntity </method>
+    <description>
+        <para>
+          创建联系人或组记录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum EntityClass </param_type>
+                <param_name> ecEntity </param_name>
+                <param_note>
+                    <para>
+                       指向<link url="../../DataType/EntityClass.htm">EntityClass</link>枚举类型的指针，用于表示指定记录的类型
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum StoreClass </param_type>
+                <param_name> scStore </param_name>
+                <param_note>
+                    <para>
+                      指向<link url="../../DataType/StoreClass.htm">StoreClass</link>枚举类型的指针，用于表示指定记录的存储类型
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IEntityRef * </param_type>
+                <param_name> ppiEntity </param_name>
+                <param_note>
+                    <para>
+                      指向IEntity接口指针的指针，用于获取新建的记录接口指针，不能为NULL
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+         <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CAddressBook.h, CDBStore.h, CSimStore.h, CContact.h, CContactGroup.h,  Abdata.h, spcomm.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elacrt.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

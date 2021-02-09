@@ -1,0 +1,66 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>CAR Keyword--pragma</title>
+</head>
+
+<body>
+<h2>pragma</h2>
+    <p>This keyword is used to allow or disable display the CAR compiler warning message. The syntax is: Disable warning #pragma (disable:nnn) or enable warning #pragma (enable:nnn), of which disable means forbid, enable means allow, nnn is the warning number. For example: </p>
+    <pre class="code">
+……
+[uuid(d0c4efeb-c93e-4257-b837-00fbbb2bc2f4)]
+interface IInterface1 {
+    ECODE Func([in] int i);
+}
+[uuid(e8223b72-b602-4254-851e-556e5346f984)]
+interface IInterface2 {
+    ECODE Func([in] int i);
+}
+……
+</pre>
+    <p>When compile CAR file with the sample code, the compiler displays a warning message: </p>
+    <pre class="code">
+CARC(0X100B): Warning - Method name conflict: "Func()" in "IInterface1, IInterface2".
+</pre>
+    <p>The 0X100B is the warning number.</p>
+    <p>Insert #pragma (disable:0X100B) line before the code block in CAR file that causes this warning, you can disable the display of this warning message.</p>
+    <pre class="code">
+……
+[uuid(d0c4efeb-c93e-4257-b837-00fbbb2bc2f4)]
+interface IInterface1 {
+    ECODE Func([in] int i);
+}
+<b>#pragma (disable:0X100B)</b>
+[uuid(e8223b72-b602-4254-851e-556e5346f984)]
+interface IInterface2 {
+    ECODE Func([in] int i);
+}
+……
+</pre>
+    <p>When need to use #pragma (enable:0X100B) line, you can display the warning information again. For example: </p>
+    <pre class="code">
+……
+[uuid(d0c4efeb-c93e-4257-b837-00fbbb2bc2f4)]
+interface IInterface1 {
+    ECODE Func([in] int i);
+}
+<b>#pragma (enable:0X100B)</b>
+[uuid(e8223b72-b602-4254-851e-556e5346f984)]
+interface IInterface2 {
+    ECODE Func([in] int i);
+}
+……
+</pre>
+    <b><a class="style1" href="../keyword.htm">CAR Keyword Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

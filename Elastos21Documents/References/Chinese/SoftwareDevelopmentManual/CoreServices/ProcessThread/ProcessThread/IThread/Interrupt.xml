@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IThread\Interrupt">Interrupt</sample>
+<volume>线程</volume>
+<interface>IThread</interface><method> Interrupt  </method>
+    <description>
+        <para>
+		    打断线程的阻塞行为（CThread::Sleep、Join、Wait等）。
+        </para>
+    </description>
+    <syntax_nopara>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值</td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功打断线程的阻塞</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_THREAD_ALREADY_FINISHED</td>
+	    	    <td>线程已经结束</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		   该方法将打断线程的阻塞行为（CThread::Sleep、Join、Wait等），使其被唤醒而继续运行。
+		</para>
+		<para>
+		    如果当时线程还没有阻塞在CThread::Sleep、Join或Wait状态，将在下次阻塞时直接被打断并返回NOERROR，但Interrupt不能像<link url="resume.htm">Resume</link>和<link url="suspend.htm">Suspend</link>方法那样累积对线程进行操作的次数；如果线程已经结束，方法将不起作用并返回E_THREAD_ALREADY_FINISHED。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

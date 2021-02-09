@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="../../../../xsl/xsl_e/interfaceman.xsl"?>   
+     <manpage>
+    <volume>System COM Interface</volume>
+    <interface>IObjectEnumerator</interface>
+    <description>
+        <para>Object enumerator interface</para>
+        <para>
+            After creating an object enumerator or calling <b>Reset</b> function, the pointer of object 
+            enumerator is prior to the first object in the object collection. At this time, calling <b>Current</b> 
+            method is useless and error information will be returned. Therefore, If any of the object interface 
+            pointer is to be retrieved, <b>MoveNext</b> method should be called to advance the object enumerator 
+            pointer to corresponding object, then call <b>Current</b> method. If the position of the object 
+            enumerator has not changed, till calling <b>MoveNext</b> or <b>Reset</b>, calling <b>Current</b> 
+            method multiple times will return the same object interface pointer. If object enumerator has reached 
+            the last object of the collection, calling <b>MoveNext</b> will return S_FALSE, and then calling 
+            <b>Current</b> will return NULL.
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Current</method_name>
+        <method_url>IObjectEnumerator\Current</method_url>
+    <m_description>
+		  Get the current object of the enumerator
+    </m_description>
+    </method>
+    <method>
+        <method_name> MoveNext</method_name>
+        <method_url>IObjectEnumerator\MoveNext</method_url>
+    <m_description>
+		Set the next object as the current one
+    </m_description>
+    </method>
+ <method>
+        <method_name>Reset</method_name>
+        <method_url>IObjectEnumerator\Reset</method_url>
+    <m_description>
+		Reset the enumerator to the initial state
+	</m_description>
+    </method>
+</self>
+    </methods>
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

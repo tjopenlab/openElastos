@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IGraphics</interface><method> InitFromFormat </method>
+    <description>
+        <para>
+            根据指定的高度，宽度和像素格式初始化Graphics。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> nWidth </param_name>
+                <param_note>
+                    <para>
+初始化Graphics的宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> nHeight </param_name>
+                <param_note>
+                    <para>
+初始化Graphics的高度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> PixelFormat </param_type>
+                <param_name> uPixelFormat </param_name>
+                <param_note>
+                    <para>
+初始化Graphics的像素格式                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统           </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            创建的位图对象必须调用初始化才能使用。</para><para>         像素格式值域为PixelFormat_RGB565或PixelFormat_RGB24或PixelFormat_ARGB或PixelFormat_Unknown。</para><para>         该方法主要提供给用户进行高速视频处理。
+        </para>
+    </remarks>
+</manpage>

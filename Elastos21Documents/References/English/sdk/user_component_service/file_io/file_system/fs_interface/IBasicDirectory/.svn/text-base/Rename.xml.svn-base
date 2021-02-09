@@ -1,0 +1,103 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Directory Object Interface</volume>
+<interface>IBasicDirectory</interface><method> Rename </method>
+    <description>
+        <para>
+        	Rename the file or subdirectory under the current directory object or move them to another directory.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> oldName </param_name>
+                <param_note>
+                    <para>
+						The name of the file or subdirectory which is to be changed in current directory. 
+						<i>oldName</i> must be the file or subdirectory name and should not include path separator '/'.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IBasicDirectory * </param_type>
+                <param_name> pNewDir </param_name>
+                <param_note>
+                    <para>
+						The interface pointer to the new directory of the renamed file or subdirectory.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> newName </param_name>
+                <param_note>
+                    <para>
+						The new name of the file or directory. <i>newName</i> must be the file or directory 
+						name and should not include path separator '/'.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value </td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>S_OK</td>
+		        <td>Function succeeds in renaming the file or directory.</td>
+	        </tr>
+	        <tr>
+		        <td>E_INVALIDARG</td>
+		        <td>Parameter oldName or parameter newName is NULL, or parameter pNewDir is NULL.</td>
+	        </tr>
+	        <tr>
+	            <td>ECODE_FROM_ERRNO(ENOENT)</td>
+	    	    <td>File or directory represented by oldName does not exist</td>
+	        </tr>
+	        <tr>
+                <td>ECODE_FROM_ERRNO(EEXIST)</td>
+	    	    <td>File or directory represented by newName exists</td>
+	        </tr>
+	        <tr>
+                <td>ECODE_FROM_ERRNO(ENOTDIR)</td>
+	    	    <td>oldName is directory name but newName is existing file name</td>
+	        </tr>
+	        <tr>
+	            <td>ECODE_FROM_ERRNO(EISDIR)</td>
+	            <td>oldName is file name but newName is existing directory name</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../../reference/basic_data_type/hresult.htm">ECODE</link> related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			Release <i>pNewDir</i> by calling pNewDir->Release(); to avoid memory leak. 
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

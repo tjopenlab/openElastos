@@ -1,0 +1,85 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>自定义列集/散集</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>使用CAR构件自定义列集/散集机制的范例</h2>
+    <h3>范例一</h3>
+        <p>在这个例子中实现了一个自定义构件CCustomMarshalingSample0，该构件使用自定义列集/散集机制来模仿CAR&nbsp;RPC标准列集/散集的效果。构件CCustomMarshalingSample0的CAR文件定义如下：</p>
+        <pre class="code">
+
+module cmsample0
+{
+    … …
+
+    [ uuid(97fe7a0c-556a-4c29-a204-8a57062d1517) ]
+    class CCustomMarshalingSample0 {
+        … …
+        interface ICustomMarshal;
+    }
+}
+</pre>
+        <p>下面给出构件CCustomMarshalingSample0中ICustomMarshal接口的实现：</p>
+        <pre class="code">
+ECODE CCustomMarshalingSample0::GetClsid(/* [out] */ EzCLSID * pezCLSID)
+{
+    if (!pezCLSID || !pezCLSID->urn) return E_INVALIDARG;
+
+    // Copy CLSID of this component itself
+    *(CLSID*)pezCLSID = CLSID_CCustomMarshalingSample0.clsid;
+    memcpy(pezCLSID->urn, CLSID_CCustomMarshalingSample0.urn, 160);
+    return S_OK;
+}
+
+ECODE CCustomMarshalingSample0::CreateObject(
+    /* [in] */ IUnknown *pOriginProxy,
+    /* [out] */ IUnknown **ppNewProxy)
+{
+    ECODE ec;
+
+    if (!pOriginProxy || !ppNewProxy) return E_INVALIDARG;
+    *ppNewProxy = pOriginProxy;
+    return pOriginProxy->AddRef();
+}
+</pre>
+    <h3>范例二</h3>
+        <p>在这个例子中实现了一个自定义构件CCustomMarshalingSample1，该构件的实例被远程传递时每次均创建一个新的实例。另外，该实例运行过程中不需要与原有构件对象进行任何通信。构件CCustomMarshalingSample1的CAR文件定义方法与上例CCustomMarshalingSample0类似，请参考上文相关内容。</p>
+        <p>下面给出构件CCustomMarshalingSample1的ICustomMarshal接口实现：</p>
+        <pre class="code">
+ECODE CCustomMarshalingSample1::GetClsid(/* [out] */ EzCLSID * pezCLSID)
+{
+    if (!pezCLSID || !pezCLSID->urn) return E_INVALIDARG;
+
+    // Copy CLSID of this component itself
+    *(CLSID*)pezCLSID = CLSID_CCustomMarshalingSample0.clsid;
+    memcpy(pezCLSID->urn, CLSID_CCustomMarshalingSample0.urn, 160);
+    return S_OK;
+}
+
+ECODE CCustomMarshalingSample1::CreateObject(
+    /* [in] */ IUnknown *pOriginProxy,
+    /* [out] */ IUnknown **ppNewProxy)
+{
+    IID* iid = NULL;
+    ECODE ec;
+
+    if (!pOriginProxy || !ppNewProxy) return E_INVALIDARG;
+    *ppNewProxy = NULL;
+
+    ec = pOriginProxy->QueryInterface(IID_INTERFACE_INFO, (void**)&iid);
+    if (FAILED(ec)) return ec;
+
+    return ((IUnknown*)this)->QueryInterface(*iid, ppNewProxy);
+}
+</pre>
+
+<script>footer("chinese")</script>
+</body>
+</html>

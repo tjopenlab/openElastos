@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> DateTime</interface>
+    <method> Parse </method>
+
+    <description>
+        <para> 根据特定格式信息，将字符串表示的时间按格式转成DateTime。</para>
+    </description>
+    <syntax>
+        <return_val> DateTime &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type>AString</param_type>
+            <param_name> time </param_name>
+            <param_note>
+                <para> 包含要转换的日期和时间的字符串 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>AString</param_type>
+            <param_name> fmt  </param_name>
+            <param_note>
+                <para> 格式化字符串,请参见<link url="..\FormatSpec.htm">格式化参数列表</link>。</para>
+            </param_note>
+        </api_param>       
+        </parameters>        
+    </syntax>
+    <return>
+        <para>返回DateTime对象。</para>
+    </return>
+
+<example>
+    <pre>
+DateTime dt;
+dt.Parse("2009年12月30日PM 11:20:20 ", "YYYY年MM月DD日PM hh:mm:ss ");
+printf("%d年%d月%d日 %d:%d:%d\n", dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);
+dt.Parse("2009年12月30日AM 11:20:20 ", "YYYY年MM月DD日AM hh:mm:ss ");
+printf("%d年%d月%d日 %d:%d:%d\n", dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);
+
+
+运行结果： 
+2009年12月30日 23:20:20
+2009年12月30日 11:20:20
+    </pre>
+</example>
+</manpage>

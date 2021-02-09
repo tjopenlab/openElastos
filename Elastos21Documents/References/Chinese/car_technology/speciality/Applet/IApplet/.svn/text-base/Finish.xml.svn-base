@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> IApplet接口方法介绍 </volume>
+    <interface>IApplet</interface>
+    <method> Finish </method>
+
+    <description>
+        <para>结束applet的消息循环或结束ElastosMian消息循环，使当前线程结束。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+        <api_param>
+            <param_type>[in] AppletFinish </param_type>
+            <param_name>Flag </param_name>
+            <param_note>
+                <para>根据类型不同，执行不同的退出操作。参见<link url="../Reference/AppletFinish.htm">AppletFinish</link>枚举类型说明。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <remarks>
+        <para>Applet的Finish方法表示结束消息循环，不再处理消息，并准备退出。但是，Finish是一个异步的callback事件，不能保证用户收到此消息时applet处于何种状态，此时可以调用IApplet::WaitUntilFinished()方法，用于等待Applet主线程结束退出。</para>
+    </remarks>
+<references>
+        <reference>
+            <ref_name>IApplet::WaitUntilFinished()</ref_name>
+            <ref_url> WaitUntilFinished</ref_url>
+        </reference>
+        <reference>
+            <ref_name>CApplet::Finish()</ref_name>
+            <ref_url> ../API/Finish</ref_url>
+        </reference>
+    </references>
+</manpage>

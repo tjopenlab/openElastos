@@ -1,0 +1,223 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>程序调试工具</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+    <h2>GDB基本命令集（二）</h2>
+        <h4>显示源代码</h4>
+            <p><a name="list"></a>GDB可以利用list命令打印所调试程序的源代码。</p>
+            <table>
+                <thead>
+                    <td>命令格式</td>
+                    <td>功能说明</td>
+                </thead>
+                <tr>
+                    <td>list&nbsp;&lt;linenum&gt;</td>
+                    <td>显示程序第linenum行的周围的源程序。</td>
+                </tr>
+                <tr>
+                    <td>list&nbsp;&lt;function&gt;</td>
+                    <td>显示函数名为function的函数的源程序。</td>
+                </tr>
+                <tr>
+                    <td>list</td>
+                    <td>显示当前行后面的源程序。</td>
+                </tr>
+                <tr>
+                    <td>list&nbsp;-</td>
+                    <td>显示当前行前面的源程序。</td>
+                </tr>
+            </table>
+
+        <h4>设置断点命令</h4>
+            <p><b>bread命令</b></p>
+            <p><a name="break"></a>break是设置断点的命令，用它来设置断点的方式有很多，下面列出常用的几种方式：</p>
+            <table>
+                <thead>
+                    <td>命令格式</td>
+                    <td>功能说明</td>
+                </thead>
+                <tr>
+                    <td>break&nbsp;&lt;function&gt;</td>
+                    <td>使程序恰好在进入指定的函数之前停止。C++中可以使用class::function或function(type,type)格式来指定函数名。</td>
+                </tr>
+                <tr>
+                    <td>break&nbsp;&lt;linenum&gt;</td>
+                    <td>使程序恰好在执行给定行之前停止。</td>
+                </tr>
+                <tr>
+                    <td>break&nbsp;+offset</br>break&nbsp;-offset</td>
+                    <td>使程序在当前行的前（后）offset行停止，offset为自然数。</td>
+                </tr>
+                <tr>
+                    <td>break&nbsp;filename:linenum </td>
+                    <td>在源文件filename的linenum行处停止。</td>
+                </tr>
+                <tr>
+                    <td>break&nbsp;filename:function </td>
+                    <td>在源文件filename的function函数的入口处停止。</td>
+                </tr>
+                <tr>
+                    <td>break&nbsp;*address</td>
+                    <td>在指定的程序运行的内存地址处停止。</td>
+                </tr>
+                <tr>
+                    <td>break</td>
+                    <td>没有参数时，表示在下一条指令处停止。</td>
+                </tr>
+            </table>
+
+        <h4>维护断点命令</h4>
+            <p><a name="clear"></a><b>clear命令</b></p>
+            <table>
+                <thead>
+                    <td>命令格式</td>
+                    <td>功能说明</td>
+                </thead>
+                <tr>
+                    <td>clear</td>
+                    <td>清除所有已定义的断点。</td>
+                </tr>
+                <tr>
+                    <td>clear&nbsp;&lt;function&gt;</br>clear &lt;filename:function&gt;</td>
+                    <td>清除所有设置在函数上的断点。</td>
+                </tr>
+                <tr>
+                    <td>clear&nbsp;&lt;linenum&gt;</br>clear&nbsp;&lt;filename:linenum&gt;</td>
+                    <td>清除所有设置在指定行上的断点。</td>
+                </tr>
+            </table>
+
+            <p><a name="delete"></a><b>delete命令</b></p>
+            <p>delete&nbsp;[breakpoints]&nbsp;[range...]</br>删除指定的断点，简写命令为d。breakpoints为断点号，range 则表示断点号的范围。如果不指定断点号，表示删除所有的断点。</p>
+
+            <p><a name="disable"></a><b>disable命令</b></p>
+            <p>比删除断点更好的一种方法是disable断点。disable了的断点，GDB不会删除，当你还需要使用时，使用enable命令恢复其功能即可。</P>
+            <p>disable&nbsp;[breakpoints]&nbsp;[range...]</br>使指定的断点失去作用，简写命令是dis。breakpoints为断点号。如果什么都不指定，表示使所有的断点都失去作用。</p>
+
+            <p><a name="enable"></a><b>enable命令</b></p>
+            <table>
+                <thead>
+                    <td>命令格式</td>
+                    <td>功能说明</td>
+                </thead>
+                <tr>
+                    <td>enable&nbsp;[breakpoints]&nbsp;[range...]</td>
+                    <td>恢复指定断点的功能，breakpoints为断点号。</td>
+                <tr>
+                <tr>
+                    <td>enable&nbsp;[breakpoints]&nbsp;once&nbsp;range...</td>
+                    <td>恢复指定断点的功能一次，当程序停止后，该断点立即被GDB自动disable。</td>
+                </tr>
+                <tr>
+                    <td>enable&nbsp;[breakpoints]&nbsp;delete&nbsp;range...</td>
+                    <td>恢复指定断点的功能一次，当程序停止后，该断点马上被GDB自动删除。</td>
+                </tr>
+            </table>
+
+        <h4>查看函数调用栈信息</h4>
+            <p><a name="breaktrace"></a>GDB使用breaktrace（bt）命令来查看函数调用栈的信息。</p>
+            <table>
+                <thead>
+                    <td>命令格式</td>
+                    <td>功能说明</td>
+                </thead>
+                <tr>
+                    <td>bt</td>
+                    <td>打印当前的函数调用栈的所有信息</td>
+                </tr>
+                <tr>
+                    <td>bt&nbsp;&lt;n&gt;</td>
+                    <td>n是一个正整数，表示只打印栈顶上n层的栈信息。</td>
+                </tr>
+                <tr>
+                    <td>bt&nbsp;&lt;-n&gt; </td>
+                    <td>-n是一个负整数，表示只打印栈顶上n层的栈信息。</td>
+                </tr>
+            </table>
+
+        <h4>查看运行时的数据</h4>
+            <p><a name="print"></a>在调试程序时，如果程序被终止，可以使用print命令（简写方式为p），来查看当前程序的运行数据。print命令的格式是：</br>print&nbsp;&lt;expr&gt;</br>print&nbsp;/&lt;f&gt;&nbsp;&lt;expr&gt;</p>
+            <p>&lt;expr&gt;是你所调试程序语言的表达式（GDB可以调试多种编程语言）。&lt;f&gt;是输出的格式，比如，如果要把表达式按16进制的格式输出，那么就是/x。</p>
+            <p>一般说来，GDB会根据变量的类型输出变量的值，但是也可以根据需要自定义GDB的输出格式。GDB的数据显示格式如下：</p>
+            <p>x&nbsp;&nbsp;按十六进制格式显示变量。</br>d&nbsp;&nbsp;按十进制格式显示变量。</br>u&nbsp;&nbsp;按十六进制格式显示无符号整型。</br>o&nbsp;&nbsp;按八进制格式显示变量。</br>t&nbsp;&nbsp;按二进制格式显示变量。</br>a&nbsp;&nbsp;按十六进制格式显示变量。</br>c&nbsp;&nbsp;按字符格式显示变量。</br>f&nbsp;&nbsp;按浮点数格式显示变量。</p>
+            <p>用法示例：</p>
+                <pre class="code">
+(gdb) p i
+$21 = 101
+
+(gdb) p/a i
+$22 = 0x65
+
+(gdb) p/c i
+$23 = 101 'e'
+
+(gdb) p/f i
+$24 = 1.41531145e-43
+
+(gdb) p/x i
+$25 = 0x65
+
+(gdb) p/t i
+$26 = 1100101
+</pre>
+
+       <h4>查看内存</h4>
+            <p><a name="examine"</a>GDB提供examine命令（简写方式为x）来查看内存地址中的值。x命令的格式为：x/&lt;n/f/u&gt;&nbsp;&lt;addr&gt;</p>
+            <p>n、f、u是可选的参数。n是一个正整数，表示显示内存的长度，即从当前地址向后显示n个地址的内容。f表示显示的格式，参见<a class="style1" href="gdb_command2.htm#print">print</a>命令。如果地址所指的是字符串，那么格式可以是s;如果地址是指令地址，那么格式可以是i。&lt;addr&gt;表示一个内存地址。</p>
+            <p>n/f/u三个参数可以一起使用。例如，命令x/3uh，0x54320表示从内存地址0x54320开始读取内容，h表示以双字节为一个单位，3表示三个单位，u表示按十六进制显示。</p>
+
+      <h4>查看程序相关信息</h4>
+        <p><a name="info"></a>info，显示与程序有关的各种信息。</p>
+        <table>
+            <thead>
+                <td>命令格式</td>
+                <td>功能说明</td>
+            </thead>
+            <tr>
+                <td>info&nbsp;breakpoints&nbsp;[n] </td>
+                <td>查看断点信息，n表示断点号</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;registers</td>
+                <td>查看寄存器的情况。（除了浮点寄存器）</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;all-registers</td>
+                <td>查看所有寄存器的情况。（包括浮点寄存器）</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;registers&nbsp;&lt;regname ...&gt;</td>
+                <td>查看所指定的寄存器的情况。</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;source</td>
+                <td>查看当前源程序信息</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;args</td>
+                <td>查看当前函数参数</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;var</td>
+                <td>显示所有的全局和静态变量名称</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;local</td>
+                <td>显示当前函数的所有局部变量及其值</td>
+            </tr>
+            <tr>
+                <td>info&nbsp;stack</td>
+                <td>显示当前函数栈</td>
+            </tr>
+        </table>
+
+<script>footer("chinese")</script>
+</body>
+</html>

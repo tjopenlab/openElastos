@@ -1,0 +1,102 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<htmll>
+<head>
+<title> PPP协议</title>
+<meta http-equiv="Content-Type" content="text/xmll; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>PPP协议的组成部分</h2>
+<h3>1．封装 </h3>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;PPP封装了多协议数据报，提供了不同网络层协议同时通过统一链路的多路技术。精心设计的PPP封装，使其保有对常用支持硬件的兼容性。当使用默认的类HDLC帧（HDLC-like framing）时，仅需要8个额外的字节，就可以形成封装。在带宽需要付费时，封装和帧可以减少到2或4个字节。为了支持高速的执行，默认的封装只使用简单的字段，多路分解只需要对其中的一个字段进行检验。默认的头和信息字段落在32-bit边界上，尾字节可以被填补到任意的边界。PPP封装用于消除多协议datagrams的歧义。封装需要帧同步以确定封装的开始和结束。提供帧同步的方法在参考文档中。PPP封装的概要如下所示。字段的传输从左到右。 </p>
+    <p>协议字段： </p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;协议字段由一个或两个字节组成。它的值标识着压缩在packet的信息字段里的datagram。字段中最有意义位（最高位）被首先传输。该字段结构与ISO 3309地址字段扩充机制相一致。该字段必须是奇数：最轻意义字节的最轻意义位（最低位）必须等于1。另外，字段必须被赋值，以便最有意义字节的最轻意义位为0。收到的不符合这些规则的frames，必须被视为带有不被承认的协议。 </p>
+    <p>在范围"0***"到"3***"内的协议字段，标识着特殊packets的网络层协议。在范围"8***" 到"b***"内的协议字段，标识着packets属于联合的（相关的）网络控制协议（NCP）。在范围"4***"到"7***"内的协议字段，用于没有相关NCP的低通信量协议。在范围"c***"到"f***"内的协议字段，标识着使用链路层控制协议（例如LCP）的packets： </p>
+<table>
+<thead>
+		<td>Value (in hex)</td>
+		<td>Protocol Name</td>
+	</thead>
+	<tr>
+		<td>0001</td>
+		<td>Padding Protocol填料协议 </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>0003 to 001f</td>
+		<td>reserved (transparency inefficient)保留（透明度效率低的） </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>007d</td>
+		<td>reserved (Control Escape)保留（控制逃逸） </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>00cf</td>
+		<td>reserved (PPP NLPID)保留(PPP NLPID) </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>00ff</td>
+		<td>reserved (compression inefficient)保留(压缩效率低的) </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>8001 to 801f</td>
+		<td>unused（未使用） </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>807d</td>
+		<td>unused（未使用） </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>80cf</td>
+		<td>unused（未使用） </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>80ff</td>
+		<td>unused（未使用） </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>c021</td>
+		<td>Link Control Protocol链路控制协议 </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>c023</td>
+		<td>Password Authentication Protocol密码认证协议 </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>c025</td>
+		<td>Link Quality Report链路品质报告 </td>
+	</tr>
+	<tr>
+	<tr>
+		<td>c223</td>
+		<td>Challenge Handshake Authentication Protocol挑战-认证握手协议 </td>
+	</tr>
+	<tr>
+</table>
+<h3>2．链路控制协议（LCP） </h3>
+    <p>建立，配置和测试数据链路链接（the data-link connection）的LCP协议（Link Control Protocol）。为了在一个很宽广的环境内能足够方便的使用，PPP 提供了 LCP。LCP 用于就封装格式选项自动的达成一致，处理数据包大小的变化，探测 looped-back 链路和其他普通的配置错误，以及终止链路。提供的其他可选设备有：对链路中对等单元标识的认证，和链路功能正常或链路失败情况下的决定。 </p>
+    <p>LCP 提供PPP封装不同选择: </p>
+    <p>authentication：这个选择告诉连路的呼叫方发送可以识别用户的信息，PAP和CHAP </p>
+    <p>compression：压缩它增加PPP连接的吞吐量，PPP在收到后解压数据帧 </p>
+<h3>3．网络控制协议（NCP） </h3>
+    <p>一种扩展链路控制协议，用于建立、配置、测试和管理数据链路连接（Network Control Protocol）。点对点连接可能和当前的一族网络协议产生许多问题。例如，基于电路交换的点对点连接（比如拨号模式服务），分配和管理IP地址，即使在LAN环境中，也非常困难。这些问题由一族网络控制协议（NCP）来处理，每一个协议管理着各自的网络层协议的特殊需求。 </p>
+<h3>4．配置 </h3>
+    <p>通过链路控制协议使 PPP 链路很容易配置。通过设计，标准的默认值处理全部的配置。执行者可以对默认配置进行改进，它被自动的通知给其同等单元而无需操作员的干涉。最终，操作员可以明确的为链路设定选项，以便其正常工作。该机制也应用于其它控制协议如网络控制协议（NCPs）。 </p>
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <volume> Category Smart Pointer Class Shared Method </volume>
+    <interface> CategoryRef </interface>
+    <method>operator ==</method>
+
+    <description>
+        <para>Checks if the current category smart pointer points to the same object as specified category smart pointer.</para>
+    </description>
+
+    <syntax>
+        <return_val>BOOL</return_val>
+        <parameters>
+        <api_param>
+            <param_type>const CategoryRef&amp;</param_type>
+            <param_name> cRef </param_name>
+            <param_note>
+                <para> Specified category smart pointer </para>
+            </param_note>
+        </api_param>
+
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If two category smart pointers point to the same object, returns TRUE; otherwise, returns FALSE.</para>
+    </return>
+
+    <example><pre><![CDATA[
+//g_Category is category smart pointer that points to Category category object.
+CategoryRef g_Category;
+
+void Foo(CategoryRef& senderRef)
+{
+    if (!senderRef.IsValid()) { //validate category smart pointer senderRef by invoking IsValid method.
+        assert(0 && "senderRef is invalid.");
+        return;
+    }
+
+    if (senderRef == g_Category) { //Checks if senderRef and g_Category point to the same object.
+        ……
+        return;
+    }
+    ……
+}
+]]></pre></example>
+
+</manpage>

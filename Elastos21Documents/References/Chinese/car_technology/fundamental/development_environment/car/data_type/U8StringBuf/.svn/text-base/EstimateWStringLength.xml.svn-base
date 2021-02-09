@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>U8StringBuf</interface>
+    <method>EstimateWStringLength </method>
+
+    <description>
+        <para>估算把当前U8StringBuf对象字符串按UTF-8编码格式转成WStringBuf时的长度，单位为sizeof(WChar)。 </para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+
+    </syntax>
+
+    <return>
+        <para>估算的长度。 </para>
+    </return>
+<example>
+<pre>
+U8StringBuf_&lt;10&gt; u8sbuf;  
+u8sbuf.Copy(L"中");
+CConsole::WriteLine(u8sbuf.GetLength());  //Display : 3
+CConsole::WriteLine(u8sbuf.EstimateWStringLength());  //Display : 1
+
+u8sbuf.SetEmpty();
+u8sbuf.Copy(L"a");
+CConsole::WriteLine(u8sbuf.GetLength());  //Display : 1
+CConsole::WriteLine(u8sbuf.EstimateWStringLength());  //Display : 1
+</pre>
+</example>
+ 
+
+</manpage>

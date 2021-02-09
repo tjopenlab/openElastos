@@ -1,0 +1,53 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+	<head>
+		<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+		<title>TMail.h</title>
+	</head>
+
+	<body>
+<h3>TMail.h文件:</h3>
+		<pre class=code>
+#ifndef __TMAIL_H__
+#define __TMAIL_H__
+
+
+#include "_TMail.h"
+
+CarClass(TMail)
+{
+public:
+    CARAPI Main(const BufferOf<WString> & args);
+
+    CARAPI Activate();
+
+    CARAPI Deactivate();
+
+    CARAPI IsActivated(
+        /* [out] */ Boolean * pActivated);
+
+    CARAPI Snooze();
+
+    CARAPI Wakeup();
+
+    CARAPI GetName(
+        /* [out] */ WStringBuf * pName);
+
+    CARAPI SendMail();
+
+    CARAPI RecvMail();
+
+private:
+    // TODO: Add your private member variables here.
+};
+
+#endif // __TMAIL_H__
+		
+			
+		</pre>
+	</body>
+</html>

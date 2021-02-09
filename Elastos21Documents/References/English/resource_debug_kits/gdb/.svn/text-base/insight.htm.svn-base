@@ -1,0 +1,115 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Program Debugger</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+    <h2>GDB Graphical Debugging Interface</h2>
+        <p>
+        	Debugging programs using GDB graphical interface (gdb&nbsp;insight) is simpler, and more direct than 
+        	using complete command line mode.
+        </p>
+        <p>
+        	By using gdb&nbsp;insight, we can set break points, run program, check registers, check program run-time 
+        	stack, dump memory and program variables. We can debug source programs and also debug, based on 
+        	assembler. We can display the source code, also display the assembler code, or can display 
+        	both the source code and corresponding assembler code together. The following sections will introduce 
+        	gdb&nbsp;insight debugging interface: 
+        </p>
+        <h4>Main Window</h4>
+            <center><img src="images/gdb4.jpg"></center>
+            <center>Diagram 1: gdb&nbsp;insight Main Window</center>
+            1.  Single step execution.
+            2.  Execute until next instruction.
+            3.  Execute until the end of the program.
+            4.  Execute the program until a break point is encountered.
+            5.  Assembler based step.
+            6.  Assembler based next.
+            7.  Register viewing window.
+            8.  Memory viewing window.
+            9.  Program stack window.
+            10. Program variable viewing window.
+            11. Local variable viewing window.
+            12. Break point setting window.
+            13. Console window, can issue GDB command.
+            14. Current program source file.
+            15. Current function name.
+            16. Source program, assembly, mixed code dropdown selection.
+            17. Line that the current program stops at.
+        <h4>Register Viewing Window</h4>
+            <center><img src="images/gdb5.jpg"></center>
+            <center>Diagram 2: gdb&nbsp;insight Register Checking Window</center>
+            <p>
+            	Currently, STUB only provides values of the left most column registers in diagram 2. These are the 
+            	set of registers, which developers are most interested in and most commonly used.
+            </p>
+        <h4>dump Memory Viewing Window</h4>
+            <center><img src="images/gdb6.jpg"></center>
+            <center>Diagram 3: gdb&nbsp;insight&nbsp;dump Memory Viewing Window</center>
+            <p>
+            	On the top left corner of dump Memory Viewing Window there is an address selection list. Either 
+            	variable name or memory address can be in the selection list. Each line of memory address corresponds 
+            	to 16 bytes of contents displayed, followed by corresponding ASCII code.
+            </p>
+        <h4>Program Stack Window</h4>
+            <center><img src="images/gdb7.jpg"></center>
+            <center>Diagram 4: gdb&nbsp;insight Program Stack Window</center>
+            <p>
+            	Double click the line the cursor located, one can see the source code of the function which the 
+            	cursor currently points to in the main window. Double question mark "??" means function unknown by 
+            	the STUB, this problem often occurs when the program is executed across module and across mode 
+            	(user mode and kernel mode). Currently, STUB haven't solved this problem yet.
+            </p>
+        <h4>Program Variable Viewing Window</h4>
+            <center><img src="images/gdb8.jpg"></center>
+            <center>Diagram 5: gdb&nbsp;insight Program Variable Viewing Window</center>
+            <p>
+            	There is a textfield at the bottom of program variable viewing window. The user can input variable 
+            	name or expression to be viewed, the corresponding information will be displayed at the textarea 
+            	on top of the textfield.
+            </p>
+        <h4>Local Variable Viewing Window</h4>
+            <center><img src="images/gdb9.jpg"></center>
+            <center>Diagram 6: gdb&nbspinsight Program Variable Viewing Window</center>
+            <p>
+            	Local variable viewing window displays all the local variables in the current function.
+            </p>
+        <h4>Break Point Setting Window</h4>
+            <center><img src="images/gdb10.jpg"></center>
+            <center>Diagram 7: gdb&nbsp; Break Point Setting Window</center>
+            <p>
+            	Break point setting window displays information of all the current break points, including if the 
+            	break point is enabled, to which thread is the break point is enabled, memory address of the break 
+            	point, source file the break point located, line of code and function the break point located. 
+            	Whether the break point is enabled is indicated by a red check mark, if there is a red check mark 
+            	means the break point is enabled, otherwise it means the break point is not enabled. Currently 
+            	break point is enabled to all threads.
+            </p>
+            <p>
+            	If one wants to create or delete break point, he only needs a single left click in the line the 
+            	break point to be located.
+            </p>
+            <p>
+            	Breakpoint menu is a single point operating, includes breakpoint enable, disables breakpoint, and 
+            	delete breakpoint etc.
+            </p>
+            <p>
+            	Global menu is operation on all current breakpoints, which includes enable all breakpoints, disable all 
+            	breakpoints, and delete all breakpoints etc.
+            </p>
+        <h4>Consol Window</h4>
+            <center><img src="images/gdb11.jpg"></center>
+            <center>Diagram 8: gdb&nbsp; Consol Window</center>
+            <p>
+            	Through consol window, the user can debug program by using GDB commands. For GDB command introduction 
+            	please see <a class="style1" href="gdb_command.htm">GDB Basic Command Set</a> for details.
+            </p>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>绘图系统 </volume>
+<method>Matrix </method>
+<description>
+	      <para>
+	      	  矩阵
+	      </para>
+    </description>
+    <syntax>
+        <return_val> struct </return_val>
+        <parameters>
+            <api_param>
+                <param_type> Double   </param_type>
+                <param_name> xx </param_name>
+                <param_note><para>
+矩阵第一行第一列的值
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Double   </param_type>
+                <param_name> yx </param_name>
+                <param_note>
+                    <para>
+矩阵第二行第一列的值                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Double   </param_type>
+                <param_name> xy </param_name>
+                <param_note>
+                    <para>
+矩阵第一行第二列的值                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Double   </param_type>
+                <param_name> yy </param_name>
+                <param_note>
+                    <para>
+矩阵第二行第二列的值                 </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Double   </param_type>
+                <param_name> x0 </param_name>
+                <param_note>
+                    <para>
+X方向上的变换量，作为矩阵的第一行第三列                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Double  </param_type>
+                <param_name> y0 </param_name>
+                <param_note>
+                    <para>
+Y方向上的变换量，作为矩阵的第二行第三列                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+<remarks>
+<para>矩阵变换相当于一个线性变换加上一个平移，其计算公式为：</para>
+<img url="images/matrix.jpg"></img>
+<para>x_new = xx * x + xy * y + x0;     y_new = yx * x + yy * y + y0;</para>
+
+<para>变换矩阵的各个参数并不能随意设置，需要根据采用什么样的变换设置什么样的变换矩阵，从而保证参数有意义，否则将可能出现应用变换的对象无法显示的情况。这里列举几个常用的变换矩阵，其他变换矩阵，可自行根据坐标变换公式得出，然后替换相应的xx，xy，yx，yy，x0，y0的值。</para>
+<para>平移（Translation）变换的变换矩阵：</para>
+<img url="images/translation.jpg"></img>
+<para>缩放（Scale）变换的变幻矩阵为：横坐标放大or缩小x倍，纵坐标放大or缩小y倍，</para>
+<img url="images/scale.jpg"></img>
+<para>旋转（Rotation）变换的变换矩阵为：θ为旋转角度</para>
+<img url="images/rotation.jpg"></img>
+</remarks>
+</manpage>

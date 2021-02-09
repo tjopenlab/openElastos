@@ -1,0 +1,77 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\isdigit">isdigit</sample>
+    <title>isdigit iswdigit</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>Returns true if c is a decimal digit (0 through 9)</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>isdigit</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>input integer</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If c is a decimal digit (0 - 9), then isdigit returns a non-zero value . It returns 0 if c does not satisfy the test condition.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>isdigit</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* isdigit.cpp: This program uses isdigit to verify c
+ * whether it is a decimal-digit character(&apos;0&apos; – &apos;9&apos;).
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+{
+    int c = &apos;6&apos;;
+    if (isdigit(c)) {
+        printf(&quot;c is a decimal-digit character.\n&quot;);
+    }
+    else {
+        printf(&quot;c isn&apos;t a decimal-digit character.\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+c is a decimal-digit character.
+</result>
+
+
+
+</manpage>

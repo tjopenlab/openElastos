@@ -1,0 +1,58 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding = "GB2312"?>
+<?xml:stylesheet type = "text/xsl" href = "/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url = "datatypes\EzPoint\operatorEQ"> operator = </sample>
+    <volume> Common data structure </volume>
+    <interface> EzPoint </interface>
+    <method> operator = </method>
+
+    <description>
+        <para> Assignment operator, which is used to assign new values to existing EzPoint objects. </para>
+    </description>
+
+    <syntax>
+        <return_val> EzPoint&amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type> EzPoint&amp; </param_type>
+            <param_name> pt </param_name>
+            <param_note>
+                <para> Existing EzPoint objects. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include "EzPoint.h"
+#include "stdio.h"
+
+int __cdecl main()
+{
+    EzPoint* pThisPoint;
+    pThisPoint = new EzPoint(1, 2);
+
+    pThisPoint->SetX(3);
+    pThisPoint->SetY(4);
+    EzPoint ThatPoint;
+    ThatPoint = *pThisPoint;
+    long x = ThatPoint.GetX();
+    long y = ThatPoint.GetY();
+    printf("ThatPoint x=%d, y=%d", x, y);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+ThatPoint x=3, y=4
+]]>
+    </result>
+
+</manpage>

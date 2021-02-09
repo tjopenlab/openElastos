@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_getw">_getw</sample>
+    <title> _getw </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>从文件中读取一个整型数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_getw</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>fp</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果读取成功，则返回读到的整型数据。读取数据错误或者是读到了文件末尾都返回EOF，由于EOF也是个合法的整型数据，所以需要使用feof或者ferror函数去判断是文件末尾还是读取错误。</para>
+    </return>
+
+    <remarks>
+        <para>该函数从当前文件指针位置读取一个整型数据。在不同的系统中使用本函数可能会因为int型变量的长度不同而导致微小的错误。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_getw</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _getw.cpp: This program uses _getw to read a word
+ * from a stream, then performs an error check.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    FILE *stream;
+    int i;
+
+    if ((stream = fopen(&quot;_getw.exe&quot;, &quot;rb&quot;)) == NULL)
+        printf(&quot;Couldn&apos;t open file\n&quot;);
+    else {
+        /* Read a word from the stream: */
+        i = _getw(stream);
+
+        /* If there is an error... */
+        if (ferror(stream)) {
+            printf(&quot;_getw failed\n&quot;);
+            clearerr(stream);
+        }
+        else
+            printf(&quot;First data word in file: 0x%.4x\n&quot;, i);
+        fclose(stream);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+First data word in file: 0x905a4d
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>_putw</ref_name>
+            <ref_url>_putw</ref_url>
+        </reference>
+    </references>
+
+</manpage>

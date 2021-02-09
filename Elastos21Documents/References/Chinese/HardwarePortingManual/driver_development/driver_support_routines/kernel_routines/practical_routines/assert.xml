@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>实用例程</volume>
+    <title>assert</title>
+    <routine_idx> ../practical_routines.htm </routine_idx>
+
+    <description>
+        <para>对表达式求值，当结果为FALSE时，输出诊断信息，并且使内核进入调试状态。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> int </param_type>
+                <param_name> expression </param_name>
+                <param_note>
+                    <para>需要求值为零或非零的表达式</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>
+            典型情况下，assert宏被用于在程序开发过程中鉴定逻辑错误。当且仅当程序运行错误时，对表达式参数的求值为FALSE。
+        </para>
+        <para>
+            在DEBUG版中，当表达式的值为假(零)时，assert输出诊断信息，并且使内核进入调试状态。而当表达式的值为真(非零)时，assert不做任何操作。诊断信息包括无效的表达式，源文件名称和assert执行失败的行数。
+        </para>
+        <para>
+            在RELEASE版，assert检查将被关闭。
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>verify</ref_name>
+            <ref_url>verify</ref_url>
+        </reference>
+    </references>
+
+</manpage>

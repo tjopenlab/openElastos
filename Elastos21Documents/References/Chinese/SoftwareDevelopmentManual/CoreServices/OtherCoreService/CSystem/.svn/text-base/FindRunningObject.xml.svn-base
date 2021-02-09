@@ -1,0 +1,104 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib"> CSystem::FindRunningObject </sample>
+    <volume>系统对象</volume>
+    <title>CSystem::FindRunningObject</title>
+
+    <description>
+        <para>获取指定名字的服务接口。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>[in]服务接口的名字，不能为空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> PInterface *</param_type>
+                <param_name> ppRunningObject </param_name>
+                <param_note>
+                    <para>[out]指向服务接口指针的指针，用以获取返回的服务接口的指针,不能为空</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_DOES_NOT_EXIST</td><td>指定的服务不存在</td>
+            </tr>
+            <tr>
+                <td>E_NO_EXPORT_SERVER</td><td>没有发现对应的服务对象</td>
+            </tr>
+            <tr>
+                <td>E_PROCESS_ALREADY_EXITED</td><td>指定的进程已经退出</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+            <tr>
+                <td>E_NOT_ENOUGH_ADDRESS_SPACE</td><td>没有足够的地址空间</td>
+            </tr>
+            <tr>
+                <td>E_ENTRY_NOT_FOUND</td><td>没有找到相应的元数据</td>
+            </tr>
+            <tr>
+                <td>E_NOT_IMPLEMENTED</td><td>没有对应的功能实现</td>
+            </tr>
+            <tr>
+                <td>E_CLASS_NOT_AVAILABLE</td><td>指定的类不存在</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CSystem::RegisterRunningObject </ref_name>
+        <ref_url> RegisterRunningObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CSystem::WaitForRunningObject </ref_name>
+        <ref_url> WaitForRunningObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CSystem::UnregisterRunningObject </ref_name>
+        <ref_url> UnregisterRunningObject</ref_url>
+    </reference>
+    </references>
+
+</manpage>

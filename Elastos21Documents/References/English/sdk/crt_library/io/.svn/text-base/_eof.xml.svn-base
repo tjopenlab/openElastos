@@ -1,0 +1,111 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_eof">_eof</sample>
+    <title> _eof</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>Checks to see current if current position is end-of-file.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_eof</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>file descriptor of the opened file</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If _eof return value is 1, it means current position is end of file; if _eof return value is 0, it means current position is not end of file; if return value is -1, it means there is an error.The error number is set to EBADF, EBADF represents an invalid file descriptor parameter.</para>
+    </return>
+
+    <remarks>
+        <para>The _eof function checks whether read to the end of the file related to parameter descriptor.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_eof</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>ANSI，Windows 2000，Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _eof.cpp: This program reads data from a file
+ * ten bytes at a time until the end of the
+ * file is reached or an error is encountered.
+ */
+
+
+#include &lt;fcntl.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+     int  fh, count, total = 0;
+     char buf[10];
+     if ((fh = _open(&quot;data&quot;, _O_RDONLY)) == - 1) {
+         perror(&quot;Open failed&quot;);
+         return 1;
+     }
+     /* Cycle until end of file reached: */
+     while (!_eof(fh)) {
+          /* Attempt to read in 10 bytes: */
+          if ((count = _read(fh, buf, 10)) == -1) {
+                perror(&quot;Read error&quot;);
+                break;
+          }
+          /* Total actual bytes read */
+          total += count;
+     }
+
+     printf(&quot;Number of bytes read = %d\n&quot;, total);
+     _close(fh);
+
+     return 0;
+}
+</pre>
+    </example>
+<result>
+Number of bytes read = 0
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>feof</ref_name>
+            <ref_url>..\stdio\feof</ref_url>
+        </reference>
+        <reference>
+            <ref_name>ferror</ref_name>
+            <ref_url>..\stdio\ferror</ref_url>
+        </reference>
+        <reference>
+            <ref_name>perror</ref_name>
+            <ref_url>..\stdio\perror</ref_url>
+        </reference>
+    </references>
+
+</manpage>

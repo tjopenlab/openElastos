@@ -1,0 +1,52 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>设备驱动程序框架</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>设备描述信息与配置</h2>
+        <p>Elastos的内核以一个设备名（宽字符串型）加上一个设备号（无符号整型）来唯一标识一个特定的设备实例。这里所说的“设备”，可以是实际存在的硬件设备实体，也可以是虚拟的设备（伪设备）。通常情况下，设备名标识设备的类型，而设备号标识此类设备的一个实例。例如：系统中存在有两个串口设备，设备名可以为“com”，而设备号为1和2。那么设备名加设备号“1”就唯一表示了第一个串口设备；而设备名“com”加设备号“2”就唯一表示了第二个串口设备。请注意：设备名是大小写敏感的。 </p>
+        <p>所有设备名在系统中共享同一个名字空间，所以必须是全局唯一的。一个设备名只能对应到唯一一个驱动程序，系统将以设备名来匹配相应的驱动程序。设备号将被当作参数传给相应的驱动程序创建函数（关于驱动程序创建函数，将在<a class="style1" href="IDeviceDriver_config.htm">“驱动程序接口的实现与配置”</a>一文中讨论）。一个比较特殊的设备号是DEVICENO_NONE，它表示该类设备可以由设备名直接标识，而无需使用设备号。 </p>
+        <p>对系统中已经存在的设备，它们的信息可以静态地放入一张全局设备配置表中。内核为这张全局设备配置表维护一个以<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/data_structure/DeviceConfig.htm">struct&nbsp;DeviceConfig</a>为元素类型的数组s_deviceConfigs加上一个uint_t类型的全局变量uNumberOfDeviceConfigs来指明该数组的实际长度。</p>
+        <p>通常情况下，s_deviceConfigs和uNumberOfDeviceConfigs的实现位于$Elastos/src/kernel/drivers/arch/board/config/config.cpp中。</p>
+        <p>可以通过标准内核功能接口<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/method/DzRegisterDevice.htm">DzRegisterDevice()</a>函数动态地向系统注册设备信息。注销设备信息则是通过标准内核功能接口<a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/method/DzUnregisterDevice.htm">DzUnregisterDevice()</a>。</p>
+        <p>举例来说，如果系统中静态配置有一个鼠标设备和两个IDE控制器，那么s_deviceConfigs和uNumberOfDeviceConfigs一个可能的实现如下所示：</p>
+        <pre class="code">
+// config.cpp
+…
+#define DEVICENAME_IDECONTROLLER  L"idecontroller"
+#define DEVICENAME_MOUSE      L"mouse"
+…
+//
+// Device Configurations
+//
+DECL_DATAINIT DeviceConfig s_deviceConfigs[] = {
+  …
+  { DEVICENAME_MOUSE, DEVICENO_NONE, NULL },
+  …
+  { DEVICENAME_IDECONTROLLER, 0, NULL },
+  { DEVICENAME_IDECONTROLLER, 1, NULL },
+  …
+};
+DECL_DATAINIT uint_t uNumberOfDeviceConfigs =
+lengthof(s_deviceConfigs);
+</pre>
+        <p>如果此时需要向系统动态注册一个键盘设备，则一个可能的实现如下：</p>
+        <pre class="code">
+…
+#define DEVICENAME_KEYBOARD    L"keyboard"
+…
+ECODE ec = DzRegisterDevice(
+    DEVICENAME_KEYBOARD, DEVICENO_NONE, NULL）；
+…
+</pre>
+
+<script>footer("chinese")</script>
+</body>
+</html>

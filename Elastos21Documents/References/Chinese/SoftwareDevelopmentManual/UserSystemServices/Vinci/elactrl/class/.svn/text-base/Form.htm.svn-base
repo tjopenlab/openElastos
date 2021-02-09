@@ -1,0 +1,144 @@
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>Form</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>Form</b></h1></center>
+<small><p><b>头文件：</b>ElControls.h
+<p><b>程序库：</b>ElControls.dll
+（<b>备注：</b>当在 CAR 文件中通过 <a class="doxygen" href="../../../../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a> 引入 ElControls.dll 时，则无需在源文件中添加“include &lt;ElControls.h&gt;”该句；若 ElControls.dll 是在 sources 文件中引入的，则需要在源文件中添加“include &lt;ElControls.h&gt;”该句。有关更多信息请参考：<a class="doxygen" href="../../../../../car_technology/car.htm">CAR 编程入门</a>）</small>
+<hr size="1">
+<h4><li><b>详细描述：</b></h3>
+    <p>窗口或对话框。
+  <p>Form 作为其它控件的容器控件，在创建其它控件前必须先创建一个 Form。同样可以作为容器的控件还有：<a class="doxygen" href="panel.htm">Panel</a>，注意，Panel 也必须包含在一个 Form 内。Form 不能用来嵌套，如果要嵌套容器，请使用 Panel 控件。若 Form 的 <a class="doxygen" href="../interface/IControl/SetEnabled.htm">Enabled</a> 属性被设置为 FALSE，也会禁用 Form 内所有控件。
+    <p>当对 Form 内各个控件都布局好后，需要调用 <a class="doxygen" href="../interface/IForm/Show.htm">Show</a> 或者 <a class="doxygen" href="../interface/IForm/ShowDialog.htm">ShowDialog</a> 方法将其显示出来，ShowDialog 方法将窗体显示为模式对话框。有关更多信息请参考：<a class="doxygen" href="../reference/ShowDialog.htm">如何显示对话框</a>。
+<hr size="1">
+<h4><li><b>CForm 类封装图：</b></h3>
+<center> <img src="images/CForm.jpg"> </center>
+        <p>如图所示，JControlEvents（通用回调事件接口）和 JFormEvents 为回调事件接口，用户可以通过 AddXXXCallback 的方法为 Form 注册回调事件，当该 XXX 事件发生时，相应的回调处理函数会被调用。注意：当销毁一个 Form 时，需要将所有控件注册的回调函数都 Remove 掉。当销毁一个对象前，需要调用 RemoveXXXCallback 取消该事件。具体 Callbak 机制的介绍，详见 Elastos 编程入门中 Callback 这节。
+        <p>当使用 <a class="doxygen" href="CForm/CForm_New.htm">New</a> 方法创建了一个 Form 对象后，可以获得 <a class="doxygen" href="../interface/IForm.htm">IForm</a> 接口指针，通过该接口指针用户可以调用接口内的方法对 Form 进行一系列操作，例如：调用 <a class="doxygen" href="../interface/IForm/Show.htm">Show</a> 方法将 Form 显示出来。
+
+<hr size="1">
+<h4><li><b>构造函数：</b></h3>
+<ul><table>
+<thead><td>名称</td><td>说明</td></thead>
+<tr><td><a class="doxygen" href="CForm/CForm_New.htm">CForm::New</a></td><td>创建一个Form对象</td></tr>
+</table></ul>
+<h4><li><b><a class="doxygen" href="../interface/IForm.htm">IForm 接口方法列表</a></b></h3>
+<ul><p><b>注：</b>IForm 接口继承于 IControl 接口，故Form可以调用 IControl 接口中的方法。</ul>
+
+<h4><li><b><a class="doxygen" href="../interface/JFormEvents.htm">Form 回调事件列表</a></b></h3>
+
+<hr size="1">
+<h4><li><b>示例</b></h3>
+<ul><p>在该例中先创建一个 Form，并在其中添加了一个 <a class="doxygen" href="Label.htm">Label</a> 用于显示一段信息，两个 <a class="doxygen" href="Button.htm">Button</a>，当您觉得您已经掌握了该例子则点击 Yes，否则点击 No，此时会跳出一 dialog，在该 dialog 中通过 <a class="doxygen" href="PictureBox.htm">PictureBox</a> 和 Form 注册了两个回调事件，分别是 <a class="doxygen" href="../interface/JPictureBoxEvents/Click.htm">Click</a> 和 <a class="doxygen" href="../interface/JFormEvents/Timer.htm">Timer</a>，当您点击 dialog 或者定时器计时到4秒后，该 dialog 均会关闭。在该例中还使用了 <a class="doxygen" href="../../graphics/class/CImage.htm">CImage</a> 为 PictureBox 创建图片对象。
+</p></ul>
+<p><table border="0" cellpadding="0" cellspacing="0"><tr><td valign="bottom"><pre>
+ECode TFormdemo::Main()
+{
+    IForm    *mainForm;
+    IButton  *myButton1;
+    IButton  *myButton2;
+    IForm    *dialogForm;
+    ILabel   *myLabel;
+    ILabel   *dialogLabel;
+    IPictureBox *myPicBox;
+
+    // 创建 mainForm, dialogForm, two Button, Label, PictureBox 对象
+    CForm::New(L"MAIN",
+    	                    0, 0, 0, 240, 320,
+    	                    NULL,&mainForm);
+    CButton::New(L"Yes!", ButtonStyle_Center,
+    	                35, 180, 70, 40,
+    	                mainForm,&myButton1);
+    CButton::New(L"NO!", ButtonStyle_Center,
+                135, 180, 70, 40,
+    	                mainForm,&myButton2);
+    CLabel::New(L"mylabel", ControlStyle_Transparent|LabelStyle_Center,
+                0, 110, 240, 50,
+                mainForm,&myLabel);
+    CForm::New(L"dailog", 0,
+               0, 165, 240, 155,
+               NULL,&dialogForm);
+    CPictureBox::New(L"dailog", ImagePanelStyle_ImageFrame,
+                     0, 0, 240, 155,
+                     dialogForm, &myPicBox);
+    CLabel::New(L"dialoglabel", ControlStyle_Transparent|LabelStyle_Center|ControlStyle_IgnoreStylus,
+                0, 82, 240, 50,
+                myPicBox, &dialogLabel)
+    myLabel->SetText(L"Have you learn this ?");
+
+    // 注册回调事件
+    CButton::AddClickCallback(myButton1,
+                this,
+    	          &TFormdemo::OnClickLeft);
+    CButton::AddClickCallback(myButton2,
+                this,
+    	          &TFormdemo::OnClickRight);
+    CForm::AddTimerCallback(dialogForm,
+                this,
+                &TFormdemo::OnTimer);
+    CPictureBox::AddClickCallback(myPicBox,
+                this,
+                &TFormdemo::OnClickDialog);
+
+    // 创建图片并加载
+    IImage *dialogImage = NULL;
+    CImage::New(L"Form-dialog.png",
+    	          ImageFormat_Png,
+                &dialogImage);
+    myPicBox->SetImage(dialogImage);
+
+    // 将主 Form 显示出来
+    mainForm->Show();
+}
+
+// myButton1 的回调事件处理函数
+ECode TFormdemo::OnClickLeft(/* [in] */ IInterface * pIObject)
+{
+    dialogLabel->SetText(L"Congratulate !");
+    dialogForm->SetTimer(1, 2000);
+    dialogForm->SetOwner(mainForm);
+    Int32 dialogResult;
+    dialogForm->ShowDialog(mainForm, &dialogResult);
+    
+    return NOERROR;
+}
+
+// myButton2 的回调事件处理函数
+ECode TFormdemo::OnClickRight(/* [in] */ IInterface * pIObject)
+{
+    dialogLabel->SetText(L"Try Again !");
+    dialogForm->SetTimer(1, 2000);
+    dialogForm->SetOwner(mainForm);
+    Int32 dialogResult;
+    dialogForm->ShowDialog(mainForm, &dialogResult);
+    
+    return NOERROR;
+}
+
+// myPicBox 的回调事件处理函数
+ECode TFormdemo::OnClickDialog(/* [in] */ IInterface * pIObject)
+{
+    ECode ec;
+    ec = dialogForm->SetDialogResult(1);
+    return ec;
+}
+
+// dialogForm 的回调事件处理函数
+ECode TFormdemo::OnTimer(/* [in] */ IInterface * pIObject,
+                         /* [in] */ Int32 timerID, 
+                         /* [in] */ Int32 count)
+{
+    ECode ec;
+    
+    dialogForm->KillTimer(1);
+    ec = dialogForm->SetDialogResult(1);
+    return ec;
+}
+</td></tr></table>
+
+<script>footer("chinese")</script>
+</body>
+</html>

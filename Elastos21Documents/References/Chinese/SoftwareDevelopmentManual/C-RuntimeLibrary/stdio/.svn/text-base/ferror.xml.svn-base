@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\ferror">ferror</sample>
+    <title> ferror</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>检测文件操作中错误。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>ferror</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果文件中无错误，返回0；否则，返回非零值。</para>
+    </return>
+
+    <remarks>
+        <para>ferror函数检测对文件读写错误，如果发生错误，文件结构中的错误指示器将被设置，直到文件关闭或指针返回，或者调用清除错误命令将设置清除。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>ferror</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ferror.cpp: This program uses ferror to tests for an error on a stream.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    int  count = 0;
+    char buffer[100];
+    FILE *stream;
+
+    if ((stream = fopen(&quot;ferror.txt&quot;, &quot;w&quot;)) == NULL) {
+        printf(&quot;problem open the file!&quot;);
+        return 1;
+    }
+
+    /* Attempt to read in 10 bytes: */
+    count = fread(buffer, sizeof(char), 100, stream);
+    if (ferror(stream)) {
+        printf(&quot;Read error.\n&quot;);
+    }
+    else {
+        printf(&quot;Read OK!\n&quot;);
+    }
+
+    fclose(stream);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Read error.
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>feof</ref_name>
+            <ref_url>feof</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fopen</ref_name>
+            <ref_url>_wfopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

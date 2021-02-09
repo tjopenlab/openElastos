@@ -1,0 +1,46 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\AStringBuf\SetEmpty">SetEmpty</sample>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method>SetEmpty</method>
+
+    <description>
+        <para> 设置AStringBuf对象字符串为空</para>
+    </description>
+
+     <syntax_nopara>
+        <return_val> void </return_val>
+    <NoArguments/>
+    </syntax_nopara>
+     <remarks>
+        <para>在AStringBuf对象指向的内存区的第一个字符位置设成'\0', 并把m_used设成sizeof(char)。</para>
+    </remarks>
+<example>
+<pre>
+AStringBuf_&lt;10&gt; asbuf;
+asbuf.Copy("abcd");
+CConsole::WriteLine(asbuf);  //Display : "abcd"
+asbuf.SetEmpty();
+CConsole::WriteLine(asbuf.m_size );  //Display : 11
+CConsole::WriteLine(asbuf.m_used );  //Display : 1
+</pre>
+</example> 
+
+  <references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::IsEmpty </ref_name>
+        <ref_url>../AStringBuf/IsEmpty</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::SetEmpty </ref_name>
+        <ref_url>../WStringBuf/SetEmpty</ref_url>
+    </reference>
+</references>   
+</manpage>

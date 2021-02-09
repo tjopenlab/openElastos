@@ -1,0 +1,123 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Socket Interface </volume>
+<interface>ISocketservice</interface><method> CreateSocket </method>
+    <description>
+        <para>
+         创建套接口, 得到ISocket接口指针。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> family </param_name>
+                <param_note>
+                    <para>
+						地址族。目前只支持IF_INET。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> type </param_name>
+                <param_note>
+                    <para>
+						套接口的类型描述。
+						支持的套接口如下表。
+                    </para>
+                    <para_table>
+	                        <th>
+		                    <td>参考值 </td>
+		                    <td>描述</td>
+	                        </th>
+	                        <tr>
+		                    <td>SOCK_STREAM</td>
+		                    <td>使用TCP协议（有连接）</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SOCK_DGRAM</td>
+		                    <td>使用UDP协议（无连接）</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SOCK_RAW</td>
+		                    <td>使用原始套接字</td>
+	                        </tr>
+	                    </para_table>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> protocol </param_name>
+                <param_note>
+                    <para>
+						套接口使用的协议。如果使用缺省协议可以设为IPPROTO_IP，其值为0。或者根据套接口类型指定相应的协议，SOCK_STREAM对应的协议为IPPROTO_TCP，SOCK_DGRAM对应的协议为IPPROTO_UDP。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ISocket ** </param_type>
+                <param_name> ppNewSocket </param_name>
+                <param_note>
+                    <para>
+						得到新的ISocket接口。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>returns </td>
+		<td>Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>S_OK</td>
+		<td>0x00000000</td>
+		<td>方法调用成功。 </td>
+	    </tr>
+	    <tr>
+		<td>E_NOT_ENOUGH_MEMORY</td>
+		<td>0x80070008</td>
+		<td>内存不够用</td>
+	    </tr>
+	    <tr>
+		<td>STATUS_WIN32_ERROR(error)</td>
+		<td>((SCODE)((erro)|0x80070000))</td>
+		<td>STATUS_WIN32_ERROR(erro)是宏，被定义为((SCODE)((erro)|0x80070000))</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+		使用时请注意ISocketService接口一旦被创建，就应该常驻内存，和网络服务期具有相同的生命周期，而ISocket接口在不使用时，应该release（）。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本; 《和欣2.0》或更高版本
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

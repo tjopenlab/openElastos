@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\conio\_kbhit">_kbhit</sample>
+    <title> _kbhit</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> conio_idx.htm </routine_idx>
+
+    <description>
+        <para>检查控制台的键盘输入。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_kbhit</func_name>
+        <NoArguments/>
+        <parameters>
+            <func_param>
+                <param_type>void</param_type>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果该键盘键被按，则_kbhit函数返回一个非零的值；否则，返回0。</para>
+    </return>
+
+    <remarks>
+        <para>_kbhit函数检查控制台最新的一次按键。如果函数返回一个非零的值，则该键盘输入将保存在缓冲区中，应用程序可以随后通过调用_getch函数获取该按键。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_kbhit</routine_name>
+            <headerfile>conio.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _kbhit.cpp: This program loops until the user
+ * presses a key. If _kbhit returns nonzero, a
+ * keystroke is waiting in the buffer. The program
+ * can call _getch or _getche to get the keystroke.
+ */
+
+#include &lt;conio.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    /* Display message until key is pressed. */
+    while (!_kbhit())
+        puts(&quot;Hit me!! &quot;);
+
+    /* Use _getch to throw key away. */
+    printf(&quot;\nKey struck was &apos;%c&apos;\n&quot;, _getch());
+    _getch();
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Hit me!!
+Hit me!!
+Hit me!!
+Hit me!!
+Hit me!!
+Hit me!!
+Hit me!!
+Hit me!!
+Hit me!!
+Hit me!!
+Hit me!!
+Hit me!!
+
+Key struck was &apos;q&apos;
+</result>
+
+   
+</manpage>

@@ -1,0 +1,45 @@
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> BufferOf   </interface>
+    <method> Replace </method>
+
+    <description>
+        <para>用源数据覆盖指定位置的内容。</para>
+    </description>
+
+    <syntax>
+        <return_val>BufferOf &amp; </return_val>
+        <parameters>
+            <api_param>
+                <param_type> Int32 </param_type>
+                <param_name> offset </param_name>
+                <param_note>
+                    <para> 覆盖位置相对于BufferOf对象储存区起始位置的偏移量，单位为sizeof(T)</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> const <i>T</i>*</param_type>
+                <param_name>pBuf </param_name>
+                <param_note>
+                    <para> 源T类型数组 </para>
+                </param_note>
+            </api_param>
+            
+            <api_param>
+                <param_type> Int32 </param_type>
+                <param_name> n </param_name>
+                <param_note>
+                    <para> 要覆盖的元素个数</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当前BufferOf对象引用。</para>
+    </return>
+</manpage>

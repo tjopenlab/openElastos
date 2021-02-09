@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>图形标签通用属性</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>XmlGlue介绍</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li class="current"><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>图形标签(控件)列表</span></a></li>
+    <li  class="current"><a href="attribute.html"><span>图形标签通用属性</span></a></li>
+    <li><a href="event.html"><span>图形标签通用事件</span></a></li>
+    <li><a href="genstyle_8car.html"><span>图形标签通用风格</span></a></li>
+  </ul>
+</div>
+<h1>图形标签通用属性</h1><!-- doxytag: class="window" -->通用属性适用于绝大部分Widget元素，下表详细描述通用属性。
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>标签通用属性</h2></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">此属性用于设置元素的唯一标识.标识将用于脚本代码中，它不可以包含任何空格或非 ASCII 字符。一经指定，对象名称将无法改变。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><b>注：</b>由于该属性的命名空间在http://www.elastos.com/XmlGlue/2.1里，而它并不是默认的命名空间，故使用时需要在id前加http://www.elastos.com/XmlGlue/2.1命名空间的别名"x"加以标示。即x:id。同时图形控件标签的x:id属性不接受parameter标签中设置的参数。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>AString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>x：id="id"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="myButton" x="60" y="60" width="50" height="30"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>style</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">此属性用于设置标签控件所使用的风格，详见<a href="genstyle_8car.html">控件通用风格</a>和各控件特有风格。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><b>注：</b>允许不同的风格组合使用以达到用户需要的效果，具体用法可参考如下示例2，枚举通过枚举名:枚举值的形式表示，且大小写敏感，不同风格间用空格区分。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>style="tagstyle"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例1 :</b></dt><dd>&lt;button x:id="myButton" x="60" y="60" width="50" height="30" style="Right"/&gt;（风格唯一）</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例2 :</b></dt><dd>&lt;button x:id="myButton" x="60" y="60" width="50" height="30" style="ButtonStyle:Right ButtonStyle:Top ControlStyle:Focused"/&gt;（风格组合使用）</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>x</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件的左边与它容器左边之间的距离，该属性可以为空，此时默认值为0。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>x="value"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="mybutton" x="10" y="10" width="120" height="40"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件顶部和它容器顶边之间的距离，该属性可以为空，此时默认值为0。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>y="value"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="mybutton" x="10" y="10" width="120" height="40"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>width</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件的水平尺寸。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>width="width"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="mybutton" x="10" y="10" width="120" height="40"/&gt;</td></tr>
+	
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>height</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件的垂直尺寸。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>heitht="value"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="mybutton" x="10" y="10" width="120" height="40"/&gt;</td></tr>
+	
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>caption</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件的文字说明。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>caption="value"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="mybutton" x="10" y="10" width="120" height="40" caption="OK"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b><a name="text">text</a></b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件显示的文本。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>text="text"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="mybutton" x="10" y="10" width="120" height="40" text="exit"/&gt;</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>font</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件显示的文本的字体。需要指定字体名称（name）、字体大小（size)、字体类型（style），默认值分别为songti、16、Regular。其中name的值可为：songti(宋体)、fangti(方体)、heiti(黑体)、kaiti(楷体)，Tahoma、ksphonet,前4种字体名称适用于汉字，后2种则适用于英文。style可以为：Regular(常规）,Bold（加粗）,Italic（斜体）,Strikeout（删除线）,Outline（下滑线)。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>font="name;size;style"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="mybutton" x="10" y="10" width="120" height="40" text="exit" font="fangti;20;Regular"/&gt;</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>backgroundImage</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件背景图片。通过指定所引用的图片资源的绝对路径（absolute path）或相对路径（relative path）设定控件的背景图片。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>backgroundImage="URL"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;pictureBox x:id="pic1" y="75" width="90" height="50" style="ButtonStyle:Left ControlStyle:Focused" backgroundImage="pic.png"/&gt;</td></tr>
+	
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>backgroundImageLayout</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件背景图片的布局，<a href="ImageLayout.html">ImageLayout</a>枚举数据类型，使用形式为：枚举名:枚举值。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>ImageLayout</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>backgroundImageLayout="ImageLayout:Normal"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="mybutton" x="10" y="10" width="120" height="40" backgroundImageLayout="ImageLayout:Normal"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>focusWalk</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件是否参与焦点的遍历，若为true则控件参与焦点遍历，否则为false。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>Boolean</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>focusWalk="true"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="mybutton" x="10" y="10" width="120" height="40" focusWalk="true"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>enabled</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件是否能接收事件，若为true则控件能接收事件，否则为false。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>Boolean</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>enabled="true"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="mybutton" x="10" y="10" width="120" height="40" enabled="true"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>visible</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置控件是否为可视状态，若为true则控件可视，否则为false。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>Boolean</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>visible="true"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;button x:id="mybutton" x="10" y="10" width="120" height="40" visible="true"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>hScrollValue</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置水平滚动条的位置。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>hScrollValue="value"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;scrollBar x:id="myscrollBar" x="10" y="200" width="200" height="20" hScrollValue="80"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>vScrollValue</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置垂直滚动条的位置。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>Int32</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>vScrollValue="value"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;scrollBar x:id="myscrollBar" x="200" y="10" width="20" height="200" vScrollValue="80"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>inputEditorName</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置输入法编辑器。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>inputEditorName="editorName"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;textBox x:id="myTextBox" x="0" y="0" width="100" height="30" inputEditorName="systemEditor"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>inputMethodName</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight2">设置输入法类型。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>inputMethodName="methodName"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;textBox x:id="myTextBox" x="0" y="0" width="100" height="30" inputMethodName="systemMethod"/&gt;</td></tr>
+</table>
+
+ <script>footer("chinese")</script> 
+</body>
+</html>

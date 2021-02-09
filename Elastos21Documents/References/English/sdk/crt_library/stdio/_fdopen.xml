@@ -1,0 +1,255 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_fdopen">_fdopen</sample>
+    <title>_fdopen, _wfdopen</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>The _fdopen() function opens the file whose name is the string pointed to by handle and associates a stream with it. The file was opened by low-level I/O.</para>
+    </description>
+
+    <syntax>
+        <return_val>FILE *</return_val>
+        <func_name>_fdopen </func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>Handle to open file</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char *</param_type>
+                <param_name>mode</param_name>
+                <param_note>
+                    <para>File access mode</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>FILE *</return_val>
+        <func_name>_wfdopen </func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wconst_t char *</param_type>
+                <param_name>mode</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns a pointer to the open stream. A null pointer value indicates an error.</para>
+    </return>
+
+    <remarks>
+        <para>The _fdopen function associates an I/O stream with the file identified by handle, thus allowing a file opened for low-level I/O to be buffered and formatted. _wfdopen is a wide-character version of _fdopen; the mode argument to _wfdopen is a wide-character string. _wfdopen and _fdopen behave identically otherwise.</para>
+	<para>The c, n, and t mode options are extensions for fopen and _fdopen and should not be used where ANSI portability is desired.</para>
+        <para>The character string mode specifies the type of access requested for the file, as follows: </para>
+        <table>
+            <th>
+                <td>mode Parameter Value</td>
+                <td>Corresponding File Opening Mode</td>
+            </th>
+            <tr>
+                <td> "w" </td>
+                <td>Opens an empty file for writing. If the given file exists, its contents are destroyed.</td>
+            </tr>
+
+            <tr>
+                <td> "r" </td>
+                <td>Opens for reading. If the file does not exist or cannot be found, the fopen call fails.</td>
+            </tr>
+
+            <tr>
+                <td> "a" </td>
+                <td>Opens for writing at the end of the file (appending) without removing the EOF marker before writing new data to the file; creates the file first if it doesn't exist.</td>
+            </tr>
+
+            <tr>
+                <td> "w+" </td>
+                <td>Opens an empty file for both reading and writing. If the given file exists, its contents are destroyed.</td>
+            </tr>
+
+            <tr>
+                <td> "r+" </td>
+                <td>Opens for both reading and writing (The file must exist).</td>
+            </tr>
+
+            <tr>
+                <td> "a+" </td>
+                <td>Opens for reading and appending; the appending operation includes the removal of the EOF marker before new data is written to the file and the EOF marker is restored after writing is complete; creates the file first if it doesn't exist.</td>
+            </tr>
+        </table>
+
+        <para>When a file is opened with the "a" or "a+" access type, all write operations occur at the end of the file. The file pointer can be repositioned using fseek or rewind, but is always moved back to the end of the file before any write operation is carried out. Thus, existing data cannot be overwritten.</para>
+        <para>When "r+", "w+", or "a+" access type is specified, both reading and writing are allowed (the file is said to be open for "update"). However, when you switch between reading and writing, there must be an intervening fflush, fsetpos, fseek, or rewind operation. The current position can be specified for the fsetpos or fseek operation, if desired.</para>
+
+        <para>In addition to the above values, the following characters can be included in mode to specify the translation mode for newline characters: </para>
+        <table>
+            <th>
+                <td>Characters in mode</td>
+                <td>Corresponding New Line Conversion</td>
+            </th>
+            <tr>
+                <td> t </td>
+                <td>Open in text (converted) mode. In this mode, CTRL+Z is interpreted as an end-of-file character on input. In files opened for reading/writing with "a+", fopen checks for a CTRL+Z at the end of the file and removes it, if possible. This is done because using fseek and ftell to move within a file that ends with a CTRL+Z, may cause fseek to behave improperly near the end of the file.  Also, in text mode, carriage return - linefeed combinations are translated into single linefeeds on input, and linefeed characters are translated to carriage return - linefeed combinations on output. When a Unicode stream-I/O function operates in text mode (by default), the source or destination stream is assumed to be a sequence of multibyte characters. Therefore, the Unicode stream-input functions convert multibyte characters to wide characters (as if by a call to the mbtowc function). For the same reason, the Unicode stream-output functions convert wide characters to multibyte characters (as if by a call to the wctomb function).</td>
+            </tr>
+
+            <tr>
+                <td>b</td>
+                <td>Open in binary (not converted) mode; conversions involving carriage-return and linefeed characters are suppressed.</td>
+            </tr>
+
+            <tr>
+                <td>c</td>
+                <td>Enable the commit flag for the associated filename so that the contents of the file buffer are written directly to disk if either fflush is called.</td>
+            </tr>
+
+            <tr>
+                <td>n</td>
+                <td>Reset the commit flag for the associated filename to "no-commit." This is the default. It also overrides the global commit flag if you link your program with COMMODE.OBJ. The global commit flag default is "no-commit" unless you explicitly link your program with COMMODE.OBJ.</td>
+            </tr>
+        </table>
+        <para>Mode c，n，t is the extension to fopen and _fdopen, do not use them when need to be compatible with ANSI.</para>
+        <para>If use t or b for parameter prifix, returns NULL when function call fails.</para>
+
+        <para>_fdopen（_wfdopen）parameter mode character and _open parameter oflag corresponding as the following: </para>
+        <table>
+            <th>
+                <td>Character in Mode String</td>
+                <td>Equivalent oflag Value for _open</td>
+            </th>
+            <tr>
+                <td>a</td>
+                <td>_O_WRONLY | _O_APPEND (usually _O_WRONLY | _O_CREAT | _O_APPEND) </td>
+            </tr>
+            <tr>
+                <td>a+</td>
+                <td>_O_RDWR | _O_APPEND (usually _O_RDWR | _O_APPEND | _O_CREAT )</td>
+            </tr>
+            <tr>
+                <td>r</td>
+                <td>_O_RDONLY</td>
+            </tr>
+            <tr>
+                <td>r+</td>
+                <td>_O_RDWR</td>
+            </tr>
+            <tr>
+                <td>w</td>
+                <td>_O_WRONLY (usually _O_WRONLY | _O_CREAT | _O_TRUNC)</td>
+            </tr>
+            <tr>
+                <td>w+</td>
+                <td>_O_RDWR (usually _O_RDWR | _O_CREAT | _O_TRUNC)</td>
+            </tr>
+            <tr>
+                <td>b</td>
+                <td>_O_BINARY</td>
+            </tr>
+            <tr>
+                <td>t</td>
+                <td>_O_TEXT</td>
+            </tr>
+            <tr>
+                <td>c</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>n</td>
+                <td>None</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_fdopen</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wfdopen</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _fdopen.cpp: This program opens a file using low-
+ * level I/O, then uses _fdopen to switch to stream
+ * access. It counts the lines in the file.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;io.h&gt;
+
+int main()
+{
+    FILE *stream;
+    int  fh, count = 0;
+    char inbuf[128];
+
+    /* Open a file handle. */
+    if ((fh = _open(&quot;_fdopen.exe&quot;, _O_RDONLY)) == -1) {
+        perror(&quot;open failed on input file&quot;);
+        return 1;
+    }
+
+    /* Change handle access to stream access. */
+    if ((stream = _fdopen(fh, &quot;r&quot;)) == NULL)
+         return 1;
+
+    while (fgets(inbuf, 128, stream) != NULL)
+         count++;
+
+    /* After _fdopen, close with fclose, not _close. */
+    fclose(stream);
+    printf(&quot;Lines in file: %d\n&quot;, count);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Lines in file: 351
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fopen</ref_name>
+            <ref_url>_wfopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_open</ref_name>
+            <ref_url>../io/_wopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

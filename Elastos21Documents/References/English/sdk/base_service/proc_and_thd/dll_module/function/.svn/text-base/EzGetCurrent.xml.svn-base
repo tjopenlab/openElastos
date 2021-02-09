@@ -1,0 +1,68 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzLoadModule"> EzLoadModule </sample>
+    <volume>System API</volume>
+    <title>EzGetCurrent</title>
+    <routine_idx> ..\dll_module.htm</routine_idx>
+
+    <description>
+        <para>
+        	Loads  module image in the current process.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> IModule ** </param_type>
+                <param_name> ppModule </param_name>
+                <param_note>
+                    <para>
+                    	[out] If the function suceeds, <i>*ppModule</i> contains a pointer to the interface of 
+                    	the loaded module object. If NULL, the function returns E_INVALIDARG.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Function succeeds in loading a module image in the current process.</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>Invalid argument</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>Insufficient memory</td>
+            </tr>
+        </table>
+        <para>See <link url="../../hresult.htm">ECODE</link> related help for more details.</para>
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+    </requirements>
+
+
+
+</manpage>

@@ -1,0 +1,108 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字-- delegates </title>
+</head>
+
+<body>
+	<h2> delegates</h2>
+	    <b>含义 </b>
+	        <p> 此关键字用于定义或声明同步回调接口。 </p>
+	        <p> 回调包括两种：同步回调和异步回调。定义异步回调接口请参见关键字<a class= "style1" href= "keywords_callback.htm">callbacks</a>。</p>
+
+	
+	    <b>语法 </b>
+	    	<p><b>delegates</b>  JInterfaceName; </p>
+	    <b>使用说明 </b>
+	        <p>1.回调接口命名必须以字母“J”开头；回调接口不能继承其它接口，也不能被其它接口继承。 </p>
+	        <p>2.Delegates接口方法可以具有<a class= "style1" href="../attributes_in.htm">in</a>属性和<a class= "style1" href="../attributes_out.htm">out</a>属性,但不支持<a class= "style1" href="../attributes_out.htm">local</a>属性。 </p>
+            <p>3.Delegates接口方法只能被注册一次，再次注册会返回失败。 </p>
+	        <p>4.delegates表示同步调用，直到client端回调函数结束才返回。 </p>
+	        <p>5.如果没有注册Delegate，调用Delegate::FooErrand()会返回E_NO_DELEGATE_REGISTERED，如果已调用过CFoo::AssignFooErrandDelegate注册FooErrand，再次注册时会返回E_DELEGATE_ALREADY_REGISTERED。 </p>
+	        <p>6.调用delegate回调函数的几种方式：</p>
+	            <p>&nbsp;&nbsp;&nbsp;Delegate::FooErrand(); </p>
+	            <p>&nbsp;&nbsp;&nbsp;Delegate::FooErrandWithTimeout(1000); </p>
+	            <p>&nbsp;&nbsp;&nbsp;Delegate::FooErrandWithPriorityAndTimeout(CallbackPriority_Highest, 1000); </p>
+	        <p>7.激发delegate时可以设置timeout，这个timeout目前只支持16bits，以毫秒为单位，即最多支持65秒左右。 </p>
+	    <b>使用范例 </b>
+<pre class= code>
+// In delegateDemo.car
+module
+{
+    interface IFoo {
+        Foo();
+    }
+    delegates JFooErrands;
+    {
+        FooErrand();
+    }
+
+    class CFoo {
+        interface IFoo;
+        <b>delegates</b> JFooErrands;
+    }
+}
+</pre>
+	        <p>编译上述delegateDemo.car文件，修改生成的CFoo.cpp文件如下：(其中黑体部分是编译器自动生成的代码框架) </p>
+<pre class= code>
+<b>#include "CFoo.h"
+#include "_CFoo.cpp"
+
+ECode CFoo::Foo()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("CFoo::Foo()");
+
+    Delegate::FooErrands();
+    CConsole::WriteLine("delegates call finish...");
+    return NOERROR;
+<b>}</b>
+
+</pre>
+	        <p>客户端实现如下：  </p>
+<pre class= code>
+#include "delegateDemo.h"
+using namespace Elastos;
+
+ECode AtFooErrand(PVoid pUserdata, PInterface pSender)
+{
+    CConsole::WriteLine("AtFooErrand");
+    return NOERROR;
+ 
+}
+
+ECode ElastosMain(const BufferOf&lt;WString&gt; & args)
+{
+    IFoo *pFoo;
+    ECode ec;
+    ec = CFoo::New(&pFoo);
+    if (FAILED(ec)) return ec;
+
+    CFoo::AssignFooErrandDelegate(pFoo, &AtFooErrand, NULL);
+    pFoo->Foo();
+    CFoo::RevokeFooErrandDelegate(pFoo, &AtFooErrand, NULL);
+
+    pFoo->Release();
+    CApplet::Finish(AppletFinish_ASAP);
+    return NOERROR;
+}
+</pre>
+<p>运行结果 </p>
+<pre class= code>
+CFoo::Foo()
+AtFooErrand
+delegates call finish...
+</pre>
+
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

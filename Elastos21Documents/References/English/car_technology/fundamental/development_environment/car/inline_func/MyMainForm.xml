@@ -1,0 +1,41 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <volume>Inline Functions</volume>
+    <title>MyMainForm</title>
+
+    <description>
+        <para>Obtain reference points to graphics system main window (<link url="../../../graphics/elactrl/class/CForm.htm">CForm</link>) object class smart pointer.</para>
+    </description>
+
+    <syntax>
+        <return_val>CFormRef&amp;</return_val>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>Return reference of object class smart pointer points to graphics system main window object. The return value is reference of <link url="../../../graphics/elactrl/class/CFormRef.htm">CFormRef</link> type.</para>
+    </return>
+    <remarks>
+        <para>Graphics system main window is: When graphics system starts up, a full screen window is automatically supported. Closing that window causes the program to exit directly. In user defined CAR file, if and only if component has the <link url="../attributes/attributes_graphics.htm">graphics</link> attribute,then the user can directly invoke MyMainForm function in the application. Now, the user can invoke method in <link url="../../../graphics/elactrl/class/CForm.htm">CForm</link> class to do various operations directly on the main window through return value of MyMainForm parameter.If you want to exit user program, you need to invoke <link url="../../../graphics/elactrl/interface/IForm/Close.htm">Close</link> method, the syntax is: MyMainForm().Close() .</para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elactrl.h; elagdi.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib; elacrt.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

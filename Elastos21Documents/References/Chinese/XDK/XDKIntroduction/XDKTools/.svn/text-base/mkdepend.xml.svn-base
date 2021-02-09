@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title>  makedepend 工具</title>
+    <volume>XDK常用工具</volume>
+
+    <description>
+        <para> mkdepend工具用于为生成文件创建依赖性，命令格式：</para>
+    </description>
+
+    <syntax>
+        <cmd_name>  makedepend </cmd_name>
+        <cmd_param> [-?] [ -f makefile ] [ -s source_dir ]
+ [ -p output_prefix ] [ -x output_suffix ]
+ [ -I include_dir ] [ -D name=def ] [ -D name ]
+ [ -o ] [ -t ] [ -l listfile ]
+ source_file ... </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> -?  </param_name>
+        <param_note> 显示帮助信息</param_note>
+    </param>
+    <param>
+        <param_name> -f makefile  </param_name>
+        <param_note>指定一个用来放置mkdepend输出的交替生成文件</param_note>
+    </param>
+    <param>
+        <param_name>  -s source_dir </param_name>
+        <param_note> 为源文件指定的一个目录（用于编译文件的目录和源文件目录不同）</param_note>
+    </param>
+    <param>
+        <param_name>  -p output_prefix</param_name>
+        <param_note> 给目标文件加前缀（用于目标文件和源文件不在同一目录中） </param_note>
+    </param>
+    <param>
+        <param_name>  -x output_suffix</param_name>
+        <param_note> 给目标文件加后缀（后缀为.o或.obj，默认为.obj）</param_note>
+    </param>
+    <param>
+        <param_name> -I include_dir  </param_name>
+        <param_note> 设置搜索目录（在搜索目录列表中预设目录，默认搜索目录由INCLUDE环境变量指定） </param_note>
+    </param>
+    <param>
+        <param_name> -D name=def  </param_name>
+        <param_note> 定义宏（宏用来放置mkdepend定义的符号表，没有 =def时，符号值为一）</param_note>
+    </param>
+    <param>
+        <param_name>  -l list_file  </param_name>
+        <param_note> 读给出文件时，把每一行看作一个源文件的文件名</param_note>
+    </param>
+    <param>
+        <param_name>  -o </param_name>
+        <param_note>  对找不到的文件忽略对其的依赖性，例如在所指定的包含目录中没找到包含的文件时，就不产生依赖性</param_note>
+    </param>
+    <param>
+        <param_name> -t   </param_name>
+        <param_note> 用源文件名代替用-x产生的扩展名和用-p产生的前缀名</param_note>
+    </param>
+    <param>
+        <param_name> -E exclude_dir  </param_name>
+        <param_note> 从递归的搜索目录中删除exclude_dir指定的目录</param_note>
+    </param>
+    </parameters>
+
+</manpage>

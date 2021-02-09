@@ -1,0 +1,38 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Environment Overview</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Introduction To Different Development Environments Of DDK</h2>
+    <p>Detailed description of various DDK development environments: </p>
+    <ul>
+        <li>GNU.Elastos&nbsp;X86.DBG: Compile environment for DEBUG version hardware driver development of Intel&nbsp;X86&nbsp;CPU. GNU compiler is used. If a hardware driver is completed, you can compile and link under this environment. After the compilation and linking process, it generates executable files and debugging information for DEBUG version of this driver in the mirror directory of the current directory. This executable file can be run on Elastos as the driver of corresponding hardware device.
+        <li>GNU.Elastos&nbsp;X86.RLS: Compile environment for RELEASE version hardware driver development of Intel&nbsp;X86&nbsp;CPU. This environment is similar with GNU.Elastos&nbsp;X86.DBG. The difference is that when compiling and linking hardware driver source code under this compile environment, the system automatically optimizes the generated executable. Debug information is generated, but it is not convenient to debug. RELEASE version executable files of this driver is generated after compile and link.
+        <li>GNU.Elastos&nbsp;X86.NAK: Compile environment for NAKED version hardware driver development of Intel&bbsp;X86&nbsp;CPU. This environment is similar with GNU.Elastos&nbsp;X86&nbsp;RLS. The difference is that when compiling and linking hardware driver source code under this compile environment, the system automatically removes all debugging information of generated executables; it cannot be debugged. NAKED version executable files of this driver is generated after compilation and linking process. In other words, this version generates the final optimized version; no debugging information exists.
+        <li>GNU.Elastos&nbsp;ARM.DBG: Similar to GNU.Elastos&nbsp;X86.DBG environment, compile environment for DEBUG version program of ARM&nbsp;CPU.
+        <li>GNU.Elastos&nbsp;ARM.RLS: Similar to GNU.Elastos&nbsp;X86.RLS environment, compile environment for RELEASE version program of ARM&nbsp;CPU.
+        <li>GNU.Elastos&nbsp;ARM.NAK: Similar to GNU.Elastos&nbsp;X86.NAK environment, compile environment for NAKED version program of ARM&nbsp;CPU.
+        <li>GNU.Elastos&nbsp;MIPS.DBG: Similar to GNU.Elastos&nbsp;X86.DBG environment, compile environment for DEBUG version program of MIPS&nbsp;CPU.
+        <li>GNU.Elastos&nbsp;MIPS.RLS: Similar to GNU.Elastos&nbsp;X86.RLS environment, compile environment for RELEASE version program of MIPS&nbsp;CPU.
+        <li>GNU.Elastos&nbsp;MIPS.NAK: Similar to GNU.Elastos&nbsp;X86.NAK environment, compile environment for NAKED version program of MIPS&nbsp;CPU.
+        <li>GNU.NT.DBG: A NT virtual machine DEBUG version of Elastos run-time platform developed for Intel&nbsp;X86&nbsp;CPU. GNU compiler is used. Elastos component run-time platform is a platform for SDK to run component program under Windows environment.
+        <li>GNU.NT.RLS: Similar to GNU.NT.DBG environment, RELEASE version Elastos component run-time platform developed for X86&nbsp;CPU.
+        <li>GNU.NT.NAK: Similar to GNU.NT.RLS environment, NAKED version Elastos component run-time platform developed for X86&nbsp;CPU.
+        <li>MSVC.Elastos&nbsp;X86.DBG: DEBUG version hardware driver program compile envrionment developed for Intel&nbsp;X86&nbsp;CPU. Microsoft VC6.0 compiler is used. If source file of a hardware driver is completed, you can compile and link under this environment. After compilation and linking process, it generates driver DEBUG version executables and debug information under the mirror directory of the current directory. This executable can run on Elastos as driver of corresponding hardware device.
+        <li>MSVC.Elastos&nbsp;X86.RLS: RELEASE version hardware driver program compile environment developed for Intel&nbsp;X86&nbsp;CPU. This compile environment is similar to MSVC.Elastos&nbsp;X86&nbsp;DBG. The difference is that  under this compilation environment when compiling and linking the hardware driver program source code, the system automatically optimizes the generated executable file.Though it is not convenient for debugging, it also generates debug information. The RELEASE version executables for the driver is generated after the compilation and linking process.
+        <li>MSVC.NT.DBG: NT virtual machine DEBUG version Elastos component run-time platform for Intel&nbsp;X86&nbsp;CPU. Microsoft VC6.0 compiler is used. Elastos component run-time platform is the platform for the SDK to run component program under Windows environment.
+        <li>MSVC.NT.RLS: Similar to MSVC.NT.DBG environment, RELEASE version Elastos component run-time platform developed for X86&nbsp;CPU.
+        <li>EVC.WINCE.DBG: NT virtual machine DEBUG version Elastos component run-time platform developed for Intel&nbsp;X86&nbsp;CPU. Microsoft embedded VC compiler tool is used. Elastos component run-time platform is the platform under Windows environment developed for SDK component. It is not implemented now.
+        <li>EVC.WINCE.RLS: Similar to EVC.WINCE.DBG environment, RELEASE version Elastos run-time platform developed for X86&nbsp;CPU. It is not implemented now.
+    </ul>
+
+<script>footer("english")</script>
+</body>
+</html>

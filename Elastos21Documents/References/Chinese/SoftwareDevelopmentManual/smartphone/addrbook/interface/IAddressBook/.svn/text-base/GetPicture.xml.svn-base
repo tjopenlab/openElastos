@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址簿引擎</volume>
+<interface>IAddressBook</interface><method> GetPicture </method>
+    <description>
+        <para>
+            获取来电的图片。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esPhoneNumber </param_name>
+                <param_note>
+                    <para>
+来电号码                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf * </param_type>
+                <param_name> esbPicture </param_name>
+                <param_note>
+                    <para>
+指向EzStrBuf类型的指针，用于获取来电的图片                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果输入的参数无效，返回E_INVALIDARG。</para><para>            其他参见            <link url="../../ab_error.htm">            地址簿错误返回值列表            </link>            。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CAddressBook.h, CDBStore.h, CSimStore.h, CContact.h, CContactGroup.h,  Abdata.h, spcomm.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElCRuntime.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            如果地址簿中没有拥有此来电号码的联系人，则不返回图片；如果地址簿中有多人同时拥有此来电号码，则取系统默认的图片；如果地址簿中只有一人拥有此来电号码，则直接返回个性图片。但如果此联系人没有设置个性图片，则返回此联系人所属组的特性图片；如果此联系人的所属组也没有设置特性图片，则返回系统默认的图片；如果此联系人不属于任何组，则返回系统默认的图片。
+        </para>
+    </remarks>
+    <references>
+        <reference>
+            <ref_name>GetRing</ref_name>
+            <ref_url>GetRing</ref_url>
+        </reference>
+    </references>
+</manpage>

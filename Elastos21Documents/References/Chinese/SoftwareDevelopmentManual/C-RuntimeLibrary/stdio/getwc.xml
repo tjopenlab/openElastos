@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\getc">getc</sample>
+    <title> getc, getwc </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>从流中读取字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>getc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>输入流，指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>getwc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回读取的字符；如果读出错或已到流尾，getc返回EOF，getwc返回WEOF。对于getc可以通过<link url="ferror.htm">ferror</link>或<link url="feof.htm">feof</link>检验是发生读错误还是已到流尾。</para>
+    </return>
+
+    <remarks>
+        <para>函数从文件的当前位置读取一个字符，并将相关文件的指针（如果已定义）移动到下一个字符的位置；其中，文件指与流相关联的文件。getwc是getc的宽字符版本。下表是函数的详细描述：</para>
+        <table>
+            <th>
+                <td>函数</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>getc</td>
+                <td>与函数fgetc类似，区别为getc可以作为一个函数或一个宏执行</td>
+            </tr>
+            <tr>
+                <td>getwc</td>
+                <td>是getc的宽字符版本，根据流的打开方式是文本模式还是二进制模式读取一个多字节字符或一个宽字节字符</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>getc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>getwc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* getc.cpp: This program uses getwc read a line characters from a stream.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE * fp, *stream;
+    char list[50] = &quot;This is a test of Elastos operating system\n&quot;;
+    int i, number;
+
+    if ((fp = fopen(&quot;getwc.txt&quot;, &quot;w&quot;)) == NULL)
+        printf(&quot;problem open the file!&quot;);
+    else {
+        number = fwrite(list,sizeof(char), 50, fp);
+        fclose(fp);
+    }
+
+    if ((stream = fopen(&quot;getwc.txt&quot;, &quot;r&quot;)) == NULL)
+        printf(&quot;problem open the file!&quot;);
+    else {
+        for (i = 0; i &lt; 50; i++) {
+            putwchar(getwc(stream));
+        }
+
+        fclose(stream);
+    }
+
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+This is a test of Elastos operating system
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>fputc</ref_name>
+            <ref_url>fputc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fgetc</ref_name>
+            <ref_url>fgetwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_getch</ref_name>
+            <ref_url>..\conio\_getch</ref_url>
+        </reference>
+        <reference>
+            <ref_name>putc</ref_name>
+            <ref_url>putc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>putchar</ref_name>
+            <ref_url>putwchar</ref_url>
+        </reference>
+    </references>
+
+</manpage>

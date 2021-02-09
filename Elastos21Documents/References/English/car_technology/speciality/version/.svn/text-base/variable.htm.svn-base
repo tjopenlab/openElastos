@@ -1,0 +1,17 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Component Load All The Same Flag Variable</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>CAR Component Load All The Same Flag Variable</h2>
+        <p>In component version controller, we set "CAR component load all the same flag variable".This variable is used to specify, the number of times allowed to load the same version in the same application. Before using version all the same rules, first of all the version controller needs to check if "component load all the same flag variable is 0".If it is not 0, it means that you can continue to try loading all the same version component, which includes two situations. One is that you have not loaded component of this all the same version and the other is that already loaded but not successfully, or loaded successfully but some error has occured in the service.Now you should continue execution. If it is 0, then it means the system has already tried to load all the same version, but have not loaded successfully or application service is not running correctly.But now we no longer allow the system to continue load this component and exits this service.Hence this service terminates with error. In configuration file and mouse right button attribute, the user can specify the number of times tried loading the same component.Thus initializes component load all the same flag variable.</p>
+<script>footer("english")</script>
+</body>
+</html>        

@@ -1,0 +1,73 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="../../../../xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IMutex</interface><method> Lock</method>
+    <description>
+        <para>
+        	Locks the mutex object.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type>WaitResult *</param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>
+						
+                    </para>
+                </param_note>
+            </api_param>
+       </parameters>
+
+    </syntax>
+
+	<return>
+	    
+	<table>
+	    <th>
+			<td>Return Value</td>
+			<td>Hex Value</td>
+			<td>Description</td>
+	    </th>
+	    <tr>
+			<td>NOERROR</td>
+			<td>0x00000000</td>
+			<td>Function succeeds in Locking the mutex object.</td>
+	    </tr>
+	    <tr>
+			<td>E_INVALID_ARGUMENT</td>
+			<td>0x00060014</td>
+			<td>Invalid argument(s)</td>
+	    </tr>
+	</table>
+      <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> related help.</para>  
+    </return>
+
+	<remarks>
+	   <para>
+			Calls the method to get the mutex object. If the mutex object is owned by other thread, 
+			the calling thread will be blocked until it gets the mutex object successfully. If none of the threads 
+			own the mutex object, the calling thread will get it successfully and the method will return 
+			immediately. If the calling thread has owned the mutex object by calling <link url="Lock.htm">
+			IMutex::Lock</link> or <link url="TryLock.htm">IMutex::TryLock</link> before, the method will 
+			return immediately. The thread must call <link url="UnLock.htm">IMutex::Unlock</link> 
+			correspondingly to release the mutex object. The thread can be interrupted while waiting for the 
+			mutex object.
+	   </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>Button</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>Button</b></h2></center>
+<small><p><b>头文件：</b>ElControls.h
+<p><b>程序库：</b>ElControls.dll
+（<b>备注：</b>当在 CAR 文件中通过 <a class="doxygen" href="../../../../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a> 引入 ElControls.dll 时，则无需在源文件中添加“include &lt;ElControls.h&gt;”该句；若 ElControls.dll 是在 sources 文件中引入的，则需要在源文件中添加“include &lt;ElControls.h&gt;”该句。有关更多信息请参考：<a class="doxygen" href="../../../../../car_technology/car.htm">CAR 编程入门</a>）</small>
+<hr size="1">
+<h4><li><b>详细描述：</b></h3>
+    <p>按钮控件，Button 控件既可以显示文本，又可以显示图像（有关更多信息请参考：<a class="doxygen" href="../reference/SetBackgroundImage.htm">如何设置控件所显示的图像</a>）。当该按钮被单击时，它看起来像是被按下，然后被释放。
+    <p>用户可以点击Button，产生 <link url="JButtonEvents/Click.htm">Click</link> 事件，通过该事件的事件处理函数对其他控件执行一定的操作。例如，通过点击Button关闭一个Form。故对Button进行操作通常情况下效果都发生在其他控件身上。
+    <p>按钮上显示的文本通过构造函数中 caption 参数设置，也可以调用 <a class="doxygen" href="../interface/IControl/SetText.htm">SetText</a>方法设置。如果文本超出按钮宽度或 Button 无法容纳文本的总体高度，则将剪裁文本。文本的外观受 <a class="doxygen" href="../datatype/ButtonStyle.htm">ButtonStyle</a> 和 <a class="doxygen" href="../../graphics/class/CFont.htm">Font</a> 控制。有关更多信息请参考：<a class="doxygen" href="../reference/SetText.htm">如何设置控件所显示的文本</a>。
+    <p><b>注意：</b>Button必须放在一个 <link url="Form.htm">Form</link> 内，或者 Button 的 parent 控件在一个 Form 内。
+<hr size="1">
+<h4><li><b>CButton类封装图：</b></font></h4>
+<center> <img src="images/CButton.jpg"> </center>
+        <p>如图所示，JControlEvents（通用回调事件接口）和 JButtonEvents 为回调事件接口，用户可以通过 AddXXXCallback 的方法为 Button 注册回调事件，当该 XXX 事件发生时，相应的回调处理函数会被调用。当销毁一个对象前，需要调用 RemoveXXXCallback 取消该事件。具体 Callbak 机制的介绍，详见 Elastos 编程入门中 Callback 这节。
+        <p>当使用 <a class="doxygen" href="CButton/CButton_New.htm">New</a> 方法创建了一个 Button 对象后，可以获得 <a class="doxygen" href="../interface/IButton.htm">IButton</a> 接口指针，通过该接口指针用户可以调用接口内的方法对 Button 进行一系列操作。
+
+<hr size="1">
+<h4><li><b>构造函数：</b></font></h4>
+<ul><table>
+<thead><td>名称</td><td class="memitem">说明</td></thead>
+<tr><td><a class="doxygen" href="CButton/CButton_New.htm">CButton::New</as></td><td>创建一个 Button 对象</td></tr>
+</table></ul>
+<h4><li><b><a class="doxygen" href="../interface/IButton.htm">IButton 接口方法列表</a></b></font></h4>
+<ul><p><b>注：</b>IButton 接口继承于 IControl 接口，没有定义新方法。</ul>
+
+<h4><li><b><a class="doxygen" href="../interface/JButtonEvents.htm">Button 回调事件列表</a></b></font></h4>
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

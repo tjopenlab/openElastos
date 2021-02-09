@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AString</interface>
+    <method> GetLength </method>
+
+    <description>
+        <para>返回AString实例所占的字符数。 </para>
+    </description>
+    
+    <syntax>
+        <return_val>Int32</return_val>
+        <modifier>const</modifier>
+        <parameters>
+            <api_param>
+                <param_type>Int32</param_type>
+                <param_name>maxLen </param_name>
+                    <param_default>-1  </param_default>
+                <param_note>
+                    <para> 指定字符串的最大长度。 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+	      <para>1.maxLen默认值是-1,此时相当于strlen/wcslen。</para>
+	      <para>2.如果maxLen=0,则返回0。</para>
+	      <para>3.如果AString对象指向的字符串的字符个数超过maxLen，则返回-1，否则返回字符串的字符数，不包含"\0"结束符。</para>
+    </return>
+
+<example>
+<pre>
+    AString as("abcdef");
+    CConsole::WriteLine(as.GetLength());    //相当于strlen(as)， Display: 6
+    CConsole::WriteLine(as.GetLength(10));  //maxLen &gt; strlen ， Display : 6
+    CConsole::WriteLine(as.GetLength(-2));  //maxLen &lt; strlen ， Display : -1
+    CConsole::WriteLine(as.GetLength(0));   //Display : 0
+    CConsole::WriteLine(as.GetLength(5));   //Display : -1
+</pre>
+</example>
+
+
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::GetCharCount </ref_name>
+        <ref_url>../AString/GetCharCount</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::EstimateWStringLength</ref_name>
+        <ref_url>../AString/EstimateWStringLength</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::GetLength </ref_name>
+        <ref_url>../WString/GetLength</ref_url>
+    </reference>
+</references>   
+
+</manpage>

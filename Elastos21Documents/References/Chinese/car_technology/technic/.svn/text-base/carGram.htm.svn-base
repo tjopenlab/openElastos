@@ -1,0 +1,84 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR文法</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+	    <h3>CAR文件语法</h3>
+	        <p>在CAR文件中，对构件、接口、类等的定义都包括两个部分：属性和定义。 </p>
+	        <p>CAR属性：位于方括号“[]”中，多个属性之间以逗号“,”作为分隔符；对构件、接口、类、类别等的定义位于花括号“{}”中。属性总是出现在相应主题的定义之前。</p>
+            
+         <p><b>构件：</b>在一个CAR文件中只能有一个构件的定义。在CAR中可以使用关键字<a class= "style1" href="..\fundamental\development_environment\car\keywords/keywords_module.htm">module</a>定义生成动态链接库.dll形式的car构件，也可以用关键字<a class= "style1" href="..\fundamental\development_environment\car\keywords/keywords_module.htm">library</a>定义生成静态链接库.lib形式的car构件。例如：</p>
+        <pre class="code">
+//构件HelloDemo的属性
+[version 1.0]
+//构件HelloDemo的定义
+<b>module</b> www.elastos.com/car/HelloDemo.dll
+{
+    ……
+}
+</pre>
+        <ul>
+        <b>构件属性</b>
+            <p>构件属性对构件起修饰作用，详细情况请参见<a class= "style1" href="..\fundamental\development_environment\car\attribute.htm">CAR属性</a>。</p>
+        <b>构件定义</b>
+            <p>构件定义中主要包括接口的定义和类的定义，还包括结构体（struct）、枚举（enum）等类型的定义。例如在2.3.1节中HelloDemo.car文件中定义了两个接口：IHello和IHei；三个类：CHello1，CHello2和CHello3。</p>
+            <ul>
+            <b>接口：</b>在CAR中使用<a class= "style1" href="..\fundamental\development_environment\car\keywords\keywords_interface.htm">interface</a>关键字定义接口。例如：</p>
+                <pre class="code">
+……
+//接口IHello的属性
+[local]　
+//接口IHello的定义
+<b>interface</b> IHello {
+    Hello([in] Int32 id);  //方法
+}
+……
+</pre>
+                <ul>
+                <b>接口属性</b>
+                    <p>接口属性对接口起修饰作用，详细情况请参见<a class= "style1" href="..\fundamental\development_environment\car\attribute.htm">CAR属性</a>。</p>
+                <b>接口定义</b>
+                    <p>接口定义主要包括接口方法的声明。在构件中，能够与外界打交道的只有接口。一个没有接口方法的接口在现实中没有意义。IHello接口中的Hello方法声明为：</p>
+                    <pre class="code">
+Hello([<b>in</b>] Int32 id);
+</pre>
+                    <p>接口中的方法定义必须遵守如下规定：<br>
+                        1.接口方法使用默认的<a class= "style1" href="../fundamental/development_environment/car/ECode.htm">ECode</a>作为返回值；</br>
+                        2.接口方法参数必须指明接口方法的参数属性是输入参数（in）或输出参数（out）等，否则编译器会报错，详细情况请参见CAR属性中的<a class= "style1" href="..\fundamental\development_environment\car\attribute.htm#para">用于修饰接口方法参数的属性</a>。</p>
+                </ul>
+
+            <b>类：</b>在CAR中构件类共有五种：普通类<a class= "style1" href="..\fundamental\development_environment\car/keywords/keywords_class.htm">class</a>、方面类<a class= "style1" href="..\fundamental\development_environment\car/keywords/keywords_aspect.htm">aspect</a>、语境类<a class= "style1" href="..\fundamental\development_environment\car/keywords/keywords_context.htm">context</a>、应用类<a class= "style1" href="..\fundamental\development_environment\car/keywords/keywords_applet.htm">applet</a>和泛类<a class= "style1" href="..\fundamental\development_environment\car/keywords/keywords_generic.htm">generic</a>。与C++中对象的概念相似，客户程序与CAR构件进行交互的实体是类对象，所以必须要有类定义的存在。例如： </p>
+                <pre class="code">
+……
+//类属性
+[private]
+//普通构件类定义
+<b>class</b> CHello1 {
+    interface IHello;
+    interface IHei;
+}
+……
+</pre>
+                <ul>
+                <b>类的属性</b>
+                    <p>类属性对类起修饰作用，详细情况请参见<a class= "style1" href="..\fundamental\development_environment\car\attribute.htm">CAR属性</a>。</p>
+                <b>类的定义</b>
+                    <p>类定义中主要包括接口的声明，表示该类对象实现的接口。对于类对象来说，接口是它与外界进行交互的唯一途径，所以一个没有接口的类的存在，是没有意义的。</p>
+                </ul>
+            <b>其它定义</b>
+                <p>构件定义中还可以包括类型（<a class= "style1" href="..\fundamental\development_environment\car\keywords/keywords_struct.htm">struct</a>）、枚举（<a class= "style1" href="..\fundamental\development_environment\car\keywords/keywords_enum.htm">enum</a>）、构件的引入（<a class= "style1" href="..\fundamental\development_environment\car\keywords/keywords_import.htm">import</a>）等，详细情况请参见<a class= "style1" href="..\fundamental\development_environment\car\keyword.htm">CAR基本关键字</a>。</p>
+            </ul>
+    </ul>
+
+<script>footer("chinese")</script>
+	
+</body>
+</html>

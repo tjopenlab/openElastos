@@ -1,0 +1,44 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>枚举类型</volume>
+    <types>AppletStatus</types>
+    <enum>
+        <enum_member>
+            <mem_name>AppletStatus_Created</mem_name>
+            <mem_value>0x0001</mem_value>
+            <mem_description>applet被创建但未启动。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>AppletStatus_Starting</mem_name>
+            <mem_value>0x0002</mem_value>
+            <mem_description>applet线程已被启动。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>AppletStatus_Idling</mem_name>
+            <mem_value>0x0003</mem_value>
+            <mem_description>消息队列中没有新消息，空闲等待状态。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>AppletStatus_Working</mem_name>
+            <mem_value>0x0004</mem_value>
+            <mem_description>处理消息回调。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name>AppletStatus_Snoozing</mem_name>
+            <mem_value>0x0005</mem_value>
+            <mem_description>休眠状态。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name> AppletStatus_Finishing</mem_name>
+            <mem_value>0x0006</mem_value>
+            <mem_description>消息循环已结束，不再处理回调消息。</mem_description>
+        </enum_member>
+        <enum_member>
+            <mem_name> AppletStatus_Deceased</mem_name>
+            <mem_value>0x0007</mem_value>
+            <mem_description>applet线程退出。</mem_description>
+        </enum_member>
+    </enum>
+</manpage>

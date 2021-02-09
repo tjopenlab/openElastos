@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strspn">strspn</sample>
+    <title>strspn</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>查找一个包含字符集中字符的字串。</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>strspn</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>被查找的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strCharSet</param_name>
+                <param_note>
+                    <para>以NULL结尾的字符集</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回整型值，指明得到的字串的长度。如果串string的第一个字符不包含在串strCharSet中，返回0。无返回值则指示出错。</para>
+    </return>
+
+    <remarks>
+        <para>函数strspn的返回值指明源字符串中的第一个不包含在字符集strCharSet中的字符的位置，查找范围不包括串的终结符。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strspn</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strspn.cpp: This program uses strspn to determine
+ * the length of the segment in the string &quot;cabbage&quot;
+ * consisting of a&apos;s, b&apos;s, and c&apos;s. In other words,
+ * it finds the first non-abc letter.
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[] = &quot;cabbage&quot;;
+    int  result;
+    result = strspn(string, &quot;abc&quot;);
+    printf(&quot;The portion of &apos;%s&apos; containing only a, b, or c &quot;
+           &quot;is %d bytes long\n&quot;, string, result);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+The portion of &apos;cabbage&apos; containing only a, b, or c is 5 bytes long
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name> strncat </ref_name>
+            <ref_url>wcsncat</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strncmp </ref_name>
+            <ref_url>wcsncmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strncpy </ref_name>
+            <ref_url>wcsncpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url>strrchr</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_strnicmp</ref_name>
+            <ref_url>_wcsnicmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strcspn </ref_name>
+            <ref_url>strcspn</ref_url>
+        </reference>
+    </references>
+
+</manpage>

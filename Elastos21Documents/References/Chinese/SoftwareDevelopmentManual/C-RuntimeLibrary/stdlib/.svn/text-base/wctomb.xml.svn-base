@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\wctomb">wctomb</sample>
+    <title>wctomb</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>转换宽字符为相应的多字节字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>wctomb</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>mbchar</param_name>
+                <param_note>
+                    <para>指向转换后的多字节字符的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t</param_type>
+                <param_name>wchar</param_name>
+                <param_note>
+                    <para>指定宽字符</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果wctomb成功地转换宽字符为多字节字符，该函数就返回宽字符中的字节数（不大于MB_CUR_MAX）。如果wchar为宽结束符（L'\0'），wctomb返回1。如果在当前locale中转换不成功，就返回-1。</para>
+    </return>
+
+    <remarks>
+        <para>wctomb函数转换参数wchar为相应的多字节字符，并且存储结果在mbchar中。你可以在程序的任何地方调用该函数。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>wctomb</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* wctomb.cpp: this program use wctomb to converts the wide character to a multibyte character */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    int i;
+    wchar_t wc = L&apos;a&apos;;
+    char *pmbnull = NULL;
+    char *pmb = (char *)malloc(sizeof(char));
+
+    printf(&quot;Convert a wide character:\n&quot;);
+    i = wctomb(pmb, wc);
+    printf(&quot;\tCharacters converted: %u\n&quot;, i);
+    printf(&quot;\tMultibyte character: %.1s\n\n&quot;, pmb);
+
+    printf(&quot;Attempt to convert when target is NULL:\n&quot;);
+    i = wctomb(pmbnull, wc);
+    printf(&quot;\tCharacters converted: %u\n&quot;, i);
+    printf(&quot;\tMultibyte character: %.1s\n&quot;, pmbnull);
+
+    free(pmb);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Convert a wide character:
+Characters converted: 1
+Multibyte character: a
+
+Attempt to convert when target is NULL:
+Characters converted: 0
+Multibyte character: (
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>mblen</ref_name>
+            <ref_url>mblen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>mbstowcs</ref_name>
+            <ref_url>mbstowcs</ref_url>
+        </reference>
+        <reference>
+            <ref_name>mbtowc</ref_name>
+            <ref_url>mbtowc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcstombs</ref_name>
+            <ref_url>wcstombs</ref_url>
+        </reference>
+    </references>
+
+</manpage>

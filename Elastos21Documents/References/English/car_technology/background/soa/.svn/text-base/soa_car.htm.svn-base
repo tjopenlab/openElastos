@@ -1,0 +1,25 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Service Oriented Software Architecture</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>SOA And CAR</h2>
+        <h4>SOA and CAR</h4>
+            <p>There are two technologies in CAR that shows SOA architecture.They are naming service and SOAP based Web&nbsp;Services.</p>
+            <p>Naming service is defined as method to obtain corresponding registered service interface through certain special name. In Elastos 2.0, it is allowed for the user to register a user implemented service as a component object to the system, make it connect with a user specified name. Other users can obtain the default interface of this component service through this name.Then one can invoke the methods provided by the service. In appropriate time, the user can also undo the service registered by himself. Naming service is similar to registry table in Windows.The difference is that the location of the registry table is not on hard disk but in memory. Therefore, naming service architecture reminds us of SOA easily. In order to locate a service, service consumer searches for component registered in the kernel through name. Service consumer and service provider bind together through CAR component platform. As shown in the following image: </p>
+            <center><img src="images/soa_car.jpg"></center>
+            <p>For details about naming service, please see <a class="style1" href="../../speciality/naming_service/naming_service.htm">component naming service</a>.</p>
+            <p>SOAP based Web&nbsp;Services is similar to the previous discussion.Since we do not discuss here again, you can refer material in the article <a class="style1" href="soa.htm">introduction to service oriented software architecture</a> for details.</p>
+        <h4>Vision of SOA framework in CAR</h4>
+            <p>As previously described, SOA is a framework that integrates different future parts together.A current practical example of this is Web&nbsp;Services. SOA inherited a few concepts from CORBA..CORBA is still too complex, which is a little bit not fit for application integration under Internet environment. If we only refer according to Web&nbsp;Services, for efficiency and security considerations, it is not so fit for the kernel to be completely implemented according to Web&nbsp;Services. Fortunately SOA is an architecture and it does not restrict specific implementation details. So a compromise plan can be considered.On one hand it must ensure efficiency and security and on the other hand it must be flexible. Binding protocol between service consumer and service provider is the key.</p>
+            <p>In a word, SOA is the future architecture trend.It is good for the resource re-organization and reuse inside a software company, but it needs to be resonably arranged in actual practice.For example see the "step by step execution" of migration to SOA framework in the article "introduction to service oriented software architecture".</p>
+<script>footer("english")</script>
+</body>
+</html>

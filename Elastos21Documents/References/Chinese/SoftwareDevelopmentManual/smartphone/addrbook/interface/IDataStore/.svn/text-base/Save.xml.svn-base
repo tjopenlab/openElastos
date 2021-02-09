@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址簿引擎</volume>
+<interface>IDataStore</interface><method> Save </method>
+    <description>
+        <para>
+            保存一条记录到SIM卡或数据库。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IEntityRef </param_type>
+                <param_name> piEntity </param_name>
+                <param_note>
+                    <para>
+指向欲保存记录的IEntity接口指针                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数piEntity为NULL，返回E_INVALIDARG；如果保存失败，返回E_AB_SAVE_FAIL。</para><para>            其他参见            <link url="../../ab_error.htm">            地址簿错误返回值列表            </link>            。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CDBStore.h, CContact.h, CContactGroup.h, abdata.h, CEntityEnumeration.h, spcomm.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElCRuntime.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>Delete</ref_name>
+            <ref_url>Delete</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Update</ref_name>
+            <ref_url>Update</ref_url>
+        </reference>
+    </references>
+</manpage>

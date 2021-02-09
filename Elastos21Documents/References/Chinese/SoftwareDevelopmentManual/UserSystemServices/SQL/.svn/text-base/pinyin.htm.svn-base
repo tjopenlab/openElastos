@@ -1,0 +1,133 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>拼音排序功能</title>
+</head>
+
+<body>
+<h2>拼音排序功能</h2>
+
+    <p>ElDatabase支持汉字拼音排序功能，即，您可以通过数据库提供的标准SQL对记录按中文拼音进行排序。</p>
+    <h3>使用方法</h3>
+    <p>使用拼音排序功能十分简单。如果您想通过SELECT语句对查询的结果按中文拼音排序，可以：</p>
+    <pre class="code"><p> SELECT * FROM t1 ORDER BY col1 COLLATE PINYIN;</p></pre>
+    <p>即，将查询结果按col1字段的拼音顺序排序。</p>
+    <h3>排序规则</h3>
+    <p>以上面的查询语句为例，对于待排序的两个col1字段的值，将按如下规则排序：</p>
+    <p>首先把它们的UTF-16码通过wctomb转换成多字节码，然后：</p>
+    <p>1.如果它们的多字节码都在GBK码范围内，则按GBK码音序大小排序（字典音序）；</p>
+    <p>2.如果它们的多字节码都不在GBK码范围内，则按其UTF-16码值大小排序（小的在前）；</p>
+    <p>3.如果一个值可以转成GBK码，另一个不能，则：如果另一个值是ANSI码，则ANSI码在前；否则GBK码在前；</p>
+    <h3>示例</h3>
+    <p>下面的示例程序演示了在数据库应用中如何使用汉字拼音排序功能。这段程序首先创建了一个samples数据库，随后在此数据库中创建了名为students表，并向students表中插入了11条记录。之后，对表中记录进行查询，在查询语句中，我们使用了汉字拼音排序功能对结果集中的记录进行排序。程序的执行结果显示了排序结果。</p>
+    <pre class="code">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;ElDatabase.h&gt;
+#include &lt;io.h&gt;
+
+using namespace Elastos;
+
+int main(void)
+{
+    // 打开数据库文件“samples.db”
+    // 如果该文件不存在，则创建一个名为“sample1.db”的文件
+    if (!_waccess(L"samples.db", 0))
+    	_wremove(L"samples.db");
+
+    IDatabase *pDatabase;
+    ECode ec = CDatabase::New(L"samples.db", &pDatabase);
+    if (FAILED(ec)) {
+        return -1;
+    }
+
+    // 获取执行SQL语句的接口
+    IStatement *pStatement;
+    ec = pDatabase->CreateStatement(&pStatement);
+   if (FAILED(ec)) {
+        pDatabase->Release();
+        return -1;
+    }
+
+    // 创建一个名为students的表，该表包含四个字段：name,mark
+    ec = pStatement->Execute(
+    	L"CREATE TABLE students(name text, mark int);");
+    if (FAILED(ec)) {
+        pStatement->Release();
+        pDatabase->Release();
+        return -1;
+    }
+
+    // 插入11条记录
+    ec = pStatement->ExecuteBatch(
+        L"INSERT INTO students VALUES('张三丰', 100); "
+        L"INSERT INTO students VALUES('张雷', 100); "
+        L"INSERT INTO students VALUES('里斯', 100); "
+        L"INSERT INTO students VALUES('李斯', 100); "
+        L"INSERT INTO students VALUES('PPMM', 0); "
+        L"INSERT INTO students VALUES('AA250b', 0); "
+        L"INSERT INTO students VALUES('David李', 0); "
+        L"INSERT INTO students VALUES('李David', 0); "
+        L"INSERT INTO students VALUES('ＡＡ２５０', 0); "
+       L"INSERT INTO students VALUES('荔斯', 100);"
+        L"INSERT INTO students VALUES('离斯', 100);",
+        NULL);
+    if (SUCCEEDED(ec)) {
+        printf("11 records are inserted.\n");
+    }
+
+    // 查询记录，按拼音顺序排序结果集记录，并返回相应的结果集
+    IResultSet *pRS;
+    pStatement->ExecuteQuery(L"SELECT * FROM students ORDER BY name COLLATE PINYIN;", &pRS);
+    if (FAILED(ec)) {
+        pStatement->Release();
+        pDatabase->Release();
+        return -1;
+    }
+
+    // 输出查询结果
+    Boolean bHasRow;
+    WStringBuf_<128> pName;
+    int mark;
+    ECode ec1;
+    while (SUCCEEDED(pRS->Next(&bHasRow)) && bHasRow) {
+        ec = pRS->GetStringColumnByIndex(1, &pName);
+        ec1 = pRS->GetInt32ColumnByIndex(2,&mark);
+        if (SUCCEEDED(ec) && SUCCEEDED(ec1)) {
+            printf("%S|%d\n", pName.GetPayload(),mark);
+        }
+    }
+
+    pRS->Release();
+    pStatement->Release();
+    pDatabase->Release();
+
+    return 0;
+}
+</pre>
+<p>该段程序的执行结果如下：</p>
+<pre class="code">
+11 records are inserted.
+AA250b|0
+David李|0
+PPMM|0
+ＡＡ２５０|0
+离斯|100
+李David|0
+李斯|100
+里斯|100
+荔斯|100
+张雷|100
+张三丰|100
+</pre>
+<script>footer("chinese")</script>
+</body>
+</html>

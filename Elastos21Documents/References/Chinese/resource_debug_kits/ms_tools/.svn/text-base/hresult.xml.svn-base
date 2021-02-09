@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title>hresult</title>
+    <volume>微软的工具</volume>
+
+    <description>
+        <para>弹出Error Decoder -NT4.0/Win95解码器窗口。用于查询各种ECODE值的含义（ECODE是一个向调用者的运行时环境提供关于“发生了什么类型的错误”的信息）。详细内容请参见微软文档。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> ECODE </cmd_name>
+        <cmd_param>  </cmd_param>
+    </syntax>
+
+    <NoArguments/>
+
+    <remarks>
+        <para>Decode是32位OLE错误码（ECODE）的解码器，也是Windows错误码解码器。输入的OLE错误码（ECODE）是十六进制数，Windows错误码是十进制数。这个工具不能译解在Win32 SDK发布后新增的错误代码。</para>
+        <para>在<link url="../../car_technology/fundamental/development_environment/car/car_file.htm">CAR文件</link>中定义的所有接口方法，返回值类型必须是ECODE，所以常用此工具查询不同的ECODE值的含义。
+        </para>
+    </remarks>
+
+    <examples>
+    <example>
+        <eg_line>hresult  </eg_line>
+        <eg_note> 例如：在Error Decoder -NT4.0/Win95窗口查询的值为0,"OLE Error(in hex)"模式下的ECODE值的含义。输出结果：</eg_note>
+        <eg_result><![CDATA[
+ECODE = 0
+FACILITY = FACILITY_NULL
+S_OK
+
+The operation completed successfully.
+]]></eg_result>
+    </example>
+    </examples>
+
+    <references>
+        <reference>
+           <ref_name>CAR文件结构介绍</ref_name>
+           <ref_url>../../car_technology/fundamental/development_environment/car/car_file</ref_url>
+        </reference>
+        <reference>
+           <ref_name>常用的ECODE返回值</ref_name>
+           <ref_url>../../car_technology/fundamental/development_environment/car/ECode.htm</ref_url>
+        </reference>
+    </references>
+
+</manpage>

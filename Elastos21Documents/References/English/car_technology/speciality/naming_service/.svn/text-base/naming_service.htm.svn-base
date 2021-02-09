@@ -1,0 +1,39 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Characteristics Of CAR Technology</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+    <h2>Component Naming Service</h2>
+        <h3>What is naming service mechanism? </h3>
+            <p>CAR (Component&nbsp;Application&nbsp;Runtime) is component technology that Koretide corp. has independent intellectual property patent. Naming service mechanism belongs to user interface part of CAR component technology. CAR component technology provides methods to release, obtain, use CAR component through naming service mechanism.</p>
+            <p>Naming service is a service identified by character string. Service program can register its own service interface through operating system API function <b><a class="style1" href="../../../sdk/base_service/car_naming_service/naming_service_api/EzRegisterService.htm">EzRegisterService</a></b>. Service consumer (client) can obtain specified service interface through API function <b><a class="style1" href="../../../sdk/base_service/car_naming_service/naming_service_api/EzFindService.htm">EzFindService</a></b>.</p>
+            <p>Naming service provides a complete set of CAR component use process for system service and user component through simple friendly system API function. It is easily extensible and supports component based dynamic update and upgrade.</p>
+        <h3>Naming service mechanism process and characteristics</h3>
+            <p>Naming service contains two parts: Server and client. On server side, after the user obtains certain component interface pointer (could be the user's own component, or user remotely obtained component pointer), we register a naming service in the kernel through <b>EzRegisterService</b> function, the user select appropriate time chancel naming service and releases resource. In client side, other user can obtain corresponding component service and application through <b>EzFindService</b>&nbsp;API function.</p>
+            <p>Naming service mechanism workflow as the following: </p>
+            <center><img src="images/naming.jpg"></center>
+            <p>Naming service complets binding of service with character string, user can obtain component object pointer of this service through corresponding character string. Its characteristics are as the following: </p>
+            <ul>
+                <li>Both user and kernel can create a naming service, other user can obtain this user pointer transparently, no need to consider that the location of them are different.
+                <li>Naming service server side component pointer could represent component created and executed in server process space, or possiblely Elastos operating system kernel kernel functionality provided as interface, or it could be component service implemented by server side obtained other processes.
+                <li>Once user obtains certain component service through naming service, no need to connect with naming service during interaction with component service.
+                <li>Relative to naming service obtained component service, naming service is also an ordinary component user, it provides naming service program can select an appropriate time point release this component service pointer. All operations and syntax fit for CAR component lifecycle management are also fit for naming service.
+                <li>Naming service lifecycle is controlled by naming service creater. Program that used naming service can send service consumer related information through system event, or inter process communication. Naming service creator can select exit time through analys of service used.
+                <li>When corresponding component service exits, naming service will no longer be effective, other program that tries to obtain corresponding component service through naming service will return error.
+                <li>Related component service dynamically update or upgrade does not affect other program that obtaining service through naming service. No need to change and recompile and this program can still be working normally.
+            </ul>
+        <h3>Advantages of naming service mechanism</h3>
+            <p>User program obtains related service through character string, but service can be provided by the system and other user program. This method of separating service and service consumer lowered code coupling, greatly increased code extensibility and security. It maximizes system functionality.</p>
+            <p>From extensibility point of view, on one hand the user can change service program code and upgrade service program while keep interface definition the same. On the other hand, user can extend new functionality by providing new interface. New user can make use of new interface while not affecting old user, its code can be recompiled and executed normally without change.</p>
+            <p>Extensibility of naming service mechanism also shows when user program implemented through CAR component method can be provided to remote user through naming service mechanism.<p>
+            <p>From security point of view, user can put untrusted service in a single process and start, and obtain it through naming service mechanism. So service and user are separated by using process address space mechanism and data exchange between service and user can also be tested through system component platform data interaction mechanism.</p>
+            <p>Naming service mechanism provides a full set of operations to service component and string from binding to getting, chancelling by using three API functions. There operation methods are: Invokes <b>EzRegisterService</b> method to bind string to service component. The user program obtains string binding with service component through <b>EzFindService</b> function. It cancells naming service by invoking <b><a class="style1" href="../../../sdk/base_service/car_naming_service/naming_service_api/EzUnregisterService.htm">EzUnregisterService</a></b> function. The whole set of mechanism is simple, small and easy to undersdand, it reflects the concept of "small is beautiful" in software design.</p>
+            <p>Through naming service mechanism, the user can easily obtain Elastos operating system dynamically loaded network system, file system and graphics component. Using naming service mechanism, Elastos operating system can pass shared memory pointer and some synchronization object pointers, which implements across process inter-process communication.</p>
+<script>footer("english")</script>
+</body>
+</html>

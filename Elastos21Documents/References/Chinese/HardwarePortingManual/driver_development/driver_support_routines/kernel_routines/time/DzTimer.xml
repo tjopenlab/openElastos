@@ -1,0 +1,78 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>    <manpage>
+    <volume>时间</volume>
+    <interface> DzTimer Class</interface>
+    <description>
+        <para>定时器类。</para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Timer Constructor</method_name>
+        <method_url>DzTimer\structure\Timer</method_url>
+    <m_description>
+        构造定时器对象
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Start</method_name>
+        <method_url>DzTimer\Start</method_url>
+    <m_description>
+        启动定时器对象
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Restart</method_name>
+        <method_url>DzTimer\Restart</method_url>
+    <m_description>
+        重新启动定时器对象
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Cancel</method_name>
+        <method_url>DzTimer\Cancel</method_url>
+    <m_description>
+        取消正在运行的定时器对象
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Due</method_name>
+        <method_url>DzTimer\Due</method_url>
+    <m_description>
+        判断定时器对象是否已经运行到期
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>GetResidualTicks</method_name>
+        <method_url>DzTimer\GetSurplusTicks</method_url>
+    <m_description>
+        获取此刻定时器对象相对于到期时间的剩余时间
+    </m_description>
+    </method>
+</self>
+    </methods>
+
+    <remarks>
+        <para>一个定时器类的对象代表一个系统定时器。定时器对象启动运行经过指定的时间间隔（即定时器对象运行到期）后，系统将调用在定时器对象中指定的回调函数。</para>
+        <para>为了使用定时器对象，必须在需要时通过定时器类构造函数<link url="DzTimer\structure\Timer.htm">DzTimer::DzTimer</link>构造它。定时器对象可以被定义为全局或局部变量，或是被创建在内核堆上。</para>
+        <para>定时器对象被构造出来以后并不会自动运行，必须通过调用<link url="DzTimer\Start.htm">DzTimer::Start</link>来启动它。当定时器对象处于运行状态中，可以通过调用<link url="DzTimer\Cancel.htm">DzTimer::Cancel</link>来取消它的运行（即取消了定时器回调函数的调用执行）。并且当定时器对象被取消运行以后，可以通过调用<link url="DzTimer\GetSurplusTicks.htm">DzTimer::GetResidualTicks</link>成员函数来获取此刻定时器对象相对于到期时间的剩余时间。当定时器对象已经运行到期或是被取消运行以后，可以通过调用<link url="DzTimer\Restart.htm">DzTimer::Restart</link>来重新启动它。另外，还可以通过调用<link url="DzTimer\Due.htm">DzTimer::Due</link>成员函数来判断此刻定时器对象是否已经运行到期了。</para>
+        <para>在定时器对象析构前必须保证此定时器对象处于非运行状态。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>
+

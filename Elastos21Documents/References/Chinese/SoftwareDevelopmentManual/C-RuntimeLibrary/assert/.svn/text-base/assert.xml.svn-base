@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\assert\assert">assert</sample>
+    <title>assert</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> assert_idx.htm </routine_idx>
+
+    <description>
+        <para>对表达式求值，当结果为FALSE时，输出诊断信息，并且中止程序。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>assert</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>expression</param_name>
+                <param_note>
+                    <para>表达式（包括指针）的值为非零或零</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>ANSI标准中，assert宏一般被用于在程序开发过程中定位逻辑错误。因为当且仅当程序运行错误时，对参数表达式的求值为FALSE。</para>
+        <para>当表达式的值为false(零)时，assert输出诊断信息，并调用<link class="style1" url="../stdlib/abort.htm">abort</link>函数中止程序的执行。而当表达式的值为true(非零)时，assert不做任何操作。诊断信息包括无效的表达式，源文件名称和assert执行失败的行数。</para>
+        <para>assert在C运行库的DEBUG版和RELEASE版都有效。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>assert</routine_name>
+            <headerfile>assert.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ASSERT.CPP: In this program, the analyze_string function uses
+ * the assert function to test several conditions related to
+ * string and length. If any of the conditions fails, the program
+ * prints a message indicating what caused the failure.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;string.h&gt;
+
+void analyze_string(char *string);   /* Prototype */
+
+int main()
+{
+   char  test1[] = &quot;abc&quot;, *test2 = NULL, test3[] = &quot;&quot;;
+   
+   printf (&quot;Analyzing string &apos;%s&apos;\n&quot;, test1);
+   analyze_string(test1);
+   printf (&quot;Analyzing string &apos;%s&apos;\n&quot;, test2);
+   analyze_string(test2);
+   printf (&quot;Analyzing string &apos;%s&apos;\n&quot;, test3);
+   analyze_string(test3);
+
+   return 0;
+}
+
+/* Tests a string to see if it is NULL, */
+/*   empty, or longer than 0 characters */
+void analyze_string(char * string)
+{
+   assert(string != NULL);        /* Cannot be NULL */
+   assert(*string != &apos;\0&apos;);       /* Cannot be empty */
+   assert(strlen(string) &gt; 2);  /* Length must exceed 2 */
+}
+</pre>
+    </example>
+<result>
+Analyzing string &apos;abc&apos;
+Analyzing string &apos;(null)&apos;
+Assertion failed: string != NULL, file D:/Elastos20.SDK/SRC/samples/sdk/
+operating_system/crt/libc/assert/assert/assert.cpp, line 35
+
+abnormal program termination
+</result>
+
+
+
+</manpage>

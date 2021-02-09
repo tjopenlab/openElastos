@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>堆</volume>
+    <title>CMemoryHeap::Trim</title>
+    <routine_idx>../Heap.htm</routine_idx>
+
+    <description>
+        <para>缩减用户堆，向系统返还物理内存。</para>
+    </description>
+
+    <syntax>
+        <return_val>Boolean</return_val>
+        <parameters>
+            <api_param>
+                <param_type> MemorySize </param_type>
+                <param_name> pad </param_name>
+                <param_note>
+                    <para>[in] 保留 pad 字节内存不返还，以便将来 malloc 时更快</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<para>如果调用后有内存返还给系统，返回 TRUE；否则将返回 FALSE。</para>
+    </return>
+
+    <remarks>
+        <para>目前没有在 NT 虚拟机上实现，永远返回 FALSE。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name> CMemoryHeap::GetStatistics </ref_name>
+            <ref_url> GetStatistics</ref_url>
+        </reference>
+    </references>
+
+</manpage>

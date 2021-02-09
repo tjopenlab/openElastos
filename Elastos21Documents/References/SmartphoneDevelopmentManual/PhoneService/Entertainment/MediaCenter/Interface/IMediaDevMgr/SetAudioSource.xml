@@ -1,0 +1,64 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心引擎</volume>
+<interface>IMediaDevMgr</interface><method> SetAudioSource </method>
+    <description>
+        <para>
+          设置音源。音源包括主麦克风、耳机麦克风和模块内录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum AudioSource </param_type>
+                <param_name> eSourceLeft </param_name>
+                <param_note>
+                    <para>
+                     指向<link url="../../DataType/AudioSource.htm">AudioSource</link>枚举型指针，用于表示要设置的左声道音源
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum AudioSource </param_type>
+                <param_name> eSourceRight </param_name>
+                <param_note>
+                    <para>
+                    指向<link url="../../DataType/AudioSource.htm">AudioSource</link>枚举型指针，用于表示要设置的右声道音源
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT </td>
+	    	    <td>参数错误  </td>
+	        </tr>
+	        <tr>
+	    	    <td>驱动错误码 </td>
+	    	    <td>调用声卡驱动失败  </td>
+	        </tr>
+
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../MediaCenter_Error.htm">MediaCenter_Error</link>相关帮助。</para>
+    </return>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+
+    </requirements>
+</manpage>

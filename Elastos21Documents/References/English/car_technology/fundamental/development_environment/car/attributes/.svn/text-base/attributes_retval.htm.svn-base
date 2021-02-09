@@ -1,0 +1,51 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--out, retval</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>out,&nbsp;retval</h2>
+    <p>out attribute and retval attribute can only be used to modify interface method parameters. Also retval attribute cannot be used alone.It must be combined with out attribute. In environment that supports retval, this parameter is mapped as result of operation.Thus logical return value that is not related to the physical return value ECODE of the method. This parameter is allocated by service program (server), and released by the client program (client). The syntax is: [out,&nbsp;retval] or [retval,&nbsp;out] parameter type and parameter name. Use of script languages such as Visual&nbsp;Basic&nbsp;Script, JavaScript etc. to write program under this attributes combination, provides return value for the method. For example: </p>
+    <pre class="code">
+[
+    uuid(29f2ef4c-f540-4775-abf5-0bb11383692a),
+    uunm(http://www.koretide.com/car/RetvalDemo.dll)
+]
+component RetvalDemo
+{
+    [uuid(abed035c-de58-4f9d-9039-cdf120d9625d)]
+    interface IInterface {
+        ECODE Func([in] int iA, [<b>out, retval</b>] int* pi);
+    }
+    [uuid(3766887d-24d6-4001-8b8a-085529829916)]
+    class CClass {
+        interface IInterface;
+    }
+}
+</pre>
+    <p>In sample component RetvalDemo, parameter pi of Func method in the interface IInterface is allocated by component program and is released by the client program. Also in environment that supports retval, this parameter is mapped to operation result. For example: In Java language, method Func is mapped to the following function: </p>
+                <pre class="code">
+public int Func(int iA);
+</pre>
+                    <p>In Visual Basic language, method Func is defined as the following: </p>
+                <pre class="code">
+Function Func(iA as Integer) As Integer
+</pre>
+    <ol><font color="red"><b>Note: </b>
+        <li>In a interface method, only one parameter can be modified by the [out, retval] attribute combination and also it must modify the last of the declared parameters.
+        <li>Since BOOL, char, __int64, <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzStrBuf.htm">EzStrBuf</a>, <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzByteBuf.htm">EzByteBuf</a>, <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzPoint.htm">EzPoint</a>, <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzWCharBuf.htm">EzWCharBuf</a>, these data types are not Microsoft compatible oleautomation data type.They cannot be modified by [out, retval] attribute combination.<br><br>
+        Besides, since this attribute combination includes the out attribute, you need to pay attention to the following when using this attribute combination to modify parameters: 
+        <li>Since [out,&nbsp;retval] attribute combination includes the out attribute, parameters modified by this attribute combination must be of pointer type.
+        <li>[out, retval] attribute combination cannot be used to modify callback event parameters in callback interface defined by the <a class="style1" href="../keywords/keywords_icallback.htm">icallback</a> keyword.</font>
+    </ol>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

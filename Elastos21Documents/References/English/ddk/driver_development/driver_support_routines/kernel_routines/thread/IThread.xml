@@ -1,0 +1,138 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>    <manpage>
+    <volume>Thread and Scheduling</volume>
+    <interface> IThread </interface>
+    <description>
+        <para>
+			Thread object interface.
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Start</method_name>
+        <method_url>IThread\Start</method_url>
+    <m_description>
+        Starts execution of the thread from entry point.
+    </m_description>
+    </method>
+    <method>
+        <method_name>Suspend</method_name>
+        <method_url>IThread\Suspend</method_url>
+    <m_description>
+        Suspends the associated  thread.
+    </m_description>
+    </method>
+    <method>
+        <method_name>Resume</method_name>
+        <method_url>IThread\Resume</method_url>
+    <m_description>
+        Resumes a thread that has been suspended.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Join</method_name>
+        <method_url>IThread\Join</method_url>
+    <m_description>
+        Waits for a thread to exit within a specified time period.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Interrupt</method_name>
+        <method_url>IThread\Interrupt</method_url>
+    <m_description>
+        Interrupts a thread that is being blocked (<b>Sleep, Join, Wait</b> etc.).
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Abort</method_name>
+        <method_url>IThread\Abort</method_url>
+    <m_description>
+        Aborts the associated thread.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>SetPriority</method_name>
+        <method_url>IThread\SetPriority</method_url>
+    <m_description>
+        Sets the priority of a thread.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>GetPriority</method_name>
+        <method_url>IThread\GetPriority</method_url>
+    <m_description>
+        Gets the priority of a thread.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>GetId</method_name>
+        <method_url>IThread\GetId</method_url>
+    <m_description>
+        Gets the thread identifier.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>GetState</method_name>
+        <method_url>IThread\GetState</method_url>
+    <m_description>
+        Gets the state of this thread.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>GetFinishCode</method_name>
+        <method_url>IThread\GetFinishCode</method_url>
+    <m_description>
+        Gets the finished code for the associated thread.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>GetStartTime</method_name>
+        <method_url>IThread\GetStartTime</method_url>
+    <m_description>
+        Gets the time when the associated thread started.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>GetFinishTime</method_name>
+        <method_url>IThread\GetFinishTime</method_url>
+    <m_description>
+        Gets the time, when the associated thread finished execution.
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetProcessorTimes</method_name>
+        <method_url>IThread\GetProcessorTimes</method_url>
+    <m_description>
+        Gets the amount of time the associated thread spent on utilizing the CPU.
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>
+

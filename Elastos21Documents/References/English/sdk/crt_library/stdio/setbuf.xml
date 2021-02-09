@@ -1,0 +1,118 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\setbuf">setbuf</sample>
+    <title>setbuf</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Controls stream buffering.</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>setbuf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>User-allocated buffer.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>The setbuf function controls buffering for stream. The stream argument must refer to an open file that has not been read or written. If the buffer argument is NULL, the stream is unbuffered. If not, the buffer must point to a character array of length BUFSIZ, where BUFSIZ is the buffer size as defined in STDIO.H. The user-specified buffer, instead of the default system-allocated buffer for the given stream, is used for I/O buffering. The stderr stream is unbuffered by default, but you can use setbuf to assign buffers to stderr.</para>
+        <para>setbuf has been replaced by setvbuf, which is the preferred routine for new code. setbuf is retained for compatibility with existing code.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>setbuf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* setbuf.cpp: This program first opens files named DATA1 and
+ * DATA2. Then it uses setbuf to give DATA1 a user-assigned
+ * buffer and to change DATA2 so that it has no buffer.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buf[BUFSIZ] = &quot;&quot;;
+    FILE *stream1 = NULL, *stream2 = NULL;
+
+    if (((stream1 = fopen(&quot;data1&quot;, &quot;a&quot;)) != NULL) &amp;&amp;
+         ((stream2 = fopen(&quot;data2&quot;, &quot;w&quot;)) != NULL)) {
+        /* &quot;stream1&quot; uses user-assigned buffer: */
+        setbuf(stream1, buf);
+        printf(&quot;stream1 set to user-defined buffer at: %.8X\n&quot;, buf);
+
+        /* &quot;stream2&quot; is unbuffered                  */
+        setbuf(stream2, NULL);
+        printf(&quot;stream2 buffering disabled\n&quot;);
+        _fcloseall();
+    }
+    else
+        printf(&quot;open files error!!!&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+stream1 set to user-defined buffer at: 1FFFF94C
+stream2 buffering disabled
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fopen</ref_name>
+            <ref_url>_wfopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>setvbuf</ref_name>
+            <ref_url>setvbuf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

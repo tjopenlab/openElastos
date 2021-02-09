@@ -1,0 +1,118 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\realloc">realloc</sample>
+    <title> realloc</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Reallocates memory blocks.</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <func_name>realloc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>memblock</param_name>
+                <param_note>
+                    <para>Pointer to previously allocated memory block.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>New size in bytes.</para>
+                </param_note>
+            </func_param>
+         </parameters>
+    </syntax>
+
+    <return>
+        <para>realloc returns a void pointer to the reallocated (and possibly moved) memory block. The return value is NULL if the size is zero and the buffer argument is not NULL or if there is not enough available memory to expand the block to the given size. In the first case, the original block is freed. In the second, the original block is unchanged. The return value points to a storage space that is guaranteed to be suitably aligned for storage of any type of object. To get a pointer to a type other than void, use a type cast on the return value.</para>
+    </return>
+
+    <remarks>
+        <para>The realloc function changes the size of an allocated memory block. The memblock argument points to the beginning of the memory block. If memblock is NULL, realloc behaves the same way as malloc and allocates a new block of size bytes. If memblock is not NULL, it should be a pointer returned by a previous call to calloc, malloc or realloc.The size argument gives the new size of the block, in bytes. The contents of the block are unchanged up to the shorter of the new and old sizes, although the new block can be in a different location. Because the new block can be in a new memory location, the pointer returned by realloc is not guaranteed to be the pointer passed through the memblock argument.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>realloc</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* realloc.cpp: This program allocates a block of memory for
+ * buffer and then uses _msize to display the size of that
+ * block. Next, it uses realloc to expand the amount of
+ * memory used by buffer and then calls _msize again to
+ * display the new amount of memory allocated to buffer.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;malloc.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    long *buffer;
+    size_t size = 1000;
+
+    if ((buffer = (long *)malloc(1000 * sizeof(long))) == NULL)
+        exit(1);
+
+
+    printf(&quot;The malloc is success.\n&quot;);
+
+    /* Reallocate and show new size: */
+    if ((buffer = (long *) realloc(buffer, size + (1000 * sizeof(long))))
+        ==  NULL)
+        exit(1);
+
+    printf(&quot;The realloc is succcess.\n&quot;);
+
+    free(buffer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The malloc is success.
+The realloc is succcess.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>malloc</ref_name>
+            <ref_url>malloc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>free</ref_name>
+            <ref_url>free</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_alloca</ref_name>
+            <ref_url>../malloc/_alloca</ref_url>
+        </reference>
+    </references>
+
+</manpage>

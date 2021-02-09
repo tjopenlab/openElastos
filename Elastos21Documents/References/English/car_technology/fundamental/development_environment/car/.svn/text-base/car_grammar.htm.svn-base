@@ -1,0 +1,161 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Appendix: CAR Grammar</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Appendix: CAR Grammar</h2>
+    <p>Grammar is description of language structure. You must be familiar with compiler theory grammar related knowledge before reading this document. The following is CAR language grammar.</p>
+    <table>Meta language symbol in the expression: 
+        <thead>
+            <td width=20%>Symbol</td><td>Meaning</td>
+        </thead>
+        <tr>
+            <td>
+                |
+            </td>
+            <td>
+                Or
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {}
+            </td>
+            <td>
+                Elements in the brackets can repeat 0-n time(s).
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {}+
+            </td>
+            <td>
+                Elements in the brackets can repeat 1-n time(s).
+            </td>
+        </tr>
+        <tr>
+            <td>
+                []
+            </td>
+            <td>
+                Elements in the brackets are optional.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &lt;&gt;
+            </td>
+            <td>
+                Elements inside the brackets are required, usually it is used in situations where there are two different interpretations of calculation order.
+            </td>
+        </tr>
+    </table>
+    <p>Words in the expression starting with capitalized letter is non-terminal, words starting with not capitalized letter is terminal character. Keywords are started with "k_".</p>
+    <p>Symbol corresponding relations: </p>
+
+    <pre class="code">
+lbracket    => [        rbracket    => ]        lparen      => (
+rparen      => )        lbrace      => {        rbrace      => }
+langle      => <        rangle      => >
+comma       => ,        semicolon   => ;        colon       => :
+star        => *        assign      => =        dquot       => "
+squot       => '        sharp       => #
+
+G(CAR) = (VN, VT, S, P);
+
+S = CAR;
+
+P = {
+    CAR             -> &lt; PREID k_component COMPONENT &gt; |
+                       &lt; [ PREID ] k_library COMPONENT &gt;
+
+    PREID           -&gt; lbracket
+                       PREID_ELEM { comma PREID_ELEM }
+                       rbracket
+    PREID_ELEM      -&gt; &lt; GRAPHICS | k_console | k_service | DRIVER &gt; |
+                       k_scriptable | k_rwlock | k_monitor | k_main
+                       &lt; k_aggregatee | k_singleton &gt; | k_hidden |
+                       k_local | k_xtable | k_project | k_library | k_inzyosys
+                       VERSION | UUNM | LASTDATE | LASTTIME | UUID
+    VERSION         -&gt; k_version lparen &lt; integer | decimal &gt; rparen
+    UUNM            -&gt; k_uunm lparen uunm rparen
+    LASTDATE        -&gt; k_lastdate lparen date rparen
+    LASTTIME        -&gt; k_lasttime lparen time rparen
+    UUID            -&gt; k_uuid lparen uuid rparen
+    GRAPHICS        -&gt; k_graphics [ lparen k_litegraphics rparen ]
+    DRIVER          -&gt; k_driver [ lparen &lt;k_noisr | k_resident&gt;
+                       [ comma &lt;k_noisr | k_resident&gt; ] rparen ]
+
+    COMPONENT       -&gt; ident lbrace { COMPONENT_ELEM } rbrace
+    COMPONENT_ELEM  -&gt; PRAGMA | INTFCLASS | INTERFACE | STRUCT |
+                       ENUM | TYPEDEF | IMPORTLIB | CONST | MERGE
+
+    INTFCLASS       -&gt; PREID &lt; INTERFACE | CLASS | STRUCT | ENUM &gt;
+    INTERFACE       -&gt; &lt; k_interface | k_icallback &gt; ident &lt;
+                       [ colon INHERITED_INTF ]
+                       lbrace { METHOD_DECL } rbrace { semicolon }
+                       &gt; | { semicolon }+
+    INHERITED_INTF  -&gt; ident
+    METHOD_DECL     -&gt; TYPE [ star [ star ] ] ident METHOD_ARGS { semicolon }+
+    METHOD_ARGS     -&gt; lparen [ METHOD_ARG { comma METHOD_ARG } ] rparen
+    METHOD_ARG      -&gt; lbracket ARG_DIRECT { comma ARG_DIRECT } rbracket
+                       TYPE [ star [ star ] ] ident
+    ARG_DIRECT      -&gt; k_in | k_out | k_retval
+
+    TYPE            -&gt; BASE_TYPE | DEF_TYPE
+    BASE_TYPE       -&gt; k_void | k_boolean | k_byte | k_float | k_double
+                       &lt;
+                       [ k_unsigned | k_signed ] [ k_char | k_int |
+                       &lt; k_short [ k_int ] &gt; | k_long | k___int64 |
+                       &lt; k_long k_long &gt; ]
+                       &gt; |
+                       k_GUID | k_ECODE | k_EzStr | k_EzStrBuf | k_EzByteBuf |
+                       k_EzVar | k_EzPoint | k_EzDelegate | k_EzWCharBuf |
+                       &lt; k_EzArray langle TYPE [ star [ star ] ] rangle &gt; |
+                       &lt; k_EzEnum langle TYPE [ star [ star ] ] rangle &gt;
+    DEF_TYPE        -&gt; [ k_struct | k_enum ] ident
+
+    STRUCT          -&gt; k_struct ident [ lbrace
+                       { STRUCT_ELEM }+ rbrace ] { semicolon }+
+    STRUCT_ELEM     -&gt; DTYPE STRU_ELEM_NAME { comma STRU_ELEM_NAME }
+                       { semicolon }+
+    STRU_ELEM_NAME  -&gt; [ star [ star ] ] ident
+
+    ENUM            -&gt; k_enum ident [ lbrace
+                       ENUM_ELEM { comma ENUM_ELEM } [ comma ] rbrace ]
+                       { semicolon }+
+    ENUM_ELEM       -&gt; &lt; ident |
+                       &lt; ident assign &lt; integer | hinteger | ident &gt; &gt; &gt;
+
+    TYPEDEF         -&gt; k_typedef [ k_dummytype ] DTYPE ALIAS
+                        { comma ALIAS } { semicolon }+
+    DTYPE           -&gt; BASE_TYPE | ident | DSTRUCT | DENUM
+    ALIAS           -&gt; [ star [ star ] ] ident
+    DSTRUCT         -&gt; k_struct &lt; [ ident ]
+                       [ lbrace { STRUCT_ELEM }+ rbrace ] &gt;
+    DENUM           -&gt; k_enum &lt; [ ident ] [ lbrace
+                       ENUM_ELEM { comma ENUM_ELEM } [ comma ] rbrace ] &gt;
+
+    CLASS           -&gt; &lt; k_class | k_category &gt; ident
+                       [ colon ident { comma ident } ]
+                       lbrace { INTERFACE_DECL } rbrace { semicolon }
+    INTERFACE_DECL  -&gt; &lt; k_interface | k_icallback &gt; ident { semicolon }+
+
+    IMPORTLIB       -&gt; k_importlib lparen string rparen { semicolon }+
+    MERGE           -&gt; k_merge lparen string rparen { semicolon }+
+    PRAGMA          -&gt; sharp k_pragma lparen PRAGMA_EXPRS rparen
+    PRAGMA_EXPR     -&gt; DISABLE_WARNING | ENABLE_WARNING
+    DISABLE_WARNING -&gt; k_disable colon &lt; integer | hinteger &gt;
+    ENABLE_WARNING  -&gt; k_enable colon &lt; integer | hinteger &gt;
+};
+</pre>
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<html>
+<head>
+	<title>Operating Systems FAQ :: Libc</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="printf">Where did my printf go?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>So your kernel is nothing but a simple
+		<pre>
+/* my test kernel */
+void main(void)
+{
+	printf("test\n");
+}
+		</pre>
+		But it wont link! It complains of missing printf.
+		<p>When you write an OS, the compiler has several libraries of function
+		calls (printf, fopen, fread, memmove, strcmp, etc) that are built to run
+		on that particular operating system. Basically, you are trying to use a
+		routine that is not part of your os.
+		</p>
+		<p>You have to write your own c library containing those calls for
+		them to work on your operating system. see <a href="#libc">So whats this libc thing?</a>
+		</p>
+		</TD>
+	</TR>
+</TABLE>
+
+<p>&nbsp;</p>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="libc">So whats this libc thing?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The libc is the compilers c library of function calls. If you want to
+		use routines like printf, strcmp, strcopy, memmove, getch, toupper, etc
+		in your operating system, you have to either port them over from an existing
+		C library, or write them yourself.
+		<p>This includes the appropriate stdlib.h, string.h files as well as the
+		routines themselves.
+		</p>
+		</TD>
+	</TR>
+</TABLE>
+
+<p>&nbsp;</p>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="existing_libc">What C libraries exist for me to use?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>There are some existing C libraries you can port to your OS (basically you
+		just recompile them).
+		<p>Be aware some C libraries are copyright and some are free, some are gnu.		
+		</p>
+		<p>There exists a few GNU C libraries you can use.  Be carefull not to use
+		all the functions, as many have low level constraints (fopen, fread, etc)
+		whereas a lot of it you can use, eg: memmove, isalpha, strcmp, etc.
+		</p>
+		<p>Visual C comes with source for its C library, but ofcourse it is
+		copyright so be veeeeeery carefull if you want to err try and use that
+		as your own library source.
+		</p>
+		</TD>
+	</TR>
+</TABLE>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fputc">fputc</sample>
+    <title> fputc, fputwc</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>将字符写入文件流。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fputc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>要写入文件流的字符</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构体的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>fputwc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wint_t</param_type>
+                <param_name>c</param_name>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回写入文件流的字符。如果出错，fputc返回EOF，fputwc返回WEOF。</para>
+    </return>
+
+    <remarks>
+        <para>两个函数都是通过相关的文件位置指针（如果已定义），向文件中的指定位置写入一个字符，并使指针位置适当前进。该文件是和文件流相关联的。如果文件不支持位置请求，或者是以追加方式打开的，字符将被追加到文件流的末尾。fputwc是fputc的宽字符版本。根据文件是以文本模式还是以二进制模式打开，fputws将参数c分别拷贝成多字节字符和宽字符。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fputc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>fputwc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fputc.cpp: This program uses fputc
+ * to send a character array to stdout.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+   char strptr1[] = &quot;This is a test of fputc!!\n&quot;;
+   char *p;
+
+   /* Print line to stream using fputc. */
+   p = strptr1;
+   while ((*p != &apos;\0&apos;) &amp;&amp; fputc(*(p++), stdout) != EOF) ;
+
+   return 0;
+}
+</pre>
+    </example>
+<result>
+This is a test of fputc!!
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>fgetc</ref_name>
+            <ref_url>fgetwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getc</ref_name>
+            <ref_url>getwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>putc</ref_name>
+            <ref_url>putc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>putwchar</ref_name>
+            <ref_url>putwchar</ref_url>
+        </reference>
+    </references>
+
+</manpage>

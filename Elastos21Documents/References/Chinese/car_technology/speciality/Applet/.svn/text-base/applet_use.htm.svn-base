@@ -1,0 +1,86 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title> applet_use</title>
+	</head>
+	
+	<body>
+		<h2>调用DLL</h2>
+<p>方法一：直接在服务端命令行输入superexe AppletDemo.dll运行该applet。</p>
+<p>方法二：书写客户端程序，在客户端调用该applet。下面讲述该具体过程：</p>
+	<h3>客户端程序 </h3>
+		<p>按照上节所述，在AppletExeDemo目录下新建一个C++源文件:client.cpp，内容实现如下：</p>
+<pre class=code>
+#include &lt;elastos.h&gt;
+#include &lt;AppletDemo.h&gt;
+
+using namespace Elastos;
+
+ECode ElastosMain(const BufferOf&lt;WString&gt; & args)
+{
+    IApplet* pApplet = NULL;
+    IMail *pMail = NULL;
+    ECode ec;
+
+    ec = TMail::New(&pMail);                 // 创建一个applet对象
+    if (FAILED(ec)) return ec;
+
+    pApplet = IApplet::Probe(pMail);         // 获得IApplet接口，用以启动start方法。
+    if (pApplet == NULL) {
+        if (pMail) pMail->Release();
+        return E_FAIL;
+    }
+
+    pApplet->Start(args);                  // 启动applet，创建applet主线程，执行Applet::Main,当Mian返回NOERROR后进入applet消息循环。    
+    CThread::Sleep(1000, NULL);            // 释放CPU，给applet主线程一段启动时间
+
+    pMail->SendMail();                    //调用pMail接口方法，抛到消息队列中
+    pMail->RecvMail();                    //调用pMail接口方法，抛到消息队列中
+
+    CObject::ReleaseAtThreadQuit(pMail);
+    CApplet::Finish(AppletFinish_ASAP);   //处理完事件后，结束ElastosMain的消息循环
+
+    return NOERROR;  //返回NOERROR后进入ElastosMain的消息循环
+}
+</pre>
+    <p>注意：1. 对于applet接口方法的调用，将转变成一个个事件并抛到消息队列中，最终由该applet的回调线程完成实际的调用。 </p>
+    <p>2. ElastosMain和applet的Main函数各有一个消息循环，因此需要在ElastosMain和TMail::RecvMail中分别结束各自的消息循环。 </p>
+<h3>创建sources文件</h3>
+	 <p> 在AppletExeDemo目录下新建一个souces文件，内容如下：</p>
+		<pre class= code>
+TARGET_NAME = client
+TARGET_TYPE = exe
+
+IMPORTS= AppletDemo.dll     //导入相应的DLL
+
+SOURCES = client.cpp
+
+LIBRARIES += $(XDK_LIB_PATH)\elastos.lib
+    </pre>
+
+<h3>编译运行</h3>
+<p> 在XDK环境下编译上述cpp文件，生成client.exe</p>
+<p> 运行该程序：elaura client.exe</p>
+
+<p>编译后运行的结果为：</p>
+<pre class=code>
+applet start...
+send a mail...
+receive a mail...
+
+</pre>
+<p>相关API和接口</p>
+<p>1.<a href="CApplet.htm">CApplet和TApplet</a></p>
+<p>2.<a href="IApplet.htm">IApplet接口方法介绍</a></p>
+<p>3.<a href="IAppletEvents.htm">JAppletEvents回调接口方法介绍</a></p>
+
+<script>footer("chinese")</script>
+		
+	</body>
+</html>

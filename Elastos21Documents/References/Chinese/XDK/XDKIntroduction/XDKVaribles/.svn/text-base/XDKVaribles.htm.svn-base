@@ -1,0 +1,476 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>XDK常用环境变量</title>
+<meta http-equiv="Content-Type" content="text/xmll; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>XDK常用环境变量 </h2>
+<p>XDK中的环境变量主要用于设置和拼接路径和标识开发环境。例如，安装XDK时需要指定源代码目录(XDK_SOURCE_PATH)，我们由源文件编译出的目标文件就是放置在由环境变量（如XDK_USER_OBJ、XDK_TARGET_PLATFORM、XDK_TARGETS等）拼接而成的镜像目录下的，而在运行程序时，我们使用环境变量来标识某些文件（如资源文件）的路径。我们还使用环境变量在文件中标识某个具体的开发环境。</p>
+<p>具体环境变量请见下表</p>
+           
+    <table>
+		<thead>
+		    <td>变量名</td>
+		    <td>说明</td>
+		</thead>
+		<tr>
+		    <td>XDK_ROOT</td>
+		    <td>标识XDK的安装目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_SOURCE_PATH</td>
+		    <td>标识XDK要编译的源码根目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_DEFAULT_PATH</td>
+		    <td>标识源码存放的路径</td>
+		</tr>
+		<tr>
+		    <td>PATH</td>
+		    <td>标识运行程序（exe,dll等）时去查找哪些路径，运行一个程序时会首先查找当前目录，找不到则会按path所列出的路径逐个目录查找。</td>
+		</tr>
+		<tr>
+		    <td>XDK_DEVKIT</td>
+		    <td>标识XDK的开发包目录，参见Devkit目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_MISC</td>
+		    <td>标识环境设置脚本和makefile等的放置目录，参见misc目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_TOOLS</td>
+		    <td>标识辅助工具的存放目录，参见tool目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_PUBLIC_TOOLS</td>
+		    <td>标识外部开源组织提供的工具的存放目录,参见tool\publice目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_PRIVATE_TOOLS</td>
+		    <td>标识内部私有工具的存放目录，参见tool\private目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_DEBUGGER</td>
+		    <td>标识调试器的存放目录，参见debugger目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_SIMULATOR_RESOURCE</td>
+		    <td>标识当前开发环境的模拟器的存放目录，如simulators目录下的gingko模拟器</td>
+		</tr>
+		<tr>
+		    <td>XDK_SIMULATOR_NAME</td>
+		    <td>标识模拟器的名字，参见simulators目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_BUILD_KIND</td>
+		    <td>标识编译环境的类别，由板卡类型，编译器类型等变量拼接而成， 如：win32\x86.msvc.pc.PRODUCT1.dbg</td>
+		</tr>
+		<tr>
+		    <td>XDK_COMPILER</td>
+		    <td>标识当前开发环境使用的编译器类型</td>
+		</tr>
+		<tr>
+		    <td>XDK_COMPILER_PATH</td>
+		    <td>标识当前开发环境的编译器的存放目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_GENERAL_PATH</td>
+		    <td>标识系统的基本path值</td>
+		</tr>
+		<tr>
+		    <td>XDK_INC_PATH</td>
+		    <td>标识系统头文件的存放目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_LIB_PATH</td>
+		    <td>标识系统库文件的存放目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_MANUAL</td>
+		    <td>标识系统帮助文件的存放目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_3RD_PARTY</td>
+		    <td>标识从第三方获得的资源和文件的存放目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_SIMULATOR</td>
+		    <td>标识模拟器的存放目录，参见simulators目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_PACKAGE</td>
+		    <td>标识当前开发环境的开发包的类型，ddk、pdk或sdk</td>
+		</tr>
+		<tr>
+		    <td>XDK_PACKAGE_PATH</td>
+		    <td>标识当前开发环境的开发包的存放目录，为Devkit目录下的ddk、pdk及sdk中的一个</td>
+		</tr>
+		<tr>
+		    <td>XDK_RUNTIME</td>
+		    <td>标识运行时资源的存放目录,参见runtime目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_COMMON</td>
+		    <td>标识运行时公共资源的存放目录，参见common目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_COMMON_CONFIG</td>
+		    <td>标识运行时配置文件的存放目录，参见config目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_COMMON_RESOURCES</td>
+		    <td>标识运行时资源文件以及数据文件的存放目录，参见resources目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_RUNTIME_COMPONENTS</td>
+		    <td>标识运行时所需系统级构件的存放目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_RUNTIME_PLATFORM</td>
+		    <td>标识运行时所需的elastos.dll（kernel.exe）的存放目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_SAMPLES</td>
+		    <td>标识samples代码的存放目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGETS</td>
+		    <td>标识可运行文件的统一目录（exe/dll）</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGET_BOARD</td>
+		    <td>标识当前开发环境的编译结果要运行在哪一个板卡上</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGET_CPU</td>
+		    <td>标识当前开发环境的cpu类型</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGET_FORMAT</td>
+		    <td>标识目标文件格式</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGET_PLATFORM</td>
+		    <td>标识目标代码的运行平台</td>
+		</tr>
+		<tr>
+		    <td>XDK_USER_OBJ</td>
+		    <td>标识当前开发环境编译生成的镜像目录的根目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_USER_INC</td>
+		    <td>标识用户导出头文件的存放目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_USER_LIB</td>
+		    <td>标识用户导出库文件的存放目录</td>
+		</tr>
+		<tr>
+		    <td>XDK_VERSION</td>
+		    <td>标识编译的版本</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGET_PRODUCT</td>
+		    <td>标识产品名字</td>
+		</tr>
+		<tr>
+		    <td>XDK_TITLE_MESSAGE</td>
+		    <td>标识开发环境的窗口标题栏信息</td>
+		</tr>
+    
+    </table>
+<p>
+接下来，我们分别以MSVC的win32虚拟机环境和GNU的arm手机环境为具体的开发环境来说明这些环境变量的取值。
+<br>
+<br>其中虚拟机开发环境的环境配置为：
+<br>XDK_TARGET_PLATFORM = win32
+<br>XDK_TARGET_CPU = x86
+<br>XDK_COMPILER = msvc
+<br>XDK_TARGET_FORMAT = pe
+<br>TARGET_PRODUCT = PRODUCT1
+<br>XDK_TARGET_BOARD = pc
+
+<br><br>
+<br>手机开发环境的环境配置为：
+<br>XDK_TARGET_PLATFORM = zener
+<br>XDK_TARGET_CPU = arm
+<br>XDK_COMPILER = gnu
+<br>XDK_TARGET_FORMAT = pe
+<br>TARGET_PRODUCT = PRODUCT1
+<br>XDK_TARGET_BOARD = BOARD1
+</p>     
+
+
+    <table>
+		<thead>
+		    <td>变量名</td>
+		    <td>虚拟机开发环境下变量值</td>
+		    <td>手机开发环境下变量值</td>
+		</thead>
+		<tr>
+		    <td>XDK_ROOT</td>
+		    <td>D:\Elastos21\XDK(XDK安装于该目录)</td>
+		    <td>D:\Elastos21\XDK(XDK安装于该目录)</td>
+		</tr>
+		<tr>
+		    <td>XDK_SOURCE_PATH</td>
+		    <td>D:\Elastos21</td>
+		    <td>D:\Elastos21</td>
+		</tr>
+		<tr>
+		    <td>XDK_DEFAULT_PATH</td>
+		    <td>D:\Elastos21\smartphone</td>
+		    <td>D:\Elastos21\smartphone</td>
+		</tr>
+		<tr>
+		    <td>PATH</td>
+		    <td>
+		        D:\Elastos21\XDK\Targets\sdk\win32\x86.msvc.pc.PRODUCT1.dbg\e\platform;
+				<br>D:\Elastos21\XDK\DevKit\runtime\win32\x86.msvc.pc.PRODUCT1.dbg;
+				<br>D:\Elastos21\XDK\DevKit\runtime\elastos\win32\x86.msvc.pc.PRODUCT1.dbg;
+				<br>D:\Elastos21\XDK\DevKit\misc;
+				<br>D:\Elastos21\XDK\DevKit\tools;
+				<br>D:\Elastos21\XDK\DevKit\tools\private;
+				<br>D:\Elastos21\XDK\DevKit\tools\private\Perl\bin;
+				<br>D:\Elastos21\XDK\DevKit\tools\private\lcov\bin;
+				<br>D:\Elastos21\XDK\DevKit\tools\public;
+				<br>D:\Elastos21\XDK\DevKit\compilers\x86.msvc\bin;
+				<br>C:\WINDOWS\system32;
+				<br>D:\Elastos21\XDK\Targets\sdk\win32\x86.msvc.pc.PRODUCT1.dbg
+            </td>
+		    <td>
+		         D:\Elastos21\XDK\Targets\sdk\zener\arm.gnu.BOARD1.PRODUCT1.dbg\e\platform;
+		        <br>D:\Elastos21\XDK\DevKit\runtime\zener\arm.gnu.BOARD1.PRODUCT1.dbg;
+				<br>D:\Elastos21\XDK\DevKit\runtime\elastos\zener\arm.gnu.BOARD1.PRODUCT1.dbg;
+				<br>D:\Elastos21\XDK\DevKit\misc;
+				<br>D:\Elastos21\XDK\DevKit\tools;
+				<br>D:\Elastos21\XDK\DevKit\tools\private;
+				<br>D:\Elastos21\XDK\DevKit\tools\private\Perl\bin;
+				<br>D:\Elastos21\XDK\DevKit\tools\private\lcov\bin;
+				<br>D:\Elastos21\XDK\DevKit\tools\public;
+				<br>D:\Elastos21\XDK\DevKit\compilers\arm.gnu\bin;
+				<br>C:\WINDOWS\system32;
+				<br>D:\Elastos21\XDK\Targets\sdk\zener\arm.gnu.BOARD1.PRODUCT1.dbg
+            </td>
+		</tr>
+		<tr>
+		    <td>XDK_DEVKIT</td>
+		    <td>D:\Elastos21\XDK\DevKit</td>
+		    <td>D:\Elastos21\XDK\DevKit</td>
+		</tr>
+		<tr>
+		    <td>XDK_MISC</td>
+		    <td>D:\Elastos21\XDK\DevKit\misc</td>
+		    <td>D:\Elastos21\XDK\DevKit\misc</td>
+		</tr>
+		<tr>
+		    <td>XDK_TOOLS</td>
+		    <td>D:\Elastos21\XDK\DevKit\tools</td>
+		    <td>D:\Elastos21\XDK\DevKit\tools</td>
+		</tr>
+		<tr>
+		    <td>XDK_PUBLIC_TOOLS</td>
+		    <td>D:\Elastos21\XDK\DevKit\tools\public</td>
+		    <td>D:\Elastos21\XDK\DevKit\tools\public</td>
+		</tr>
+		<tr>
+		    <td>XDK_PRIVATE_TOOLS</td>
+		    <td>D:\Elastos21\XDK\DevKit\tools\private</td>
+		    <td>D:\Elastos21\XDK\DevKit\tools\private</td>
+		</tr>
+		<tr>
+		    <td>XDK_DEBUGGER</td>
+		    <td>D:\Elastos21\XDK\DevKit\debugger</td>
+		    <td>D:\Elastos21\XDK\DevKit\debugger</td>
+		</tr>
+		<tr>
+		    <td>XDK_SIMULATOR_RESOURCE</td>
+		    <td>D:\Elastos21\XDK\DevKit\simulators\gingko</td>
+		    <td>无</td>
+		</tr>
+		<tr>
+		    <td>XDK_SIMULATOR_NAME</td>
+		    <td>gingko</td>
+		    <td>无</td>
+		</tr>
+		<tr>
+		    <td>XDK_BUILD_KIND</td>
+		    <td>win32\x86.msvc.pc.PRODUCT1.dbg</td>
+		    <td>zener\arm.gnu.BOARD1.PRODUCT1.dbg</td>
+		</tr>
+		<tr>
+		    <td>XDK_COMPILER</td>
+		    <td>msvc</td>
+		    <td>gnu</td>
+		</tr>
+		<tr>
+		    <td>XDK_COMPILER_PATH</td>
+		    <td>D:\Elastos21\XDK\DevKit\compilers\x86.msvc</td>
+		    <td>D:\Elastos21\XDK\DevKit\compilers\arm.gnu</td>
+		</tr>
+		<tr>
+		    <td>XDK_GENERAL_PATH</td>
+		    <td>
+				D:\Elastos21\XDK\DevKit\misc;
+				<br>D:\Elastos21\XDK\DevKit\tools;
+				<br>D:\Elastos21\XDK\DevKit\tools\private;
+				<br>D:\Elastos21\XDK\DevKit\tools\private\Perl\bin;
+				<br>D:\Elastos21\XDK\DevKit\tools\private\lcov\bin;
+				<br>D:\Elastos21\XDK\DevKit\tools\public;
+				<br>D:\Elastos21\XDK\DevKit\compilers\x86.msvc\bin;
+				<br>C:\WINDOWS\system32		        
+		    </td>
+		    <td>
+				D:\Elastos21\XDK\DevKit\misc;
+				<br>D:\Elastos21\XDK\DevKit\tools;
+				<br>D:\Elastos21\XDK\DevKit\tools\private;
+				<br>D:\Elastos21\XDK\DevKit\tools\private\Perl\bin;
+				<br>D:\Elastos21\XDK\DevKit\ <p> \private\lcov\bin;
+				<br>D:\Elastos21\XDK\DevKit\tools\public;
+				<br>D:\Elastos21\XDK\DevKit\compilers\arm.gnu\bin;
+				<br>C:\WINDOWS\system32		    
+		    </td>
+		</tr>
+		<tr>
+		    <td>XDK_INC_PATH</td>
+		    <td>D:\Elastos21\XDK\DevKit\sdk\inc</td>
+		    <td>D:\Elastos21\XDK\DevKit\sdk\inc</td>
+		</tr>
+		<tr>
+		    <td>XDK_LIB_PATH</td>
+		    <td>D:\Elastos21\XDK\DevKit\sdk\lib\win32\x86.msvc.pc.PRODUCT1.dbg</td>
+		    <td>D:\Elastos21\XDK\DevKit\sdk\lib\zener\arm.gnu.BOARD1.PRODUCT1.dbg</td>
+		</tr>
+		<tr>
+		    <td>XDK_MANUAL</td>
+		    <td>D:\Elastos21\XDK\DevKit\manual</td>
+		    <td>D:\Elastos21\XDK\DevKit\manual</td>
+		</tr>
+		<tr>
+		    <td>XDK_3RD_PARTY</td>
+		    <td>在PDK环境下：D:\Elastos21\XDK\DevKit\3rdparties
+		        <br>在SDK环境下：D:\Elastos21\smartphone\3rdParties
+		    </td>
+		    <td>在PDK环境下：D:\Elastos21\XDK\DevKit\3rdparties
+		        <br>在SDK环境下：D:\Elastos21\smartphone\3rdParties
+		    </td>
+		</tr>
+		<tr>
+		    <td>XDK_SIMULATOR</td>
+		    <td>D:\Elastos21\XDK\DevKit\simulators</td>
+		    <td>D:\Elastos21\XDK\DevKit\simulators</td>
+		</tr>
+		<tr>
+		    <td>XDK_PACKAGE</td>
+		    <td>sdk</td>
+		    <td>sdk</td>
+		</tr>
+		<tr>
+		    <td>XDK_PACKAGE_PATH</td>
+		    <td>D:\Elastos21\XDK\DevKit\sdk</td>
+		    <td>D:\Elastos21\XDK\DevKit\sdk</td>
+		</tr>
+		<tr>
+		    <td>XDK_RUNTIME</td>
+		    <td>D:\Elastos21\XDK\DevKit\runtime</td>
+		    <td>D:\Elastos21\XDK\DevKit\ runtime目录包含运行所需的各种文件，包括各种资源文件，系统服务构件等，包括如下五个子目录: common,elastos,linux,win32,zener。</td>
+		</tr>
+		<tr>
+		    <td>XDK_COMMON</td>
+		    <td>D:\Elastos21\XDK\DevKit\runtime\common</td>
+		    <td>D:\Elastos21\XDK\DevKit\runtime\common</td>
+		</tr>
+		<tr>
+		    <td>XDK_COMMON_CONFIG</td>
+		    <td>无</td>
+		    <td>D:\Elastos21\XDK\DevKit\runtime\common\config\arm\BOARD1</td>
+		</tr>
+		<tr>
+		    <td>XDK_COMMON_RESOURCES</td>
+		    <td>D:\Elastos21\XDK\DevKit\runtime\common\resources</td>
+		    <td>D:\Elastos21\XDK\DevKit\runtime\common\resources</td>
+		</tr>
+		<tr>
+		    <td>XDK_RUNTIME_COMPONENTS</td>
+		    <td>D:\Elastos21\XDK\DevKit\runtime\elastos\win32\x86.msvc.pc.PRODUCT1.dbg</td>
+		    <td>D:\Elastos21\XDK\DevKit\runtime\elastos\zener\arm.gnu.BOARD1.PRODUCT1.dbg</td>
+		</tr>
+		<tr>
+		    <td>XDK_RUNTIME_PLATFORM</td>
+		    <td>D:\Elastos21\XDK\DevKit\runtime\win32\x86.msvc.pc.PRODUCT1.dbg</td>
+		    <td>D:\Elastos21\XDK\DevKit\runtime\zener\arm.gnu.BOARD1.PRODUCT1.dbg</td>
+		</tr>
+		<tr>
+		    <td>XDK_SAMPLES</td>
+		    <td>D:\Elastos21\samples</td>
+		    <td>D:\Elastos21\samples</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGETS</td>
+		    <td>D:\Elastos21\XDK\Targets\sdk\win32\x86.msvc.pc.PRODUCT1.dbg</td>
+		    <td>D:\Elastos21\XDK\Targets\sdk\zener\arm.gnu.BOARD1.PRODUCT1.dbg</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGET_BOARD</td>
+		    <td>pc</td>
+		    <td>BOARD1</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGET_CPU</td>
+		    <td>x86</td>
+		    <td>arm</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGET_FORMAT</td>
+		    <td>pe</td>
+		    <td>pe</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGET_PLATFORM</td>
+		    <td>win32</td>
+		    <td>zener</td>
+		</tr>
+		<tr>
+		    <td>XDK_USER_OBJ</td>
+		    <td>D:\Elastos21\obj\sdk</td>
+		    <td>D:\Elastos21\obj\sdk</td>
+		</tr>
+		<tr>
+		    <td>XDK_USER_INC</td>
+		    <td>D:\Elastos21\obj\sdk\win32\x86.msvc.pc.PRODUCT1.dbg\inc</td>
+		    <td>D:\Elastos21\obj\sdk\zener\arm.gnu.BOARD1.PRODUCT1.dbg\inc</td>
+		</tr>
+		<tr>
+		    <td>XDK_USER_LIB</td>
+		    <td>D:\Elastos21\obj\sdk\win32\x86.msvc.pc.PRODUCT1.dbg\lib</td>
+		    <td>D:\Elastos21\obj\sdk\zener\arm.gnu.BOARD1.PRODUCT1.dbg\lib</td>
+		</tr>
+		<tr>
+		    <td>XDK_VERSION</td>
+		    <td>dbg</td>
+		    <td>dbg</td>
+		</tr>
+		<tr>
+		    <td>XDK_TARGET_PRODUCT</td>
+		    <td>PRODUCT1</td>
+		    <td>PRODUCT1</td>
+		</tr>
+		<tr>
+		    <td>XDK_TITLE_MESSAGE</td>
+		    <td>Elastos -- XDK For sdk win32\x86.msvc.pc.PRODUCT1.dbg</td>
+		    <td>Elastos -- XDK For sdk zener\arm.gnu.BOARD1.PRODUCT1.dbg</td>
+		</tr>
+
+    </table>
+		     
+<script>footer("chinese")</script>
+</body>
+</html>
+

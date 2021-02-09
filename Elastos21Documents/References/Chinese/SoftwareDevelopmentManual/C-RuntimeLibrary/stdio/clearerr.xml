@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\clearerr">clearerr</sample>
+    <title>clearerr</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>重置流的错误指示器</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>clearerr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构体的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>无</para>
+    </return>
+
+    <remarks>
+        <para>clearerr函数重置流的错误指示器和文件结束指示器（EOF）。错误指示器不会自动被清除，一旦一个特定流的错误指示器被设置，该指示器将连续地返回一个错误值直到函数clearerr, fseek, 或fsetpos被调用. </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>clearerr</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* clearerr.cpp: This program creates an error
+ * on the standard input stream, then clears
+ * it so that future reads won&apos;t fail.
+ */
+
+#include &lt;stdio.h&gt;
+
+void main( void )
+{
+   int c;
+   /* Create an error by writing to standard input. */
+   putc( &apos;c&apos;, stdin );
+   if( ferror( stdin ) )
+   {
+      printf( &quot;Write error\n&quot; );
+      clearerr( stdin );
+   }
+
+   /* See if read causes an error. */
+   printf( &quot;Will input cause an error? &quot; );
+   c = getc( stdin );
+   if( ferror( stdin ) )
+   {
+      printf( &quot;Read error&quot; );
+      clearerr( stdin );
+   }
+}
+</pre>
+    </example>
+<result>
+Write error: No error
+Will input cause an error? n
+</result>
+
+    <references>
+        <reference>
+            <ref_name>feof</ref_name>
+            <ref_url>feof</ref_url>
+        </reference>
+        <reference>
+            <ref_name>ferror</ref_name>
+            <ref_url>ferror</ref_url>
+        </reference>
+    </references>
+
+</manpage>

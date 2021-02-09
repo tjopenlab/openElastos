@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\PriorityRank"> GetThreadPriorityRank </sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> GetPriorityRank </method>
+    <description>
+        <para>
+    		获取进程的优先级类别。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ThreadPriorityRank  * </param_type>
+                <param_name> pPriorityRank </param_name>
+                <param_note>
+                    <para>
+						指向<link url="../../../DataStructure/PriorityRank.htm">ThreadPriorityRank</link>枚举类型的指针，用于获取进程优先级类别，不能为空
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取进程优先级类别</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_PROCESS_ALREADY_EXITED</td>
+	    	    <td>进程已经退出</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>进程优先级类别可以通过调用<link url="SetPriorityRank.htm">SetThreadPriorityRank()</link>方法设置。具体的进程优先级类别参见数据结构中的<link url="../../../DataStructure/PriorityRank.htm">ThreadPriorityRank</link>枚举类型说明。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+   
+</manpage>

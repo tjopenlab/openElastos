@@ -1,0 +1,113 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\Append">Append</sample>
+    <volume> Common Data Structures </volume>
+    <interface> EzArray   </interface>
+    <method> Append </method>
+
+    <description>
+        <para>
+        	Appends data to the end of the used element of <b>EzArray</b>. 
+       </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>const T*</param_type>
+                <param_name>src </param_name>
+                <param_note>
+                    <para> Source T type array.</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> int  </param_type>
+                <param_name> len </param_name>
+                <param_note>
+                    <para>
+                    	The number of the array elements which is to be appended.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>
+        	Returns the number of the elements appended.
+        </para>
+    </return>
+
+    <remarks>
+        <para>
+        	After appending data, if the length of the array is beyond the actual length of EzArray object, 
+        	the data will be truncated.
+        </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <EzArray.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+    int array1[8] = {0, 1, 2, 3, 0, 0, 0, 0};
+    int array2[4] = {4, 5, 6, 7};
+
+    EzArray_Box<int> myArray (array1, 8, 4);
+    printf("Before Append  myArray:\n");
+    for (int i = 0; i < myArray.GetLength(); i++){
+        printf("myArray[%d] = %d\n", i, myArray[i]);
+    }
+    printf("The used size of myArray is : %d.\n\n", myArray.Used());
+
+    myArray.Append(array2, 4);
+    printf("After Append  myArray:\n");
+    for (i = 0; i < myArray.GetLength(); i++){
+        printf("myArray[%d] = %d\n", i, myArray[i]);
+    }
+    printf("The used size of myArray is : %d.\n", myArray.Used());
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+Before Append  myArray:
+myArray[0] = 0
+myArray[1] = 1
+myArray[2] = 2
+myArray[3] = 3
+myArray[4] = 0
+myArray[5] = 0
+myArray[6] = 0
+myArray[7] = 0
+The used size of myArray is : 4.
+
+After Append  myArray:
+myArray[0] = 0
+myArray[1] = 1
+myArray[2] = 2
+myArray[3] = 3
+myArray[4] = 4
+myArray[5] = 5
+myArray[6] = 6
+myArray[7] = 7
+The used size of myArray is : 8.
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Insert </ref_name>
+            <ref_url> Insert </ref_url>
+        </reference>
+    </references>
+
+</manpage>

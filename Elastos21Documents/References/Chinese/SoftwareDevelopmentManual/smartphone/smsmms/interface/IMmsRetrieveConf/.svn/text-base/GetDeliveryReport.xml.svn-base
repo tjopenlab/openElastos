@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>短信彩信引擎</volume>
+<interface>IMmsRetrieveConf</interface><method> GetDeliveryReport </method>
+    <description>
+        <para>
+            获取彩信的发送报告状态。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> BYTE * </param_type>
+                <param_name> pbyReport </param_name>
+                <param_note>
+                    <para>
+指向字节型的指针，用于获取彩信的发送报告状态                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回S_OK；如果有参数无效，则方法调用失败，并返回E_INVALIDARG。</para><para>            更多返回值，参见            <link url="../../sms_error.htm">            短信彩信返回值            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elatype.h、stdlib.h、mmsdef.h、MessageData.h、IMmsData、CMmsRetrieveConf.h、_CMmsRetrieveConf.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElDatabase.lib、elastos.lib、ElCRuntime.lib、ElUtilities.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            发送报告状态的取值指定为            <link url="../../datatype/_DeliveryReport.htm">            DeliveryReport            </link>            数据类型，对应值0x80， 0x81。
+        </para>
+    </remarks>
+</manpage>

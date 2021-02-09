@@ -1,0 +1,79 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\malloc"> malloc </sample>
+    <volume>Memory Management Methods</volume>
+    <title>malloc</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>
+        	Allocate memory blocks of specified size.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <parameters>
+            <api_param>
+                <param_type> size_t </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>
+                    	Size of memory blocks to be allocated (unit: bytes). When it is zero, malloc will allocate 
+                    	a memory block of size zero, and returns a valid pointer to it. <i>size</i> cannot exceed 
+                    	the maximum allocated number of bytes specified by the constant <i>c_uMaxAllocationSize</i>.
+                    	You can specify the minimum implementation value of c_uMaxAllocationSize is 4092.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NULL</td>
+                <td>Allocation fails; insufficient memory</td>
+            </tr>
+            <tr>
+                <td>Non-NULL value</td>
+                <td>Allocation successful, returns the starting address of allocated memory block</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+    	<para>
+    		This method is used to allocate memory block of specified size. It is possible that the actual allocated 
+    		memory block is larger than the specified size, since it is possible that extra space is needed to store 
+    		maintenance information. 
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>free</ref_name>
+            <ref_url>free</ref_url>
+        </reference>
+    </references>
+</manpage>

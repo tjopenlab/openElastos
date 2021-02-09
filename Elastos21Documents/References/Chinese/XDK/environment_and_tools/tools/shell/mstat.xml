@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> mstat </title>
+    <volume>Shell支持的命令</volume>
+
+    <description>
+        <para> 查看当前系统内存的分配情况。</para>
+    </description>
+
+    <examples>
+        <example>
+            <eg_line>mstat</eg_line>
+            <eg_note>在shell上直接输入mstat命令。下面是执行mstat的一个输出信息：</eg_note>
+            <eg_result><![CDATA[
+Cache:alloced bytes = 244096, total pages = 62
+Pages: Alloced kernel pages = 150, AllocedPhysicsPages = 4249
+Total pages = 14320, Free pages = 9015
+]]></eg_result>
+        </example>
+    </examples>
+    <remarks>
+        <para>范例中的输出信息，第一行表示的是内核Cache的当前分配情况。alloced bytes是内核中使用<link url="../../../../HardwarePortingManual/driver_development/driver_support_routines/kernel_routines/memory_management/method/malloc.htm">malloc</link>函数分配的内存字节数；total pages是整个内核Cache当前使用的总页面数。第二行表示的是页面分配器当前分配情况。Alloced kernel pages 是内核页面分配器（内核函数<link url="../../../../HardwarePortingManual/driver_development/driver_support_routines/kernel_routines/memory_management/method/DzAllocKernelPages.htm">DzAllocKernelPages</link>）当前分配的页数；AllocedPhysicsPages是物理页面分配器（内核函数<link url="../../../../HardwarePortingManual/driver_development/driver_support_routines/kernel_routines/memory_management/method/DzAllocPages.htm">AllocPages</link>）当前分配的页数。第三行中的Total pages是系统内存总页面数，Free pages是当前可用的总页数。</para>
+        <para>要查看内核leak是否存在，就必须先弄清输出信息的内在联系。内核Cache的页面是由内核页面分配器分配，而内核页面分配器分配的页数最终还是由物理页面分配器分配，系统内存总页面数不变。所以在查看内存分配情况时，需要注意以下几点：</para>
+        <para>1.当前可用的总页数Free pages减少并不意味着有内核leak。</para>
+        <para>2.页面分配器所示页面数增加并不意味着有内核leak。</para>
+        <para>3.Cache当前使用的总页面数增加并不意味着有内核leak。</para>
+        <para>但是如果发生以下状况则必定有leak存在：</para>
+        <para>1.运行多次stat，alloced bytes增加。</para>
+        <para>2.运行多次stat，当前可用的总页数Free pages减少，而页面分配器页数此时却是增多的。</para>
+    </remarks>
+</manpage>

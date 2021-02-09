@@ -1,0 +1,101 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fflush">fflush</sample>
+    <title> fflush</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>The function fflush() forces a write of all buffered data for the given output or update stream via the stream's underlying write function. The open status of the stream is unaffected.</para>
+	<para>If the stream argument is NULL, fflush() flushes all open output streams.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fflush</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>fflush returns 0 if the buffer was successfully flushed. The value 0 is also returned in cases in which the specified stream has no buffer or is open for reading only. A return value of EOF indicates an error.</para>
+    </return>
+
+    <remarks>
+        <para>The fflush function flushes a stream. If the file associated with stream is open for output, fflush writes to that file the contents of the buffer associated with the stream. If the stream is open for input, fflush clears the contents of the buffer. fflush negates the effect of any prior call to ungetc against stream. The stream remains open after the call. fflush has no effect on an unbuffered stream.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fflush</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fflush.cpp:the program use fflush to check for the buffer was successfully flushed*/
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+int main()
+{
+    int integer;
+    int i;
+    char string[81];
+
+    /* Read each word as a string. */
+    printf(&quot;Enter a sentence of four words with scanf: &quot;);
+    for (integer = 0; integer &lt; 4; integer++) {
+        scanf(&quot;%s&quot;, string);
+        printf(&quot;%s\n&quot;, string);
+    }
+
+    /* You must flush the input buffer before using gets. */
+    i = fflush(stdin);
+    printf(&quot;the return value is : %d\n&quot;,i);
+    printf(&quot;the string is: &quot;);
+    printf(&quot;%s\n&quot;, string);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Enter a sentence of four words with scanf: This is a test
+This
+is
+a
+test
+the return value is : 0
+the string is : test
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+    </references>
+
+</manpage>

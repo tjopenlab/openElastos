@@ -1,0 +1,56 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method> GetCharCount </method>
+
+    <description>
+        <para>返回此对象字符串所占的字符数。</para>
+    </description>
+
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+         <api_param>
+            <param_type>Encoding</param_type>
+            <param_name> encoding  </param_name>
+            <param_default> Encoding_Default</param_default>
+            <param_note>
+                <para> 指定字符编码方式。参见<link url="../../others/Encoding.htm">Encoding</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>    
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回AStringBuf对象字符串在指定编码格式下的长度。</para>
+    </return>
+<example>
+<pre>
+AStringBuf_&lt;20&gt; asbuf;
+asbuf.Copy("123456");
+CConsole::WriteLine(asbuf.GetCharCount());  //Display : 6
+CConsole::WriteLine(asbuf.GetCharCount(Encoding_ASCII));  //Display : 5
+CConsole::WriteLine(asbuf.GetCharCount(Encoding_UTF7));  //Display : 5
+CConsole::WriteLine(asbuf.GetCharCount(Encoding_UTF8));  //Display : 7
+CConsole::WriteLine(asbuf.GetCharCount(Encoding_UTF16));  //Display : 2
+CConsole::WriteLine(asbuf.GetCharCount(Encoding_GB18030));  //Display : 6 
+</pre>
+</example>
+
+ <references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::GetCharCount</ref_name>
+        <ref_url>../WStringBuf/GetCharCount</ref_url>
+    </reference>
+</references>    
+    
+
+</manpage>

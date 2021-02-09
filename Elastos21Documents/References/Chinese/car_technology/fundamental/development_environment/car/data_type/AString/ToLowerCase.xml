@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AString</interface>
+    <method> ToLowerCase </method>
+
+    <description>
+        <para> 返回此AString转换为小写形式的副本。</para>
+    </description>
+    <syntax>
+        <return_val> AString </return_val>
+        <parameters>
+        <api_param>
+            <param_type>AStringBuf &amp;</param_type>
+            <param_name> lowser </param_name>
+            <param_note>
+                <para> 保存子字符串的AStringBuf对象。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name> encoding  </param_name>
+            <param_default>Encoding_Default  </param_default>
+            <param_note>
+                <para> 编码格式。 参见<link url="../../others/Encoding.htm">Encoding</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>小写形式的AString。</para>
+    </return>
+    <remarks>
+        <para>若实例或sub包含的字符串指针为NULL，返回的AString对象包含的字符串指针指向NULL。 </para>
+    </remarks>
+
+
+<example>
+<pre>
+AString as("HELLOhexIN");
+AStringBuf_&lt;40&gt; asbuf;
+CConsole::WriteLine(as.ToLowerCase(asbuf));  //Display : "hellohexin"
+CConsole::WriteLine(as);  //Display : "HELLOhexIN"
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::ToUpperCase </ref_name>
+        <ref_url>../AString/ToUpperCase</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::ToLowerCase </ref_name>
+        <ref_url>../WString/ToLowerCase</ref_url>
+    </reference>
+</references>
+
+
+</manpage>

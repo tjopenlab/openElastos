@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IDateTimePicker</interface><method> SetMaxTime </method>
+    <description>
+        <para>
+            设置 DateTimePicker 控件时间选择范围的最大值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> hour </param_name>
+                <param_note>
+                    <para>
+可选范围最大值的小时数，有效值为 0～99</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> minute </param_name>
+                <param_note>
+                    <para>
+可选范围最大值的分钟数，有效值为 0～59</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> second </param_name>
+                <param_note>
+                    <para>
+可选范围最大值的秒数，有效值为 0～59</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	    	  </tr>
+          <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	    	  </tr>	    	  
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  DateTimePicker 控件时间选择范围的最大值默认为：99/59/59。若设置的 MaxTime 小于 MinTime，方法将调用失败。若想通过键盘输入或者调用 <link url="SetTime.htm">SetTime</link> 方法设置显示的时间超过24小时，除了保证该时间在 MaxTime 和 MinTime 之间之外，同时还须调用 <link url="SetFormat.htm">SetFormat</link> 方法将 format 指定为 DateTimeFormat_UserDefinedRange，否则小时数这里将显示为23。
+	  </para>
+</remarks>
+</manpage>

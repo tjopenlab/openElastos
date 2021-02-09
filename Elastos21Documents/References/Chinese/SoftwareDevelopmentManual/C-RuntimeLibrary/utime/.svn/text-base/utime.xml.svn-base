@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    
+    <title> utime,wutime </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> utime_idx.htm </routine_idx>
+
+    <description>
+        <para>更改文件的访问和/或者修改时间。wutime是utime的宽字符格式。 </para>
+    </description>
+   
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>utime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char *</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>指明文件位置的路径。</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const struct utimebuf *</param_type>
+                <param_name>buf</param_name>
+                <param_note>
+                    <para>utime的时间缓冲，是以下结构的变量</para>
+                </param_note>
+            </func_param>
+        </parameters>
+     </syntax>
+     <return>
+        <para>成功执行时，返回0。失败返回-1，errno被设为以下的某个值  </para>
+        <table>
+            <th>
+                <td>EACCES</td>
+                <td>权能不允许</td>
+            </th>
+            <tr>
+                <td>ENOENT</td>
+                <td>文件不存在</td></tr>
+            <tr>
+                <td>EPERM</td>
+                <td>时间缓冲非空，并且进程没有权限修改文件的时间属性</td></tr>
+            <tr>
+                <td>EROFS</td>
+                <td>文件系统只读</td></tr>
+        </table>
+    </return>
+    <remarks>
+        <para>utime允许的时间戳记分辨率为秒，utimes允许的时间戳记分辨率为微秒(1秒=1000000微妙)。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>utime</routine_name>
+            <headerfile>utime.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+       
+    </requirements>
+>
+
+</manpage>

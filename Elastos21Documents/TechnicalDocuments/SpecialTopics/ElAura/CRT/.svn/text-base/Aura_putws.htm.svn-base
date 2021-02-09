@@ -1,0 +1,121 @@
+<HTML>
+<HEAD>
+<title>
+Aura_putws
+</title>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<H3>Aura_putws</H3>
+</div>
+<p>Writes a string to stdout.</p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">EXTERN_C int CDECL Aura_putws
+                    (
+                 </TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">const char*</TD>
+<TD class="param">string</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">);</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<div class="proto">
+　</div>
+<br />
+<H4>Parameters</H4>
+<DL><DT class="param" style="color:#222222;margin-left:42">string</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">Pointer to output string.<BR /><BR />
+</font></DD>
+</DL>
+<DL></DL>
+<h4>Return Value</h4>
+<p>Each of these returns a nonnegative value if successful. If puts fails it returns EOF; if _putws fails it returns WEOF.</p>
+<h4>Remarks</h4>
+<p>The puts function writes string to the standard output device, replacing the string's terminating null character ('\0') with a newline character ('\n') in the output device.</p>
+<h4>Requirements</h4>
+<table class="methodtbl" cellspacing="0" cellpadding="0">
+<THEAD class="head">
+<TD width="20%" class="cell">
+Routine</TD>
+<TD width="20%" class="cell">
+Required header</TD>
+<TD class="cell">
+Compatibility</TD>
+</THEAD>
+<TR>
+<TD class="cell"><B>puts</B></TD>
+<TD class="cell">stdio.h</TD>
+<TD class="cell">ANSI, Windows 2000, Elastos 2.0</TD>
+</TR>
+<TR>
+<TD class="cell"><B>_putws</B></TD>
+<TD class="cell">stdio.h</TD>
+<TD class="cell">ANSI, Windows 2000, Elastos 2.0</TD>
+</TR>
+</table>
+<p></p>
+<table class="methodtbl" cellspacing="0" cellpadding="0">
+<THEAD class="head">
+<TD width="30%" class="cell">
+                Library
+            </TD>
+<TD class="cell">
+                Description
+            </TD>
+</THEAD>
+<TR>
+<TD class="cell">
+                libc.lib
+            </TD>
+<TD class="cell">
+                Single thread static library
+            </TD>
+</TR>
+<TR>
+<TD class="cell">
+                elacrt.lib
+            </TD>
+<TD class="cell">
+                Import library for elacrt.dll
+            </TD>
+</TR>
+</table>
+<h4>Example</h4>
+<p><script>showButton_e()</script></p>
+<pre class="codeview">
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* puts.cpp: This program uses puts
+ * to write a string to stdout.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    puts("Hello world from puts!");
+
+    return 0;
+}
+</pre>
+<h4>Output</h4>
+<pre class="codeview">Hello world from puts!</pre>
+<p style="font-size:90%;font-weight:bold;margin-left:0">　</p>
+</DIV>
+</BODY>
+</HTML>
+

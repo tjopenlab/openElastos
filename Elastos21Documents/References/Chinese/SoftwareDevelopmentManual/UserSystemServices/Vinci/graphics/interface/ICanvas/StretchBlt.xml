@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICanvas</interface><method> StretchBlt </method>
+    <description>
+        <para>
+            将源Graphics的数据拉伸拷贝至当前Graphics中。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ICanvas * </param_type>
+                <param_name> pISrcGraphics </param_name>
+                <param_note>
+                    <para>
+指向<link url="../ICanvas.htm">ICanvas</link>接口类型的指针，用于设置源Graphics的接口                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> nSrcX </param_name>
+                <param_note>
+                    <para>
+源Graphics左上角的x坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> nSrcY </param_name>
+                <param_note>
+                    <para>
+源Graphics左上角的y坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> nSrcW </param_name>
+                <param_note>
+                    <para>
+源Graphics的宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> nSrcH </param_name>
+                <param_note>
+                    <para>
+源Graphics的高度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> nDstX </param_name>
+                <param_note>
+                    <para>
+当前Graphics左上角的x坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> nDstY </param_name>
+                <param_note>
+                    <para>
+当前Graphics左上角的y坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> nDstW </param_name>
+                <param_note>
+                    <para>
+当前Graphics的宽度                    </para>
+                </param_note>
+            </api_param>
+           <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> nDstH </param_name>
+                <param_note>
+                    <para>
+当前Graphics的高度                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT 。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            本方法用于快速访问之用，比如游戏帧缓存的交换。  </para><para>       本方法只在窗口属性含GrafixCapabilities_DoubleBuffer模式下有效。
+        </para>
+    </remarks>
+</manpage>

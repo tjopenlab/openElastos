@@ -1,0 +1,116 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Service Oriented Software Architecture</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Introduction To Service Oriented Software Architecture</h2>
+        <p>Content of this article is as the following: </p>
+        <ul>
+            <li><a class="style1" href="#concept">Concept of SOA
+            <li><a class="style1" href="#Services">Service
+            <li><a class="style1" href="#character">Characteristics of SOA
+            <li><a class="style1" href="#web_corba">SOA and Web&nbsp;Services and CORBA
+            <li><a class="style1" href="#transfer">Migration to SOA Framework
+        </ul>
+    <A NAME="concept">
+    <h3>Concept Of SOA</h3>
+        <p>SOA (service-oriented&nbsp;architecture), is a component model. SOA is rolled out for the challenges the IT industry is facing currently. Modern computer technology development is very fast and the competition is very vigorous. In order to keep up with rapid changing environment,companies need to convert its technology to appropriate business model as quickly as possible. Usually, different functionality modules are built on different run-time environment, so as to quickly integrate various modules into a whole,which is a challenge faced by most current companies.SOA architecture is created in order to solve the above problem. In simple words, a SOA based architecture is a set that integrates various services.These services can interact with each other or provide service to the outside and also it can pass simple parameters in service process.</p>
+        <p>In fact, SOA is not a new technology.The earliest SOA framework is Microsoft DCOM and ORBs (Object&nbsp;Request&nbsp;Brokers) of CORBA. Currently most widely discussed SOA technology is Web&nbsp;services.Some people often mix the two together, but these two concepts are not equal. The difference between SOA service and Web service is the design. SOA concept does not specifically define detail tactics that how services must interact with each other.It only defines the general strategy of how services understand and interact with each other. In other words, SOA only gives the strategy of understanding the service and interactive execution.Web&nbsp;Services provides detailed tactics to realize SOA strategy.</p>
+        <p>In <a class="style1" href="#Services">service</a>, <a class="style1" href="#character">characteristics of SOA</a> and <a class="style1" href="#transfer">migration to SOA framework</a>, details are described to illustrate service concept,characteristics and creation process of SOA etc.</p>
+    <A NAME="Services"></A>
+    <h3>Service</h3>
+        <p>SOA is service oriented.What is service? What is the relationship between service and service consumer? How does a service release itself to the public? The above questions are discussed below.</p>
+        <h4>What is service?</h4>
+            <p>Service is an application method that encapsulated into reuseable component of business flow.In simple words, service is a component encapsulated application,which can provide method interface to the outside world.</p>
+            <p>Service consumer is not concerned about specific implementation of the service, as long as the service provider can respond to the command of service consumer and can provide needed service. So from service consumer point of view, service looks like a self included method.From a general point of view, service can also be treated as service consists of other services. For example, service implementation can include many steps executed in different computers of an enterprise or computers owned by many business partners. So in terms of encapsulated software, service may or may not be a component. But no matter how to implement the service, consumer application only need to treat the service as a whole.</p>
+        <h4>Relationship between service and service consumer</h4>
+            <p>In SOA framework, services or service consumer are connected through perfectly defined interface. Interface is defined neutrally.It must be independent of hardware service platform implementation, operating system and programming language, so that service constructed in different systems can interact in a unified way. This feature that is not bound to specific implementation and has neutral interface definition is called loose coupling between services.</p>
+            <p>There are two advantages of loose coupling system: One is its agility and other is that it can still exist when the internal structure and implementation of each service that composed of the whole application changes gradually. Close coupling means interface between different component of the application is closely connected with its functionality and structure. They are not flexible when a change occurs in the whole application or part of the application. In loose coupling system, service consumer does not know the technical implementation details (such as programming language, deployment platform etc.) of the provider.It only requests and responds to message through message invocation operation and not through API and file format.</p>
+    <A NAME="character"></A>
+    <h3>Characteristics of SOA</h3>
+        <p>SOA is a protocol framework.What kind of architecture can be called SOA based if there is no specific implementation method? Usually SOA consists of three basic elements: Service consumer, service provider and service registration center. The definitions of the three elements are as the following: </p>
+        <ul>
+            <li>Service consumer: Service consumer is an application, a software module or another service that needs a service. It initializes service inquires to the registration center, binds service through transfer and executes service functionality. Service user executes service according to interface contract.
+            <li>Service provider: Service provider is an entity searchable through network address.It accepts and executes requests from the consumer. It sents its service and interface contract to service registration center so that service consumer can find and visit this service.
+            <li>Service registration center: Service registration center supports service discovery. It includes a available service storage and allows interested service consumer to search service provider interface.
+        </ul>
+        <p>Image 1 illustrates the co-operation relationship between three elements in the service oriented architecture.</p>
+        <center><img src="images/character.jpg"></center>
+        <center>Image 1: Co-operation Relationship Between Service Consumer, Service Provider And Service Registration Center</center>
+        <p>Every entity in service oriented architecture plays one of (or multiple roles) the roles of service provider, service consumer and registration center. Operations in service oriented architecture includes: </p>
+        <ul>
+            <li>Release: In order to make the service visitable, service description needs to be released so that service consumer can discover and invoke it.
+            <li>Discover: Service consumer locates service and searches service registration center to search for services that satisfies its standard.
+            <li>Binding and invocation: After searching service description, service consumer continuously invoke service according to the information in the service description.
+        </ul>
+        <p>Components in service oriented architecture includes: </p>
+        <ul>
+            <li>Service: Can use service through released interface and allows the service consumer to invoke the service.
+            <li>Service description: Service description specifies interaction method between service consumer and service provider. It specifies format of request and response from the service. Service description can specify a group of pre-condition,post condition or quality of service (QoS) level.
+        </ul>
+        <p>Through the above discussion, SOA must have the following characteristics: </p>
+        <ul>
+            <li>Dynamic service discovery
+            <li>Provides service interface invocation standard
+            <li>Service is self-included and modulized
+            <li>Service supports inter-operatability
+            <li>Service is loosely coupled
+            <li>Service is location transparent
+            <li>Service is combined module consists of component
+        </ul>
+    <A NAME="web_corba">
+    <h3>SOA, Web&nbsp;Services and CORBA</h3>
+        <h4>SOA and Web&nbsp;Services</h4>
+            <p>As described in the above article, the relationship between SOA and Web&nbsp;Services is the relationship between strategy and tactics. SOA proposed a series of architectural model. Web&nbsp;Services uses specific technology to implement SOA structure module. Image 2 shows the relationship in various part of Web&nbsp;Services.</p>
+            <center><img src="images/web_corba.jpg"></center>
+            <center>Image 2: Relationship Between Various Parts Of Web&nbsp;Services</center>
+            <p>Comparing with "Image 1: Co-operation relationship between service consumer, service provider and service registration center", one can see,that these two are basically one to one correspondence. However, Web&nbsp;Services is not equal to service oriented architecture. Web&nbsp;Services is the set of technologies including XML, SOAP, WSDL and UDDI.It makes you construct programming solutions target at specific message passing and application integration problems. As time passes we believe that these technology becomes mature and can eventually be replaced by better, more effective and more robust technology. According to the current situation, those web srvice technologies can still be used. Web&nbspServices proves that SOA structure is practical.</p>
+        <h4>SOA and CORBA</h4>
+            <p>CORBA (Common&nbsp;Object&nbsp;Request&nbsp;Broker&nbsp;Architecture)is a series of standards developed by Object Management Group (OMG), one of the most important distributed object architecture now. The goal of CORBA is to achieve platform independence, programming language independence and network protocol independence interactive operation. From the above description we can conclude that CORBA is a set of rules and standards to solve module inter-operation between modules in different environments, which is similar to SOA. Both defines methods for interaction between different applications. CORBA provides service process similar to SOA.</p>
+            <p>The differences of the two are obvious. Initially,the goal of CORBA specification is to make different applications interact with each other, independent of operating system and makes distributed object be able to communicate.CORBA exists before the popular of the Internet. So when Internet communication becomes the trend, IIOP (Internet&nbsp;Interoperability&nbsp;Protocol) provides ORB interactability. CORBA seems not so flexible. Secondly, CORBA applications are mostly built by programming languages such as C, C++, Java, Smalltalk.CORBA is suitable for application that are enterprise level,close coupled,high system security requirement and object oriented.</p>
+            <p>CORBA and SOA have the following difference: </p>
+            <ol>
+                <li>CORBA is object based and the object creation is in a distributed system. The current SOA application is more of business process integration.
+                <li>CORBA application development fits for object oriented technology and UML language and also it is programming language such as C, C++ or Smalltalk based. SOA is more like design data stream, which is independent of programming language.
+                <li>CORBA does not describe the business process part and there is not a non-structured language or language that controls business process. SOA has advantages in this area.
+                <li>CORBA needs to compile in IDL language to generate interface stub and framework, provides service to the outside and hence it is closely coupled. SOA is build upon loose coupling.
+            </ol>
+            <p>From the above discussion we can see that SOA and CORBA are based on different things. Especially SOA, in many sense it is only a concept,that is not ready and waits for further improvement. CORBA drives away a lot of developers for its complexity.Of course CORBA's complexity is relative and agility of SOA is the trade off of complexity.It is more so in the Internet environment. We have reason to believe that SOA has a better future though. Because SOA has flexible architecture, it is more adaptive to changes in the environment and agrees with the future development trends.</p>
+    <A NAME="transfer">
+    <h3>Migration to SOA structure</h3>
+        <p>To migrate from traditional architecture to SOA architecture is a very challenging work because of varoius problems from many aspects.Not only adding a few interfaces,but also involved with low level system support. Generally, the following requirements need to be met when migrating to SOA architecture: </p>
+        <ol>
+            <li>Must make use of existing resource. Because the existing system usually includes valueable resources to the enterprise except few, which are non-sense. Strategically, the goal is to construct a new architecture to create all necessary features. From the tactic point of view, however, we need to integrate existing systems. As time advances, existing systems can be gradually disintegrated or replaced during projects in a managable way.
+            <li>Supports required integration type or architecture. This includes: 
+                <ul>
+                    <li>User interaction -- Can provide single, interactive user interface.
+                    <li>Application continuality -- Based on low level communication layer, which provides the basics of SOA architecture.
+                    <li>Process integration -- Programming applications and services.
+                    <li>Information integration -- Unifies and moves enterprise data.
+                    <li>Constructs according to integration requirements -- Constructs and deploys new application and service.
+                </ul>
+            <li>Allows gradual implementation and resource migration. Getting maximum return is the key aspect of migration to SOA architecture. Planning the migration process appropriately is the key to the success of migration.Many project migrations have failed due to unreasonable implementation plan.
+            <li>It includes a standard component framework as basic development environment structure.In order to reuse the module and system, it is allowed to move remaining source to this framework and implementation of the new technology is considered.
+            <li>Flexible policies need to be used during migration, new computer modle is allowed to be constructed, especially new Portal based client model, matrix computing and on-demand&nbsp;computing.
+        </ol>
+        <p>SOA migration process can be divided into the following four stages: </p>
+        <p>The first stage is the simplest, because it only needs to create single service.</p>
+        <p>During the second stage not only services are created, but also business features are integrated into SOA. This involves many layers of integration including application integration, information integration, process integration and the integration of the whole system.</p>
+        <p>The third stage involves transform enterprise IT basic establishment into SOA model.</p>
+        <p>The fourth stage is concentrated on transforming the business model, to make it ready according to requirements.</p>
+        <p>From IT specialist's point of view (comparing with business layer), creating SOA application usually needs to experience creation, deployment, use and management.</p>
+        <p>In construction phase, business model or process, software model and SOA model are defined. Then one can create a group of services, which can be reused with released general interfaces.</p>
+        <p>In deployment phase, created service is extracted and put in a executable and managable environment.</p>
+        <p>In use phase, application is assembled according to SOA and software model defined previously and also tests software quality and non-featured requirement.For example efficiency, flexibility etc. Applications are now ready for use by the user.</p>
+        <p>The last management phase is a long term process. In this phase, one can monitor and manage the security and use of SOA. Also one can compare the performance of the corresponding aspects of SOA service level protocol or strategy.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

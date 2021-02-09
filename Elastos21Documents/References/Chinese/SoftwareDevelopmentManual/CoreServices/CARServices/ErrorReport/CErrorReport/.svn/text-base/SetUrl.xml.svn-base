@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>CAR的错误返回机制</volume>
+    <title>CErrorReport::SetUrl</title>
+
+    <description>
+        <para>根据传入的URL，设置错误报告信息。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <return_name>SetUrl</return_name>
+        <parameters>
+            <api_param>
+                <param_type>  /* [in] */ AString  </param_type>
+                <param_name> url </param_name>
+                <param_note>
+                    <para>[in]url字符串</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<para>函数将总是返回E_ERROR_URL。</para>
+    </return>
+
+    <remarks>
+        <para>参数<i>url</i>是一个URL，URL是一个以'\0'结尾的ASCII字符串。不包括结尾的'\0'，字符串的最大容量为509个ASCII字符。如果传入的字符串超出限长，函数将忽略超出限长的部分。</para>
+        <para>如果想获取具体的错误信息，可以调用<link url="GetUrl.htm">CErrorReport::GetUrl</link>函数。</para>
+    </remarks>
+
+   <requirements>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+   <references>
+    <reference>
+        <ref_name> CErrorReport的API与错误值对应关系表 </ref_name>
+        <ref_url>Compare</ref_url>
+    </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,87 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>线程</volume>
+    <sample url="sdk\operating_system\CoreServices\CThread\AtQuit">samples</sample>
+    <title>CThread::AtQuit</title>
+    <routine_idx>../../../Thread.htm</routine_idx>
+
+    <description>
+        <para>注册当前线程退出时需要执行的函数。</para>
+    </description>
+
+    <syntax>
+        <return_val>template &lt;class T&gt; ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_type> T * </param_type>
+                <param_name> pThis </param_name>
+                <param_note>
+                    <para>[in] 线程退出时上下文对象的this指针</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> void </param_type>
+                <param_name> (ELAPICALLTYPE T::*pEntry)()) </param_name>
+                <param_note>
+                    <para>[in] 线程退出时需要执行的上下文对象的方法</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>成功返回</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>输入参数无效</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>可以通过多次调用这个方法向当前线程注册多个需要执行的函数，线程退出时按注册的相反顺序执行这些函数，也就是说最后注册的函数最先被执行。一个函数可以被注册多次。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+    <reference>
+        <ref_name> CProcess::AtExit</ref_name>
+        <ref_url>../CProcess/AtExit</ref_url>
+    </reference>
+    </references>
+
+
+</manpage>
+
+
+
+
+
+
+
+
+

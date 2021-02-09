@@ -1,0 +1,52 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method> ToBoolean </method>
+
+    <description>
+        <para> 将当前对象的值转换成布尔值。</para>
+    </description>
+    <syntax_nopara>
+        <return_val> Boolean  </return_val>
+        <modifier>const</modifier>
+    </syntax_nopara>
+    <return>
+        <para>AStringBuf对象字符串为”1”或者”true”或者"true"的不区分大小写方式时返回True，否则返回False。</para>
+    </return>
+    <remarks>
+    <para>如果AStringBuf对象包含的字符串指针指向NULL，则返回FALSE。</para>
+    </remarks>
+<example>
+<pre>
+AStringBuf_&lt;20&gt; asbuf;
+asbuf.Copy("1");
+CConsole::WriteLine(asbuf.ToBoolean());  //Display : True
+
+asbuf.SetEmpty();
+asbuf.Copy("0");
+CConsole::WriteLine(asbuf.ToBoolean());  //Display : False
+	
+asbuf.SetEmpty();
+asbuf.Copy("10");	
+CConsole::WriteLine(asbuf.ToBoolean());  //Display : False
+</pre>
+</example> 
+ 
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::ToDouble </ref_name>
+        <ref_url>../AStringBuf/ToDouble</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::ToBoolean </ref_name>
+        <ref_url>../WStringBuf/ToBoolean</ref_url>
+    </reference>
+</references>
+</manpage>

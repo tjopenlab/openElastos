@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_snprintf">_snprintf</sample>
+    <title> _snprintf, _snwprintf</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>格式化数据并输出到字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_snprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>输出字符的存储空间</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>允许存储的最大字符数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format [, argument] ...</param_name>
+                <param_note>
+                    <para>格式化控制（argument为可选参数）</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_snwprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchat_t*</param_type>
+                <param_name>format [, argument] ...</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_snprintf函数返回存储在buffer中内容的字节数，不包括结束符（'/0'）。如果格式化字符的长度超过count的值，则只将前count个字节的数据存储到buffer中，并返回负值。_snwprintf函数返回存储在buffer中的宽字符个数，不包括宽结束符（L'/0'）。如果格式化字符的长度超过count的值，则只将前count个宽字符的数据存储到buffer中，并返回负值。</para>
+    </return>
+
+    <remarks>
+        <para>_snprintf函数可以将小于等于count个字节的字符和数据格式化，并将其存储到buffer中（一般情况下，在结尾会加上结束符，除了出现count值等于零，或者格式化字符串的长度大于等于count的情况之外）。每个参数会按照相应的格式化规范转化并输出，格式化控制字段和printf函数的格式化控制字段有相同的功能和形式。</para>
+        <para>_snwprintf函数是_snprintf函数的宽字符版本，它的参数是宽字符串。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_snprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_snwprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* snprintf.cpp: This program uses sprintf to format various
+ * data and place them in the string named buffer.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char  buffer[200], s[] = &quot;computer&quot;, c = &apos;l&apos;;
+    int    i = 35, j;
+    float fp = 1.7320534f;
+
+    /* Format and print various data: */
+    j  = sprintf(buffer,      &quot;\tString:     %s\n&quot;, s);
+    j += sprintf(buffer + j, &quot;\tCharacter: %c\n&quot;, c);
+    j += sprintf(buffer + j, &quot;\tInteger:    %d\n&quot;, i);
+    j += sprintf(buffer + j, &quot;\tReal:        %f\n&quot;, fp);
+
+    printf(&quot;Output:\n%s\ncharacter count = %d\n&quot;, buffer, j);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Output:
+String:     computer
+Character: l
+Integer:    35
+Real:        1.732053
+
+character count = 75
+</result>
+
+   
+
+    <references>
+        <reference>
+            <ref_name>sprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>printf</ref_name>
+            <ref_url>wprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

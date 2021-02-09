@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\ldexp">ldexp</sample>
+    <title>ldexp</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>根据底数和指数计算结果</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>ldexp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>底数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>exp</param_name>
+                <param_note>
+                    <para>指数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para></para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>ldexp</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+    
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ldexp.cpp: This program uses ldexp to Get double-point value from mantissa and exponent. 
+ */
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+      {
+        double x=2.0,result;
+        int exp=6;
+        
+        result=ldexp(x,exp);  // 1.0*2^6
+        printf(&quot;%.2f^%d=%.2f&quot;,x,exp,result);
+        
+        return 0;
+      }
+</pre>
+    </example>
+<result>
+2.00^6=128.00
+</result>
+    
+</manpage>

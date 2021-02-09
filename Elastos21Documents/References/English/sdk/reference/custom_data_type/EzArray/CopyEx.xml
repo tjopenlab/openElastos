@@ -1,0 +1,91 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\CopyEx">CopyEx</sample>
+    <volume> Common Data Structures </volume>
+    <interface> EzArray   </interface>
+    <method> CopyEx </method>
+
+    <description>
+        <para>
+        	Copies the T array to the present <b>EzArray</b> object data area, and specifies the number of the 
+        	elements to be copied. 
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+        <api_param>
+            <param_type>const T*</param_type>
+            <param_name>src </param_name>
+            <param_note>
+                <para>
+                	Source T type array. 
+                </para>
+            </param_note>
+        </api_param>
+
+        <api_param>
+            <param_type> int  </param_type>
+            <param_name> len </param_name>
+            <param_note>
+                <para>
+                	The number of elements to be copied.
+                </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>
+        	Returns the number of the elements which is actually copied.
+        </para>
+    </return>
+
+    <remarks>
+        <para>
+        	Copies a range of elements specified by <i>len</i> to the starting index of target <b>EzArray</b>, which  
+        	overwrites the existing data. If <i>len</i> is greater than the length of EzArray, data will be truncated 
+        	and returns the number of the elements actually copied. 
+        </para>        
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <EzArray.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+    int array[4] = {0,1,2,3};
+    EzArray_<int, 4> myArray;
+
+    myArray.CopyEx(array, 4);
+    for(int i = 0; i < myArray.GetLength(); i++) {
+        printf("myArray[%d] = %d\n", i, myArray[i]);
+    }
+
+    return 0;
+}]]></pre></example>
+
+    <result><![CDATA[
+myArray[0] = 0
+myArray[1] = 1
+myArray[2] = 2
+myArray[3] = 3
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Copy </ref_name>
+            <ref_url> Copy </ref_url>
+        </reference>
+    </references>
+
+</manpage>

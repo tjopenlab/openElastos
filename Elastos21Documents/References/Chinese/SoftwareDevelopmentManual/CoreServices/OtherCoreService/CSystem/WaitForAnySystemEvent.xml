@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>系统对象</volume>
+    <title>CSystem::WaitForAnySystemEvent</title>
+    <routine_idx>../../System.htm</routine_idx>
+
+    <description>
+        <para>等待系统事件。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> SystemEvents </param_type>
+                <param_name> interestedEvents, </param_name>
+                <param_note>
+                    <para>[in] 指定了所关心的系统事件的集合</para>
+                </param_note>
+            </api_param>
+        </parameters>
+       <parameters>
+            <api_param>
+                <param_type> SystemEvent * </param_type>
+                <param_name> pSystemEvent, </param_name>
+                <param_note>
+                    <para>[out] 指向一个变量，用于存放所获取的已发生的系统事件。如果为NULL，则表明忽略此参数</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>参数不正确</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>该方法用来等待用户所关心的系统事件的集合中的任意一个系统事件的发生。如果所指定的系统事件集合中的所有系统事件都没有发生，当前线程将进入等待状态，直到其中任意一个系统事件发生了，才结束等待并返回已发生的事件。</para>
+    </remarks>
+
+    <requirements>
+         <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

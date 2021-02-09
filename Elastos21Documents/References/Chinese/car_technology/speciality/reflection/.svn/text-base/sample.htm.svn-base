@@ -1,0 +1,110 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+	<head>
+		<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+		<title>reflection sample</title>
+	</head>
+
+	<body>
+		<h3> CAR反射机制编程示例</h3>    
+        <p>系统级的服务总是由应用提出，CAR反射也不例外。在XML中，用到反射机制的地方主要是构件方法的动态调用，包括正向调用（Invoke）和反向调用（Callback）。下面举个例子说明CAR反射在脚本引擎中的应用。 </p>
+        <pre class= code>
+...
+
+IHello * pHello = NULL;                                  /* 定义接口指针，IHello在构件RefTest中提供实现 */
+IModuleInfo * pModuleInfo = NULL;                        /* 定义构件接口 */
+
+IClassInfo * pClassInfo = NULL;                          /* 定义类接口 */
+PObject pObj = NULL;                                     /* 定义类实例指针 */
+
+IMethodInfo * pMethodInfo = NULL;                        /* 定义方法接口 */
+IArgumentList * pArgumentList = NULL;                    /* 定义方法参数列表接口 */
+
+ECode ec;                                                /* 定义函数返回值变量 */
+
+ec = _CModuleInfo_Acquire(L"RefTest.dll", &pModuleInfo);  /*查询构件RefTest*/
+if (FAILED(ec)) {                                         /* 查询失败的情况 */
+    PrintF(0, "*ERROR* Failed to Acquire\n");
+    goto Exit;
+}
+
+ec = pModuleInfo->GetClassInfo("CHello", &pClassInfo);    /* 得到构件中的类Chello接口*/
+if (FAILED(ec)) {                                         /* GetClassInfo执行失败的情况 */
+    PrintF(0, "*ERROR* Failed to GetClassInfo\n");
+    goto Exit;
+}
+
+ec = pClassInfo->CreateObject(&pObj);                     /* 产生类Chello实例 */
+if (FAILED(ec)) {                                         /* CreateObject执行失败的情况 */
+    PrintF(0, "*ERROR* Failed to CreateObject\n");
+    goto Exit;
+}
+
+ec = pClassInfo->GetMethodInfo("test", &pMethodInfo);     /* 得到方法test的接口*/
+if (FAILED(ec)) {                                         /* GetMethodInfo执行失败的情况 */
+    PrintF(0, "*ERROR* Failed to GetMethodInfo\n");
+    goto Exit;
+}
+
+ec = pMethodInfo->CreateArgumentList(&pArgumentList);     /* 生成方法列表*/
+if (FAILED(ec)) {                                         /* CreateArgumentList执行失败的情况 */
+    PrintF(0, "*ERROR* Failed to CreateArgumentList\n");
+    goto Exit;
+}
+
+ec = pArgumentList->SetInputArgumentOfInt32(0, 100);      /* 根据序号设置参数值*/
+if (FAILED(ec)) {                                         /* SetInputArgumentOfInt32执行失败的情况 */
+    PrintF(0, "*ERROR* Failed to SetInputArgumentOfInt32\n");
+    goto Exit;
+}
+
+ec = pMethodInfo->Invoke(pObj, pArgumentList);            /* 完成动态调用test方法 */
+if (FAILED(ec)) {                                         /* Invoke执行失败的情况 */
+    PrintF(0, "*ERROR* Failed to Invoke\n");
+    goto Exit;
+}
+
+pModuleInfo->Release();                                   /* CAR是由COM演化而来，在程序结束前要使引用记数减一 */
+
+pClassInfo->Release();
+
+pObj->Release();
+
+pMethodInfo->Release();
+
+pArgumentList->Release();
+
+return 0;
+
+Exit:
+    if (pModuleInfo)
+    pModuleInfo->Release();
+    
+    if (pClassInfo)
+    pClassInfo->Release();
+    
+    if (pObj)
+    pObj->Release();
+    
+    if (pMethodInfo)
+    pMethodInfo->Release();
+    
+    if (pArgumentList)
+    pArgumentList->Release();
+    
+    return 1;
+...
+       	
+        </pre>
+        <p>下面来看一下CAR反射中Callback的设计模型，如图5-17： </p>
+        <center> <img src= "images\reflection_callback.JPG"/></center>
+        <center>图5-17Callback模型 </center>
+        <p>从上面模型可以看出，客户端与构件不直接对话，而是通过中间层DelegateProxy进行联系。Callback是在动态调用中应用的，同一个构件可以被不同客户调用（javascript可以调用，lua亦可以），如果让客户直接跟构件打交道，这样会因为参数类型不统一而给客户端带来很大开销。所以把客户要做的事情统一交给中间层DelegateProxy来做，而暴露给客户统一的ICallbackInvocation接口，用户只需要在自己的本地实现ICallbackInvocation接口即可。这样的模型设计不仅减少了用户开销，也使代码结构更加规范。 </p>
+    
+	</body>
+		
+</html>

@@ -1,0 +1,42 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> Aspect相关API </volume>
+    <method>Detach</method>
+
+    <description>
+        <para>动态解聚合aspect构件。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+        <api_param>
+            <param_type>PInterface</param_type>
+            <param_name>pObject</param_name>
+            <param_note>
+                <para>构件接口指针，该构件动态聚合aspect构件</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <remarks>
+        <para>1.使用该函数需添加类名前缀，该类是被动态聚合的aspect构件类。</para>
+    </remarks>
+
+    <example>
+    <pre class="codeview">
+IFoo * pFoo;
+
+IAspect * pAspect;
+
+CFoo::New(&amp;pFoo);
+
+......
+
+AAspect::Detach(pFoo);
+    </pre>
+    </example>        
+     
+</manpage>

@@ -1,0 +1,144 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR中的数据类型</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</head>
+
+<body>
+<h2 align="left">错误返回函数</h2>
+
+    <h3 align="left">错误返回函数对比表</h3>
+    <p align="left">下表列出错误返回函数分别在2.0和2.1上的对比以及在其它语言中的映射：</p>
+
+
+    <table class="MsoNormalTable" border="1" cellpadding="0" style="width: 771px" id="table1">
+		<thead>
+			<tr>
+				<td style="width:201px;padding:.75pt; ">
+				<p class="MsoNormal" align="left">2.1</td>
+				<td style="width:197px;padding:.75pt">
+				<p class="MsoNormal" align="left"><span lang="EN-US">2.0</span></td>
+				<td style="padding:.75pt .75pt .75pt .75pt" width="351">
+				<p class="MsoNormal" align="left"><span lang="EN-US">C++</span>数据类型</td>
+			</tr>
+		</thead>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">CErrorReport::SetWString</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size:10.5pt;font-family:&quot;Times New Roman&quot;">
+			EzSetErrorString(...);</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33" width="351">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">_CErrorReport_SetWString(string); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="28">
+			<p align="left">根据传入的宽字符串，设置错误报告信息</td>
+		</tr>
+		<tr style="height: 13.2pt">
+			<td style="padding:.75pt;" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">CErrorReport::SetAString </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt;height:13.2pt">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzSetErrorStringA(...); </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt;height:13.2pt" width="351">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">_CErrorReport_SetAString(string); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="32">
+			<p align="left">根据传入的ASCII字符串，设置错误报告信息</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US">CErrorReport::SetUrl </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="31">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size:10.5pt;font-family:&quot;Times New Roman&quot;">
+			EzSetErrorUrl(...); </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="31" width="351">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">_CErrorReport_SetUrl(url); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="31">
+			<p align="left">根据传入的<span lang="EN-US"> URL </span>，设置错误报告信息 </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US">CErrorReport::GetWString</span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+		<p class="MsoNormal" align="left">
+		<span lang="EN-US" style="font-size:10.5pt;font-family:&quot;Times New Roman&quot;">
+		EzGetErrorString(); </span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="33" width="351">
+		<p class="MsoNormal" align="left">
+		<span lang="EN-US">_CErrorReport_GetWString(); </span></td>
+		</tr>
+		<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="35">
+		<p class="MsoNormal" align="left">获取错误报告信息 </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">CErrorReport::GetAString </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: Times New Roman">
+			EzGetErrorStringA(); </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32" width="351">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">_CErrorReport_GetAString(); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38" colspan="2">
+			<p align="left">获取错误报告信息</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US">CErrorReport::GetUrl </span>
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			&nbsp;</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size:10.5pt;font-family:&quot;Times New Roman&quot;">
+			EzGetErrorUrl(); </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38" width="351">
+			<span lang="EN-US">_CErrorReport_GetUrl(); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="37" colspan="2">
+			<p class="MsoNormal" align="left">获取错误报告的<span lang="EN-US">URL
+			</span></td>
+		</tr>
+		</table>
+
+
+<p>　</p>
+
+
+    </body>
+</html>

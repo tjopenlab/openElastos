@@ -1,0 +1,99 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> carusage </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para>从*.dll或者*.cls生成CAR相关信息的列表。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> carusage </cmd_name>
+        <cmd_param> [-?/-help] [-i/-interface] [-c/-class] [-b/-baseclass] [-g/-generic] [-a/-aspect] [-k/-context] [-e/-enum] [-n/-const] [-s/-struct] [-m/-method] [-h/-callback] [-all] [-o/-output file] [-f]  &lt;*.dll | *.cls&gt; </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> -?/-help   </param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+    <param>
+        <param_name> -i/-interface   </param_name>
+        <param_note> 输出CAR文件所有接口信息 </param_note>
+    </param>
+    <param>
+        <param_name> -c/-class  </param_name>
+        <param_note> 输出CAR文件所有类信息 </param_note>
+    </param>
+    <param>
+        <param_name> -b/-baseclass   </param_name>
+        <param_note> 输出CAR文件所有基类信息 </param_note>
+    </param>
+    <param>
+        <param_name> -g/-generic  </param_name>
+        <param_note> 输出CAR文件所有泛类generic信息 </param_note>
+    </param>
+    <param>
+        <param_name> -a/-aspect  </param_name>
+        <param_note> 输出CAR文件所有方面aspect信息 </param_note>
+    </param>
+    <param>
+        <param_name> -k/-context </param_name>
+        <param_note> 输出CAR文件所有语境context信息 </param_note>
+    </param>
+    <param>
+        <param_name> -e/-enum   </param_name>
+        <param_note> 输出CAR文件所有枚举enum信息 </param_note>
+    </param>
+    <param>
+        <param_name> -n/-const  </param_name>
+        <param_note> 输出CAR文件所有常量const信息 </param_note>
+    </param>
+    <param>
+        <param_name> -s/-struct   </param_name>
+        <param_note> 输出CAR文件所有结构体struct信息 </param_note>
+    </param>
+    <param>
+        <param_name> -m/-method  </param_name>
+        <param_note> 输出CAR文件所有方法method信息 </param_note>
+    </param>
+    <param>
+        <param_name> -h/-callback  </param_name>
+        <param_note> 输出CAR文件所有callback信息 </param_note>
+    </param>
+    <param>
+        <param_name> -all  </param_name>
+        <param_note> 输出CAR文件所有信息 </param_note>
+    </param>
+    <param>
+        <param_name> -o/-output filename   </param_name>
+        <param_note> 用filename指定信息输出的文件 </param_note>
+    </param>
+    <param>
+        <param_name> -f  </param_name>
+        <param_note> 强制替换已存在的文件 </param_note>
+    </param>
+    </parameters>
+    <remarks>
+        <para>这里有两个特别的选项，就是all和method，其中all选项输出所有信息，method选项输出函数相关的信息。如果存在all选项，则其他选项就会忽略；如果存在method选项，则忽略其他选项。如果没有选项，则默认是all选项。</para>
+    </remarks>
+    <examples>
+     <example>
+        <eg_line>carusage -enum -const -struct hello.dll </eg_line>
+        <eg_note>输出hello.dll的枚举、常量、结构体的信息。</eg_note>
+    </example>
+    </examples>
+
+    <references>
+        <reference>
+            <ref_name> CAR构件技术简介</ref_name>
+            <ref_url>../../preface/elastos_technic/elastos_car </ref_url>
+        </reference>
+        <reference>
+            <ref_name> 自动代码生成框架</ref_name>
+            <ref_url>../../car_technology/fundamental/development_environment/auto_generate_code/auto_generate </ref_url>
+        </reference>
+    </references>
+
+</manpage>

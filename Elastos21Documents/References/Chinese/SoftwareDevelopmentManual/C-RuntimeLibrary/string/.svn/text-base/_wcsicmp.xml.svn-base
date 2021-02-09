@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_stricmp">_stricmp</sample>
+    <title> _stricmp,_wcsicmp,</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>将字符串全部视为小写进行比较。</para>
+    </description>
+    
+   
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_stricmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string1</param_name>
+                <param_note>
+                    <para>用于比较的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string2</param_name>
+                <param_note>
+                    <para>用于比较的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+   
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wcsicmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string1</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string2</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回值表明两个字符串在词典中的位序关系。具体含义如下表所示：</para>
+        <table>
+            <th>
+               <td>返回值</td>
+               <td>含义</td>
+            </th>
+            <tr>
+               <td><![CDATA[< 0]]></td>
+               <td>string1小于string2</td>
+            </tr>
+            <tr>
+               <td>0</td>
+               <td>string1与string2相等</td>
+            </tr>
+            <tr>
+               <td><![CDATA[> 0]]></td>
+               <td>string1大于string2</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>函数_stricmp依照词典中的位序，按小写方式对字符串string1和string2进行比较，用返回值表明两个串的关系。函数_wcsicmp是_stricmp的宽字符版本。函数_wcsicmp的参数和返回值，都是宽字符串，除此之外，和函数_stricmp一样。</para>
+        <para>_wcsicmp和wcscmp功能相同，只是wcscmp在比较之前不将字符串转换成小写方式。</para>
+    </remarks>
+
+    <requirements>
+        
+        <routine>
+            <routine_name>_stricmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wcsicmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _stricmp.cpp:this program compares lowercase versions of str1 and str2
+                and returns a value indicating their relationship
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    int isMatch;
+    char str1[20] = &quot;Hello&quot;;
+    char str2[20] = &quot;hello&quot;;
+    isMatch = _stricmp(str1, str2);
+
+    if (isMatch == 0) {
+        printf(&quot;str1: %s = str2: %s \n&quot;, str1, str2);
+    }
+    else if (isMatch &gt; 0) {
+        printf(&quot;str1: %s &gt; str2: %s \n&quot;, str1, str2);
+    }
+    else if (isMatch &lt; 0) {
+        printf(&quot;str1: %s &lt; str2: %s \n&quot;, str1, str2);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+str1: Hello = str2: hello
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name> memcmp </ref_name>
+            <ref_url>memcmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcscmp </ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncmp </ref_name>
+            <ref_url>wcsncmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _wcsnicmp </ref_name>
+            <ref_url>_wcsnicmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url>strrchr</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _strset  </ref_name>
+            <ref_url>_strset</ref_url>
+        </reference>
+    </references>
+
+</manpage>

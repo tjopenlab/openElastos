@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICanvas</interface><method> GetCharSize </method>
+    <description>
+        <para>
+            获取字符大小。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Char32 </param_type>
+                <param_name> character </param_name>
+                <param_note>
+                    <para>
+字符串文本信息。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IFont * </param_type>
+                <param_name> font </param_name>
+                <param_note>
+                    <para>
+指向<link url="../IFont.htm">IFont</link>接口类型的指针，用于指定绘制文本的字体，定义字符串的文本格式                    </para>
+                </param_note>
+            </api_param>            
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32* </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+字符宽度。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32* </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+字符高度。                    </para>
+                </param_note>
+            </api_param>                                     
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT 。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

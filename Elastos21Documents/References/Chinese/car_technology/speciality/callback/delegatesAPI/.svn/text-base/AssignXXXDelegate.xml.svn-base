@@ -1,0 +1,44 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> Delegates相关API </volume>
+    <method>AssignXXXDelegate</method>
+
+    <description>
+        <para>向server对象注册一个同步回调事件</para>
+    </description>
+    <syntax>
+        <return_val> static _ELASTOS  ECode </return_val>
+        <parameters>
+        <api_param>
+            <param_type>PInterface</param_type>
+            <param_name>pServerObj</param_name>
+            <param_note>
+                <para> 指向server对象的接口指针，表示回调事件的抛出者。 </para>
+            </param_note>
+        </api_param>
+       <api_param>
+            <param_type>ECode</param_type>
+            <param_name> (*pFunc)(_ELASTOS PVoid, PInterface)  </param_name>
+            <param_note>
+                <para> 函数指针,回调事件处理函数。</para>
+            </param_note>
+        </api_param>     
+        <api_param>
+            <param_type>PVoid</param_type>
+            <param_name> pUserData  </param_name>
+            <param_default> NULL</param_default>
+        </api_param>      
+        </parameters>
+    </syntax>
+    
+    <remarks>
+        <para>1.其中XXX对应回调接口中声明的方法名。</para>
+        <para>2.回调接口中的每个方法，都对应一个AssignXXXDelegate函数。</para>
+        <para>3.使用方法：CServer：：AssignXXXDelegate（......）,其中CServer表示抛出回调事件的server对象的类名。 </para>
+        <para>4.每注册一个回调事件必须要有相应的注销操作，即可以对每个AssignXXXDelegate执行其相应的<link url= "RemoveXXXDelegate.htm">RemoveXXXDelegate</link>操作，也可对所有的事件AssignXXXDelegate后，调用<link url= "RemoveAllCallbacks.htm">RemoveAllCallbacks</link>进行统一注销。</para>
+     </remarks>
+     
+</manpage>

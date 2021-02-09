@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WString</interface>
+    <method> Duplicate </method>
+
+    <description>
+        <para> 创建一个与指定的WString具有相同值的WString的新实例。</para>
+    </description>
+    <syntax>
+        <return_val> static WString </return_val>
+        <parameters>
+        <api_param>
+            <param_type>const WString &amp;</param_type>
+            <param_name> strSource </param_name>
+            <param_note>
+                <para> 要复制的WString。 </para>
+            </param_note>
+        </api_param>
+       </parameters>
+    </syntax>
+    <return>
+        <para>与strSource具有相同值的新WString。</para>
+    </return>
+    <remarks>
+        <para>1.如果strSource包含的字符串指针不为NULL,本函数会调用函数malloc为要拷贝的串分配内存，然后把strSource拷贝到分配的内存中。</para>
+        <para>2.用户需用Free函数释放Duplicate返回指针所指向的空间。</para>
+    </remarks>
+
+<example>
+<pre>
+请参见：<link url="../AString/Duplicate.htm">AString::Duplicate</link>
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>WString</ref_name>
+        <ref_url>../WString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::Free </ref_name>
+        <ref_url>../WString/Free</ref_url>
+    </reference>
+
+</references>      
+</manpage>

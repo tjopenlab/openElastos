@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strcpy">strcpy</sample>
+    <title> strcpy, wcscpy </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>拷贝字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strcpy</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strDestination</param_name>
+                <param_note>
+                    <para>目标字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strSource</param_name>
+                <param_note>
+                    <para>以NULL结尾的源字符串</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>wcscpy</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>strDestination</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>strSource</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>两个函数都返回指向目标字符串的指针，如无返回值则指示错误。</para>
+    </return>
+
+    <remarks>
+        <para>函数strcpy将strSource（包括字符串结束符NULL）拷贝到strDestination指定的区域。字符串的复制和追加不做溢出检查。对于strSource串和strDestination串重叠的情况strcpy没有定义。wcscpy是宽字符版本的strcpy。函数wcscpy的参数和返回值，都是宽字符串，除此之外，和函数strcpy一样。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strcpy</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcscpy</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+
+
+    <references>
+       <reference>
+            <ref_name> wcscat </ref_name>
+            <ref_url>wcscat</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcscmp </ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncat </ref_name>
+            <ref_url>wcsncat</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncmp </ref_name>
+            <ref_url>wcsncmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncpy </ref_name>
+            <ref_url>wcsncpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _wcsnicmp </ref_name>
+            <ref_url>_wcsnicmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url>strrchr</ref_url>
+        </reference>
+    </references>
+
+</manpage>

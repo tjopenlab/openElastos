@@ -1,0 +1,106 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\mbstowcs">mbstowcs</sample>
+    <title>mbstowcs</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Converts a sequence of multibyte characters to a corresponding sequence of wide characters.</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>mbstowcs</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>wcstr</param_name>
+                <param_note>
+                    <para>The address of a sequence of wide characters.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>mbstr</param_name>
+                <param_note>
+                    <para>The address of a sequence of multibyte characters.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>The number of multibyte characters to convert.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If mbstowcs successfully converts the source string, it returns the number of converted multibyte characters. If the wcstr argument is NULL, the function returns the required size of the destination string. If mbstowcs encounters an invalid multibyte character, it returns –1. If the return value is count, then the wide-character string is not null-terminated. </para>
+    </return>
+
+    <remarks>
+        <para>The mbstowcs function converts count or fewer multibyte characters pointed to by mbstr to a string of corresponding wide characters that are determined by the current locale. It stores the resulting wide-character string at the address represented by wcstr. The result is similiar to a series of calls to mbtowc. If mbstowcs encounters the single-byte null character ('\0') either before or when count occurs, it converts the null character to a wide-character null character (L'\0') and stops. Thus the wide-character string at wcstr is null-terminated only if a null character is encountered during conversion. If the sequences pointed to by wcstr and mbstr overlap, then the behavior is undefined. </para>
+        <para>If the wcstr argument is NULL,then mbstowcs returns the required size of the destination string. </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>mbstowcs</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* mbstowcs.cpp: this program use mbstowcs to convert string to wide-character string
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int i;
+    char    *pmbhi = &quot;Hi,Elastos!&quot;;
+    wchar_t pwc[12];
+
+    printf(&quot;Convert to wide-character string:%s\n&quot;, pmbhi);
+    i = mbstowcs(pwc, pmbhi, 12);
+    printf(&quot;\tCharacters converted: %d\n&quot;, i);
+    printf(&quot;\twide character string: %S\n&quot;, pwc);
+
+    return 0;
+
+}
+</pre>
+    </example>
+<result>
+	Convert wide-character string:Hi,Elastos!
+	        Characters converted: 11
+	        wide character string: Hi,Elastos!
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcstombs</ref_name>
+            <ref_url>wcstombs</ref_url>
+        </reference>
+    </references>
+
+</manpage>

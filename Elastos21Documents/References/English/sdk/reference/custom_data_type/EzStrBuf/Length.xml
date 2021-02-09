@@ -1,0 +1,57 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzStrBuf\length">Length</sample>
+    <volume> ommon Data Structure </volume>
+    <interface> EzStrBuf   </interface>
+    <method> Length </method>
+
+    <description>
+        <para> Gets the length of current string, in number of characters. </para>
+    </description>
+    <syntax>
+        <return_val> int </return_val>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para> Returns the number of characters in this string. </para>
+    </return>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStrBuf_<20> myStr;
+
+    myStr.Copy(L"Great Wall");
+    int len = myStr.Length();
+
+    if (!myStr.IsNull()) {
+        printf("The length of the string \"%S\"is %d.\n", (wchar_t *)myStr, len);
+    }
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+The length of the string "Great Wall"is 10.
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name> Capacity </ref_name>
+            <ref_url> Capacity </ref_url>
+        </reference>
+    </references>
+
+</manpage>

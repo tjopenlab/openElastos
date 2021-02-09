@@ -1,0 +1,53 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>    <manpage>
+
+    <volume>Standard Driver Callback Routine</volume>
+    <interface> Standard Driver Interface：IDriver </interface>
+
+    <description>
+        <para>
+            The device driver of Elastos 2.0 is linked into kernel image file statically and is a 
+            part of kernel. The same as other parts of kernel, the code of device driver runs under 
+            privileged mode of the processor. Excluding these features, device drivers of Elastos 2.0 
+            are essentially a special kind of <b>CAR</b> component that lies in the kernel. They must 
+            expose a uniform interface <b>IDriver</b>.
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Read</method_name>
+        <method_url>IDriver\Read</method_url>
+    <m_description>
+        Reads data from the device.
+    </m_description>
+    </method>
+    <method>
+        <method_name>Write</method_name>
+        <method_url>IDriver\Write</method_url>
+    <m_description>
+        Writes data to the device.
+    </m_description>
+    </method>
+    <method>
+        <method_name>Control</method_name>
+        <method_url>IDriver\Control</method_url>
+    <m_description>
+        Sends command to the device and retrieve status information.
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

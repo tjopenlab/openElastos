@@ -1,0 +1,444 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Datatypes In CAR</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Datatypes In CAR</h2>
+<p>Basic data types defined in CAR grammar include &quot;basic data type&quot;, &quot;self-descriptive data type&quot;, &quot;pointer and array data type&quot;. These data types are used to define parameters in interface method.</p>
+    <h3>Basic Data Type</h3>
+    <p>The following table lists basic CAR data type and its mapping in other languages: </p>
+    <table>
+        <thead>
+            <td width=20%>Basic CAR Datatype</td><td>C++ Datatype</td><td>Visual&nbsp;Basic Datatype</td><td>Description</td>
+        </thead>
+        <tr>
+            <td>
+                BOOL
+            </td>
+            <td>
+                BOOL
+            </td>
+            <td>
+
+            </td>
+            <td>
+                This data item is 32-bit integer, when its value is 0 it means false, when its value is not 0 it means true.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                boolean
+            </td>
+            <td>
+
+            </td>
+            <td>
+                VARIANT_BOOL
+            </td>
+            <td>
+                This data item is similar to VARIANT_BOOL, it is a 16-bit integer, when its value is 0 it means VARIANT_FALSE, when its value is not 0 it means VARIANT_TRUE.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                byte
+            </td>
+            <td>
+                unsigned char
+            </td>
+            <td>
+                Byte
+            </td>
+            <td>
+                8-bit unsigned character (integer) type.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                char
+            </td>
+            <td>
+                char
+            </td>
+            <td>
+
+            </td>
+            <td>
+                8-bit signed character (integer) type.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                UCHAR
+            </td>
+            <td>
+                unsigned char
+            </td>
+            <td>
+                Byte
+            </td>
+            <td>
+                8-bit unsigned character (integer) type.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                double
+            </td>
+            <td>
+                double
+            </td>
+            <td>
+                Double
+            </td>
+            <td>
+                64-bit IEEE floating point number.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                float
+            </td>
+            <td>
+                float
+            </td>
+            <td>
+                Single
+            </td>
+            <td>
+                32-bit IEEE floating point number.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                int
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Long
+            </td>
+            <td>
+                Signed integer, size determined by the system.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                __int64
+            </td>
+            <td>
+                __int64
+            </td>
+            <td>
+
+            </td>
+            <td>
+                Signed 64-bit integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                UINT
+            </td>
+            <td>
+                unsigned int
+            </td>
+            <td>
+                Long
+            </td>
+            <td>
+                Unsigned integer, the size is determined by the system.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                long
+            </td>
+            <td>
+                long
+            </td>
+            <td>
+                Long
+            </td>
+            <td>
+                32-bit signed integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ULONG
+            </td>
+            <td>
+                unsigned long
+            </td>
+            <td>
+                Long
+            </td>
+            <td>
+                32-bit unsigned integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                short
+            </td>
+            <td>
+                short
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                16-bit signed integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                USHORT
+            </td>
+            <td>
+                unsigned short
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                16-bit unsigned integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href=../../../../sdk/reference/custom_data_type/EzArray.htm>EzArray</a>
+            </td>
+            <td>
+                EzArray
+            </td>
+            <td>
+                SAFEARRAY
+            </td>
+            <td>
+                EzArray is a self-descriptive array.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href=../../../../sdk/reference/custom_data_type/EzByteBuf.htm>EzByteBuf</a>
+            </td>
+            <td>
+                EzByteBuf
+            </td>
+            <td>
+
+            </td>
+            <td>
+                User byte buffer data structure.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href=../../../../sdk/reference/custom_data_type/EzPoint.htm>EzPoint</a>
+            </td>
+            <td>
+                EzPoint
+            </td>
+            <td>
+
+            </td>
+            <td>
+                EzPoint is a two dimensional co-ordinate point.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href=../../../../sdk/reference/custom_data_type/EzStr.htm>EzStr</a>
+            </td>
+            <td>
+                EzStr
+            </td>
+            <td>
+                BSTR
+            </td>
+            <td>
+                Data structure that stores user string.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href=../../../../sdk/reference/custom_data_type/EzStrBuf.htm>EzStrBuf</a>
+            </td>
+            <td>
+                EzStrBuf
+            </td>
+            <td>
+
+            </td>
+            <td>
+                User string buffer data structure.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href=../../../../sdk/reference/custom_data_type/EzVar.htm>EzVar</a>
+            </td>
+            <td>
+                EzVar
+            </td>
+            <td>
+                VARIANT
+            </td>
+            <td>
+                Data structure that can store any type.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href=../../../../sdk/reference/custom_data_type/EzWCharBuf.htm>EzWCharBuf</a>
+            </td>
+            <td>
+                EzWCharBuf
+            </td>
+            <td>
+
+            </td>
+            <td>
+                Data structure that stores user wide character buffer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href=GUID.htm>GUID</a>
+            </td>
+            <td>
+                GUID
+            </td>
+            <td>
+
+            </td>
+            <td>
+                Global unique identifier.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href=EzCLSID.htm>EzCLSID</a>
+            </td>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+            <td>
+                CAR class identifier, used to uniquely identify a specific CAR class.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href=../../../../sdk/reference/basic_data_type/hresult.htm>ECODE</a>
+            </td>
+            <td>
+                long
+            </td>
+            <td>
+                Long
+            </td>
+            <td>
+                This data item is 32-bit integer, standard return type.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                InterfaceRef
+            </td>
+            <td>
+                InterfaceRef
+            </td>
+            <td>
+                IUnkown *
+            </td>
+            <td>
+                Interface represents user defined interface name, InterfaceRef is interface smart pointer representing this interface. For details please see <a class="style1" href="../smartpointer/smartpointer.htm">Smart Pointer</a>.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                TypeName*
+            </td>
+            <td>
+                TypeName*
+            </td>
+            <td>
+
+            </td>
+            <td>
+                TypeName is one of the above types. TypeName* points to the pointer of this type.
+            </td>
+        </tr>
+    </table>
+    <p>From the above table we know that, not all the CAR basic data types have mappings in other languages. So, when designing interface and parameters, we must select appropriate data type. If component interface is used by C/C++ language, then the above data types can all be used while defining method parameter. If considered that the component interface is used by Visual Basic or Java and other script languages,then you must select data types that can be processed by this language as the parameter type while defining method parameter. It is good to <b>note</b> that, if interface method parameter type uses non-CAR supported basic data type,then client program cannot remotely communicate with component program.</p>
+    <p><font color="red"><b>Note: </b>C++ types EzArray, EzPoint, EzByteBuf, EzStr etc. type corresponds to are defined as class in Elastos.</font></p>
+
+    <h3>Self Defined Data Type</h3>
+    <p>CAR self defined type includes enumerator type and struct, the definition is similar to C/C++.</p>
+    <ul>
+        <li><b>Enumeration</b>
+            <p>During the process of interface method definition, we may face the following situations: The value of certain parameter of the method can be one of a few fixed value. These fixed value is a group of value with the same property. Under this kind of situation, we can define this group of value as enumeration type. For example: </p>
+            <pre class="code">
+[uuid(E6C8647B-FF7C-434B-8C63-0F5618CB2C54), ……]
+component myCOM {
+enum  MyEnum {
+        MON1 = 1000,
+        MON2 = 1200,
+        MON3 = 1350
+};
+[uuid(815B2EC3-D324-42EF-8732-C30193C662C5)]
+interface IGoToKeTai {
+    ECODE ByPlane([in] enum MyEnum money);
+}
+……
+}
+</pre>
+
+        <li><b>Struct</b>
+            <p>User can define struct in CAR, meaning and definition of struct in CAR are the same as meaning and definition of struct in C/C++. For example: </p>
+            <pre class="code">
+struct  MyStruct  {
+        wchar_t  wcElem;
+        float  fElem;
+        long *plElem;
+};
+</pre>
+    </ul>
+
+    <h3>Pointer And Array Type</h3>
+    <p>CAR supports single and double pointer, declaration is the same as declaration of pointer variable in C/C++.</p>
+    <p>CAR use EzArray to support array. For example: To define one dimensional character array in C/C++, the syntax is: char&nbsp;ca[10] and to define the same one demensional character array in CAR file, the syntax is: EzArray(char)&nbsp;ca .</p>
+    <p><b>Remarks: </b>The difference between C/C++ and CAR is that you cannot specify the dimension of array variable in CAR while you can in C/C++.</p>
+
+    <h3>typedef</h3>
+    <p>In CAR, besides using the above couple of data types directly, you can also use <a class="style1" href="./keywords/keywords_typedef.htm">typedef</a> keyword to define new type name to replace existing type name. This can make the source code more readable. In CAR we use typedef keyword to define type alias. The syntax of typedef is: typedef&nbsp;TYPE&nbsp;ALIAS. For example: </p>
+    <pre class="code">
+typedef  unsigned  int  UINT;
+typedef  long  BOOL;
+typedef  unsigned  long  DWORD;
+</pre>
+    <p>Similarily, we can also define alias for self defined data types. For example: </p>
+    <pre class="code">
+typedef enum _Plane {
+    CHA,
+    USA,
+    COB,
+}Plane, *p_Plane;
+</pre>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IStackPanel</interface><method> GetGridDimension </method>
+    <description>
+        <para>
+            获取在网格风格显示下的 StackPanel 的行列数。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> rows </param_name>
+                <param_note>
+                    <para>
+ 指向 Int32 型的指针，用于获取 StackPanel 的行数，可以为 NULL</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> columns </param_name>
+                <param_note>
+                    <para>
+指向 Int32 型的指针， 用于获取 StackPanel 的列数，可以为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        参数地址均为 NULL 时，方法将调用失败。
+    </para>
+    <para>
+        只有当 StackPanel 在 StackPanelStyle_Grid（网格风格） 下显示时，调用该方法才有意义。默认情况下 StackPanel 显示为九宫格风格（即 3*3 格式），可以通过调用 <link url="SetGridDimension.htm">SetGridDimension</link> 方法随意设置 StackPanel 显示的行列数。若控件的尺寸大于每一小格的尺寸，则显示的内容将自动被剪裁。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CStackPanel 类介绍 </ref_name>
+        <ref_url>../../class/StackPanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IStackPanel 接口方法列表</ref_name>
+        <ref_url>../IStackPanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetGridDimension</ref_name>
+        <ref_url>SetGridDimension</ref_url>
+    </reference>
+</references>
+</manpage>

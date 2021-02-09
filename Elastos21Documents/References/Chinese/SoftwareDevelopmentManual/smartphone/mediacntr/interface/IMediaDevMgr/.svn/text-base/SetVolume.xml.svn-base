@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心</volume>
+<interface>IMediaDevMgr</interface><method> SetVolume </method>
+    <description>
+        <para>
+            设置音量，包括主音量，左声道音量和又声道音量。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> void * </param_type>
+                <param_name> pThis </param_name>
+                <param_note>
+                    <para>
+当前调用模块的对象指针。通过判断该指针与设备管理器中当前允许使用设备的模块指针的比较结果来决定是否允许该调用请求                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uMainVol </param_name>
+                <param_note>
+                    <para>
+指定的主音量值，采用百分制，取值范围是 0~100                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uLeftVol </param_name>
+                <param_note>
+                    <para>
+指定的左声道音量值，采用百分制，取值范围是 0~100                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> uRightVol </param_name>
+                <param_note>
+                    <para>
+指定的右声道音量值，采用百分制，取值范围是 0~100                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功时，返回 S_OK 。如果参数 uMainVol、uLeftVol 或 uRightVol 中任意一个值不在 0~100 范围之内，则参数无效，返回 E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

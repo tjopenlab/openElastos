@@ -1,0 +1,135 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzVar\change">change</sample>
+    <volume> Common data structure </volume>
+    <interface> EzVar </interface>
+    <method> operator datatypes </method>
+
+    <description>
+        <para> Data type conversion operator. Currently Elastos supports converting EzVar type to following types. </para>
+    </description>
+
+    <syntax>
+        <method_name> operator INT </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator INT * </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator UINT </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator UINT * </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator SHORT </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator SHORT * </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator USHORT</method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator USHORT * </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator LONG </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator LONG * </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator ULONG </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator ULONG * </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator FLOAT </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator FLOAT * </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator DOUBLE </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator DOUBLE * </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator BYTE </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator BYTE * </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator CHAR </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator CHAR * </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator EzStr&amp; </method_name>
+    </syntax>
+    <syntax>
+        <method_name> operator InterfaceRef&amp; </method_name>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>Returns the necessary data type, which is converted from EzVar type and the content of the data remains unchanged. </para>
+    </return>
+
+    <example><pre><![CDATA[
+#include "EzVar.h"
+#include "stdio.h"
+
+int __cdecl main()
+{
+    EzVar ezVar;
+
+    ezVar = 5;
+    printf("ezVar is %d\n", (INT)ezVar);
+
+    ezVar = 100;
+    printf("Now ezVar is %ld\n", (LONG)ezVar);
+
+    ezVar = 'A';
+    printf("Now ezVar is %c\n", (CHAR)ezVar);
+
+    ezVar = "ABCDE";
+    printf("Now ezVar is %s\n", (CHAR*)ezVar);
+
+    EzVar ezvar;
+
+    ezVar = 'a';
+    ezvar = ezVar;
+    printf("Now ezVar is %c\n", (BYTE)ezvar);
+
+    ezVar = "abcde";
+    ezvar = ezVar;
+    printf("Now ezVar is %s\n", (BYTE*)ezvar);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+ezVar is 5
+Now ezVar is 100
+Now ezVar is A
+Now ezVar is ABCDE
+Now ezVar is a
+Now ezVar is abcde
+]]>
+    </result>
+
+</manpage>

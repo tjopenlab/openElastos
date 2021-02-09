@@ -1,0 +1,62 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/structuremanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\EzArray\EzArray_Box3">EzArray_Box</sample>
+    <volume> Common Data Structure </volume>
+    <function>template&lt;T&gt; EzArray::EzArray_Box(EzArray_Box&lt;T&gt; &amp; src)</function>
+
+    <description>
+        <para>
+            Copy constructor of EzArray, it can only get the copy of array pointer.</para>
+    </description>
+
+    <syntax>
+        <apiname>EzArray_Box</apiname>
+        <parameters>
+        <api_param>
+            <param_type>EzArray_Box&lt;T&gt; &amp;</param_type>
+            <param_name>src </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>
+                    The reference of EzArray object.
+                </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>
+            EzArray_Box is a template class, and a subclass of EzArray. Template parameter T specifies the type of the
+            array elements.
+        </para>
+        <para>
+            This constructor creates EzArray object and allocate memory in stack, so no need to call
+            <link url="../Dispose.htm">Dispose</link> to release memory.
+        </para>
+        <para>
+            Since source and the target EzArray objects point to the same memory, the 
+            operation on one EzArray object data area will affect the other.
+        </para>
+    </remarks>
+
+    <example></example>
+
+    <references>
+        <reference>
+            <ref_name> Constructor 1 (T type array) </ref_name>
+            <ref_url> EzArray_Box1 </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Constructor 2 (T type array) </ref_name>
+            <ref_url> EzArray_Box2 </ref_url>
+        </reference>
+    </references>
+
+</manpage>

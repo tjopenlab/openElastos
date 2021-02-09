@@ -1,0 +1,95 @@
+<html>
+<body>
+     <table border=3>
+     <caption >
+     数据类型转换规则表
+     </caption>
+		<thead>
+			<td align=center><b>Internal Type</b></td>
+			<td align=center><b>Requested Type</b></td>
+			<td align=center><b>Conversion</b></td>
+		</thead>
+		<tr align=center>
+			<td>NULL</td>
+			<td>INTEGER</td>
+			<td>Result is 0</td>
+		</tr>
+			<tr align=center>
+			<td>NULL</td>
+			<td>FLOAT</td>
+			<td>Result is 0.0</td>
+		</tr>
+		<tr align=center>
+			<td>NULL</td>
+			<td>TEXT</td>
+			<td>Result is an empty string</td>
+		</tr>
+		<tr align=center>
+			<td>NULL</td>
+			<td>BLOB</td>
+			<td>Result is a zero-length BLOB</td>
+		</tr>
+		<tr align=center>
+			<td>INTEGER</td>
+			<td>FLOAT</td>
+			<td>Convert from integer to FLOAT</td>
+		</tr>
+		<tr align=center>
+			<td>INTEGER</td>
+			<td>TEXT</td>
+			<td>ASCII rendering of the integer</td>
+		</tr>
+		<tr align=center>
+			<td>INTEGER</td>
+			<td>BLOB</td>
+			<td>Same as for INTEGER->TEXT</td>
+		</tr>
+		<tr align=center>
+			<td>FLOAT</td>
+			<td>INTEGER</td>
+			<td>Convert from FLOAT to integer</td>
+		</tr>
+		<tr align=center>
+			<td>FLOAT</td>
+			<td>TEXT</td>
+			<td>ASCII rendering of the FLOAT</td>
+		</tr>
+		<tr align=center>
+			<td>FLOAT</td>
+			<td>BLOB</td>
+			<td>Same as FLOAT->TEXT</td>
+		</tr>
+		<tr align=center>
+			<td>TEXT</td>
+			<td>INTEGER</td>
+			<td>Use atoi()</td>
+		</tr>
+		<tr align=center>
+			<td>TEXT</td>
+			<td>FLOAT</td>
+			<td>Use atof(</td>
+		</tr>
+		<tr align=center>
+			<td>TEXT</td>
+			<td>BLOB</td>
+			<td>No change</td>
+		</tr>
+		<tr align=center>
+			<td>BLOB</td>
+			<td>INTEGER</td>
+			<td>Convert to TEXT then use atoi()</td>
+		</tr>
+		<tr align=center>
+			<td>BLOB</td>
+			<td>FLOAT</td>
+			<td>Convert to TEXT then use atof()</td>
+		</tr>
+		<tr align=center>
+			<td>BLOB</td>
+			<td>TEXT</td>
+			<td>Add a \000 terminator if needed</td>
+		</tr>
+
+	</table>
+	</body>
+	</html>

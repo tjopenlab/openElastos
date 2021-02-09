@@ -1,0 +1,1352 @@
+<html>
+<head>
+<title>基本系统服务C/C++函数对照表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h1>基本系统服务C/C++函数对照表</h1>
+
+<h2>基本CAR函数</h2>
+
+<table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+
+    <tr>
+        <td>
+            CProcess::FreeUnusedModules
+        </td>
+        <td>
+            _CProcess_FreeUnusedModules(TRUE);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            释放当前没在使用的构件DLL
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <!--<a class="style1" href="..\CoreServices\CARServices\BasicCAR\CObject\CreateInstance.htm">CObject::CreateInstance</a>-->
+            CObject::CreateInstance
+        </td>
+        <td>
+            _CObject_CreateInstance(rclsid, pContext, riid, ppObj);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            实例化一个对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\BasicCAR\CObject\Compare.htm">CObject::Compare</a>
+        </td>
+        <td>
+            _CObject_Compare(pObjectA, pObjectB);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            比较两个构件对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\BasicCAR\CObject\ReleaseAtProcessExit.htm">CObject::ReleaseAtProcessExit</a>
+        </td>
+        <td>
+            _CObject_ReleaseAtProcessExit(pObject);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            当进程退出时释放对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\BasicCAR\CObject\ReleaseAtThreadQuit.htm">CObject::ReleaseAtThreadQuit</a>
+        </td>
+        <td>
+            _CObject_ReleaseAtThreadQuit(pObject);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            当线程退出时释放对象
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <!--<a class="style1" href="..\CoreServices\CARServices\BasicCAR\CObject\EnterContext.htm">CObject::EnterContext</a>-->
+            CObject::EnterContext
+        </td>
+        <td>
+            _CObject_EnterContext(pObject, pContext);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            对象进入Context语境
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <!--<a class="style1" href="..\CoreServices\CARServices\BasicCAR\CObject\LeaveContext.htm">CObject::LeaveContext</a>-->
+            CObject::LeaveContext
+        </td>
+        <td>
+            _CObject_LeaveContext(pObject, pContext);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            对象离开Context语境
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <!--<a class="style1" href="..\CoreServices\CARServices\BasicCAR\CObject\AttachAspect.htm">CObject::AttachAspect</a>-->
+            CObject::AttachAspect
+        </td>
+        <td>
+            _CObject_AttachAspect(pAggregator, pAspect);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            是对象与指定的Aspect聚合
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <!--<a class="style1" href="..\CoreServices\CARServices\BasicCAR\CObject\DetachAspect.htm">CObject::DetachAspect</a>-->
+            CObject::DetachAspect
+        </td>
+        <td>
+            _CObject_DetachAspect(pAggregator, rAspectClsid);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            是对象与指定的Aspect分离
+        </td>
+    </tr>
+</table>
+
+<h2>命名服务</h2>
+
+<table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\NamingService\CSystem\RegisterRunningObject.htm">CSystem::RegisterRunningObject</a>
+        </td>
+        <td>
+            _CSystem_RegisterRunningObject(name, pRunningObject);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            向操作系统注册命名服务接口
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\NamingService\CSystem\FindRunningObject.htm">CSystem::FindRunningObject</a>
+        </td>
+        <td>
+            _CSystem_FindRunningObject(name, ppRunningObject);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取指定名字的服务接口
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\NamingService\CSystem\WaitForRunningObject.htm">CSystem::WaitForRunningObject</a>
+        </td>
+        <td>
+            _CSystem_WaitForRunningObject(name, timeout, pResult);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            等待指定的命名服务被注册
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\NamingService\CSystem\UnregisterRunningObject.htm">CSystem::UnregisterRunningObject</a>
+        </td>
+        <td>
+            _CSystem_UnregisterRunningObject(name);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            取消已注册的命名服务
+        </td>
+    </tr>
+</table>
+
+<h2>内存管理</h2>
+
+<table>
+    <thead>
+        <td> 函数名称 </td><td> C语言对应函数 </td>
+    </thead>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\MemoryManagement\CProcess\FlushInstructionCache.htm">CProcess::FlushInstructionCache</a>
+        </td>
+        <td>
+            _CProcess_FlushInstructionCache(baseAddr, size);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            刷出当前进程所对应的指令缓存
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\MemoryManagement\CVirtualMemory\IoRemap.htm">CVirtualMemory::IoRemap</a>
+        </td>
+        <td>
+            _CVirtualMemory_IoRemap(virtualAddr,size,physicalAddr,flags,protection,pVirtualAddr);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            将指定的IO地址段映射到进程虚存段上
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\MemoryManagement\CVirtualMemory\Alloc.htm">CVirtualMemory::Alloc</a>
+        </td>
+        <td>
+            _CVirtualMemory_Alloc(baseAddr, size, flags, protection, pBaseAddr);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            分配一个虚存块
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\MemoryManagement\CVirtualMemory\CheckProtection.htm">CVirtualMemory::CheckProtection</a>
+        </td>
+        <td>
+            _CVirtualMemory_CheckProtection(address, protection, pIsValid);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            检查对指定的虚存地址是否具有指定的访问权限
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\MemoryManagement\CVirtualMemory\Commit.htm">CVirtualMemory::Commit</a>
+        </td>
+        <td>
+            _CVirtualMemory_Commit(address);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            要求系统提交指定虚存的物理内存
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\MemoryManagement\CVirtualMemory\Free.htm">CVirtualMemory::Free</a>
+        </td>
+        <td>
+            _CVirtualMemory_Free(baseAddr, size);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            释放指定的虚存块
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\MemoryManagement\CVirtualMemory\SetProtection.htm">CVirtualMemory::SetProtection</a>
+        </td>
+        <td>
+            _CVirtualMemory_SetProtection(baseAddr, size, protection);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            改变指定虚存的保护权限
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\MemoryManagement\CVirtualMemory\Query.htm">CVirtualMemory::Query</a>
+        </td>
+        <td>
+            _CVirtualMemory_Query(address, pBaseAddr, pSize);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            查询指定地址所在虚拟内存块的信息
+        </td>
+    </tr>
+</table>
+
+<h2>进程</h2>
+    <table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CProcess\NewUnstarted.htm">CProcess::New</a>
+        </td>
+        <td>
+            _CProcess_NewUnstarted(ppProcess);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建一个新进程对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CProcess\New.htm">CProcess::New</a>
+        </td>
+        <td>
+            _CProcess_New(name, args, ppProcess);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建一个新进程
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CProcess\Exit.htm">CProcess::Exit</a>
+        </td>
+        <td>
+            _CProcess_Exit(exitCode);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            退出当前进程
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CProcess\AtExit.htm">CProcess::AtExit</a>
+        </td>
+        <td>
+            _CProcess_AtExit(pEntry, pUserData);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            退出当前进程
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CProcess\GetCurrent.htm">CProcess::GetCurrent</a>
+        </td>
+        <td>
+            _CProcess_GetCurrent(ppCurrentProcess);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取当前进程接口IProcess的指针
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CSystem\GetAllProcesses.htm">CSystem::GetAllProcesses</a>
+        </td>
+        <td>
+            _CSystem_GetAllProcesses(ppProcesses);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取系统中所有进程的枚举器
+        </td>
+    </tr>
+</table>
+
+<h2>线程</h2>
+    <table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CThread\New.htm">CThread::New</a>
+        </td>
+        <td>
+            _CThread_New(pEntry, pArg, flags, ppThread);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建一个新线程
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CThread\Delay.htm">CThread::Delay</a>
+        </td>
+        <td>
+            _CThread_Delay(us);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            使当前线程进入忙等待
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CThread\Quit.htm">CThread::Quit</a>
+        </td>
+        <td>
+            _CThread_Quit(quitCode);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            退出当前线程
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CThread\AtQuit.htm">CThread::AtQuit</a>
+        </td>
+        <td>
+            _CThread_AtQuit(pEntry, pUserData);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            退出当前线程
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CThread\RequestToQuit.htm">CThread::RequestToQuit</a>
+        </td>
+        <td>
+            _CThread_RequestToQuit(quitCode);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            请求退出当前线程
+        </td>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CThread\GetCurrent.htm">CThread::GetCurrent</a>
+        </td>
+        <td>
+            _CThread_GetCurrent(ppCurrentThread);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取当前线程接口的IThread指针
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CThread\Sleep.htm">CThread::Sleep</a>
+        </td>
+        <td>
+            _CThread_Sleep(ms, pResult);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            使当前线程进入睡眠状态
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ProcessThread\Function\CThread\Yield.htm">CThread::Yield</a>
+        </td>
+        <td>
+            _CThread_Yield();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            主动放弃当前线程的调度权
+        </td>
+    </tr>
+</table>
+
+<h2>ThreadLocalStorage（Thread Local Storage）</h2>
+
+    <table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ThreadLocalStorage\CThread\AcquireLocalSlot.htm">CThread::AcquireLocalSlot</a>
+        </td>
+        <td>
+            _CThread_AcquireLocalSlot(slotType, pSlotIndex);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            分配一个ThreadLocalStorage index（Thread Local Storage索引号）
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ThreadLocalStorage\CThread\GetLocalMemory.htm">CThread::GetLocalMemory</a>
+        </td>
+        <td>
+            _CThread_GetLocalMemory(slotIndex, ppMemory);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            根据指定的ThreadLocalStorage索引号，获取调用线程的相应tls槽（slot）中存储的数据（堆内存指针）
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ThreadLocalStorage\CThread\GetLocalObject.htm">CThread::GetLocalObject</a>
+        </td>
+        <td>
+            _CThread_GetLocalObject(slotIndex, ppObj);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            根据指定的ThreadLocalStorage索引号，获取调用线程的相应tls槽（slot）中存储的数据（构件对象指针）
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ThreadLocalStorage\CThread\GetLocalValue.htm">CThread::GetLocalValue</a>
+        </td>
+        <td>
+            _CThread_GetLocalValue(slotIndex, pValue);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            根据指定的ThreadLocalStorage索引号，获取调用线程的相应tls槽（slot）中存储的数据（立即数指针）
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ThreadLocalStorage\CThread\RelinquishLocalSlot.htm">CThread::RelinquishLocalSlot</a>
+        </td>
+        <td>
+            _CThread_RelinquishLocalSlot(slotIndex);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            释放一个ThreadLocalStorage索引号，使该索引号可以被重用，并回收堆内存/释放构件对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ThreadLocalStorage\CThread\SetLocalMemory.htm">CThread::SetLocalMemory</a>
+        </td>
+        <td>
+            _CThread_SetLocalMemory(slotIndex, pMemory);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            通过指定的ThreadLocalStorage索引号，将某个值（堆内存指针）存储在调用线程中对应的私有tls槽（slot）中
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ThreadLocalStorage\CThread\SetLocalObject.htm">CThread::SetLocalObject</a>
+        </td>
+        <td>
+            _CThread_SetLocalObject(slotIndex, pObject);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+             通过指定的ThreadLocalStorage索引号，将某个值（构件对象指针）存储在调用线程中对应的私有tls槽（slot）中
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\ThreadLocalStorage\CThread\SetLocalValue.htm">CThread::SetLocalValue</a>
+        </td>
+        <td>
+            _CThread_SetLocalValue(slotIndex, value);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            通过指定的ThreadLocalStorage索引号，将某个值（立即数指针）存储在调用线程中对应的私有tls槽（slot）中
+        </td>
+    </tr>
+
+</table>
+
+<h2>同步</h2>
+<table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CCondition\New0.htm">CCondition::New</a>
+        </td>
+        <td>
+            _CCondition_New(ppCondition);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建条件变量对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CCondition\New.htm">CCondition::New</a>
+        </td>
+        <td>
+            _CCondition_NewWithName(name, ppCondition, pAlreadyExists);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建命名条件变量对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CEvent\New0.htm">CEvent::New</a>
+        </td>
+        <td>
+            _CEvent_New(manualReset, initialState, ppEvent);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建事件同步对象
+        </td>
+    </tr>
+        <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CEvent\New.htm">CEvent::New</a>
+        </td>
+        <td>
+            _CEvent_NewWithName(name, manualReset, initialState, ppEvent, pAlreadyExists);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建命名事件同步对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CMutex\New0.htm">CMutex::New</a>
+        </td>
+        <td>
+            _CMutex_New(ppMutex);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建互斥锁对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CMutex\New.htm">CMutex::New</a>
+        </td>
+        <td>
+            _CMutex_NewWithName(name, ppMutex, pAlreadyExists);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建命名互斥锁对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CReaderWriterLock\New0.htm">CReaderWriterLock::New</a>
+        </td>
+        <td>
+            _CReaderWriterLock_New(ppRWLock);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建读写锁对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CReaderWriterLock\New.htm">CReaderWriterLock::New</a>
+        </td>
+        <td>
+            _CReaderWriterLock_NewWithName(name, ppRWLock, pAlreadyExists);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建命名读写锁对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CEvent\TryWaitForAnyEvent.htm">CEvent::TryWaitForAnyEvent</a>
+        </td>
+        <td>
+            _CEvent_TryWaitForAnyEvent(&events, timeout, pResult, pIndex, pState);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            尝试在指定时间间隔内同时等待多个事件对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CEvent\WaitForAnyEvent.htm">CEvent::WaitForAnyEvent</a>
+        </td>
+        <td>
+            _CEvent_WaitForAnyEvent(&events, pResult, pIndex, pState);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            同时等待多个事件对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CCriticalSection\Terminate.htm">CCriticalSection::Terminate</a>
+        </td>
+        <td>
+            _CCriticalSection_Terminate(*pCriticalSection);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            删除临界区，释放相关资源
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CCriticalSection\Enter.htm">CCriticalSection::Enter</a>
+        </td>
+        <td>
+            _CCriticalSection_Enter(*pCriticalSection);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            以阻塞方式，进入临界区
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CCriticalSection\Initialize.htm">CCriticalSection::Initialize</a>
+        </td>
+        <td>
+            _CCriticalSection_Initialize(*pCriticalSection);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            初始化临界区
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CCriticalSection\TryEnter.htm">CCriticalSection::TryEnter</a>
+        </td>
+        <td>
+            _CCriticalSection_TryEnter(*pCriticalSection,*pEntered);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            以非阻塞方式，进入临界区
+        </td>
+    </tr>
+   <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\synchronization\Function\CCriticalSection\Leave.htm">CCriticalSection::Leave</a>
+        </td>
+        <td>
+            _CCriticalSection_Leave(*pCriticalSection);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            离开临界区
+        </td>
+    </tr>
+</table>
+
+<h2>其它系统服务</h2>
+<table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CSystem\DebugPrint.htm">CSystem::DebugPrint</a>
+        </td>
+        <td>
+            _CSystem_DebugPrint(message);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            输出打印信息到控制台
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CSystem\GetGlobalMemorySizes.htm">CSystem::GetGlobalMemorySizes</a>
+        </td>
+        <td>
+            _CSystem_GetGlobalMemorySizes(pTotalPhysicalMemorySize,pAvailablePhysicalMemorySize);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取系统总的物理内存以及当前可用的物理内存。
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CSystem\GetElapsedTime.htm">CSystem::GetElapsedTime</a>
+        </td>
+        <td>
+            _CSystem_GetElapsedTime(pTime);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取系统自启动以来流逝的总时间（以毫秒为单位）
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CSystem\GetIdleTime.htm">CSystem::GetIdleTime</a>
+        </td>
+        <td>
+            _CSystem_GetIdleTime(pTime);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取系统处于空闲状态的总时间（以毫秒为单位）
+        </td>
+    </tr>
+   <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CSystem\GetMachineTime.htm">CSystem::GetMachineTime</a>
+        </td>
+        <td>
+            _CSystem_GetMachineTime(pMachineTime);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            以微秒的精度获取当前的系统标准时间（UTC）
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CSystem\SetMachineTime.htm">CSystem::SetMachineTime</a>
+        </td>
+        <td>
+            _CSystem_SetMachineTime(machineTime);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            设置当前的系统标准时间（UTC）
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CSystem\Reboot.htm">CSystem::Reboot</a>
+        </td>
+        <td>
+            _CSystem_Reboot();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            重新启动机器
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CSystem\GetVersion.htm">CSystem::GetVersion</a>
+        </td>
+        <td>
+            _CSystem_GetVersion();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取当前操作系统版本信息
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CSystem\CreateSystemEventHandle.htm">CSystem::CreateSystemEventHandle</a>
+        </td>
+        <td>
+            _CSystem_CreateSystemEventHandle(interestedEvents, ppEvent);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建一个等待系统事件的同步对象
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CSystem\WaitForAnySystemEvent.htm">CSystem::WaitForAnySystemEvent</a>
+        </td>
+        <td>
+            _CSystem_WaitForAnySystemEvent(interestedEvents, pSystemEvent);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            等待系统事件
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CProfile\GetInt32.htm">CProfile::GetInt32</a>
+        </td>
+        <td>
+            _CProfile_GetInt32(appName, keyName, pValue);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获得整型的配置文件elastos.cfg 中指定section段里的关键字的值
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CProfile\GetAString.htm">CProfile::GetAString</a>
+        </td>
+        <td>
+            _CProfile_GetAString(appName, keyName, pReturnedString);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获得字符串格式的配置文件elastos.cfg 中指定section段里的关键字的值
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\OtherCoreService\CProfile\GetWString.htm">CProfile::GetWString</a>
+        </td>
+        <td>
+            _CProfile_GetWString(appName, keyName, pReturnedString);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获得字符串格式的配置文件elastos.cfg 中指定section段里的关键字的值
+        </td>
+    </tr>
+</table>
+
+<h2>错误返回机制</h2>
+
+<table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\ErrorReport\CErrorReport\SetWString.htm">CErrorReport::SetWString</a>
+        </td>
+        <td>
+            _CErrorReport_SetWString(string);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            根据传入的宽字符串，设置错误报告信息
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\ErrorReport\CErrorReport\SetAString.htm">CErrorReport::SetAString</a>
+        </td>
+        <td>
+            _CErrorReport_SetAString(string);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            根据传入的 ASCII 字符串，设置错误报告信息
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\ErrorReport\CErrorReport\SetUrl.htm">CErrorReport::SetUrl</a>
+        </td>
+        <td>
+            _CErrorReport_SetUrl(url);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            根据传入的 URL ，设置错误报告信息
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\ErrorReport\CErrorReport\GetWString.htm">CErrorReport::GetWString</a>
+        </td>
+        <td>
+            _CErrorReport_GetWString();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取错误报告信息
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\ErrorReport\CErrorReport\GetAString.htm">CErrorReport::GetAString</a>
+        </td>
+        <td>
+            _CErrorReport_GetAString();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取错误报告信息
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\ErrorReport\CErrorReport\GetUrl.htm">CErrorReport::GetUrl</a>
+        </td>
+        <td>
+            _CErrorReport_GetUrl();
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取错误报告的URL
+        </td>
+    </tr>
+</table>
+
+<h2>可执行文件和模块</h2>
+<table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\Module\Function\CModule\GetCurrent.htm">CModule::GetCurrent</a>
+        </td>
+        <td>
+            _CModule_GetCurrent(ppModule);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            获取当前进程装载的映像模块
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\ProcessThread\Module\Function\CModule\Load.htm">CModule::Load</a>
+        </td>
+        <td>
+            _CModule_Load(name, flags, ppModule);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            在当前进程中装载映像模块
+        </td>
+    </tr>
+</table>
+
+<h2>内存共享</h2>
+
+<table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\InterprocessCommunication\SharedMemory\Function\CSharedMemory\New.htm">CSharedMemory::New</a>
+        </td>
+        <td>
+            _CSharedMemory_New(name, size, commit, ppSharedMemory, pAlreadyExists);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            创建共享内存
+        </td>
+    </tr>
+</table>
+
+<h2>堆内存</h2>
+
+<table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+    <tr>
+        <td>
+            CMemoryHeap::Alloc
+        </td>
+        <td>
+            _CMemoryHeap_Alloc(size, zeroMemory);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            分配一块内存。
+        </td>
+    </tr>
+    <tr>
+        <td>
+            CMemoryHeap::Realloc
+        </td>
+        <td>
+            _CMemoryHeap_Realloc(pMemory, size);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            重新分配内存的大小。
+        </td>
+    </tr>
+    <tr>
+        <td>
+            CMemoryHeap::Free
+        </td>
+        <td>
+            _CMemoryHeap_Free(pMemory);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            释放此前由CMemoryHeap::Alloc或CMemoryHeap::Realloc函数调用分配的内存块。
+        </td>
+    </tr>
+    <tr>
+        <td>
+            CMemoryHeap::Trim
+        </td>
+        <td>
+            _CMemoryHeap_Trim(pad);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            缩减用户堆，向系统返还物理内存。
+        </td>
+    </tr>
+    <tr>
+        <td>
+            CMemoryHeap::GetStatistics
+        </td>
+        <td>
+            _CMemoryHeap_GetStatistics(pInUseBytes, pSystemBytes, pMaxSystemBytes);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            返回当前用户堆状态。
+        </td>
+    </tr>
+</table>
+
+<h2>CAR反射函数</h2>
+
+<table>
+    <thead>
+        <td>函数名称</td><td>C语言对应函数</td>
+    </thead>
+
+    <tr>
+        <td>
+            <!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireModuleInfo.htm">CReflector::AcquireModuleInfo</a>-->
+            CReflector::AcquireModuleInfo
+        </td>
+        <td>
+            _CReflector_AcquireModuleInfo(name, ppModuleInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的文件名中获得ModuleInfo
+        </td>
+    </tr>
+    <!--
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireIntrinsicTypeInfo.htm">CReflector::AcquireIntrinsicTypeInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireIntrinsicTypeInfo(intrinsicType, ppIntrinsicTypeInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的     中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireEnumInfo.htm">CReflector::AcquireEnumInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireEnumInfo(name, &itemNames, &itemValues, ppEnumInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的     中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireCppVectorInfo.htm">CReflector::AcquireCppVectorInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireCppVectorInfo(pElementTypeInfo, length, ppCppVectorInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的    中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireStructInfo.htm">CReflector::AcquireStructInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireStructInfo(name, &fieldNames, &fieldTypeInfos, ppStructInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从模块的    中获得
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="..\CoreServices\CARServices\Reflection\CReflector\AcquireCarArrayInfo.htm">CReflector::AcquireCarArrayInfo</a>
+        </td>
+        <td>
+            _CReflector_AcquireCarArrayInfo(pElementTypeInfo, ppCarArrayInfo);
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan =2>
+            从模块的    中获得
+        </td>
+    </tr>
+    -->
+    <tr>
+        <td>
+            <!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CObject\ReflectClassInfo.htm">CObject::ReflectClassInfo</a>-->
+            CObject::ReflectClassInfo
+        </td>
+        <td>
+            _CObject_ReflectClassInfo(pObj, piClassInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从构件对象指针中获得IClassInfo
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CObject\ReflectInterfaceInfo.htm">CObject::ReflectInterfaceInfo</a>-->
+            CObject::ReflectInterfaceInfo
+        </td>
+        <td>
+            _CObject_ReflectInterfaceInfo(pObj, piInterfaceInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从构件对象指针中获得IInterfaceInfo
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <!--<a class="style1" href="..\CoreServices\CARServices\Reflection\CObject\ReflectModuleInfo.htm">CObject::ReflectModuleInfo</a>-->
+            CObject::ReflectModuleInfo
+        </td>
+        <td>
+            _CObject_ReflectModuleInfo(pObj, piModuleInfo);
+        </td>
+    </tr>
+    <tr>
+        <td colspan =2>
+            从构件对象指针中获得IModuleInfo
+        </td>
+    </tr>
+</table>
+
+<script>footer("chinese")</script>
+</body>
+</html>

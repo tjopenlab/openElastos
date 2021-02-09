@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IGraphics</interface><method> DrawPolygon </method>
+    <description>
+        <para>
+            绘制由一组Point数据结构定义的多边形。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Color </param_type>
+                <param_name> color </param_name>
+                <param_note>
+                    <para>
+用来绘制多边形的画笔颜色                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> BufferOf&lt;Point&gt; </param_type>
+                <param_name> points </param_name>
+                <param_note>
+                    <para>
+指定多边形各个顶点的EzPoint数组                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            数组中的每对相邻的两个点指定多边形的一条边。另外，如果数组的最后一个点和第一个点不重合，则这两个点指定多边形的最后一条边。</para><para>            多边形颜色的取值指定为            <link url="../../datatype/Color.htm">            Color            </link>            数据类型。
+        </para>
+    </remarks>
+</manpage>

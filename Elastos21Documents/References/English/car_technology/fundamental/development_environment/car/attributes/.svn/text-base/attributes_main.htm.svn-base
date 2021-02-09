@@ -1,0 +1,35 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--main</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>main</h2>
+    <p>This attribute can only be used to modify class or category, when component attribute has one of the <a class="style1" href="attributes_graphics.htm">graphics</a> attribute,the <a class="style1" href="attributes_graphics(lite).htm">graphics(lite)</a> attribute,the <a class="style1" href="attributes_console.htm">console</a> attribute.You must use main attribute to identify this class or class that inherits this category as the program entry of this executable component. For example: </p>
+    <pre class="code">
+[
+    uuid(119927db-1f59-4db2-829f-1713e10c1e02), <b>graphics</b>,
+    uunm(http://www.koretide.com/car/MainDemo.dll)
+]
+component MainDemo
+{
+    ……
+    [uuid(f5ce698e-c5db-41b5-ba12-6ab678ef13cb), <b>main</b>]
+    class CClass { }
+    ……
+}
+</pre>
+    <p>In sample component MainDemo, there is graphics attribute among the attributes of the component,which means this component is executable component. The CClass class that has main attribute is the program entry point of this executable component.</p>
+    <p>You can see from the example, CClass class that has the main attribute does not provide any interface. Inside this interface, the user can or cannot provide interface. This is because when a class has main attribute, the system automatically provides <a class="style1" href="../../../zee/interface/IMainApplet.htm">IMainApplet</a> interface for this class. The client program can overload the <a class="style1" href="../../../zee/interface/IMainApplet/AtEntry.htm">AtEntry</a> method and <a class="style1" href="../../../zee/interface/IMainApplet/AtExit.htm">AtExit</a> method in the system to do initialization and post operations before exiting the program.</p>
+    <ul><font color="red"><b>Note: </b><br>1. If none of the graphics attribute, graphics(lite) attribute,console attribute is in the component attribute, then you cannot use the main attribute.Otherwise you cannot pass the compilation. <br>2. This attribute cannot be applied to the same class with the <a class="style1" href="attributes_driver.htm">driver</a> attribute.</ul>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

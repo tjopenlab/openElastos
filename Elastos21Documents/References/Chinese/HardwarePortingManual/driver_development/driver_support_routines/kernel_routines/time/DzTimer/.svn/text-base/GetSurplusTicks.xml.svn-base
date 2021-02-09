@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>时间</volume>
+<interface>DzTimer</interface><method> GetResidualTicks </method>
+    <description>
+        <para>
+            获取此刻定时器对象相对于到期时间的剩余时间。
+        </para>
+    </description>
+    <syntax_nopara>
+        <return_val> uint_t </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para>返回值为此刻定时器对象相对于到期时间的剩余时间，单位为tick。</para>
+    </return>
+
+    <remarks>
+        <para>本成员函数用于获取此刻定时器对象相对于到期时间的剩余时间。调用本成员函数前必须确保定时器对象已经被取消运行了，否则将导致未知错误。此刻，如果未达到定时器到期时间，则本成员函数将返回此刻定时器对象相对于到期时间的剩余时间；如果正好或已经达到了定时器到期时间，调用此成员函数将会返回零。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+</manpage>

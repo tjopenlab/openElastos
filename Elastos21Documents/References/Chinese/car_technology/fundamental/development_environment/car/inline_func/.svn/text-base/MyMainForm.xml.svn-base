@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>内联函数</volume>
+    <title>MyMainForm</title>
+
+    <description>
+        <para>获取指向图形系统主窗体（<link url="../../../graphics/elactrl/class/CForm.htm">CForm</link>）对象的类智能指针的引用。</para>
+    </description>
+
+    <syntax>
+        <return_val>CFormRef&amp;</return_val>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>返回指向图形系统主窗体对象的类智能指针的引用。该返回值是<link url="../../../graphics/elactrl/class/CFormRef.htm">CFormRef</link>类型的引用。</para>
+    </return>
+    <remarks>
+        <para>图形系统主窗体是：图形系统启动时，自动提供的一个占满屏幕的窗体，关闭该窗体，将直接退出程序。在用户定义的CAR文件中，当且仅当构件具有了<link url="../attributes/attributes_graphics.htm">graphics</link>属性，用户才可以在程序中直接调用MyMainForm函数。此时，用户可以通过MyMainForm函数的返回值，调用<link url="../../../graphics/elactrl/class/CForm.htm">CForm</link>类里的方法直接对主窗体进行各种操作，如果要退出用户程序，则需调用<link url="../../../graphics/elactrl/interface/IForm/Close.htm">Close</link>方法，语法为：MyMainForm().Close()。</para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《Elastos 1.1》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elactrl.h; elagdi.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib; ElCRuntime.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

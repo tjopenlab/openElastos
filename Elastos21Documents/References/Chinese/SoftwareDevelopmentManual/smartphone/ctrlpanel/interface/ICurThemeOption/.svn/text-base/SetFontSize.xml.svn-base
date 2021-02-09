@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICurThemeOption</interface><method> SetFontSize </method>
+    <description>
+        <para>
+            设置当前字体大小并写入配置文件中。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> FONTSIZE </param_type>
+                <param_name> uFontSize </param_name>
+                <param_note>
+                    <para>
+存放返回的字体大小值，参见<link url="../../datatype/FONTSIZE.htm">FONTSIZE</link>                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；返回E_INVALIDARG，表示uFontSize只能为FONTSIZE_SMALL（12号字体）、FONTSIZE_MEDIUM（14号字体）、FONTSIZE_BIG（16号字体）    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

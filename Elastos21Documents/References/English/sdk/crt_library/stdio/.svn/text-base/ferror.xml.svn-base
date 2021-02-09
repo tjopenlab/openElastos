@@ -1,0 +1,103 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\ferror">ferror</sample>
+    <title> ferror</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>The function ferror tests the error indicator for the stream pointed to by stream, returning non-zero if it is set.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>ferror</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If no error has occurred in stream, ferror returns 0. Otherwise, it returns a nonzero value.</para>
+    </return>
+
+    <remarks>
+        <para>The ferror function tests for a reading or writing error on the file associated with stream. If an error has occurred, then the error indicator for the stream remains set until the stream is closed or rewound or until clearerr is called against it.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>ferror</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ferror.cpp: This program uses ferror to tests for an error on a stream.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    int  count = 0;
+    char buffer[100];
+    FILE *stream;
+
+    if ((stream = fopen(&quot;ferror.txt&quot;, &quot;w&quot;)) == NULL) {
+        printf(&quot;problem open the file!&quot;);
+        return 1;
+    }
+
+    /* Attempt to read in 10 bytes: */
+    count = fread(buffer, sizeof(char), 100, stream);
+    if (ferror(stream)) {
+        printf(&quot;Read error.\n&quot;);
+    }
+    else {
+        printf(&quot;Read OK!\n&quot;);
+    }
+
+    fclose(stream);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Read error.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>feof</ref_name>
+            <ref_url>feof</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fopen</ref_name>
+            <ref_url>_wfopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

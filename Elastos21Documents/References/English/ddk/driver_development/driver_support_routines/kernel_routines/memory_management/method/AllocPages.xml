@@ -1,0 +1,98 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\AllocPages">AllocPages</sample>
+    <volume>Memory Management Methods</volume>
+    <title>AllocPages</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>
+        	Allocates specified number of continuous physical pages
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>physaddr_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> uint_t</param_type>
+                <param_name> uOrder </param_name>
+                <param_note>
+                    <para>
+                    	Logarithmic value to the base 2 of specified total number of continuous physical page to be 
+                    	allocated, i.e. the method allocates 2^uOrder continuous physical pages. The maximum value of 
+                    	<i>uOrder</i> cannot exceed the maximum order spceified by the <i>c_uMaxOrder</i> constant.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> uint_t</param_type>
+                <param_name> uPreferredZoneNo </param_name>
+                <param_note>
+                    <para>
+                    	Specified preferred physical memory zone number.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>INVALID_PAGE_ADDRESS</td>
+                <td>Allocation fails; insufficient physical memory</td>
+            </tr>
+            <tr>
+                <td>Not INVALID_PAGE_ADDRESS</td>
+                <td>Allocation successfull, returns the starting address (physical address) of the first physical page</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+    	<para>
+    		This method is used to allocate specified number of continuous physical pages, the total number is 
+    		2^uOrder. Allocated continuous physical page will be first selected from specified physical memory zone.
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>FreePages</ref_name>
+            <ref_url>FreePages</ref_url>
+        </reference>
+        <reference>
+            <ref_name>FreePage</ref_name>
+            <ref_url>FreePage</ref_url>
+        </reference>
+        <reference>
+            <ref_name>AllocPage</ref_name>
+            <ref_url>AllocPage</ref_url>
+        </reference>
+    </references>
+
+</manpage>

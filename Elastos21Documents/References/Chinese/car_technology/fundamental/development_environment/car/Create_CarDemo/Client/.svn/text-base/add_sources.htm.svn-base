@@ -1,0 +1,30 @@
+
+<html>
+<head>
+<title>增加sources文件</title>
+<body>
+<h3 style="line-height: 150%">
+<span style="font-size:14.0pt;line-height:150%;font-family:宋体">增加<span lang="EN-US">sources</span>文件</span></h3>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%">
+<span style="font-family: 宋体">在单独的实现文件中调用</span><span lang="EN-US">dll</span><span style="font-family: 宋体">时需要在相应文件夹下增加</span><span lang="EN-US">sources</span><span style="font-family: 宋体">文件，</span><span lang="EN-US">sources</span><span style="font-family: 宋体">文件格式如下：</span></p>
+<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: medium none; margin-left: 32.4pt; background: #E6E6E6" id="table1">
+	<tr>
+		<td>
+		TARGET_NAME= client<br>
+		TARGET_TYPE= exe<br>
+		<br>
+		IMPORTS= \<br>
+		&nbsp;&nbsp;&nbsp;
+		HelloDemo.dll \ <br>
+		<br>
+		SOURCES= \<br>
+		&nbsp;&nbsp;&nbsp;
+		client.cpp \<br>
+		<br>
+		LIBRARIES= $(XDK_LIB_PATH)\ElCRuntime.lib<br>
+		LIBRARIES+= $(XDK_LIB_PATH)\elastos.lib</td>
+	</tr>
+</table>
+
+    </body>
+</html>

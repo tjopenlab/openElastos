@@ -1,0 +1,91 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+<!-- <sample url="">CActiveTimer::New</sample>-->
+    <volume>定时器</volume>
+    <title>CActiveTimer::New</title>
+    <routine_idx>../../../../ActiveTimer.htm</routine_idx>
+
+    <description>
+        <para>创建定时器。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Millisecond </param_type>
+                <param_name> interval </param_name>
+                <param_note>
+                    <para>[in]指定定时器的时间间隔</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>  ECode  </param_type>
+                <param_name>  (ELAPICALLTYPE *pEntry)(PVoid, IActiveTimer *) </param_name>
+                <param_note>
+                    <para>[in]指定定时器到期后需要执行的函数</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> PVoid </param_type>
+                <param_name> pUserData </param_name>
+                <param_note>
+                    <para>[in]指定上下文相关的数据</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> IActiveTimer ** </param_type>
+                <param_name> ppActiveTimer </param_name>
+                <param_note>
+                    <para>[out]获取所创建的定时器的接口指针</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>创建一个指定时间间隔的定时器，同时指定定时器到期后需要执行的函数。</para>
+        <para>时器的时间间隔不应该小于30ms，用于获取所创建的定时器的接口指针 ppActiveTimer不允许为空，否则将返回失败。</para>
+    	<para>创建后的定时器，需调用<link url="../../../../ProcessThread/Synchronization/IActiveTimer/Start.htm">IActiveTimer::Start</link>来开起定时，调用<link url="../../../../ProcessThread/Synchronization/IActiveTimer/Stop.htm">IActiveTimer::Stop</link>来结束计时。</para>
+        <para>定时器到期以后，一个独立的线程来执行由pEntry指向的函数，另外，可以调用<link url="../../../../ProcessThread/Synchronization/IActiveTimer/SetPriority.htm">IActiveTimer::SetPriority</link>来调整这个线程的优先级，以获取较高的精度。</para>
+        <para>参见<link url="../../IActiveTimer.htm">IActiveTimer</link>接口</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

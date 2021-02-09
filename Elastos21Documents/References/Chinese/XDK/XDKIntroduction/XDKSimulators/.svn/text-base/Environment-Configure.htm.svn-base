@@ -1,0 +1,79 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>XDK中的模拟器</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>XDK中的模拟器</h2>
+
+    <h3>模拟器的运行环境和配置</h3>
+        <p>模拟器运行时，需要使用动态库elastos.dll、SDL.dll和模拟器运行所需要的相关资源，以及在相应环境下编译好的所需要运行的模拟器版本的应用程序。</p>
+        <p>模拟器资源所在文件夹的位置需在环境变量XDK_SIMULATOR_RESOURCE中给出，以便模拟器能够正确的找到运行所需要的资源。</p>
+        <p>模拟器的配置主要是由carhost.cfg配置文件以及相应目标机的*.dev配置文件所实现。</p>
+        <ul>
+            <li>carhost.cfg配置文件对模拟器自身的属性进行配置，里面有很多项，每一项都有对应的功能，并且有比较详细的注释，可以参考配置。
+        </ul>
+        <p>例如在XDK\DevKit\simulators\board1目录(假设板卡名称为board1)下的carhost.cfg文件中详细介绍了在ARM CPU board1板卡上模拟器的配置。</p>
+        <ul>
+            <li>*.dev配置文件是针对不同目标机的配置文件，每一个配置文件就对应一种目标机器，可以在里面配置一些目标机相关的的选项，配置文件中都有注释，可以参考配置。
+        </ul>
+        <p>又如在ARM-CPU-board1板卡上开发的目标机的描述文件(board1.dev)可以参考XDK\DevKit\simulators\board1目录下的board1.dev文件。</p>
+
+        <ul>
+            <a NAME="tcpip"><li>当模拟器通过物理网卡访问网络时，需要对win32模拟器的网络环境进行配置，具体步骤如下：
+        <ul>
+            <li>通过ipconfig命令查询网卡的网络参数信息。
+            <li>设置模拟器的网络配置：打开XDK\DevKit\simulators\board1目录下的elastos.cfg文件，修改其中的Tcpip设置，包括LocalIp、SubnetMask、DefaultGateway以及Nameserver等选项，修改内容参见以下粗体代码。(备注：LocalIp对应IP Address；Nameserver对应DNS Servers)
+        </ul>
+        </ul>
+<pre class=code>
+[Tcpip]
+NetID =none
+LocalIP =<b>192.168.15.164</b>
+SubnetMask =255.255.248.0
+DefaultGateway =<b>192.168.10.6</b>
+<b>Nameserver =210.22.70.3</b>
+</pre>
+
+
+    <h3>在XDK环境下运行模拟器的配置要求</h3>
+        <p>运行模拟器，需要准备不低于以下配置的个人电脑（PC）一台： </p>
+        <ul>
+        <li>硬件要求：
+          <ul>
+              <li>PIII（或兼容的CPU），1G以上的CPU。
+              <li>256M的内存。
+          </ul>
+        </ul>
+        <ul>
+        <li>软件要求：
+          <ul>
+          <li>已安装中文版（或英文版）Windows&nbsp;2000或更高版本的操作系统（例如：Windows&nbsp;XP操作系统）。
+          <li>已安装VC（建议使用VC8.0版本）。
+          </ul>
+        </ul>
+    <h3>模拟器的使用和注意事项</h3>
+    <p>使用模拟器有如下几种方法：</p>
+      <ul>
+      <li>对于可运行的exe程序：
+        <ul>
+        <li>在同一个开发环境中运行。运行命令：elaura hello.exe启动模拟器并加载应用。
+        <li>在两个不同的开发窗口中运行。需要先在一个开发窗口中运行：elaura.exe, 该命令用来启动模拟器；然后在另一个开发窗口中运行exe程序，如：hello.exe,该命令用于加载应用。
+        </ul>
+      </ul> 
+      <ul>
+      <li>对于car构件（dll）：
+        <ul>
+        <li>在同一个开发环境中运行。运行命令：elaura superexe xxx.dll启动模拟器并加载应用。
+        <li>在两个不同的开发窗口中运行。需要先在一个开发窗口中运行：elaura.exe, 该命令用来启动模拟器，然后在另一个开发窗口中运行superexe xxx.dll，该命令用于加载应用。
+        </ul>
+      </ul> 
+<script>footer("chinese")</script>
+</body>
+</html>

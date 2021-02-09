@@ -1,0 +1,89 @@
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> MemoryBuf</interface>
+
+    <description>       
+        <para>MemoryBuf继承自BufferOf。操作对象是字节的内存块。</para>
+        <para>MemoryBuf构造函数和各种方法使用介绍：</para>
+        <para>以下只列出比BufferOf多的方法，相同或相似的方法请参考BufferOf</para>
+        <para>操作符与BufferOf相同</para>
+   </description>
+    <constructs>
+        <construct>
+            <construct_name>MemoryBuf_(Int32 SIZE )</construct_name>
+            <construct_url>MemoryBuf/structure/MemoryBuf1</construct_url>
+            <construct_description>在栈中构造一个MemoryBuf对象,包括SIZE字节的buffer内存空间 </construct_description>
+        </construct>
+        
+        <construct>
+            <construct_name>MemoryBuf(T *pBuf, Int32 capacity, Int32 used)</construct_name>
+            <construct_url>MemoryBuf/structure/MemoryBuf2</construct_url>
+            <construct_description>在栈中构造一个MemoryBuf对象,将m_pBuf指向用户指定的内存块，并分别其长度和已使用长度.</construct_description>
+        </construct>
+        
+        <construct>
+            <construct_name>MemoryBuf( T *pBuf, Int32 capacity)</construct_name>
+            <construct_url>MemoryBuf/structure/MemoryBuf3</construct_url>
+            <construct_description>在栈中构造一个MemoryBuf对象,将m_pBuf指向用户指定的内存块，并分别其长度和已使用长度为capacity</construct_description>
+        </construct>
+     </constructs>   
+        
+    <methods>
+      <self>
+        <method>
+        <method_name>SetByteVaule</method_name>
+        <method_url>MemoryBuf/SetByteVaule</method_url>
+        <m_description>设置内存块的字节值，相当于memset  </m_description>
+        </method>
+        
+        <method>
+        <method_name> Compare(const Byte* pBuf, Int32 n)</method_name>
+        <method_url>MemoryBuf/Compare1</method_url>
+        <m_description> 与指定内存块比较n个字节，相当于memcmp </m_description>
+        </method>
+        
+        <method>
+        <method_name>Compare(const PCarQuintet pCq)</method_name>
+        <method_url>MemoryBuf/Compare</method_url>
+        <m_description> 与的指定五元组的数据区比较目标五元组的used个字节</m_description>
+        </method>
+        
+      </self>
+    </methods>
+
+
+   
+    <macros>
+        <macro>
+        <macro_name> NULL_MEMORYBUF&lt;T&gt;  </macro_name>
+         <macro_url> MemoryBuf/NULL_MEMORYBUF  </macro_url>
+        <macro_description> 构造一个内容为空的MemoryBuf对象  </macro_description>
+        </macro>
+        <macro>
+        <macro_name> AUTO_MEMORYBUF(n)  </macro_name>
+         <macro_url> MemoryBuf/AUTO_MEMORYBUF  </macro_url>
+        <macro_description> 构造一个大小为n的MemoryBuf对象  </macro_description>
+        </macro>
+    </macros>    
+        
+        
+</manpage>     
+        
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+
+    

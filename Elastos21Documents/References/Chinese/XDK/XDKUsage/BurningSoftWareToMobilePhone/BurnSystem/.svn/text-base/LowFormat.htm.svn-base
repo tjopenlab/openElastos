@@ -1,0 +1,37 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>低级格式化操作</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+
+<body>
+
+<h2>低级格式化操作</h2>
+
+<p>本操作的硬件需求：夹具</p>
+<p>本操作的软件需求：超级终端（Windows操作系统自带）</p>
+
+<ul>
+<br>1)	手机与夹具连接（夹具的使用参考其使用说明）。
+<br>2)	打开Windows操作系统附件中的超级终端，建一连接（连接使用口：默认COM1，根据实际使用可以调整；每秒位数：115200；数据位：8；奇偶校验：无；停止位：1；数据流控制：无）。 
+<br>3)	先按住键盘B，再按住手机开机键，常按不放，直到超级终端连接窗口出现Eldr>提示符，既可放开开机键。
+<br>4)	在Eldr>提示符后键入safeformatdoc命令，进行低级格式化操作。
+<br>5)	格式化成功完成后，出现format diskonchip successful!提示。
+<br>6)	在Eldr>提示符后键入docinfo命令，查询低级格式化后的各盘容量大小，以验证低级格式化是否正确。
+ 
+
+</ul>
+
+<font color=#FF0000> 
+注意：如果重新烧写了bootloader，一定要重新进行低级格式化后才能烧入img文件，因为新的loader文件会影响logo区域大小的配置，所以需要进行低格处理重新分配空间，以保证LOGO文件的正确写入
+</font>
+
+<script>footer("chinese")</script>
+</body>
+</html>

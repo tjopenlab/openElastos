@@ -1,0 +1,28 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Environment Overview</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Notice For DDK Development Environment And User Guide</h2>
+        <h3>Things To Be Noted In DDK Development Environment</h3>
+        <ol>
+            <li>DDK compilation must follow the order of libpub->kernel->elastos.
+            <li>User driver must be placed in the drivers directory under kernel. For example, kernel\drivers\x86\pc\ethercard directory is used to store network card driver supporting x86 architecture CPU PC mother board. If the user needs to develop new drivers, similarily he/she can create directory structure.
+            <li>You can check readme.txt file under corresponding source directories for reference related guide to various module subdirectories.
+        </ol>
+        <h3>Notes About Directories That Stores Driver</h3>
+            <p>Elastos 2.0 drivers are located under Elastos\src\kernel\drivers directory. The drivers are categorized in different directories according to different CPU architecture. For example ARM (Elastos\src\kernel\drivers\arm), MIPS (Elastos\src\kernel\drivers\mips) and X86 (Elastos\src\kernel\drivers\x86). The drivers are further categorized into different directories under corresponding CPU architecture directory according to motherboard. For example general PC motherboard of x86 architecture (Elastos\src\kernel\drivers\x86\pc). Various hardware drivers are stored under corresponding motherboard directory. For example mouse (Elastos\src\kernel\drivers\x86\pc\mouse) etc.</p>
+            <p>It is suggested that the user develop and store their own related drivers according to this directory structure.</p>
+        <h3>Guide On Some Supported Hardware</h3>
+            <p>Elastos temporarily only supports x86 architecture CPU general PC motherboard with rt18139 chip network card. If you want to use other network card with other chip, you need to develop the network card driver program using DDK environment or port corresponding program under related agreement. Similarily, to other CPU and hardware device, the user also need to develop his/her driver by using DDK enviroment. You can refer existing driver code and directory structure provided by Elastos 2.0 for program code storing model and structure. Hardware device supported by Elastos 2.0 can be found by searching level by level of the driver directory Elastos\src\kernel\drivers .</p>
+
+<script>footer("english")</script>
+</body>
+</html>

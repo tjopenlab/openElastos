@@ -1,0 +1,247 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>图形控件IPictureBox</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> IPictureBox 范例程序 </h2>
+
+<h3> TPictureDemo.h </h3>
+<pre class = "code">
+
+#ifndef __TPictureDemo_H__
+#define __TPictureDemo_H__
+
+#include "_TPictureDemo.h"
+
+CarClass(TPictureDemo)
+{
+public:
+    TPictureDemo();
+    ~TPictureDemo();
+    CARAPI Main(
+        /* [in] */ const BufferOf<WString> & argcv);
+
+public:
+    CARAPI OnClick(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI OnClose(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI Quit();
+
+    CARAPI Terminate();
+
+    CARAPI Activate();
+
+    CARAPI Deactivate();
+
+    CARAPI IsActivated(
+        /* [out] */ Boolean * pActivated);
+
+    CARAPI Snooze();
+
+    CARAPI Wakeup();
+
+    CARAPI GetName(
+        /* [out] */ WStringBuf * pName);
+
+private:
+    IForm        * m_pMainForm;
+
+    IPictureBox * m_IPictureBox;
+    IPictureBox * m_IPictureBox1;
+
+    IButton      * m_pIBtnStart;
+    IButton      * m_pIBtnClose;
+};
+
+#endif // __TPictureDemo_H__
+
+</pre>
+<h3> TPictureDemo.cpp </h3>
+<pre class = "code">
+
+#include "TPictureDemo.h"
+#include "_TPictureDemo.cpp"
+#include <stdio.h>
+
+TPictureDemo::TPictureDemo()
+{
+    m_pMainForm = NULL;
+    m_IPictureBox = NULL;
+    m_IPictureBox1 = NULL;
+    m_pIBtnStart = NULL;
+    m_pIBtnClose = NULL;
+}
+
+TPictureDemo::~TPictureDemo()
+{
+    if (NULL != m_pMainForm) {
+        m_pMainForm->Release();
+    }
+
+    if (NULL != m_IPictureBox) {
+        m_IPictureBox->Release();
+    }
+
+    if (NULL != m_IPictureBox1) {
+        m_IPictureBox1->Release();
+    }
+
+    if (NULL != m_pIBtnStart) {
+        m_pIBtnStart->Release();
+    }
+
+    if (NULL != m_pIBtnClose) {
+        m_pIBtnClose->Release();
+    }
+}
+
+ECode TPictureDemo::Main(
+    /* [in] */ const BufferOf<WString> & argcv)
+{
+
+////////////    form
+    CForm::New(L"MAIN", 0,
+                0, 0, 240, 320,  NULL,&m_pMainForm);
+
+////////////    picturebox
+    CPictureBox::New(L"pb", 0, 10, 210, 220, 80,  m_pMainForm,&m_IPictureBox);
+
+//    m_IPictureBox->LoadImageFromFile(L"ime/english.jpg");
+
+///////////     picturebox
+    CPictureBox::New(L"pb", PictureBoxStyle_PlayOnce,
+                        10, 50, 190, 141, m_pMainForm,&m_IPictureBox1);
+
+    m_IPictureBox1->LoadImageFromFile(L"goal.gif");
+
+////////////    button
+    CButton::New(L"Click", 0, 0, 0, 80, 30,  m_pMainForm,&m_pIBtnStart);
+
+    CButton::AddClickCallback(m_pIBtnStart,
+                 this, &TPictureDemo::OnClick);
+
+///////////////  Exit Button
+    CButton::New(L"Exit", 0, 150, 0, 80, 30,  m_pMainForm,&m_pIBtnClose);
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 this, &TPictureDemo::OnClose);
+
+    m_pMainForm->Show();
+
+    return NOERROR;
+}
+
+ECode TPictureDemo::OnClick(
+    /* [in] */ PInterface pIObject)
+{
+    static Int32 i = 1;
+
+    if (i % 2) {
+        printf("start\n");
+        m_IPictureBox1->Start();
+    }
+    else {
+        m_IPictureBox1->Stop();
+    }
+
+    i++;
+
+//    m_IPictureBox1->Stop();
+//    m_IPictureBox1->Hide();
+//    m_IPictureBox1->LoadImageFromFile(L"gif2.gif");
+    return NOERROR;
+}
+
+ECode TPictureDemo::OnClose(
+    /* [in] */ PInterface pIObject)
+{
+    m_pMainForm->Close();
+    return NOERROR;
+}
+
+ECode TPictureDemo::Quit()
+{
+    return NOERROR;
+}
+
+ECode TPictureDemo::Terminate()
+{
+    return NOERROR;
+}
+
+ECode TPictureDemo::Activate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TPictureDemo::Deactivate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TPictureDemo::IsActivated(
+    /* [out] */ Boolean * pActivated)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TPictureDemo::Snooze()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TPictureDemo::Wakeup()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TPictureDemo::GetName(
+    WStringBuf * name)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+</pre>
+
+<h3> picturebox.car </h3>
+<pre class = "code">
+module
+{
+    importlib("elcontrols.dll");
+
+    applet TPictureDemo {}
+}
+</pre>
+
+<h3> sources </h3>
+<pre class = "code">
+TARGET_NAME= picturebox
+TARGET_TYPE= dll
+SPECIAL_TARGET = cpfile
+
+SOURCES= \
+    picturebox.car \
+    TPictureDemo.cpp \
+
+LIBRARIES = $(XDK_USER_LIB)\ElCRuntime.lib     $(XDK_LIB_PATH)\elastos.lib \
+</pre>
+<script>footer("KoreTide")</script>
+</body>
+</html>

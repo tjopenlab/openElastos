@@ -1,0 +1,73 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+ 
+    <volume> 常用数据结构 </volume>
+    <class>BufferOf</class>
+    <method> Append </method>
+
+    <description>
+        <para>在BufferOf数组中追加数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>BufferOf &amp; </return_val>
+        <parameters>
+            <api_param> 
+                <param_type> T </param_type>
+                <param_name> value </param_name>
+                <param_note>
+                    <para> 待追加的数据 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回当前BufferOf对象引用。</para>
+    </return>
+    <remarks>
+        <para>超过BufferOf对象可用的长度会被省略掉。 </para>
+    </remarks>
+
+<example>
+<pre>
+BufferOf&lt;char&gt; *pArray = BufferOf&lt;char&gt;::Alloc(200);
+
+(*pArray).Append('s');
+(*pArray).Append('s');
+(*pArray).Append('d');
+(*pArray).Append('0');
+
+CConsole::WriteLine((*pArray).GetCapacity());  //Display : 200
+CConsole::WriteLine((*pArray).GetAvailableSpace());  //Display : 196
+
+char *pch=(*pArray).GetPayload();
+
+CConsole::WriteLine(pch[0]);  //Display : 's'
+CConsole::WriteLine(pch[1]);  //Display : 's'
+CConsole::WriteLine(pch[2]);  //Display : 'd'
+CConsole::WriteLine(pch[3]);  //Display : '0'
+CConsole::WriteLine(*++pch);  //Display : 's'
+CConsole::WriteLine(*++pch);  //Display : 'd'
+CConsole::WriteLine(*++pch);  //Display : '0'
+
+BufferOf&lt;char&gt;::Free(pArray);   
+</pre>
+</example>   
+
+<references>
+    <reference>
+        <ref_name>BufferOf</ref_name>
+        <ref_url>../../BufferOf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>BufferOf::Append </ref_name>
+        <ref_url>index/Append</ref_url>
+    </reference>
+
+</references>
+
+</manpage>

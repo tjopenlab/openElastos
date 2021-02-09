@@ -1,0 +1,51 @@
+
+<html>
+<head>
+<title>调用接口方法</title>
+</head>
+
+<body>
+<h3><span style="font-size: 14.0pt; line-height: 173%; font-family: 宋体">调用接口方法</span></h3>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%">
+<span lang="EN-US">.cpp</span><span style="font-family: 宋体">文件中必须包含两行代码</span></p>
+<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: medium none; margin-left: 32.4pt; background: #E6E6E6" id="table1">
+	<tr>
+		<td>
+		<p >
+		#include &quot;HelloDemo.h&quot; //和定义的.car文件同名<br>
+		using namespace Elastos; //指名域</td>
+	</tr>
+</table>
+<p class="MsoNormal" style="line-height: 150%"><span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp; </span>
+<span style="font-family: 宋体">可直接使用调用的</span><span lang="EN-US">dll</span><span style="font-family: 宋体">中的接口类型定义接口指针，一般情况下我们会</span><span lang="EN-US">New</span><span style="font-family: 宋体">出一个构件类对象。通过接口指针调用接口中定义的方法。</span></p>
+<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: medium none; margin-left: 32.4pt; background: #E6E6E6" id="table2">
+	<tr>
+		<td width="525" valign="top" style="width: 393.7pt; border: 1.0pt solid windowtext; padding-left: 5.4pt; padding-right: 5.4pt; padding-top: 0cm; padding-bottom: 0cm">
+		<p class="MsoNormal" style="line-height: 150%">#include &quot;HelloDemo.h&quot;
+		<br>
+		using namespace Elastos;<br>
+		<br>
+		ECode ElastosMain(const BufferOf&lt;WString&gt;&amp; args)<br>
+		{<br>
+		&nbsp;&nbsp;&nbsp;
+		IHello * pHello;<br>
+		&nbsp;&nbsp;&nbsp;
+		ECode ec = CHello::New(&amp;pHello);<br>
+		&nbsp;&nbsp;&nbsp;
+		if (FAILED(ec)){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		return ec;<br>
+		&nbsp;&nbsp;&nbsp;
+		}<br>
+		&nbsp;&nbsp;&nbsp;
+		pHello-&gt;Hello();<br>
+		&nbsp;&nbsp;&nbsp;
+		CObject::ReleaseAtThreadQuit(pHello); 
+		<br>
+		&nbsp;&nbsp;&nbsp;
+		return NOERROR; <br>
+		}</td>
+	</tr>
+</table>
+</body>
+</html>

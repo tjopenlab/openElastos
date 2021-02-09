@@ -1,0 +1,62 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AString</interface>
+    <method> GetChar </method>
+
+    <description>
+        <para> 获取此实例中位于指定字符位置的字符。 </para>
+    </description>
+    <syntax>
+        <return_val> Char32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> index </param_name>
+            <param_note>
+                <para> 字符索引值。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name> encoding  </param_name>
+            <param_default>Encoding_Default  </param_default>
+            <param_note>
+                <para> 指定字符编码方式。 参见<link url="../../others/Encoding.htm">Encoding</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>返回Index位置的字符，Index取值从0开始。如果对象包含的字符串指针为NULL，返回0xFFFFFFFF;Index小于0或大于字符串有效长度返回0xFFFFFFFF。</para>
+    </return>
+
+<example>
+<pre>
+AString as("asdf");
+AChar ch=as.GetChar(1);
+CConsole::WriteLine(ch);  //Display : s 
+CConsole::WriteLine(ch,Encoding_ASCII);  //Display : 115 
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::operator [ ] </ref_name>
+        <ref_url>../AString/operator4</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>WString::GetChar</ref_name>
+        <ref_url>  ../WString/GetChar</ref_url>
+    </reference>
+</references>
+
+</manpage>

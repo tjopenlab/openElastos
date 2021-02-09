@@ -1,0 +1,264 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--privileged</title>
+</head>
+
+<body>
+	<h2>privileged</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于设置<a class="style1" href= "keywords_aspect.htm">方面类aspect</a>中接口的可见性，表示其只能在聚合或解聚合过程中被Context相关构件可见。 </p>
+	
+	    <b>语法 </b>
+	    	<p><b>privileged</b> interface InterfaceName； </p>
+	    <b>使用说明 </b>
+	        <p>1.此关键字不能用于修饰其它构件类的接口，只能用于修饰aspect中的接口。 </p>
+	        <p>2.此关键字只能在context相关的聚合和解聚合的情况下使用，具体指在以下方法中可以被probe出：</p>
+	        <li><p>context涉及聚合的所有对象的OnAspectAttaching和OnAspectDetaching方法。 </p>
+	        <li><p>Context构件的OnObjectEntered方法、OnObjectLeaving方法。注意，在OnObjectEntering()方法和OnObjectLeft()方法中Probe不到。 </p>
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IStudent {
+        Study();
+        GetID([out] Int32* id);
+    }
+    interface IChild {
+        Play();
+    }
+    interface ISchool {
+        Open();
+    }
+    interface IStudentAdmin {
+        SetID([in] Int32 id);
+    }
+    class CChild {
+        interface IChild;
+    }
+    aspect AStudent {
+        interface IStudent;
+        <b>privileged</b> interface IStudentAdmin;
+    }
+
+    context KSchool pertainsto AStudent {
+        interface ISchool;
+    }
+}
+</pre>
+	        <p>编译上述privilegedDemo.car，自动生成代码框架如下： </p>
+	        <p><a hrerf= "">KSchool.cpp KSchoo.h AStudent.cpp AStudent.h CChild.cpp CChild.h </a></p>
+	        <p>修改KSchool.cpp文件如下：(其中黑体部分是编译器自动生成的代码框架)</p>
+<pre class= code>
+<b>#include "KSchool.h"
+#include "_KSchool.cpp"
+ECode KSchool::Open()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("School is open ...");
+    return NOERROR;
+<b>}
+
+ECode KSchool::AcquireClassFactory(
+    /* [in] */ RClassID pRclsid,
+    /* [out] */ PInterface * ppPpObject)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}</b>
+
+ECode KSchool::OnObjectEntering(PInterface pObject)
+{
+    CConsole::WriteLine(L"-> KSchool::OnObjectEntering...");
+    return NOERROR;
+}
+
+ECode KSchool::OnObjectEntered(PInterface pObject)
+{
+    CConsole::WriteLine(L"-> KSchool::OnObjectEntered()...");
+    IStudentAdmin* pStudentAdmin;
+    pStudentAdmin = IStudentAdmin::Probe(pObject);
+    if (!pStudentAdmin) {
+        return E_NO_INTERFACE;
+    }
+    else CConsole::WriteLine("Probe sucess!");
+    return NOERROR;
+}
+ECode KSchool::OnObjectLeaving(PInterface pObject)
+{
+    CConsole::WriteLine(L"-> KSchool::OnObjectLeaving...");
+    IStudentAdmin* pStudentAdmin;
+    pStudentAdmin = IStudentAdmin::Probe(pObject);
+    if (!pStudentAdmin) {
+        return E_NO_INTERFACE;
+    }
+    else CConsole::WriteLine("Probe sucess!");
+    return NOERROR;
+}
+ECode KSchool::OnObjectLeft(PInterface pObject)
+{
+    CConsole::WriteLine(L"-> KSchool::OnObjectLeft...");
+
+    return NOERROR;
+}
+
+</pre>
+	        <p> 修改AStudent.cpp文件如下：</p>
+<pre class= code>
+<b>#include "AStudent.h"
+#include "_AStudent.cpp"
+ECode AStudent::Study()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("I'm a student studying...");
+    return NOERROR;
+<b>}
+
+ECode AStudent::GetID(
+    /* [out] */ Int32 * pId)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode AStudent::SetID(
+    /* [in] */ Int32 id)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}</b>
+
+ECode AStudent::OnAspectAttaching(
+    /* [in] */ PInterface pObject)
+{
+    CConsole::WriteLine(L"-> AStudent::OnAspectAttaching()...");
+    return NOERROR;
+}
+
+ECode AStudent::OnAspectDetaching(
+    /* [in] */ PInterface pObject)
+{
+    CConsole::WriteLine(L"-> AStudent::OnAspectDetaching()...");
+    IStudentAdmin* pStudentAdmin;
+    pStudentAdmin = IStudentAdmin::Probe(pObject);
+    if (!pStudentAdmin) {
+        return E_NO_INTERFACE;
+    }
+    else CConsole::WriteLine("Probe sucess!");
+    return NOERROR;
+}
+</b>
+</pre>
+	        <p>修改CChild.cpp文件如下： </p>
+<pre class= code>
+<b>#include "CChild.h"
+#include "_CChild.cpp"
+
+ECode CChild::Play()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("I'm a child playing...");
+    return NOERROR;
+<b>}</b>
+
+ECode CChild::OnAspectAttaching(
+    /* [in] */ PInterface pAspect)
+{
+    CConsole::WriteLine(L"-> CChild::OnAspectAttaching()...");
+    IStudentAdmin* pStudentAdmin;
+    pStudentAdmin = IStudentAdmin::Probe(pAspect);
+    if (!pStudentAdmin) {
+        return E_NO_INTERFACE;
+    }
+    else CConsole::WriteLine("Probe sucess!");
+    return NOERROR;
+}
+
+ECode CChild::OnAspectDetaching(
+    /* [in] */ PInterface pAspect)
+{
+    CConsole::WriteLine(L"-> CChild::OnAspectDetaching()...");
+    IStudentAdmin* pStudentAdmin;
+    pStudentAdmin = IStudentAdmin::Probe(pAspect);
+    if (!pStudentAdmin) {
+        return E_NO_INTERFACE;
+    }
+    else CConsole::WriteLine("Probe sucess!");
+    return NOERROR;
+}
+
+</pre>
+	        <p>客户端实现如下： </p>
+<pre class= code>
+#include "priviledgedDemo.h"
+using namespace Elastos;
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    IChild *pChild;
+    ISchool *pSchool;
+    
+    ECode ec = CChild::New(&pChild);
+    if (FAILED(ec)) return ec;
+    pChild->Play();
+    
+    ec = KSchool::New(&pSchool);
+    if (FAILED(ec)) return ec;
+    pSchool->Open();
+    
+    CConsole::WriteLine("child not entered school now!");
+    ec = CObject::EnterContext(pChild, pSchool); 
+    CConsole::WriteLine("child entered school already!");
+
+    IStudent *pStudent = NULL;
+    pStudent = IStudent::Probe(pChild);
+    if (NULL == pStudent) return ec;
+    pStudent->Study();
+
+    CObject::LeaveContext(pChild, pSchool);
+    CConsole::WriteLine("child left school already!");
+    pChild->Release();
+    pSchool->Release();
+    
+    CProcess::Exit(0);
+    return NOERROR_EXIT;
+}
+
+</pre>
+	        <p>运行结果如下： </p>
+
+<pre class= code>
+I'm a child playing...
+School is open ...
+child not entered school now!
+-> KSchool::OnObjectEntering...
+-> AStudent::OnAspectAttaching()...
+-> CChild::OnAspectAttaching()...
+Probe sucess!
+-> KSchool::OnObjectEntered()...
+Probe sucess!
+child entered school already!
+I'm a student studying...
+-> KSchool::OnObjectLeaving...
+Probe sucess!
+-> CChild::OnAspectDetaching()...
+Probe sucess!
+-> AStudent::OnAspectDetaching()...
+-> KSchool::OnObjectLeft...
+child left school already!
+
+</pre>
+	        <p>可以看出：在CChild对象进入KSchool后，可以查询到privileged接口IStudentAdmin。进入KSchool前和离开KShool后均不能再查询到此接口。 </p>
+            <p></p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

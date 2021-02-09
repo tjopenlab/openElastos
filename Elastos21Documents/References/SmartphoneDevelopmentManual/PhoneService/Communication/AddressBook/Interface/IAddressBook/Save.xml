@@ -1,0 +1,83 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址薄引擎</volume>
+<interface>IAddressBook</interface><method> Save </method>
+    <description>
+        <para>
+          存储一条记录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IEntityRef </param_type>
+                <param_name> piEntity </param_name>
+                <param_note>
+                    <para>
+                       记录的接口指针
+                    </para>
+                </param_note>
+            </api_param>
+             <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> BOOL </param_type>
+                <param_name> bInvalidNameFailed </param_name>
+                <param_note>
+                    <para>
+                       保存联系人的时候，是否自动截断姓名和电话号码
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+     <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>地址簿错误码 </td>
+	    	    <td>地址簿操作错误 </td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../AddressBook_error.htm">地址簿错误码</link>相关帮助。</para>
+    </return>
+    <remarks>
+      <para>
+        参数bInvalidNameFailed只对sim卡有意义。目前只有在copy from phone的过程中，会传入FALSE，表明自动截断，其他情况返回错误。同步的时候，pc端会提示错误update操作，如果名字，号码超长，返回错误，不继续提交到sim卡和数据库中。
+      </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+         <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CAddressBook.h, CDBStore.h, CSimStore.h, CContact.h, CContactGroup.h,  Abdata.h, spcomm.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elacrt.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+     <references>
+        <reference>
+            <ref_name>Update</ref_name>
+            <ref_url>Update</ref_url>
+        </reference>
+        <reference>
+            <ref_name>Delete</ref_name>
+            <ref_url>Delete</ref_url>
+        </reference>
+    </references>
+</manpage>

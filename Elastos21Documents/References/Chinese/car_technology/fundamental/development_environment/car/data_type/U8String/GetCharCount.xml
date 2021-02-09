@@ -1,0 +1,39 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>U8String</interface>
+    <method> GetCharCount </method>
+
+    <description>
+        <para> 按UTF8编码格式返回U8String实例所占的字符数。 </para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+     
+    </syntax>
+    <return>
+        <para>返回U8String对象字符串在UTF8编码格式下的长度。</para>
+    </return>
+
+
+<example>
+<pre>
+    WString  ws1(L"中国人");
+    AStringBuf_&lt;20&gt; asb;
+    asb.Copy(ws1, Encoding_UTF8);     
+    CConsole::WriteLine(((U8String)asb).GetCharCount());  //Display : 4
+    CConsole::WriteLine(((U8String)asb).EstimateWStringLength());//Display : 3    
+         
+    WString  ws2(L"aa");    
+    U8StringBuf_&lt;10&gt; u8sb;
+    u8sb.Copy(ws2);   
+    CConsole::WriteLine(u8sb.GetCharCount());  //Display : 3
+    CConsole::WriteLine(u8sb.EstimateWStringLength());//Display : 2
+</pre>
+</example>
+
+
+</manpage>

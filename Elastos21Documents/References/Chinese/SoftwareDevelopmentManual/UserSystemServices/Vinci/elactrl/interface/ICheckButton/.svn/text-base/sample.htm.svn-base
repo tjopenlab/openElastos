@@ -1,0 +1,240 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>图形控件ICheckBox</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> ICheckBox 范例程序 </h2>
+
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+<h3> CChkDemo.h </h3>
+#include &quot;_CChkDemo.h&quot;
+class CChkDemo : public _CChkDemo
+{
+public:
+    CChkDemo();
+    ~CChkDemo();
+    CARAPI AtEntry(
+        /* [in] */ EzArray<WString> argcv);
+
+    CARAPI AtExit();
+
+    CARAPI OnCheckStateChanged(
+        /* [in] */ ICheckBox* pIObject);
+
+    CARAPI OnClose(
+        /* [in] */ IButton* pIObject);
+
+    CARAPI OnClick(
+        /* [in] */ IButton* pIObject);
+
+public:
+    IForm        * m_pMainForm;
+    ICheckBox    * m_pICheckBox;
+
+    IButton      * m_pIBtnClose;
+    IButton      * m_pIButton;
+
+};
+
+<h3> CChkDemo.cpp </h3>
+#include &quot;CChkDemo.h&quot;
+#include &quot;_CChkDemo.cpp&quot;
+#include &lt;stdio.h&gt;
+
+CChkDemo::CChkDemo()
+{
+    m_pICheckBox = NULL;
+    m_pMainForm  = NULL;
+    m_pIBtnClose = NULL;
+    m_pIButton   = NULL;
+}
+
+CChkDemo::~CChkDemo()
+{
+    if (m_pMainForm) {
+        m_pMainForm->Release();
+    }
+
+    if (m_pICheckBox) {
+        m_pICheckBox->Release();
+    }
+
+    if (m_pIBtnClose) {
+        m_pIBtnClose->Release();
+    }
+
+    if (m_pIButton) {
+        m_pIButton->Release();
+    }
+}
+
+ECode CChkDemo::AtEntry(
+        /* [in] */ EzArray < WString > argcv)
+{
+    ECode ec;
+//////////////  Form
+    ec = CForm::New(&m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Create Form failed!the ec = 0x%08x\n", ec);
+
+        return ec;
+    }
+
+    ec = m_pMainForm->Init(FormStyle_Gradient, L"MAIN",
+                            0, 0, 240, 320,  NULL);
+    if (FAILED(ec)) {
+        prInt32f("Init Form failed!the ec = 0x%08x\n", ec);
+
+        return ec;
+    }
+
+///////////////  CheckBox
+    ec = CCheckBox::New(&m_pICheckBox);
+    if (FAILED(ec)) {
+        prInt32f("Create CheckBox failed!the ec = 0x%08x\n", ec);
+
+        return ec;
+    }
+
+    ec = m_pICheckBox->Init(0, L"CheckBox",
+                    70, 120, 80, 30, m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Init CheckBox failed!the ec = 0x%08x\n", ec);
+
+        return ec;
+    }
+
+    CCheckBox::AddCheckStateChangedCallback(m_pICheckBox,
+                 this, &CChkDemo::OnCheckStateChanged);
+
+    ec = m_pICheckBox->SetCheckState(CheckState_Unchecked);
+    if (FAILED(ec)) {
+        prInt32f("SetCheckState failed!the ec = 0x%08x\n", ec);
+
+        return ec;
+    }
+
+///////////////  Exit Button
+    ec = CButton::New(&m_pIBtnClose);
+    if (FAILED(ec)) {
+        prInt32f("Create CloseButton failed!the ec = 0x%08x\n", ec);
+
+        return ec;
+    }
+
+    m_pIBtnClose->Init(0, L"Exit",
+                0, 0, 80, 30, m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Init CloseButton failed!the ec = 0x%08x\n", ec);
+
+        return ec;
+    }
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 this, &CChkDemo::OnClose);
+
+/////////////////  Click Button
+    ec = CButton::New(&m_pIButton);
+    if (FAILED(ec)) {
+        prInt32f("Create ClickButton failed!the ec = 0x%08x\n", ec);
+
+        return ec;
+    }
+
+    m_pIButton->Init(0, L"Click",
+                160, 0, 80, 30, m_pMainForm);
+    if (FAILED(ec)) {
+        prInt32f("Init ClickButton failed!the ec = 0x%08x\n", ec);
+
+        return ec;
+    }
+
+    CButton::AddClickCallback(m_pIButton,
+                 this, &CChkDemo::OnClick);
+
+    m_pMainForm->Show();
+
+    return NOERROR;
+}
+
+ECode CChkDemo::AtExit()
+{
+    return NOERROR;
+}
+
+ECode CChkDemo::OnCheckStateChanged(
+        /* [in] */ ICheckBox* pIObject)
+{
+    ECode ec;
+    Boolean  bChecked;
+
+    ec = m_pICheckBox->IsChecked(&bChecked);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    if (bChecked) {
+        prInt32f("OnCheckStateChanged:checkstate is %d\n",bChecked);
+    }
+    else {
+        prInt32f("OnCheckStateChanged:checkstate is %d\n",bChecked);
+    }
+
+    return NOERROR;
+}
+
+ECode CChkDemo::OnClose(
+        /* [in] */ IButton* pIObject)
+{
+    m_pMainForm->Close();
+
+    return NOERROR;
+}
+
+ECode CChkDemo::OnClick(
+        /* [in] */ IButton* pIObject)
+{
+    ECode ec;
+    CheckState  bChecked;
+
+    ec = m_pICheckBox->GetCheckState(&bChecked);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    switch (bChecked) {
+    case CheckState_Checked:
+        ec = m_pICheckBox->SetCheckState(CheckState_Unchecked);
+        if (FAILED(ec)) {
+            return ec;
+        }
+        break;
+    case CheckState_Indeterminate:
+    case CheckState_Unchecked:
+        ec = m_pICheckBox->SetCheckState(CheckState_Checked);
+        if (FAILED(ec)) {
+            return ec;
+        }
+        break;
+    }
+
+    return NOERROR;
+}
+
+</pre>
+
+<script>footer("KoreTide")</script>
+</body>
+</html>

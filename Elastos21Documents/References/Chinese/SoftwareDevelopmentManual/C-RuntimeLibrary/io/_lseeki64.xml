@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_lseek">_lseek</sample>
+    <title> _lseek，_lseeki64 </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>将文件指针移动到指定位置。</para>
+    </description>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>_lseek</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>文件的句柄</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>offset</param_name>
+                <param_note>
+                    <para>相对origin的位移字节数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>origin</param_name>
+                <param_note>
+                    <para>初始方式</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>__int64</return_val>
+        <func_name>_lseeki64</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+            </func_param>
+            <func_param>
+                <param_type>__int64</param_type>
+                <param_name>offset</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>origin</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+            <para>_lseek以字节数返回新位置相对文件起始位置的偏移量。</para>
+            <para>_lseeki64以64位整数返回这个偏移量，如果返回－1L表明出错，并将错误号设置为EBADF或EINVAL。EBADF表明无效的文件句柄。EINVAL表明文件的起始位置是无效的或通过偏移量指定的位置在文件的起始位置之前，设备无法查找（例如打印机），没有定义返回值。</para>
+    </return>
+
+    <remarks>
+        <para>函数_lseek移动由handle关联的文件指针，将其移到偏移origin一定字节的新位置，下一个操作在新位置进行，参数origin必须是如下常量（定义在io.h里）中的一个：</para>
+    	<table>
+    	    <th>
+    	        <td>参数常量</td>
+    	        <td>描述</td>
+    	    </th>
+    	    <tr>
+    		    <td>SEEK_SET</td>
+            	<td>文件头</td>
+    	    </tr>
+    	    <tr>
+    		    <td>SEEK_CUR</td>
+            	<td>文件指针当前位置</td>
+    	    </tr>
+    	    <tr>
+    		    <td>SEEK_END</td>
+            	<td>文件尾</td>
+    	    </tr>
+    	</table>
+    	<para>用户可以使用_lseek在文件中的任何地方重新设置文件指针，包括文件末尾之后。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_lseek</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_lseeki64</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _lseek.cpp: This program first opens a file named _lseek.cpp.
+ * It then uses _lseek to find the beginning of the file,
+ * to find the current position in the file, and to find
+ * the end of the file.
+ */
+
+#include &lt;io.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int fh;
+    long pos;               /* Position of file pointer */
+    char buffer[10];
+
+    fh = _open(&quot;_lseek.exe&quot;, _O_RDONLY);
+
+    /* Seek the beginning of the file: */
+   pos = _lseek(fh, 0L, SEEK_SET);
+    if (pos == -1L)
+        perror(&quot;_lseek to beginning failed&quot;);
+    else
+        printf(&quot;Position for beginning of file seek = %ld\n&quot;, pos);
+
+    /* Move file pointer a little */
+    _read(fh, buffer, 10);
+
+    /* Find current position: */
+    pos = _lseek(fh, 0L, SEEK_CUR);
+    if (pos == -1L)
+        perror(&quot;_lseek to current position failed&quot;);
+    else
+        printf(&quot;Position for current position seek = %ld\n&quot;, pos);
+
+    /* Set the end of the file: */
+    pos = _lseek(fh, 0L, SEEK_END);
+    if (pos == -1L)
+        perror(&quot;_lseek to end failed&quot;);
+    else
+        printf(&quot;Position for end of file seek = %ld\n&quot;, pos);
+
+    _close(fh);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Position for beginning of file seek = 0
+Position for current position seek = 10
+Position for end of file seek = 250284
+</result>
+
+   
+
+    <references>
+        <reference>
+            <ref_name>fseek</ref_name>
+            <ref_url>..\stdio\fseek</ref_url>
+        </reference>
+    </references>
+
+</manpage>

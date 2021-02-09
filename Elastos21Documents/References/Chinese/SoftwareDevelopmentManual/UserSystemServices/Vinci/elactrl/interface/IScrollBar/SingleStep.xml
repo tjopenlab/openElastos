@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IScrollBar</interface><method> SingleStep </method>
+    <description>
+        <para>
+            使滚动条向前或向后移动一个 SingleStep 的距离（小距离）。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Boolean </param_type>
+                <param_name> forward </param_name>
+                <param_note>
+                    <para>
+若为 TRUE，则滚动条滑块向前移动一个 SingleStep 的距离；若为 FALSE，则滚动条滑块向后移动一个 SingleStep 的距离</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+    	  该方法的成功调用由于改变了滚动条滑块的位置，故将触发 <link url="../JSliderBarEvents/ValueChanged.htm">ValueChanged</link> 事件。使滚动条滑块向前或先后移动一个大距离，可以通过 <link url="PageStep.htm">PageStep</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CScrollBar 类介绍 </ref_name>
+        <ref_url>../../class/ScrollBar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IScrollBar 接口方法列表</ref_name>
+        <ref_url>../IScrollBar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>PageStep</ref_name>
+        <ref_url>PageStep</ref_url>
+    </reference>
+</references>
+</manpage>

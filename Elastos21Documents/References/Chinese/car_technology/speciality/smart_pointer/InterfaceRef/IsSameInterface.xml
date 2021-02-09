@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 接口智能指针类共有方法 </volume>
+    <interface> InterfaceRef </interface>
+    <method>IsSameInterface</method>
+
+    <description>
+        <para>判断当前接口智能指针是否与指定接口智能指针指向同一对象中的同一接口。</para>
+    </description>
+
+    <syntax>
+        <return_val>BOOL</return_val>
+        <parameters>
+            <api_param>
+                <param_type>InterfaceRefArg&amp;</param_type>
+                <param_name>ir</param_name>
+                <param_note>
+                    <para>指定的接口智能指针</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果两个智能指针指向同一对象中的同一接口，返回TRUE；否则，返回FALSE。</para>
+    </return>
+
+    <example><pre><![CDATA[
+//g_Interface是指向某对象中Interface接口的接口智能指针.
+InterfaceRef g_Interface;
+
+void Foo(InterfaceRef& senderRef)
+{
+    if (!senderRef.IsValid()) { //调用IsValid方法判断接口智能指针senderRef的有效性.
+        assert(0 && "senderRef is invalid.");
+        return;
+    }
+
+    //判断senderRef是否与g_Interface指向同一个对象中的同一接口.
+    if (senderRef.IsSameInterface(g_Interface)) {
+        ……
+        return;
+    }
+    ……
+}
+]]></pre></example>
+
+</manpage>

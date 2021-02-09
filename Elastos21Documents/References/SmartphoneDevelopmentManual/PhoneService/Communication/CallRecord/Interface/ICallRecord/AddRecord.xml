@@ -1,0 +1,64 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通话记录</volume>
+<interface>ICallRecord</interface><method> AddRecord </method>
+    <description>
+        <para>
+         添加一条新的空记录，需要通过返回的指针填写数据内容，并更新到数据库。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ICallRecordItemRef * </param_type>
+                <param_name> ppItem </param_name>
+                <param_note>
+                    <para>
+                    指向<link url="../ICallRecordItem.htm">ICallRecordItem</link>指针的指针，返回新创建的记录项接口
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT </td>
+	    	    <td>参数错误 </td>
+	        </tr>
+	        <tr>
+	    	    <td>E_DB_INTERNAL_ERROR </td>
+	    	    <td>数据库错误 </td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>、<link url="../../../../../QuickReference/DBError.htm">E_DB_INTERNAL_ERROR</link>相关帮助。</para>
+    </return>
+
+
+    <remarks>
+       <para>
+       本操作不对数据库有任何改动。
+       </para>
+       <para>
+       Callee创建并返回一个新的ICallRecordItem对象，供caller使用。Caller应该将必要的信息提供，然后使用ICallRecord::Update方法将数据保存到数据库中，caller释放返回的接口，返回的ppItem当不再需要的时候，需要由使用者释放。
+       </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

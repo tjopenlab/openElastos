@@ -1,0 +1,71 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\basic_com_lib\EzTaskMemory">CMemoryHeap::Alloc</sample>
+    <volume>堆</volume>
+    <title>CMemoryHeap::Alloc</title>
+    <routine_idx>../Heap.htm</routine_idx>
+
+    <description>
+        <para>分配一块内存。</para>
+    </description>
+
+    <syntax>
+        <return_val>PVoid  </return_val>
+        <parameters>
+            <api_param>
+                <param_type> MemorySize  </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>[in] 准备分配的内存块的大小（字节数）</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Boolean  </param_type>
+                <param_name> zeroMemory </param_name>
+                <param_note>
+                    <para>[in] 分配的内存是否清零,为TRUE时清零，为FALSE时不清零</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<para>如果分配成功，返回指向内存块首地址的指针；如果内存不足，返回NULL。</para>
+    </return>
+
+    <remarks>
+         <para>本函数使用缺省的分配器分配一块内存。所返回内存的初始状态由参数zeroMemory决定是否清零。考虑到定位和管理的需要，实际分配的内存块可能比size大。</para>
+         <para>如果size为零，本函数分配一个零字节长的内存，并返回一个合法的指针指向它；如果内存不足的话，则返回NULL。</para>
+         <para>需要注意的是，即使是请求分配很小的内存，也不能保证分配成功。因此，应用程序必须检查本方法的返回值。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+
+
+    <references>
+    <reference>
+        <ref_name> CMemoryHeap::Realloc</ref_name>
+        <ref_url> Realloc</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CMemoryHeap::Free</ref_name>
+        <ref_url> Free</ref_url>
+    </reference>
+    </references>
+
+</manpage>

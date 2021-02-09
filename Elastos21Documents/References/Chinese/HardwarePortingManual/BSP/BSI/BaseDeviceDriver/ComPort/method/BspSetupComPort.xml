@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>串口函数</volume>
+    <title>BspSetupComPort</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>初始化串口的通讯参数。</para>
+    </description>
+
+    <syntax>
+        <return_val>bool_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> ComPort</param_type>
+                <param_name> comPort </param_name>
+                <param_note>
+                    <para>指定具体的串口设备，参见<link url="../enum/ComPort.htm">ComPort</link>枚举类型。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> const ComPortSettings *</param_type>
+                <param_name> pSettings </param_name>
+                <param_note>
+                    <para>指向一个ComPortSettings类型的表示具体的串口设置的数据，参见<link url="../data_structure/ComPortSettings.htm">ComPortSettings</link>结构。如果此参数为NULL，此函数将以缺省的通讯参数来初始化串口。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <para>初始化成功，返回TRUE，否则返回FALSE。</para>
+    </return>
+
+    <remarks>
+        <para>此函数用于初始化指定串口的通讯参数。在对指定串口进行读写之前，必须先调用此函数对其进行初始化。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                《Elastos2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>BspReadComPort</ref_name>
+            <ref_url>BspReadComPort</ref_url>
+        </reference>
+        <reference>
+            <ref_name>BspWriteComPort</ref_name>
+            <ref_url>BspWriteComPort</ref_url>
+        </reference>
+    </references>
+
+</manpage>
+ 

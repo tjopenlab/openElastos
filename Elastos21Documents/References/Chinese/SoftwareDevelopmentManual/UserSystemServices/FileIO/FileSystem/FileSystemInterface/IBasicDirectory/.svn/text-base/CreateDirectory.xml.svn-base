@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicDirectory</interface><method> CreateDirectory </method>
+    <description>
+        <para>
+            在当前目录对象中创建一个子目录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> directoryname </param_name>
+                <param_note>
+                    <para>
+要创建的子目录名                  </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> FileAccessMode </param_type>
+                <param_name> mode </param_name>
+                <param_note>
+                    <para>
+创建的子目录的读写模式，参见数据结构<link url="../../FileSystemDataType/FileAccessMode.htm">FileAccessMode</link>                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para> 如果方法调用成功，返回NOERROR； </para>
+    <para> 如果参数directoryname为空，或directoryname所指向的字符串为空，或directoryname超过256个字符，或directoryname出现限制字符（详见备注）；或参数mode为无法识别的读写模式，返回E_INVALID_ARGUMENT； </para>
+    <para> 如果同名子目录已存在，返回E_FS_FILE_EXISTS。</para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+<remarks>
+	  <para> 该方法只能在当前目录下创建一个子目录，参数directoryname的限制字符为：‘ &lt;  ’、‘ &gt; ’、‘ / ’、‘ \\ ’、‘ ? ’、‘ * ’、‘ \" ’、‘ | ’、‘ : ’。</para>
+</remarks>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

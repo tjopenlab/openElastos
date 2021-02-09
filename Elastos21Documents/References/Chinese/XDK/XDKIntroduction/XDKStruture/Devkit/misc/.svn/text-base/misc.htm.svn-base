@@ -1,0 +1,200 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Devkit的目录结构介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>misc</h2>
+    <p>misc目录下主要存放XDK的环境设置与编译控制文件，包括一些批处理文件和makefile文件。在misc下的子目录还存放了用于打开开发窗口的快捷方式及其使用的图标。</p>
+    
+    <ul>
+        <li>misc下的文件列表如下：
+    <center>
+		<table>
+		<tr>
+		<td>文件名</td>
+		<td>用途</td>
+		<td>说明 </td>
+		</tr>
+		<tr>
+		<td>emake.bat</td>
+		<td>启动自动递归编译过程</td>
+		<td>通过emake.bat启动makefile</td>
+		</tr>
+		<tr>
+		<td>setenv.bat</td>
+		<td>设置开发窗口环境</td>
+		<td>不需要用户手动干预</td>
+		</tr>
+		<tr>
+		<td>setpath.bat</td>
+		<td>设置编译类型</td>
+		<td>不需要用户手动干预</td>
+		</tr>
+		<tr>
+		<td>setprojectname.bat</td>
+		<td>设置编译项目名称</td>
+		<td>用于拼接镜像目录 </td>
+		</tr>
+		<tr>
+		<td>usr.bat</td>
+		<td>用户自定义批处理</td>
+		<td>用户根据需要添加 </td>
+		</tr>
+		<tr>
+		<td>CleanEnv.bat</td>
+		<td>清除某些windows环境变量</td>
+		<td>打开窗口或切换环境时执行 </td>
+		</tr>
+		<tr>
+		<td>setsourcepath.bat</td>
+		<td>设置源代码路径</td>
+		<td>用户根据需要设置</td>
+		</tr>
+		<tr>
+		<td>makedefs_evc.mk</td>
+		<td>使用evc编译工具的makefile相关的defines</td>
+		<td>遵循make的语法</td>
+		</tr>
+		<tr>
+		<td>makedefs_gnu.mk</td>
+		<td>使用gnu编译工具的makefile相关的defines</td>
+		<td>遵循make的语法</td>
+		</tr>
+		<tr>
+		<td>makedefs_intel.mk</td>
+		<td>使用intel编译器的makefile相关的defines</td>
+		<td>遵循make的语法</td>
+		</tr>
+		<tr>
+		<td>makedefs_msvc.mk</td>
+		<td>使用msvc编译工具的makefile相关的defines</td>
+		<td>遵循make的语法</td>
+		</tr>
+		<tr>
+		<td>makefile.mk</td>
+		<td>Elastos工程通用的makefile</td>
+		<td>遵循make的语法</td>
+		</tr>
+		<tr>
+		<td>makerules_gnu.mk</td>
+		<td>使用gnu编译器的makefile相关的rules</td>
+		<td>遵循make的语法</td>
+		</tr>
+		<tr>
+		<td>makerules_win.mk</td>
+		<td>使用win32编译器的makefile相关的rules</td>
+		<td>遵循make的语法</td>
+		</tr>
+	</table>
+    
+    </center>
+    <p>注：为避免用户在windows操作系统上安装了其他的开发工具或软件，导致在XDK中进行开发时因为使用其他设定的默认工具或路径而出现错误，所以在XDK开发环境中使用CleanEnv.bat来屏蔽某些windows设定的环境变量，以增强XDK在开发过程中的自封闭性。</p>
+
+
+    <li><a NAME = "misc">misc\shortcuts下存放各种快捷方式</a>，不同的快捷方式对应了不同的开发环境，而不同的开发环境是通过设置环境变量来加以区分的，默认的打开环境是ddk的dbg环境。用户可以修改misc/usr.bat文件中的环境变量(XDK_VERSION和XDK_PACKAGE)的值,来修改默认的开发环境，也可以chv (dbg/opt/pre/rls | ddk/pdk/sdk|product1 / product2)来进行环境的切换，更多请参考chv /?。
+    misc\shortcuts	下的文件列表如下：
+
+    <center>
+		<table>
+		<tr>
+		<td>文件名 </td>
+	  <td>用途 </td>
+		<td>说明 </td>
+		</tr>
+		<tr>
+		<td>EVC zener </td>
+		<td>打开EVC的arm手机环境</td>
+		<td>默认为DDK环境DEBUG版 </td>
+		</tr>
+		<tr>
+		<td>MSVC win32 </td>
+		<td>打开MSVC的win32虚拟机环境</td>
+		<td>默认为DDK环境DEBUG版 </td>
+		</tr>
+		<tr>
+		<td>MSVC win32 </td>
+		<td>打开MSVC的win32虚拟机环境</td>
+		<td>默认为DDK环境DEBUG版 </td>
+		</tr>
+		<tr>
+		<td>GNU win32</td>
+		<td>打开GNU的win32虚拟机环境</td>
+		<td>默认为DDK环境DEBUG版 </td>
+		</tr>
+		<tr>
+		<td>GNU zener arm </td>
+		<td>打开GNU的arm手机环境</td>
+		<td>默认为DDK环境DEBUG版 </td>
+		</tr>
+		<tr>
+		<td>GNU zener x86</td>
+		<td>打开GNU的单板机环境</td>
+		<td>默认为DDK环境DEBUG版</td>
+		</tr>
+		</table>
+    
+    </center>
+    
+      <li>misc\shortcuts\icons下存放快捷方式图标。   
+      <li>misc\config下存放了设置各种开发环境的环境变量的批处理文件，故与shortcuts下的各个快捷方式相对应。编译之后产生的镜像目录和Targets目录就是根据这些环境变量建立的，这些环境变量包括：
+        <center>
+
+		<table>
+		<tr>
+        <td><li>XDK_TARGET_PLATFORM</td>
+        </tr>
+        <tr>
+		<td><li>XDK_TARGET_CPU</td>
+        </tr>
+        <tr>
+		<td><li>XDK_COMPILER</td>
+        </tr>
+        <tr>
+		<td><li>XDK_TARGET_BOARD</td>
+        </tr>
+        <tr>
+		<td><li>XDK_TARGET_FORMAT</td>
+        </tr>
+        <tr>
+		<td><li>XDK_TARGET_PRODUCT</td>
+        </tr>
+		</table>
+        </center>
+    <p>misc\config文件列表如下：</p>
+    <center>
+    
+		<table>
+		<tr>
+		<td>文件名 </td>
+		<td>用途 </td>
+		</tr>
+		<tr>
+		<td>gnu_win32_pe.bat</td>
+		<td>设置GNU win32开发环境的环境变量</td>
+		</tr>
+		<tr>
+		<td>gnu_zener_arm_pe.bat</td>
+		<td>设置GNU zener arm开发环境的环境变量</td>
+		</tr>
+		<tr>
+		<td>gnu_zener_x86_pe.bat</td>
+		<td>设置GNU zener x86开发环境的环境变量</td>
+		</tr>
+		<tr>
+		<td>msvc_win32_pe.bat</td>
+		<td>设置MSVC win32开发环境的环境变量</td>
+		</tr>
+		</table>
+
+    </center>      
+    </ul>
+<script>footer("chinese")</script>
+</body>
+</html>

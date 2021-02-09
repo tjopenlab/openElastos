@@ -1,0 +1,90 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>web_service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Get Web Service Description</h2>
+        <p>Distribution of web service (Actually the distribution of WSDL service description file) are accomplished through HTTP protocol. Client can download the WSDL file from special HTTP&nbsp;URL format. All the WSDL descriptions of component object are dynamically generated from its object's meta data.</p>
+        <p>Now let's check an example. First we create an instance of CAR component and register it as naming service. As below, define an adder CAR component, which has implemented the interface ICalculator.</p>
+        <pre class="code">
+[
+    version(1.0), uuid(5d429b4e-d1cf-4ee8-8392-636859a11088),
+    urn(calculator.dll)
+]
+component calculator
+{
+    [ uuid(6006c86a-76db-4f33-9cb6-70acd180fc79) ]
+    interface ICalculator {
+        ECODE Add([in] long a, [in] long b, [out] long* c);
+    }
+
+    [ uuid(65fd3d76-352a-49f8-9335-40d92ecbc8c0) ]
+    class CCalculator {
+        interface ICalculator;
+    }
+}
+</pre>
+        <p>User creates an instance of the component and registers it as "calculator" from EzRegisterService. See below: </p>
+        <pre class="code">
+EzCreateObject((REFCLSID)CLSID_CCalculator, \
+    NULL, CTX_SAME_PROCESS, IID_ICalculator, (void**)&iCalculator);
+EzRegisterService(EZCSTR("calculator"), iCalculator);
+</pre>
+        <p>So SOAP Web server registered according to <b><font color="red">Error!&nbsp;Reference&nbsp;source&nbsp;not&nbsp;found.</font></b> eample will publish corresponding WSDL file of this component instance at HTTP address <a class="style1" href="http://host/WSStub/calculator/default.wsdl">http://host/WSStub/calculator/default.wsdl</a>. Also, you can obtain WSDL file through <a class="style1" href="http://host/WSStub/calculator/ICalculator.wsdl">http://host/WSStub/calculator/ICalculator.wsdl</a> (Note: From this you can see that the whole system is publishing WSDL file in terms of interface). The content of WSDL file is as the following: </p>
+        <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;definitions name="calculator"
+    targetNamespace="urn:car-remote-service"
+    xmlns:tns="urn:car-remote-service"
+    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"&gt;
+    &lt;message name="AddReq"&gt;
+        &lt;part name="a" type="xsd:int"/&gt;
+        &lt;part name="b" type="xsd:int"/&gt;
+    &lt;/message&gt;
+    &lt;message name="AddRes"&gt;
+        &lt;part name="result" type="xsd:int"/&gt;
+        &lt;part name="c" type="xsd:int" minOccurs="0" maxOccurs="1" nillable="true"/&gt;
+    &lt;/message&gt;
+    &lt;portType name="CARIfPortType"&gt;
+        &lt;operation name="Add" parameterOrder="a b c"&gt;
+            &lt;input message="tns:AddReq"/&gt;
+            &lt;output message="tns:AddRes"/&gt;
+        &lt;/operation&gt;
+    &lt;/portType&gt;
+    &lt;binding name="calculatorICalculatorBinding" type="tns:CARIfPortType"&gt;
+        &lt;SOAP:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/&gt;
+        &lt;operation name="Add"&gt;
+            &lt;SOAP:operation style="rpc" soapAction=""/&gt;
+            &lt;input&gt;
+                &lt;SOAP:body use="encoded" namespace="urn:car-remote-service" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/&gt;
+            &lt;/input&gt;
+            &lt;output&gt;
+                &lt;SOAP:body use="encoded" namespace="urn:car-remote-service" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/&gt;
+            &lt;/output&gt;
+        &lt;/operation&gt;
+    &lt;/binding&gt;
+    &lt;service name="calculator"&gt;
+    &lt;documentation&gt;Elastos, Inc. generated CAR Web Service definition&lt;/documentation&gt;
+        &lt;port name="CARInterfacePort" binding="tns:calculatorICalculatorBinding"&gt;
+            &lt;SOAP:address location="http://host/WSStub/calculator/ICalculator.car"/&gt;
+        &lt;/port&gt;
+    &lt;/service&gt;
+&lt;/definitions&gt;
+</pre>
+
+<script>footer("english")</script>
+</body>
+</html>          

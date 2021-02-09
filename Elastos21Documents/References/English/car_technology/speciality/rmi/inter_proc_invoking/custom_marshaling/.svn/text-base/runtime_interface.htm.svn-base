@@ -1,0 +1,37 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Custom Marshaling</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>CAR Component Run-Time Interface Mechanism</h2>
+    <p>CAR component run-time interface mechanism is a way to fabricate interface pointer in component instance provided by CAR component run-time platform.</p>
+    <p>The introduction of this mechanism is caused by this kind of application: On one hand the customer needs to fabricate some interface pointer in the component to return to the user and let them use it. On the other hand these pointers may transfer to remote side (i.e. another process etc.) through CAR&nbsp;RPC mechanism. For example, in current system implementation the user can obtain remote CAR component instance interface pointer through API function <a class="style1" href="../../../../../sdk/base_service/car_naming_service/naming_service_api/EzFindService.htm">EzFindService</a>, but in fact what the user get is a remote service proxy IProxy object pointer. This pointer is fabricated by CAR component run-time platform. If user obtain IProxy object pointer by invoking QueryInterface(IID_IProxy,…) method, then tries to transfer this pointer across the process to another process X, what type of interface pointer is this pointer after it is transfered to process X? The original CAR component does not implement the IProxy object.</p>
+    <p>Cases like the above are numerous.Another classic sample is about IRpcProxy interface pointer used in SOAP based CAR component inter-machine implementation.The general idea is similar to the above example.</p>
+    <p>Out of the above concern, we introduce CAR component run-time interface mechanism. From the design point of view, it is an extension to <a class="style1" href=cust_marshal_intro.htm>CAR component marshaling based mechanism</a>.</p>
+    <p>From the application point of view, if you want to use CAR component run-time interface mechanism, you need to declare and implement two interfaces ICustomMarshal and IRuntimeInterface among which, IRuntimeInterface interface is defined as the following: </p>
+    <pre class="code">
+IRuntimeInterface {
+    ECODE RI_QueryIndex([in] IUnknown *pUnk, [out] int *pIndex);
+    ECODE RI_QueryInterface([in] int pIndex, [out] IUnknown **ppUnk);
+    ECODE RI_QueryMetadata([out] EzVar* pevMetadata);
+}
+</pre>
+    <p>In implementation, CAR component run-time platform adjusts CAR component custom marshaling mechanism in the following way to support CAR component run-time interface mechanism: </p>
+    <ul>
+        <li>In phase 0 establishing standard CAR&nbsp;RPC, if CAR component run-time platform detects that interface pointer (let it be pA) passed as parameter different from all instance interface pointers supported by this component (CAR specification requires all proxy pointers of same component instance of the same interface must be the same in the same process), then we assume that this pointer is a run-time dynamic interface.It invokes the RI_QueryIndex method of the IRuntimeInterface interface of this component instance to obtain its run-time interface Index(<font color="color">Note: When implementing RI_QueryIndex method of IRuntimeInterface interface, you must return integer number less than 0 as the return value of interface index</font>).
+        <li>After phase 2 i.e. custom marshaling/unmarshaling mechanism is over, we also need to invoke ppNewProxy pointer (ppNewProxy i.e. Custom&nbsp;component&nbsp;proxy object pointer in <a class="style1" href="cust_marshal_elements.htm#jpg3">Diagram 3</a>)'s proxy component (i.e. Custom&nbsp;component&nbsp;proxy component object)'s IRuntimeInterface interface's RI_QueryInterface method and also returns the user its interface pointer return parameter.
+        <li>After phase 3 i.e. cleaning process is over, CAR component run-time platform also invokes Release method of ppNewProxy pointer to release reference count.
+    </ul>
+    <p>The above is run-time interface support details of CAR component run-time platform. At last we must add RI_QueryMetadata method of IRuntimeInterface interface that is currently not used.From the designing point of view it is considered to export metadata from run-time dynamic interface.</p>
+
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fclose">fclose </sample>
+    <title> fclose _fcloseall</title>
+    <volume>C 运行库函数</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>关闭文件。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fclose</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_fcloseall</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void</param_type>
+                <param_name></param_name>
+                <param_note>
+                    <para></para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>如果成功关闭文件，返回0；否则，返回EOF。</para>
+    </return>
+
+    <remarks>
+        <para>函数fclose关闭文件。所有与此流相关的缓冲区都事先清空以便关闭。在文件流关闭时，系统分配的缓冲区被释放。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fclose</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fclose.cpp: This program opens files named &quot;data&quot;
+ * &quot;.It  uses fclose to close &quot;data&quot; .
+ */
+
+#include &lt;stdio.h&gt;
+
+FILE *stream;
+
+int main()
+{
+
+    /* Open for read (will fail if file &quot;data&quot; does not exist) */
+    if ((stream  = fopen(&quot;data&quot;, &quot;w&quot;)) == NULL)
+        printf(&quot;The file &apos;data&apos; was not opened.\n&quot;);
+    else
+        printf(&quot;The file &apos;data&apos; was opened.\n&quot;);
+
+    /* Close stream */
+    if (!fclose(stream))
+        printf(&quot;The file &apos;data&apos; was closed.\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The file &apos;data&apos; was opened.
+The file &apos;data&apos; was closed.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_wfopen</ref_name>
+            <ref_url>_wfopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

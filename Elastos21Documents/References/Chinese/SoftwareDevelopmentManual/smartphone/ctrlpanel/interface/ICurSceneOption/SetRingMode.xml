@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICurSceneOption</interface><method> SetRingMode </method>
+    <description>
+        <para>
+            设置当前振铃状态，写入配置文件中。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> RINGMODETYPE </param_type>
+                <param_name> uRingModeType </param_name>
+                <param_note>
+                    <para>
+用于存放当前振铃的状态，具体值参见<link url="../../datatype/RINGMODETYPE.htm">RINGMODETYPE</link>                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；uRingModeType不是            <link url="../../datatype/RINGMODETYPE.htm">            RINGMODETYPE            </link>            枚举型，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

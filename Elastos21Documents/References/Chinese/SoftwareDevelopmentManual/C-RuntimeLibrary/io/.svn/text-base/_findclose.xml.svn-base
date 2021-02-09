@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_findclose">_findclose</sample>
+    <title> _findclose</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>关闭指定查找的句柄，并释放相关资源。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_findclose</func_name>
+        <parameters>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>前一次调用_findfirst方法返回的搜索句柄</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果函数执行成功，返回0；否则，返回-1，并将错误号置为ENOENT，表示没有找到匹配的文件。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>_findclose</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* findcls.cpp: This program search handle returned by a previous
+ * call to _findfirst,and then uses _findclose to close the specified
+ * search handle and releases associated resources.
+ */
+
+#include &lt;fcntl.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;io.h&gt;
+
+int main()
+{
+    long hFile;
+    struct _finddata_t fileinf;
+
+    /* Find first _findf*.* file in current directory */
+    if ((hFile = _findfirst(&quot;findcls*.*&quot;, &amp;fileinf)) != -1L) {
+
+        printf(&quot;Find specified file.\n&quot;);
+        printf(&quot;Name is : %s\n&quot;, fileinf.name);
+        if (_findclose(hFile) == 0)
+            printf(&quot;_findclose is right\n&quot;);
+        else
+            printf(&quot;_findclose error\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Find specified file.
+Name is : findcls.exe
+_findclose is right
+</result>
+
+    <references>
+        <reference>
+            <ref_name>_findfirst</ref_name>
+            <ref_url>_findfirst</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_findnext</ref_name>
+            <ref_url>_findnext</ref_url>
+        </reference>
+    </references>
+
+</manpage>

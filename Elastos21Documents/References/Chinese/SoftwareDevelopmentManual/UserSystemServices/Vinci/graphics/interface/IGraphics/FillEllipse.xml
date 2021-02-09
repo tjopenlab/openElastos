@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IGraphics</interface><method> FillEllipse </method>
+    <description>
+        <para>
+            填充边框所定义的椭圆的内部（边框由一对坐标、一个宽度和一个高度定义）。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Color </param_type>
+                <param_name> color </param_name>
+                <param_note>
+                    <para>
+填充的颜色                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> x </param_name>
+                <param_note>
+                    <para>
+椭圆的边框的左上角的x坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> y </param_name>
+                <param_note>
+                    <para>
+椭圆的边框的左上角的y坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+椭圆的边框的宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+椭圆的边框的高度                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果有参数无效，则方法调用失败，并返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统           </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            椭圆颜色的取值指定为            <link url="../../datatype/Color.htm">            Color            </link>            数据类型。</para><para>            此方法使用uColor指定的颜色填充椭圆的内部。 椭圆由 x、y、width 和 height 参数表示的边框定义。此方法不绘制椭圆的边界。
+        </para>
+    </remarks>
+</manpage>

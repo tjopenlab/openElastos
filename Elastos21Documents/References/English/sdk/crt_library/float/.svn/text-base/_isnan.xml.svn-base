@@ -1,0 +1,85 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\float\_isnan">_isnan</sample>
+    <title>_isnan</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> float_idx.htm </routine_idx>
+
+    <description>
+        <para>The isnan() macro returns non-zero if and only if x is a NAN (not a number). NAN is a floating point result which cannot
+represent by IEEE (Institute of Electrical and Electronics Engineers) standard.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_isnan</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>Floating-point value</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_isnan returns a nonzero value (TRUE) if the argument x is NAN; otherwise it returns 0 (FALSE).</para>
+    </return>
+
+    <remarks>
+        <para>The _isnan function tests a given double-precision floating-point value x, returning a nonzero value if x is a NAN. A NAN is generated when the result of a floating-point operation cannot be represented in Institute of Electrical and Electronics Engineers (IEEE) format. For information about how NAN is represented for output, see printf.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_isnan</routine_name>
+            <headerfile>float.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _isnan.cpp: This program uses _finite function to check
+ * x is Nan.
+ */
+
+#include &lt;float.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double x = 242.55;
+
+    printf(&quot;For x, is %s\n&quot;, _isnan(x) ? &quot;NaN&quot; : &quot;not NaN&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+For x, is not NaN
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_finite</ref_name>
+            <ref_url>_finite</ref_url>
+        </reference>
+    </references>
+
+</manpage>

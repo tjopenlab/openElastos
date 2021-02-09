@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IThread\GetState">GetState</sample>
+<volume>线程</volume>
+<interface>IThread</interface><method> GetState </method>
+    <description>
+        <para>
+    		获取线程状态。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ThreadState *</param_type>
+                <param_name> pState  </param_name>
+                <param_note>
+                    <para>
+						指向<link url="../../../DataStructure/ThreadState.htm">ThreadState</link>枚举类型的指针，用于获取线程的状态，不能为空
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值</td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取线程状态</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		
+		<para>
+		    初始化状态是ThreadState_Unstarted。
+		</para>
+		<para>
+		    具体的线程状态定义参见数据结构中的<link url="../../../DataStructure/ThreadState.htm">ThreadState</link>枚举类型说明。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+   
+</manpage>

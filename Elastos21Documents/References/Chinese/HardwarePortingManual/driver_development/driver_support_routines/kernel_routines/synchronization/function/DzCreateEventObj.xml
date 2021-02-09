@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>同步</volume>
+    <title>DzCreateEventObj</title>
+
+    <description>
+        <para>在内核中创建事件同步对象。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Boolean </param_type>
+                <param_name> manualReset </param_name>
+                <param_note>
+                    <para>[in] 如果指向TRUE，表示需要手动重置事件，否则一直为已通知状态；指向FALSE，则表示会自动重置事件</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> EventState </param_type>
+                <param_name> initialState </param_name>
+                <param_note>
+                    <para>[in] 指定所创建的事件同步对象的初始状态。为零表示未通知状态，否则为已通知状态</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> IEvent ** </param_type>
+                <param_name> ppEvent </param_name>
+                <param_note>
+                    <para>[out] 指向事件同步对象接口指针的指针，用以获取创建的事件同步对象接口指针</para>
+	            </param_note>
+	        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>驱动程序可以使用本函数创建出一个事件对象，并通过<link url="../../../../standard_driver_routines/IDeviceDriver.htm">IDeviceDriver</link>的三个方法的最后一个参数（[out] IEvent **ppCompletionEvent）将其接口引用返回给用户，由此可以实现驱动程序的异步I/O操作。</para>
+        <para>参见<link url="../IEvent.htm">IEvent</link>接口。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>

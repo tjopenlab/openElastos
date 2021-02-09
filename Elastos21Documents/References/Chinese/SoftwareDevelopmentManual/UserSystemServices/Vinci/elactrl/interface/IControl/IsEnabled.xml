@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> IsEnabled </method>
+    <description>
+        <para>
+            判断控件是否能接收事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Boolean* </param_type>
+                <param_name> enabled </param_name>
+                <param_note>
+                    <para>
+指向 Boolean 型的指针，用于判断控件是否能接收事件，不能为 NULL；若为TRUE，则控件能接收事件，否则为 FALSE</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        参数不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        当一个控件不能接收事件时，它将不能不会具有焦点，并且其包含的所有控件也都被禁用。当禁用可滚动的控件时，滚动条也被禁用。例如，一个被禁用的多行文本框无法滚动以显示所有文本行。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetEnabled</ref_name>
+        <ref_url>SetEnabled</ref_url>
+    </reference>
+</references> 
+</manpage>

@@ -1,0 +1,48 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/structuremanual.xsl"?>
+
+<manpage>
+    
+    <volume> 常用数据结构 </volume>
+    <class>BufferOf</class>
+    <function>BufferOf_&lt; T,Int32 SIZE&gt;</function>
+
+    <description>
+        <para> 在栈中构造一个BufferOf对象，并指定数组长度和数组元素类型。 </para>
+    </description>
+    
+      <syntax_nopara>
+        <apiname>BufferOf_&lt;T,size&gt;</apiname>
+    </syntax_nopara>  
+   <remarks>
+   <para>T为数据类型标识符,指明数组元素的类型。</para>
+   </remarks>
+<example>
+<pre>
+BufferOf_&lt;AChar, 200&gt; myArray;
+CConsole::WriteLine(myArray.GetCapacity());  //Display : 200
+CConsole::WriteLine((Int32)sizeof(myArray));  //Display : 220
+
+BufferOf_&lt;Int32, 200&gt; myArray1;
+CConsole::WriteLine(myArray1.GetCapacity());  //Display : 200
+CConsole::WriteLine((Int32)sizeof(myArray1));  //Display : 820
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>BufferOf</ref_name>
+        <ref_url>../../BufferOf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>BufferOf::BufferOf(T *,Int32,Int32) </ref_name>
+        <ref_url>BufferOf_Box1</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>BufferOf::BufferOf(T *,Int32) </ref_name>
+        <ref_url>BufferOf_Box2</ref_url>
+    </reference>
+</references>
+</manpage>

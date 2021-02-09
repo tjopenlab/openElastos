@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>CCallLogEntry Functions</volume>
+<method>CCallLogEntry::New </method>
+    <description>
+        <para>
+            创建一个CallLogEntry对象。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> <link url="ICallLogEntry.htm">ICallLogEntry</link>**   </param_type>
+                <param_name> callLogEntry </param_name>
+                <param_note>
+<para>指向ICallLogEntry接口指针的指针，
+用于获取ICallLogEntry接口指针。</para>
+                </param_note>
+            </api_param>                                                             
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  当创建了一个CallLogEntry对象后，就可以获取<link url="ICallLogEntry.htm">ICallLogEntry</link>接口指针，通过该接口指针，您就可以调用各种方法对该CallLogEntry设置各种属性值。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CallLog构件模块介绍 </ref_name>
+        <ref_url>../CallLog</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CCallLogEntry构件类介绍</ref_name>
+        <ref_url>CCallLogEntry</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ICallLogEntry接口方法列表</ref_name>
+        <ref_url>ICallLogEntry</ref_url>
+    </reference>
+</references>
+</manpage>

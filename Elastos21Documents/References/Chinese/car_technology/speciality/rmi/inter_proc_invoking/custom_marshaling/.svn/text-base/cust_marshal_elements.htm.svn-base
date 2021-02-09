@@ -1,0 +1,48 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>自定义列集/散集</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>CAR构件自定义列集/散集机制的原理</h2>
+        <p>CAR构件自定义列集/散集机制（以下简称CAR&nbsp;Custom&nbsp;marshaling）是依赖于CAR构件运行平台提供的远程过程调用技术（以下简称CAR&nbsp;RPC）实现的。采用这种设计的主要原因为：</p>
+        <ul>
+            <li>可以减少CAR&nbsp;RPC和CAR&nbsp;Custom&nbsp;marshaling之间的逻辑耦合性，使逻辑结构更加清晰；
+            <li>设计CAR&nbsp;RPC时无需为CAR&nbsp;Custom&nbsp;marshaling作额外考虑，减轻设计负担；
+            <li>目前设计的CAR&nbsp;RPC标准列集/散集机制要求所有输入输出参数必须可提前确定其在列集/散集缓冲区中的长度。这一要求决定了类似Microsoft&nbsp;DCOM的自定义列集/散集机制无法适用于CAR。
+        </ul>
+        <p>要使用CAR构件自定义列集/散集，只需在构件中声明并实现ICustomMarshal接口即可。下文将结合该接口来说明CAR构件自定义列集/散集机制的实现原理。</p>
+        <pre class="code">
+interface ICustomMarshal
+{
+    GetClsid([out] ClassID *clsid);
+    CreateObject([in] ICustomMarshal *originProxy, [out] IInterface **newProxy);
+}
+</pre>
+        <p>CAR构件自定义列集/散集机制分为四个运行阶段：</p>
+        <p>第一阶段，CAR构件运行平台使用CAR&nbsp;RPC的标准列集/散集技术对构件实例进行列集/散集。该过程结束后，在构件实例所运行的服务进程（X）会创建一个CAR标准构件存根，同时在客户进程（Y）内会创建出一个CAR标准构件代理，这一过程实质上就是CAR&nbsp;RPC标准列集/散集机制的实现过程。</p>        
+        <center><img src="images\phase1.JPG"</center>
+        <center>图5-19 自定义列集/散集运行阶段一</center>
+        <p>第二阶段，CAR构件运行平台通过查找元数据来判断该构件是否实现了ICustomMarshal接口。如果实现了ICustomMarshal接口，则返回CAR标准构件代理（即CAR&nbsp;RPC标准列集/散集机制结束）。否则将通过调用CAR标准构件代理的Probe方法获取该构件的ICustomMarshal接口指针，然后调用该接口指针的GetClsid方法获得其Custom&nbsp;Marshaler构件对象的ClassID，最后利用CreateObject在进程Y创建出一个新的Custom&nbsp;Marshaler构件对象实例（<font color="red">注意：Custom&nbsp;Marshaler构件也必须实现了ICustomMarshal接口</font>）。</p>
+        <center><img src="images\phase2.JPG"</center>
+        <center>图5-20 自定义列集/散集运行阶段二</center>
+        <p>第三阶段，CAR构件运行平台以CAR标准构件代理的接口指针作为输入参数originProxy调用Custom&nbsp;Marshaler构件实例ICustomMarshal接口的CreateObject方法，然后将该方法的输出参数newProxy作为自定义构件代理返回（newProxy即上图中Custom&nbsp;component&nbsp;proxy的对象指针）。</p>
+
+        <center><img src="images\phase3.JPG"</center>
+        <a NAME="jpg3"><center>图5-21 自定义列集/散集运行阶段三</center>
+        <p>从对该阶段的描述可知，在CreateObject方法的实现中如何利用接收的originProxy指针创建出Custom&nbsp;component&nbsp;proxy完全由Custom&nbsp;Marshaler构件的实现来控制。同时，为了保证下次Custom&nbsp;component&nbsp;proxy构件对象被列集/散集时仍然使用自定义列集/散集机制，该构件也应该实现ICustomMarshal接口。</p>
+        <p>第四阶段，CAR构件运行平台调用其接口Release方法删除临时使用的CAR标准构件代理对象和Custom&nbsp;Marshaler对象。</p>
+
+        <center><img src="images\phase1.JPG"</center>
+        <center>图5-22 自定义列集/散集运行阶段四</center>
+        <p>该阶段完成后，Custom&nbsp;component&nbsp;proxy与进程X中的构件对象实例的CAR&nbsp;RPC通信链路被断开，Custom&nbsp;component&nbsp;proxy对象需要自己负责与进程X中的构件对象进行通信（<font color="red">注意：Custom&nbsp;component&nbsp;proxy也可以通过保存CAR标准构件代理对象的指针并调用AddRef来保留这条通信链路，具体情况由Custom&nbsp;component&nbsp;proxy构件的实现决定</font>）。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

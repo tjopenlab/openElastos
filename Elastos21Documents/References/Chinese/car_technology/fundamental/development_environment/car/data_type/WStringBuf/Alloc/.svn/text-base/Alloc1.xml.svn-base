@@ -1,0 +1,69 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\WStringBuf\Alloc">Alloc</sample>
+    <volume> 常用数据结构 </volume>
+    <class>WStringBuf</class>
+    <method> Alloc </method>
+
+    <description>
+        <para>(在堆上)动态创建 WStringBuf对象, 并指向用户所分配的内存块。</para>
+    </description>
+
+    <syntax>
+        <return_val> static WStringBuf * </return_val>
+        <parameters>
+        <api_param>
+            <param_type>wchar_t *</param_type>
+            <param_name> pwstr </param_name>
+            <param_note>
+                <para> 指向用户所分配的内存块的指针。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> size </param_name>
+            <param_note>
+                <para> 用户分配的内存块的大小，单位为sizeof(wchar_t)</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果分配成功，返回指向WStringBuf对象的指针，否则返回NULL。</para>
+    </return>
+
+    <remarks>
+        <para>调用此函数分配的空间，需要调用Free函数来释放内存。 </para>
+         <para> 此函数是一个Box的函数，只分配五元组的内存，数据的内存是放在pstr指向的内存块。详细参见AStringBuf::Alloc函数。 </para>
+    </remarks>
+
+
+<example>
+<pre>
+请参见：<link url="../../AStringBuf/Alloc/index/Alloc.htm">AStringBuf::Alloc(char*, Int32)</link>
+</pre>
+</example>
+
+
+<references>
+    <reference>
+        <ref_name>WStringBuf</ref_name>
+        <ref_url>../../WStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Alloc</ref_name>
+        <ref_url>index/Alloc</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Free </ref_name>
+        <ref_url>../Free</ref_url>
+    </reference>
+
+</references>
+
+</manpage>

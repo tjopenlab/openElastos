@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+<manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> AddLayerTransparentArea </method>
+    <description>
+        <para>
+            增加可以显示下层内容的区域。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> x </param_name>
+                <param_note>
+                    <para>
+透明区域左上角相对于Form左上角的横坐标                     </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> y </param_name>
+                <param_note>
+                    <para>
+透明区域左上角相对于Form左上角的纵坐标                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+透明区域的宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+透明区域的高度                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_NOT_SUPPORT</td>
+	    	    <td>FormStyle 非 FormStyle_LayeredAlphaChannel</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_CLOSED</td>
+	    	    <td>窗口已关闭</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法在 <link url="../../datatype/FormStyle.htm">FormStyle</link> 设置为 FormStyle_LayeredAlphaChannel 情况下有效，否则将调用失败。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>RemoveLayerTransparentArea</ref_name>
+        <ref_url>RemoveLayerTransparentArea</ref_url>
+    </reference>
+    <reference>
+        <ref_name>RemoveAllLayerTransparentArea</ref_name>
+        <ref_url>RemoveAllLayerTransparentArea</ref_url>
+    </reference>
+</references>
+</manpage>

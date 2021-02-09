@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicFile</interface><method> SetShareMode </method>
+    <description>
+        <para>
+            设置文件的共享方式。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> FileShareMode </param_type>
+                <param_name> mode </param_name>
+                <param_note>
+                    <para>
+文件的共享方式，参见数据结构<link url="../../FileSystemDataType/FileShareMode.htm">FileShareMode</link>                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果参数mode非法，返回E_INVALID_ARGUMENT； </para>
+    <para>如果该文件已被多次打开，或者已被其他用户设置了共享方式，则不能设置共享方式，返回E_FS_FILE_BUSY。 </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            每个文件被打开以后，默认共享方式是FileShareMode_Write；用户可以通过本接口方法修改共享方式。若将文件设置为FileShareMode_Deny和FileShareMode_Read方式，目标文件必须没有被其他用户打开着，否则返回E_FS_FILE_BUSY；若文件已经被某用户设置为FileShareMode_Deny或FileShareMode_Read方式，则只有该用户才能将共享方式改回默认方式，即FileShareMode_Write方式。当该用户关闭文件时，也会将文件共享方式改回默认方式。
+        </para>
+    </remarks>
+</manpage>

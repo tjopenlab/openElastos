@@ -1,0 +1,95 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzGetCurrentProcess"> EzGetCurrentProcess </sample>
+    <volume>System API</volume>
+    <title>EzGetCurrentProcess</title>
+    <routine_idx> ..\process_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	Gets the process object interface of the current process.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> IProcess **</param_type>
+                <param_name> ppProcess </param_name>
+                <param_note>
+                    <para>
+                    	[out] If the function succeeds, interface pointer of the process object is returned.
+                    </para>
+				</param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>    	
+		<table>
+            <th>
+                <td>Return value</td><td>Description</td>
+            </th>
+			<tr>
+                <td>S_OK</td>
+                <td>Function succeeds in getting the process object interface of the current process.</td>
+            </tr>
+            <tr>
+                <td>E_INVALIDARG</td>
+                <td>Invalid argument(s)</td>
+            </tr>            
+        </table>
+        <para>references <link url="sdk/hresult.htm">ECODE </link>  correlative help.</para>
+    </return>
+
+    <remarks>
+        <para>
+        	Interface pointer of the process object will give maximum possible access to the process.
+        </para>
+        <para>
+        	The <link url="EzExitProcess.htm">CProcess::Exit</link> method can be invoked to exit the current process.
+        </para>
+        <para>
+        	If this process object is no longer used, the <b>IProcess</b> interface method <b>Release</b> must be 
+        	called to release the pointer to this object. When the reference count of this process reaches 0, 
+        	corresponding process object will be cleared immediately.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+              	Windows 2000 or later; Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+		<reference>
+			<ref_name> EzGetCurrentThread</ref_name>
+			<ref_url> EzGetCurrentThread </ref_url>
+		</reference>
+        <reference>
+            <ref_name> EzExitProcess</ref_name>
+            <ref_url> EzExitProcess </ref_url>
+        </reference>
+		<reference>
+			<ref_name> IProcess</ref_name>
+			<ref_url>sdk\base_service\proc_and_thd\proc_thd\IProcess</ref_url>
+		</reference>
+    </references>
+
+</manpage>

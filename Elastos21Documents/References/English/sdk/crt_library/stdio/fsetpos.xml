@@ -1,0 +1,113 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fsetpos">fsetpos</sample>
+    <title> fsetpos</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Sets stream-position indicator.</para>
+	
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fsetpos</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Target stream, pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>fpos_t*</param_type>
+                <param_name>pos</param_name>
+                <param_note>
+                    <para>Position-indicator storage.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If successful, fsetpos returns 0. On failure, the function returns a nonzero value.</para>
+    </return>
+
+    <remarks>
+        <para>The fsetpos function sets the file-position indicator for stream to the value of pos, which is obtained in a prior call to fgetpos against stream. The function clears the end-of-file indicator and undo any effects of ungetc on stream. After calling fsetpos, the next operation on stream may be either input or output.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fsetpos</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fsetpos.cpp: This program opens a file and reads
+ * bytes at several different locations.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE    *stream = NULL;
+    fpos_t pos;
+    char    buffer[20];
+
+    if ((stream = fopen(&quot;fgetpos.exe&quot;, &quot;rb&quot;)) == NULL)
+        printf(&quot;Trouble opening file\n&quot;);
+    else {
+        /* Read some data and then check the position. */
+        fread(buffer, sizeof(char), 10, stream);
+        if (fgetpos(stream, &amp;pos) != 0)
+            perror(&quot;fgetpos error&quot;);
+        else {
+            fread(buffer, sizeof(char), 10, stream);
+            printf(&quot;10 bytes at byte %ld: %.10s\n&quot;, pos, buffer);
+        }
+
+        /* Set a new position and read more data */
+        pos = 140;
+        if (fsetpos(stream, &amp;pos) != 0)
+            perror(&quot;fsetpos error&quot;);
+
+        fread(buffer, sizeof(char), 10, stream);
+        printf(&quot;10 bytes at byte %ld: %.10s\n&quot;, pos, buffer);
+        fclose(stream);
+    }
+    return 0;
+}
+</pre>
+    </example>
+<result>
+10 bytes at byte 10: (null)
+10 bytes at byte 140: (null)
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fgetpos</ref_name>
+            <ref_url>fgetpos</ref_url>
+        </reference>
+    </references>
+
+</manpage>

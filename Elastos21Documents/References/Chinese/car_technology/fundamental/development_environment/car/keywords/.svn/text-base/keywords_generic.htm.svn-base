@@ -1,0 +1,189 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--generic </title>
+</head>
+
+<body>
+	<h2>generic</h2>
+	    <b>含义 </b>
+	        <p>此关键字用来定义泛类。 </p>
+	        <p> 泛类是一种特殊的构件类，其充当了类厂的角色。客户端用泛类创建对象，而泛类则根据实际情况选择合适的子类实例化并传给客户端。</p>
+	    <b>语法 </b>
+	    	<p><b>generic</b> className classBody;  </p>
+	    <b>使用说明 </b>
+            <p>1.泛类的类名必须以字母“G”开头。</p>
+            <p>2.泛类可以声明普通接口和回调接口，并支持回调函数的注册与注销。注意：<a class="style1" href= "keywords_aggregates.htm">aggregates</a>不能修饰generic。</p>
+            <p>3.继承泛类的子类必须实现泛类声明的所有接口。</p>
+            <p>4.泛类创建对象时，会调用其New函数，至于如何根据应用逻辑来创建不同的子类对象，需要用户在New函数里自己手动添加。</p>
+
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IMouse {
+        Connect();
+        Disconnect();
+    }
+
+    interface IUsbmouse {
+        Ummethod();
+    }
+
+    interface IPs2mouse {
+        Pmmethod();
+    }
+
+    <b>generic</b> GMouse {
+        interface IMouse;
+    }
+
+    class CUsbmouse substitutes GMouse {
+        interface IMouse;
+        interface IUsbmouse;
+    }
+    class CPs2mouse substitutes GMouse {
+        interface IMouse;
+        interface IPs2mouse;
+    }
+}
+</pre>
+	        <p>示例genericDemo.car中定义了一个generic类别GMouse，提供接口IMouse。类CUsbmouse和CPs2mouse都继承类别GMouse，所以这两个类也都必须提供接口IMouse，同时，它们分别提供各自的接口IUsbmouse和IPs2mouse。</p>
+            <p>编译上述car文件,自动生成代码框架中，在Gmouse.cpp文件中实现如下：(其中黑体部分是编译器自动生成的代码框架) </p>
+<pre class= code>
+<b>#include "GMouse.h"
+#include "_GMouse.cpp"</b>
+#include "CPs2mouse.h"
+#include "CUsbmouse.h"
+
+
+#define MOUSE_TYPE_PS2      0x01
+#define MOUSE_TYPE_USB      0x02
+    
+Int32 CheckMouseType()
+{
+    return MOUSE_TYPE_PS2;//此处决定创建的是Ps2mouse,也可以改成Usbmouse。
+}
+<b>
+ECode GMouse::New(
+    /*[out]*/ IMouse **ppIMouse)
+{
+    // TODO: Add your code here</b>
+    ECode ec;
+    IMouse * pIMouse;
+
+    if (CheckMouseType() == MOUSE_TYPE_PS2) {
+        ec = CPs2mouse::New(&pIMouse);
+        if (FAILED(ec)) return ec;
+    }
+    else if (CheckMouseType() == MOUSE_TYPE_USB) {
+        ec = CUsbmouse::New(&pIMouse);
+        if (FAILED(ec)) return ec;
+    }
+
+    *ppIMouse = pIMouse;
+    return NOERROR;
+<b>}</b>
+ 
+</pre>         
+            <p>在其它代码框架中简单实现如下： </p>
+<pre class= code>
+<b>#include "CPs2mouse.h"
+#include "_CPs2mouse.cpp"
+ECode CPs2mouse::Connect()
+{</b>
+    <b>// TODO: Add your code here</b>
+    CConsole::WriteLine("Ps2 mouse connected!");
+    return NOERROR;
+<b>}
+
+ECode CPs2mouse::Disconnect()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("Ps2 mouse Disconnected!");
+    return NOERROR;
+<b>}
+
+ECode CPs2mouse::Pmmethod()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("Ps2 mouse Pmmethod!");
+    return NOERROR;
+<b>}</b>
+
+// CUsbmouse.cpp文件
+
+<b>#include "CUsbmouse.h"
+#include "_CUsbmouse.cpp"
+ECode CUsbmouse::Connect()
+{</b>
+      <b>// TODO: Add your code here</b>
+      CConsole::WriteLine("Usb mouse Connect!");
+      return NOERROR;
+<b>}
+
+ECode CUsbmouse::Disconnect()
+{
+      // TODO: Add your code here</b>
+      CConsole::WriteLine("Usb mouse DisConnect!");
+      return NOERROR;
+<b>}
+
+ECode CUsbmouse::Ummethod()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("Usb mouse Ummethod!");
+    return NOERROR;
+<b>}</b>
+
+</pre>   
+            <p>客户端实现如下： </p>
+<pre class= code>
+#include "genericDemo.h"
+using namespace Elastos;
+
+int main(int argc, char* argv[])
+{
+    // I need to get a mouse handle...
+    IMouse* pMouse = NULL;
+
+    // but I don't know MouseType on my pc, so...
+    ECode ec = GMouse::New(&pMouse);
+    if (FAILED(ec)) {
+        CConsole::WriteLine("Sorry, No mouse on your pc!");
+        return -1;
+    }
+
+    // OK, connect my mouse
+    pMouse->Connect();
+
+    // do something...
+
+
+    // well, disconnect my mouse
+    pMouse->Disconnect();
+
+    // ready to exit.
+    if (pMouse) pMouse->Release();
+
+    return 0;
+}
+
+</pre>   
+            <p>运行结果如下： </p>
+<pre class= code>
+Ps2 mouse connected!
+Ps2 mouse Disconnected! 
+</pre>   
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

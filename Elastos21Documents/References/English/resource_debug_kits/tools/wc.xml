@@ -1,0 +1,60 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> wc </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para> Counts the number of lines, words and bytes or characters in a file (or standard input device) for each input file and output it to the display.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> WC </cmd_name>
+        <cmd_param> [-?] [-lwc] [files] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name>  -?  </param_name>
+        <param_note> Displays help information </param_note>
+    </param>
+    <param>
+        <param_name>  -l  </param_name>
+        <param_note> Counts lines.</param_note>
+    </param>
+    <param>
+        <param_name>  -w  </param_name>
+        <param_note> Counts words. A word is defined as a string of characters delimited by spaces, tabs, or newline characters.</param_note>
+    </param>
+    <param>
+        <param_name>  -c  </param_name>
+        <param_note> Count bytes.</param_note>
+    </param>
+    <param>
+        <param_name>  files  </param_name>
+        <param_note> File name.</param_note>
+    </param>
+    </parameters>
+
+    <remarks>
+        <para>A line is defined as string that separated by new line character. A word is defined as string that separated by space.If one above input file is specified, then total count of all the files will be calculated at the line after the last file.</para>
+        <para>The default parameter is -lwc, displays file number of lines, number of words and number of bytes.</para>
+        <para>If the parameter does not specify file name, then count the number of lines, number of words and number of bytes in standard input device. No file name is displayed.</para>
+    </remarks>
+
+    <examples>
+    <example>
+        <eg_line>wc file.txt  </eg_line>
+        <eg_note> Displays the number of lines, number of words and number of bytes of file file.txt . Output the result:  </eg_note>
+        <eg_result><![CDATA[
+          2          4         20       file
+]]></eg_result>
+    </example>
+
+    </examples>
+
+</manpage>

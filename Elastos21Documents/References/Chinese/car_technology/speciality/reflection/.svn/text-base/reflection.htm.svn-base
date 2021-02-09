@@ -1,0 +1,57 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+	<head>
+		<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+		<title>reflection</title>
+	</head>
+
+	<body>
+		<h3> CAR反射机制原理</h3>
+        <p>CAR构件以接口方式向外提供服务，构件接口需要元数据来描述才能让其它使用构件服务的用户使用，元数据描述的就是服务和调用之间的关系。具体来说，元数据描述了指定的代码段“是什么”，让客户程序“了解”要操作的对象的功能。元数据在运行过程中起着以解释方式控制程序行为的作用，反射技术则是在运行时查询、操作元数据。在CAR系统中，元数据是描述CAR构件之间交互的规范，并且是强类型的二进制约定。例如某个构件定义了接口IFoo，其中包含方法Foo： </p>
+          <pre class= code>
+interface IFoo 
+{
+    ...
+    
+    CARAPI  Foo (Int32 x, Boolean y);
+    ...
+}
+          </pre>
+        <p>按照CAR规范，方法Foo被编译后，机器代码是统一的，只与特定的硬件平台有关。如果你是一位资深的程序员，当你看到上面那段元数据，就能够写出对应的C代码甚至汇编。换句话说，如果我们对某一构件非常熟悉，完全可以不用反射读取元数据，而直接调用构件中的方法。但要说明一点，将调用代码写死在客户端，当换用另一个构件时，代码就要重新编写，这样工作量是相当大的，而且不易管理。为了实现动态调用，反射是必不可少的，这也是JAVA和.NET提供反射机制的原因。CAR有一整套生成元数据的机制，如图5-14所示： </p>
+       <center> <img src= "images\compile.JPG"/></center>
+       <center>图5-14 CAR文件的编译过程</center>
+        <p>开发CAR构件的第一步是编写CAR文件，CAR文件用于定义构件中的类、接口、方法及其参数等信息。编写完CAR文件后，用户在“和欣”SDK开发环境下，使用特定工具生成构件源程序框架，其中头文件和.CPP文件为程序框架文件，sources文件用于指定如何编译源代码，生成什么类型的目标文件等信息。 </p>
+        <p>从图5-14可以看出，hello.car经CAR编译得到hello.cls，其中包含类对象的组织信息（类的排列顺序、包含的接口等）、各个接口的信息（接口的种类、接口方法等）、各个方法的信息（参数类型、排列顺序等）以及CLSID等信息，也就是我们所需的元数据，这些信息是经过压缩保存起来的，当生成DLL时也一同被打包到DLL的资源段中，可以通过DLL的导出函数找到。 </p>
+        <p>反射是一种强大的工具，但也存在一些不足。一个主要的缺点是对性能有影响，但换来的是程序的可扩展性及高效的维护性。 </p>
+     <h3> CAR反射接口</h3>
+         <p>设计CAR反射的根本目的是为了在应用中动态发现类型信息，动态调用构件方法，目前主要应用在XML的脚本引擎中。在CAR中，接口即类型，只不过这种类型是一般类型的抽象，是“类型的类型”。以IClassInfo为例，在CAR系统中有与之对应的CClassInfo来描述该接口，当客户端产生一个用户自定义类（比如Myclass，它属于IClassInfo）实例时，CAR系统会自动生成CClassInfo对象实例来表述Myclass对象。我们把CClassInfo对象称为类对象，它类似于JAVA中的Class对象，反射机制正是通过类对象中封装的方法对类型实例进行操作。元数据包括关于构件自身的信息，如类信息和类的父类信息，以及该类实施的接口，还包括类定义的构造函数和方法的详细信息。这些项目都是编程中最经常使用的。 </p>
+         <p>下面就几个最重要的接口做简要介绍。 </p>
+         <p>当客户端加载构件后，首先需要“了解”构件的“内容”，有哪些类，有哪些接口，接口提供什么方法等。根据这些应用中的需求，IModuleInfo 设计为如图5-15的结构， </p>
+         <center> <img src= "images\moduleInfo.JPG"/></center>
+         <center>图5-15 模块信息主要构成  </center>
+         <p>IModuleInfo提供了如下的接口方法（是由 CModuleInfo实现的）  </p>
+         	<li><p>获得CAR构件ID号的接口函数GetPath </p>：
+         	<li><p>获得CAR构件版本信息的接口函数GetVersion</p>
+         	<li><p>获得CAR构件类个数的接口函数GetClassCount </p>
+         	<li><p>获得CAR构件类信息的接口函数GetClassInfo </p>
+         	<li><p>获得CAR构件接口个数的接口函数GetInterfaceCount </p>
+         	<li><p>获得CAR构件接口信息的接口函数GetInterfaceInfo </p>
+         	<li><p>其它的接口函数…… </p>
+         <p>对于每个接口信息，其主要构成如图5-16所示： </p>
+         <center> <img src= "images\interfaceInfo.JPG"/></center>
+         <center>图5-16 接口信息主要构成 </center>
+         <p>IInterfaceInfo（由CInterfaceInfo实现）包含了： </p>
+          <li><p>获得接口名的接口函数GetName </p>
+          <li><p>获得接口ID的接口函数GetId </p>
+          <li><p>获得相关模块信息接口函数GetModuleInfo </p>
+          <li><p>获得方法个数的接口函数GetMethodCount</p>
+          <li><p>获得相应方法信息的接口函数GetMethodInfo</p>
+          <li><p>其它的接口函数……</p>
+         <p>类似的还有IClassInfo，IMethodInfo，IStructInfo等，它们都包含了用户在编程时所用到的基本信息，并暴露给用户方便获取这些信息的接口方法，如GetClassInfo，GetParameterCount，GetFieldInfo等。 </p>
+	</body>
+		
+</html>

@@ -1,0 +1,423 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR文法</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>CAR文法</h2>
+    <p>文法是语言结构的形式化描述，阅读本节前需要了解编译原理中关于文法的知识。下面给出了CAR语言的文法。</p>
+    <table>产生式中使用的元语言符号说明：
+        <thead>
+            <td width=20%>符号</td><td>意义</td>
+        </thead>
+        <tr>
+            <td>
+                |
+            </td>
+            <td>
+                或
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {}
+            </td>
+            <td>
+                括号中的元素可重复0-n次
+            </td>
+        </tr>
+        <tr>
+            <td>
+                []
+            </td>
+            <td>
+                括号中的元素可重复0-1次
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ()
+            </td>
+            <td>
+                括号中的元素是必选项
+            </td>
+        </tr>
+    </table>
+    <p>下述推导式中“”号中的是终结符，其余为非终结符。</p>
+
+
+    <pre class="code">
+CarDeclaration
+    ::= [ "[" Version "]" ] ( ModuleDeclaration | LibraryDeclaration )
+
+Version
+    ::= "version" "(" ( DecimalIntegerLiteral | DecimalLiteral ) ")"
+
+ModuleDeclaration
+    ::= "module" [ UUNM ] ModuleBody
+
+UUNM
+    ::= URL(Uniform Resoure Locator)
+
+ModuleBody
+    ::= "{" { CarBodyElement } "}"
+
+LibraryDeclaration
+    ::= "library" LibraryBody
+
+LibraryBody
+    ::= "{" { CarBodyElement } "}"
+
+
+CarBodyElement
+    ::= ClassDeclaration
+      | ConstantDeclaration
+      | EnumDeclaration
+      | ImportDeclaration
+      | InterfaceDeclaration
+      | MergeDeclaration
+      | PragmaDeclaration
+      | StructDeclaration
+      | TypedefDeclaration
+      | ";"
+
+
+ClassDeclaration
+    ::= AppletClassDeclaration
+      | AspectClassDeclaration
+      | ContextClassDeclaration
+      | GenericClassDeclaration
+      | NormalClassDeclaration
+
+
+AppletClassDeclaration
+    ::= AppletClassHead ApplectClassBody
+
+AppletClassHead
+    ::= [ "[" AppletClassAttributeList "]" ] "applet" AppletClassName
+
+AppletClassAttributeList
+    ::= CommonClassAttributeList
+
+AppletClassName
+    ::= Identifier which begins with literal "T"
+
+AppletClassBody
+    ::= CommonClassBody
+
+
+AspectClassDeclaration
+    ::= AspectClassHead AspectClassBody
+
+AspectClassHead
+    ::= [ "[" AspectClassAttributeList "]" ] "aspect" AspectClassName
+
+AspectClassAttributeList
+    ::= AspectClassAttribute { "," AspectClassAttribute }
+
+AspectClassAttribute
+    ::= CommonClassAttribute
+      | "class" "(" ObjectiveClassName { "," ObjectiveClassName } ")"
+
+ObjectiveClassName
+    ::= NormalClassName
+      | ContextClassName
+      | AppletClassName
+
+AspectClassName
+    ::= Identifier which begins with literal "A"
+
+AspectClassBody
+    ::= CommonClassBody
+
+
+ContextClassDeclaration
+    ::= ContextClassHead ContextClassBody
+
+ContextClassHead
+    ::= [ "[" ContextClassAttributeList "]" ] "context" ContextClassName
+
+ContextClassAttributeList
+    ::= ContextClassAttribute { "," ContextClassAttribute }
+
+ContextClassAttribute
+    ::= CommonClassAttribute
+      | "aspect" "(" AspectClassName { "," AspectClassName } ")"
+
+ContextClassName
+    ::= Identifier which begins with literal "K"
+
+ContextClassBody
+    ::= CommonClassBody
+
+
+GenericClassDeclaration
+    ::= GenericClassHead GenericClassBody
+
+GenericClassHead
+    ::= [ "[" GenericClassAttributeList "]" ] "generic" GenericClassName
+
+GenericClassAttributeList
+    ::= CommonClassAttributeList
+
+GenericClassName
+    ::= Identifier which begins with literal "G"
+
+GenericClassBody
+    ::= CommonClassBody
+
+
+NormalClassDeclaration
+    ::= NormalClassHead NormalClassBody
+
+NormalClassHead
+    ::= [ "[" NormalClassAttributeList "]" ] NormalClassName
+
+NormalClassAttributeList
+    ::= CommonClassAttributeList
+
+NormalClassName
+    ::= Identifier
+
+NormalClassBody
+    ::= CommonClassBody
+
+
+CommonClassAttributeList
+    ::= CommonClassAttribute { "," CommonClassAttribute }
+
+CommonClassAttribute
+    ::= "singleton"
+      | "private"
+      | "local"
+      | "sequenced"
+      | "synchronized"
+      | "aggregate" "(" AspectClassName { "," AspectClassName } ")"
+
+CommonClassBody
+    ::= [ ":" FatherClassName ] "{" { CommonClassBodyElement } "}"
+
+FatherClassName
+    ::= NormalClassName
+      | AppletClassName
+      | ContextClassName
+
+CommonClassBodyElement
+    ::= ConstructorDeclaration
+      | CoalescedMethodDeclaration
+      | ImplementedInterfaceDeclaration
+      | FilteredInterfaceDeclaration
+      | ";"
+
+
+ConstructorDeclaration
+    ::= "constructor" "(" [ Parameters ] ")" ";"
+
+CoalescedMethodDeclaration
+    ::= "coalesce" "callback" MethodName ";"
+
+ImplementedInterfaceDeclaration
+    ::= ImplementedInterfaceAttribute "interface" IterfaceName ";"
+
+ImplementedInterfaceAttribute
+    ::= [ "virtual" | "protected" | "callback" | "asynchronous" ]
+
+FilteredInterfaceDeclaration
+    ::= "callback" "filtering" InterfaceName ";"
+
+
+ConstantDeclaration
+    ::= "const" ConstantName "=" IntegerLiteral ";"
+
+ConstantName
+    ::= Identifier
+
+
+EnumDeclaration
+    ::= "enum" EnumName EnumBody
+
+EnumName
+    ::= Identifier
+
+EnumBody
+    ::= "{" EnumConstant { "," EnumConstant } "}"
+
+EnumConstant
+    ::= EnumConstantName [ "=" ( IntegerLiteral | EnumConstantName ) ]
+
+EnumConstantName
+    ::= Identifier which begins with string "EnumName_"
+
+
+ImportDeclaration
+    ::= ( "import" | "importlib" ) "(" StringLiteral ")" ";"
+
+
+MergeDeclaration
+    ::= ( "merge" | "mergelib" ) "(" StringLiteral ")" ";"
+
+
+InterfaceDeclaration
+    ::= InterfaceHead InterfaceBody
+
+InterfaceHead
+    ::= [ "[" InterfaceAttributeList "]" ] "interface" InterfaceName [ ":" InterfaceName ]
+
+InterfaceAttributeList
+    ::= InterfaceAttribute { "," InterfaceAttribute }
+
+InterfaceAttribute
+    ::= "local" | "callback"
+
+InterfaceName
+    ::= Identifier which begins with literal "I"
+
+InterfaceBody
+    ::=  "{" { InterfaceBodyElement } "}"
+
+InterfaceBodyElement
+    ::= MethodDeclaration
+      | ";"
+
+
+PragmaDeclaration
+    ::= "pragma" "(" PragmaExpression ")"
+
+PragmaExpression
+    ::= ( "disable" | "enable" ) ":" IntegerLiteral
+
+
+StructDeclaration
+    ::= "struct" StructName StructBody
+
+StructName      ::= Identifier
+
+StructBody
+    ::= "{" { StructBodyElement } "}"
+
+StructBodyElement
+    ::= Type Variable { "," Varibale } ";"
+      | ";"
+
+Variable
+    ::=  [ "*" [ "*" ] ] VariableName { "[" ( IntergerLister | ConstantName ) "]" }
+
+VariableName
+    ::= Identifier
+
+
+TypedefDeclaration
+    ::= "typedef" [ "dummytype" ] Type TypeAlias { "," TypeAlias } ";"
+
+TypeAlias
+    ::= [ "*" [ "*" ] ] TypeAliasName
+
+TypeAliasName
+    ::= Identifier
+
+
+MethodDeclaration
+    ::= MethodName "(" { Parameters } ")" ";"
+
+MethodName
+    ::= Identifier
+
+Parameters
+    ::= Parameter { "," Parameter }
+
+Parameter
+    ::= [ "[" ParameterAttribute "]" ] Type [ "*" [ "*" ] ] ParameterName
+
+ParameterAttribute
+    ::= "in" | "out"
+
+ParameterName
+    ::= Identifier
+
+
+Type
+    ::= BaseType [ "*" [ "*" ] ]
+
+BaseType
+    ::= "Byte"
+      | "Int8"
+      | "Int16"
+      | "Int32"
+      | "Int64"
+      | "Flags8"
+      | "Flags16"
+      | "Flags32"
+      | "Flags64"
+      | "Handle32"
+      | "Handle64"
+      | "Float"
+      | "Double"
+      | "Boolean"
+      | "Char32"
+      | "AChar"
+      | "WChar"
+      | "Secondes32"
+      | "Secondes64"
+      | "Millisecondes32"
+      | "Millisecondes64"
+      | "Microsecondes32"
+      | "Microsecondes64"
+      | "AString"
+      | "WString"
+      | "Timestamp64"
+      | "ECode"
+      | "EMuid"
+      | "EGuid"
+      | "EIID"
+      | "IInterface"
+      | AStringBuf
+      | WStringBuf
+      | BufferOf
+      | ArrayOf
+      | MemoryBuf
+      | StructType
+      | EnumType
+
+StructType
+    ::= "struct" StructName
+
+EnumType
+    ::= "enum" EnumName
+
+ArrayOf
+    ::= "ArrayOf&lt;"  Type "&gt;"
+      | "ArrayOf_&lt" Type "," ArrayElementNumber "&gt;"
+      
+BufferOf
+    ::= "BufferOf&lt;" Type "&gt;"
+      | "BufferOf_&lt;" Type "," ArrayElementNumber "&gt;"
+
+MemoryBuf
+    ::= "MemoryBuf_&lt;" ArrayElementNumber "&gt;"
+      | "MemoryBuf"
+
+AStringBuf
+    ::= "AStringBuf_&lt;" ArrayElementNumber "&gt;"
+      | "AStringBuf"
+
+WStringBuf
+    ::= "WStringBuf_&lt;" ArrayElementNumber "&gt;"
+      | "WStringBuf"
+
+ArrayElementNumber
+    ::= IntegerLiteral | ConstantName
+
+IntegerLiteral
+    ::= DecimalIntegerLiteral
+      | HexIntegerLiteral
+</pre>
+<script>footer("chinese")</script>
+</body>
+</html>

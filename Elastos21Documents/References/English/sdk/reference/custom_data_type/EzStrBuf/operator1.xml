@@ -1,0 +1,60 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzStrBuf\opwchar">operator const EzStr,wchar_t*</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzStrBuf  </interface>
+    <method> operator datatypes </method>
+
+    <description>
+        <para> The type conversion operator that is used to convert the user string of EzStrBuf to EzStr (or wchar_t) string. </para>
+    </description>
+
+    <syntax>
+        <method_name> operator EzStr </method_name>
+        <NoArguments/>
+   </syntax>
+    <syntax>
+        <method_name> operator wchar_t* </method_name>
+    </syntax>
+
+    <return>
+        <para>Returns the type specified string converted from EzStrBuf string, the content of string remains the same. </para>
+    </return>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <string.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStrBuf_<20> myStr;
+
+    myStr.Copy(L"Great Wall");
+
+    EzStr pe = (EzStr)myStr;
+    wchar_t * pwc = (wchar_t *)myStr;
+
+    int len_pwc = wcslen(pwc);
+    int len_pe = pe.Length();
+
+    printf("The wchar_t string \"%S\" length is %d.\n", pwc, len_pwc);
+    printf("The EzStr string \"%S\" length is %d.\n", pwc, len_pe);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+The wchar_t string "Great Wall" length is 10.
+The EzStr string "Great Wall" length is 10.
+]]>
+    </result>
+
+</manpage>

@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>同步</volume>
+<interface>DzMutex</interface><method> TryLock </method>
+    <description>
+        <para>尝试在指定时间间隔内获取互斥体对象。</para>
+    </description>
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> uint_t </param_type>
+                <param_name> ticks</param_name>
+                <param_note>
+                    <para>指定一个时间间隔，单位为tick。如果此参数为零，则此方法将立即返回。此时，如果成功获取到互斥体对象，则返回NOERROR</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>指向<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址，不能为空。如果方法调用成功，则返回WaitResult_OK；如果事件对象仍处于未通知状态，则返回WaitResult_TimedOut；如果在等待事件对象变为已通知状态期间被打断，则返回WaitResult_Interrupted</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>
+        本方法用于尝试获取互斥体对象。
+        </para>
+        <para>
+        如果互斥体对象已经被其它线程所占有，当前线程将进入等待状态。只要等待时间不超过指定的时间间隔，当前线程将一直处于等待状态，直到其它拥有互斥体的线程释放该对象，并唤醒当前线程，当前线程才会获得该互斥体对象，方法才成功返回；如果uTicks参数为零，则本方法将立即返回。
+        </para>
+        <para>
+        如果互斥体对象正处于无属主状态，当前线程将成功获取到它，本方法将立即成功返回。
+        </para>
+        <para>
+        如果当前线程已经占有了互斥体对象，则本方法也将立即成功返回。但当前线程必须相应多调用一次<link url="Unlock.htm">DzMutex::Unlock</link>方法才能最终释放互斥体对象。
+        </para>
+        <para>
+        当前线程在等待获取互斥体对象期间可以被打断。
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

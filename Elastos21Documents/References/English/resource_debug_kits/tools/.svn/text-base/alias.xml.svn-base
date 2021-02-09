@@ -1,0 +1,73 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> alias </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para> Gives an alias to object or command.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> ALIAS </cmd_name>
+        <cmd_param> [-?] [-v] [-p programName] [-f filespec] [&lt;source&gt; &lt;target&gt;] </cmd_param>
+    </syntax>
+    <parameters>
+        <param>
+            <param_name>  -? </param_name>
+            <param_note> Displays help information </param_note>
+        </param>
+        <param>
+            <param_name>  -v </param_name>
+            <param_note> Lists details of output</param_note>
+        </param>
+        <param>
+            <param_name>  -d </param_name>
+            <param_note> Deletes defined alias</param_note>
+        </param>
+        <param>
+            <param_name>  -p programName </param_name>
+            <param_note> Specifies another program that can explain alias definition, you can define the file name yourself. The default file name is CMD.EXE .</param_note>
+        </param>
+        <param>
+            <param_name> -f filespec</param_name>
+            <param_note> Reads from and defines alias from file that contains alias definition</param_note>
+        </param>
+    </parameters>
+
+    <examples>
+        <example>
+            <eg_line>alias  </eg_line>
+            <eg_note> Lists all aliases. Output the result: </eg_note>
+            <eg_result><![CDATA[
+Dumping all defined aliases for CMD.EXE.
+    armsdk          =cd /d %ELASTOS_ROOT%\extern\armsdk\$1
+    build           =cd /d %ELASTOS_ROOT%\build\$1
+    ela             =cd /d %ELASTOS_ROOT%\elastos\_%ELASTOS_BUILD_KIND%\$1
+    gnusdk          =cd /d %ELASTOS_ROOT%\extern\gnusdk\$1
+    inc             =cd /d %ELASTOS_ROOT%\build\inc\$1
+    lib             =cd /d %ELASTOS_ROOT%\build\lib\_%ELASTOS_BUILD_KIND%\$1
+    misc            =cd /d %ELASTOS_ROOT%\build\misc\$1
+    obj             =cd /d %ELASTOS_ROOT%\obj\_%ELASTOS_BUILD_KIND%\$1
+    root            =cd /d %ELASTOS_ROOT%\$1
+    sam             =cd /d %ELASTOS_ROOT%\src\samples\$1
+    src             =cd /d %ELASTOS_ROOT%\src\$1
+    tools           =cd /d %ELASTOS_ROOT%\build\tools\$1
+    winsdk          =cd /d %ELASTOS_ROOT%\extern\winsdk\$1
+]]></eg_result>
+        </example>
+        <example>
+            <eg_line>alias -v tools </eg_line>
+            <eg_note> Lists detail information about alias tools. (tools=cd /d %ELASTOS_ROOT%\build\tools\$1) outputs the result: </eg_note>
+            <eg_result><![CDATA[
+tools             =cd /d %ELASTOS_ROOT%\build\tools\$1
+]]></eg_result>
+        </example>
+    </examples>
+
+</manpage>

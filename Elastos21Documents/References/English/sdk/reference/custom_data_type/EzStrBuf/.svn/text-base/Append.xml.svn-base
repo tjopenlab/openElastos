@@ -1,0 +1,86 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzStrBuf\append">Append</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzStrBuf  </interface>
+    <method> Append </method>
+
+    <description>
+        <para>Appends a specified string at the end of the original string buffer. </para>
+    </description>
+
+    <syntax>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const EzStr&amp; </param_type>
+            <param_name> ezstr </param_name>
+            <param_note>
+                <para> Existing EzStr object. ezstr must not be EZSTR_NULL, otherwise an error is occured. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> wchar_t * </param_type>
+            <param_name> wstr </param_name>
+            <param_note>
+                <para> Pointer to the wchar_t string. It returns error if value is null. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns the number of characters that actually appended.</para>
+    </return>
+
+    <remarks>
+        <para>After Append, if the string's total length is longer than the maximum of the EzStrBuf, then the exceeding part is truncated. </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStrBuf_<20> myStr;
+    myStr.Copy(L"Great");
+    printf("The content of the string is \"%S\".\n", (wchar_t *)myStr);
+
+    EzStr zstr = EZCSTR(" Wall");
+    myStr.Append(zstr);
+    printf("The content of the string is \"%S\".\n", (wchar_t *)myStr);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+The content of the string is "Great".
+The content of the string is "Great Wall".
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name> Copy </ref_name>
+            <ref_url> Copy </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Insert </ref_name>
+            <ref_url> Insert </ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+    <sample url="sdk\operating_system\system_com_interface\IThread\Abort">Abort</sample>
+<volume>线程</volume>
+<interface>IThread</interface><method> Abort  </method>
+    <description>
+        <para>
+    		强行终止线程的执行。
+        </para>
+    </description>
+    <syntax_nopara>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功结束线程</td>
+	        </tr>
+
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+            <link url="Abort.htm">IThread::Abort</link>方法被调用后，线程会立刻退出，状态会被设置为ThreadState_Finished。可以通过<link url="GetState.htm">IThread::GetState</link>方法获得线程状态。</para>
+		<para>
+            如果对当前线程执行Abort操作，将得到与<link url="../Function/CThread/Quit.htm">CThread::Quit</link>相同的效果，方法将永远不返回。
+        </para>
+        <para>
+            如果对主线程执行Abort操作，将结束该主线程所在的进程，所有子线程将被强迫结束。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

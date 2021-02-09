@@ -1,0 +1,33 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>web_service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>CAR Web Service</h2>
+    <h3>Brief Introduction</h3>
+        <p>CAR web service technique is the method built above the CAR component run-time platform and distributes run-time component instances as web service. Any CAR component instance can be distributed to the Internet through CAR web service run-time environment, and accessed through WWW web service standard protocols (<a class="style1" href="http://www.w3.org/TR/soap/">SOAP</a>, <a class="style1" href="http://www.w3.org/TR/wsdl">WSDL</a>, <a class="style1" href="http://www.oasis-open.org/committees/tc_home.php?wg_abbrev=uddi-spec">UDDI</a>, etc.). At the present time the implementation of CAR web service run-time environment is a simple HTTP server with embedded CAR component web service agent. It has component-oriented architecture and supports protocols such as HTTP 1.1, SOAP 1.1 and WSDL 1.0. The main function of CAR component web service agent includes the parse and transmits of client SOAP remote call and returns the result, automatic generation of WSDL description for run-time component instance and return the result of HTTP&nbsp;GET request. It has been validated that the web service distributed by present implemented CAR web service run-time environment can be accessed through third party utilities such as Microsoft&nbsp;.NET, Microsoft&nbsp;SOAP&nbsp;Toolkit, and <a class="style1" href="http://www.cs.fsu.edu/~engelen/soap.html">gSOAP</a>.</p>
+    <h3>Architecture</h3>
+        <p>The implementation of CAR web service is to run a web service agent program (Called CAR&nbsp;Web service agent in below) above CAR middleware component platform. The program relies on web server (Any kind of web server that supports SMTP and HTTP) to receive service request (SOAP service request and WSDL file downloading request) through Internet by remote client, parse and accomplish client requested service, then deliver the result to client through web server. Figure 1 illustrates the architecture of the implementation.</p>
+        <center><img src="images/car.jpg"></center>
+        <center>Figure 1: CAR Web Service Architecture</center>
+    <h3>Features</h3>
+        <p>The current version of CAR&nbsp;Web service implementation is mostly an experiment of creation of Web service architecture based on CAR middleware platform, so the features are relatively simple. To be more specific, it has the following restrictions: </p>
+    <ol>
+        <li>Can only be used in Elastos&nbsp;2.0 environment, not in Windows NT virtual machine;
+        <li>We use method naming interfaces, methods and parameters similar to Interface$(INDEX), Method$(INDEX) and Param$(INDEX) in WSDL and SOAP. The reason is that the current version of Elastos&nbsp;2.0 system CAR component run-time platform Reflection&nbsp;APIs is not complete;
+        <li>Currently only supports int, UINT, int*, UINT*, LONG, ULONG, LONG*, ULONG* these data types; For other situations unknown error may occur;
+        <li>Only supports datagram return that returns service invocation of SOAP Response datagram. Did not implement SOAP Fault datagram return;
+        <li>Does not support any type safe, work flow protocol; 
+        <li>Does not support DIME; Does not support SOAP&nbsp;1.2 (supports SOAP&nbsp;1.1).
+    </ol>
+
+<script>footer("english")</script>
+</body>
+</html>           

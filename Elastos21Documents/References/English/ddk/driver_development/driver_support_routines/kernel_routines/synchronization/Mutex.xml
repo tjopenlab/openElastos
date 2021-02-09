@@ -1,0 +1,101 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>
+    <manpage>
+    <volume>Synchronization</volume>
+    <interface> Mutex </interface>
+    <description>
+        <para>
+            Mutex class
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Mutex</method_name>
+        <method_url>Mutex\structure\Mutex</method_url>
+    <m_description>
+        The constructor to create a Mutex object.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Lock</method_name>
+        <method_url>Mutex\Lock</method_url>
+    <m_description>
+        Locks the Mutex object.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>TryLock</method_name>
+        <method_url>Mutex\TryLock</method_url>
+    <m_description>
+        Tries to lock the Mutex object.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Unlock</method_name>
+        <method_url>Mutex\Unlock</method_url>
+    <m_description>
+        Unlocks the locked mutex object.
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+    <remarks>
+        <para>
+        	A mutex object represents a "mutex", which is a thread synchronization object that enables mutually 
+        	exclusive access to a resource.
+        </para>
+        <para>
+        	Only one thread at a time can own a mutex object. The current thread that owns the mutex object is 
+        	called the owner of the object. Other threads that request the mutex object will be blocked. If the 
+        	owning thread releases the mutex object, one of the blocked threads will own the mutex object and 
+        	execution continues. Other threads will keep waiting.
+        </para>
+        <para>
+        	To construct a mutex object by its constructor <link url="Mutex/structure/Mutex.htm">Mutex::Mutex</link>. A 
+        	mutex object may be a global or local variable, or be created dynamiclly on the kernel heap.
+        </para>
+        <para>
+        	A thread calls <link url="Mutex/Lock.htm">Mutex::Lock</link> or <link url="Mutex/TryLock.htm">
+        	Mutex::TryLock</link> to get or try to get a mutex object. The thread calls <link url=
+        	"Mutex/UnLock.htm">Mutex::Unlock</link> to release the owned mutex object.
+        </para>
+        <para>
+        	The mutex object is recursive. It means that a thread that has owned a mutex object can call 
+        	<link url="Mutex/Lock.htm">Mutex::Lock</link> or <link url="Mutex/TryLock.htm">Mutex::TryLock</link> 
+        	to get the mutex object again. However, it must call <link url="Mutex/UnLock.htm">Mutex::UnLock</link>, 
+        	the same number of times as it calls <link url="Mutex/Lock.htm">Mutex::Lock</link> or <link url=
+        	"Mutex/TryLock.htm">Mutex::TryLock</link>, in order to release the mutex object.
+        </para>
+        <para>
+        	A mutex object must not have any ownership when it is destroyed.
+        </para>
+        <para>
+        	If several threads wait for a mutex object, the operating system will wake up the thread with the 
+        	highest priority. If any waiting threads have same priorities, the thread with the longest waiting 
+        	time will be woken up.
+        </para>
+        <para>
+        	The priority inheritance is applicable on mutex objects.
+        </para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>
+

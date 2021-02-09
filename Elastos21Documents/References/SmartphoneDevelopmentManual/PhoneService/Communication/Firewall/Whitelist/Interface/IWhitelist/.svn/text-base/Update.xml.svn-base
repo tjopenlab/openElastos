@@ -1,0 +1,62 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IWhitelist</interface><method> Update </method>
+    <description>
+        <para>
+             在数据库中更新一条记录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IWhitelistEntry * </param_type>
+                <param_name> pEntry </param_name>
+                <param_note>
+                    <para>
+                          所要更新的白名单记录接口指针
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT </td>
+	    	    <td>参数错误 </td>
+	        </tr>
+	        <tr>
+	    	    <td>数据库错误码 </td>
+	    	    <td>数据库错误 </td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../../../../../QuickReference/DBError.htm">数据库错误码</link>相关帮助。</para>
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            更新功能完成了几乎所有对数据库的写操作：</para>
+        <para>
+            如果传入的pEntry是一个新增的记录,实际操作是insert;</para>
+        <para>
+            当传入pEntry是一个已有的记录,实际操作是update。</para>        
+    </remarks>
+</manpage>

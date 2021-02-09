@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\sscanf">sscanf swscanf</sample>
+    <title>sscanf swscanf</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>从字符串中读取格式化数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>sscanf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>输入数据的存储空间</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format[, argument]...</param_name>
+                <param_note>
+                    <para>格式化控制（argument为可选参数）</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数sscanf返回成功转换并赋值的字段数，其中不包含已读取但未赋值的字段。如果没有给任何字段赋值，返回0；如果出错或者第一次转换前就到达字符串末尾，返回EOF。</para>
+    </return>
+
+    <remarks>
+        <para>函数sscanf从buffer指定的字符串读取数据，并把数据写入argument指定的存储区。每个argument都必须是指针，指向由format指定类型的变量。重叠字符串之间的拷贝，操作未定义。</para>
+        <para>参数format控制输入字段的输入形式，与scanf的参数format具有相同的形式和功能，参见sscanf关于format的完整描述。如果width为0，本函数忽略width。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>sscanf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* sscanf.cpp: This program uses sscanf to read data items
+ * from a string named tokenstring, then displays them.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char  tokenstring[] = &quot;15 12 14...&quot;;
+    char  s[81];
+    char  c;
+    int    i;
+    float fp;
+
+    /* Input various data from tokenstring: */
+    sscanf(tokenstring, &quot;%s&quot;, s);
+    sscanf(tokenstring, &quot;%c&quot;, &amp;c);
+    sscanf(tokenstring, &quot;%d&quot;, &amp;i);
+    sscanf(tokenstring, &quot;%f&quot;, &amp;fp);
+
+
+    printf(&quot;String     = %s\n&quot;, s);
+    printf(&quot;Character = %c\n&quot;, c);
+    printf(&quot;Integer:  = %d\n&quot;, i);
+    printf(&quot;Real:      = %f\n&quot;, fp);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+the data read
+String     = 15
+Character = 1
+Integer:  = 15
+Real:      = 15.000000
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>scanf</ref_name>
+            <ref_url>scanf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

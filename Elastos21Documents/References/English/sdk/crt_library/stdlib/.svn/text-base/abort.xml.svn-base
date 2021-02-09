@@ -1,0 +1,87 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\abort">abort</sample>
+    <title>abort</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Aborts the current process and returns an error code.</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>abort</func_name>
+        <NoArguments/>
+        <parameters>
+            <func_param>
+                <param_type>void</param_type>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>abort does not return control to the calling process. By default, it terminates the current process and returns an exit code of 3.</para>
+    </return>
+
+    <remarks>
+        <para>abort does not flush stream buffers or do atexit/_onexit processing.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>abort</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* abort.cpp:  This program tries to aborts  the process.
+ */
+
+#include  &lt;stdio.h&gt;
+#include  &lt;stdlib.h&gt;
+
+int main( void )
+{
+   FILE *stream;
+
+   if( (stream = fopen( &quot;NOSUCHF.ILE&quot;, &quot;r&quot; )) == NULL )
+   {
+      perror( &quot;Couldn&apos;t open file&quot; );
+      abort();
+   }
+   else
+      fclose( stream );
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Couldn&apos;t open file.No such file or directory
+abnormal program termination
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>exit</ref_name>
+            <ref_url>exit</ref_url>
+        </reference>
+    </references>
+
+</manpage>

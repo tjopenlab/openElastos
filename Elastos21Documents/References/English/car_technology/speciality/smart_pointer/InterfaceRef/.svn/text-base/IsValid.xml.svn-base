@@ -1,0 +1,54 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <volume> Interface Smart Pointer Shared Method </volume>
+    <interface> InterfaceRef </interface>
+    <method>IsValid</method>
+
+    <description>
+        <para>Validate specified interface smart pointer.</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>BOOL</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para>If specified interface smart pointer is valid, returns TRUE; otherwise, returns FALSE.</para>
+    </return>
+
+    <remarks>
+        <para> Before using interface smart pointer, it needs to be validated. Only valid interface smart pointer can be used to invoke all method in corresponding interface smart pointer class.If the current interface smart pointer is not initialized through <b>Instantiate</b>, <b>IsValid</b> method needs to be invoked to validate.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+Situation one: Interface smart pointer is passed to function as parameter, <b>IsValid</b> method need to be invoked to validate.For example: 
+void Foo(InterfaceRef& senderRef)
+{
+    if (!senderRef.IsValid()) { //validate interface smart pointer senderRef by invoking IsValid method.
+        assert(0 && "senderRef is invalid.");
+        return;
+    }
+    ……
+}
+]]></pre>
+        <pre><![CDATA[
+Situation two: Interface smart pointer is obtained through <b>i2i</b> method, <b>IsValid</b> method need to be invoked to validate, for example: 
+InterfaceRef iInterfaceRef
+
+//There is interface smart pointer IXXXRef points to Interface interface in the object, correponding interface smart pointer can be obtained through it.
+InterfaceRef iInterfaceRef = i2i(IXXXRef);
+
+if (!iInterfaceRef.IsValid()) { //invokes IsValid method to validate interface smart pointer iInterfaceRef.
+    assert(0 && "iInterfaceRef is invalid.");
+    return;
+}
+]]></pre></example>
+
+</manpage>

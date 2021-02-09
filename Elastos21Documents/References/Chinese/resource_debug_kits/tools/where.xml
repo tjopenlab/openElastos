@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> where </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para> 查找所有文件名与指定文件名相同的文件。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> WHERE </cmd_name>
+        <cmd_param>  [-?] [/r dir] [/qte] pattern ... </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> -? </param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+    <param>
+        <param_name> /r dir </param_name>
+        <param_note> 在目录dir中递归查找</param_note>
+    </param>
+    <param>
+        <param_name>  /q </param_name>
+        <param_note> 不显示查找信息，用退出码判断文件是否被找到，0表示找到，1表示未找到</param_note>
+    </param>
+    <param>
+        <param_name>  /t </param_name>
+        <param_note> 显示文件的大小，创建时间</param_note>
+    </param>
+    <param>
+        <param_name>  /e  </param_name>
+        <param_note> 显示.exe文件的类型（Windows 2000，DOS）</param_note>
+    </param>
+    <param>
+        <param_name> /Q </param_name>
+        <param_note> 输出文件名时加上双引号</param_note>
+    </param>
+
+    </parameters>
+    <remarks>
+        <para>where默认在当前PATH环境变量指定的路径中查找文件；若使用了/r参数，则在该参数后跟随的路径中递归查找。
+        </para>
+    </remarks>
+    <examples>
+    <example>
+        <eg_line>where /t where.exe </eg_line>
+        <eg_note> 列出where.exe文件的大小、时间和路径。输出结果：</eg_note>
+        <eg_result><![CDATA[
+     10000   6-02-108  12:42p  D:\Elastos21\XDK\DevKit\tools\private\where.exe
+]]></eg_result>
+    </example>
+    </examples>
+
+</manpage>

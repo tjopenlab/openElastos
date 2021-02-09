@@ -1,0 +1,49 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>回调事件机制</title>
+</head>
+
+<body>
+<h2>激发事件</h2>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size:10.5pt;line-height:150%;font-family:宋体">
+客户端通过指针调用入接口函数，而在可连接对象里，被调用方法触发事件<span lang="EN-US">, </span>
+通过其所保存的回调接口的接口指针调用相应方法，这时就进入了接收器对象，客户对事件注册了自己的实现方法，接收器对象会检测到客户的函数指针并调用之，至此，事件激发过程结束。</span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-family: 宋体; font-size: 10.5pt">例如在本示例中</span></p>
+<table class="MsoNormalTable" border="0" cellpadding="0" width="100%" style="width: 100.0%; background: #CCCCCC" id="table2">
+	<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt">
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">ECode 
+		ElastosMain(const BufferOf&lt;WString&gt;&amp; args)</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">{</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; 
+		…………………………</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; ec = 
+		CBuilding::AddEmployeeCallback(pBuilding,EmployeeRunAway, NULL);</span></p>
+		<p class="MsoNormal">
+		<span style="font-family: 宋体; font-size: 10.5pt" lang="en-us">&nbsp;&nbsp;
+		</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; 
+		pBuilding-&gt;OnFire(); </span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; 
+		…………………………</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">}</span></td>
+	</tr>
+</table>
+<p class="MsoNormal" style="line-height: 150%; layout-grid-mode: char">
+<span lang="EN-US" style="font-size:10.5pt;
+line-height:150%;font-family:宋体">&nbsp;</span></p>
+</body>
+</html>

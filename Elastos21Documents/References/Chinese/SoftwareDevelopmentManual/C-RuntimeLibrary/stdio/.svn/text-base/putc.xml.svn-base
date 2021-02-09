@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\putc">putc</sample>
+    <title> putc, putwc </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>将字符写入流。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>putc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>待写入的字符</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>putwc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wint_t</param_type>
+                <param_name>c</param_name>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回写入的字符；如果出错或已到文件尾，putc返回EOF，putwc返回WEOF。可以通过函数<link url="ferror.htm">ferror</link>或<link url="feof.htm">feofr</link>检验是发生错误还是已到文件尾。</para>
+    </return>
+
+    <remarks>
+        <para>putc将单一字符c写入流的当前位置，并将当前位置移到下一位置；任何整型值都可以传递给putc，但只有低8位会被写入流。如果发生读错误，将设置流的错误指示器。putwc是putc的宽字符版本。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>putc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>putwc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* putc.cpp: This program uses putc to write buffer
+ * to a stream. If an error occurs, the program
+ * stops before writing the entire buffer.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE *stream;
+    char *p, buffer[] = &quot;This is the line of output\n&quot;;
+    int  ch;
+
+    ch = 0;
+    /* Make standard out the stream and write to it. */
+    stream = stdout;
+    for (p = buffer; (ch != EOF) &amp;&amp; (*p != &apos;\0&apos;); p++)
+        ch = putc(*p, stream);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+This is the line of output
+</result>
+
+   
+
+    <references>
+        <reference>
+            <ref_name>fputc</ref_name>
+            <ref_url>fputc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getc</ref_name>
+            <ref_url>getwc</ref_url>
+        </reference>
+    </references>
+
+</manpage>

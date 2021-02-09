@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IGraphics</interface><method> DrawLine </method>
+    <description>
+        <para>
+            绘制一条连接由坐标对指定的两个点的线条.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Color </param_type>
+                <param_name> color </param_name>
+                <param_note>
+                    <para>
+用来绘制线条的画笔颜色                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> startX </param_name>
+                <param_note>
+                    <para>
+第一个点的x坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> startY </param_name>
+                <param_note>
+                    <para>
+第一个点的y坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> endX </param_name>
+                <param_note>
+                    <para>
+第二个点的x坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> endY </param_name>
+                <param_note>
+                    <para>
+第二个点的y坐标                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            此方法绘制一条线，该线连接由 xStart、yStart、xEnd 和 yEnd 参数指定的两个点。(xEnd,yEnd)点不画。</para><para>            线条颜色的取值指定为            <link url="../../datatype/Color.htm">            Color            </link>            数据类型。
+        </para>
+    </remarks>
+</manpage>

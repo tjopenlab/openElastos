@@ -1,0 +1,131 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fread">fread</sample>
+    <title> fread</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>The function fread reads count objects, each size bytes long, from the stream pointed to by stream, storing them at the location given by buffer.</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>fread</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>Storage location for data.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>Item size in bytes.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Maximum number of items to be read.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>fread returns the number of full items actually read, which may be less than count if an error occurs or if the end of the file is encountered before reaching count. Use the feof or ferror function to distinguish a read error from an end-of-file condition. If size or count is 0, fread returns 0 and the buffer contents are unchanged.</para>
+    </return>
+
+    <remarks>
+        <para>The fread function reads up to count items of size bytes from the input stream and stores them in buffer. The file pointer associated with stream (if there is one) is increased by the number of bytes actually read. If the given stream is opened in text mode, carriage return - linefeed pairs are replaced with single linefeed characters. The replacement has no effect on the file pointer or the return value. The file-pointer position is indeterminate if an error occurs. The value of a partially read item cannot be deteremined.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fread</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fread.cpp:  This program opens a file named FREAD.OUT and
+ * writes 25 characters to the file. It then tries to open
+ * FREAD.OUT and read in 25 characters. If the attempt succeeds,
+ * the program displays the number of actual items read.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE *stream;
+    char list[30];
+    int  i, numread, numwritten;
+
+    /* Open file in text mode: */
+    if ((stream = fopen(&quot;fread.out&quot;, &quot;w+t&quot;)) != NULL) {
+        for (i = 0; i &lt; 25; i++)
+            list[i] = (char)(&apos;z&apos; - i);
+        /* Write 25 characters to stream */
+        numwritten = fwrite(list, sizeof(char), 25, stream);
+        printf(&quot;Wrote %d items\n&quot;, numwritten);
+        fclose(stream);
+
+    }
+    else
+        printf(&quot;Problem opening the file\n&quot;);
+
+    if ((stream = fopen(&quot;fread.out&quot;, &quot;r+t&quot;)) != NULL) {
+        /* Attempt to read in 25 characters */
+        numread = fread(list, sizeof(char), 25, stream);
+        printf(&quot;Number of items read = %d\n&quot;, numread);
+        printf(&quot;Contents of buffer = %.25s\n&quot;, list);
+        fclose(stream);
+    }
+    else
+        printf(&quot;File could not be opened\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Wrote 25 items
+Number of items read = 25
+Contents of buffer = zyxwvutsrqponmlkjihgfedcb
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fwrite</ref_name>
+            <ref_url>fwrite</ref_url>
+        </reference>
+    </references>
+
+</manpage>

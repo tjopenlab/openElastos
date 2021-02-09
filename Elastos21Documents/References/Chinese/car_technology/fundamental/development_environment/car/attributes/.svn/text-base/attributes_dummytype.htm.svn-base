@@ -1,0 +1,52 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--dummytype </title>
+</head>
+
+<body>
+	<h2>dummytype</h2>
+	    <b>含义 </b>
+	        <p> 此属性关键字是一个类型修饰符，表示car文件中其所修饰的数据类型的定义是一个伪定义，car编译工具将不根据该伪定义在后台代码中生成相应的定义语句。该数据类型的真正定义在其它C++源文件或头文件中。</p>
+	
+	    <b>语法 </b>
+	    	<p>typedef [dummytype]  oldType  newType   </p>
+	    	<p>其中oldType必须是<a class="style1" href= "..\data_type.htm">CAR支持的数据类型。</a> </p>
+	    <b>使用说明 </b>
+	        <p>1. 如果需要在car文件中引用一个在其它C++源文件或头文件中已定义的数据类型时，由于car语法不支持直接引入源文件或头文件，因此我们需要在car文件中使用关键字“dymmytype”重新定义该数据类型，表示此处的定义是个伪定义，真正的定义在别处。 </p>
+	        <p>2. 程序员需要在引用该关键字修饰的数据类型的c++源文件或头文件中手动的引入包含其真正定义的文件。 </p>
+	        <p> </p>
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    typedef [dummytype] PVoid PCarQuintet;          
+    typedef [dummytype] EGuid  MyEguid;
+    typedef [dummytype] Int32 PContext;
+
+    interface IFoo {
+        Foo();
+    }
+
+    class CFoo {
+        interface IFoo;
+    }
+}
+
+</pre>
+	        <p> </p>
+
+
+            <p></p>
+        <b><a class="style1" href="../attribute.htm">【CAR属性关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

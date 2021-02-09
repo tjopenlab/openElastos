@@ -1,0 +1,29 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Component Click And Run Mechanism</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Events In CAR Component Click And Run</h2>
+    <p>In the whole "Click And Run" process, click, download, and run, clear events will occur one by one.</p>
+    <h4>"Click" event</h4>
+        <p>Click event occurs when the user requires or is interested in some subject in the network, accordingly he/she clicks the subject with mouse to learn more of it or to ask correlative service.</p>
+    <h4>"Download" event</h4>
+        <p>After the click event, if it is needed to load some CAR component, the system will search for it in the network automatically. If the component exists, the program downloads it to the correlative directory on the local machine, this process finishes searching the component to be downloaded.</p>
+        <p>It is needed to point out, the "download" event must be set off by the "click" event, but not all "click" event in the network will trigger the "download" event. If some subject is not related to the service of the CAR component, but supply correlative service directly or supply service by the third party software, it will not always cause download event in this case.</p>
+    <h4>"Run" event</h4>
+        <p>After the download event finishes, the system will install and run the component by default, then supply the corresponding service to the user. Whether the system will supply corresponding prompt about "downloading progress", "load and run" can be set by the user.</p>
+    <h4>"Clear" event</h4>
+        <p>When the CAR component run over or the service was stopped by user, the "unload and clear" event will be triggered at this time. The system will unload the component according to the default rules, the system maybe unload the component from the memory directly or decreases the reference count of it. If the component is already unloaded from the memory, the system will determine whether maintain the component, how long to keep it or delete it immediately according to the configuration.</p>
+
+
+<script>footer("english")</script>
+</body>
+
+</html>

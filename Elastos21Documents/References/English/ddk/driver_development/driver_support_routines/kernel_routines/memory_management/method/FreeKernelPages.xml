@@ -1,0 +1,88 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\FreeKernelPages">FreeKernelPages</sample>
+    <volume>Memory Management Methods</volume>
+    <title>FreeKernelPages</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>
+        	Releases specified number of allocated continuous kernel pages.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> virtaddr_t</param_type>
+                <param_name> va </param_name>
+                <param_note>
+                    <para>	
+                    	Specified starting address (virtual address) of the first kernel page released.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> uint_t</param_type>
+                <param_name> uOrder </param_name>
+                <param_note>
+                    <para>
+                    	Specified logarithmic value to the base 2 of total number of released continuous kernel pages, the 
+                    	method releases 2^uOrder continuous kernel pages. The maximum value of <i>uOrder</i> cannot exceed 
+                    	the allocated value.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para> 
+        	This method releases specified number of continuous kernel pages, the total number of pages released is 
+        	2^uOrder. The released continuous kernel pages must be previously allocated by <link url=
+        	"AllocKernelPages.htm">AllocKernelPages</link>. Attempts to release invalid memory page (kernel page that 
+        	were not allocated by <link url="AllocKernelPages.htm">AllocKernelPages</link> method), will cause 
+        	unpredictable error.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>AllocKernelPages</ref_name>
+            <ref_url>AllocKernelPages</ref_url>
+        </reference>
+        <reference>
+            <ref_name>AllocKernelPage</ref_name>
+            <ref_url>AllocKernelPage</ref_url>
+        </reference>
+        <reference>
+            <ref_name>FreeKernelPage</ref_name>
+            <ref_url>FreeKernelPage</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,21 @@
+//==========================================================================
+// 北京科泰世纪科技有限公司 版权所有 2000年--2003年
+// Copyright (c) 2000-2003,  KoreTide Corp.  All Rights Reserved.
+//==========================================================================
+
+[
+    version(1.0), uuid(e363b985-8a3a-40a6-b88c-b2e10274fe54),
+    urn(http://www.koretide.com/ezcom/hello.dll)
+]
+component Hello
+{
+    [ uuid(70f1f7e4-1b9b-4e74-8c1b-fdc2fefb1ce1) ]
+    interface IHello {
+        HRESULT Hello([in] EzStr inStr, [out] EzStrBuf outStrBuf);
+    }
+
+    [ uuid(3d19bc4c-b2c7-4ea5-8409-63db930ad1b7) ]
+    class CHello {
+        interface IHello;
+    }
+}

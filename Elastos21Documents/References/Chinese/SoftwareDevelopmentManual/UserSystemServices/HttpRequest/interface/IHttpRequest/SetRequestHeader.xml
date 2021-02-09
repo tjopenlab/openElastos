@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>SetRequestHeader (IHttpRequest)</volume>
+<interface>IHttpRequest</interface><method> SetRequestHeader </method>
+    <description>
+        <para>
+            设置请求的 HTTP 头信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> U8String </param_type>
+                <param_name> header </param_name>
+                <param_note>
+                    <para>
+头名称，不需要带冒号，不能为 NULL 或空</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> U8String </param_type>
+                <param_name> headerValue </param_name>
+                <param_note>
+                    <para>
+header 的值，不能为 NULL 或空</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION</td>
+	    	    <td>无效操作</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	      若已存在已此命名的 HTTP 头，则覆盖之。若需要指定 HTTP 头信息，则该方法必须在 <link url="Open.htm">Open</link> 或 <link url="../IHttpRequestEx/OpenW.htm">OpenW</link>方法调用后调用。有关更多 HTTP 请求头信息可参考：<link url="../../reference/HTTPHeaders.htm">HTTP 请求头概述</link>。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CHttpRequest 类介绍 </ref_name>
+        <ref_url>../../HttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IHttpRequest 接口方法列表</ref_name>
+        <ref_url>../IHttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Open</ref_name>
+        <ref_url>Open</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetRequestHeaderW</ref_name>
+        <ref_url>../IHttpRequestEx/SetRequestHeaderW</ref_url>
+    </reference>
+    <reference>
+        <ref_name>OpenW</ref_name>
+        <ref_url>../IHttpRequestEx/OpenW</ref_url>
+    </reference>
+</references>
+</manpage>

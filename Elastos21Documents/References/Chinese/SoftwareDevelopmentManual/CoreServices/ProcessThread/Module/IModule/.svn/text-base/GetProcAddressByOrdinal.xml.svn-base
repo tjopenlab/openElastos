@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IModule\GetProcessAddress"> GetProcAddressByOrdinal </sample>
+<volume>可执行文件和模块</volume>
+<interface>IModule</interface>
+<method> GetProcAddressByOrdinal </method>
+    <description>
+        <para>
+            根据函数序号取函数的起始地址。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+			<parameters>
+				<api_param>
+					<param_inout>[in]</param_inout>
+					<param_type> Int32  </param_type>
+					<param_name> ordinal </param_name>
+					<param_note>
+						<para>
+							指定的函数序号
+						</para>
+					</param_note>
+				</api_param>
+				<api_param>
+					<param_inout>[out]</param_inout>
+					<param_type> Address *  </param_type>
+					<param_name> pAddress </param_name>
+					<param_note>
+						<para>
+							指向Address类型的指针，用于获取指定函数的起始地址，不能为空
+						</para>
+					</param_note>
+				</api_param>
+			</parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值</td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取指定函数的起始地址</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_DOES_NOT_EXIST</td>
+	    	    <td>找不到指定的函数</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		    如果DLL没有导出指定序号的函数，方法返回E_DOES_NOT_EXIST。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统 
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

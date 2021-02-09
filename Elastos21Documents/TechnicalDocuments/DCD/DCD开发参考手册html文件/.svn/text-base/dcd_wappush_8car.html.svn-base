@@ -1,0 +1,85 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Kortide DCD API: dcdWappush.car文件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<div class="tabs">
+  <ul>
+    <li><a href="main.html"><span>首页</span></a></li>
+    <li><a href="globals.html"><span>全部</span></a></li>
+    <li class="current"><a href="Engineglobals.html"><span>引擎部分</span></a></li>
+    <li><a href="UIglobals.html"><span>UI部分</span></a></li>
+  </ul>
+</div>
+<h1>Wap push消息处理相关API参考</h1>
+<p>
+	<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>类型定义</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef int(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_wappush_8car.html#d8b893beff2748ab1c3d1b91b28f031e">RecvPushMessageCallback</a> )(unsigned char *pMsgBuf, int nMsgLen)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">引擎实现的Push消息处理回调.  <a href="#d8b893beff2748ab1c3d1b91b28f031e"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>函数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">DCD_Extern int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_wappush_8car.html#e17a7ddf2a018141fe0c47e4c9019500">DCDSetWapPushMessageCallback</a> (<a class="el" href="dcd_wappush_8car.html#d8b893beff2748ab1c3d1b91b28f031e">RecvPushMessageCallback</a> pushMsg)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置接收Wap Push消息的回调函数.  <a href="#e17a7ddf2a018141fe0c47e4c9019500"></a><br></td></tr>
+</table>
+<hr><h2>类型定义文档</h2>
+<a class="anchor" name="d8b893beff2748ab1c3d1b91b28f031e"></a><!-- doxytag: member="dcdWappush.car::RecvPushMessageCallback" ref="d8b893beff2748ab1c3d1b91b28f031e" args=")(unsigned char *pMsgBuf, int nMsgLen)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int(* <a class="el" href="dcd_wappush_8car.html#d8b893beff2748ab1c3d1b91b28f031e">RecvPushMessageCallback</a>)(unsigned char *pMsgBuf,int nMsgLen)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+引擎实现的Push消息处理回调.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pMsgBuf</em>&nbsp;</td><td>- Wap Push消息的字节串指针. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>nMsgLen</em>&nbsp;</td><td>- 字节长度. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功返回0. </dd></dl>
+
+</div>
+</div><p>
+<hr><h2>函数文档</h2>
+<a class="anchor" name="e17a7ddf2a018141fe0c47e4c9019500"></a><!-- doxytag: member="dcdWappush.car::DCDSetWapPushMessageCallback" ref="e17a7ddf2a018141fe0c47e4c9019500" args="(RecvPushMessageCallback pushMsg)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DCD_Extern int DCDSetWapPushMessageCallback           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dcd_wappush_8car.html#d8b893beff2748ab1c3d1b91b28f031e">RecvPushMessageCallback</a>&nbsp;</td>
+          <td class="paramname"> <em>pushMsg</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设置接收Wap Push消息的回调函数.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pushMsg</em>&nbsp;</td><td>- RecvPushMessageCallback消息长度. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功返回0. </dd></dl>
+<dl class="note" compact><dt><b>注解:</b></dt><dd>DCD客户端在添加频道或删除频道后，DCD服务器会以wap push消息的形式通知DCD客户端. </dd></dl>
+
+</div>
+</div><p>
+<hr size="1"><address style="text-align: right;"><small>
+<a href="http://www.kortide.com.cn">© Kortide Corp.All rights reserved.</a></small></address></body>
+</html>

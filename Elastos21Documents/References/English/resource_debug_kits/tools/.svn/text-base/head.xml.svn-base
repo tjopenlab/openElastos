@@ -1,0 +1,81 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> head </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para> Displays the top n lines of file or the input.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> HEAD </cmd_name>
+        <cmd_param> [-? | -n] [filename...] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name>  -? </param_name>
+        <param_note> Displays help information</param_note>
+    </param>
+    <param>
+        <param_name>  -n </param_name>
+        <param_note> Displays the first n lines, the default is 10</param_note>
+    </param>
+    <param>
+        <param_name>  filename </param_name>
+        <param_note> Name of the file to be checked</param_note>
+    </param>
+    </parameters>
+
+    <remarks>
+        <para>If no file name is specified in the parameter, then the input content is displayed.If file name is specified, then the input content is ignored.
+        </para>
+        <para>    When displaying multiple files, the file name is printed before the content of each file.
+        </para>
+    </remarks>
+
+    <examples>
+    <example>
+        <eg_line>head -3</eg_line>
+        <eg_note> Displays the first 3 lines of content of the file file1.txt . Output the result: </eg_note>
+        <eg_result><![CDATA[
+the 1st line in file1.
+the 2nd line in file1.
+the 3rd line in file1.
+]]></eg_result>
+    </example>
+    <example>
+        <eg_line>head -1 file1.txt file2.txt</eg_line>
+        <eg_note> Displays the first line of file file1.txt and file2.txt . Output the result: </eg_note>
+        <eg_result><![CDATA[
+==> file1 <==
+the 1st line in file1.txt.
+
+==> file2 <==
+the 1st line in file2.txt.
+]]></eg_result>
+    </example>
+
+    </examples>
+
+    <references>
+    <reference>
+        <ref_name>tail</ref_name>
+        <ref_url> tail </ref_url>
+    </reference>
+    <reference>
+        <ref_name>grep</ref_name>
+        <ref_url> grep </ref_url>
+    </reference>
+    <reference>
+        <ref_name>tee</ref_name>
+        <ref_url> tee </ref_url>
+    </reference>
+    </references>
+
+</manpage>

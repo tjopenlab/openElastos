@@ -1,0 +1,153 @@
+
+<html>
+<head>
+	<title>Operating Systems FAQ :: Executable Files</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="exec_files">Executable File Types</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The number of different executable file types is as many and varied
+		as the number of different image and sound file formats. Every Operating
+		System seems to have several executable file types unique to itself.
+		<p>This part of the FAQ will give a brief rundown on the various types
+		you will come across.
+		</p>
+		<p>
+		A quick intro to a few terms,
+		<br>TEXT is the actual exectuable code area,
+		<br>DATA is &quot;initialised&quot; data,
+		<br>BSS is &quot;un-initialised&quot; data.
+		</p>
+		</TD>
+	</TR>
+</TABLE>
+
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="exec_exe">Execs :: EXE (dos &quot;MZ&quot;)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The most well documented of the executable file formats, the DOS-MZ
+		was introduced with MS-DOS (not dos v1 tho) as a companion to the simplified
+		DOS-COM file format.
+		<p>
+		The DOS-MZ was designed to be run in real mode and reflects this, having
+		a relocation table of SEGMENT:OFFSET pairings. A very simple format that
+		can be run at any offset, it does not distinguish between TEXT, DATA and BSS.		
+		</p>
+		<p>
+		Since it was designed to run in real mode, its maximum filesize of code+data+bss
+		is 1mb in size.
+		</p>
+		<p>
+		Operating Systems that use it :: DOS, Win*, Linux DOS Emu, Amiga DOS Emu
+		</p>
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="exec_ne">Execs :: EXE (Win 3.xx &quot;NE&quot;)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The WIN-NE executable formated designed for Windows 3.x was the &quot;NE&quot;
+		New-Executable. Again, a 16bit format, it alleviated the maximum size
+		restrictions that the DOS-MZ had.
+		<p>Operating Systems that use it :: Windows 3.xx
+		</p>
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="exec_le">Execs :: EXE (OS/2 &quot;LE&quot;)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The &quot;LE&quot; Linear Executable format was designed for IBM's OS/2
+		operating system by Microsoft. Supporting both 16 and 32bit segments.
+		<p>fill out more...</p>
+		<p>Operating Systems that use it :: OS/2, Watcom Compiler/Extender (DOS)
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="exec_pe">Execs :: EXE (Win 9x/NT &quot;PE&quot;)</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>With Windows 95/NT a new exectuable file type was required, thus was born
+		the &quot;PE&quot; Portable Executable. Unlike its predecessors, the WIN-PE
+		was a true 32bit file format, supporting relocatable code. It does distinguish
+		between TEXT, DATA, BSS.
+		<p>fill out more...</p>
+		<p>It is infact, a bastardised version of the COFF format.</p>
+		<p>Operating Systems that use it :: Windows 95/98/NT
+		</p>
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="exec_elf">Execs :: ELF</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The ELF, Executable Linkable Format was designed by SUN for
+		use in their Unix clone. A very versatile file format, it was later
+		picked up by many other operating systems for use as both executable
+		files and as shared library files.
+		<p>fill out more...</p>
+		<p>It does distinguish between TEXT, DATA and BSS.</p>		
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="exec_coff">Execs :: COFF</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="exec_aout">Execs :: AOUT</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+		</TD>
+	</TR>
+</TABLE>
+
+
+</body>
+</html>

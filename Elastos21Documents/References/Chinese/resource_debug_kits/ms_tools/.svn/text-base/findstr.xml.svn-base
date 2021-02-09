@@ -1,0 +1,115 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> findstr </title>
+    <volume>微软的工具</volume>
+
+    <description>
+        <para>在文件中查找字符串。详细内容请参见微软文档。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> FINDSTR  </cmd_name>
+        <cmd_param> [/B] [/E] [/L] [/R] [/S] [/I] [/X] [/V] [/N] [/M] [/O] [/P] [/F:文件名] [/C:搜索字符串] [/G:文件名] [/D:目录列表] [/A:颜色属性] [搜索字符串] [[盘符:][路径]文件名[ ...]] </cmd_param>
+    </syntax>
+
+    <parameters>
+    <param>
+        <param_name> /B </param_name>
+        <param_note> 在一行的开始配对模式 </param_note>
+    </param>
+    <param>
+        <param_name> /E </param_name>
+        <param_note> 在一行的结尾配对模式 </param_note>
+    </param>
+    <param>
+        <param_name> /L </param_name>
+        <param_note> 按字使用搜索字符串 </param_note>
+    </param>
+    <param>
+        <param_name> /R </param_name>
+        <param_note> 将搜索字符串作为一般表达式使用 </param_note>
+    </param>
+    <param>
+        <param_name> /S </param_name>
+        <param_note> 在当前目录和所有子目录中搜索匹配文件 </param_note>
+    </param>
+    <param>
+        <param_name> /I </param_name>
+        <param_note> 指定查找不分大小写 </param_note>
+    </param>
+    <param>
+        <param_name> /X </param_name>
+        <param_note> 打印完全匹配的行 </param_note>
+    </param>
+    <param>.
+        <param_name> /V </param_name>
+        <param_note> 只打印不包含匹配的行 </param_note>
+    </param>
+    <param>
+        <param_name> /N </param_name>
+        <param_note> 在匹配的每行前打印行号 </param_note>
+    </param>
+    <param>
+        <param_name> /M </param_name>
+        <param_note> 如果文件含有匹配项，只打印其文件名 </param_note>
+    </param>
+    <param>
+        <param_name> /O </param_name>
+        <param_note> 在每个匹配行前打印字符偏移量 </param_note>
+    </param>
+    <param>
+        <param_name> /P </param_name>
+        <param_note> 忽略有不可打印字符的文件</param_note>
+    </param>
+    <param>
+        <param_name> /A:attr </param_name>
+        <param_note> 指定输出文本的颜色属性，颜色属性用两位十六进制数，低位指定前景色，高位指定背景色，可参见color命令帮助 </param_note>
+    </param>
+    <param>
+        <param_name> /F:file </param_name>
+        <param_note> 从指定文件读取文件列表（/代表控制台） </param_note>
+    </param>
+    <param>
+        <param_name> /C:字符串 </param_name>
+        <param_note> 使用指定的字符串作为文字搜索字符串 </param_note>
+    </param>
+    <param>
+        <param_name> /G:file </param_name>
+        <param_note> 从指定的文件获得搜索字符串（/代表控制台） </param_note>
+    </param>
+    <param>
+        <param_name> /D:dir </param_name>
+        <param_note> 查找以分号为分隔符的目录 </param_note>
+    </param>
+    <param>
+        <param_name> strings </param_name>
+        <param_note> 要查找的字符串 </param_note>
+    </param>
+    <param>
+        <param_name> [drive:][path]filename </param_name>
+        <param_note> 指定要查找的文件 </param_note>
+    </param>
+</parameters>
+
+    <references>
+    <reference>
+        <ref_name> grep </ref_name>
+        <ref_url> ../tools/grep </ref_url>
+    </reference>
+    </references>
+
+    <examples>
+    <example>
+        <eg_line>findstr /s abc *.cpp </eg_line>
+        <eg_note> 查找当前目录（包含子目录）下所有后缀为 cpp 的文件中的字符串 "abc" ；
+         除非参数有 /C 前缀，请使用空格隔开搜索字符串；命令findstr /s "hello there" *.cpp
+         查找当前目录（包含子目录）下所有后缀为 cpp 的文件中的字符串 "hello"或"there" ；
+         findstr /s /c:"hello there" *.cpp
+         查找当前目录（包含子目录）下所有后缀为 cpp 的文件中的字符串 "hello there" 。
+        </eg_note>
+    </example>
+    </examples>
+
+</manpage>

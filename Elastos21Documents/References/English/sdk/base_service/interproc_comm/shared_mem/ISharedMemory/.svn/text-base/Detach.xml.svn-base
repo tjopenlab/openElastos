@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface </volume>
+<interface>ISharedMemory</interface><method> Detach </method>
+    <description>
+        <para>
+       		Detaches the shared memory from process space.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+			<td>Return Value</td>
+			
+			<td>Description</td>
+	    </th>
+	    <tr>
+			<td>NOERROR</td>
+			<td>Function succeeds in detaching the shared memory from process space.</td>
+	    </tr>
+	    <tr>
+			<td>E_INVALID_OPERATION</td>
+		  <td>Invalid operation</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+			When users do not need to operate on shared memory, this shared memory can be detached from process space
+			by the method <b>Detach</b>, thus thread in the process can not access this memory block again. Calling this
+			method does not cause any effect on other processes using this shared memory block.
+		</para>
+		<para>
+			If users have not called <link url="Attach.htm">ISharedMemory::Attach</link> to map this shared memory to
+			process space before calling <b>Detach</b>, it will return E_INVALID_OPERATION.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				 Windows 2000 or later; Elastos2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

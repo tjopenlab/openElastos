@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>PictureBox</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>PictureBox</b></h2></center>
+<small><p><b>头文件：</b>ElControls.h
+<p><b>程序库：</b>ElControls.dll
+（<b>备注：</b>当在 CAR 文件中通过 <a class="doxygen" href="../../../../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a> 引入 ElControls.dll 时，则无需在源文件中添加“include &lt;ElControls.h&gt;”该句；若 ElControls.dll 是在 sources 文件中引入的，则需要在源文件中添加“include &lt;ElControls.h&gt;”该句。有关更多信息请参考：<a class="doxygen" href="../../../../../car_technology/car.htm">CAR 编程入门</a>）</small>
+<hr size="1">
+<h4><li><b>详细描述：</b></h3>
+<p>通常使用 PictureBox 来显示位图、元文件、图标、JPEG、GIF 或 PNG 文件中的图形。
+<p>可以通过 <a class="doxygen" href="../interface/IPictureBox/SetImage.htm">SetImage</a> 方法直接加载图片对象，也可以通过 <a class="doxygen" href="../interface/IPictureBox/LoadImageFromFile.htm">LoadImageFromFile</a> 方法加载指定路径的图片。若加载的图片大小和 PictureBox 控件大小不合适或者显示位置不协调，可以通过 <a class="doxygen" href="../interface/IPictureBox/SetImageLayout.htm">SetImageLayout</a> 方法缩放图片或者调整图片在 PictureBox内的位置。
+<p>PictureBox 不是可选择的控件，这意味着该控件不能接收输入焦点。
+<p><b>注意：</b>PictureBox 必须放在一个 <a class="doxygen" href="Form.htm">Form</a> 内，或者 PictureBox 的 parent 控件在一个 Form 内。
+<hr size="1">
+<h4><li><b>CPictureBox类封装图：</b></font></h4>
+<center> <img src="images/CPictureBox.jpg"> </center>
+        <p>如图所示，JControlEvents（通用回调事件接口）、JPictureBoxEvents 为回调事件接口，用户可以通过 AddXXXCallback 的方法为 PictureBox 注册回调事件，当该 XXX 事件发生时，相应的回调处理函数会被调用。当销毁一个对象前，需要调用 RemoveXXXCallback 取消该事件。具体 Callbak 机制的介绍，详见 Elastos 编程入门中 Callback 这节。
+        <p>当使用 <a class="doxygen" href="CPictureBox/CPictureBox_New.htm">New</a> 方法创建了一个 PictureBox 对象后，可以获得 <a class="doxygen" href="../interface/IPictureBox.htm">IPictureBox</a> 接口指针，通过该接口指针用户可以调用接口内的方法对 PictureBox 进行一系列操作。
+
+<hr size="1">
+<h4><li><b>构造函数：</b></font></h4>
+<table>
+<thead><td>名称</td><td class="memitem">说明</td></thead>
+<tr><td><a class="doxygen" href="CPictureBox/CPictureBox_New.htm">CPictureBox::New</as></td><td>创建一个 PictureBox 对象</td></tr>
+</table>
+<h4><li><b><a class="doxygen" href="../interface/IPictureBox.htm">IPictureBox 接口方法列表</a></b></font></h4>
+<ul><p><b>注：</b>IPictureBox 接口继承于 <a class="doxygen" href="../interface/IControl.htm">IControl</a> 接口。</ul>
+
+<h4><li><b><a class="doxygen" href="../interface/JPictureBoxEvents.htm">PictureBox 回调事件列表</a></b></font></h4>
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

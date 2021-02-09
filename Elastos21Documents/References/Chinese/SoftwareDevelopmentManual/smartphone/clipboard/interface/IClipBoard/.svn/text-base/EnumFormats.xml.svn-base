@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IClipBoard</interface><method> EnumFormats </method>
+    <description>
+        <para>
+            枚举当前剪贴板上的数据类型。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> format </param_name>
+                <param_note>
+                    <para>
+一个已知的剪贴板格式                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UINT * </param_type>
+                <param_name> pNextFormat </param_name>
+                <param_note>
+                    <para>
+指向UINT类型的指针，用于枚举下一个剪贴板格式                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            成功调用，返回S_OK；format不在剪贴板支持的格式范围内或pNextFormat为空，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            枚举剪贴板上的数据类型可以通过连续调用该方法完成。每一次调用，类型参数指定一个可用的剪贴板类型，然后返回下一个可用的剪贴板类型。参数format首次传0(CF_NULL)表示枚举第一个可用的格式。当所有数据遍历完成，同时NextFormat设置为CF_MAXFORMAT，返回S_FALSE。
+        </para>
+    </remarks>
+</manpage>

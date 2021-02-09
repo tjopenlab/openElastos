@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\vsprintf">vsprintf</sample>
+    <title> vsprintf, vswprintf</title>
+    <volume>C 运行库函数</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>使用参数链表指针格式化输出到字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>vsprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>输出字符的存储空间</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format</param_name>
+                <param_note>
+                    <para>格式化控制</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+                <param_note>
+                    <para>参数链表指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>vswprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format</param_name>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数vsprintf和vswprintf返回输出的字符数，不包括终结符，如果输出错误，返回负值。</para>
+    </return>
+
+    <remarks>
+        <para>两个函数都接收参数链表指针，将给定的数据格式化输出到字符串。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>vsprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>vswprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* vsprintf.cpp:this program write lines to a buffer*/
+
+#include &lt;stdio.h&gt;
+
+void __cdecl test(char* first, ...);
+
+int main()
+{
+    char buffer[] = &quot;world&quot;;
+    test(&quot;hello %s&quot;, buffer);
+
+    return 0;
+
+}
+
+void __cdecl test(char * first, ...)
+{
+    char writeBuf[550];
+    va_list marker;
+
+    va_start(marker, first);
+    vsprintf(writeBuf, first, (unsigned char*)marker);
+    va_end(marker);
+    printf(&quot;%s\n&quot;, writeBuf);
+}
+</pre>
+    </example>
+<result>
+hello world
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>swprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

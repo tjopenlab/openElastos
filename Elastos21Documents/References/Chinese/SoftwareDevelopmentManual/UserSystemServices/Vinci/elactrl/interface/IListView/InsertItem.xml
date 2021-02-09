@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListView</interface><method> InsertItem </method>
+    <description>
+        <para>
+            在 ListView 指定位置处插入一行。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+插入行的索引值，有效值为0～行数。                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ItemState </param_type>
+                <param_name> state </param_name>
+                <param_note>
+                    <para>
+行的状态，用于指示该行初始状态是未选中，选中还是具有焦点，详见 <link url="../../datatype/ItemState.htm">ItemState</link> 枚举类型                   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+插入行的文本信息                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IImage * </param_type>
+                <param_name> image </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口的指针，用于得到插入行的图标（请先确定已经创建了该图片对象并获得了它的 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口，有关更多信息可参考：<link url="../../../graphics/class/CImage.htm">CImage 类介绍</link>）</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_OUT_OF_MEMORY</td>
+	    	    <td>没有足够的空间</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        该方法与 <link url="AddItem.htm">AddItem</link> 方法类似，都可以用于为 ListView 插入一行，只是 InsertItem 在指定位置处插入，AddItem 是按顺序在末尾插入一行。当 <link url="../../datatype/ListViewStyle.htm">ListViewStyle</link> 指定为 ListViewStyle_Sort 时，则该行不一定会插入到指定位置，而是插入排序后的位置，同时该行索引值也将变更为排序后的索引值。
+    </para>
+    <para>
+        只有调用 <link url="InsertColumn.htm">InsertColumn</link> 或 <link url="AddColumn.htm">AddColumn</link> 方法创建了 ListView 的列模版后，才能成功调用该方法设置行的信息，否则行信息将无法显示在列表视图中。
+    </para>
+    <para>
+        调用该方法为 ListView 插入一行的同时，该行的第一列也将被设置。该行后续列的设置可以调用 <link url="SetItem.htm">SetItem</link> 方法。
+    </para>
+    <para>
+        当某项的文本的高度超过行高，则显示的文本将与下行或者上一行的内容重叠，若设置的图标的高度超过行高，则图片自动缩小。设置行高可以通过 <link url="SetItemHeight.htm">SetItemHeight</link> 方法。当某项显示的内容的长度超过该列列宽，显示的内容也将被自动剪裁；设置列宽可以通过 <link url="SetColumnWidth.htm">SetColumnWidth</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CListView 类介绍 </ref_name>
+        <ref_url>../../class/ListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListView 接口方法列表</ref_name>
+        <ref_url>../IListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListViewPaint 接口方法列表</ref_name>
+        <ref_url>../IListViewPaint</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AddColumn</ref_name>
+        <ref_url>AddColumn</ref_url>
+    </reference>
+    <reference>
+        <ref_name>InsertColumn</ref_name>
+        <ref_url>InsertColumn</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AddItem</ref_name>
+        <ref_url>AddItem</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetItem</ref_name>
+        <ref_url>SetItem</ref_url>
+    </reference>
+</references>
+</manpage>

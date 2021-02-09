@@ -1,0 +1,78 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\ezProcess"> CProcess::Exit </sample>
+    <volume>进程</volume>
+    <title>CProcess::Exit</title>
+    <routine_idx>../../../Process.htm</routine_idx>
+
+    <description>
+        <para>退出当前进程。</para>
+    </description>
+
+    <syntax>
+        <return_val> void </return_val>
+        <parameters>
+            <api_param>
+                <param_type> ExitCode </param_type>
+                <param_name> exitCode </param_name>
+                <param_note>
+                    <para>[in]进程退出时的退出码，<link url="../../IProcess/GetExitCode.htm">IProcess::GetExitCode</link>方法得到进程的exitCode。 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	 <para>本方法将永远不返回 </para>
+    </return>
+
+    <remarks>
+        <para>优先使用该方法来退出进程。进程退出时会调用进程所有的构件和DLL模块的入口函数，并释放掉进程占用的内存资源。 </para>
+        <para>进程退出将导致下列事件发生：</para>
+        <para>
+         1. 进程中所有的线程将停止执行，并返回。
+         2. 进程打开的文件接口以及其他的接口也将自动释放。
+         3. 进程所拥有的构件服务将全部停止服务。
+         4. 进程的状态变为终止， 进程所属的线程状态也变为终止。
+        </para>
+        <para>如果在构件或DLL中退出进程，将产生不可预知的错误。终止进程不会使得其子进程被终止。进程退出不会销毁系统进程对象。只有当该进程的引用计数降为0，相关的进程对象就会被立即清除。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+
+    <references>
+    <reference>
+        <ref_name> CThread::Quit</ref_name>
+        <ref_url>../CThread/Quit</ref_url>
+    </reference>
+    </references>
+
+
+</manpage>
+
+
+
+
+
+
+
+
+

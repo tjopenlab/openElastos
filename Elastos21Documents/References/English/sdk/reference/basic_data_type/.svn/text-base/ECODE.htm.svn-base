@@ -1,0 +1,179 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+<title>ECODE Return Values</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<h3>ECODE Return Values </h3>
+    <p>All return values of interface methods defined in CAR files are ECODE.</p>
+    <p>
+	    ECODE is a 32-bit integer. It provides information about "what types of errors occured" for the 
+	    caller's run-time environment(for example network error, server failure etc.) For many CAR compatible 
+	    languages (such as Visual Basic, Java), these ECODEs are caught by the run-time library or the virtual 
+	    machine and then mapped to language specific exceptions. 
+    </p>
+    <p>Common ECODE return values and usages are listed below: </p>
+
+    <table>
+        <thead>
+            <td width="25%">Return Value</td>
+            <td width="17%">Hex Value</td>
+            <td width="58%">Description</td>
+        </thead>
+        <tr>
+            <td>S_OK</td>
+            <td>0x00000000</td>
+            <td>Method is successfully invoked (contrasts to S_FALSE).</td>
+        </tr>
+        <tr>
+            <td>S_FALSE</td>
+            <td>0x00000001</td>
+            <td>Method is successfully invoked, returns logical error (contrasts to S_OK).</td>
+        </tr>
+        <tr>
+            <td>CLASS_E_NOAGGREGATION</td>
+            <td>0x80040110</td>
+            <td>Class does not support aggregation (or class object is remote).</td>
+        </tr>
+        <tr>
+            <td>E_FAIL</td>
+            <td>0x80004005</td>
+            <td>Method invocation fails, the cause is not determined.</td>
+        </tr>
+        <tr>
+            <td>E_POINTER</td>
+            <td>0x80004003</td>
+            <td>Method invocation fails, caused by invalid input pointer.</td>
+        </tr>
+        <tr>
+            <td>E_NOTIMPL</td>
+            <td>0x80004001</td>
+            <td>Method invocation fails, because the method is not implemented.</td>
+        </tr>
+        <tr>
+            <td>E_NOINTERFACE</td>
+            <td>0x80004002</td>
+            <td>Method invocation fails, because the component has no specified interface implementation.</td>
+        </tr>
+        <tr>
+            <td>E_OUTOFMEMORY</td>
+            <td>0x8007000E</td>
+            <td>Method invocation fails, because of insufficient memory to allocate.</td>
+        </tr>
+        <tr>
+            <td>E_INVALIDARG</td>
+            <td>0x80070057</td>
+            <td>Method invocation fails, caused by one or more invalid arguments.</td>
+        </tr>
+        <tr>
+            <td>CO_S_NOTALLINTERFACES</td>
+            <td>0x00080012</td>
+            <td>Not all the requested interfaces were available.</td>
+        </tr>
+        <tr>
+            <td>E_UNEXPECTED</td>
+            <td>0x8000FFFF</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>E_NOT_EXIST</td>
+            <td>0x8040000A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>E_ALREADY_EXISTS</td>
+            <td>0x8040000B</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>E_INVALID_OPTIONS</td>
+            <td>0x8040000C</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>E_INVALID_OPERATION</td>
+            <td>0x8040000D</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>E_NOT_SUPPORTED</td>
+            <td>0x8040001B</td>
+            <td></td>
+        </tr>
+    </table>
+    <ul><font color="red"><b>Note: </b>
+    	The values of S_OK and S_FALSE are defined reverse to the definitions of TRUE and FALSE defined by C/C++.
+    </font></ul>
+    <p>Above ECODE values are only the most common ones. You can look up more values by using the hresult tool.</p>
+
+
+    <table>
+        <thead>
+            <td width="25%">Return Value</td>
+            <td width="17%">Hex Value</td>
+            <td width="58%">Description</td>
+        </thead>
+        <tr>
+            <td>ELADRV_E_DEVICENAME_TOO_LONG</td>
+            <td>DRIVER_ERROR(0x001)</td>
+            <td>The length of a device name exceeds the maximum length allowed.</td>
+        </tr>
+        <tr>
+            <td>ELADRV_E_DEVICE_EXISTS</td>
+            <td>DRIVER_ERROR(0x002)</td>
+            <td>The specified device already exists.</td>
+        </tr>
+        <tr>
+            <td>ELADRV_E_DEVICE_NOT_FOUND</td>
+            <td>DRIVER_ERROR(0x003)</td>
+            <td>The system cannot find the device specified.</td>
+        </tr>
+        <tr>
+            <td>ELADRV_S_DRIVER_NOT_FOUND</td>
+            <td>DRIVER_SUCCESS(0x001)</td>
+            <td>The system cannot find the driver specified.</td>
+        </tr>
+        <tr>
+            <td>ELADRV_S_CREATE_DRIVER_FAILED</td>
+            <td>DRIVER_SUCCESS(0x002)</td>
+            <td>The specified driver cannot be created.</td>
+        </tr>
+        <tr>
+            <td>ELADRV_S_REGISTER_DRIVER_FAILED</td>
+            <td>DRIVER_SUCCESS(0x003)</td>
+            <td>The specified driver cannot be registered.</td>
+        </tr>
+        <tr>
+            <td>ELADRV_S_UNREGISTER_DRIVER_FAILED</td>
+            <td>DRIVER_SUCCESS(0x004)</td>
+            <td>The specified driver cannot be unregistered.</td>
+        </tr>
+    </table>
+
+    <p>
+    	CAR provides the following two macros to check the ECODE return value to see if the method 
+    	invocation is succeeded or not: 
+    </p>
+    <table>
+        <thead>
+            <td>Macro Definition</td><td>Signification</td>
+        </thead>
+        <tr>
+            <td>SUCCEEDED(ec)</td>
+            <td>Checks if method invocation is successful.</td>
+        </tr>
+        <tr>
+            <td>FAILED(ec)</td>
+            <td>Checks if method invocation fails.</td>
+        </tr>
+    </table>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+
+<title>sscanf 函数format格式中的type信息段说明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+
+<h2>sscanf函数format格式中的type信息段说明</h2>
+
+    
+
+        <p>类型符是格式项中的一个必选项，在格式项的最后位置。类型符指定了源字符串中相应位置的字符被格式化为一个字符，还是字符串，或者一个数字。</p>
+        <h5>sscanf函数中的类型符表：</h5>
+        <table>
+          <thead>
+            <td align="center">Character</td>
+            <td align="center">Type of input expected</td>
+            <td align="center">Type of argument</td>
+          </thead>
+          <tr>
+            <td>c</td>
+            <td>用于函数sscanf中时，表示单字节字符；用于函数wsscanf中时，表示宽字节字符。当c被指定为类型符时，一般被跳过的空白符也会被作为字符而读取。读取下个非空白单字节字符时，用％ls；读取下一个非空白宽字符时，用％ws</td>
+            <td>用于函数sscanf时，指向char类型，用于函数wsscanf时，指向wchar_t类型</td>
+          </tr>
+          <tr>
+            <td>C</td>
+            <td>用于函数sscanf中时，表示宽字节字符；用于函数wsscanf中时，表示单字节字符。当C被指定为类型符时，一般被跳过的空白符也会被作为字符读取。读取下个非空白单字节字符时，用％ls；读取下一个非空白宽字符时，用％ws</td>
+            <td>用于函数sscanf时，指向wchar_t类型，用于函数wsscanf时，指向char类型</td>
+          </tr>
+          <tr>
+            <td>d</td>
+            <td>十进制整数</td>
+            <td>指向int类型</td>
+          </tr>
+          <tr>
+            <td>i</td>
+            <td>十进制、十六进制或八进制整数</td>
+            <td>指向int类型</td>
+          </tr>
+          <tr>
+            <td>o</td>
+            <td>八进制整数</td>
+            <td>指向int类型</td>
+          </tr>
+          <tr>
+            <td>u</td>
+            <td>无符号型十进制整数</td>
+            <td>指向unsigned int类型</td>
+          </tr>
+          <tr>
+            <td>x</td>
+            <td>十六进制整数</td>
+            <td>指向int类型</td>
+          </tr>
+          <tr>
+            <td>a，A，e，E，f，F，g，G</td>
+            <td>浮点型，符号（＋、－）为可选项</td>
+            <td>指向float类型</td>
+          </tr>
+          <tr>
+            <td>n</td>
+            <td>从字符串中已读取的字符数</td>
+            <td>指向int类型，保存本次读取之前，从字符串中已成功读取的字符的个数</td>
+          </tr>
+          <tr>
+            <td>s</td>
+            <td>字符串，直到第一个空白符（空格、制表符或换行符）。读取字符串直到遇到空白符，【】的使用在文章中有。</td>
+            <td>用于sscanf函数时，指向单字节字符串；用于wsscanf函数时，指向宽字节字符串。不论哪种情况，字符串要足够放置格式化的字符串和结束字符，结束字符被自动加入</td>
+          </tr>
+          <tr>
+            <td>S</td>
+            <td>字符串，直到第一个空白符（空格、制表符或换行符）。读取字符串直到遇到空白符，【】的使用在文章中有</td>
+            <td>用于sscanf函数时，指向宽字节字符串；用于wsscanf函数时，指向单字节字符串。不论哪种情况，字符串要足够放置格式化的字符串和结束字符，结束字符被自动加入</td>
+          </tr>          
+        </table>        
+        <p>类型符c，C， s和S是微软的扩展，不兼容ANSI。</p>
+        <p>因此，用函数sscanf和wsscanf读取单字节或宽字节字符时，可以用下面的类型符：</p>
+        <table>
+          <thead>
+            <td align="center">To read character as</td>
+            <td align="center">Use this function</td>
+            <td align="center">With these format specifiers</td>
+          </thead>
+          <tr>
+            <td>单字节</td>
+            <td>sscanf</td>
+            <td>c,  hc,  hC</td>
+          </tr>
+          <tr>
+            <td>单字节</td>
+            <td>wsscanf</td>
+            <td>C,  hc,  hC</td>
+          </tr>
+          <tr>
+            <td>宽字节</td>
+            <td>wsscanf</td>
+            <td>c,  lc,   lC</td>
+          </tr>
+          <tr>
+            <td>宽字节</td>
+            <td>sscanf</td>
+            <td>C,  lc,   lC</td>
+          </tr>
+          </table>                         
+        <p>用函数sscanf和wsscanf读取字符串时，用类似h和l的前缀加上类型符s或S。</p>
+               
+
+<script>footer("chinese")</script>
+</body>
+</html>

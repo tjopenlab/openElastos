@@ -1,0 +1,21 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<head>
+<title>CAR Component Version Controller</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>CAR Component Version Controller</h2>
+        <p>In Elastos systems, there is a CAR component version controller.The version controller itself is also a CAR component. The difference of it with normal CAR component is that: This component is made to manage the version of the other CAR components. In order to distinguish from normal CAR components, we call it "CAR component version controller", in short "component version controller".</p>
+        <p>In Elastos operating system start phase, first a micro kernel system is started, then check if load feature module according to configuration file.Most of these modules exists in physical media in terms of CAR component, if only very simple system features need to be finished.Then you need not load CAR component and even the component version controller is not loaded into the memory. If the configuration file specifies that other CAR components needs to be loaded or other CAR components needs to be referenced during system run-time, then the system first loads CAR component version controller and load other feature components according to rules in component version controller.</p>
+        <p>Component version controller is a special system management component in Elastos system.It also has different upgrade versions, but the system always loads and uses the latest verion. In fact, here does not exists compatibility issue.All you have to do is directly replace the old version with the new version. Diagram 1 represents the usage and position of CAR component version controller in Elastos system.Its main purpose is to realize component version selection by using "version control rules".</p>
+        <center><img src="images/effect.jpg"></center>
+        <center>Diagram 1: Position And Usage Of CAR Component Version Controller In Elastos Systems</center>
+
+<script>footer("english")</script>
+</body>
+</html>

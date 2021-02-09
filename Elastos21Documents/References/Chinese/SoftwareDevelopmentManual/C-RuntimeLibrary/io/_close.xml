@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_close">_close</sample>
+    <title> _close</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>关闭一个文件。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_close</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>handle</param_name>
+                <param_note>
+                    <para>文件的句柄（用来标识文件的整数）</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如成功关闭一个文件，返回0； 如果出错，返回-1，并将错误号设置为EBADF，表明一个无效的文件句柄参数。</para>
+    </return>
+
+    <remarks>
+        <para>函数_close用于关闭文件句柄所关联的文件。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_close</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _close.cpp: This program uses _open to open a file
+ * named _close.sam and then close it.
+ */
+
+#include &lt;fcntl.h&gt;
+#include &lt;io.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int fh1 = 0;
+
+    fh1 = _open(&quot;_close.sam&quot;, _O_RDWR | _O_CREAT, _S_IREAD | _S_IWRITE);
+
+    if (fh1 == -1)
+        perror(&quot;open failed on file _close.sam&quot;);
+    else {
+        if ((fh1 = _close(fh1)) == -1) {
+            printf(&quot;Close failed on file :_close.sam.\n&quot;);
+            return 1;
+        }
+        printf(&quot;Open file _close.sam success!\n&quot;);
+        printf(&quot;Close file _close.sam success!\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Open file _close.sam succeess!
+Close file _close.sam succeess!
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>_wopen</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wcreat</ref_name>
+            <ref_url>_wcreat</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,73 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Environment Overview</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>DDK Development Environment Directory Structure Guide</h2>
+        <h3>DDK Directory Structure</h3>
+        <center><img src="images/tree.jpg"></center>
+        <center>Diagram 1: DDK Directory Structure</center>
+        <h3>Directories And Subdirectories Content Guide</h3>
+            <table>
+                <thead>
+                    <td>Directory</td>
+                    <td>Content</td>
+                </thead>
+                <tr>
+                    <td>Extern</td>
+                    <td>GNU and Microsoft compiler.</td>
+                </tr>
+                <tr>
+                    <td>build</td>
+                    <td>Development tools, development environment. </td>
+                </tr>
+                <tr>
+                    <td>build\misc</td>
+                    <td>Development environment shortcut icon, environment initialization scripts and general makefile directory.</td>
+                </tr>
+                <tr>
+                    <td>build\tools</td>
+                    <td>Development tools, including some scripting and compilation tools.</td>
+                </tr>
+                <tr>
+                    <td>src</td>
+                    <td>Source program directory.</td>
+                </tr>
+                <tr>
+                    <td>src\libpub</td>
+                    <td>Kernel and user public library implementation code.</td>
+                </tr>
+                <tr>
+                    <td>src\kernel</td>
+                    <td>Majority of kernel implementation code including driver code.</td>
+                </tr>
+                <tr>
+                    <td>src\elastos</td>
+                    <td>Elastos library or a thin layer of interface implementation between the user and the kernel.</td>
+                </tr>
+                <tr>
+                    <td>system</td>
+                    <td>Elastos system export file (EXPORT_SYSTEM_HEADERS) and part of library used by the SDK.</td>
+                </tr>
+         </table>
+         <h4>Remarks: </h4>
+         <ul>
+            <li>GNU ARM, MIPS and x86 development tools are from MinGW, Elastos 2.0 DDK only put required tool and various library files under extern directory.Tools that are not used are not put in it. In other words, a subset of GNU development tools is stored under extern. Among these tools, the version of tool related to x86 is version 3.3.3, the versions of MIPS and ARM tools are relatively low. If the user need to use a new version or add other tool or library files, please add or modify according to his or her own condition and also follow related copy right agreement.
+            <li>In Elastos 2.0 DDK and SDK development environment, all the public compile rules follows the makefile.gnu under misc directory. In tools directory, there are some development tools. Use parameters "?", "/?" or "-/?" to check the specific usage of each tool.
+         </ul>
+         <p><font color="red"><b>Note: </b></font></p>
+         <ol>
+            <li>Tools provided under build is for supporting development, some of the tools need a default path, usually the default drive letter is D drive.When the user installs, he/she selects other drive letter (For example E drive or other drive), it is necessary to manually change a few parameters. These tools are refered to shortcuts to various compile environment under Elastos\build\misc directory, if the specified drive letter is not D drive, one need to modify the "target" parameter of "Shortcut" item in the property tag of *.lnk file.
+            <li>One can use "za" command to compile all modules in the development window. In fact "za" invokes batch files such as _makesys_arm.bat, _makeysys_mips.bat or _makesys_x86.bat, the user can execute these batch files to compile automatically all specified module and generate kernel.exe and elastos.dll .
+            <li>Since the compiled result of Elastos 2.0 is placed under mirror directory obj, the user should make sure whether there is enough disk space in the hard drive used for compilation. Otherwise it causes compilation error.These kind of error reminder info is detected and sent by the compiler.
+         </ol>
+<script>footer("english")</script>
+</body>
+</html>

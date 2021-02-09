@@ -1,0 +1,119 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\_lrotl">_lrotl</sample>
+    <title> _lrotl, _lrotr</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Rotate bits to the left (_lrotl) or right (_lrotr).
+</para>
+    </description>
+
+    <syntax>
+        <return_val>unsigned long.</return_val>
+        <func_name>_lrotl</func_name>
+        <parameters>
+            <func_param>
+                <param_type>unsigned long</param_type>
+                <param_name>value</param_name>
+                <param_note>
+                    <para>Unsigned long integer to be shifted.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>shift</param_name>
+                <param_note>
+                    <para>Number of bits to be shifted.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>unsigned long</return_val>
+        <func_name>_lrotr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>unsigned long</param_type>
+                <param_name>value</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>shift</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Both functions return the rotated value. There is no error return.</para>
+    </return>
+
+    <remarks>
+        <para>The _lrotl and _lrotr functions rotate value by shift bits. _lrotl rotates the value left. _lrotr rotates the value right. Both functions "wrap" bits rotated off one end of value to the other end.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_lrotl</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_lrotr</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _lrotl.cpp:this program rotate val left eight times and then
+              rotate val right four times.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    unsigned long val = 0x0fac35791;
+
+    printf(&quot;0x%8.8lx rotated left eight times is 0x%8.8lx\n&quot;,
+                val, _lrotl(val, 8));
+    printf(&quot;0x%8.8lx rotated right four times is 0x%8.8lx\n&quot;,
+                val, _lrotr(val, 4));
+    return 0;
+}
+</pre>
+    </example>
+<result>
+0xfac35791 rotated left eight times is 0xc35791fa
+0xfac35791 rotated right four times is 0x1fac3579
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_rotl</ref_name>
+            <ref_url>_rotl</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_rotr</ref_name>
+            <ref_url>_rotl</ref_url>
+        </reference>
+    </references>
+
+</manpage>

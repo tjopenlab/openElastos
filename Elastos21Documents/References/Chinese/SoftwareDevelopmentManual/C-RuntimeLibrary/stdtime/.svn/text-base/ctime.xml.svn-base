@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\ctime">ctime</sample>
+    <title>ctime, wctime</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>将一个time结构的值转化为一个字符串，并根据当地时区设置调整。</para>
+    </description>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <func_name>ctime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const time_t*</param_type>
+                <param_name>timer</param_name>
+                <param_note>
+                    <para>指向存储时间的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>wchar_t *</return_val>
+        <func_name>_wctime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const time_t*</param_type>
+                <param_name>timer</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回指向字符串结果的指针。如果time代表的时间在UTC（Coordinated Universal Time，通用协调时间）时间1970年1月1日00:00:00之前，则函数返回空。</para>
+    </return>
+
+    <remarks>
+        <para>ctime函数将存储在time_t结构中的时间值转化为一字符串。timer的值通常由调用time函数来获得。由ctime产生的字符串结果严格包含26个字母，具有如下形式：</para>
+        <para>Wed Jan 02 02:03:55 1980\n\0</para>
+        <para>使用24小时的表示方法。所有的字符占有固定的长度。换行字符（'\n'）和空字符（'\0'）占据字符串的最后两个位置。_wctime是ctime的宽字符串版本；_wctime返回指向宽字符字符串的指针。</para>
+        <para>参数timer不能为空。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>ctime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wctime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ctime.cpp: This program gets the current
+ * time in time_t form, then uses ctime to
+ * display the time in string form.
+ */
+
+#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    time_t ltime;
+
+    time(&amp;ltime);
+    printf(&quot;The time is %s\n&quot;, ctime(&amp;ltime));
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The time is Fri Apr 29 12:25:12 1994
+</result>
+
+
+    <references>
+        <reference>
+            <ref_name>_ftime</ref_name>
+            <ref_url>_ftime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>localtime</ref_name>
+            <ref_url>localtime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>time</ref_name>
+            <ref_url>time</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wasctime</ref_name>
+            <ref_url>_wasctime</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,116 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strspn">strspn</sample>
+    <title>strspn</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Searches for the first substring in the string.</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>strspn</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>NULL-terminated string to search.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strCharSet</param_name>
+                <param_note>
+                    <para>NULL-terminated character set.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns an integer value specifying the length of the substring in string that consists entirely of characters in strCharSet. If string begins with a character not in strCharSet, the function returns 0. No return value is reserved to indicate an error.</para>
+    </return>
+
+    <remarks>
+        <para>The strspn function returns the index of the first character in string that does not belong to the set of characters in strCharSet. The search does not include terminating null characters.
+</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strspn</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strspn.cpp: This program uses strspn to determine
+ * the length of the segment in the string &quot;cabbage&quot;
+ * consisting of a&apos;s, b&apos;s, and c&apos;s. In other words,
+ * it finds the first non-abc letter.
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[] = &quot;cabbage&quot;;
+    int  result;
+    result = strspn(string, &quot;abc&quot;);
+    printf(&quot;The portion of &apos;%s&apos; containing only a, b, or c &quot;
+           &quot;is %d bytes long\n&quot;, string, result);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+The portion of &apos;cabbage&apos; containing only a, b, or c is 5 bytes long
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name> strncat </ref_name>
+            <ref_url>  wcsncat </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strncmp </ref_name>
+            <ref_url>  wcsncmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strncpy </ref_name>
+            <ref_url>  wcsncpy </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url>  strrchr </ref_url>
+        </reference>
+        <reference>
+            <ref_name> _strnicmp </ref_name>
+            <ref_url> _wcsnicmp  </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strcspn </ref_name>
+            <ref_url> strcspn  </ref_url>
+        </reference>
+    </references>
+
+</manpage>

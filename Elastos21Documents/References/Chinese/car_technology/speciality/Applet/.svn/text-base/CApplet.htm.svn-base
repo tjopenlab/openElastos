@@ -1,0 +1,137 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+    <title>TApplet和CApplet</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+        <link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+        <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>TApplet和CApplet的关系 </h2>
+    <p>由系统默认实现的类TApplet，分别实现了IApplet、IAppletSystemSpecific等接口，所有用户实现的applet类均默认继承自TApplet。</p>
+    <p>类CApplet封装了TApplet的部分方法，提供给用户一些常用的静态方法。 </p>
+
+<h3>CApplet相关API介绍</h3>
+        <table>
+            <thead>
+                <td>CApplet_API</td>
+                <td>功能描述</td>
+            </thead>
+            <tr>
+                <td><a class="style1" href="API\Finish.htm">CApplet::Finish</a></td>
+                <td>结束applet的消息循环或结束ElastosMian消息循环，使当前线程结束</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="API\GetCurrent.htm">CApplet::GetCurrent()</a></td>
+                <td>返回当前applet的IApplet指针，不带引用计数</td>
+           </tr>
+           <tr>
+                <td><a class="style1" href="API\GetStatus.htm">CApplet::GetStatus()</a></td>
+                <td>获取当前applet状态 </td>
+           </tr>
+
+            <tr>
+                <td><a class="style1" href="API\GetAllThreads.htm">CApplet::GetAllThreads</a></td>
+                <td>获取当前applet内部的所有子线程</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="API\AtFinish.htm">CApplet::AtFinish</a></td>
+                <td>注册当前线程退出时需要执行的函数</td>
+            </tr>
+            <tr>
+                <td><a class="style1" href="API\AtFinish_T.htm">CApplet::AtFinish_T</a></td>
+                <td>注册当前线程退出时需要执行的函数</td>
+            </tr>
+           <tr>
+                <td><a class="style1" href="API\SetCurrentDirectory.htm">CApplet::SetCurrentDirectory</a></td>
+                <td> 设置当前applet的路径</td>
+           </tr>
+           <tr>
+                <td><a class="style1" href="API\GetCurrentDirectory.htm">CApplet::GetCurrentDirectory </a></td>
+                <td>获取当前applet的绝对路径 </td>
+           </tr>
+           <tr>
+                <td><a class="style1" href="API\GetCurrentDirectoryInStorage.htm">CApplet::GetCurrentDirectoryInStorage </a></td>
+                <td>获得当前applet在不同盘符的当前路径 </td>
+           </tr>
+           <tr>
+                <td><a class="style1" href="API\SetEnvironmentVariable.htm">CApplet::SetEnvironmentVariable </a></td>
+                <td>设置当前applet的环境变量 </td>
+           </tr>
+           <tr>
+                <td><a class="style1" href="API\GetEnvironmentVariable.htm">CApplet::GetEnvironmentVariable </a></td>
+                <td>获得当前applet的环境变量 </td>
+           </tr>
+
+            </table>
+        <p></p>
+    <p></p>
+<h3>TApplet相关API介绍 </h3>
+    <p>TApplet实现的接口方法（<a class= "style1" href= "IApplet.htm">IApplet接口</a>和<a class= "style1" href= "IAppletEvents.htm">JAppletEvents接口</a> 方法除外）介绍： </p>
+        <table>
+            <thead>
+                <td>TApplet_API</td>
+                <td>功能描述</td>
+                <td>所属接口</td>
+            </thead>
+            <tr>
+                <td><a class= "style1" href="TAppletAPI/Main.htm">TApplet::Main</a></td>
+                <td>applet的主函数，默认直接返回E_NOT_IMPLEMENTED。用户可以重载此函数。</td>
+                <td>IAppletTaskStartup </td>
+            </tr>
+           <tr>
+                <td>SetAppletGUI</a></td>
+                <td>设置TApplet成员变量_m_pAppletGUI的值。 </td>
+                <td>IAppletSystemSpecific </td>
+           </tr>
+            <tr>
+                <td>NotifyActivated</a></td>
+                <td>激发Activated异步回调事件。</td>
+                <td>IAppletSystemSpecific </td>
+           </tr>
+            <tr>
+                <td>NotifyDeactivated</a></td>
+                <td>激发Deactivated异步回调事件。 </td>
+                <td>IAppletSystemSpecific </td>
+           </tr>
+            <tr>
+                <td>NotifyLayoutReady</a></td>
+                <td>激发LayoutReady异步回调事件。 </td>
+                <td>IAppletSystemSpecific </td>
+           </tr>
+            <tr>
+                <td>NotifyThreadCreated</a></td>
+                <td>将当前线程加入到系统线程容器。 </td>
+                <td>IAppletSystemSpecific </td>
+           </tr>
+            <tr>
+                <td>NotifyThreadQuit</a></td>
+                <td>将当前线程从系统线程容器中删除。 </td>
+                <td>IAppletSystemSpecific </td>
+           </tr>
+            <tr>
+                <td>RequestToFinish()</a></td>
+                <td> </td>
+                <td>JAppletPrivateEvents </td>
+           </tr>
+        </table>
+    <p>TApplet的Car文件片断： </p>
+    <pre class="code">
+[applet]
+class TApplet {
+    interface IApplet;
+    interface IAppletSystemSpecific;
+    virtual interface IAppletTaskStartup;
+    callbacks JAppletPrivateEvents;
+    callbacks JAppletEvents;
+}
+    </pre>
+
+
+<script>footer("chinese")</script>
+</body>
+</html>

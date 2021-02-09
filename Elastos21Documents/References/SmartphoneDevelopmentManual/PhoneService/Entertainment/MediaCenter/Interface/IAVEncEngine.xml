@@ -1,0 +1,79 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>    <manpage>
+    <volume>媒体中心引擎</volume>
+    <interface> IAVEncEngine </interface>
+    <description>
+        <para>
+       多媒体编码控制器接口。
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>SetOutputFile</method_name>
+        <method_url>..\interface\IAVEncEngine\SetOutputFile</method_url>
+    <m_description>
+     设置所要编码生成的多媒体文件名。编码引擎会根据文件后缀选择匹配的文件合成器。
+    </m_description>
+    </method>
+    <method>
+        <method_name>SetAudioParams</method_name>
+        <method_url>..\interface\IAVEncEngine\SetAudioParams</method_url>
+    <m_description>
+      设置音频流的参数。包括需要采用的音频数据编码格式的FOURCC，原始音频数据的采样率，原始音频数据的样本大小，原始音频数据的声道数。
+    </m_description>
+    </method>
+    <method>
+        <method_name>SetVideoParams</method_name>
+        <method_url>..\interface\IAVEncEngine\SetVideoParams</method_url>
+    <m_description>
+     设置视频视频流参数。包括需要采用的视频图象数据编码格式的FOURCC，原始视频图象的数据格式，原始视频图象的尺寸，原始视频图象的帧率。
+    </m_description>
+    </method>
+    <method>
+        <method_name>FillAudioBuffer</method_name>
+        <method_url>..\interface\IAVEncEngine\FillAudioBuffer</method_url>
+    <m_description>
+     填充原始音频数据到编码引擎的缓冲区中。
+    </m_description>
+    </method>
+    <method>
+        <method_name>FillVideoBuffer</method_name>
+        <method_url>..\interface\IAVEncEngine\FillVideoBuffer</method_url>
+    <m_description>
+      传递原始视频图象数据的指针到到编码引擎的视频队列中。
+    </m_description>
+    </method>
+    <method>
+        <method_name>EndFilling</method_name>
+        <method_url>..\interface\IAVEncEngine\EndFilling</method_url>
+    <m_description>
+      通知引擎音频流或者视频流已经结束。
+    </m_description>
+    </method>
+    <method>
+        <method_name>Start</method_name>
+        <method_url>..\interface\IAVEncEngine\Start</method_url>
+    <m_description>
+      开始编码。
+    </m_description>
+    </method>
+    <method>
+        <method_name>Stop</method_name>
+        <method_url>..\interface\IAVEncEngine\Stop</method_url>
+    <m_description>
+      停止编码。这里会同步等待编码线程跳出编码循环之后再返回。
+    </m_description>
+    </method>
+</self>
+    </methods>
+    <remarks>
+    <para>多媒体编码控制器的功能是：协调控制以上的各个模块使之能够协同工作，控制从音频、视频设备采集到的数据进行编码后按照指定的文件格式进行组织。</para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

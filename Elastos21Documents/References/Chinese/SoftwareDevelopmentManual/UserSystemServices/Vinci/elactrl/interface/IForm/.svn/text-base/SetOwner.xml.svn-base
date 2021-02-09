@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> SetOwner </method>
+    <description>
+        <para>
+            设置拥有此窗体的窗体。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IForm * </param_type>
+                <param_name> owner </param_name>
+                <param_note>
+                    <para>
+指向<link url="../IForm.htm">IForm</link>接口的指针，用于指定拥有此窗体的窗体                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_CLOSED</td>
+	    	    <td>窗体已关闭</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_RECYCLE_OWN</td>
+	    	    <td>当前窗体是指定窗体的拥有者</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_MORE_PRIORITY</td>
+	    	    <td>当前窗体的优先级高于指定窗体的优先级</td>
+	        </tr>
+	    </table>
+    <para>其它参见 <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link> 相关帮助。</para>
+</return>
+<remarks>
+    <para>一个 Form 只能有一个 owner。当一个窗体归另一窗体所有时，它便随着所有者窗体关闭。</para>
+    <para>例如，将 Form2 设置成 Form1 的 owner，则需要保证 Form1 不是 Form2 的 owner 且优先级低于 Form2 的优先级。
+          当 Form1 成功设置为 Form2 的 owner 后，Form2 将永远在 Form1 之上，同时 IForm1 接口的引用计数将增加1，Form1 的优先级将与 Form2 的优先级保持一致。
+          若想取消一个 Form 的 owner 可以通过将该方法的传入参数赋为 NULL 来实现。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetOwner</ref_name>
+        <ref_url>GetOwner</ref_url>
+    </reference>
+    <reference>
+        <ref_name>StackingRank枚举值（优先级）</ref_name>
+        <ref_url>../../datatype/StackingRank</ref_url>
+    </reference>
+</references>
+</manpage>

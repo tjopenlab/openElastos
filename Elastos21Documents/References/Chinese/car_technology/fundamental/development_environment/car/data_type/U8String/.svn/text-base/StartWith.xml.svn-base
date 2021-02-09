@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>U8String</interface>
+    <method> StartWith </method>
+
+    <description>
+        <para> 使用指定的比较选项进行比较，确定U8String实例的开头是否与指定的字符串匹配。</para>
+    </description>
+    <syntax>
+        <return_val> Boolean </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const U8String &amp;</param_type>
+            <param_name> substr </param_name>
+            <param_note>
+                <para> 用来比较的U8String对象。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive </param_default>
+            <param_note>
+                <para> 大小写标示符。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>
+
+        </parameters>
+    </syntax>
+    <return>
+        <para>如果此字符串的开头与substr参数匹配，则为TRUE；否则为FALSE。</para>
+    </return>
+
+    <remarks>
+        <para>1.若substr参数为空字符串("")，则返回TRUE。</para>
+      <para>2.若U8String实例或substr包含的字符串指针为NULL，则返回FALSE。</para>
+    </remarks>
+<example>
+<pre>
+U8String u8s1("abcd");
+U8String u8s2("abc");
+U8String u8s3("ABC");
+CConsole::WriteLine(u8s1.StartWith(u8s2));  //Display : Ture
+CConsole::WriteLine(u8s1.StartWith(u8s3));  //Display : False
+CConsole::WriteLine(u8s1.StartWith(u8s3, StringCase_Insensitive));  //Display : Ture
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::EndWith </ref_name>
+        <ref_url>../AString/EndWith</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::StartWith </ref_name>
+        <ref_url>../WString/StartWith</ref_url>
+    </reference>
+</references>
+
+</manpage>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> Close </method>
+    <description>
+        <para>
+            关闭窗体。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_CLOSED</td>
+	    	    <td>窗体已关闭</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        窗体关闭后，将关闭在该对象内创建的所有资源并且释放该窗体。在显示为无模式窗口的 <link url="../../class/Form.htm">Form</link> 上调用 Close 方法时，不能调用 <link url="Show.htm">Show</link> 方法使窗体可见，因为窗体的资源已被释放。若要隐藏窗体然后又使其可见，可使用 <link url="Hide.htm">Hide</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Show</ref_name>
+        <ref_url>Show</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Hide</ref_name>
+        <ref_url>Hide</ref_url>
+    </reference>
+</references>
+</manpage>

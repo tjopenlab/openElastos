@@ -1,0 +1,158 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>elasock APIs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Elastos网络编程接口（elasock&nbsp;API）</h2>
+    <p>Elastos提供了一组套接口函数用于进行网络编程，统称为elasock&nbsp;API。与winsock一样，Elastos的elasock也是从BSD&nbsp;socket发展而来。elasock&nbsp;API可以实现基本的网络通讯功能，具体用法参见每个函数的文档。</p>
+    <p>elasock与winsock基本兼容。《Elastos》提供的elasock的错误代码与winsock有一些不同，请参见<a class="style1" href="wsa.htm">elasock的错误代码</a>。</p>
+<table>
+    <thead>
+        <td>函数名称</td><td>函数描述</td>
+    </thead>
+    <tr>
+        <td><a class="style1" href="accept.htm"> accept </a></td><td>接受一次连接</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="bind.htm"> bind </a></td><td>将本地地址与一套接口捆绑</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="closesocket.htm"> closesocket </a></td><td>关闭套接口</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="connect.htm"> connect </a></td><td>建立与一个传输彼端的连接 </td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="gethostbyaddr.htm"> gethostbyaddr </a></td><td>根据IP地址查询主机信息</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="gethostbyname.htm"> gethostbyname </a></td><td>根据域名查询主机信息</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="gethostname.htm"> gethostname </a></td><td>返回本机的域名地址</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getpeername.htm"> getpeername </a></td><td>获取连接对方的套接口地址</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getprotobyname.htm"> getprotobyname </a></td><td>通过一个协议名字得到相应的协议信息</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getprotobynumber.htm"> getprotobynumber </a></td><td>将一个协议号转换为它所相应的协议信息</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getservbyname.htm"> getservbyname </a></td><td>根据主机名和协议查询主机</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getservbyport.htm"> getservbyport </a></td><td>根据端口号和协议查询主机</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getsockname.htm"> getsockname </a></td><td>此函数返回socket的本地地址</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="getsockopt.htm"> getsockopt </a></td><td>获取套接口选项</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="htonl.htm"> htonl </a></td><td>将无符号长整型数据从主机字节顺序转换成网络字节顺序</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="htons.htm"> htons </a></td><td>将无符号短整型数据从主机字节顺序转换成网络字节顺序</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="inet_addr.htm"> inet_addr </a></td><td>将一个含有点间隔的字符串地址格式化为IN_ADDR结构中的网络地址</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="inet_ntoa.htm"> inet_ntoa </a></td><td>将网络地址转换为点间隔形式的字符串（a.b.c.d）</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="ioctlsocket.htm"> ioctlsocket </a></td><td>控制socket的模式</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="listen.htm"> listen </a></td><td>将socket置为就绪状态，以监听和等待外来连接</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="ntohl.htm"> ntohl </a></td><td>将无符号长整型数据从网络字节顺序转换成主机字节顺序</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="ntohs.htm"> ntohs </a></td><td>将无符号短整型数据从网络字节顺序转换成主机字节顺序</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="recv.htm"> recv </a></td><td>从套接口接收数据</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="recvfrom.htm"> recvfrom </a></td><td>接收一个数据报并保存源地址</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="select.htm"> select </a></td><td>确定一个或多个socket的状态，如需要则等待</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="send.htm"> send </a></td><td>向已连接套接口发送数据</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="sendto.htm"> sendto </a></td><td>向一指定目的地发送数据</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="SetLastError.htm"> SetLastError </a></td><td>设置最后失败操作的错误代码</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="setsockopt.htm"> setsockopt </a></td><td>设置一个Socket选项</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="shutdown.htm"> shutdown </a></td><td>禁止在一个套接口上进行数据的接收或发送，但并不释放套接口占用的系统资源</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="socket.htm"> socket </a></td><td>创建套接口</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="WSACleanup.htm"> WSACleanup </a></td><td>终止Winsock.dll的使用</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="WSAGetLastError.htm"> WSAGetLastError </a></td><td>如果最后的操作失败，此函数得到出错的状态</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="WSASetLastError.htm"> WSASetLastError </a></td><td>设置最后失败操作的错误代码</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="WSAStartup.htm"> WSAStartup </a></td><td>此函数通过一个进程开始调用Ws2_32.dll</td>
+    </tr>
+</table>
+
+    <p>elasock&nbsp;API使用了一些特殊的数据结构</p>
+<table>
+    <thead>
+        <td>数据结构名称</td><td>功能描述</td>
+    </thead>
+    <tr>
+        <td><a class="style1" href="DataType\fd_set.htm"> fd_set </a></td><td>该结构体保存一组socket供其他函数使用，例如在select()函数中将需要检查的套接口保存在readfds中</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="DataType\hostent.htm"> hostent </a></td><td>保存主机相关信息的结构体，用于记录主机名、IP地址等信息</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="DataType\in_addr.htm"> in_addr </a></td><td>描述主机地址格式的结构体</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="DataType\linger.htm"> linger </a></td><td>该结构体用于确定closesocket的执行方式，以决定对未发送队列中的数据如何操作</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="DataType\sockaddr.htm"> sockaddr </a></td><td>用以表示套接口地址的结构体</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="DataType\sockaddr_in.htm"> sockaddr_in </a></td><td>TCP/IP协议使用的socket地址结构</td>
+    </tr>
+    <tr>
+        <td><a class="style1" href="DataType\WSADATA.htm"> WSADATA </a></td><td>该结构体保存elasock库的有关信息</td>
+    </tr>
+</table>
+
+<script>footer("e_KoreTide")</script>
+</body>
+
+</html>

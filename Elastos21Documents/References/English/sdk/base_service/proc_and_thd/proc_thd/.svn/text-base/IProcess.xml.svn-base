@@ -1,0 +1,150 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="../../../../xsl/xsl_e/interfaceman.xsl"?>   
+     <manpage>
+    <volume>System COM Interface</volume>
+    <interface> IProcess </interface>
+    <description>
+        <para>
+			Process object interface.
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Start</method_name>
+        <method_url>IProcess\Start</method_url>
+    <m_description>
+		Starts a process resource and associates it with a process component. Normally, it is used to start an
+		executable program specified by <i>esName</i> and pass the parameters through <i>esArgs</i>.
+    </m_description>
+    </method>
+    <method>
+        <method_name>Kill</method_name>
+        <method_url>IProcess\Kill</method_url>
+    <m_description>
+		This function kills a process and all its threads.
+    </m_description>
+    </method>
+    <method>
+        <method_name>WaitForExit</method_name>
+        <method_url>IProcess\WaitForExit</method_url>
+    <m_description>
+		Waits for the associated process to exit in specified time in milliseconds, at the same time , blocks
+		the current thread of execution until the period has elapsed or the process has exited.
+    </m_description>
+    </method>
+    <method>
+        <method_name>IsAlive</method_name>
+        <method_url>IProcess\IsAlive</method_url>
+    <m_description>
+		Checks whether the process is running or not.
+    </m_description>
+    </method>
+    <method>
+        <method_name>SetPriorityRank</method_name>
+        <method_url>IProcess\SetPriorityRank</method_url>
+    <m_description>
+		Sets the priority of the associated process through priority rank.
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetPriorityRank</method_name>
+        <method_url>IProcess\GetPriorityRank</method_url>
+    <m_description>
+		Gets the priority of the associated process.
+    </m_description>
+    </method>
+    <method>
+        <method_name>SetThreadPoolCapacity</method_name>
+        <method_url>IProcess\SetThreadPoolCapacity</method_url>
+    <m_description>
+		Sets the maximum number of threads that the thread pool can hold. Each process has a thread pool.
+    </m_description>
+    </method>
+
+	<method>
+        <method_name>GetThreadPoolState</method_name>
+        <method_url>IProcess\GetThreadPoolState</method_url>
+    <m_description>
+		Gets the state of thread pool.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>GetThreads</method_name>
+        <method_url>IProcess\GetThreads</method_url>
+    <m_description>
+		Get the set of threads that are running in the associated process.
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetModules</method_name>
+        <method_url>IProcess\GetModules</method_url>
+    <m_description>
+		Get the modules which have been loaded by the associated process.
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetModuleByName</method_name>
+        <method_url>IProcess\GetModuleByName</method_url>
+    <m_description>
+		Gets a module pointer specified by the module name.
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetId</method_name>
+        <method_url>IProcess\GetId</method_url>
+    <m_description>
+		Gets the process id (<b>PID</b>) of the associated process.
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetStartInfo</method_name>
+        <method_url>IProcess\GetStartInfo</method_url>
+    <m_description>
+		Gets the start information of the associated process, including the process name and arguments.
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetExitCode</method_name>
+        <method_url>IProcess\GetExitCode</method_url>
+    <m_description>
+		Gets the termination status of the specified process.
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetStartTime</method_name>
+        <method_url>IProcess\GetStartTime</method_url>
+    <m_description>
+		Gets the time when the associated process started.
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetExitTime</method_name>
+        <method_url>IProcess\GetExitTime</method_url>
+    <m_description>
+		Gets the time when the associated process exited.
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetProcessorTimes</method_name>
+        <method_url>IProcess\GetProcessorTime</method_url>
+    <m_description>
+		Gets the amount of time the associated process has spent on utilizing the CPU.
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

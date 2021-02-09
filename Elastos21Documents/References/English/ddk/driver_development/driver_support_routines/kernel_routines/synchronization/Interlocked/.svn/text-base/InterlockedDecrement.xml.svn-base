@@ -1,0 +1,59 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<method> InterlockedDecrement </method>
+    <description>
+        <para>
+            The InterlockedDecrement function atomically decrements the value of the specified variable by one and 
+            checks the resulting value. The function prevents more than one thread from using the same variable
+            simultaneously.
+        </para>
+    </description>
+    <syntax>
+        <return_val>LONG</return_val>
+        <parameters>
+            <api_param>
+                <param_type> PLONG </param_type>
+                <param_name> pAddend</param_name>
+                <param_note>
+                    <para>
+                        Pointer to the variable to decrement.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <para>
+	    	The resulting decreased value.
+        </para>
+	</return>
+
+	<remarks>
+		<para>
+		    The Interlocked functions provides a simple mechanism for synchronizing access to a variable that is
+		    shared by multiple threads. The threads of different processes can use this mechanism if the variable
+		    is in shared memory.
+        </para>
+        <para>
+            The variable pointed to <i>pAddend</i> parameter must be aligned on a 32-bit boundary; otherwise,
+            this function will fail on multiprocessor x86 systems or any non-x86 systems.
+        </para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>

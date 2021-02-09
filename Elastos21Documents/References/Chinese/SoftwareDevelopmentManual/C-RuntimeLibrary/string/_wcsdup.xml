@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_strdup">_strdup</sample>
+    <title> _wcsdup, _strdup</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>复制字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>_strdup</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strSource</param_name>
+                <param_note>
+                    <para>以NULL结尾的源字符串</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_wcsdup</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>strSource</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+    
+    <return>
+        <para>两个函数都返回指针，指向已拷贝的字符串的内存地址，如果内存分配失败，返回NULL。</para>
+    </return>
+
+    <remarks>
+        <para>函数_strdup调用函数malloc为要拷贝的串分配内存，然后把源串拷贝到分配的内存中。_wcsdup是_strdup的宽字节版本。函数_wcsdup的参数和返回值，都是宽字符串，除此之外，和函数_strdup一样。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_strdup</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+      
+        <routine>
+            <routine_name>_wcsdup</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _strdup.cpp:this program calls malloc to allocate storage space for a copy of buffer
+               and then copies buffer to the allocated space
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    char buffer[] = &quot;This is the buffer text&quot;;
+    char *newstring;
+    printf(&quot;Original: %s\n&quot;, buffer);
+    newstring = _strdup(buffer);
+    printf(&quot;Copy:      %s\n&quot;, newstring);
+    free(newstring);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Original: This is the buffer text
+Copy:      This is the buffer text
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcscat</ref_name>
+            <ref_url>wcscat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcsncat</ref_name>
+            <ref_url>wcsncat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcscmp</ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcsncpy</ref_name>
+            <ref_url>wcsncpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcscpy</ref_name>
+            <ref_url>wcscpy</ref_url>
+        </reference>
+    </references>
+
+</manpage>

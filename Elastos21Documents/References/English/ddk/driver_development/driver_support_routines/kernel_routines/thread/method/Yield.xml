@@ -1,0 +1,59 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="thread\Yield">Yield</sample>
+    <volume>Thread and Scheduling</volume>
+    <title>Yield</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>Makes the current thread to stop temporarily, and allow other threads to run.</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+    	<para>None</para>
+    </return>
+
+    <remarks>
+        <para>
+        	This function causes the currently executing thread object to temporarily pause and allow other threads 
+        	to execute. What makes it different from Sleep is that, it won't make the invoked function, sleep or blocked. 
+        	The current thread quits its remaining time slice by calling this function and gives the rest of its time 
+        	slice to other ready threads, which has the same priority. The function will return at once and calling 
+        	thread will go on if there are no other ready threads in the system, which have the same priority.
+        </para>
+        <para>        	
+        	The actual result of this function relies on the schedule rank of the calling thread. In current 
+        	implementations, if the schedule rank is PriorityRank_Normal, the corresponding algorithm is round-robin 
+        	with dynamic priority. Calling this method will cause the thread to give up the rest of its time slice 
+        	and is possible to decrement its dynamic priority and be put to the end of the schedule queue. If the 
+        	schedule rank of thread is PriorityRank_SoftRealTime, the corresponding algorithm is priority based FIFO. 
+        	If there are other threads with the same priority in the ready state, then those threads will be 
+        	scheduled to run.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+
+
+</manpage>

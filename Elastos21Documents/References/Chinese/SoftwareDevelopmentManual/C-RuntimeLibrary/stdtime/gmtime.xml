@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\gmtime">gmtime</sample>
+    <title> gmtime </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>将时间值转化为time_t结构</para>
+    </description>
+
+    <syntax>
+        <return_val>struct tm *</return_val>
+        <func_name>gmtime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const time_t *</param_type>
+                <param_name>timer</param_name>
+                <param_note>
+                    <para>该指针指向保存的时间</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回指向time_t结构的指针。</para>
+        <table>
+            <th>
+               <td>指针域</td>
+               <td>含义</td>
+            </th>
+            <tr>
+               <td>tm_sec</td>
+               <td>一分钟内的第几秒 （0 – 59） </td>
+            </tr>
+            <tr>
+               <td>tm_min</td>
+               <td>一小时内的第几分钟 （0 – 59） </td>
+            </tr>
+            <tr>
+               <td>tm_hour</td>
+               <td>从0:00算起的小时数 （0 – 23） </td>
+            </tr>
+            <tr>
+               <td>tm_mday</td>
+               <td>在一个月中的第几日 （1 – 31） </td>
+            </tr>
+            <tr>
+               <td>tm_mon</td>
+               <td>月 （0 – 11；一月为0） </td>
+            </tr>
+            <tr>
+               <td>tm_year</td>
+               <td>年 （从1900年算起） </td>
+            </tr>
+            <tr>
+               <td>tm_wday</td>
+               <td>一周内的第几天 （0 – 6；Sunday = 0）</td>
+            </tr>
+            <tr>
+               <td>tm_yday</td>
+               <td>一年内的第几天 （0 – 365；January 1 = 0）</td>
+            </tr>
+            <tr>
+               <td>tm_isdst</td>
+               <td>如夏令时制有效则为正数，如夏令时制无效则为0，如未知夏令时制是否有效，或夏令时制信息无可用，则为负数。
+               </td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>gmtime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+</manpage>

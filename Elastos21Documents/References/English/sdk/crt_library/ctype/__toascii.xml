@@ -1,0 +1,77 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\__toascii">__toascii</sample>
+    <title>__toascii</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>The __toascii() function strips all but the low 7 bits from a letter, including parity or other marker bits.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_toascii</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>input integer</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If possible, __toascii converts a copy of c and returns the result. There is no return value reserved to indicate an error.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>_toascii</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* toascii.cpp: This program converts integer 45 and 301
+ * into ASCII characters
+ */
+
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+
+{
+    int c1 = 45, c2 = 301;
+
+    printf(&quot;The result c1 is: %d.\n&quot;, __toascii(c1));
+    printf(&quot;The result c2 is: %d.\n&quot;, __toascii(c2));
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The result c1 is: 45.
+The result c2 is: 45.
+</result>
+
+
+
+</manpage>

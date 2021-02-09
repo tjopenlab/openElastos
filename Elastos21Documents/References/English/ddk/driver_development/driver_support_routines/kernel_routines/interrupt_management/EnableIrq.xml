@@ -1,0 +1,65 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <volume>Interrupt Management</volume>
+    <title>EnableIrq</title>
+    <routine_idx> ../interrupt_management.htm </routine_idx>
+
+    <description>
+        <para>
+        	Enables a disabled hardware interrupt.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> irq_t</param_type>
+                <param_name> irq </param_name>
+                <param_note>
+                    <para>
+                    	Hardware interrupt number which is enabled.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>
+        	This method enables disabled hardware interrupt. Active hardware interrupts can be disabled by invoking 
+        	the <link url="DisableIrq.htm">DisableIrq</link> method. The system will not respond to disabled interrupt, 
+        	until the hardware interrupt is enabled by invoking the <b>EnableIrq</b> method, therefore response to this 
+        	interrupt is restored. Enabling hardware interrupt that is not activated will not generate any effect, 
+        	however, enabling an active hardware interrupt will cause unpredictable results.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>DisableIrq</ref_name>
+            <ref_url>DisableIrq</ref_url>
+        </reference>
+    </references>
+
+</manpage>

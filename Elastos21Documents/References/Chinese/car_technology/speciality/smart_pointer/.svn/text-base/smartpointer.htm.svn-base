@@ -1,0 +1,32 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>智能指针</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+    <h2>智能指针</h2>
+        <p>在CAR中，使用智能指针来简化对接口的操作。</p>
+    <h3>CAR智能指针功能</h3>
+        <ol>
+            <li><p>正确的处理AddRef/Release调用，来保证客户正确地控制构件的生命周期；</p>
+            <li><p>在析构函数中自动释放接口，从而降低资源泄漏的可能，以及改进异常的安全性；</p>
+            <li><p>通过C++类型系统来简化对QueryInterface的调用。</p>
+        </ol>
+    <h3>CAR智能指针</h3>
+        <p>CAR提供了三种智能指针:<a class="style1" href="interface_smartpointer.htm">接口智能指针</a>，<a class="style1" href="class_smartpointer.htm">类智能指针</a>和<a class="style1" href="category_smartpointer.htm">类别智能指针</a>。</p>
+    <h3>接口智能指针与类智能指针的区别</h3>
+        <p>接口智能指针是对某一个接口指针的封装，使用接口智能指针只能调用此接口中的方法，如果需要调用其他接口中的方法时，需要进行接口指针切换操作。</p>
+        <p>类智能指针是对某一个类中的所有接口指针的封装，通过类智能指针，可以调用该类中所有接口中的方法，无需再进行接口指针的切换操作。</p>
+        <p>我们推荐用户使用类智能指针，因为从接口智能指针与类智能指针的区别可以发现，使用类智能指针能够大大简化编程的步骤，降低难度。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

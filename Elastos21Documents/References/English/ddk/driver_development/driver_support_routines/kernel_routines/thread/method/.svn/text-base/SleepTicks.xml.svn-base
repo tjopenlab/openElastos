@@ -1,0 +1,85 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="time\SleepTicks">Sleep</sample>
+    <volume>Thread and Scheduling</volume>
+    <title>Sleep</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>
+        	Specifies a period of sleeping time for the current thread.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+        	<api_param>
+        		<param_type>uint_t</param_type>
+        		<param_name>uTicks</param_name>
+        		<param_note>
+        			<para>
+        				Specifies an expected sleeping time, the unit is Tick.
+        			</para>
+        		</param_note>
+        	</api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    
+	<table>
+	    <th>
+			<td>Return Value </td>
+			<td>Hex Value</td>
+			<td>Description</td>
+	    </th>
+	    <tr>
+			<td>S_OK</td>
+			<td>0x00000000</td>
+			<td>Function succeeds in specifying a period of sleeping time for the current thread.</td>
+		</tr>
+	    <tr>
+			<td>S_INTERRUPTED</td>
+			<td>0x00060014</td>
+			<td>Interrupted while sleeping.
+			</td>
+	    </tr>
+	</table>
+	    <para>References<link url="/sdk/hresult.htm">ECODE</link>related help for more details.</para>
+    </return>
+
+    <remarks>
+        <para>
+        	This function will cause the current thread to sleep for a specified period of time. If the actual sleeping 
+        	time is over, the current thread will finish sleeping, and return from this function.
+        	<link url="../IThread/Interrupt.htm">IThread::Interrupt</link> can be called to stop the thread from sleeping.
+        	The thread will resume and return from this function after the time specified through <i>uTicks</i>.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+               Elastos2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>Delay</ref_name>
+            <ref_url>Delay</ref_url>
+        </reference>
+    </references>
+
+
+</manpage>

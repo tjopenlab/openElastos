@@ -1,0 +1,184 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>U8String</interface>
+
+    <description>
+        <para>U8String继承自AString类，用于UTF-8编码的操作。</para>
+        <para>以下只列出比AString多出的方法，这些方法均用于支持UTF-8编码的操作。其它请参考<link url= "AString.htm">AString</link>。</para>
+    </description> 
+
+    <constructs>
+        <construct>
+            <construct_name>U8String()</construct_name>
+            <construct_url>U8String/U8String</construct_url>
+            <construct_description>构造一个U8String对象，并初始化字符串指针为NULL。</construct_description>
+        </construct>
+        <construct>
+            <construct_name>U8String(const char*)</construct_name>
+            <construct_url>U8String/U8String2</construct_url>
+            <construct_description>构造一个U8String对象，并用指定字符串初始化。 </construct_description>
+        </construct>
+    </constructs>
+    
+    <methods>
+        <self>
+         
+        <method>
+        <method_name>EstimateWStringLength </method_name>
+        <method_url> U8String/EstimateWStringLength</method_url>
+        <m_description>估算把U8String的实例按UTF-8编码格式转成WString对象时所占的字符数，单位为sizeof(wchar)。 </m_description>
+        </method> 
+         
+        <method>
+        <method_name>Compare</method_name>
+        <method_url>U8String/Compare</method_url>
+        <m_description>将此实例与指定的U8String对象进行比较，忽略或接受其大小写，并指示此实例在排序顺序中是位于指定的U8String之前、之后还是与其出现在同一位置。  </m_description>
+        </method>
+
+        <method>
+        <method_name>GetCharCount</method_name>
+        <method_url>U8String/GetCharCount</method_url>
+        <m_description>按UTF-8编码格式返回U8String实例所占的字符数。 </m_description>
+        </method>
+        
+        <method>
+        <method_name>GetChar</method_name>
+        <method_url>U8String/GetChar</method_url>
+        <m_description>返回U8String实例中Index位置的字符。 </m_description>
+        </method>
+
+        <method>
+        <method_name>Contains </method_name>
+        <method_url> U8String/Contains</method_url>
+        <m_description>返回一个值，该值指示指定的U8String对象是否出现在此字符串中。  </m_description>
+        </method>
+        
+        <method>
+        <method_name>StartWith </method_name>
+        <method_url> U8String/StartWith</method_url>
+        <m_description>使用指定的比较选项进行比较，确定U8String的实例的开头是否与指定的字符串匹配。  </m_description>
+        </method> 
+
+        <method>
+        <method_name>EndWith </method_name>
+        <method_url> U8String/EndWith</method_url>
+        <m_description>使用指定的比较选项进行比较，确定U8String的实例的末尾是否与指定的字符串匹配。  </m_description>
+        </method> 
+
+        <method>
+        <method_name>IndexOf</method_name>
+        <method_url> U8String/IndexOf</method_url>
+        <m_description>已重载。报告指定字符串在此对象中的第一个匹配项的索引。  </m_description>
+        </method> 
+        
+        <method>
+        <method_name>IndexOf</method_name>
+        <method_url> U8String/IndexOf2</method_url>
+        <m_description>已重载。报告指定字符在此对象中的第一个匹配项的索引。  </m_description>
+        </method> 
+        
+        <method>
+        <method_name>IndexOfAny </method_name>
+        <method_url> U8String/IndexOfAny</method_url>
+        <m_description>报告指定U8String对象中的任意字符在此实例中第一个匹配项的索引。 </m_description>
+        </method> 
+        
+        <method>
+        <method_name>IndexOfChar </method_name>
+        <method_url> U8String/IndexOfChar</method_url>
+        <m_description>报告指定Char32字符在此实例中的第一个匹配项的索引。 </m_description>
+        </method>
+ 
+         <method>
+        <method_name>IndexOfAnyChar </method_name>
+        <method_url> U8String/IndexOfAnyChar</method_url>
+        <m_description>报告指定U8String对象中任意一个字符在当前对象字符串的第一次出现的索引值。 </m_description>
+        </method>
+
+        <method>
+        <method_name>LastIndexOf</method_name>
+        <method_url> U8String/LastIndexOf</method_url>
+        <m_description>已重载。报告指定字符或字符串在此对象中的最后一个匹配项的索引。 </m_description>
+        </method>                
+
+        <method>
+        <method_name>LastIndexOf</method_name>
+        <method_url> U8String/LastIndexOf2</method_url>
+        <m_description>已重载。报告指定字符或字符串在此对象中的最后一个匹配项的索引。 </m_description>
+        </method>                
+
+        <method>
+        <method_name>LastIndexOfAny </method_name>
+        <method_url> U8String/IndexOfAny</method_url>
+        <m_description>报告指定U8String对象中的任意字符在此实例中最后一个匹配项的索引。 </m_description>
+        </method> 
+        
+        <method>
+        <method_name>LastIndexOfChar </method_name>
+        <method_url> U8String/LastIndexOfChar</method_url>
+        <m_description>报告指定Char32字符在此实例中的最后一个匹配项的索引位置。 </m_description>
+        </method>
+        
+        <method>
+        <method_name>LastIndexOfAnyChar </method_name>
+        <method_url> U8String/IndexOfAnyChar</method_url>
+        <m_description>报告指定U8String对象中任意一个字符在当前对象字符串的最后一次出现的索引值。 </m_description>
+        </method>
+        
+        <method>
+        <method_name>Substring</method_name>
+        <method_url> U8String/Substring1</method_url>
+        <m_description>已重载。从此实例检索从指定位置开始的子字符串。</m_description>
+        </method>
+        
+        <method>
+        <method_name>Substring</method_name>
+        <method_url> U8String/Substring2</method_url>
+        <m_description>已重载。从此实例检索子字符串。</m_description>
+        </method>
+        
+        <method>
+        <method_name>Substring</method_name>
+        <method_url> U8String/Substring3</method_url>
+        <m_description>已重载。从此实例检索指定位置和指定长度的子字符串。</m_description>
+        </method>
+                
+         <method>
+        <method_name>ToLowerCase </method_name>
+        <method_url> U8String/ToLowerCase</method_url>
+        <m_description>返回此U8String转换为小写形式的副本。  </m_description>
+        </method>
+        
+        <method>
+        <method_name>ToUpperCase </method_name>
+        <method_url> U8String/ToUpperCase</method_url>
+        <m_description>返回此U8String转换为大写形式的副本。 </m_description>
+        </method> 
+                                                              
+    </self>
+    </methods>
+
+    <operators>
+        
+        <operator>
+            <operator_name>operator =</operator_name>
+            <operator_url>U8String/operator</operator_url>
+            <operator_description>已重载。为U8String对象赋值。 </operator_description>
+        </operator>
+    </operators>
+
+    <requirements>
+        <headerfile>
+            <file_name> elstring.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+    
+    
+    
+</manpage>

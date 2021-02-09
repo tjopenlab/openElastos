@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IAbsoluteIO</interface><method> Write </method>
+    <description>
+        <para>
+            把缓冲区中的数据写入文件对象，并且返回实际写入的数据的长度。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> offset </param_name>
+                <param_note>
+                    <para>
+从文件对象的起始位置以字节为单位的距离，从0开始算起                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> MemoryBuf&lt;&gt;  </param_type>
+                <param_name> buffer </param_name>
+                <param_note>
+                    <para>
+存放数据的缓冲区，不能缺省                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> bytesWritten </param_name>
+                <param_note>
+                    <para>
+指向Int32类型的指针，用于返回实际写入的数据长度，不能缺省                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR；</para>
+          <para>如果参数buffer没有分配内存或参数pNumberOfBytesWritten为NULL，返回E_INVALID_ARGUMENT；</para>
+          <para>如果因为文件对象为文件夹或为只读，文件对象执行写操作失败，返回E_FS_NO_PERMISSION；</para>
+          <para>如果对文件对象执行写操作失败，磁盘没有足够空间执行写操作，返回E_FS_NO_SPACE。</para>
+          <para>当文件的共享方式被其他用户设置为 FileShareMode_Deny 或FileShareMode_Read 时，返回E_FS_FILE_BUSY。</para>
+<para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            用户在使用Write时，首先应注意文件对象是否具有可写模式；在写入完成之后，应调用            <link url="../IBasicFile/sync.htm">            Sync            </link>            方法将数据保存在永久存储器中。</para><para>            参数offset超过对象文件的当前大小时，Write函数会自动用0字符补充文件内容，再从offset处开始写入，文件对象的大小也会修改为写入后的新值。buffer.Used()表明了需要写入的字符数。
+        </para>
+    </remarks>
+</manpage>

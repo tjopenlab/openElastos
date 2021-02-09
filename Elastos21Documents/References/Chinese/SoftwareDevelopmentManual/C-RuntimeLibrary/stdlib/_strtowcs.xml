@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\_strtowcs">_strtowcs</sample>
+    <title>_strtowcs</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>将一个多字节字符序列转换成对应的一个宽字符序列。 </para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>mbstowcs</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>wcstr</param_name>
+                <param_note>
+                    <para>指向宽字符序列的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>mbstr</param_name>
+                <param_note>
+                    <para>指向多字节字符序列的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果mbstowcs成功转换了该源字符串，它返回被转换的多字节字符的个数。如果参量wcstr为NULL，该函数返回目的字符串需要的尺寸。如果mbstowcs遇到一个无效的多字节字符，它返回-1；如果返回值是count，该宽字符串将不以结束符（L'\0'）结尾的。</para>
+    </return>
+
+    <remarks>
+        <para>mbstowcs函数将mbstr所指count个或更少个的多字节字符转换到由当前场所确定的对应的宽字符字符串。它将此作为结果的宽字符字符串存储在由wcstr给出的地址空间。其结果类似于一系列的mbtowc函数调用。如果在count出现之前或正当count出现时mbstowcs遇到单字节结束符（'\0'），那么它转换该结束符为宽字符结束符（L'\0'）并停止。所以仅当在转换过程中遇到了一个结束符，由wcstr所指的宽字符字串才是以结束符结尾的。如果由wcstr和mbstr所指向的序列有重叠，其函数行为是不确定的。</para>
+        <para>如果wcstr参量为NULL，mbstowcs返回目的字符串所需的尺寸。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_strtowcs</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* mbstowcs.cpp: this program use mbstowcs to convert string to wide-character string
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int i;
+    char    *pmbhi = &quot;This is a test of _strtowcs.&quot;;
+    wchar_t pwc[29];
+
+    printf(&quot;Convert to wide-character string:%s\n&quot;, pmbhi);
+    i = _strtowcs(pwc, pmbhi);
+    printf(&quot;\tCharacters converted: %d\n&quot;, i);
+    printf(&quot;\twide character string: %S\n&quot;, pwc);
+
+    return 0;
+
+}
+</pre>
+    </example>
+<result>
+	Convert to wide-character string:This is a test of _strtowcs.
+Characters converted: 28
+wide character string: This is a test of _strtowcs.
+</result>
+
+    <references>
+        <reference>
+            <ref_name>_wcstostr</ref_name>
+            <ref_url>_wcstostr</ref_url>
+        </reference>
+    </references>
+
+</manpage>

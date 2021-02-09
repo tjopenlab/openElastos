@@ -1,0 +1,61 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IThread\Interrupt">Interrupt</sample>
+<volume>Process And Thread</volume>
+<interface>IThread</interface><method> Interrupt  </method>
+    <description>
+        <para>
+        	Interrupts the blocked thread (EzSleep, Join, Wait etc.).
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters></parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+		        <td>Return Value</td>
+		        <td>Hex Value</td>
+		        <td>Description</td>
+	        </th>
+	        <tr>
+		        <td>NOERROR</td>
+		        <td>Function succeeds in interrupting the blocked thread.</td>
+	        </tr>
+	        <tr>
+		        <td>E_THREAD_ALREADY_FINISHED</td>
+		        <td></td>
+		        <td>The thread is already finished.</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			This method interrupts the blocked thread (EzSleep, Join, Wait etc.) to wake up and continue running.
+		</para>
+		<para> 
+			If the thread is not blocked with <link url="../function/EzSleep.htm">EzSleep</link>, <link url="Join.htm">
+			Join</link> or <link url="../../synchronization/ICondition/Wait.htm">Wait</link> while the method is being 
+			called, the thread will be interrupted as soon as it becomes blocked state, then it will return NOERROR. If 
+			the thread has finished, this method has no effect and returns E_FAIL. If the thread is in a 
+			non-interruptable sleeping state, the method will do nothing. If the thread is in running list, the method 
+			will set its state as RunningReason_WakeUp.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

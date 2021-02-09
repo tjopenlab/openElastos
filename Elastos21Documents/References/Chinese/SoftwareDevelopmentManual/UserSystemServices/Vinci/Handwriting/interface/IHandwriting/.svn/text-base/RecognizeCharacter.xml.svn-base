@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IHandwriting</interface><method> RecognizeCharacter </method>
+    <description>
+        <para>
+            手写识别函数。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzArray&lt;EzPoint&gt; </param_type>
+                <param_name> strokeTrace </param_name>
+                <param_note>
+                    <para>
+笔迹数据。(x, y)组成一个点，(-1, 0)为笔画结束标志, (-1, -1)为字结束标志。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> RecognitionHint </param_type>
+                <param_name> hint </param_name>
+                <param_note>
+                    <para>
+字符集，指定识别的范围                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzWStrBuf </param_type>
+                <param_name> plausibleChars </param_name>
+                <param_note>
+                    <para>
+识别结果。用户可以分配特定大小的内存来决定识别的个数。最终识别的个数可以通过Length()方法来获得，现最多只能识别10个。                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+        如果方法调用成功，返回NOERROR；如果没有笔迹数据，或所给的字符集超出范围，或plausibleChars没有分配内存，返回E_INVALID_ARGUMENT；如果内存分配失败，返回E_OUT_OF_MEMORY。
+    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>stdio.h</file_name>
+        </headerfile>
+    </requirements>
+</manpage>

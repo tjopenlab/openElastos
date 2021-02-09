@@ -1,0 +1,76 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> 常用数据结构 </volume>
+    <class>WStringBuf</class>
+    <method>Compare</method>
+
+    <description>
+        <para>按指定的是否区分大小写标志将WStringBuf对象字符串与指定字符串作比较。</para>
+    </description>
+
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const WString &amp;</param_type>
+            <param_name>ws</param_name>
+            <param_note>
+                <para> 指定字符串 </para>
+            </param_note>
+        </api_param>
+       <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive</param_default>
+            <param_note>
+                <para> 是否区分大小写标志。参见<link url="../../../others/StringCase.htm">StringCase</link>枚举类型说明。</para>
+            </param_note>
+        </api_param>      
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回值表明两个字符串在词典中的位序关系。具体含义如下表所示： </para>
+        <table border="1" width="100%" >
+	<tr>
+		<td>返回值</td>
+		<td>　含义</td>
+	</tr>
+	<tr>
+		<td>&lt; 0　</td>
+		<td>　原字符串小于指定字符串</td>
+	</tr>
+	<tr>
+		<td>= 0　</td>
+		<td>　原字符串等于指定字符串</td>
+	</tr>
+	<tr>
+		<td>&gt;0　</td>
+		<td>　原字符串大于指定字符串</td>
+	</tr>
+   </table>
+    </return>
+    <remarks>
+         <para>如果两个对象包含的字符串指针相等，返回值为0；如果源对象包含的字符串指针为NULL,则返回值为-2；如果目标字符串指针为NULL,则返回值为2。 </para>
+    </remarks>
+<example>
+<pre>
+请参见：<link url="../../AStringBuf/Compare/index/Compare.htm">AStringBuf::Compare(const AString&amp;, StringCase)</link>
+</pre>
+</example>
+<references>
+    <reference>
+        <ref_name>WStringBuf</ref_name>
+        <ref_url>../../WStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Compare</ref_name>
+        <ref_url>index/Compare</ref_url>
+    </reference>
+
+</references>
+</manpage>

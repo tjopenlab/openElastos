@@ -1,0 +1,314 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR中的数据类型</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</head>
+
+<body>
+<h2 align="left">CAR中的数据类型</h2>
+
+    <h3 align="left">CAR支持的数据类型对比表</h3>
+    <p align="left">下表列出CAR基本数据类型、指针及数组类型分别在2.0和2.1上的对比以及在其它语言中的映射：</p>
+
+
+    <table class="MsoNormalTable" border="1" cellpadding="0" style="width: 771px" id="table1">
+		<thead>
+			<tr>
+				<td style="width:200px;padding:.75pt">
+				<p class="MsoNormal" align="left">2.1</td>
+				<td style="width:171px;padding:.75pt">
+				<p class="MsoNormal" align="left"><span lang="EN-US">2.0</span></td>
+				<td style="padding:.75pt .75pt .75pt .75pt" width="171">
+				<p class="MsoNormal" align="left"><span lang="EN-US">C++</span>数据类型</td>
+				<td style="width:201px;padding:.75pt; ">
+				<p class="MsoNormal" align="left">类型描述</td>
+			</tr>
+		</thead>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Int8 </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left">N/A</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Int8 </span></td>
+			<td style="width:201px;padding:.75pt; ">
+			<p class="MsoNormal" align="left"><span lang="EN-US">8</span>位有符号整数 </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Byte </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">UINT</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Byte </span></td>
+			<td style="width:201px;padding:.75pt; ">
+			<p class="MsoNormal" align="left"><span lang="EN-US">8</span>位无符号整数 </td>
+		</tr>
+		<tr style="height: 13.2pt">
+			<td style="padding:.75pt .75pt .75pt .75pt;height:13.2pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Int16 </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt;height:13.2pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">SHORT</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt;height:13.2pt" width="171">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Int16 </span></td>
+			<td style="width:201px;padding:.75pt;
+  height:13.2pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">16</span>位有符号整数 </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Int32 </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">LONG</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Int32 </span></td>
+			<td style="width:201px;padding:.75pt; ">
+			<p class="MsoNormal" align="left"><span lang="EN-US">32</span>位有符号整数 </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Int64 </span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt">
+		<p class="MsoNormal" align="left">
+		INT64</span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" width="171">
+		<p class="MsoNormal" align="left"><span lang="EN-US">Int64 </span></td>
+			<td style="width:201px;padding:.75pt; ">
+			<p class="MsoNormal" align="left"><span lang="EN-US">64</span>位有符号整数 </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Float </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">FLOAT</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Float </span></td>
+			<td style="width:201px;padding:.75pt; ">
+			<p class="MsoNormal" align="left"><span lang="EN-US">32</span>位<span lang="EN-US">IEEE
+			</span>浮点数 </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="27">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Double </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="27">
+			<p class="MsoNormal" align="left"><span lang="EN-US">double</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="27" width="171">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Double </span></td>
+			<td style="width:201px;padding:.75pt; " height="27">
+			<p class="MsoNormal" align="left"><span lang="EN-US">64</span>位<span lang="EN-US">IEEE
+			</span>浮点数 </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">Boolean </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left">BOOL</span></span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171">
+			<p class="MsoNormal" align="left">
+			Boolean</span></td>
+			<td style="width:201px;padding:.75pt; ">
+			<p class="MsoNormal" align="left">该数据项是<span lang="EN-US">8</span>位整数，值为<span lang="EN-US">0</span>时表示<span lang="EN-US">false</span>，值为<span lang="EN-US">1</span>时表示<span lang="EN-US">true
+			</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="24">
+			<p class="MsoNormal" align="left"><span lang="EN-US">AChar </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="24">
+			<p class="MsoNormal" align="left">
+			char</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="24" width="171">
+			<p class="MsoNormal" align="left"><span lang="EN-US">AChar </span></td>
+			<td style="width:201px;padding:.75pt; " height="24">
+			<p class="MsoNormal" align="left">窄字符<span lang="zh-cn">类型</span> </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<p class="MsoNormal" align="left"><span lang="EN-US">WChar </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<p class="MsoNormal" align="left">
+			wchar_t</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="32">
+			<p class="MsoNormal" align="left"><span lang="EN-US">WChar </span></td>
+			<td style="width:201px;padding:.75pt; " height="32">
+			<p class="MsoNormal" align="left">宽字符类型 </td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="47">
+			<a class="style1" href=data_type/AString.htm>
+			<p align="left">AString</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="45">
+			<p class="MsoNormal" align="left">
+			AString</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="45" width="171">
+			<p class="MsoNormal" align="left"><span lang="EN-US">AString </span></td>
+			<td style="width:201px;padding:.75pt; " height="45">
+			<p class="MsoNormal" align="left">指向一个常量窄字符串（8位字符串）的指针</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="26">
+			<p class="MsoNormal" align="left"><span lang="EN-US">WString </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="26">
+			<p class="MsoNormal" align="left">
+			WString</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="26">
+			<p class="MsoNormal" align="left"><span lang="EN-US">WString </span></td>
+			<td style="width:201px;padding:.75pt; " height="26">
+			<p class="MsoNormal" align="left">指向一个常量宽字符串（16位字符串）的指针</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="12">
+			<a class="style1" href=data_type/AStringBuf.htm>
+			<p align="left">AStringBuf</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="12">
+			<p align="left">EzAStrBuf</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="12">
+			<p align="left">
+			<span lang="EN-US">AStringBuf </span></td>
+			<td style="width:201px;padding:.75pt; " height="12">
+			<p align="left">存储用户窄字符串的缓冲区数据结构 
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="11">
+			<p align="left">WStringBuf </td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="11">
+			<p align="left">EzWStrBuf</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="11">
+			<p align="left">WStringBuf</td>
+			<td style="width:201px;padding:.75pt; " height="11">
+			<p align="left">存储用户宽字符串的缓冲区数据结构 
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="27">
+			<p align="left">
+			<a href="data_type/BufferOf.htm">BufferOf</a></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="27">
+			<p align="left">N/A</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="27">
+			<p align="left">N/A</td>
+			<td style="width:201px;padding:.75pt; " height="27">
+			<p class="MsoNormal" align="left" style="text-align: left">
+			<span lang="zh-cn">一种具有自描述功能的T类型数组，</span><span style="font-family: 宋体"><font size="2">操作对象是<span lang="EN-US">T</span>类型的数据块。</font></span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="27">
+			<p align="left"><a class="style1" href="data_type/ArrayOf.htm">ArrayOf</a></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="27">
+			<p align="left">EzArray&lt;class T&gt;</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="27">
+			<p align="left">N/A</td>
+			<td style="width:201px;padding:.75pt; " height="27">
+			<p align="left">&nbsp;<span lang="zh-cn">一种具有自描述功能的T类型数组</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="28">
+			<a class="style1" href=data_type/MemoryBuf.htm>
+			<p class="MsoNormal" align="left">MemoryBuf</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="28">
+			<p class="MsoNormal" align="left">
+			N/A</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="28">
+			<p class="MsoNormal" align="left"><span lang="EN-US">&nbsp;</span>N/A</td>
+			<td style="width:201px;padding:.75pt; " height="28">
+			<p class="MsoNormal" align="left">&nbsp;存储用户<span lang="zh-cn">数据块</span>的缓冲区数据结构 
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="31">
+			<p align="left">struct</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="31">
+			<p align="left">N/A</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="31">
+			<p align="left">N/A</td>
+			<td style="width:201px;padding:.75pt; " height="31">
+			<p style="line-height: normal; text-indent: 0in; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin: 0pt 0in" align="left">
+			<span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+			<font size="2">结构体</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="2">,</font></span><span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="2">成员包括基本类型</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="2">(</font></span><span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="2">除了</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="2">AString,WString)</font></span><span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="2">和嵌套的</font></span><span style="font-family: Arial; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="2">struct 
+			()</font></span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">ECode </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt">
+			<p class="MsoNormal" align="left"><span lang="EN-US">ECODE</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171">
+			<p class="MsoNormal" align="left"><span lang="EN-US">ECode </span></td>
+			<td style="width:201px;padding:.75pt; ">
+			<p class="MsoNormal" align="left">该数据项是<span lang="EN-US">32</span>位整数，标准的返回类型 
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="27">
+			<p align="left">enum</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="27">
+			<p align="left">enum</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="27">
+			<p align="left">enum</td>
+			<td style="width:201px;padding:.75pt; " height="27">
+			<p align="left">
+			<span lang="zh-cn">枚举类型</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="7">
+			<p align="left">IObject *</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="7">
+			<p align="left">IObject *</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="7">
+			<p align="left">N/A</td>
+			<td style="width:201px;padding:.75pt; " height="7">
+			<p align="left">接口指针，包括系统接口和自定义接口</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="29">
+			<p align="left">EMuid</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="29">
+			<p align="left">
+			<span lang="EN-US">GUID</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="29">
+			<p align="left">N/A</td>
+			<td style="width:201px;padding:.75pt; " height="29">
+			<p align="left">Modul 唯一ID</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="25">
+			<p align="left">EGuid</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="25">
+			<p align="left">CLSID</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="25">
+			<p align="left">N/A</td>
+			<td style="width:201px;padding:.75pt; " height="25">
+			<p align="left">类标示符，用于唯一标示一个CAR类</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="21">
+			<p align="left">EIID</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="21">
+			<p align="left">IID</td>
+			<td style="padding:.75pt .75pt .75pt .75pt" width="171" height="21">
+			<p align="left">N/A</td>
+			<td style="width:201px;padding:.75pt; " height="21">
+			<p align="left">接口标示符，用于唯一标示一个特定的CAR接口</td>
+		</tr>
+		</table>
+
+
+<p>　</p>
+
+
+    </body>
+</html>

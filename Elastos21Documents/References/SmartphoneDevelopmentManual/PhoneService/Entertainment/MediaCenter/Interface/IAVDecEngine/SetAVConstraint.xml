@@ -1,0 +1,48 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心引擎</volume>
+<interface>IAVDecEngine</interface><method> SetAVConstraint </method>
+    <description>
+        <para>
+        设置音频/视频的限制参数。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> BOOL </param_type>
+                <param_name> bAudioRefusal </param_name>
+                <param_note>
+                    <para>
+                      音频优先取舍权。当bAudioRefual为TRUE时，如果一个文件中没有包含被支持的音频流的时候，会在InputFile函数中返回失败值E_MEDIA_AUDIO_REFUSAL；当bAudioRefual为FALSE的时候取消其优先取舍权
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_MEDIA_AUDIO_REFUSAL</td>
+	    	    <td> 文件中没有包含被支持的音频流  </td>
+	        </tr>
+	    </table>
+	   <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../MediaCenter_Error.htm">MediaCenter_Error</link>相关帮助。</para>
+    </return>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+     </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,118 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\system">system</sample>
+    <title> system, _wsystem </title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Executes a command.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>system</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>command</param_name>
+                <param_note>
+                    <para>Command to be executed.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wsystem</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>command</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>System return what the command return when exits. A return value of -1 indicates an error, and errno is set to one of the following values: </para>
+        <table>
+            <th>
+                <td>errno</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>EINVAL</td>
+                <td>command is not a valid argument</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>the file that command points to cannot be found</td>
+            </tr>
+            <tr>
+                <td>ENOEXEC</td>
+                <td>the file that command points to is not an executable file or not a valid executable file</td>
+            </tr>
+            <tr>
+                <td>ENOMEM</td>
+                <td>Not enough memory is available to execute command; or available memory has been corrupted; or invalid block exists, indicating that process making call was not allocated properly.</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>_wsystem is a wide-character version of system; the command argument to _wsystem is a wide-character string. These functions behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>system</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wsystem</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* system.cpp: This program uses
+ * system to TYPE its source file.
+ */
+
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    system(&quot;dir&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+}
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fflush</ref_name>
+            <ref_url>../stdio/fflush</ref_url>
+        </reference>
+    </references>
+
+</manpage>

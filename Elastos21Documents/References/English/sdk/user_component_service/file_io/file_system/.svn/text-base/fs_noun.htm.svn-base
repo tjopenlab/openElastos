@@ -1,0 +1,178 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Explanation Of Terms In The File System  </title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>Explanation Of Terms In The File System</h2>
+
+<table>
+    <thead>
+        <td> English </td><td> Terms </td><td> Explanation </td>
+    </thead>
+
+    <tr>
+        <td>
+            File
+        </td>
+        <td>
+            file
+        </td>
+        <td>
+            The unit of storing and managing data permanantly in OS, which appears to be a linear series of bytes.File has at least one name and it exists till all its name have been deleted.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            File System
+        </td>
+        <td>
+            filesystem
+        </td>
+        <td>
+           The tools of managing , organizing and operating files in Elastos 2.0  are name space of managing and operating files in shape of tree structure.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Directory
+        </td>
+        <td>
+            directory
+        </td>
+        <td>
+            A kind of special file in 2.0 file system in which there are records that points to other files.It is known that there are at least 2 records in a directory. "." is a substitute of the current directory and ".." is a substitute of the parent directory of the current one.
+        </td>
+    </tr>
+    <tr>
+        <td>
+Directory
+        </td>
+        <td>
+            directory entry
+        </td>
+        <td>
+            A record that represents its structure which has unlimited length.Each structure contains a string of ASCII as file name,which is to  store the bytes of this string.It provides the bytes of this record,the type of the file that this record points to and also the inode numbers related to this file name.Generally,the directory is regarded as "not allocated" if the inode number is 0. The space of this record can be used.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            File Name
+        </td>
+        <td>
+            filename
+        </td>
+        <td>
+            A string of ASCII character which is used to name common files,special files or directories.The character of a file name cannot contain null('/0') or a slash(/).A file name cannot start with '.' except the current directory or parent directory.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            File Type
+        </td>
+        <td>
+            file type
+        </td>
+        <td>
+            Node objects of 2.0 OS has only two types: common files(FileType_ RegularFile) and directories (FileType_Directory). A file type is defined by an enumerator.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Access Mode
+        </td>
+        <td>
+            read/write mode
+        </td>
+        <td>
+            There are three access modes in the file system of 2.0 OS: readable(FileAccessMode_Read),writable(FileAccessMode_Write) and readable and writable(FileAccessMode_ReadWrite).The file access mode is defined by an enumerator.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Path Name
+        </td>
+        <td>
+            pathname
+        </td>
+        <td>
+            It starts with an optional "/".It is followed either by nothing or several directories seperated by "/" and then a string is followed that is not a terminal character of the optional file name.If path name starts with "/",then it is an absolute path that the search of which begins with the root or else, a relative path.The search of the path begins with the current directory of the process.if there is only a "/", then it means the root directory.An empty path name means the current working directory.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Error Number
+        </td>
+        <td>
+            errno
+        </td>
+        <td>
+            The global variable stores error code in C program. The error code indicates the reason of system calling error.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Root  Directory
+        </td>
+        <td>
+            root directory
+        </td>
+        <td>
+            The directory to analyze the absolute path in kernel.There is only one root directory in the system,which is already set at system self-enumerating.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Root File System
+        </td>
+        <td>
+            root filesystem
+        </td>
+        <td>
+            The file system that contains a root directory is regarded as the  root of all the file systems. The default root file system id is compiled into kernel and the actual root file system can be reset at the start.        </td>
+    </tr>
+    <tr>
+        <td>
+            Virtual Node
+        </td>
+        <td>
+            vnode
+        </td>
+        <td>
+            It contains extensible object-oriented interface about the general infomation of certain file.Every active files in the system are expressed by a vnode and some file systems's information related to vnode is provided by the file system where those files are stored.There is a vnode sheet in kernel of the whole system. In general,it is permanently located in the main store.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Working Directory
+        </td>
+        <td>
+            working directory
+        </td>
+        <td>
+            According to this directory the proccess operates on relative path.
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Time 
+        </td>
+        <td>
+            time
+        </td>
+        <td>
+           Time is from Jan 1st,1970 in UTC time to the time it is operated.The unit is second. 
+        </td>
+    </tr>
+</table>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> SetFocusWalk </method>
+    <description>
+        <para>
+            设置当前控件是否参与焦点的遍历。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Boolean </param_type>
+                <param_name> focusWalk </param_name>
+                <param_note>
+                    <para>
+若为TRUE，则控件参与焦点遍历，若为 FALSE，则控件不参与焦点遍历</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>>
+    <para>
+        焦点遍历是指用上下左右键在控件间切换焦点。Form、Lable、Panel 默认为不参与焦点遍历，可以通过该方法强制将此类控件设置成参与焦点遍历。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IsFocusWalk</ref_name>
+        <ref_url>IsFocusWalk</ref_url>
+    </reference>
+</references>
+</manpage>

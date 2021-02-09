@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>电话引擎</volume>
+<interface>IPhoneBase</interface><method> GetTurboDialItem </method>
+    <description>
+        <para>
+            获取快捷拨号项所对应的号码。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UInt32 </param_type>
+                <param_name> dwIndex </param_name>
+                <param_note>
+                    <para>
+快捷索引                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf </param_type>
+                <param_name> strdialString </param_name>
+                <param_note>
+                    <para>
+返回的快捷索引所对应的号码                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK；如果参数dwIndex超出取值范围或参数strdialString为NULL，返回E_INVALIDARG；如果环境变量找不到数据库的位置，返回E_INVALID_ENVIRONMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>telephony.dll,database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>phonedef.h,database.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib,ElCRuntime.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            索引值实际是按照字符型处理，取值范围为'2'~'9'。约定当参数strdialString为EZCSTR("")时，为空快捷拨号。
+        </para>
+    </remarks>
+    <references>
+        <reference>
+            <ref_name>SetTurboDialItem</ref_name>
+            <ref_url>SetTurboDialItem</ref_url>
+        </reference>
+        <reference>
+            <ref_name>CleanTurboDialItems</ref_name>
+            <ref_url>CleanTurboDialItems</ref_url>
+        </reference>
+    </references>
+</manpage>

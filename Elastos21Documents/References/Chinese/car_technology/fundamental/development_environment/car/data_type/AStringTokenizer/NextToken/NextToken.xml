@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> 常用数据结构 </volume>
+    <class>AStringTokenizer</class>
+    <method>   NextToken </method>
+
+    <description>
+        <para>获取下一个Token。 </para>
+    </description>
+
+    <syntax_nopara>
+        <return_val> AString </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+   
+   <return>
+   <para>返回下一个Token。</para>
+   </return>
+<example>
+<pre>
+AString astr("There is$a,book.");
+//分割符设置为空格、逗号、$符，且不返回分割符。
+AStringTokenizer astrToken(astr, " ,$"); 
+for( ; astrToken.HasMoreTokens(); ) {
+    CConsole::WriteLine(astrToken.NextToken());
+}
+
+运行结果：
+There
+is
+a
+book.
+</pre>
+</example>  
+<references>
+    <reference>
+        <ref_name>AStringTokenizer</ref_name>
+        <ref_url>../../AStringTokenizer</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>AStringTokenizer::NextToken </ref_name>
+        <ref_url>index/NextToken</ref_url>
+    </reference>
+
+</references>
+</manpage>
+

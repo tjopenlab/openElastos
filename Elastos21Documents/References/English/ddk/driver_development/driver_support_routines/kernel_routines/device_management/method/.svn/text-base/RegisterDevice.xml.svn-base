@@ -1,0 +1,135 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <volume>Device Management Methods</volume>
+    <title>RegisterDevice</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>Registers device.</para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> const wchar_t *</param_type>
+                <param_name> wszDeviceName </param_name>
+                <param_note>
+                    <para>
+                    	Name of the device to be registered.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> uint_t</param_type>
+                <param_name> uDeviceNo </param_name>
+                <param_note>
+                    <para>
+                    	Registered device number. 
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> void *</param_type>
+                <param_name> pvParameter </param_name>
+                <param_note>
+                    <para>
+                    	Pointer to additional parameters of the device to be registered.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	
+    	<table>
+            <th>
+                <td>Return Value</td>
+                <td>Hex Value</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>S_OK</td>
+                <td>0x00000000</td>
+                <td>Function succeeds in registering the device.</td>
+            </tr>
+            <tr>
+                <td>ELADRV_E_DEVICENAME_TOO_LONG</td>
+                <td>0x80401001</td>
+                <td>Specified device name exceeds the maximum name length.</td>
+            </tr>
+            <tr>
+                <td>ELADRV_E_DEVICE_EXISTS</td>
+                <td>0x80401002</td>
+                <td>Specified device already exists.</td>
+            </tr>
+            <tr>
+                <td>E_OUTOFMEMORY</td>
+                <td>0x8007000e</td>
+                <td>Insufficient memory.</td>
+            </tr>
+            <tr>
+                <td>ELADRV_S_DRIVER_NOT_FOUND</td>
+                <td>0x00401001</td>
+                <td>Registering device successful, corresponding driver was not found.</td>
+            </tr>
+            <tr>
+                <td>ELADRV_S_CREATE_DRIVER_FAILED</td>
+                <td>0x00401002</td>
+                <td>Registering device successful, creating corresponding driver object fails.</td>
+            </tr>
+            <tr>
+                <td>ELADRV_S_REGISTER_DRIVER_FAILED</td>
+                <td>0x00401003</td>
+                <td>Registering device successful, registering corresponding driver object fails.</td>
+            </tr>
+        </table>
+        <para>See <link url="/sdk/hresult.htm">ECODE</link> related help for details.</para>
+    </return>
+
+    <remarks>
+    	<para>
+    		RegisterDevice registers a device to the device configuration table <link url=
+    		"..\global_var\g_deviceConfigs.htm">g_deviceConfigs</link>. It searches and creates corresponding 
+    		driver program, then registers this driver to the driver configuration table <link url=
+    		"..\global_var\g_driverConfigs.htm">g_driverConfigs</link>.
+    	</para>
+    	<para>
+    		<link url="UnregisterDevice.htm">UnregisterDevice</link> can be used to unregister this device.
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>UnregisterDevice</ref_name>
+            <ref_url>UnregisterDevice</ref_url>
+        </reference>
+    </references>
+
+
+</manpage>

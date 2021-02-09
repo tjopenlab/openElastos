@@ -1,0 +1,63 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\EzArrayCopy">EzArrayCopy</sample>
+    <volume> Common data structure </volume>
+    <method>template&lt;class T&gt; EzArray::EzArray(EzArray&lt;T&gt;&amp;)</method>
+
+    <description>
+        <para> Constructor of EzArray gets a fleet copy of an EzArray object，namely only copying pointers to this array. </para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type> EzArray&lt;T&gt;&amp;  </param_type>
+            <param_name>src </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para> Reference of EzArray objects.</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>EzArray is a template class，template parameter T determines the type of array elements</para>
+        <para>The former EzArray and EzArray copied, point to the same memory block.Hence if calling <b><link url="Dispose.htm">Dispose</link></b> function to release memory of some one, then the other cannot call <b>Dispose</b> to release.
+        </para>
+    </remarks>
+
+<example><pre><![CDATA[
+#include <stdio.h>
+#include <EzArray.h>
+
+int __cdecl main()
+{
+    EzArray<int> a = EzArray<int>::CreateObject(50);
+    a[12] = 321;
+    EzArray<int> b(a);
+    printf("b[12] = %d\n", b[12]);
+    a.Dispose();
+
+    return 0;
+}
+]]></pre></example>
+
+<result><![CDATA[
+b[12] = 321
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Copy constructor（deep copying）</ref_name>
+            <ref_url> EzArrayCopy_ </ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IImage</interface><method> IsAlphaPixelFormat </method>
+    <description>
+        <para>
+            判断是否透明。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Boolean* </param_type>
+                <param_name> isAlphaFormat </param_name>
+                <param_note>
+                    <para>
+指向Boolean型指针，用于判断图像是否透明，若为TRUE则图像透明，为FALSE则图像不透明                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果alpha为NULL，则方法调用失败，并返回E_INVALID_ARGUMENT；</para><para>            如果方法调用成功，则返回NOERROR。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

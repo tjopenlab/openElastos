@@ -1,0 +1,98 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>内核对象模拟</title>
+<style>
+</style>
+</head>
+
+<body>
+
+<p class="MsoBodyText" style="text-indent: 18.0pt; line-height: 200%">
+<font size="5"><span style="font-family: 宋体; font-weight: 700">内核对象模拟</span></font></p>
+<p class="MsoBodyText" style="text-indent: 18.0pt; line-height: 200%">
+　</p>
+<p class="MsoBodyText" style="text-indent: 18.0pt; line-height: 200%">
+<span style="font-family: 宋体"><font size="4">与传统操作系统不同，和欣操作系统内核的各个功能模块按照<span lang="EN-US">CAR</span>构件规范建立，都是<span lang="EN-US">CAR</span>构件对象。和欣内核向和欣应用程序提供的大部分系统服务是内核对象的接口，只有少量系统服务是直接以<span lang="EN-US">API</span>函数形式提供。</font></span></p>
+<p class="MsoBodyText" style="text-indent: 18.0pt; line-height: 200%">
+<span style="font-family: 宋体"><font size="4">
+内核对象主要负责进程、线程管理，同步、互斥、消息队列、管道等等。为了保证<span lang="EN-US">ElAura</span>平台可以向和欣应用程序提供与和欣系统无差别的内核对象服务，定义了客户程序与内核对象的通信层次</font></span><span style="font-family: 宋体"><font size="4">。共有四个层次：主体层、接口层、列集层、传输层，各层的具体描述如表<span lang="EN-US">1</span>所述。</font></span></p>
+<p class="MsoBodyText" align="center" style="text-align: center; text-indent: 0cm; line-height: 200%">
+<span style="font-family: 宋体"><font size="4">表</font></span><font size="4"><span lang="EN-US">1&nbsp; 
+ElAura</span></font><span style="font-family: 宋体"><font size="4">平台通讯层</font></span></p>
+<div align="center">
+	<table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: medium none; margin-left: 8.6pt" id="table1" width="507">
+		<tr style="height: .2pt">
+			<td style="width: 84px; height: .2pt; border: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" align="center" style="text-align: center; text-indent: 1.35pt; line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">层<span lang="EN-US">&nbsp;&nbsp;
+			</span>次</font></span></td>
+			<td style="width: 183px; height: .2pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" align="center" style="text-align: center; line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">用户空间</font></span></td>
+			<td style="width: 212px; height: .2pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" align="center" style="text-align: center; line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">内核空间</font></span></td>
+		</tr>
+		<tr style="height: .2pt">
+			<td style="width: 84px; height: .2pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" align="center" style="text-align: center; text-indent: 1.35pt; line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">&nbsp;第四层<span lang="EN-US">&nbsp;&nbsp;
+			</span>主体层</font></span></td>
+			<td style="width: 183px; height: .2pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" style="line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">客户程序主体，请求调用内核对象服务</font></span></td>
+			<td style="width: 212px; height: .2pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" style="line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">内核对象主体，实现内核对象服务</font></span></td>
+		</tr>
+		<tr style="height: .25pt">
+			<td style="width: 84px; height: .25pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" align="center" style="text-align: center; text-indent: 1.35pt; line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">第三层<span lang="EN-US"><br>
+			</span>接口层</font></span></td>
+			<td style="width: 183px; height: .25pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" style="line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">以<span lang="EN-US">API</span>函数和<span lang="EN-US">IKernel</span>接口向客户程序提供内核对象服务</font></span></td>
+			<td style="width: 212px; height: .25pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" style="line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">所有的内核对象都被一个总的<span lang="EN-US">IKernel</span>接口封装。</font></span></td>
+		</tr>
+		<tr style="height: .25pt">
+			<td style="width: 84px; height: .25pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" align="center" style="text-align: center; text-indent: 1.35pt; line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">第二层</font></span><span lang="EN-US"><font size="4"><br>
+			</font></span><span style="font-family: 宋体"><font size="4">列集层</font></span></td>
+			<td style="width: 183px; height: .25pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" style="line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">标准代理对象，将客户请求调用信息打包</font></span></td>
+			<td style="width: 212px; height: .25pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" style="line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">内核对象的存根，代理，调用对应的内核对象服务。</font></span></td>
+		</tr>
+		<tr style="height: .25pt">
+			<td style="width: 84px; height: .25pt; border-left: 1.0pt solid windowtext; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" align="center" style="text-align: center; text-indent: 1.35pt; line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">第一层</font></span><span lang="EN-US"><font size="4"><br>
+			</font></span><span style="font-family: 宋体"><font size="4">传输层</font></span></td>
+			<td style="width: 183px; height: .25pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" style="line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">将请求从用户空间传递到内核空间</font></span></td>
+			<td style="width: 212px; height: .25pt; border-left: medium none; border-right: 1.0pt solid windowtext; border-top: medium none; border-bottom: 1.0pt solid windowtext; padding-left: 2.85pt; padding-right: 2.85pt; padding-top: 0cm; padding-bottom: 0cm">
+			<p class="MsoNormal" style="line-height: 200%">
+			<span style="font-family: 宋体"><font size="4">将结果从内核空间传递到用户空间</font></span></td>
+		</tr>
+	</table>
+</div>
+<p class="MsoBodyText" style="text-indent: 18.0pt; line-height: 200%">
+<span style="font-family: 宋体"><font size="4">如表<span lang="EN-US">1</span>所示，每个层次提供服务帮助上个层次之间通信，且每个层次对于上个层次来说都是透明可替换的。比如第一层传输层，远程对象服务可以采用消息队列的方式传递数据，而内核对象服务可以采用字符设备文件的方式传递数据，但这两种方式对于第二层列集层的实现来说没有任何影响。</font></span></p>
+<p class="MsoBodyText" style="text-indent: 18.0pt; line-height: 200%">
+<font size="4"><span style="font-family: 宋体">&nbsp;</span></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="index.htm">返回首页</a></li>
+</p>
+
+</body>
+
+</html>

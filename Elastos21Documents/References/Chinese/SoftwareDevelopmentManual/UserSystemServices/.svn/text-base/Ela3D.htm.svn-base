@@ -1,0 +1,268 @@
+<html>
+<head>
+<title>Ela3D 用户手册</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<h2> Ela3D 应用开发平台简介 </h2>
+
+    <p>Ela3D&nbsp;是Elastos操作系统上定义的一套基于&nbsp;CAR&nbsp;构件技术的&nbsp;3D&nbsp;应用程序开发平台。</p>
+    <p>Ela3D&nbsp;平台主要针对那些&nbsp;CPU&nbsp;处理能力和内存都十分有限，并且没有硬件支持&nbsp;3D&nbsp;图形和浮点运算的设备而设计，例如移动终端。该平台的功能就是利用十分有限的资源并充分发挥&nbsp;C++&nbsp;应用程序灵活高效的特点，在嵌入式设备上实时的播放&nbsp;3D&nbsp;动画图像。该平台应用范围广泛，例如&nbsp;3D&nbsp;游戏、地图显示、用户界面、动画消息、产品展示、屏幕保护等多种应用都可在&nbsp;Ela3D&nbsp;平台上实现。</p>
+    <p>为了迎合不同应用程序的需要，Ela3D&nbsp;平台支持两种&nbsp;3D&nbsp;模式：立即模式（immediate&nbsp;mode）和保留模式（retained&nbsp;mode）。在立即模式下，应用程序开发者必须手动渲染每一帧，从而获得较快的速度，但代码较繁琐；在保留模式下，开发者只需设置好关键帧，剩下的动画帧由平台实现，这样代码较简单，但速度较慢。具体使用哪种模式可根据实际需要设定，该平台允许在同一个应用程序中使用两种模式。</p>
+    <p>Ela3D&nbsp;平台还定义了有效保存和转换必要数据信息的文件格式。数据信息包括多变形面（SurfaceMesh），纹理（Texture），场景层次，材质属性，动画关键帧等等。这些数据信息通过工具写入到一个特定文件中，并且通过加载器（SceneLoader）加载到应用程序。目前本平台支持的文件格式包括&nbsp;M3G&nbsp;和&nbsp;PNG。</p>
+    <p>要了解更多的平台信息，请参见&nbsp;Ela3D&nbsp;平台的各用户接口的说明文档。以下是&nbsp;Ela3D&nbsp;平台提供的用户接口列表：</p>
+    <table>
+        <thead>
+            <td>
+                <center>用户接口</center>
+            </td>
+            <td>
+                <center>描述</center>
+            </td>
+        </thead>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IAnimationController.htm">IAnimationController</a>
+            </td>
+            <td>
+                动画控制器（AnimationController）接口。AnimationController 用于控制动画序列的位置、速度和权重。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IAnimationTrack.htm">IAnimationTrack </a>
+            </td>
+            <td>
+                动画轨迹（AnimationTrack）接口。AnimationTrack 用于将关键帧序列与动画控制器和动画属性相关联。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IAppearance.htm">IAppearance </a>
+            </td>
+            <td>
+                外观（Appearance）属性接口。Appearance 用于描述 SurfaceMesh 对象或者 Sprite3D 对象外观属性。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ISceneBackground.htm">ISceneBackground </a>
+            </td>
+            <td>
+                背景（SceneBackground）接口。SceneBackground 用于定义如何清除视域内容的方法。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IViewPoint.htm">IViewPoint </a>
+            </td>
+            <td>
+                视点（ViewPoint）接口。ViewPoint 是一种场景节点，它定义了观察者在场景中的位置，同时将三维物体投影为二维。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ICompositingMode.htm">ICompositingMode </a>
+            </td>
+            <td>
+                合成模式（CompositingMode）接口。CompositingMode 是外观（Appearance）的组成部分之一，用来描述每一个像素的合成属性。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IFoggyEffect.htm">IFoggyEffect </a>
+            </td>
+            <td>
+                雾化（FoggyEffect）接口。该接口提供了一组设置、获取 FoggyEffect 对象的颜色、密度、距离、雾化模式等属性的方法。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IRendering3D.htm">IRendering3D </a>
+            </td>
+            <td>
+                用于绑定所有渲染对象的接口。所有的渲染工作都是通过该接口提供的方法进行的，包括对 SceneGraphRoot 对象的渲染。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ISceneGroup.htm">ISceneGroup </a>
+            </td>
+            <td>
+                组（SceneGroup）接口。SceneGroup 是一种场景节点，它存储了一个无序的节点集作为它的子节点。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IImage2D.htm">IImage2D </a>
+            </td>
+            <td>
+                二维图像（Image2D）的接口。二维图像可用作纹理（Texture），背景（Background）或者精灵（Sprite）图像。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IVertexIndexes.htm">IVertexIndexes </a>
+            </td>
+            <td>
+                IVertexIndexes 接口，定义如何把顶点连接起来以形成一个几何体。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IKeyframeSequence.htm">IKeyframeSequence </a>
+            </td>
+            <td>
+                关键帧序列（KeyframeSequence）接口。KeyframeSequence 用于封装一系列的具有时间标记和矢量值的关键帧的动画数据。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ILightSource.htm">ILightSource</a>
+            </td>
+            <td>
+                光源（LightSources）接口。LightSources 是一种场景节点，用于描述各种光源。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ISceneLoader.htm">ISceneLoader </a>
+            </td>
+            <td>
+                加载器（SceneLoader）接口。SceneLoader 将整个场景加载到应用程序中，并解析所有的节点以及节点上的各个分量。从 M3G 文件中加载一个已经做好的&nbsp;3D&nbsp;场景是应用程序建立&nbsp;3D&nbsp;视图最方便有效的方式。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IMaterial.htm">IMaterial </a>
+            </td>
+            <td>
+                材质（Material）接口。Material 是外观的组成部分，用于描述物体的材质属性，材质属性与灯光（Lighting）组合可计算出每一个物体呈现出来的颜色。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ISurfaceMesh.htm">ISurfaceMesh </a>
+            </td>
+            <td>
+                面（SurfaceMesh）接口。SurfaceMesh 是一种场景节点，它描述了一个用多边形面定义的3D对象。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IMorphingMesh.htm">IMorphingMesh </a>
+            </td>
+            <td>
+                MorphingMesh 接口。MorphingMesh 是一种场景节点，它描述了一个顶点可以变形的 SurfaceMesh。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ISceneNode.htm">ISceneNode </a>
+            </td>
+            <td>
+                节点（SceneNode）接口。SceneNode 是所有场景节点的抽象基类。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ISceneObject.htm">ISceneObject </a>
+            </td>
+            <td>
+               &nbsp;Ela3D&nbsp;平台中的抽象基本接口。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IPolygonMode.htm">IPolygonMode </a>
+            </td>
+            <td>
+                多边形（PolygonMode）接口。PolygonMode 用于封装多边形级别属性，属性包括：多边形的前/背面选择，多边形弯曲，光源计算，透视修正，着色方式等。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IRayIntersection.htm">IRayIntersection </a>
+            </td>
+            <td>
+                射线（Ray）交点接口。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ISkinnedMesh.htm">ISkinnedMesh</a>
+            </td>
+            <td>
+                SkinnedMesh 接口。SkinnedMesh 是一种场景节点，表示了“骨架可动”的 SurfaceMesh。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ISprite3D.htm">ISprite3D </a>
+            </td>
+            <td>
+                Sprite3D（也称 Sprite 或精灵）接口。Sprite3D 是一种场景节点，表示用&nbsp;3D&nbsp;位置描述 2D 图像。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ITexture2D.htm">ITexture2D </a>
+            </td>
+            <td>
+                纹理（Texture2D）接口。封装了一个2D纹理图像和一个属性集合，这些属性指出该图像是如何映射到 Submesh 上的。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ITransform4x4.htm">ITransform4x4 </a>
+            </td>
+            <td>
+                矩阵变换（Transform4x4）接口。Transform4x4 是一个4×4的浮点数矩阵，描述变换信息。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ITransformable.htm">ITransformable </a>
+            </td>
+            <td>
+                变换操作接口。Transformable 是 SceneNode 和 Texture2D 的抽象基类，作用是为这两个类的变换操作提供一些公共方法。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ITriangleStripArray.htm">ITriangleStripArray </a>
+            </td>
+            <td>
+                三角形带（triangle strips）数组接口。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IVertexArray.htm">IVertexArray </a>
+            </td>
+            <td>
+                顶点集合（VertexArray）接口。VertexArray 用于描述顶点位置、法线、颜色，或者纹理坐标。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/IVertexBuffer.htm">IVertexBuffer </a>
+            </td>
+            <td>
+                IVertexBuffer 接口。VertexBuffer 保存 VertexArray 的引用，包括一系列顶点的位置、颜色、法线和纹理坐标等信息。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="style1" href="Ela3D/interface/ISceneGraphRoot.htm">ISceneGraphRoot </a>
+            </td>
+            <td>
+                ISceneGraphRoot 接口。SceneGraphRoot 是特殊的组节点，它作为场景图最顶层的容器。
+            </td>
+        </tr>
+    </table>
+
+<script>footer("KoreTide")</script>
+</body>
+</html>

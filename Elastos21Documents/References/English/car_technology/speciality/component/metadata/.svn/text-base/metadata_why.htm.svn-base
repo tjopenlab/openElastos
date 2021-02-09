@@ -1,0 +1,21 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Component</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Why is it necessary to use metadata?</h2>
+    <p>Everything is fine after program is compiled and successfully executed.Why do we also need metadata? What kind of requirement problem does metadata solve? Actually we use metadata always and its just we never really single it out and discuss it. For example, when programming, a lib is included but it cannot be directly accessed.Another interface file (thus .h header file) is needed to describe the binary code in this lib file. This is to say that metadata provides the posibility of communication between binary data and source file.The header file let the user's source file use other people's binary file.</p>
+    <p>Let us continue to discuss the application of metadata in component.The component provides services to the outside in the form of interface. From the previous discussion, interface needs to be described by metadata in order to be used by other user that uses service. In order to achieve interface implementation neutral of component, the interface can be fixed, which makes dynamic upgrade possible. The vptr struct is used to hide the internal implementation of the interface.Interface metadata can be used to describe interface function distribution and function parameter attributes. What interface metadata describes is the relationship between service and invocation. Once we have this kind of description, invocation between different components becomes possible.Remote component, inter-process communication, automatic generation of Proxy and Stub and automatic Marshalling, Unmarshalling can be executed correctly because of it.</p>
+    <p>In Microsoft they use idl (Interface&nbsp;Description&nbsp;Language) file to describe interface, you can see idl related chapters in Microsoft msdn for details. After midl compilation the .idl information is compiled into separate tlb files, packaged in executable file .exe or .dll and becomes part of the file resource. Microsoft provides a group of interfaces ITypelib to access tlb information.For details you can see ITypelib related interface documentation in Microsoft msdn.</p>
+
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>实用例程</volume>
+    <title>kprintf</title>
+    <routine_idx> ../practical_routines.htm </routine_idx>
+
+    <description>
+        <para>将格式化字符串输出到内核控制台。</para>
+    </description>
+
+    <remarkview>
+        int kprintf( const char *format [, argument]... );
+    </remarkview>
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type> const char *</param_type>
+                <param_name> format </param_name>
+                <param_note>
+                    <para>
+                        格式控制字符串
+                    </para>
+                </param_note>
+                <optional_arguments><need_note/></optional_arguments>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值 </td><td>描述 </td>
+            </th>
+            <tr>
+                <td>非负值 </td> <td>调用成功，且返回值为输出的字符的个数 </td>
+            </tr>
+            <tr>
+                <td>负值 </td> <td>调用失败 </td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>kprintf函数格式化输出一系列字符及变量到内核控制台，字符串的长度不应超过512个字节。如果格式字符串后面有参数的话，格式字符串必须包含决定参数输出格式的规范。</para>
+        <para>format由普通字符、转义序列和<link url="FormatSpec.htm">format格式规范</link>（如果format后有参数）组成。</para>
+        <para>格式规范总是以%开头并被从左到右读入。当kprintf 遇到第一个格式规范（如果有的话），把第一个参数的值转化到格式后并且输出。第二个格式规范使得第二个参数被转化并输出，如此类推。如果参数的个数比格式规范多，那么多出的参数会被忽略。如果参数的个数比格式规范少,那么会产生不可预测的输出。</para>
+        <para>本函数专为调试提供。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>

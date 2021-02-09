@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <volume>驱动支持例程 </volume>
+    <types>DriverConfig</types>
+
+    <description>
+        <para> 驱动配置信息。 </para>
+    </description>
+
+    <struct>
+        <struct_alias>DriverConfig</struct_alias>
+        <struct_member>
+            <mem_type>wchar_t </mem_type>
+            <mem_name>wszDeviceName[c_uMaxLengthOfDeviceName + 1] </mem_name>
+            <mem_description>驱动程序所对应设备的设备名字符数组 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>createdriverroutine_t </mem_type>
+            <mem_name> routine </mem_name>
+            <mem_description>驱动对象的创建函数 </mem_description>
+        </struct_member>
+    </struct>
+
+    <remarks>
+        <para>设备名称的字符数组中的常量c_uMaxLengthOfDeviceName为31。</para>
+    </remarks>
+</manpage>
+

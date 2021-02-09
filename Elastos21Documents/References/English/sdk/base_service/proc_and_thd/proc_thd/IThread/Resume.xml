@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Process And Thread</volume>
+<interface>IThread</interface><method> Resume </method>
+    <description>
+        <para>
+			Resumes a thread that has been suspended.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters></parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value </td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>NOERROR</td>
+		<td>
+			Function succeeds in resuming a thread that has been suspended or decrements the count of
+			threads that want to suspend the associated thread.
+		</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALID_OPERATION</td>
+		<td>The thread did not enter suspend state.</td>
+	    </tr>
+	</table>
+            <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			If the thread is not already suspended, this method has no effect and return E_INVALID_OPERATION. If there is other
+			thread which has suspended the associated thread, this method decrements the count of threads that want
+			to suspend the associated thread.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

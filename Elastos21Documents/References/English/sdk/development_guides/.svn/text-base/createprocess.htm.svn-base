@@ -1,0 +1,77 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>How To Create Process?</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel= "stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+    <h2>How To Create Process?</h2>
+        <p>Processes are usually defined in executing program instance.Each process must have its own address space, where executable program code and data are located. This address space also includes dynamically allocated memory space. For each process, there is a unique process object in the kernel of operating system, corresponding to the purpose of control, manage and monitor the process. It also stores process related information. The user must access process through process object.</p>
+        <p>We can see from the above definition that process object is different from process. Process object is the bridge for user to access the process, but it is not the process itself. After a process is finished, it is possible that its corresponding process object still exists until the user removes the process object from the memory. Lifespan of process object is longer or equal to its corresponding process.</p>
+        <p>There are two ways to create a process: The first way is to invoke <b><a class="style1" href="../base_service/proc_and_thd/proc_thd/function/EzCreateProcessObject.htm">EzCreateProcessObject</a></b> method in the API to create a new process object.There is no process created and executed at the moment.It is only when you invoke the <b>Start</b> method of process interface that the system create a real running process. Through process object interface pointer returned by this function, you can invoke some process method and pick the right time to start this process. The second way to create a process is to invoke <b><a class="style1" href="../base_service/proc_and_thd/proc_thd/function/EzCreateProcess.htm">EzCreateProcess</a></b> method in the API to  create and run a process directly and returning the pointer that points to the process object interface.</p>
+        <p>Creates process through <b><a class="style1" href="../base_service/proc_and_thd/proc_thd/function/EzCreateProcessObject.htm">EzCreateProcessObject</a></b> method.</p>
+        <p>Suppose hello.exe is an ordinary application. The following sample will create and start a process: </p>
+        <pre class="code">
+#include <elastos.h>
+#include <stdio.h>
+
+EXTERN_C int __cdecl main()
+{
+    IProcess * iProcess;
+    ECODE ec = S_OK;
+    // creates a process object
+    ec = EzCreateProcessObject(&iProcess);
+    if (FAILED(ec)) {
+        return –1;
+    }
+
+    // starts new process hello.exe
+    ec = iProcess->Start(EZCSTR("hello.exe"), EZSTR_NULL);
+if (FAILED(ec)) {
+    iProcess->Release();
+        return –1;
+    }
+    // waits for the new process to finish
+    iProcess->WaitForExit(INFINITE);
+    iProcess->Release();
+
+    return 0;
+}
+</pre>
+        <p>First of all, it creates a process object through <b><a class="style1" href="../base_service/proc_and_thd/proc_thd/function/EzCreateProcessObject.htm">EzCreateProcessObject</a></b>and no running process is started at this moment.Subsequently, hello.exe is started through returned process interface pointer. Finally the <b><a class="style1" href=../base_service/proc_and_thd/proc_thd/IProcess/WaitForExit.htm>WaitForExit</a></b> method of process object will suspend the current thread until corresponding process of this object exits or the current time exceeds the timeout value specified by the parameter <i><a class="style1" href="../base_service/proc_and_thd/proc_thd/IProcess/WaitForExit.htm">WaitForExit</a></i>. In this example, time value is set to INFINITE and waits until the process exit.</p>
+    <h3>Creating process through EzCreateProcess</h3>
+        <p>This example creates process by using another method: </p>
+        <pre class="code">
+#include <elastos.h>
+#include <stdio.h>
+
+EXTERN_C int __cdecl main()
+{
+    IProcess * iProcess;
+    ECODE ec = S_OK;
+
+    // starts new process hello.exe
+    ec = EzCreateProcess(EZCSTR("hello.exe"), EZSTR_NULL， & iProcess);
+if (FAILED(ec)) {
+    iProcess->Release();
+        return –1;
+    }
+    // waits for the new process to finish
+    iProcess->WaitForExit(INFINITE);
+    iProcess->Release();
+
+    return 0;
+}
+</pre>
+        <p>This process will run immediately after <b>EzCreateProcess</b> successfully creates a process.</p> 
+
+<script>footer("english")</script>
+</body>
+</html>                      

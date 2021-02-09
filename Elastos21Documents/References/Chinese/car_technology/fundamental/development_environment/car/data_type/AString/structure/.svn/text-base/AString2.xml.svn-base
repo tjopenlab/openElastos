@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/structuremanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>AString</class>
+    <function>AString(const char* pch)</function>
+
+    <description>
+        <para> AString的构造函数，用于构造一个AString对象, 并初始化一指定字符串。 </para>
+    </description>
+
+    <syntax>
+        <apiname>AString</apiname>
+        <parameters>
+        <api_param>
+            <param_type> const char* </param_type>
+            <param_name>pch </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>一个指定字符串 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>AString对象有一指向字符串的私有成员变量指针，调用此构造函数只创建一个AString对象，并把指针指向一指定字符串。 </para>
+    </remarks>
+<example>
+<pre>
+AString as("abcd");
+CConsole::WriteLine(as);  //Display : "abcd"
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::AString </ref_name>
+        <ref_url> AString1</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>AString::operator = </ref_name>
+        <ref_url> ../operator/index/operator</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>WString::WString </ref_name>
+        <ref_url> ../../WString/structure/WString2</ref_url>
+    </reference>
+</references>   
+</manpage>

@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>同步</volume>
+<method> InterlockedExchange </method>
+    <description>
+        <para>
+            InterlockedExchange完成一对数值的原子交换。该函数可以防止多个（一个以上）线程同时对一个变量进行操作。
+        </para>
+    </description>
+    <syntax>
+        <return_val>Int32</return_val>
+        <parameters>
+            <api_param>
+                <param_type> PInt32 </param_type>
+                <param_name> pTarget</param_name>
+                <param_note>
+                    <para>
+                        指向被交换的值的指针
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> Int32 </param_type>
+                <param_name> value</param_name>
+                <param_note>
+                    <para>
+                        给指针pTarget指向的变量赋的新值
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回参数pTarget指向的变量的初始值。</para>
+    </return>
+
+    <remarks>
+        <para>
+            Interlocked系列函数提供一个简单的机制来同步访问被多个线程共享的变量。如果变量处于共享内存中，不同进程的线程可以使用这种机制。
+        </para>
+        <para>
+            pTarget参数指向的变量必须是32位对齐的；否则该函数在多处理器的x86系统和任何非x86系统运行时可能会失败。
+        </para>
+        <para>
+            如果需要交换指针的值，可以用<link url="InterlockedExchangePointer.htm">InterlockedExchangePointer</link>代替该函数。
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>

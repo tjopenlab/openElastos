@@ -1,0 +1,102 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> grep </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para>Searches for match lines in the file and output.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> GREP</cmd_name>
+        <cmd_param> [-?BELOXlnzvxy][-e string][-f file][-i file][strings][files] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name>  -?  </param_name>
+        <param_note>  Prints help information</param_note>
+    </param>
+    <param>
+        <param_name>  /B  </param_name>
+        <param_note>  Matches the head of the line</param_note>
+    </param>
+    <param>
+        <param_name> /E  </param_name>
+        <param_note> Matches at end of line</param_note>
+    </param>
+    <param>
+        <param_name> -L  </param_name>
+        <param_note> Searches word by word</param_note>
+    </param>
+    <param>
+        <param_name> -O  </param_name>
+        <param_note> Prints search offset</param_note>
+    </param>
+    <param>
+        <param_name> -X  </param_name>
+        <param_note> Searches character string using expression</param_note>
+    </param>
+    <param>
+        <param_name> -l  </param_name>
+        <param_note>If file matches file name is printed</param_note>
+    </param>
+    <param>
+        <param_name> -n   </param_name>
+        <param_note> Prints line number before matched line</param_note>
+    </param>
+    <param>
+        <param_name>  -z </param_name>
+        <param_note> Prints matching lines using MSC error information format</param_note>
+    </param>
+    <param>
+        <param_name>  -v  </param_name>
+        <param_note>Prints unmatched lines</param_note>
+    </param>
+    <param>
+        <param_name> -x  </param_name>
+        <param_note> Prints lines with complete match</param_note>
+    </param>
+    <param>
+        <param_name>  -y </param_name>
+        <param_note> Not case sensitive</param_note>
+    </param>
+    <param>
+        <param_name>  -e </param_name>
+        <param_note>Use the parameter follows it as the pattern; useful to protect patterns beginning with a '-'</param_note>
+    </param>
+    <param>
+        <param_name>  -f </param_name>
+        <param_note> Obtain patterns from the parameter follows it, one per line. The empty file contains zero patterns, and therefore matches nothing</param_note>
+    </param>
+        <param>
+        <param_name> -i </param_name>
+        <param_note>Ignore case distinctions in the file specified by the patterns from the parameter follows</param_note>
+    </param>
+    <param>
+        <param_name> [strings]  </param_name>
+        <param_note> Comparing string to be searched</param_note>
+    </param>
+    <param>
+        <param_name> files  </param_name>
+        <param_note> File name</param_note>
+    </param>
+    </parameters>
+
+    <examples>
+    <example>
+        <eg_line>grep -y "file" file.txt</eg_line>
+        <eg_note> Searches string "file" (ignor case distinctions) in file file.txt . Output the result: </eg_note>
+        <eg_result><![CDATA[
+This is the file.txt.
+]]></eg_result>
+    </example>
+
+    </examples>
+
+</manpage>

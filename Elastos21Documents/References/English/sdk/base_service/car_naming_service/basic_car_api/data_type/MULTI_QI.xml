@@ -1,0 +1,46 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/custom_type.xsl"?>
+
+<manpage>
+    <volume>Basic COM Library</volume>
+    <types>MULTI_QI</types>
+
+    <description>
+        <para>
+	        To optimize network performance, most remote invocation functions take an array of MULTI_QI structures 
+	        rather than a single IID as input and a single pointer to the requested interface on the object as 
+	        output, same as the function invocation in local machine.
+        </para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type>const IID * </mem_type>
+            <mem_name>pIID </mem_name>
+            <mem_description>Pointer to an interface identifier.</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>IUnknown * </mem_type>
+            <mem_name> pItf </mem_name>
+            <mem_description>Pointer to the interface requested in pIID.</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>ECODE  </mem_type>
+            <mem_name>ec </mem_name>
+            <mem_description>
+	            Return value of the QueryInterface call made to satisfy the request for the interface, 
+	            requested in pIID.
+            </mem_description>
+        </struct_member>
+    </struct>
+</manpage>
+
+
+
+
+
+

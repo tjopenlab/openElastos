@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\Thread">SetThreadPoolCapacity</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> SetThreadPoolCapacity </method>
+    <description>
+        <para>
+            设置线程池的容量，每个进程都有一个线程池。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> capacity </param_name>
+                <param_note>
+                    <para>
+						线程池的容量，默认值为3
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功设置线程池容量</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>
+		    本方法用于设置线程池中容纳的最大线程数，默认线程池容量是3。实际线程池中有多少线程取决于实际运行情况。
+		</para>
+		<para>
+		    创建进程的同时会创建线程池，一个进程只有一个线程池。
+		</para>
+		<para>
+		    线程池使得一些需要频繁创建、退出线程的应用程序运行得更高效。当线程池未满而一个线程退出时，该线程并没有真正的结束，系统把这个线程放到线程池里睡眠。在下次需要创建线程时，系统从线程池里取出一个线程，设置好新的入口点后唤醒该线程去执行新的任务。 通过系统管理的线程池，用户程序可以更高效地创建、退出线程。		</para>
+		<para>
+		    当用户程序需要一个线程而线程池里没有时，系统会创建一个新线程；同样，当一个线程要退出而线程池已经满时，系统会结束这个线程，而不是放回线程池里睡眠。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

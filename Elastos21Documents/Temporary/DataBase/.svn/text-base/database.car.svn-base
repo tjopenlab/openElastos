@@ -1,0 +1,1433 @@
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+    /*! \mainpage Elastos Database
+     * \htmlinclude DBMain.htm
+     */
+
+    /**
+     *\file database.car
+     *\brief Elastos Database CAR文件
+     *
+     *该文件定义了Elastos数据库服务的相关数据类型和字符编码及数据库系统接口.
+     */
+
+
+    /**
+     * 支持的字符编码。
+     */
+    enum DbEncoding {
+        DbEncoding_DEFAULT  = 0,
+        DbEncoding_UTF8     = 1,
+        DbEncoding_UTF16LE  = 2,
+        DbEncoding_UTF16BE  = 3,
+        DbEncoding_UTF16    = 4
+    };
+
+    /**
+     * 支持的数据类型。
+     */
+    enum DbDatatype {
+        DbDatatype_INTEGER  = 1, // 带符号整数
+                                 // 根据数值大小存储在1, 2, 3, 4, 6, 或 8 个字节中
+        DbDatatype_FLOAT    = 2, // 浮点数
+                                 // 占用8个字节
+        DbDatatype_TEXT     = 3, // 字符型
+                                 // 使用数据库编码(UTF-8, UTF-16BE或UTF-16-LE)存储
+        DbDatatype_BLOB     = 4, // 二进制数据(Binary Large Object)
+                                 // 采用二进制格式存储的大数据对象
+        DbDatatype_NULL     = 5  // 空值
+    };
+
+    const MaxDatabaseTypeName   = 64;
+    const MaxColumnName         = 64;
+    const MaxDatabaseName       = 64;
+    const MaxTableName          = 64;
+    const MaxParameterName      = 64;
+    const MaxPropertyValue      = 256;
+    const MaxDataTime           = 32;
+    const MaxStringValue        = 512;
+    const MaxErrorMessage       = 512;
+
+    interface IDatabase;
+    interface IStatement;
+    interface IPreparedStatement;
+    interface IResultSet;
+    interface IParameterMetaData;
+    interface IResultSetMetaData;
+
+    /**
+     * 特定数据库的会话接口。
+     * 在会话上下文中执行 SQL 语句并返回结果。
+     *
+     * 默认情况下，Database 对象处于自动提交模式下，这意味着它在执行每个
+     * 语句后都会自动提交更改。如果禁用自动提交模式，为了提交更改，
+     * 必须显式调用 Commit 方法；否则无法保存数据库更改。
+     */
+    interface IDatabase
+    {
+        /**
+         * 关闭当前数据库，并立即释放掉当前数据库对象的资源，而不是等待它们被自动释放。
+         *
+         * 对已经关闭的数据库对象调用该方法无效。
+         *
+         * 当数据库对象被销毁时，该对象将被自动关闭。
+         */
+        Close();
+
+        /**
+         * 检查数据库是否已被关闭。
+         *
+         * 当对一个数据库对象调用Close()方法，或发生了严重错误时该数据库对象将被关闭。
+         * 仅当Cloas()方法被调用后，此方法才会返回 true.
+         *
+         * @param [out] closed - 如果数据库对象已被关闭则返回true；
+         *                       否则返回false.
+         */
+        IsClosed(
+                [out] Boolean *closed
+        );
+
+        /**
+         * 获取数据库最近的一个错误码。
+         *
+         * @param [out] code - 错误码；如果当前数据库没有发生错误则返回NOERROR.
+         */
+        GetErrorCode(
+                [out] ECode *code
+        );
+
+        /**
+         * 获取数据库最近的一个错误信息。
+         *
+         * @param [out] message - 错误信息； 如果当前数据库没有发生错误则返回空串。
+         */
+        GetErrorMessage(
+                [out] WStringBuf_<MaxErrorMessage> message
+        );
+
+
+        /**
+         * 创建一个用于向数据库传递SQL语句的SQL语句对象。
+         * 没有参数的 SQL 语句通常使用 Statement 对象执行。
+         * 如果多次执行相同的 SQL 语句，使用 PreparedStatement 对象可能更有效。
+         *
+         * @param [out] stmt - 新建的默认Statement对象。
+         */
+        CreateStatement(
+                [out] IStatement **stmt
+        );
+
+        /**
+         * 创建一个用于向数据库传递参数化的SQL语句的预处理语句对象。
+         *
+         * 带有 IN 参数或不带有 IN 参数的 SQL 语句都可以被预编译并存储在 PreparedStatement 对象中。
+         * 然后可以有效地使用此对象来多次执行该语句。
+         *
+         * @param [in] sql   -  包含一个或多个IN属性参数的SQL语句。
+         *
+         * @param [out] stmt -  新建的包含预编译SQL语句的预处理语句对象。
+         */
+        PrepareStatement(
+                [in] WString sql,
+                [out] IPreparedStatement **stmt
+        );
+
+        /**
+         * 将自上一次Commit/Rollback以来所产生的改变提交，并释放数据库对象所持有的所有数据库锁。
+         *
+         * 本方法只在禁用自动提交模式时使用。
+         */
+        Commit();
+
+        /**
+         * 撤销当前事务对数据库所做的所有更改，并释放数据库对象当前保存的所有数据库锁。
+         *
+         * 本方法只在禁用自动提交模式时使用。
+         */
+        Rollback();
+
+        /**
+         * 设置数据库的自动提交模式到指定的状态。
+         * 如果一个数据库处于自动提交状态，则将执行其所有 SQL 语句，并将这些语句作为单独的事务提交。
+         * 否则，其 SQL 语句将成组地进入通过调用 commit 方法或 rollback 方法终止的事务中。
+         * 默认情况下，新的连接处于自动提交模式下。
+         *
+         * 提交发生在语句完成或执行下一条语句时，以先发生的情况为准。
+         * 在语句返回 ResultSet 对象的情况下，该语句在已检索完最后一行 ResultSet 对象或已关闭 ResultSet 对象时完成。
+         *
+         * 如果在事务处理期间调用此方法，则提交该事务。
+         *
+         * @param [in] autoCommit - 启用自动提交模式为true；
+         *                          禁用该模式为false。
+         */
+        SetAutoCommit(
+                [in] Boolean autoCommit
+        );
+
+        /**
+         * 检索此数据库对象的当前自动提交模式。
+         *
+         * @param [out] autoCommit - 当前数据库对象的自动提交模式。
+         */
+        GetAutoCommit(
+                [out] Boolean *autoCommit
+        );
+
+        /**
+         * 获取数据库在打开后被修改，插入，或者删除的行数的合计。
+         * 这个合计也包含了被触发器和存储过程影响的行，以及在辅助
+         * 和临时数据库中所影响的行。
+         *
+         * @param [out] rowCount - 更改的行数合计。
+         */
+        GetTotalEffectiveRowCount(
+                [out] Int32 *rowCount
+        );
+
+        /**
+         * 获取数据库在忙时重试等待所引起的超时时间。
+         *
+         * @param [out] milliSecond - 当前查询等待时间(毫秒)
+         *                            0意味着无需等待。
+         */
+        GetBusyTimeout(
+                [out] Int32 *millisecond
+        );
+
+        /**
+         * 设定数据库在忙时所等待的时间。
+         *
+         * @param [in] milliSecond - 新的查询时间(毫秒)
+         *                           0意味着无需等待。
+         */
+        SetBusyTimeout(
+                [in] Int32 millisecond
+        );
+
+        /**
+         * 获取数据库当前使用的缓冲页数。
+         *
+         * @param [out] pages - 数据库的当前缓冲页数。
+         */
+        GetCacheSize(
+                [out] Int32 *pages
+        );
+
+        /**
+         * 设置数据库一次在内存中保留的磁盘页数的最大值。
+         * 磁盘中每页为1K，内存中每页为1.5K.
+         * 默认的缓冲区大小为2000. 您可以增加缓冲区大小来获得速度的改进。
+         *
+         * 当你使用这种方法来更改缓冲区大小时，这个改变只在当前状态有效。
+         * 缓冲区大小将在数据库关闭和重新打开时恢复。
+         * 若想彻底改变缓冲区大小，可使用SetDefaultCacheSize方法。
+         *
+         * @param [in] pages - 数据库的缓冲页数。
+         */
+        SetCacheSize(
+                [in] Int32 pages
+        );
+
+        /**
+         * 获取数据库默认使用的缓冲页数。
+         *
+         * @param [out] pages -  数据库的缓冲页数。
+         */
+        GetDefaultCacheSize(
+                [out] Int32 *pages
+        );
+
+        /**
+         * 设置数据库一次在内存中分配的磁盘页数的最大值。
+         * 磁盘中每页为1K，内存中每页为1.5K.
+         * 该方法除了实现SetCacheSize方法的功能外，还会永久更改缓冲区大小。
+         * 使用此方法，您可以一次设置缓冲区大小，并将此设置保留，
+         * 而且在每次重新打开数据库时使用此缓冲区大小。
+         *
+         * @param [in] pages - 数据库的缓冲页数。
+         */
+        SetDefaultCacheSize(
+                [in] Int32 pages
+        );
+
+        /**
+         * 获取数据库的页面大小。数据库的数据页面大小在数据库创建时确定。
+         *
+         * @param [out] pageSize - 数据库的页面大小。
+         */
+        GetPageSize(
+                [out] Int32 *pageSize
+        );
+
+        /**
+         * 获取在主数据库中使用的字符编码方式。
+         * 该字符编码只能在数据库创建时设定。
+         *
+         * @param [out] encoding - 在主数据库中使用的字符编码方式。
+         */
+        GetEncoding(
+                [out] DbEncoding *encoding
+        );
+
+        /**
+         * 检查数据库对象是否为只读模式。
+         *
+         * @param readOnly - 是只读模式则返回true.
+         *                   否则返回false.
+         */
+        IsReadOnly(
+                [out] Boolean *readOnly
+        );
+
+       /**
+         * 按照流的方式读取指定的Blob数据。
+         *
+         * @param [in] abAlias - 数据库的符号名。
+         * @param [in] table - 表名。
+         * @param [in] column - blob数据的列名。
+         * @param [in] rowId - blob数据中指定行号。
+         * @param [out] stream - blob的输入流接口。
+         *
+         * 注:参数dbAlias并非数据库中的文件名而是当使用ATTACH连接数据库时指定给数据库的别名。
+         * 对于主数据库文件，数据库别名为"main"。
+         * 对于临时的表，数据库别名为"temp"。
+         */
+        GetBlobAsStream(
+                [in] WString dbAlias,
+                [in] WString table,
+                [in] WString column,
+                [in] Int64 rowId,
+                [out] IInputStream **stream
+        );
+
+        /**
+         * 按照流的方式写入指定的Blob数据。
+         *
+         * @param [in] abAlias - 数据库的符号名。
+         * @param [in] table - 表名。
+         * @param [in] column - blob数据的列名。
+         * @param [in] rowId - blob数据中指定行号。
+         * @param [in] newSize - blob的大小。
+         * @param [out] stream - blob的输出流接口。
+         *
+         * 注:参数dbAlias并非数据库中的文件名而是当使用ATTACH连接数据库时指定给数据库的别名。
+         * 对于主数据库文件，数据库别名为"main"。
+         * 对于临时的表，数据库别名为"temp"。
+         */
+        SetBlobOfStream(
+                [in] WString dbAlias,
+                [in] WString table,
+                [in] WString column,
+                [in] Int64 rowId,
+                [in] Int32 newSize,
+                [out] IOutputStream **stream
+        );
+
+        /**
+         * 尝试载入一个包含在"extFile"文件中的SQLite外部库文件。
+         * 入口为参数entryPoint所指定，参数entryPoint在入口名默认为"sqlite3_extension_init"时可为NULL.
+         *
+         * @param extModule - 外部DLL文件。
+         * @param entryPoint - 外部文件的入口名。
+         */
+        LoadUserExtension(
+                [in] WString extModule,
+                [in] WString entryPoint
+        );
+
+        /**
+         * 清除后台数据库文件中的空闲空间，减小数据库文件大小。
+         */
+        Defragment();
+
+        /**
+         * 保留的方法。
+         */
+        SetProperty(
+                [in] WString property,
+                [in] WString value
+        );
+
+        /**
+         * 保留的方法。
+         */
+        GetProperty(
+                [in] WString property,
+                [out] WStringBuf_<MaxPropertyValue> value
+        );
+
+        /** \example Close.cpp
+ 		 * This is an example of how to use the IDatabase::Close() function.
+ 		 */
+ 		/** \example GetEncoding.cpp
+ 		 * This is an example of how to use function: IDatabase::GetEncoding() .
+ 		 */
+ 		 /** \example EffectiveRow.cpp
+ 		 * This is an example of how to use function: IStatement::ExecuteUpdate() .
+ 		 */
+ 		 /** \example ExecuteUpdate.cpp
+ 		 * This is an example of how to use the  function: IDatabase::PrepareStatement(),IPreparedStatement::ExecuteUpdate() .
+ 		 */
+ 		 /** \example Execute.cpp
+ 		 * This is an example of how to use the  function: IDatabase::CreateStatement(),IStatement::Execute().
+ 		 */
+ 		 /** \example GetError.cpp
+ 		 */
+		 /** \example GetResult.cpp
+ 		 * This is an example of how to use the  function: IStatement::ExecuteQuery(),IResultSet::GetStringColumnByIndex().
+ 		 */
+ 		 /** \example PreSet.cpp
+ 		 * This is an example of how to use the  function: IDatabase::PrepareStatement(),IPreparedStatement::SetStringArgByIndex(),IPreparedStatement::SetStringArgByName(),IPreparedStatement::SetInt32ArgByIndex(),IPreparedStatement::Execute().
+ 		 */
+    };
+
+   /**
+     * IStatementBase接口
+     */
+    interface IStatementBase
+    {
+        /**
+         * 立即释放当前SQL语句对象的资源，而不是等待该SQL语句被自动关闭时才释放资源。
+         *
+         * 对已关闭的SQL语句对象调用此方法无效。
+         *
+         * 当一个SQL语句对象被销毁时，它会被自动关闭。
+         */
+        Close();
+
+        /**
+         * 检查当前的SQL语句对象是否被关闭。
+         * 如果一个SQL语句对象的close方法被调用或发生某些错误时，该SQL语句对象将会被关闭。
+         * 当Close方法已被调用后再调用该方法一定返回true.
+         *
+         * @param [out] closed - 如果当前SQL语句对象已关闭则返回true;
+         *                       否则返回false.
+         */
+        IsClosed(
+            [out] Boolean *closed);
+
+        /**
+         * 终止所有数据库操作并在可能的最早时机返回。[未实现]
+         */
+        Cancel();
+
+        /**
+         * 获取数据库将等待一个Statement对象执行的时间(毫秒)。
+         *
+         * @param [out] millisecond - 当前所需等待的查询时间(毫秒)
+         */
+        GetQueryTimeout(
+                [out] Int32 *millisecond
+        );
+
+        /**
+         * 设置数据库等待一个Statement对象执行的时间。
+         *
+         * @param [out] millisecond - 需要设定的等待查询时间(毫秒)
+         */
+        SetQueryTimeout(
+                [in] Int32 millisecond
+        );
+
+        /**
+         * 以 ResultSet 对象的形式检索当前结果。
+         * 对于每个结果集，该方法只应调用一次。
+         *
+         * @param [out] resultSet - 以 ResultSet 对象的形式返回当前结果。
+         *                          如果当前结果为一个更新操作或没有更多的结果产生，则返回NULL.
+         */
+        GetResultSet(
+                [out] IResultSet **resultSet
+        );
+
+        /**
+         * 获取创建当前语句对象的数据库对象。
+         *
+         * @param [out] db - 创建当前语句对象的数据库对象。
+         */
+        GetDatabase(
+                [out] IDatabase **db
+        );
+
+        /**
+         * 以更新计数的形式检索当前结果。
+         *
+         * @param [out] rowCount - 以更新计数的形式检索当前结果。
+         *                         如果结果为一个ResultSet对象或没有结果，则返回-1.
+         */
+        GetUpdateCount(
+                [out] Int32 *rowCount
+        );
+
+        /**
+         * 获取数据库中最近插入的记录的rowId。
+         * 如果当前语句未发生插入操作则返回0.
+         *
+         * 表中的每条记录都有唯一的64位带符号整数键"rowId"来标识。
+         * 该键可以通过ROWID，OID，或 _ROWID_的列名来访问。
+         * 如果表中存在一个'INTEGER PRIMARY KEY'的列，则这个列为行号的另一个别名。
+         *
+         * @param [out] rowId - 新插入记录的rowId；
+         *                      如果当前语句未发生插入操作则返回0.
+         */
+        GetLastInsertRowId(
+                [out] Int64 *rowId
+        );
+
+        /**
+         * 获取在当前数据库Statement对象上产生的错误代码。
+         *
+         * @param [out] code - 错误代码;
+         *                     如果当前语句未发生任何错误则返回NOERROR.
+         */
+        GetErrorCode(
+                [out] ECode *code
+        );
+
+        /**
+         * 获取当前数据库Statement对象的错误信息。
+         *
+         * @param [out] message - 错误信息;
+         *                        如果当前语句未发生任何错误则返回空串。
+         */
+        GetErrorMessage(
+               [out] WStringBuf_<MaxErrorMessage> message
+        );
+    };
+
+    /**
+     * Statement接口，该接口用来执行静态的SQL语句并返回相应的结果集。
+     *
+     * 在默认情况下，同一时间每个 Statement 对象只能打开一个 ResultSet 对象。
+     * 因此，如果读取一个 ResultSet 对象与读取另一个交叉，
+     * 则这两个对象必须是由不同的 Statement 对象生成的。
+     * 如果存在某个语句的打开的当前 ResultSet 对象，
+     * 则 Statement 接口中的所有执行方法都会隐式关闭它。
+     */
+    interface IStatement : IStatementBase
+    {
+        /**
+         * 执行SQL语句。
+         *
+         * @param [in] sql - 待执行的SQL语句。
+         */
+        Execute(
+                [in] WString sql
+        );
+
+        /**
+         * 执行给定的SQL语句(通常为SELECT语句)，并返回一个结果集接口。
+         *
+         * @param [in] sql        - 待执行的SQL SELECT语句。如一个静态SQL查询语句。
+         * @param [out] resultSet - 包含给定查询所生成数据的ResultSet对象；永远不能为 null.
+         */
+        ExecuteQuery(
+                [in] WString sql,
+                [out] IResultSet **resultSet
+        );
+
+        /**
+         * 执行给定的SQL语句，可以是INSERT，UPDATE，DELETE语句，
+         * 或者其他不返回任何内容的SQL语句，如SQL DDL语句。
+         *
+         * @param [in] sql - 待执行的SQL语句(SQL INSERT、UPDATE 或 DELETE 语句，或者不返回任何内容的SQL语句)。
+         * @param [out] rowCount - 执行INSERT, UPDATE或DELETE语句所影响的行数；
+         *                         执行了不返回任何内容的 SQL 语句则返回0.
+         */
+        ExecuteUpdate(
+                [in] WString sql,
+                [out] Int32 *rowCount
+        );
+   };
+
+    /**
+     * Represents接口，该接口用于执行预编译的SQL语句。
+     *
+     * 一个SQL语句是一个预编译语句并存储在一个PreparedStatement对象中。
+     * 该对象可被用于多次有效地执行一个SQL语句。
+     *
+     * SetInt32, SetString等方法设置的IN属性参数值必须指定与定义的SQL语句中的输入参数类型一致。
+     * 例如，如果SQL语句有INTEGER类型的IN属性参数,则应使用方法setInt32.
+     */
+    interface IPreparedStatement : IStatementBase
+    {
+        /**
+         * 在当前预编译语句对象中重新设置一个预编译的SQL语句。
+         * 此方法并不改变预处理语句中任何参数的值。
+         */
+        Reset();
+
+        /**
+         * 在当前的PreparedStatement对象中执行SQL语句，可以是任何类型的SQL语句。
+         */
+        Execute();
+
+        /**
+         * 执行预编译的SQL语句并返回查询产生的结果集对象。
+         *
+         * @param [out] resultSet - 包含查询操作所产生数据的结果集对象，不为空。
+         */
+        ExecuteQuery(
+                [out] IResultSet **resultSet
+        );
+
+        /**
+         * 执行预编译的SQL语句，并返回一个结果集接口。
+         * 可以是INSERT，UPDATE，DELETE 语句，或者其他没有结果集的SQL语句，如SQL DDL语句。
+         *
+         * @param [out] rowCount - 执行INSERT, UPDATE或DELETE语句所影响的行数；
+         *                         未产生任何值则返回0.
+         *                         未使用则返回NULL.
+         */
+        ExecuteUpdate(
+                [out] Int32 *rowCount
+        );
+
+        /**
+         * 获取当前预编译语句对象的参数的编号，类型和属性。
+         *
+         * @param [out] metadata - 包含了预编译语句对象参数信息的ParameterMetaData对象。
+         */
+        GetParameterMetaData(
+                [out] IParameterMetaData **metadata
+        );
+
+        /**
+         * 立即清空当前预编译的SQL语句中绑定的参数。
+         *
+         * 一般地，为重复使用一条SQL语句，参数值将保持不变。
+         * 设置参数值时将自动清空先前的参数值。然而，有时需要立即释放当前参数所使用的资源，此时可调用此函数。
+         *
+         * 清除后所有的参数值为NULL.
+         */
+        ClearParameters();
+
+        /**
+         * 设定预编译SQL语句中指定索引的参数的参数值。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的BLOB值。
+         *
+         * @param [in] param - 参数的索引，第一个参数索引为1.
+         * @param [in] value - BLOB类型数据。
+         */
+        SetBlobArgByIndex(
+                [in] Int32 param,
+                [in] BufferOf<Byte> value
+        );
+
+        /**
+         * 设定预编译SQL语句中指定名字的参数的参数值。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的BLOB值。
+         *
+         * @param [in] param - 参数名字。
+         * @param [in] value - BLOB类型数据。
+         */
+        SetBlobArgByName(
+                [in] WString param,
+                [in] BufferOf<Byte> value
+        );
+
+        /**
+         * 将预编译SQL语句中指定索引的参数设置为指定长度值，以0填充。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的BLOB值。
+         *
+         * @param [in] param - 参数的索引，第一个参数索引为1.
+         * @param [in] value - BLOB类型数据。
+         */
+        SetBlobArgToZeroByIndex(
+                [in] Int32 param,
+                [in] Int32 size
+        );
+
+        /**
+         * 将预编译SQL语句中指定名字的参数设置成指定大小，以0填充。
+         *
+         * 在将该值发送到数据库时，ElaDB会将其转换成一个SQL的BLOB值。
+         *
+         * @param [in] param - 参数名字。
+         * @param [in] value - BLOB类型数据。
+         */
+        SetBlobArgToZeroByName(
+                [in] WString param,
+                [in] Int32 size
+        );
+
+        /**
+         * 将预编译SQL语句中指定索引的参数设置为指定的Boolean类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。
+         *
+         * @param [in] param - 参数的索引，第一个参数索引为1.
+         * @param [in] value - Boolean类型数据。
+         */
+        SetBooleanArgByIndex(
+                [in] Int32 param,
+                [in] Boolean value
+        );
+
+        /**
+         * 将预编译SQL语句中指定名字的参数设置为指定的Boolean类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。
+         *
+         * @param [in] param - 参数名字。
+         * @param [in] value - Boolean类型数据。
+         */
+        SetBooleanArgByName(
+                [in] WString param,
+                [in] Boolean value
+        );
+
+        /**
+         * 将预编译SQL语句中指定索引的参数设置为指定的Byte类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。
+         *
+         * @param [in] param - 参数的索引，第一个参数索引为1.
+         * @param [in] value - Byte类型数据。
+         */
+        SetByteArgByIndex(
+                [in] Int32 param,
+                [in] Byte value
+        );
+
+        /**
+         * 将预编译SQL语句中指定名字的参数设置为指定的Byte类型数据。
+         *
+         * 在将该值发送到数据库时，数据库将会将其转换成一个SQL的INTEGER值。
+         *
+         * @param [in] param - 参数名字。
+         * @param [in] value - Byte类型数据。
+         */
+        SetByteArgByName(
+                [in] WString param,
+                [in] Byte value
+        );
+
+        /**
+         * 将预编译SQL语句中指定索引的参数用指定格式的字符串数据值设置为指定的DateTime类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的TEXT值。
+         *
+         * @param [in] param - 参数的索引，第一个参数索引为1.
+         * @param [in] value - 时间类型数据。
+         *
+         * 时间字符串可以为下列任意一种格式：
+         *
+         *  1.  YYYY-MM-DD
+         *
+         *  2.  YYYY-MM-DD HH:MM
+         *
+         *  3.  YYYY-MM-DD HH:MM:SS
+         *
+         *  4.  YYYY-MM-DD HH:MM:SS.SSS
+         *
+         *  5.  YYYY-MM-DDTHH:MM
+         *
+         *  6.  YYYY-MM-DDTHH:MM:SS
+         *
+         *  7.  YYYY-MM-DDTHH:MM:SS.SSS
+         *
+         *  8.  HH:MM
+         *
+         *  9.  HH:MM:SS
+         *
+         * 10.  HH:MM:SS.SSS
+         *
+         * 格式5到7中，"T"是一个用于隔开日期和时间的字符，正如ISO-8601标准中所需的一样。
+         */
+        SetDateTimeArgOfStringByIndex(
+                [in] Int32 param,
+                [in] WString value
+        );
+
+        /**
+         * 将预编译SQL语句中指定名字的参数用指定格式的字符串数据值设置为指定的DateTime类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的TEXT值。
+         *
+         * @param [in] param - 参数名字。
+         * @param [in] value - 时间类型数据。
+         *
+         * 时间字符串可以为下列任意一种格式：
+         *
+         *  1.  YYYY-MM-DD
+         *
+         *  2.  YYYY-MM-DD HH:MM
+         *
+         *  3.  YYYY-MM-DD HH:MM:SS
+         *
+         *  4.  YYYY-MM-DD HH:MM:SS.SSS
+         *
+         *  5.  YYYY-MM-DDTHH:MM
+         *
+         *  6.  YYYY-MM-DDTHH:MM:SS
+         *
+         *  7.  YYYY-MM-DDTHH:MM:SS.SSS
+         *
+         *  8.  HH:MM
+         *
+         *  9.  HH:MM:SS
+         *
+         * 10.  HH:MM:SS.SSS
+         *
+         * 格式5到7中，"T"是一个用于隔开日期和时间的字符，正如ISO-8601标准中所需的一样。
+         */
+        SetDateTimeArgOfStringByName(
+                [in] WString param,
+                [in] WString value
+        );
+
+        /**
+         * 将预编译SQL语句中指定索引的参数设置为指定的DateTime类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的TEXT值。
+         *
+         * @param [in] param - 参数的索引，第一个参数索引为1.
+         * @param [in] value - DateTime类型数据。
+         */
+        SetDateTimeArgByIndex(
+                [in] Int32 param,
+                [in] DateTime value
+        );
+
+        /**
+         * 将预编译SQL语句中指定名字的参数设置为指定的DateTime类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的TEXT值。
+         *
+         * @param [in] param - 参数名字
+         * @param [in] value - DateTime类型数据。
+         */
+        SetDateTimeArgByName(
+                [in] WString param,
+                [in] DateTime value
+        );
+
+        /**
+         * 将预编译SQL语句中指定索引的参数设置为指定的Double类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQLBLOB值。
+         *
+         * @param [in] param - 参数的索引，第一个参数索引为1.
+         * @param [in] value - Double类型数据。
+         */
+        SetDoubleArgByIndex(
+                [in] Int32 param,
+                [in] Double value
+        );
+
+        /**
+         * 将预编译SQL语句中指定名字的参数设置为指定的Double类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的FLOAT值。
+         *
+         * @param [in] param - 参数名字。
+         * @param [in] value - Double类型数据。
+         */
+        SetDoubleArgByName(
+                [in] WString param,
+                [in] Double value
+        );
+
+        /**
+         * 将预编译SQL语句中指定索引的参数设置为指定的Int32类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的FLOAT值。
+         *
+         * @param [in] param - 参数的索引，第一个参数索引为1.
+         * @param [in] value - Int32类型数据。
+         */
+        SetInt32ArgByIndex(
+                [in] Int32 param,
+                [in] Int32 value
+        );
+
+        /**
+         * 将预编译SQL语句中指定名字的参数设置为指定的Int32类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。
+         *
+         * @param [in] param - 参数名字。
+         * @param [in] value - Int32类型数据。
+         */
+        SetInt32ArgByName(
+                [in] WString param,
+                [in] Int32 value
+        );
+
+        /**
+         * 将预编译SQL语句中指定索引的参数设置为指定的Int64类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。
+         *
+         * @param [in] param - 参数的索引，第一个参数索引为1.
+         * @param [in] value - Int64类型数据。
+         */
+        SetInt64ArgByIndex(
+                [in] Int32 param,
+                [in] Int64 value
+        );
+
+        /**
+         * 将预编译SQL语句中指定名字的参数设置为指定的Int64类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的INTEGER值。
+         *
+         * @param [in] param - 参数名字。
+         * @param [in] value - Int64类型数据。
+         */
+        SetInt64ArgByName(
+                [in] WString param,
+                [in] Int64 value
+        );
+
+        /**
+         * 将预编译SQL语句中由索引指定的参数设置为指定的ElaDB的NULL.
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的NULL。
+         *
+         * @param [in] param - 参数的索引，第一个参数索引为1.
+         */
+        SetNullArgByIndex(
+                [in] Int32 param
+        );
+
+        /**
+         * 将预编译SQL语句中指定名字的参数设置为指定的ElaDB的NULL.
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的NULL。
+         *
+         * @param [in] param - 参数名字。
+         */
+        SetNullArgByName(
+                [in] WString param
+        );
+
+        /**
+         * 将预编译SQL语句中指定索引的参数设置为指定的ElaDB的String类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的String类型数据。
+         *
+         * @param [in] param - 参数的索引，第一个参数索引为1.
+         * @param [in] value - string类型数据。
+         */
+        SetStringArgByIndex(
+                [in] Int32 param,
+                [in] WString value
+        );
+
+        /**
+         * 将预编译SQL语句中指定名字的参数设置为指定的ElaDB的String类型数据。
+         *
+         * 在将该值发送到数据库时，ElaDB将会将其转换成一个SQL的String类型数据。
+         *
+         * @param [in] param - 参数名字。
+         * @param [in] value - string类型数据。
+         */
+        SetStringArgByName(
+                [in] WString param,
+                [in] WString value
+        );
+    };
+
+    /**
+     * 对数据库进行执行一条查询语句的操作通常会创建一个代表数据库查询结果集的数据表。
+     *
+     * 一个ResultSet对象会维护一个指向当前行的指针。
+     * 最初，该指针将指向第一行之前。
+     * Next方法将该指针移动到下一行，因为该方法在 ResultSet 对象中没有下一行时返回 false，
+     * 所以可以在 while 循环中使用它来迭代结果集。
+     *
+     * 一个默认的ResultSet对象有一个只向前移动的指针，
+     * 因此，只能迭代它一次，并且只能按从第一行到最后一行的顺序进行。
+     *
+     * ResultSet接口提供了GetBoolean, getInt32,
+     * 等从当前行检索列值的获取信息的方法。
+     * 这些方法可以通过列的索引编号或列名来检索值。
+     * 一般地，使用列的索引将更有效。
+     * 列从1开始编号，为了获得更大的可移植性，每个列应该只读取一次。
+     *
+     * 对于获取信息的方法来说，数据库试图将数据转换成这些方法中指定ElaDB数据类型的数据，
+     * 并返回适当的ElaDB值。
+     * 下表列出了在ResultSet接口中的这些方法中，被用到的允许从SQL类型到供 ResultSet 获取方法使用的 ElaDB 类型的映射关系。
+     *
+     * \htmlinclude IResult.htm
+     *
+     * 当生成 ResultSet 对象的 Statement 对象关闭、重新执行或用来从多个结果的序列检索下一个结果时，
+     * ResultSet 对象会自动关闭。
+     *
+     * ResultSet 对象的列的编号、类型和属性由 IResultSet接口的GetMetaData方法返回的 ResulSetMetaData 对象提供。
+     */
+    interface IResultSet
+    {
+        /**
+         * 立即释放当前ResultSet对象的数据库资源，而不是等待其自动被关闭时才释放。
+         */
+        Close();
+
+        /**
+         * 检查ResultSet对象是否已被关闭。
+         *
+         * 当对一个数据库对象调用Close()方法，或发生了致命错误时该数据库对象将被关闭。
+         * 仅当Cloas()方法被调用后，此方法才会返回 true.
+         *
+         * @param [out] closed - 如果数据库对象已被关闭则返回true；
+         *                       否则返回false.
+         */
+        IsClosed(
+            [out] Boolean *closed);
+
+        /**
+         * 检索当前ResultSet对象当前行指定索引的列的Blob类型数据。
+         *
+         * @param [in] column - 列的索引，结果集最左边一列的索引为1.
+         * @param [out] value - 获取的数据。
+         */
+        GetBlobColumnByIndex(
+                [in] Int32 column,
+                [out] BufferOf<Byte> **value
+        );
+
+        /**
+         * 检索当前ResultSet对象当前行指定名字的列的Blob类型数据。
+         *
+         * @param [in] column - 列的名字。
+         * @param [out] value - 获取的数据。
+         */
+        GetBlobColumnByName(
+                [in] WString column,
+                [out] BufferOf<Byte> **value
+        );
+
+        /**
+         * 检索当前ResultSet对象当前行指定索引的列的Boolean类型数据。
+         *
+         * @param [in] column - 列的索引，结果集最左边一列的索引为1.
+         * @param [out] value - 获取的数据。
+         */
+        GetBooleanColumnByIndex(
+                [in] Int32 column,
+                [out] Boolean *value
+        );
+
+        /**
+         * 检索当前ResultSet对象当前行指定名字的列的Boolean类型数据。
+         *
+         * @param [in] column - 列的名字。
+         * @param [out] value - 获取的数据。
+         */
+        GetBooleanColumnByName(
+                [in] WString column,
+                [out] Boolean *value
+        );
+
+        /**
+         * 检索当前ResultSet对象当前行指定索引的列的Byte类型数据。
+         *
+         * @param [in] column - 列的索引，结果集最左边一列的索引为1.
+         * @param [out] value - 获取的数据。
+         */
+        GetByteColumnByIndex(
+                [in] Int32 column,
+                [out] Byte *value
+        );
+
+        /**
+         * 检索当前ResultSet对象当前行指定名字的列的Byte类型数据。
+         *
+         * @param [in] column - 列的名字。
+         * @param [out] value - 获取的数据。
+         */
+        GetByteColumnByName(
+                [in] WString column,
+                [out] Byte *value
+        );
+
+        /**
+         * 检索当前ResultSet对象当前行指定索引的列的时间类型数据。
+         *
+         * @param [in] column - 列的索引，结果集最左边一列的索引为1.
+         * @param [out] value - 获取的数据。
+         */
+        GetDateTimeColumnAsStringByIndex(
+                [in] Int32 column,
+                [out] WStringBuf_<MaxDataTime> value
+        );
+
+        /**
+         * 检索当前ResultSet对象当前行指定名字的列的时间类型数据。
+         *
+         * @param [in] column - 列的名字。
+         * @param [out] value - 获取的数据。
+         */
+        GetDateTimeColumnAsStringByName(
+                [in] WString column,
+                [out] WStringBuf_<MaxDataTime> value
+        );
+
+        /**
+         * 获取当前ResultSet对象当前行指定索引的列的DateTime类型数据。
+         *
+         * @param [in] column - 列的索引，结果集最左边一列的索引为1.
+         * @param [out] value - 获取的数据。
+         */
+        GetDateTimeColumnByIndex(
+                [in] Int32 column,
+                [out] DateTime *value
+        );
+
+        /**
+         * 获取当前ResultSet对象当前行指定名字的列的DateTime类型数据。
+         *
+         * @param [in] column - 列的名字。
+         * @param [out] value - 获取的数据。
+         */
+        GetDateTimeColumnByName(
+                [in] WString column,
+                [out] DateTime *value
+        );
+
+        /**
+         * 获取当前ResultSet对象当前行指定索引的列的Double类型数据。
+         *
+         * @param [in] column - 列的索引，结果集最左边一列的索引为1.
+         * @param [out] value - 获取的数据。
+         */
+        GetDoubleColumnByIndex(
+                [in] Int32 column,
+                [out] Double *value
+        );
+
+        /**
+         * 获取当前ResultSet对象当前行指定名字的列的Double类型数据。
+         *
+         * @param [in] column - 列的名字。
+         * @param [out] value - 获取的数据。
+         */
+        GetDoubleColumnByName(
+                [in] WString column,
+                [out] Double *value
+        );
+
+        /**
+         * 获取当前ResultSet对象当前行指定索引的列的Int32类型数据。
+         *
+         * @param [in] column - 列的索引，结果集最左边一列的索引为1.
+         * @param [out] value - 获取的数据。
+         */
+        GetInt32ColumnByIndex(
+                [in] Int32 column,
+                [out] Int32 *value
+        );
+
+        /**
+         * 获取当前ResultSet对象当前行指定名字的列的Int32类型数据。
+         *
+         * @param [in] column - 列的名字。
+         * @param [out] value - 获取的数据。
+         */
+        GetInt32ColumnByName(
+                [in] WString column,
+                [out] Int32 *value
+        );
+
+        /**
+         * 获取当前ResultSet对象当前行指定索引的列的Int64类型数据。
+         *
+         * @param [in] column - 列的索引，结果集最左边一列的索引为1.
+         * @param [out] value - 获取的数据。
+         */
+        GetInt64ColumnByIndex(
+                [in] Int32 column,
+                [out] Int64 *value
+        );
+
+        /**
+         * 获取当前ResultSet对象当前行指定名字的列的Int64类型数据。
+         *
+         * @param [in] column - 列的名字。
+         * @param [out] value - 获取的数据。
+         */
+        GetInt64ColumnByName(
+                [in] WString column,
+                [out] Int64 *value
+        );
+
+        /**
+         * 获取当前ResultSet对象当前行指定索引的列的String类型数据。
+         *
+         * @param [in] column - 列的索引，结果集最左边一列的索引为1.
+         * @param [out] value - 获取的数据。
+         */
+        GetStringColumnByIndex(
+                [in] Int32 column,
+                [out] WStringBuf **value
+        );
+
+        /**
+         * 获取当前ResultSet对象当前行指定名字的列的String类型数据。
+         *
+         * @param [in] column - 列的名字。
+         * @param [out] value - 获取的数据。
+         */
+        GetStringColumnByName(
+                [in] WString column,
+                [out] WStringBuf **value
+        );
+
+        /**
+         * 将指针从当前位置下移一行。
+         * ResultSet指针最初位于第一行之前，
+         * 第一次调用该方法将使第一行成为当前行，第二次调用将使第二行成为当前行，以此类推。
+         *
+         * @param [out] rowValid - 当前行有效则返回true;
+         *                         没有其他行则返回false.
+         */
+        Next(
+                [out] Boolean *rowValid
+        );
+
+        /**
+         * 获取当前ResultSet对象报告的最近的错误码。
+         *
+         * @param [out] code - 错误码；
+         *                     当前语句没有发生错误则返回NOERROR.
+         */
+        GetErrorCode(
+                [out] ECode *code
+        );
+
+        /**
+         * 获取当前ResultSet对象报告的最近的错误信息。
+         *
+         * @param [out] message - 错误信息;
+         *                        当前语句没有发生错误则返回空串。
+         */
+        GetErrorMessage(
+                [out] WStringBuf_<MaxErrorMessage> message
+        );
+
+        /**
+         * 获取包含当前ResultSet对象的列的编号，类型和属性信息的ResultSetMetaData对象。
+         *
+         * @param [out] metadata - ResultSet对象的列的描述信息。
+         */
+        GetMetaData(
+                [out] IResultSetMetaData **metadata
+        );
+
+        /**
+         * 将ResultSet对象重置为其最初状态，准备重新执行。
+         */
+        Reset();
+    };
+
+   /**
+     * 该接口用于从一个PreparedStatement对象获取关于其参数类型和属性的信息描述。
+     */
+    interface IParameterMetaData
+    {
+        /**
+         * 获取PreparedStatement对象中的参数数量，该对象含有ParameterMetaData对象的参数信息的描述。
+         *
+         * 当参数为":AAA" or "?"形式,则会将其转化成以1开始的连续增长的数值，
+         * 因此该函数的返回值是参数编号。
+         * 然而，如果有个参数名出现多次，则这些参数将被赋予相同的数值，所以这种情况下的返回值为具有唯一名字的参数数量。
+         * 如果参数的形式为"?NNN"(NNN是一个整型数值)，则接口的返回为最大的参数索引。
+         *
+         * @param [out] count - 参数数量。
+         */
+        GetParameterCount(
+                [out] Int32 *count
+        );
+
+        /**
+         * 获取指定名字的参数索引值。
+         *
+         * @param [in] esName - 参数名
+         * @param [out] index - 参数索引值，第一个参数的索引值为1.
+         *                      如果一个参数名出线多次，则全部被赋予同一个数值。
+         */
+        GetParameterIndex(
+                [in] WString name,
+                [out] Int32 *index
+        );
+
+        /**
+         * 获取预处理语句中指定索引的参数的参数名。
+         * ":AAA"、"@AAA"或"$VVV"形式的参数将返回":AAA" or "@AAA" or "$VVV"形式的字符串。
+         * 换句话说，前面的":"、"$"或"@"被当作名字的一部分被包含。
+         * "?"或"?NNN"类型的参数没有名字。
+         *
+         * 第一个参数的索引为1.
+         *
+         * @param [in] index - 参数的索引，第一个参数的索引为1.
+         * @param [out] name - 参数名。
+         */
+        GetParameterName(
+                [in] Int32 index,
+                [out] WStringBuf_<MaxParameterName> name);
+    };
+
+   /**
+     * 该接口被用于从一个ResultSet对象获取某列的类型和属性的信息描述。
+     *
+     * 列号从1开始。
+     */
+    interface IResultSetMetaData
+    {
+        /**
+         * 获取ResultSet 对象的列数。
+         *
+         * @param [out] count - 列的数量。
+         */
+        GetColumnCount(
+                [out] Int32 *count
+        );
+
+        /**
+         * 获取结果集某列的声明数据类型。
+         *
+         * @param [in] column - 列的索引，最左边一列的索引为1.
+         * @param [out] typeName - 列的声明数据类型。
+         */
+        GetColumnDeclareTypeName(
+                [in] Int32 column,
+                [out] WStringBuf_<MaxDatabaseTypeName> typeName
+        );
+
+        /**
+         * 获取结果集某列的内部数据类型。
+         *
+         * @param [in] column - 列的索引，最左边一列的索引为1.
+         * @param [out] type - 列的内部数据类型。
+         */
+        GetColumnType(
+                [in] Int32 column,
+                [out] DbDatatype *type
+        );
+
+        /**
+         * 获取查询结果集指定列的名字。
+         *
+         * @param [in] column - 列的索引，最左边一列的索引为1.
+         * @param [out] name - 列名。
+         */
+        GetColumnName(
+                [in] Int32 column,
+                [out] WStringBuf_<MaxColumnName> name
+        );
+
+        /**
+         * 获取某列的原始列名(在表中的列名)。
+         *
+         * @param [in] column - 列的索引，最左边一列的索引为1.
+         * @param [out] name - 列的原始列名。
+         */
+        GetColumnOriginName(
+                [in] Int32 column,
+                [out] WStringBuf_<MaxColumnName> name
+        );
+
+        /**
+         * 获取指定列所在表的表名。
+         *
+         * @param [in] column - 列的索引，最左边一列的索引为1.
+         * @param [out] name - 表名。
+         */
+        GetTableName(
+                [in] Int32 column,
+                [out] WStringBuf_<MaxTableName> name
+        );
+
+        /**
+         * 获取含有指定列的数据库的名字。
+         *
+         * @param [in] column - 列的索引，最左边一列的索引为1.
+         * @param [out] name - 数据库名。
+         */
+        GetDatabaseName(
+                [in] Int32 column,
+                [out] WStringBuf_<MaxDatabaseName> name
+        );
+
+        /**
+         * 指示是否自动为指定列进行编号，这样这些列仍然是只读的。
+         *
+         * @param [in] column - 列的索引，最左边一列的索引为1.
+         * @param [out] autoIncrement - 是返回true;
+         *                              否则返回false.
+         */
+        IsAutoIncrement(
+                [in] Int32 column,
+                [out] Boolean *autoIncrement
+        );
+
+        /**
+         * 检查指定列的值是否可为空。
+         *
+         * @param [in] column - 列的索引，最左边一列的索引为1.
+         * @param [out] nullable - 是返回true;
+         *                         否则返回false.
+         */
+        IsNullable(
+                [in] Int32 column,
+                [out] Boolean *nullable
+        );
+
+        /**
+         * 检查指定列是否为主键。
+         *
+         * @param [in] column - 列的索引，最左边一列的索引为1.
+         * @param [out] primaryKey - 是返回true;
+         *                           否则返回false.
+         */
+        IsPrimaryKey(
+                [in] Int32 column,
+                [out] Boolean *primaryKey
+        );
+    };
+
+    interface CDatabase
+    {
+        interface IDatabase;
+
+        /**
+         * 打开一个数据库文件。如果数据库不存在，则创建一个具有默认属性的新的数据库文件。
+         *
+         * 变化: Elastos2.0上默认的字符编码为UTF8,Elastos2.1上变为UTF16.
+         *
+         * 如果文件名为":memory:",则创建一个私有的内存数据库。
+         * 这个数据库被关闭时将销毁。
+         *
+         * 如果数据库名字是空串，则创建一个私有的临时的硬盘数据库。
+         * 数据库关闭时，它将被自动删除。
+         *
+         * @param [in] database - 数据库文件名。
+         */
+        constructor(
+                [in] WString database
+        );
+
+        /**
+         * 打开数据库文件。如果数据库不存在，则创建
+         * 一个具有指定编码方式，页面大小，缓冲区大小的数据库文件。
+         *
+        * @param [in] database   - 数据库文件名。
+         * @param [in] pageSize   - 页的大小，这个值必须是介于512和8192之间并且是2的幂。
+         * @param [in] cacheSize  - 每次在内存中为数据库分配的最大页数。
+         *                          硬盘中每页为1K，内存中每页为1.5K.
+         * @param [in] encoding   - 数据库的编码方式。
+         */
+        constructor(
+                [in] WString database,
+                [in] Int32 pageSize,
+                [in] Int32 cacheSize,
+                [in] DbEncoding encoding
+        );
+    };

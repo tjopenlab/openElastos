@@ -1,0 +1,71 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>    <manpage>
+    <volume>定时器</volume>
+    <interface> IActiveTimer </interface>
+    <description>
+        <para>定时器对象接口。</para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Start</method_name>
+        <method_url>IActiveTimer\Start</method_url>
+    <m_description>
+		开始计时
+    </m_description>
+    </method>
+    <method>
+        <method_name>Stop</method_name>
+        <method_url>IActiveTimer\Stop</method_url>
+    <m_description>
+		结束计时
+    </m_description>
+    </method>
+    <method>
+        <method_name>SetInterval </method_name>
+        <method_url>IActiveTimer\SetInterval</method_url>
+    <m_description>
+		设置定时时间间隔
+    </m_description>
+    </method>
+    <method>
+        <method_name>GetInterval </method_name>
+        <method_url>IActiveTimer\GetInterval</method_url>
+    <m_description>
+        获取定时时间间隔
+    </m_description>
+    </method>
+    <method>
+        <method_name>SetPriority </method_name>
+        <method_url>IActiveTimer\SetPriority</method_url>
+    <m_description>
+        设置优先级
+    </m_description>
+    </method>
+        <method>
+        <method_name>GetPriority </method_name>
+        <method_url>IActiveTimer\GetPriority</method_url>
+    <m_description>
+        获取优先级
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+
+	<remarks>
+		<para>定时器对象提供了一种周期性定时触发的功能。可以通过<link url="Function/CActiveTimer/New.htm">CActiveTimer::New</link>来创建一个定时器，创建时需要为其指定一定时间隔，同时需指定定时器到期后所要回调的函数。定时间隔最小为30ms。</para>
+		<para>定时器创建成功后，需要调用<link url="IActiveTimer/Start.htm">IActiveTimer::Start</link>开始定时，每次定时到期后都会触发创建定时器时所指定的函数调用。</para>
+        <para>调用 <link url="IActiveTimer/Stop.htm">IActiveTimer::Stop</link>以结束计时。</para>
+        <para>除创建时指定定时间隔外，也可通过 <link url="IActiveTimer/SetInterval.htm">IActiveTimer::SetInterval</link>重新设置时间间隔。对于一个已经开始定时的定时器，重新设置的时间间隔将在（本次定时到期后）下次定时开始时起作用。<link url="IActiveTimer/GetInterval.htm">IActiveTimer::GetInterval</link>用于获取定时器的定时间隔。</para>
+        <para>定时器到期后，对定时器创建时所指定的函数的调用是在一个独立的线程中完成的。因为这是一种独立的线程，所以在必要时可调用<link url="IActiveTimer/SetPriority.htm">IActiveTimer::SetPriority</link>来调整这个线程的优先级，以获取较高的精度。<link url="IActiveTimer/GetPriority.htm">IActiveTimer::GetPriority</link>用于获取这个线程的优先级。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

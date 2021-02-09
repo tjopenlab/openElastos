@@ -1,0 +1,72 @@
+<HTML>
+<HEAD>
+<TITLE>
+AuraProcess_Kill
+</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<h3>
+AuraProcess_Kill</h3>
+<p></p>
+</div>
+<p>
+			This function kills a process and all its threads.
+        </p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">
+AURA_API AuraProcess_Kill
+
+            (</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">)
+                    
+                ;</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return Value </TD>
+<TD class="cell">Hex Value</TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">0x00000000</TD>
+<TD class="cell">Function succeeds in killing the process and all its threads.</TD>
+</TR>
+<TR><TD class="cell">E_INVALID_OPERATION</TD>
+<TD class="cell">The process does not start.</TD>
+</TR>
+</table></p>
+<h4>Remarks</h4>
+<p>
+			This function is used to terminate current process or other processes. Killing a process would make
+			its CAR service to shut down; all of the threads in that particular process will stop its execution;
+			all of the modules loaded by the process will be released; and all of the resources including address
+			space will be recycled. If there is any other reference to the process interface, the process object
+			will not be destroyed.
+		</p>
+<h4>Requirements</h4>
+<p>
+<table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>
+Windows 2000 or later; Elastos 2.0 or later.
+</td>
+<td></td>
+</tr>
+</table></p>
+<script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>

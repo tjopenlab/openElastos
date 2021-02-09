@@ -1,0 +1,138 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Device Driver Framework</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Driver Interface Implementation And Configuration</h2>
+        <p>Elastos&nbsp;2.0 device driver is statically linked into kernel image file as part of the kernel. Same as other parts of the kernel, device driver code is executed under processor special mode. Besides these characteristics, Elastos&nbsp;2.0 device driver is a special type of CAR component that exists in the kernel. They all must expose a universal CAR interface <a class="style1" href="../driver_development/standard_driver_routines/IDriver.htm">IDriver</a> to provide service.</p>
+        <p>All kernel driver provides similar IDriver interface.They interpret detail syntax of IDriver interface in their own way. Usually, <a class="style1" href="../driver_development/standard_driver_routines/IDriver/Read.htm">Read()</a> method of IDriver interface is used to read data from the device. <a class="style1" href="../driver_development/standard_driver_routines/IDriver/Write.htm">Write()</a> method is used to write data to device. <a class="style1" href="../driver_development/standard_driver_routines/IDriver/Control.htm">Control()</a> method is used to send command, gets state information etc. Recommended standard driver implementation is used to define driver as a specific C++ class.Specific steps are as the following: </p>
+        <p>1. Under corresponding $Elastos/src/kernel/drivers/arch/board/ directory, creates a directory for developed driver.</p>
+        <p>Suppose, you want to write a mouse driver, first defines the directory name as mouse/, also defines corresponding implementation file mouse.cpp and one sources file (as shown in the graph, here only shows drivers subtree). Then modifies dirs files under $Elastos/src/kernel/drivers/arch/board/ directory and add newly created driver directory into kernel to compile and link.</p>
+        <center><img src="images/msetree.jpg"></center>
+        <p>2. Defines a driver C++ class in driver implementation file, inherited from a virtual base class Driver provided by the system and provides QueryInterface(), AddRef()/Release() default implementation.</p>
+        <p>Its definition is as the following:  </p>
+        <pre class="code">
+class Driver : public IDriver {
+public:
+    CARAPI QueryInterface(
+        /* [in] */ REFIID riid,
+        /* [out] */ void **ppv);
+
+    CARAPI_(ulong_t) AddRef(void);
+
+    CARAPI_(ulong_t) Release(void);
+    …
+    virtual void Dispose() = 0;
+    …
+};
+</pre>
+        <p>Besides above mentioned QueryInterface(), AddRef()/Release() default implementation, Driver base class also defines a pure virtual function called Dispose(), which needs to be implemented through driver class derived from Driver. This method is designed to be invoked once when the object reference count is reset to 0.This derived driver class must do release action correspondingly in <b>Dispose</b> method implementation according to driver class object allocation strategy, unless the derived class overloads <b>AddRef</b>/<b>Release</b> implementation of Driver base class. Of course, <b>Read</b>, <b>Write</b>, <b>Control</b> method of IDriver interface also must be implemented by derived driver class. According to the above example, mouse driver class definition can be the following:  </p>
+        <pre class="code">
+class Mouse : public Driver {
+public:
+    CARAPI Read(
+        /* [in] */ UINT64 u64Offset,
+        /* [in] */ UINT uNumberOfBytesToRead,
+        /* [out] */ EzByteBuf ebbData,
+        /* [out] */ IEvent * * ppCompletionEvent);
+    CARAPI Write(
+        /* [in] */ UINT64 u64Offset,
+        /* [in] */ EzByteBuf ebbData,
+        /* [out] */ UINT * puNumberOfBytesWritten,
+        /* [out] */ IEvent * * ppCompletionEvent);
+    CARAPI Control(
+        /* [in] */ INT nControlCode,
+        /* [in] */ EzByteBuf ebbInData,
+        /* [out] */ EzByteBuf ebbOutData,
+        /* [out] */ IEvent * * ppCompletionEvent);
+    virtual void Dispose();
+public:
+    Mouse(…);
+    ～Mouse();
+    ECODE InitHw(); //Test and initialize hardware device.
+public:
+    …
+};
+</pre>
+        <p>As long as no compilation conflict is caused, there is no special rules for the naming of this driver class.You can use corresponding device name of driver directly as class name.</p>
+        <p>3. Defines driver instance related data as the data member of this driver class, defines this driver class related data as static data member or static global variable of this driver class and carry initialization and destruction actions needed by the driver class itself in the constructor and destructor of this driver class. </p>
+        <p>Under normal conditions, software state initialization action in driver that does not depends on hardware,which is put in driver class constructor. Since it is possible for testing and initializing hardware device operations to fail, it must wait until after the driver component instance is created to execute. The above example defines a method <b>InitHw</b> to test and initializes mouse hardware device. This method is invoked in driver creation method. </p>
+        <p>4. Define and implement <b>Read</b>, <b>Write</b>, <b>Control</b> method of IDriver interface (abbreviated these three methods to RWC method).</p>
+        <p>Device user request for I/O service by invoking driver RWC method, to execute by threads that request for I/O service. RWC method and methods directly invoked in RWC methods are all treated as driver top&nbsp;half. Driver top half is executed under system mode.It can visit some kernel data structure and can also visit current thread/process context. So during the execution of the top half, you can invoke <b><a class="style1" href="../driver_development/driver_support_routines/kernel_routines/thread/method/Sleep.htm">Sleep</a></b> routine to make itself sleep or use synchronization object. You can also invoke other kernel functional service that can be blocked, such as memory allocation etc.</p>
+        <p>Stack space used by RWC method is the kernel stack space of thread that requests I/O service. Elastos&nbsp;2.0 kernel have strict restrictions on size of thread kernel stack space. Generally speaking, no more than 7K bytes of thread kernel stack space shall be used. So when implementing RWC method, you must avoid to allocate large data structure on the stack.</p>
+        <p>By the way, Elastos&nbsp;2.0 kernel is completely preemptive.Hence the execution of top half of driver can be take over by other higher priority threads. If a certain driver is visited by multiple users at the same time, please pay attention to the synchronization of work (close preemptive or use synchronization object), in order to avoid shared data race condition.</p>
+        <p>Driver initialization and destructor action mentioned in the above paragraphs belongs to the top half.</p>
+        <p>Besides, driver usually needs to respond to interrupts generated by corresponding device. Thus, Elastos&nbsp;2.0 kernel interrupt management subsystem provides a standard kernel service interface <b><a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/RegisterIsr.htm">RegisterIsr</a></b> method, driver can register its interrupt service program through this method (abbreviated as ISR in the following). When a device interrupt happens, system invokes registered ISR to respond to this interrupt. The system also provides a standard kernel functionality interface <b><a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/UnregisterIsr.htm">UnregisterIsr</a></b> method, driver can cancel its ISR method to the system through this method. </p>
+        <p>Under normal conditions, driver must register its ISR during its initialization process and unregisters its ISR during its deletion.</p>
+        <p>Device hardware interrupt is asynchronous. It does not depend on any thread execution. Hence, the current thread/process context that generates the interrupt is unknown to ISR. ISR method and methods that directly or indirectly used in ISR method are all treated as driver bottom half. Driver bottom half execution can neither depend on process state nor can it be hung or blocked.Hence the kernel functionality that can be invoked in driver bottom half is limited. Unless specially declared, kernel service cannot be used in driver bottom half. On the contrary, besides specially declared kernel service, most kernel service can be used in driver top half.</p>
+        <p>Elastos&nbsp;2.0 interrupt management is based on fixed priority strategy.When invoking <b>RegisterIsr</b> method, input parameter ipl specifies the interrupt priority of corresponding device interrupt, with the interval from IPL0 to IPL31;totally with 32 levels.The smaller the number,the higher the priority. This interrupt priority does not change after specified when registered ISR, which is a fixed priority. The running of the kernel code (including the driver bottom half) of the process interrupt depends on a global concept of "current system interrupt priority".Only interrupt with higher priority can respond than the current system interrupt priority. Before the current system invokes ISR of certain driver, current system interrupt priority is raised to the interrupt priority of this ISR, which shields from interrupt response of same priority or lower. After ISR returns, current system interrupt priority  resumes its original value. Theoretically, all interrupt priorities are higher than all thread priorities. So the execution of driver bottom half does not take over by any thread.It can only be executed recursively by interrupt with higher interrupt priority than itself. However, besides the execution of the top half of driver is taken over by thread with higher priority, which also is interrupted by any interrupt. However, driver top half can shield the bottom half interrupt response through raise current system interrupt priority (see <b><a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/RaiseCurrentIpl.htm">RaiseCurrentIpl</a></b> and <b><a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/LowerCurrentIpl.htm">LowerCurrentIpl</a></b> methods) to a appropriate value. Also you can avoid driver top half/bottom half race condition through temporarily disabling specified device interrupt response (see <b><a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/EnableIrq.htm">EnableIrq</a></b> and <b><a class="style1" href="../driver_development/driver_support_routines/kernel_routines/interrupt_management/DisableIrq.htm">DisableIrq</a></b> methods).</p>
+        <p>In fact, as long as the system runs under certain current system interrupt priority, driver ISR responds the interrupt quickly. So it is appropriate to schedule hardware device response action in ISR as soon as possible. As mentioned above, during driver ISR execution, interrupt with the same priority or lower priority is shielded and all thread execution in the system is paused.So operations that need a long time to finish but not very urgent in ISR  greatly reduces the real time response of the system. Also ISR is not allowed to be suspended or blocked because this may result in a lots of operations that are needed to request kernel service not able to be put in ISR. So operation that is not very urgent but spends a long time must be put in driver top half. Communication and cooperation between driver top half and bottom half can be done through shared data structure such as working queue or buffer,which can also be done through a conceptual "interrupt service thread".</p>
+        <p>5. Implement a creation method (factory method) for driver and responsible for driver component instance creation and initialization.</p>
+        <p>All driver instance creation functions share the same name space in the system.Hence they must have globally unique name. The recommended naming rule is: "CreateDevice", of which "Device" part must be replaced with specific corresponding device name of the driver. For the above example, it can be named: "CreateMouse". All driver creation methods must be of the following type: </p>
+        <pre class="code">
+IDriver *CreateDevice(uint_t uDeviceNo, void *pvParameter);
+</pre>
+        <p>Driver instance creation method receives two parameters,which are device number (uDeviceNo) and device additional information (pvParameter). Device number specifies which instance in this class device creates driver component instance. Device additional information is directly passed from registered device information in the system. If object is created and initialized successfully,then driver creation method must directly return the created object reference as IDriver interface pointer type. If creation or initialization fails, then returns NULL.</p>
+        <p>Specific implementation of creation method is also related to driver required creation model. Normally one driver has multiple instances.You can directly use C++ new operator allocate driver component instance from kernel heap. According to the above example, it can be implemented as the following: </p>
+        <pre class="code">
+EXTERN IDriver * CDECL CreateMouse(
+    uint_t uDeviceNo, void *pvParameter)
+{
+    …
+    Mouse *pMouse = new Mouse (…);
+    if (NULL == pMouse) return NULL; // Not enough memory
+    …
+    ECODE ec = pMouse->InitHw();
+    if (FAILED(ec)) { // Cannot detect hardware device or hardware device initialization error.
+        delete pMouse;
+        return NULL;
+    }
+    …
+    pMouse ->AddRef();
+    return pMouse; // Driver component instance created successfully.
+}
+</pre>
+        <p>(follow the COM reference count rules and invoke <b>AddRef</b>.)</p>
+        <p>Correspondingly, in the <b>Dispose</b> method of this driver class C++ delete operator must be used to delete object, so that memory can be released. The above example can be implemented as the following: </p>
+        <pre class="code">
+void Mouse::Dispose()
+{
+    // Closes hardware device, cancels ISR
+    …
+    delete this;
+}
+</pre>
+        <p>There is another common situation, a driver only have one static instance (i.e. SINGLETON mode). Now this driver component instance can be defined as a static global variable. Correspondingly, one does not need to do release operation in <b>Dispose</b> method of this driver class.</p>
+        <p>6. Adds driver information statically into a global driver configuration table.</p>
+        <p>Driver information added to driver configuration table only needs device name corresponding to the driver and driver instance creation method address. The kernel maintains an array <a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/global_var/g_driverConfigs.htm">g_driverConfigs</a> for this global driver configuration table with <a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/data_structure/DriverConfig.htm">struct&nbsp;DriverConfig</a> as element type plus uint_t type global variable <a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/global_var/g_uNumberOfDriverConfigs.htm">g_uNumberOfDriverConfigs</a> to specify the actual size of this array. Usually, g_driverConfigs and g_uNumberOfDriverConfigs implementation is in $Elastos/src/kernel/drivers/arch/board/config/config.cpp .</p>
+        <p>For the above example, you can configure mouse driver by using the following method: </p>
+        <pre class="code">
+…
+#define DEVICENAME_MOUSE L"mouse"
+…
+EXTERN IDriver * CDECL CreateMouse(
+uint_t uDeviceNo, void *pvParameter);
+…
+//
+// Driver Configurations
+//
+DriverConfig g_driverConfigs[] = {
+    …
+    { DEVICENAME_MOUSE, &CreateMouse },
+    …
+};
+uint_t g_uNumberOfDriverConfigs = lengthof(g_driverConfigs);
+</pre>
+        <p>For device final user, actually you must request for device I/O service through driver.But it does not specially concern the differences between device and driver. From system point of view, the difference between device and driver is obvious, therotically speaking both can exist. Device without corresponding driver cannot be used by end user.Without corresponding device driver the true power of the device cannot be applied and therefore, driver configuration table and device configuration table are only independent in concept.</p>
+        <p>In kernel initialization phase, the system reads device information in device configuration table.The user can also dynamically register device information to the system through <b><a class="style1" href="../driver_development/driver_support_routines/kernel_routines/device_management/method/RegisterDevice.htm">RegisterDevice</a></b> method. No matter which method you use, once the system senses the existence of the new device, it immediately searches corresponding driver through matching device name. If found, then the system creates corresponding driver instance through invocation of corresponding driver creation method of this new device.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_fileno">_fileno</sample>
+    <title> _fileno</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>得到文件指针所指的文件的文件句柄。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_fileno</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构体的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_fileno返回文件句柄。无错误返回。若流中未指定打开的文件，结果未定义。</para>
+    </return>
+
+    <remarks>
+        <para>_fileno返回当前文件的句柄。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_fileno</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _fileno.cpp: This program uses _fileno to obtain
+ * the file handle for some standard C streams.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf(&quot;The file handle for stdin is %d\n&quot;, _fileno(stdin));
+    printf(&quot;The file handle for stdout is %d\n&quot;, _fileno(stdout));
+    printf(&quot;The file handle for stderr is %d\n&quot;, _fileno(stderr));
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The file handle for stdin is 0
+The file handle for stdout is 1
+The file handle for stderr is 2
+</result>
+
+    
+    <references>
+        <reference>
+            <ref_name>fopen</ref_name>
+            <ref_url>_wfopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

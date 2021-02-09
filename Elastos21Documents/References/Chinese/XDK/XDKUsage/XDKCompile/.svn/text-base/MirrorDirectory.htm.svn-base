@@ -1,0 +1,44 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>Elastos&nbsp;XDK的编译</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>Elastos&nbsp;XDK的镜像目录</h2>
+
+    <h3>1.什么是镜像目录</h3>
+    <p>在XDK中，如果用户编译自己的源代码（假设为项目A，与平台特征无关的应用程序项目），将会在源代码的根目录下生成一个镜像目录obj，并且在其下生成相应编译环境的目录obj\sdk\win32\x86.gnu.pc.PRODUCT1.dbg(假设使用win32\x86.gnu.pc.PRODUCT1.dbg作为编译环境)，在对应的编译环境目录下，会生成与项目A完全一致的目录结构obj\sdk\win32\x86.gnu.pc.PRODUCT1.dbg\A</p>
+    <p>
+    （假如项目A下还有子目录，则同样会一一对应地生成出来）。</p>
+    <p>
+     另外，为了同一编译环境下的项目间文件的相互引用和模块间共享，还会在相应编译环境目录下建立obj\sdk\win32\x86.gnu.pc.PRODUCT1.dbg\inc、obj\sdk\win32\x86.gnu.pc.PRODUCT1.dbg\lib目录用于存放编译后生成的头文件和lib文件（这些文件将生成在镜像目录obj\sdk\win32\x86.gnu.pc.PRODUCT1.dbg\A下的相应目录。若在sources文件中指定导出头文件或导出库文件的关键字，则由makefile控制的自动编译过程自动copy到inc和lib内）。</p>
+     <p>
+      DDK、PDK和SDK的处理方法是一致的。
+     </p>
+
+    <h3>2.为什么要用镜像目录</h3>
+    <p>在用户将源代码编译成二进制目标代码的过程中，编译工具会产生一些临时文件和其他相关的文件，如果直接把这些生成的文件放置到用户的源代码目录，会使源代码目录显得杂乱无章。所以，通过镜像目录，可以把用户的源代码与编译生成的文件分开，管理起来更加有条理。因为镜像目录是和用户源代码目录的结构是一致的，所以在使用emake的时候可以根据用户的需要，选择相应的参数来清理相应的镜像目录，而不会造成对其他目录的干扰。然而，镜像目录只存放编译用户源代码所产生的临时目录和所有的中间文件，编译后产生的可执行程序(exe\dll)会根据一定的规则被自动拷贝并归类放在相应得Targets目录中，程序是在Targets目录下运行的。源代码目录、镜像目录和Targets目录的关系见图3：
+    </p>
+    <center><img src="images/mirror.jpg"></center>
+    <center>图3</center>
+    <a NAME="DiretoryJump">
+    <h3>3.如何查看镜像目录</h3>
+    <p>如上所述，镜像目录其实包含了一些共享的目录（以5.6.1节中的编译环境目录为例obj\sdk\win32\x86.gnu.pc.PRODUCT1.dbg\inc和obj\sdk\win32\x86.gnu.pc.PRODUCT1.dbg\lib）和编译目录私有的镜像目录(obj\sdk\win32\x86.gnu.pc.PRODUCT1.dbg\A)，可以通过pd.bat(pd＋参数)来切换到相应的镜像目录中去。</p>
+    <p>常用的包括：</p>
+    <ul>
+       <li>pd inc    切换到obj\sdk\win32\x86.gnu.pc.PRODUCT1.dbg\inc
+       <li>pd lib    切换到obj\sdk\win32\x86.gnu.pc.PRODUCT1.dbg\lib
+       <li>pd @      切换到Targets\sdk\win32\x86.msvc.pc.PRODUCT1.dbg
+       <li>pd ~      切换到obj\sdk\win32\x86.gnu.pc.PRODUCT1.dbg\A
+       <li>pd        回到用pd切换之前的目录（可以用这个命令来从Targets等目录方便的返回当前代码目录）
+    </ul>
+    <p>注：DDK、PDK和SDK的用法是一致，只是切换的具体目录和路径有区别。</p>
+<script>footer("chinese")</script>
+</body>
+</html>

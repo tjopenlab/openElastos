@@ -1,0 +1,81 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>TLS</volume>
+    <title>CThread::AcquireLocalSlot</title>
+
+    <description>
+        <para>
+            分配一个TLS index（Thread Local Storage索引号）。
+        </para>
+    </description>
+
+   <syntax>
+        <return_val> ECode   </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ThreadLocalSlotType    </param_type>
+                <param_name> slotType </param_name>
+                <param_note>
+                    <para>申请的slot槽中所存放的数据的类型   </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type>Int32 *   </param_type>
+                <param_name> pSlotIndex </param_name>
+                <param_note>
+                    <para>指向Int32型的指针，用于获取所分配的TLS 索引号（与slot槽相对应）    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>函数调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数指定的SlotType无效或者指针为NULL</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_OUT_OF_MEMORY</td>
+	    	    <td>所有的TLS index都已分配完</td>
+	        </tr>
+
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+
+    <remarks>
+        <para>在某一线程用<link url="AcquireLocalSlot.htm">CThread::AcquireLocalSlot</link>分配了一个TLS索引号后，之后创建的同一进程中的任何线程都能使用该索引号来储存和重新获取专属于该线程的数据。</para>
+		    <para>申请的slot槽中所存放的数据的类型:ThreadLocalSlotType_Value为slot槽中数据为立即数指针，ThreadLocalSlotType_Mem为slot槽中数据为堆内存指针，ThreadLocalSlotType_Obj为slot槽中数据为构件对象指针。		    </para>
+        <para>TLS槽中所存放的数据类型限定为三种：整数、堆内存、构件对象。</para>
+        <para>一个TLS槽中各个线程实例存放的私有数据类型应该是一致的。</para>
+        <para>进程中的线程能利用TLS索引号逐一的来调用<link url="SetLocalValue.htm">CThread::SetLocalValue</link>（<link url="SetLocalMemory.htm">CThread::SetLocalMemory</link>、<link url="SetLocalObject.htm">CThread::SetLocalObject</link>）；<link url="GetLocalValue.htm">CThread::GetLocalValue</link>（<link url="GetLocalMemory.htm">CThread::GetLocalMemory</link>、<link url="GetLocalObject.htm">CThread::GetLocalObject</link>）来设置或获取存放在TLS槽（slot）中的数据。</para>
+        <para>分配一个TLS索引号通常是在进程中或者是动态链接库（DLL）初始化的过程中。TLS索引号一旦被分配，进程中的每一个线程都能利用该TLS索引号来访问专属于该线程的TLS槽。线程通过调用函数<link url="SetThreadLocalValue.htm">CThread::SetLocalValue</link>，<link url="SetThreadLocalMem.htm">CThread::SetLocalMemory</link>，<link url="SetThreadLocalObj.htm">CThread::SetLocalObject</link>把数据（立即数指针、堆内存指针、构件对象指针）存放在与该TLS索引号相对应的私有TLS槽中。同样，线程在调用<link url="GetLocalValue.htm">CThread::GetLocalValue</link>，<link url="GetLocalMemory.htm">CThread::GetLocalMemory</link>，<link url="GetLocalObject.htm">CThread::GetLocalObject</link>函数过程中也需要通过指定TLS索引号来获取存储在相应TLS槽中的数据（立即数指针、堆内存指针、构件对象指针）。 </para>
+        <para>常量TLS_MINIMUM_AVAILABLE定义了每个进程中可用的最小TLS索引号数目。在Elastos中这个数目为56。 </para>
+        <para>TLS索引号在跨进程时无效。一个DLL认为在一个进程中分配的TLS索引号不能在另外的进程中使用。 </para>
+        <para>DLL可能会像如下示范地这样来使用CThread::AcquireLocalSlot，<link url="RelinquishLocalSlot.htm">CThread::RelinquishLocalSlot</link>，<link url="SetLocalValue.htm">CThread::SetLocalValue</link>，<link url="SetLocalMemory.htm">CThread::SetLocalMemory</link>，<link url="SetLocalObject.htm">CThread::SetLocalObject</link>，<link url="GetLocalValue.htm">CThread::GetLocalValue</link>，<link url="GetLocalMemory.htm">CThread::GetLocalMemory</link>，<link url="GetLocalObject.htm">CThread::GetLocalObject</link>： </para>
+        <para>1、当DLL被与进程相连时，该DLL调用CThread::AcquireLocalSlot函数去分配一个TLS索引号。随后DLL会分配并获得一块动态存储空间，并在调用<link url="SetLocalValue.htm">CThread::SetLocalValue</link>（<link url="SetThreadLocalMem.htm">CThread::SetLocalMemory</link>、<link url="SetThreadLocalObj.htm">CThread::SetLocalObject</link>）函数过程中通过指定的TLS索引号在线程对应的TLS槽中存放这块动态存储空间的地址。 这展示了进程的初始线程的初始化过程。TLS索引号作为一个全局变量或者静态变量存放在DLL中。 </para>
+        <para>2、每当DLL与进程中一个新的线程相连时，DLL将分配一块动态存储空间给新线程，并在调用<link url="SetLocalValue.htm">CThread::SetLocalValue</link>（<link url="SetLocalMemory.htm">CThread::SetLocalMemory</link>、<link url="SetLocalObject.htm">CThread::SetLocalObject</link>）函数过程中通过指定的TLS索引号在线程对应的TLS槽中存放这块动态存储空间的地址。这展示了新线程的初始化过程。 </para>
+        <para>3、当一个已经初始化的线程为查寻存放其在动态存储空间中的数据而调用DLL时，DLL便可在调用<link url="GetLocalValue.htm">CThread::GetLocalValue</link>（<link url="GetLocalMemory.htm">CThread::GetLocalMemory</link>，<link url="GetLocalObject.htm">CThread::GetLocalObject</link>）函数时通过指定的TLS索引号来获取这块动态存储空间的地址（存放在TLS槽中）。 </para>
+	</remarks>
+	<requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

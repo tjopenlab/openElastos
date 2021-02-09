@@ -1,0 +1,45 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Custom Marshaling/Unmarshaling</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Principal of CAR Component Custom Marshaling/Unmarshaling Mechanism</h2>
+        <p>CAR component custom marshaling/unmarshaling mechanism (brief as CAR&nbsp;custom&nbsp;marshaling in the following) depends on remote procedure call technology (brief as CAR RPC in the following) provided by CAR component run-time platform. The reason that we use this design is mainly because: </p>
+        <ul>
+            <li>Reduce logic coupling between CAR&nbsp;RPC and CAR&nbsp;custom&nbsp;marshaling and makes the logic structure more clear.
+            <li>When designing CAR&nbsp;RPC there is no need of extra thinking for CAR&nbsp;custom&nbsp;marshaling, it reduces the designing burden.
+            <li>The current design of CAR&nbsp;RPC standard marshaling/unmarshaling mechanism requires all input/output parameter size be predictable in the marshaling/unmarshaling buffer. This requirement determines that Microsoft&nbsp;DCOM like custom marshaling/unmarshaling mechanism does not fit CAR.
+        </ul>
+        <p>If you want to use CAR component custom marshaling/unmarshaling, you must declare and implement ICustomMarshal interface in the component. The following paragraphs describes principal of CAR component marshaling/unmarshaling mechanism implementation with this interface.</p>
+        <pre class="code">
+ICustomMarshal {
+    ECODE GetClsid([out] EzCLSID* pezCLSID);
+    ECODE CreateObject([in] IUnknown *pOriginProxy, [out] IUnknown **ppNewProxy);
+}
+</pre>
+        <p>CAR component custom marshaling/unmarshaling mechanism can be divided into four phases in run-time: </p>
+        <center><img src="images\process0.jpg"</center>
+        <center>Diagram 1: Custom marshaling run-time phase 0</center>
+        <p>Phase 0, CAR component run-time platform uses CAR&nbsp;RPC standard marshaling/unmarshaling technology marshaling/unmarshaling component instance. After this process is terminated, a standard CAR component stub is created in the service process (X) that the component instance is running in, at the same time a standard CAR component proxy is created in client process (Y). In fact, this process is how CAR&nbsp;RPC standard marshaling/unmarshaling mechanism is implemented.</p>
+        <center><img src="images\process1.jpg"</center>
+        <center>Diagram 2: Custom marshaling run-time phase 1</center>
+        <p>Phase 1, CAR component run-time platform searches for metadata in order to decide if the component implemented the ICustomMarshal interface. If ICustomMarshal interface is implemented, returns CAR standard component proxy (i.e. CAR&nbsp;RPC standard marshaling/unmarshaling mechanism finishes). Otherwise it obtains the ICustomMarshal interface pointer of this component by invoking the QueryInterface of CAR standard component proxy, then invoking GetClsid method of this interface pointer to obtain the EzCLSID of Custom&nbsp;Marshaler component object. At last use EzCreateObject creates a new Custom&nbsp;Marshaler component object instance (<font color="red">Note: Custom&nbsp;Marshaler component must also implement ICustomMarshal interface</font>) in process Y.</p>
+        <center><img src="images\process2.jpg"</center>
+        <a NAME="jpg3"><center>Diagram 3: Custom marshaling/unmarshaling run-time phase 2</center>
+        <p>Phase 2, CAR component run-time platform uses CAR standard component proxy interface pointer as input pOriginProxy used by CreateObject method of Custom&nbsp;Marshaler component instance ICustomMarshal interface, then returns the output parameter ppNewProxy of the interface method as custom component proxy (ppNewProxy thus pointer to Custom&nbsp;component&nbsp;proxy object in the above diagram).</p>
+        <p>From the description of this phase we know how to create Custom&nbsp;component&nbsp;proxy in CreateObject method instance by using the received pOriginProxy pointer is completely controlled by Custom&nbsp;Marshaler component implementation. Also, in order to guarentee the custom marshaling/unmarshaling is used the next time Custom&nbsp;component&nbsp;proxy component object is marshaled/unmarshaled, this component should implement ICustomMarshal interface also.</p>
+        <center><img src="images\process3.jpg"</center>
+        <center>Diagram 4: Custom marshaling/unmarshaling run-time phase 3</center>
+        <p>Phase 3, CAR component run-time platform invokes interface Release method delete temporary CAR standard component proxy object and Custom&nbsp;Marshaler object.</p>
+        <p>After this phase is finished, the CAR&nbsp;RPC communication channel between Custom&nbsp;component&nbsp;proxy and component object instance in process X, Custom&nbsp;component&nbsp;proxy object is responsible to communicate with component object in process X (<font color="red">Note: Custom&nbsp;component&nbsp;proxy also can keep this communication channel by keeping the CAR standard component proxy object pointer and invoke AddRef, details is determind by the implementation of Custom&nbsp;component&nbsp;proxy component</font>).</p>
+
+<script>footer("english")</script>
+</body>
+</html>

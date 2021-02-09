@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\sprintf">sprintf</sample>
+    <title> sprintf, swprintf</title>
+    <volume>C 运行库函数</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>格式化输出到字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>sprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>输出字符的存储空间</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format[, argument]...</param_name>
+                <param_note>
+                    <para>格式化控制（argument为可选参数）</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>swprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format[, argument]...</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数sprintf返回存储在buffer中的字符数，不包括串结束符。函数swprintf返回存储在buffer中的宽字符数，不包括宽串结束符。</para>
+    </return>
+
+    <remarks>
+        <para>函数sprintf格式化存储一系列字符和数值到buffer中。函数的每个可选参数，都要根据format格式说明中相应的格式进行转换并输出。参数format由普通字符组成，与printf的参数format具有相同的形式和功能。在最后输出的字符后面要追加一个空字符。重叠字符串之间的拷贝，操作未定义。函数swprintf是sprintf的宽字符版本；指针参数指向宽字符串。swprintf与sprintf对编码错的检测是不同的。swprintf和fwprintf大体相同，不同之处在于swprintf将输出写入字符串，而fwprintf将输出写入目标文件。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>sprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>swprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* sprintf.cpp: This program uses sprintf to format various
+ * data and place them in the string named buffer.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char  buffer[200], s[] = &quot;computer&quot;, c = &apos;l&apos;;
+    int    i = 35, j;
+    float fp = 1.7320534f;
+
+    /* Format and print various data: */
+    j  = sprintf(buffer,      &quot;\tString:     %s\n&quot;, s);
+    j += sprintf(buffer + j, &quot;\tCharacter: %c\n&quot;, c);
+    j += sprintf(buffer + j, &quot;\tInteger:    %d\n&quot;, i);
+    j += sprintf(buffer + j, &quot;\tReal:        %f\n&quot;, fp);
+
+    printf(&quot;Output:\n%s\ncharacter count = %d\n&quot;, buffer, j);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Output:
+String:     computer
+Character: l
+Integer:    35
+Real:        1.732053
+
+character count = 75
+</result>
+
+  
+
+    <references>
+        <reference>
+            <ref_name>wprintf</ref_name>
+            <ref_url>wprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fwprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>vswprintf</ref_name>
+            <ref_url>vswprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

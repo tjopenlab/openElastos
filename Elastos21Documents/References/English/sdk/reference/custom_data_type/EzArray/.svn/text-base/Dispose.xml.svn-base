@@ -1,0 +1,62 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\Dispose">Dispose</sample>
+    <volume> Common data structure </volume>
+    <interface> EzArray </interface>
+    <method>Dispose</method>
+
+    <description>
+        <para>Deletes the EzArray objects which are created on heap by <b>CreateObject</b> or <b>Clone</b> and free memory.</para>
+    </description>
+
+    <syntax>
+        <return_val>void </return_val>
+        <NoArguments/>
+    </syntax>
+
+    <remarks>
+        <para> After using <b><link url="CreateObject.htm">CreateObject</link></b> or <b><link url="Clone.htm">Clone</link></b> function to create EzArray array, the function has to be called to free the memory occupied by these objects. </para>
+        <para> While creating EzArray array on stack, we need not use this funtion to free memory. </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <EzArray.h>
+#include <stdio.h>
+
+int __cdecl main()
+{
+    EzArray<int> MyArray = EzArray<int>::CreateObject(10);
+
+    int i = MyArray.GetLength();
+    printf("MyArray's Length = %d", i);
+
+    MyArray.Dispose();
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+MyArray's Length = 10
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name> CreateObject</ref_name>
+            <ref_url> CreateObject</ref_url>
+        </reference>
+         <reference>
+            <ref_name> Clone </ref_name>
+            <ref_url> Clone</ref_url>
+        </reference>
+    </references>
+
+</manpage>

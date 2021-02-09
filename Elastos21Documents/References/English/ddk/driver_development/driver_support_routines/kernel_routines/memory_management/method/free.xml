@@ -1,0 +1,64 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\free">free</sample>
+    <volume>Memory Management Methods</volume>
+    <title>free</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>
+        	Releases allocated memory blocks.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>void </return_val>
+        <parameters>
+            <api_param>
+                <param_type> void * </param_type>
+                <param_name> pv </param_name>
+                <param_note>
+                    <para>
+                    	Starting address of memory block to be freed. This parameter cannot be NULL.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>
+        	This method frees memory blocks allocated by the <link url="malloc.htm">malloc</link> method. Attempts to 
+        	release empty pointer or invalid pointer (pointer that is not pointing to memory blocks allocated by the 
+        	<link url="malloc.htm">malloc</link> method), will cause unpredictable error. 
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>malloc</ref_name>
+            <ref_url>malloc</ref_url>
+        </reference>
+    </references>
+</manpage>

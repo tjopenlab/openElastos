@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<TITLE>AuraVirtualMemory_Commit</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<H3>AuraVirtualMemory_Commit</H3>
+<p>
+       Requires the system to commit the specified virtual memory
+        </p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="4" class="datatype">AURA_API AuraVirtualMemory_Commit(
+        </TD>
+</TR>
+<TR valign="top">
+<TD width="8%"></TD>
+<TD class="datatype">Address</TD>
+<TD class="param">address</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">);</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<H4>Parameters</H4>
+<DL><DT class="param" style="color:#222222;margin-left:42">address</DT>
+<DD style="margin-left:80"><font style="font-weight:normal;font-style:normal;color:black">
+                    [in] The specified virtual address. 
+                    <BR /><BR />
+</font></DD>
+</DL>
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return Value</TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">Funtion succeeds in committing  physical address of virtual memory.</TD>
+</TR>
+<TR><TD class="cell">E_DOES_NOT_EXIST </TD>
+<TD class="cell">Specified </TD>
+</TR>
+<TR><TD class="cell">E_OUT_OF_MEMORY </TD>
+<TD class="cell">Out of memory</TD>
+</TR>
+</table></p>
+<h4>Remarks</h4>
+<p>
+         Successful call to EzMemoryAlloc will get a dummy address resource, but the operating system does not allocate memory. The actual memory allocation occurs only after calling EzMemoryCommit and is mapped to the specified virtual memory space.</p>
+<p>vAddr must be an address of the virtual memory block obtained by CVirtualMemoryAlloc. Otherwise, it will return E_NOT_EXIST.</p>
+<p> The Map_Upgrow and Map_Downgrow flag of CVirtualMemory::Alloc will affect the mode of committing physical memory by EzMemoryCommit . When this method commits the physical page with flag being set as Map_Upgrow , it will commit all the needed physical memory of the virtual block addressed from the lowest address obtained, to the address passed in through EzMemoryCommit and map. On the other hand, when CVirtualMemoryCommit is called to commit physical page with flag being set as Map_Downgrow , it will commit and map the needed physical memory of the virtual memory block addressed from the highest address obtained, to the address passed in through CVirtualMemoryCommit .</p>
+<h4>Requirements</h4>
+<p><table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>Windows 2000 or later; Elastos 2.0 or later.</td>
+<td></td>
+</tr>
+<tr>
+<td>Header Files: </td>
+<td>elastos.h</td>
+<td></td>
+</tr>
+<tr>
+<td>Library: </td>
+<td>elastos.lib</td>
+<td></td>
+</tr>
+</table></p>
+<p style="font-size:90%;font-weight:bold;margin-left:0">　</p><script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>
+

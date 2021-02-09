@@ -1,0 +1,52 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\ezstr\length">length</sample>
+    <volume> Common data structure </volume>
+    <interface> EzStr  </interface>
+    <method> Length </method>
+
+    <description>
+        <para> The member function of EzStr, which is invoked to get the length of the EzStr string.</para>
+    </description>
+    <syntax>
+        <return_val> int </return_val>
+<NoArguments/>
+    </syntax>
+<!-- ======= return value (optional)======== -->
+    <return>
+        <para>Returns the number of the characters in the string.</para>
+    </return>
+<!-- ======================================= -->
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStr str1 = EZCSTR("Hello,world!");
+    int length = str1.Length();
+
+    printf("The length of str1 is %d.\n",length);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+The length of str1 is 12.
+]]>
+    </result>
+
+    <remarks>
+        <para>Inside EzStr, the string is stored as Unicode characters (double byte in width). So the double byte is the unit of the Unicode string length in EzStr.</para>
+    </remarks>
+
+</manpage>

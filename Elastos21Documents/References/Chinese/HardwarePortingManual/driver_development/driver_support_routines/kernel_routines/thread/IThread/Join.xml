@@ -1,0 +1,80 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+
+<volume>线程与调度</volume>
+<interface>IThread</interface><method> Join </method>
+    <description>
+        <para>
+            在指定时间内等待线程结束。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Millisecond  </param_type>
+                <param_name> ms  </param_name>
+                <param_note>
+                    <para>
+                        等待线程结束的时间，单位为毫秒
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult *  </param_type>
+                <param_name> pResult  </param_name>
+                <param_note>
+                    <para>
+                        等待的状态结果指针
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>成功等待线程结束</td>
+            </tr>
+            <tr>
+                <td>WaitResult_Interrupted</td>
+                <td>被打断</td>
+            </tr>
+            <tr>
+                <td>WaitResult_TimedOut</td>
+                <td>超时</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_OPERATION</td>
+                <td>非法操作</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>
+            当参数ms为0时，方法返回WaitResult_TimedOut；当参数ms为INFINITE时，会一直阻塞当前进程，直到调用Join方法的线程结束。
+        </para>
+        <para>
+            如果线程已经退出，方法返回NOERROR；如果线程在指定的时间内没有退出，方法返回WaitResult_TimedOut；如果在等待过程中被打断，方法返回WaitResult_Interrupted。如果线程对自己使用Join方法，方法返回E_INVALID_OPERATION。
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

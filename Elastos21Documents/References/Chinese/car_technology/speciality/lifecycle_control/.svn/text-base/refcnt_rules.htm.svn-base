@@ -1,0 +1,179 @@
+<html>
+
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>refcnt_rules</title>
+	</head>
+
+	<body>
+		<h2>AddRef及Release调用规则</h2>
+      <P>为正确地使用引用计数，概括的来说，用户需要了解以下三条一般规则：</P>
+      <P><B>第一，</B>对于那些以输出参数返回接口指针的函数，在返回之前应该用相应的指针调用AddRef()，这样当客户从这样的函数得到一个接口后，无需调用AddRef()。</P>
+      <P><B>第二，</B>在使用完某个接口之后应调用此接口的Release()方法。</P>
+      <P><B>第三，</B>在将一个接口指针赋给另外一个接口指针时，应调用AddRef()方法，也就是说，在建立接口的另外一个引用后应增加相应构件对象的引用计数。</P>
+      <P>按照上述规则，我们给出下面的代码：</P>
+<pre class=code>
+//creat a new dictionary object
+IDictionary * pIDictionary = CreatObject(CLSIC_Dictionary,IID_Dictionary);
+………
+IDictionary * pIDictionaryForWord = pIDictionary;
+
+pIDictionaryForWord -> AddRef();
+//Insert or delete some word
+pIDictionaryForWord -> InsertWord(“…”,”…”);
+pIDictionaryForWord -> DeleteWord (“…”);
+pIDictionaryForWord -> Release();  //可省略
+//finally, release dictionary object
+pIDictionary ->Release();
+………
+</pre>
+      <P>上述代码并不复杂，简单地说明了客户程序调用接口成员函数的过程，通过对AddRef和Release的调用，有效地控制了字典对象的生存期。</P>
+      <P>按照引用计数的一般规则，只要协作开发的每个程序员都遵照这些规则，那么对接口指针的使用就不会产生问题。但使用这些规则可能使得在程序代码中频繁地调用AddRef()和Release()方法，从而降低程序运行效率。因此，在某些特殊情形下，我们可以省略对AddRef()或Release()的调用。</P>
+      <P><B>情形一：</B>当一个接口指针的生命期包含于另一接口指针的生命期时，只需对外层的那个指针做引用计数。</P>
+      <P>为说明这个问题我们以下面这段代码为例：</P>
+<pre class=code>
+{
+        ………
+    IHello * pHello2 = pHello;
+    
+    pHello2 -> AddRef();  //可省略
+    
+    pHello -> Hello();
+    pHello2 -> Hello();
+    
+    pHello2 -> Release();  //可省略
+    
+    pHello ->Relaease();
+    ………
+}
+</pre>
+      <P>对于上面这段代码，只有当用户将pHello释放时构件对象才会从内存中删除。而用户只有在用完了pHello和pHello2之后才会将pHello释放。因此可以保证在pHello2的生命期内相应构件对象将一直存于内存中。所以对pHello的单个引用计数就已足够，pHello2并不真的需要调用AddRef和Release。</P>
+      <P>如若以下段代码为例，pHello2的生命期不包含在pHello的生命期内，则必须对pHello2进行引用计数。</P>
+<pre class=code>
+{
+        ………
+    IHello * pHello2 = pHello;
+    
+    pHello2 -> AddRef();  //不可省略
+    
+    pHello -> Hello();
+    pHello ->Relaease();
+    
+    pHello2 -> Hello();
+    pHello2 -> Release();  //不可省略
+    ………
+}
+</pre>
+      <P><B>情形二：</B>当两个接口指针同时指向一个对象时，可以省略对其中一个指针的引用计数。
+在下面这段代码中，通常我们会省略被注释的代码，因为它们都指向同一个对象。</P>
+<pre class=code>
+IFoo * pFoo;
+Func1()
+{
+    CBar::New(&pBar);
+    pFoo = IFoo::Probe(pBar);
+    // Foo->AddRef();
+    // pBar->Release();
+}
+Func2()
+{
+    pFoo->Release();
+}
+</pre>
+
+      <P>需要注意的是，对于存在聚合或者继承关系的对象接口，对上例中省略代码的操作就要十分谨慎了。如果是这样一种情况：</P>
+<pre class=code>
+{
+    ......
+    Class CFooBase {
+      Interface IFoo;
+    }
+    
+    Class CBar : CFooBase {
+      Interface IBar;
+    }
+}
+</pre>
+      <P>或者这样一种情况：</P>
+<pre class=code>
+{         
+    ......    
+    Aspect AFoo {
+      Interface IFoo;
+    }
+    
+    [aggregate(AFoo)]
+    Class CBar {
+      Interface IBar;
+    }
+}
+</pre>
+      <P>对于以上两种情况，我们在对象的过程使用中就不能省略那两句被注释的代码，因为pFoo和pBar指向的是两个对象，对其中一个的AddRef操作不会作用到另一个身上，如果还如之前一样省略代码，会导致因CBar没被释放而内存泄漏，而pFoo被多释放一次（导致pFoo非预期情况下变成无效指针）。</P>
+
+		  <P>由此，我们可以得出一些典型情况下的使用规则如下：</P>
+		<H4>输入参数规则</H4>
+		  <P>输入参数指的是给函数传递某个值的参数。在函数体中将会使用这个值但却不会修改它或将其返回给调用者。在C++中，输入参数实际上就是那些按值传递的参数或常量。下面的代码就是将接口指针作为输入参数的一个例子。</P>
+<pre class=code>
+Void foo (IX * pIX)
+{
+    pIX -> fun();
+}
+</pre>
+      <P>对于传入函数的接口指针，无需调用AddRef和Release函数。这是因为函数的生命期嵌套在调用者的生命期内。</P>
+		<H4>输出参数规则</H4>
+		  <P>输出参数是指在被调用函数执行过程中进行赋值的参数，而且被调用函数并没有用到函数初始传进来的值，输出参数相当于函数的一个返回值。在C/C++语言中，输出参数为一个指针变量。因为输出参数相当于在被调用函数中生成了一个新的接口指针变量，因此，在被调用函数返回之前，对输出参数应该调用AddRef使接口引用计数增1。这条规则也适用于函数返回值为接口指针变量的情形。</P>
+		<H4>输入-输出参数规则</H4>
+		  <P>所谓输入-输出参数是指即是输入参数又是输出参数，作为输入参数，在被调用函数执行过程中，一定会用到该参数所传进来的值；作为输出参数，在函数返回之前又会对它进行修改赋值。对这种参数采用的规则是：在参数被修改之前，对原来传进来的接口指针调用Release以使引用计数减1，在参数被修改之后，对新接口指针变量调用AddRef，以标记对新的接口指针的引用。如果在函数执行过程中，参数没有被修改，则类似于输入参数的情形，既不调用Release，也不调用AddRef。如下例所示:</P>
+<pre class=code>
+Void ExchangeForCachedPtr(int I, IX ** ppIX)
+{
+    (*ppIX) -> Fx();    //Do something with in-parameter.
+    (*ppIX) -> Release(); //Release in parameter.
+    *ppIX = g_Cache[i]; //Get cached pointer.
+    (*ppIX) -> AddRef();//AddRef pointer.
+    (*ppIX) -> Fx();    //Do something with out-parameter.
+}
+</pre>
+		<H4>局部接口指针变量规则</H4>
+		  <P>对于局部复制的接口指针，由于它们只是在函数的生命期内才存在，因此无需调用AddRef和Release。这条规则实际是输入参数规则的直接结果。在下面的例子中，pIX2只是在函数foo的生命期内才存在，因此可以保证其生命期将嵌套在所传入的pIX指针的生命期内，因此无需对pIX2调用AddRef和Release。</P>
+<pre class=code>
+Void foo (IX * pIX)
+{
+    IX * pIX2 = pIX;
+    pIX2 -&gt; fun();
+}
+</pre>
+		<H4>全局接口指针变量及成员接口指针变量规则</H4>
+		  <P>因为任何一个函数中都可以访问全局接口指针变量，所以在把全局接口指针变量作为输入参数传给某个函数之前，应该调用AddRef以保证在函数调用中可以使用该接口指针变量，由于它是全局变量，因此其它的函数有可能会调用Release函数来释放相应的对象。在函数返回之后应调用Release函数。</P>
+		  <P>对于成员接口指针变量来说，也应按此种方式进行处理。因为类中的任何成员函数都可以改变成员变量接口指针的状态。</P>
+		<H4>当以上情形都不合适时，我们使用以下一般性的规则：</H4>
+		  <P>在顺序执行过程中，如果要对一个接口指针变量赋值，则对赋值后的接口指针变量调用AddRef，并且，如果赋值前的接口指针变量还没有结束，则赋值前必须对它调用Release以便先结束它的使用。</P>
+		  <P>如果使用完一个接口指针变量，以后不再用它了，则调用Release函数。</P>
+		  <P>需要注意的是，AddRef和Release并不总是成对出现，因为在某些函数中已执行了对指针的AddRef操作。例如，在下面的代码中，对象CA取得了一个指向接口IA的指针pAObj。由于在New中已经调用了AddRef，因此这里不再调用它。但对于New所返回的IA接口，却需要调用Release。</P>
+<pre class=code>
+//Create a new component.
+IA * pAObj;
+
+ECode ec = CA :: New(&pAObj);    //new方法中包含pAObj -> AddRef()操作;
+
+if (FAILED(ec)) {
+    printf("Can't create CA. ec = 0x%08x\n", ec);
+    return ec;
+}
+
+pAObj -> SomeFun();
+pAObj -> Release();
+………
+
+<pre>
+<P>另外，AddRef和Release的返回值没有实际意义，只是在程序调试中才可能用得上。用户不应将此值当成是对象的精确引用数。</P>
+
+
+
+
+</pre>
+	</body>
+
+</html>

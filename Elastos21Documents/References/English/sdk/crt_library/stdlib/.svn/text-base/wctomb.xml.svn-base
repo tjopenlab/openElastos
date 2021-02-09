@@ -1,0 +1,121 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\wctomb">wctomb</sample>
+    <title>wctomb</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Converts a wide character to the corresponding multibyte character.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>wctomb</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>mbchar</param_name>
+                <param_note>
+                    <para>The address of a multibyte character.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t</param_type>
+                <param_name>wchar</param_name>
+                <param_note>
+                    <para>A wide character.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If wctomb converts the wide character to a multibyte character, it returns the number of bytes (which is never greater than MB_CUR_MAX) in the wide character. If wchar is the wide-character null character (L'\0'), wctomb returns 1. If the conversion is not possible in the current locale, wctomb returns –1.</para>
+    </return>
+
+    <remarks>
+        <para>The wctomb function converts its wchar argument to the corresponding multibyte character and stores the result at mbchar. You can call the function from any point in any program.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>wctomb</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* wctomb.cpp: this program use wctomb to converts the wide character to a multibyte character */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    int i;
+    wchar_t wc = L&apos;a&apos;;
+    char *pmbnull = NULL;
+    char *pmb = (char *)malloc(sizeof(char));
+
+    printf(&quot;Convert a wide character:\n&quot;);
+    i = wctomb(pmb, wc);
+    printf(&quot;\tCharacters converted: %u\n&quot;, i);
+    printf(&quot;\tMultibyte character: %.1s\n\n&quot;, pmb);
+
+    printf(&quot;Attempt to convert when target is NULL:\n&quot;);
+    i = wctomb(pmbnull, wc);
+    printf(&quot;\tCharacters converted: %u\n&quot;, i);
+    printf(&quot;\tMultibyte character: %.1s\n&quot;, pmbnull);
+
+
+    free(pmb);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Convert a wide character:
+Characters converted: 1
+Multibyte character: a
+
+Attempt to convert when target is NULL:
+Characters converted: 0
+Multibyte character: (
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>mblen</ref_name>
+            <ref_url>mblen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>mbstowcs</ref_name>
+            <ref_url>mbstowcs</ref_url>
+        </reference>
+        <reference>
+            <ref_name>mbtowc</ref_name>
+            <ref_url>mbtowc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcstombs</ref_name>
+            <ref_url>wcstombs</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,128 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\exit">exit</sample>
+    <title> exit, _exit</title>
+    <volume>C Run-Time Library Function</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Terminates the calling process after cleanup function registering table (exit) or immediately (_exit).</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>exit</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>status</param_name>
+                <param_note>
+                    <para>Exit status.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>_exit</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>status</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>The exit and _exit functions terminate the calling process. exit calls, in last-in-first-out (LIFO) order, the functions registered by atexit, then flushes all file buffers before terminating the process. _exit terminates the process without processing atexit or flushing stream buffers. The status value is typically set to 0 to indicate a normal exit and set to some other value to indicate an error.</para>
+	<para>Although the exit and _exit calls do not return a value, the low-order byte of status is made available to the waiting calling process, if one exists, after the calling process exits. The status value is available to the operating-system batch command ERRORLEVEL and is represented by one of two constants: EXIT_SUCCESS, which represents a value of 0, or EXIT_FAILURE, which represents a value of 1.</para>
+        <para>The behavior of exit and _exit is as follows: </para>
+        <table>
+	        <th>
+               <td>Function</td>
+               <td>Description</td>
+            </th>
+            <tr>
+               <td>exit</td>
+               <td>Performs complete C library termination procedures, terminates the process and exits with the supplied status code.</td>
+            </tr>
+            <tr>
+               <td>_exit</td>
+               <td>Performs quick C library termination procedures, terminates the process and exits with the supplied status code.</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>exit</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_exit</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+//==========================================================================
+// discription: This program prompts the user for a yes or no and returns
+// an exit code of 1 if the user answers Y or y; otherwise it returns 0.
+// The error code could be tested in a batch file.
+//==========================================================================
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+
+int main()
+{
+    int ch;
+
+    printf(&quot;Yes or no? &quot;);
+    ch = getwchar();
+    printf(&quot;\n&quot;);
+    if (ch == &apos;Y&apos; || ch == &apos;y&apos;)
+        exit(1);
+    else
+        exit(0);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Yes or no? Y
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>abort</ref_name>
+            <ref_url>abort</ref_url>
+        </reference>
+        <reference>
+            <ref_name>atexit</ref_name>
+            <ref_url>atexit</ref_url>
+        </reference>
+    </references>
+
+</manpage>

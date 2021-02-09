@@ -1,0 +1,78 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>BufferOf</interface>
+    <method> Replace </method>
+
+    <description>
+        <para>用源数据替换BufferOf数组从指定位置的内容。</para>
+    </description>
+
+    <syntax>
+        <return_val>BufferOf &amp; </return_val>
+        <parameters>
+            <api_param>
+                <param_type> Int32 </param_type>
+                <param_name> offset </param_name>
+                <param_note>
+                    <para> 替换位置，单位为sizeof(T)</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> const <i>T</i>*</param_type>
+                <param_name>pBuf </param_name>
+                <param_note>
+                    <para> T类型数组 </para>
+                </param_note>
+            </api_param>
+            
+            <api_param>
+                <param_type> Int32 </param_type>
+                <param_name> n </param_name>
+                <param_note>
+                    <para> 替换的元素个数</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当前BufferOf对象引用。</para>
+    </return>
+    <remarks>
+        <para>超过BufferOf对象可用的长度会被省略掉。 </para>
+    </remarks>
+<example>
+<pre>
+BufferOf_&lt;Int8,4&gt; MyArray;
+MyArray.SetUsed(4);
+Int8 p[] = {0,1,2,3};
+for (int i = 0; i &lt; 4; i++) {
+    
+    MyArray[i] = i;
+}
+
+CConsole::WriteLine(MyArray[1]);  //Display : 1
+CConsole::WriteLine(MyArray[2]);  //Display : 2
+CConsole::WriteLine(MyArray[3]);  //Display : 3
+
+MyArray.Replace(1,p,3);
+
+CConsole::WriteLine(MyArray[1]);  //Display : 0
+CConsole::WriteLine(MyArray[2]);  //Display : 1
+CConsole::WriteLine(MyArray[3]);  //Display : 2
+</pre>
+</example>
+    
+
+<references>
+    <reference>
+        <ref_name>BufferOf</ref_name>
+        <ref_url>../BufferOf</ref_url>
+    </reference>
+
+</references> 
+    
+</manpage>

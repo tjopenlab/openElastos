@@ -1,0 +1,79 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>AString</class>
+    <method>LastIndexOf</method>
+    <description>
+        <para> 报告指定的AString在此实例中的最后一个匹配项的索引位置。</para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const AString &amp;</param_type>
+            <param_name> str </param_name>
+            <param_note>
+                <para> 要查找的AString。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive </param_default>
+            <param_note>
+                <para> 大小写标示符。参见<link url="../../../others/StringCase.htm">StringCase</link>枚举类型说明。(StringCase_Insensitive暂不支持) </para>
+            </param_note>
+        </api_param> 
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name> encoding  </param_name>
+            <param_default>Encoding_Default  </param_default>
+            <param_note>
+                <para> 指定字符编码方式。 参见<link url="../../../others/Encoding.htm">Encoding</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>               
+        </parameters>        
+    </syntax>
+    <return>
+        <para>如果找到该字符串，则为str的从零开始的索引位置；如果未找到该字符串，则为-1。如果str为空字符串("")，则返回值为0。</para>
+    </return>
+    <remarks>
+        <para>1.索引编号从零开始。 </para>
+        <para>2.若AString实例或str包含的字符串指针为NULL,或AString实例为空字符串("")，则返回-1。 </para>
+    </remarks>
+
+<example>
+<pre>
+AString as("abcabc");
+AString assub("bc");
+CConsole::WriteLine(as.LastIndexOf(assub));  //Display : 4
+</pre>
+</example>
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::LastIndexOf</ref_name>
+        <ref_url>index/LastIndexOf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::IndexOfChar </ref_name>
+        <ref_url>../LastIndexOfChar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::IndexOf </ref_name>
+        <ref_url>../IndexOf/index/IndexOf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::LastIndexOf</ref_name>
+        <ref_url>../../WString/LastIndexOf/index/LastIndexOf</ref_url>
+    </reference>
+</references>   
+ 
+ 
+</manpage>

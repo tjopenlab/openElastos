@@ -1,0 +1,333 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\strftime">strftime</sample>
+    <title> strftime </title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>Formats a time string.</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>strftime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strDest</param_name>
+                <param_note>
+                    <para>Output string.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>maxsize</param_name>
+                <param_note>
+                    <para>Maximum length of string.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format</param_name>
+                <param_note>
+                    <para>Format-control string.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const struct tm*</param_type>
+                <param_name>timeptr</param_name>
+                <param_note>
+                    <para>tm data structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>strftime returns the number of characters placed in strDest if the total number of resulting characters, including the terminating null, is not more than maxsize. Otherwise, the functions return 0 and the contents of strDest is indeterminate.</para>
+    </return>
+
+    <remarks>
+        <para>The strftime functions format the tm time value in timeptr according to the supplied format argument and store the result in the buffer strDest. At most, maxsize characters are placed in the string.</para>
+        <para>Description about tm data structure:</para>
+        <table>
+            <th>
+               <td>timeptr Field</td>
+               <td>Value</td>
+            </th>
+            <tr>
+               <td>tm_sec</td>
+               <td>Seconds after minute (0 – 59).</td>
+            </tr>
+            <tr>
+               <td>tm_min</td>
+               <td>Minutes after hour (0 – 59).</td>
+            </tr>
+            <tr>
+               <td>tm_hour</td>
+               <td>Hours since midnight (0 – 23).</td>
+            </tr>
+            <tr>
+               <td>tm_mday</td>
+               <td>Day of month (1 – 31).</td>
+            </tr>
+            <tr>
+               <td>tm_mon</td>
+               <td>Month (0 – 11; January = 0).</td>
+            </tr>
+            <tr>
+               <td>tm_year</td>
+               <td>Year (current year minus 1900).</td>
+            </tr>
+            <tr>
+               <td>tm_wday</td>
+               <td>Day of week (0 – 6; Sunday = 0).</td>
+            </tr>
+            <tr>
+               <td>tm_yday</td>
+               <td>Day of year (0 – 365; January 1 = 0).</td>
+            </tr>
+            <tr>
+               <td>tm_isdst</td>
+               <td>Positive if daylight saving time is in effect; 0 if daylight saving time is not in effect; negative if status of daylight saving time is unknown. 
+               </td>
+            </tr>
+        </table>
+        <para>The format argument consists of one or more codes; as in printf, the formatting codes are preceded by a percent sign (%). Characters that do not begin with % are copied unchanged to strDest. The LC_TIME category of the current locale affects the output formatting of strftime.(For more information on LC_TIME, see setlocale.) The formatting codes for strftime are listed below:</para>
+        <table>
+            <tr>
+               <td>%a</td>
+               <td>Abbreviated weekday name.</td>
+            </tr>
+            <tr>
+               <td>%A</td>
+               <td>Full weekday name.</td>
+            </tr>
+            <tr>
+               <td>%b</td>
+               <td>Abbreviated month name.</td>
+            </tr>
+            <tr>
+               <td>%B</td>
+               <td>Full month name.</td>
+            </tr>
+            <tr>
+               <td>%c</td>
+               <td>Date and time representation appropriate for locale.</td>
+            </tr>
+            <tr>
+               <td>%d</td>
+               <td>Day of month as decimal number (01 – 31).</td>
+            </tr>
+            <tr>
+               <td>%H</td>
+               <td>Hour in 24-hour format (00 – 23).</td>
+            </tr>
+            <tr>
+               <td>%I</td>
+               <td>Hour in 12-hour format (01 – 12).</td>
+            </tr>
+            <tr>
+               <td>%j</td>
+               <td>Day of year as decimal number (001 – 366).</td>
+            </tr>
+            <tr>
+               <td>%m</td>
+               <td>Month as decimal number (01 – 12).</td>
+            </tr>
+            <tr>
+               <td>%M</td>
+               <td>Minute as decimal number (00 – 59).</td>
+            </tr>
+            <tr>
+               <td>%p</td>
+               <td>Current locale’s A.M./P.M. indicator for 12-hour clock.</td>
+            </tr>
+            <tr>
+               <td>%S</td>
+               <td>Second as decimal number (00 – 59).</td>
+            </tr>
+            <tr>
+               <td>%U</td>
+               <td>Week of year as decimal number, with Sunday as first day of week (00 – 53).</td>
+            </tr>
+            <tr>
+               <td>%w</td>
+               <td>Weekday as decimal number (0 – 6; Sunday is 0).</td>
+            </tr>
+            <tr>
+               <td>%W</td>
+               <td>Week of year as decimal number, with Monday as first day of week (00 – 53).</td>
+            </tr>
+            <tr>
+               <td>%x</td>
+               <td>Date representation for current locale.</td>
+            </tr>
+            <tr>
+               <td>%X</td>
+               <td>Time representation for current locale.</td>
+            </tr>
+            <tr>
+               <td>%y</td>
+               <td>Year without century, as decimal number (00 – 99).</td>
+            </tr>
+            <tr>
+               <td>%Y</td>
+               <td>Year with century, as decimal number.</td>
+            </tr>
+            <tr>
+               <td>%z, %Z</td>
+               <td>Time-zone name or abbreviation; no characters if time zone is unknown.</td>
+            </tr>
+            <tr>
+               <td>%%</td>
+               <td>Percent sign.</td>
+            </tr>
+        </table>
+        <para>As in the printf function, the # flag may prefix any formatting code. In that case, the meaning of the format code is changed as follows.</para>
+        <table>
+            <th>
+               <td>Format Code</td>
+               <td>Meaning</td>
+            </th>
+            <tr>
+               <td>%#a, %#A, %#b, %#B, %#p, %#X, %#z, %#Z, %#%</td>
+               <td># flag is ignored.</td>
+            </tr>
+            <tr>
+               <td>%#c</td>
+               <td>Long date and time representation, appropriate for current locale. For example: “Tuesday, March 14, 1995, 12:41:29”.</td>
+            </tr>
+            <tr>
+               <td>%#x</td>
+               <td>Long date representation, appropriate to current locale. For example: “Tuesday, March 14, 1995”.</td>
+            </tr>
+            <tr>
+               <td>%#d, %#H, %#I, %#j, %#m, %#M, %#S, %#U, %#w, %#W, %#y, %#Y</td>
+               <td>Remove leading zeros (if any).</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strftime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strftime.cpp: this program use strftime to calculate the number of characters placed in today
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+    char tmpbuf[128];
+    struct tm *today;
+    time_t ltime;
+    time(&amp;ltime);
+    today = localtime(&amp;ltime);
+    strftime(tmpbuf, 128,
+         &quot;Today is %A, day %d of %B in the year %Y.\n&quot;, today);
+    printf(tmpbuf);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Today is Monday, day 20 of May in the year 2002.
+</result>
+
+
+
+</manpage>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

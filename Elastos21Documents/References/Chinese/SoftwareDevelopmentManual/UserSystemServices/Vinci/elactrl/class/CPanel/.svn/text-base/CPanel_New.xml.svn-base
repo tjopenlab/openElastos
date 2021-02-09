@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<method>CPanel::New </method>
+    <description>
+        <para>
+            创建一个 Panel 对象。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> caption </param_name>
+                <param_note>
+                    <para>
+Panel 的文字说明                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> style </param_name>
+                <param_note>
+                    <para>
+Panel 的风格，详见 <link url="../../datatype/ControlStyle.htm">ControlStyle</link> 和 <link url="../../datatype/PanelStyle.htm">PanelStyle</link>。不同风格可以通过“|”（或）配合使用</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> x </param_name>
+                <param_note>
+                    <para>
+Panel 的左顶点在其父类控件中的横坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> y </param_name>
+                <param_note>
+                    <para>
+Panel 的左顶点在其父类控件中的纵坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+Panel 的宽度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+Panel 的高度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IControl *  </param_type>
+                <param_name> parent </param_name>
+                <param_note>
+                    <para>
+Panel 的父类控件接口指针                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IPanel**   </param_type>
+                <param_name> panel </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../interface/IPanel.htm">IPanel</link> 接口指针的指针，用于获取 <link url="../../interface/IPanel.htm">IPanel</link> 接口指针</para>
+                </param_note>
+            </api_param>                                                             
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  当创建了一个 Panel 对象后，就可以获取 <link url="../../interface/IPanel.htm">IPanel</link> 接口指针，通过该接口指针，您就可以调用给种方法对该 Panel 设置各种属性值。
+	  </para>
+	  <para>
+        若 Panel 不能全部显示其内部的控件，可以通过使用 <a class="doxygen" href="../datatype/ControlStyle.htm">ControlStyle_VScroll</a> 风格为 Panel 添加垂直滚动条（暂时部支持添加水平滚动条）。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CPanel 类介绍</ref_name>
+        <ref_url>../Panel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IPanel 接口方法列表</ref_name>
+        <ref_url>../../interface/IPanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Panel 的回调事件</ref_name>
+        <ref_url>../../interface/PanelEvents</ref_url>
+    </reference>
+</references>
+</manpage>

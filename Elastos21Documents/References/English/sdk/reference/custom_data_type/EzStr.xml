@@ -1,0 +1,129 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>
+
+<manpage>
+    <volume> Common Data Structure </volume>
+    <interface> EzStr </interface>
+
+    <description>
+        <para>EzStr is a data structure designed to support component based programming. It is used to store const strings. You can operate on EzStr object by invoking the member functions of EzStr. For more details please refer to <link url="EzStr/ezstr_intr.htm">EzStr data structure</link>.</para>
+    </description>
+
+    <constructs>
+        <construct>
+            <construct_name>EzStr</construct_name>
+            <construct_url>Ezstr/structure/Ezstr</construct_url>
+            <construct_description>Constructs an EzStr object</construct_description>
+        </construct>
+    </constructs>
+
+    <methods>
+        <self>
+        <method>
+        <method_name> Length </method_name>
+        <method_url> EzStr/Length </method_url>
+        <m_description> Gets the length of the string </m_description>
+        </method>
+        <method>
+        <method_name> IsNull </method_name>
+        <method_url> EzStr/IsNull</method_url>
+        <m_description> Checks if the current EzStr variable is empty</m_description>
+        </method>
+        <method>
+        <method_name> AllocString </method_name>
+        <method_url> EzStr/AllocString </method_url>
+        <m_description> Allocates memory space for a string </m_description>
+        </method>
+        <method>
+        <method_name> ReAllocString </method_name>
+        <method_url> EzStr/ReAllocString </method_url>
+        <m_description> Allocates memory space for a string renewedly </m_description>
+        </method>
+        <method>
+        <method_name> AllocStringLen </method_name>
+        <method_url> EzStr/AllocStringLen </method_url>
+        <m_description>  Allocate memory space of a indicated size for a string </m_description>
+        </method>
+        <method>
+        <method_name> ReAllocStringLen </method_name>
+        <method_url> EzStr/ReAllocStringLen </method_url>
+        <m_description> Allocate memory space of a indicated size for a string renewedly </m_description>
+        </method>
+        <method>
+        <method_name> FreeString </method_name>
+        <method_url> EzStr/FreeString </method_url>
+        <m_description> Free the memory space which was allocated to the string </m_description>
+        </method>
+    </self>
+    </methods>
+
+    <operators>
+        <operator>
+            <operator_name>operator =</operator_name>
+            <operator_url>EzStr/operator1</operator_url>
+            <operator_description>Evaluate an EzStr object </operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator ==,!=,&lt;,&gt;,&lt;=,&gt;=</operator_name>
+            <operator_url>EzStr/Relational_Operators</operator_url>
+            <operator_description>Compare the size of two strings </operator_description>
+        </operator>
+        <operator>
+            <operator_name>operator DATATYPE</operator_name>
+            <operator_url>EzStr/operator2</operator_url>
+            <operator_description>Type transform </operator_description>
+        </operator>
+    </operators>
+
+    <macros>
+        <macro>
+        <macro_name> EZCSTR </macro_name>
+        <macro_url> EzStr/EZCSTR </macro_url>
+        <macro_description> Define an EzStr object </macro_description>
+        </macro>
+        <macro>
+        <macro_name> EZSTR_NULL </macro_name>
+        <macro_url> EzStr/EZSTR_NULL </macro_url>
+        <macro_description> Define an empty EzStr object </macro_description>
+        </macro>
+    </macros>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ezstr.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib   </lib_name>
+
+        </library>
+    </requirements>
+
+    <remarks>
+        <para>EzStr has a fixed size buffer, which can store a user string. It also stores the length of the string. In this manner, EzStr belongs to self-description data structure.</para>
+        <para>Defining an EzStr object an initializing it in C++ application, You may use macro EZCSTR for a equative operation statically, or the member function AllocString dynamically.</para>
+        <para>In the programming, a wide string of wchar_t* type often need to be transformed to an EzStr type variable, You can do it following the way below:</para>
+        <table>
+            <tr>
+                <td>Method 1</td>
+                <td>Construct an EzStrBuf object via <link url="EzstrBuf/structure/EzstrBuf_.htm">template&lt;int SIZE&gt; EzStrBuf_::EzStrBuf_</link>. Then assign the wide string to the EzStrBuf variable by invoking <link url="EzStrBuf/Copy.htm">EzStrBuf::Copy</link> function. At last using <link url="EzStrBuf/operator1.htm">the type transform operator provided by EzStrBuf</link> directly, You can transform an EzStrBuf variable to an EzStr variable. the advantage of this way is that memory is allocated on the stack and is more efficient. It is recommended.</td>
+            </tr>
+            <tr>
+                <td>Method 2</td>
+                <td>Use wide string to initialize a EzStr variable by invoking <link url="EzStr/AllocString.htm">EzStr::AllocString</link> function. If it need a large block in the memory, or the size of the memory block will be changed, You can take this way. The memory space is allocated on the heap by following this way. It is less efficient, and the <link url="EzStr/FreeString.htm">EzStr::FreeString</link> function need to be invoked to free the memory space after using it. </td>
+            </tr>
+        </table>
+
+        <para>You can use type transform operator <link url="EzStr/operator2.htm">(wchar_t *)</link> to transform EzStr object to wide character pointer. However, when putting the data into the buffer via the pointer, You should note the size of the buffer, and don't write out of the buffer.</para>
+        <para>Usually, EzStr is used as a constant string. If you need to change the value of some variable, you can declare variables of EzStrBuf.</para>
+    </remarks>
+
+</manpage>

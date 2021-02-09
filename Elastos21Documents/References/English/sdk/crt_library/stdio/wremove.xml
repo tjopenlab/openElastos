@@ -1,0 +1,91 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\remove">remove</sample>
+    <title>remove, wremove</title>
+    <volume> C Run-Time Library Functions</volume>
+  	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para> Deletes a file.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>remove</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>path</param_name>
+                <param_note>
+                    <para> Pointer to file to be removed.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>wremove</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>path</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para> Each of these functions returns 0 if the file is successfully deleted. Otherwise, it returns -1. This function fails if the path specifies a read-only file, the filename, path was not found, the path specifies a directory and the file is open.</para>
+    </return>
+
+    <remarks>
+        <para>The remove function deletes the file specified by path. _wremove is a wide-character version of _remove; the path argument to _wremove is a wide-character string. _wremove and _remove behave identically otherwise. All file descriptors to a file must be closed before it can be deleted.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>remove</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+         <routine>
+            <routine_name>wremove</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* remove.cpp: This program uses remove to delete REMOVE.OBJ. */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    if (remove(&quot;remove.obj&quot;) == -1)
+        printf(&quot;Could not delete &apos;REMOVE.OBJ&apos;\n&quot;);
+    else
+        printf(&quot;Deleted &apos;REMOVE.OBJ&apos;\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Deleted &apos;REMOVE.OBJ&apos;
+</result>
+
+
+
+</manpage>

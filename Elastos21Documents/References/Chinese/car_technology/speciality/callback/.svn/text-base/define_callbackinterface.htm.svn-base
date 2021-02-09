@@ -1,0 +1,147 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>回调事件机制</title>
+
+</head>
+
+<body>
+<h2>定义回调接口</h2>
+    <h3 style="margin-top:5.0pt;margin-right:0cm;margin-bottom:5.0pt;margin-left:
+0cm;line-height:150%">
+	<span style="font-size:10.5pt;line-height:150%;
+font-family:宋体">定义回调接口</span></h3>
+<p class="MsoNormal" style="line-height: 150%">
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">
+在一个类中一般的接口声明为</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">interface 
+InterfaceName[</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">接口名字</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">]</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">，如果在</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">interface
+</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">
+之前添加关键字</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">callback.</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">则此接口为回调接口，此接口中包含的方法为回调事件。</span></p>
+<p class="MsoNormal" style="line-height: 150%"><b>
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">示例<span lang="EN-US">Building.car</span></span></b></p>
+<table class="MsoNormalTable" border="0" cellpadding="0" width="100%" style="width: 100.0%; background: #CCCCCC" id="table1">
+	<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt">
+		<p class="MsoNormal" style="line-height: 150%">
+		<span lang="EN-US" style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">
+		module<br>
+		{<br>
+		&nbsp;&nbsp;&nbsp; interface IBuilding<br>
+		&nbsp;&nbsp;&nbsp; {<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OnFire();<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp; <br>
+		&nbsp;&nbsp;&nbsp; interface IFireAlarmRing<br>
+		&nbsp;&nbsp;&nbsp; {<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Employee();<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp; class CBuilding<br>
+		&nbsp;&nbsp;&nbsp; {<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; interface IBuilding;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; callback interface IFireAlarmRing;<br>
+		&nbsp;&nbsp;&nbsp; }<br>
+		}</span></td>
+	</tr>
+</table>
+<p class="MsoNormal" style="line-height: 150%">
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">在此示例中分别定义<span lang="EN-US">IBuilding</span>和<span lang="EN-US">IFireAlarmRing</span>接口，其中分别包含<span lang="EN-US">OnFire()</span>和<span lang="EN-US">Employee()</span>方法。在类<span lang="EN-US">CBuilding</span>中将<span lang="EN-US">IFireAlarmRing</span>声明为回调接口，此时<span lang="EN-US">Employee()</span>就为一回调事件。</span></p>
+<h3 style="margin-top:5.0pt;margin-right:0cm;margin-bottom:5.0pt;margin-left:
+0cm;line-height:150%">
+<span style="font-size:10.5pt;line-height:150%;
+font-family:宋体">编译<span lang="EN-US">CAR</span>文件</span></h3>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%">
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">普通接口在</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">car</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">文件编译完之后，在相应类的实现文件中包含其声明的接口中所包含方法的实现代码，虽然并没有实际的实现代码，只是一个框架；因其回调接口中的方法并不从属于类，所以在实现文件中不会包含这些回调事件的实现代码。</span></p>
+<p class="MsoNormal" style="line-height: 150%">
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">在示例</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">Building 
+.car</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">文件编译完之后，</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">CBuilding.h</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">和</span><span lang="EN-US" style="font-size:10.5pt;line-height:150%">CBuilding.cpp</span><span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">包含如下代码</span></p>
+<table class="MsoNormalTable" border="0" cellpadding="0" width="100%" style="width: 100.0%; background: #CCCCCC" id="table2">
+	<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt">
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">#ifndef __CBUILDING_H__</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">#define __CBUILDING_H__</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">#include 
+		&quot;_CBuilding.h&quot;</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">
+		CarClass(CBuilding)</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">{</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">public:</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; CARAPI 
+		OnFire();</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">private:</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; // 
+		TODO: Add your private member variables here.</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">};</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">#endif // 
+		__CBUILDING_H__</span></td>
+	</tr>
+</table>
+<p class="MsoNormal" style="line-height: 150%"><b>
+<span lang="EN-US" style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">
+&nbsp;</span></b></p>
+<table class="MsoNormalTable" border="0" cellpadding="0" width="100%" style="width: 100.0%; background: #CCCCCC" id="table3">
+	<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt">
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">#include &quot;CBuilding.h&quot;</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">#include 
+		&quot;_CBuilding.cpp&quot;</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">ECode 
+		CBuilding::OnFire()</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">{</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; // 
+		TODO: Add your code here</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; return 
+		NOERROR;</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">}</span></td>
+	</tr>
+</table>
+<p class="MsoNormal" style="line-height: 150%">
+<span style="font-size: 10.5pt; line-height: 150%; font-family: 宋体">
+可以在一般方法中调用回调方法，改写代码</span></p>
+<table class="MsoNormalTable" border="0" cellpadding="0" width="100%" style="width: 100.0%; background: #CCCCCC" id="table4">
+	<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt">
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">#include &quot;CBuilding.h&quot;</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">#include 
+		&quot;_CBuilding.cpp&quot;</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">ECode 
+		CBuilding::OnFire()</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">{</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; 
+		CConsole::WriteLine(&quot;The building is on fire!&quot;);</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">&nbsp;&nbsp;&nbsp; 
+		Employee();</span></p>
+		<p class="MsoNormal" style="text-indent:21.0pt">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">return 
+		NOERROR;</span></p>
+		<p class="MsoNormal">
+		<span lang="EN-US" style="font-size: 10.5pt; font-family: 宋体">}</span></td>
+	</tr>
+</table>
+</body>
+</html>

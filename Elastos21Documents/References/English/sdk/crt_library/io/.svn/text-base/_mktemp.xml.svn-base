@@ -1,0 +1,125 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\_mktemp">_mktemp</sample>
+    <title> _mktemp</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> io_idx.htm </routine_idx>
+
+    <description>
+        <para>The _mktemp utility takes each of the given file name templates and overwrites a portion of it to create a file name. This file name is unique and suitable for use by the application. The template may be any file name with some number of 'Xs' appended to it, for example /tmp/temp.XXXX. The trailing 'Xs' are replaced with the current process number and/or a unique letter combination. The number of unique file names _mktemp can return depends on the number of 'Xs' provided; siz 'Xs' will result in _mktemp testing roughly 26 ** 6 combinations.</para>
+	<para>If _mktemp can successfully generate a unique file name, then the file is created with mode 0600 (unless the -u flag is given) and the filename is printed to standard output.</para>
+	<para>If the -t prefix option is given, then _mktemp generates a template string based on the prefix and the TMPDIR environment variable if set. The default location if TMPDIR is not set is /tmp. Care should be taken to ensure that it is appropriate to use an environment variable potentially supplied by the user.</para>
+	<para>Any number of temporary files may be created in a single invocation, including one based on the internal template resulting from the -t flag.</para>
+	<para>The _mktemp utility is provided to allow shell scripts to safely use temporary files. Traditionally, many shell scripts take the name of the program with the pid as a suffix and use that as a temporary file name. This kind of naming scheme is predictable and the race condition it creates is easy for an attacker to win. A safer approach, though still inferior, is to make a temporary directory using the same naming scheme. While this does allow one to guarantee that a temporary file will not be subverted, it still allows a simple denial of service attack. For these reasons it is suggested that _mktemp be used instead.</para>
+    </description>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <func_name>_mktemp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char *</param_type>
+                <param_name>template</param_name>
+                <param_note>
+                    <para>File name template.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Function _mktemp returns a pointer to change template. If the template is wrong or cannot create more unique files pointed by the template, then return NULL.</para>
+    </return>
+
+    <remarks>
+        <para>Function creates an unique file name by changing the parameter template. In current run-time system, _mktemp function automatically process multibyte string parameter using multibyte codepage, as appropriate multibyte character series.</para>
+        <para>The form of parameter template is: baseXXXXXX; base is part of the designated new file name, every 'X' is a placeholder. In template, every placeholder has to use uppercase 'X'. _mktemp keeps the base, replace the first trailing 'X' of base according to alphabetical order. _mktemp provides a five digit number replacing the last 5 placeholders in XXXXXX, this five digit number is a unique number that identifies the process, or thread in a multithread program.</para>
+        <para>Every successful call to _mktemp function requires change in the template. In the same process or thread, followed by calling _mktemp function, using the same parameter template, _mktemp checks if the file name matches the previously returned filename. If according to previously returned value, the file does not exists, then returns the file name; if the file already exist from all previous call comparisons,then  _mktemp searches for unused characters from 'a' to 'z' and creates a new file name.</para>
+        <para>For example: if base is fn, the five digit number provided by _mktemp is 12345, the first name returned is: </para>
+        <para>fna12345</para>
+        <para>If this name has already been used to create file FNA12345 and the file exists, then, calling in the same process or thread will return: </para>
+        <para>fnb12345</para>
+        <para>If FNA12345 does not exists, then the next one returned is still: </para>
+        <para>fna12345</para>
+        <para>At most _mktemp can create 26 unique file names using designated base and temporary number. Therefore, in this example, FNZ12345 is the last unique file name that _mktemp can create.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_mktemp</routine_name>
+            <headerfile>io.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _mktemp.cpp: The program uses _mktemp to create
+ * five unique filenames. It opens each filename
+ * to ensure that the next name is unique.
+ */
+
+#include &lt;io.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+char *tempplate = &quot;fnXXXXXX&quot;;
+char *result;
+char names[5][9] = {NULL};
+
+int main()
+{
+    int i;
+    FILE *fp;
+
+    for (i = 0; i &lt; 5; i++) {
+        strcpy(names[i], tempplate);
+        /* Attempt to find a unique filename: */
+        result = _mktemp(names[i]);
+        if (result == NULL)
+            printf(&quot;Problem creating the template&quot;);
+        else {
+            if ((fp = fopen(result, &quot;w&quot;)) != NULL)
+                printf(&quot;Unique filename is %s\n&quot;, result);
+            else
+                printf(&quot;Cannot open %s\n&quot;, result);
+            fclose(fp);
+        }
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Unique filename is fna13408
+Unique filename is fnb13408
+Unique filename is fnc13408
+Unique filename is fnd13408
+Unique filename is fne13408
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_wopen</ref_name>
+            <ref_url>_wopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_read</ref_name>
+            <ref_url>_read</ref_url>
+        </reference>
+    </references>
+
+</manpage>

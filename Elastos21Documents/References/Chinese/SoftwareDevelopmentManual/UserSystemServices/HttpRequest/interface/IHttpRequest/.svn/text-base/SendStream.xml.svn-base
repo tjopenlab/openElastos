@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>SendStream (IHttpRequest)</volume>
+<interface>IHttpRequest</interface><method> SendStream </method>
+    <description>
+        <para>
+            以数据流形式发送一个 HTTP 请求体给服务器，同时服务器会根据传入的参数查询数据返回给用户。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IInputStream* </param_type>
+                <param_name> stream </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../StreamIO/interface_i_input_stream.html">IInputStream</link> 接口的指针，用于以数据流的形式发送请求信息，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION</td>
+	    	    <td>无效操作</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	      该方法工作在同步还是异步模式，取决于 <link url="Open.htm">Open</link> 或 <link url="../IHttpRequestEx/OpenW.htm">OpenW</link> 方法的 isAsync 参数。若客户端和服务器端的连接是同步的，则该方法会在客户端收到服务器端发出的所有响应后或者在协议栈超时后返回；若客户端和服务器端的连接是异步的，则该方法调用后将立刻返回。返回的数据根据请求信息查询得出。
+	  </para>
+	  <para>
+	      以数据流形式发送请求信息，需要先创建请求信息的 InputStream 对象，得到 <link url="../../../StreamIO/interface_i_input_stream.html">IInputStream</link> 接口，这样系统才能自动通过该接口读取请求信息以发送给服务器端，有关更多信息可参考：<link url="../../../StreamIO/index.html">流式 IO</link>。
+	  </para>
+	  <para>
+	      该方法的调用将触发两次 <link url="../JHTTPRequestEvents/OnReadyStateChange.htm">OnReadyStateChange</link> 事件。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CHttpRequest 类介绍 </ref_name>
+        <ref_url>../../HttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IHttpRequest 接口方法列表</ref_name>
+        <ref_url>../IHttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>OnReadyStateChange</ref_name>
+        <ref_url>../JHTTPRequestEvents/OnReadyStateChange</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Open</ref_name>
+        <ref_url>Open</ref_url>
+    </reference>
+    <reference>
+        <ref_name>OpenW</ref_name>
+        <ref_url>../IHttpRequestEx/OpenW</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Send</ref_name>
+        <ref_url>Send</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SendBody</ref_name>
+        <ref_url>SendBody</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SendText</ref_name>
+        <ref_url>SendText</ref_url>
+    </reference>
+</references>
+</manpage>

@@ -1,0 +1,141 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="thread\CreateKernelThread">CreateKernelThread</sample>
+    <volume>Thread and Scheduling</volume>
+    <title>CreateKernelThread</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>
+        	Creates a kernel thread. 
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> threadroutine_t</param_type>
+                <param_name> threadroutine </param_name>
+                <param_note>
+                    <para>
+                    	Pointer to the kernel thread routine.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> void *</param_type>
+                <param_name> pvArg </param_name>
+                <param_note>
+                    <para>
+                    	Specifies a single parameter value. When the kernel thread routine is called, this parameter 
+                    	is passed to the thread. 
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> DWORD</param_type>
+                <param_name> dwFlags </param_name>
+                <param_note>
+                    <para> 
+                    	Specifies other additional flags to control the creation of kernel thread. 
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> PriorityRank </param_type>
+                <param_name> priorityRank </param_name>
+                <param_note>
+                    <para>
+                    	Specifies the priority rank of the created kernel thread. 
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> IThread **</param_type>
+                <param_name> ppThread </param_name>
+                <param_note>
+                    <para>
+                    	Pointer to <link url="../IThread.htm">IThread</link> interface used to receive the 
+                    	interface of kernel thread.  
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+             <tr>
+                <td>S_OK</td>
+                <td>Function succeeds in creating a kernel thread.</td>
+            </tr>
+            <tr>
+                <td>E_INVALIDARG</td>
+                <td>Invalid argument(s)</td>
+            </tr>
+            <tr>
+                <td>E_OUTOFMEMORY</td>
+                <td>Insufficient memory</td>
+            </tr>
+            <tr>
+                <td>E_FAIL</td><td>Creation failed</td>
+            </tr>
+        </table>
+        <para>See<link url="/sdk/hresult.htm">ECODE</link>related help for more details. </para>
+    </return>
+
+    <remarks>
+    <para> 
+    	This function is used to create a kernel thread. After the thread has been created, the user specified thread 
+    	routine would be executed. After finishing execution, the kernel thread routine will return, and the kernel 
+    	thread will exit.
+    </para>
+    <para>
+		Parameter dwFlags; if CreateThreadFlag_System is specified, the kernel thread will be created as system kernel 
+		thread, which means this kernel thread does not belong to any processes and only has system context 
+        but has no process context. If this parameter is 0, the kernel thread is created as the kernel 
+        thread of current process, which means the kernel thread has the context of current thread. 
+        Currently, other values of this parameter are not supported. 
+    </para>
+    <para>
+        The parameter priorityRank takes effect only when 
+        dwFlags is CreateThreadFlag_System. If dwFlags is 0, the priority rank of created kernel thread 
+        is the same as current process. priorityRank is the same as <link url="../../../../../../sdk/base_service/proc_and_thd/proc_thd/IProcess/SetPriorityRank.htm">IProcess::SetPriorityRank</link> function's priorityRank parameter situation.</para>
+    </para>
+    <para>
+		If the parameter ppThread is NULL, the parameter is ignored and no 
+        thread interface will be returned.
+    </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>

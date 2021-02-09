@@ -1,0 +1,62 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+   
+    <volume>DMA例程</volume>
+    <title>DzAllocDmaPage</title>
+    <routine_idx> ../../dma_routines.htm </routine_idx>
+
+    <description>
+        <para>分配一个DMA内存页。</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>virtaddr_t</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>0</td><td>分配失败，没有足够的内存</td>
+            </tr>
+            <tr>
+                <td>非0值</td><td>分配成功，返回值为DMA页的地址（虚拟地址）</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>此函数用于分配一个DMA内存页。一旦成功分配了DMA内存页，驱动程序就可以利用它进行访问DMA数据传输了。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>dma.h</file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>DzAllocDmaPages</ref_name>
+            <ref_url>DzAllocDmaPages</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzFreeDmaPage</ref_name>
+            <ref_url>DzFreeDmaPage</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzFreeDmaPages</ref_name>
+            <ref_url>DzFreeDmaPages</ref_url>
+        </reference>
+    </references>
+</manpage>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>JButtonEvents</interface><method> Click </method>
+    <description>
+        <para>
+            Click所涉及的回调函数
+        </para>
+    </description>
+    <callback>
+<pre>
+//添加回调
+static ECode AddClickCallback(
+                PObject pServerObj,
+                 ECode (*pFunc)( PVoid, IButton *,  Int32),
+                 PVoid pUserData=NULL){……}
+//删除回调                
+static ECode RemoveClickCallback(
+                    PObject pServerObj,
+                     ECode (*pFunc)( PVoid, IButton *,  Int32),
+                     PVoid pUserData=NULL){……}
+
+template &lt;class T&gt;
+static ECode AddClickCallback(
+                PObject pServerObj,
+                T *pThis,
+                 ECode (CARAPICALLTYPE T::*pFunc)(
+                        IButton *,  Int32)){……}
+                        
+template &lt;class T&gt;
+   static ECode RemoveClickCallback(
+                    PObject pServerObj,
+                T *pThis,
+                 ECode (CARAPICALLTYPE T::*pFunc)(
+                        IButton *, Int32)){……}
+//删除所有回调                    
+static  ECode RemoveAllCallbacks(PObject pServerObj){……}
+</pre>
+    </callback>
+</manpage>

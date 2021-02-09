@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WStringBuf</interface>
+    <method>Insert </method>
+
+    <description>
+        <para> 在此对象中的指定索引位置插入一个指定的WString字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>WStringBuf &amp;</return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> offset </param_name>
+            <param_note>
+                <para> 插入位置,offset的取值范围：大于等于0，且小于等于WStringBuf对象字符串的长度 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>const WString &amp; </param_type>
+            <param_name> ws </param_name>
+            <param_note>
+                <para> 待插入的子串 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回当前WStringBuf对象引用。</para>
+    </return>
+     <remarks>
+        <para>超过WStringBuf对象可用的长度会被省略掉。 </para>
+    </remarks>
+<example>
+<pre>
+请参见：<link url="../AStringBuf/Insert.htm">AStringBuf::Insert</link>
+</pre>
+</example>
+ <references>
+    <reference>
+        <ref_name>WStringBuf</ref_name>
+        <ref_url>../WStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Append</ref_name>
+        <ref_url>../AStringBuf/Append/index/Append</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Replace</ref_name>
+        <ref_url>../WStringBuf/Replace</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Substring</ref_name>
+        <ref_url>../WStringBuf/Substring/index/Substring</ref_url>
+    </reference>
+</references>   
+ 
+</manpage>

@@ -1,0 +1,64 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+<manpage>
+<volume>电话控制</volume>
+<interface>ISettingActs</interface><method>OnGetCallRestrictState</method>
+    <description>
+        <para>
+            响应用户UI请求获取呼叫限制状态，根据状态显示UI控件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+        <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UInt32* </param_type>
+                <param_name> pdwState </param_name>
+                <param_note>
+                    <para>指向UInt32类型的指针，用于获取呼叫限制的状态，pdwState的取值可以为：</para>
+                    <para_table>
+                        <th>
+	                    	<td>  参数值 </td>
+	                    	<td>  描述 </td>
+	                	</th>
+	                	<tr>
+	                    	<td>TAPI_BARRMODE_OUT</td>
+	                    	<td>关闭所有呼出</td>
+	                	</tr>
+	                	<tr>
+	                    	<td>TAPI_BARRMODE_OUT_INTEXTOHOME</td>
+	                    	<td>关闭国际呼出，只允许拨打国内号码</td>
+	                	</tr>
+	                	<tr>
+	                    	<td>TAPI_BARRMODE_OUT_INT</td>
+	                    	<td>关闭国际呼出电话</td>
+	                	</tr>
+	                	<tr>
+	                    	<td>TAPI_BARRMODE_IN</td>
+	                    	<td>关闭国际呼入电话</td>
+	                	</tr>
+	                	<tr>
+	                    	<td>TAPI_BARRMODE_IN_ROAM</td>
+	                    	<td>漫游时，关闭所有呼入电话</td>
+	                	</tr>
+	                	<tr>
+	                    	<td>TAPI_BARRMODE_ALL</td>
+	                    	<td>取消所有呼叫限制</td>
+	                	</tr>
+	         		</para_table>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>方法调用成功时，返回S_OK。</para>
+</return>
+    <requirements>
+        <system>
+            <system_name>《Elastos 2.0》或更高版本</system_name>
+        </system>
+    </requirements>
+
+</manpage>

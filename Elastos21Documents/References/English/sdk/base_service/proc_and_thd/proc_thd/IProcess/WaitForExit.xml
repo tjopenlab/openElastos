@@ -1,0 +1,77 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Process And Thread</volume>
+<interface>IProcess</interface><method> WaitForExit </method>
+    <description>
+        <para>
+			Waits for the process to exit in a specified time-out period.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> INT </param_type>
+                <param_name> ms </param_name>
+                <param_note>
+                    <para>
+						Specifies the time in milliseconds.
+                    </para>
+                </param_note>
+            </api_param>            
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>            
+	        <th>            
+		        <td>Return Value </td>            
+		        <td>Description</td>            
+	        </th>            
+	        <tr>            
+		        <td>S_OK</td>            
+		        <td>Function succeeds in waiting.</td>            
+	        </tr>            
+	        <tr>            
+		        <td>S_INTERRUPTED</td>            
+		        <td>Wait was interrupted.</td>           
+	        </tr>            
+	        <tr>            
+		        <td>S_TIMED_OUT</td>            
+		        <td>Time is out, and it would be acceptable. </td>          
+	        </tr>          
+	        <tr>
+		        <td>E_PROCESS_UNSTARTED</td>
+		        <td>The process is not started yet.</td>
+	        </tr>
+	        </table>
+    </return>
+
+	<remarks>
+		<para>
+            Process calling this method will be blocked, until the process is terminated or timed out.
+        </para>
+        <para>
+            INFINITE can be passed in as a parameter, to represent wait for the process to exit infinitely.
+        </para>
+        <para>
+             If the process is not exited in specific time period, method returns S_TIMED_OUT. If it is interrupted
+             while waiting, the method will return S_INTERRUPTED. If the process is not started, the method 
+             returns E_PROCESS_UNSTARTED. If the process applies WaitForExit on itself, method returns 
+             E_INVALID_OPERATION. 
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.            
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

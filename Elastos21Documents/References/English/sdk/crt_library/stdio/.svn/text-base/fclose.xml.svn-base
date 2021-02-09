@@ -1,0 +1,93 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fclose">fclose</sample>
+    <title> fclose, fcloseeall</title>
+    <volume>C Run-Time Library Functions</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>The fclose function dissociates the named stream from its underlying file or set of functions. If the stream was being used for output,then any buffered data is written first, using <link class="style1" url="../stdio/fflush.htm">fflush</link>.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fclose</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>returns 0 if the stream is successfully closed and return EOF to indicate an error.</para>
+    </return>
+
+    <remarks>
+        <para>The fclose function closes stream. It also closes and deletes any temporary file created by tmpfile. In this function, all buffers associated with the stream are flushed prior to closing. System-allocated buffers are released when the stream is closed. Buffers assigned by the user with setbuf and setvbuf are not automatically released.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fclose</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fclose.cpp: This program opens files named &quot;data&quot;
+ * &quot;.It  uses fclose to close &quot;data&quot; .
+ */
+
+#include &lt;stdio.h&gt;
+
+FILE *stream;
+
+int main()
+{
+
+    /* Open for read (will fail if file &quot;data&quot; does not exist) */
+    if ((stream  = fopen(&quot;data&quot;, &quot;w&quot;)) == NULL)
+        printf(&quot;The file &apos;data&apos; was not opened.\n&quot;);
+    else
+        printf(&quot;The file &apos;data&apos; was opened.\n&quot;);
+
+    /* Close stream */
+    if (!fclose(stream))
+        printf(&quot;The file &apos;data&apos; was closed.\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The file &apos;data&apos; was opened.
+The file &apos;data&apos; was closed.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_wfopen</ref_name>
+            <ref_url>_wfopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

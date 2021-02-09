@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>标准驱动回调例程</volume>
+    <title>CreateDevice</title>
+
+    <description>
+        <para>驱动实例创建函数</para>
+    </description>
+
+    <syntax>
+        <return_val>IDeviceDriver *</return_val>
+        <parameters>
+            <api_param>
+                <param_type> uint_t </param_type>
+                <param_name> uDeviceNo </param_name>
+                <param_note>
+                    <para>设备号。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> void * </param_type>
+                <param_name> pvParameter </param_name>
+                <param_note>
+                    <para>指向附加信息的指针。通过本参数，驱动对象创建函数可以取得注册设备对象时传入的附加信息，参见<link url="../../driver_support_routines/kernel_routines/device_management/method/DzRegisterDevice.htm">DzRegisterDevice</link>函数。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    <table class="agility_table" cellspacing="0" cellpadding="0">
+        <th>
+            <td>返回值 </td>
+            <td>描述</td>
+        </th>
+        <tr>
+            <td>非NULL</td>
+            <td>指向所创建驱动对象的IDeviceDriver接口的指针</td>
+        </tr>
+        <tr>
+            <td>NULL</td>
+            <td>创建驱动对象失败</td>
+        </tr>
+    </table>
+    </return>
+
+    <remarks>
+        <para>本函数用于创建特定设备驱动的指定实例。由驱动开发人员提供。在内核初始化阶段，系统会读取设备配置表中的设备信息，用户也会通过DzRegisterDevice函数动态地向系统注册设备信息。无论是通过上述哪种方法，系统一旦感知到了新设备的存在，就会立即通过匹配设备名为其寻找所对应的设备驱动程序。如果能够找到，系统会通过调用本设备驱动程序的创建函数来创建相应的驱动实例。</para>
+        <para>CreateDevice并不是实际的函数名字，它只是定义了回调函数的类型，每个驱动都要有一个这样的函数，名字可以自己随便定（不同驱动不能重复），但是要把该函数的指针加入到s_driverConfigs对应的地方。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>

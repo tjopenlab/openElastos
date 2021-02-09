@@ -1,0 +1,316 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>图形控件ITabControl</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> ITabControl 范例程序 </h2>
+
+
+<h3> TTabDemo.h </h3>
+<pre class = "code">
+
+#ifndef __TTabDemo_H__
+#define __TTabDemo_H__
+
+#include "_TTabDemo.h"
+
+CarClass(TTabDemo)
+{
+public:
+    TTabDemo();
+    ~TTabDemo();
+
+    CARAPI Main(
+        /* [in] */ const BufferOf<WString> & argcv);
+
+    CARAPI OnSelected(PInterface pIObject, Int32 nTab);
+
+    CARAPI OnClose(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI OnDelete(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI Quit();
+
+    CARAPI Terminate();
+
+    CARAPI Activate();
+
+    CARAPI Deactivate();
+
+    CARAPI IsActivated(
+        /* [out] */ Boolean * pActivated);
+
+    CARAPI Snooze();
+
+    CARAPI Wakeup();
+
+    CARAPI GetName(
+        /* [out] */ WStringBuf * pName);
+private:
+    IForm         * m_pMainForm;
+
+    ITabControl   * m_pTabControl;
+    IButton       * m_pIBtnClose;
+    IButton       * m_pIButton;
+    IListView     * m_pIListview1;
+    IComboBox     * m_pIComboBox;
+};
+
+#endif // __TTabDemo_H__
+
+</pre>
+
+<h3> TTabDemo.cpp </h3>
+<pre class = "code">
+
+#include <stdio.h>
+#include "TTabDemo.h"
+#include "_TTabDemo.cpp"
+
+TTabDemo::TTabDemo()
+{
+    m_pIBtnClose = NULL;
+    m_pMainForm = NULL;
+    m_pTabControl = NULL;
+    m_pIListview1 = NULL;
+    m_pIComboBox = NULL;
+    m_pIButton = NULL;
+}
+
+TTabDemo::~TTabDemo()
+{
+    if (m_pMainForm) {
+        m_pMainForm->Release();
+    }
+
+    if (m_pTabControl) {
+        m_pTabControl->Release();
+    }
+
+    if (m_pIBtnClose) {
+        m_pIBtnClose->Release();
+    }
+
+    if (m_pIButton) {
+        m_pIButton->Release();
+    }
+
+    if (m_pIListview1) {
+        m_pIListview1->Release();
+    }
+
+    if (m_pIComboBox) {
+        m_pIComboBox->Release();
+    }
+}
+
+ECode TTabDemo::OnSelected(PInterface pIObject, Int32 nTab)
+{
+    printf("ChangeTab: tab=%d\n",nTab);
+    return NOERROR;
+}
+
+ECode TTabDemo::Main(
+    /* [in] */ const BufferOf<WString> & argcv)
+{
+    ECode ec;
+
+    ec = CForm::New(L"MAIN", 0, 0, 0, 240, 320, NULL,&m_pMainForm);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    ec = CTabControl::New(L"TabControl", 0,
+                        20, 40, 200, 200, m_pMainForm,&m_pTabControl);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    IImage* pIFImg;
+
+    ec = CImage::New(L"pic.png", ImageFormat_Unknown, &pIFImg);
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    Int32 nCurrentIndex;
+
+    m_pTabControl->InsertTabPage(0, L"aaa", pIFImg, NULL);
+    m_pTabControl->AddTabPage(L"bbb", pIFImg, NULL, &nCurrentIndex);
+    m_pTabControl->AddTabPage(L"ccc", pIFImg, NULL, &nCurrentIndex);
+    m_pTabControl->AddTabPage(L"ddd", pIFImg, NULL, &nCurrentIndex);
+    m_pTabControl->AddTabPage(L"eee", pIFImg, NULL, &nCurrentIndex);
+    m_pTabControl->AddTabPage(L"fff", pIFImg, NULL, &nCurrentIndex);
+    m_pTabControl->AddTabPage(L"ggg", pIFImg, NULL, &nCurrentIndex);
+    m_pTabControl->AddTabPage(L"hhh", pIFImg, NULL, &nCurrentIndex);
+
+    pIFImg->Release();
+
+    // Panel for Listview1
+    IPanel* pIPanel=NULL;
+    m_pTabControl->GetTabPage(0, NULL, NULL,&pIPanel);
+    CListView::New(L"lv", ListViewStyle_Details,
+                    0, 0, 200, 200, pIPanel,&m_pIListview1);
+
+    m_pIListview1->InsertColumn(0, 30, L"", 0); //插入列
+    m_pIListview1->InsertColumn(1, 90, L"", 0);
+    m_pIListview1->InsertColumn(2, 110, L"", 0);
+    m_pIListview1->InsertColumn(3, 160, L"", 0);
+    m_pIListview1->InsertItem(0, ItemState_Normal, L"sms1", NULL);//插入行
+    m_pIListview1->SetItem(0, 1, ItemState_Normal, L"sms1", 0);//设置某行某列的内容
+
+    m_pIListview1->InsertItem(1, ItemState_Normal, L"sms2", NULL);
+    m_pIListview1->SetItem(1, 1, ItemState_Normal, L"sms2", 0);
+
+    m_pIListview1->InsertItem(2, ItemState_Normal, L"sms3", NULL);
+    m_pIListview1->SetItem(2, 1, ItemState_Normal, L"sms3", 0);
+
+    m_pIListview1->InsertItem(3, ItemState_Normal, L"sms4", NULL);
+    m_pIListview1->SetItem(3, 1, ItemState_Normal, L"sms4", 0);
+
+    //pIPanel->Release();
+    // Panel2 for ComboBox
+    IPanel* pIPanel2=NULL;
+
+    m_pTabControl->GetTabPage(1, NULL, NULL, &pIPanel2);
+    CComboBox::New(L"combo", 0,
+                40, 40,140, 140,
+                pIPanel2,&m_pIComboBox);
+
+    pIPanel2->SetBackgroundColor(ColorChart_DarkBlue);
+
+    m_pIComboBox->InsertItem(0, L"8888888");
+    m_pIComboBox->InsertItem(0, L"2222222");
+    m_pIComboBox->InsertItem(0, L"3333333");
+    m_pIComboBox->InsertItem(0, L"5555555");
+    m_pIComboBox->InsertItem(0, L"4444444");
+    m_pIComboBox->InsertItem(0, L"6666666");
+    m_pIComboBox->SetMaxDropDownItems(4);
+
+    pIPanel2->Release();
+    // Button for removing all items
+    CButton::New(L"Remove", 0,
+            160, 0, 80, 30,  m_pMainForm,&m_pIButton);
+
+    CButton::AddClickCallback(m_pIButton,
+                 this, &TTabDemo::OnDelete);
+
+    // add an event handler
+    CTabControl::AddSelectedCallback(m_pTabControl,
+                 this, &TTabDemo::OnSelected);
+
+///////////////  Exit Button
+    CButton::New(L"Exit", 0,
+                0, 0, 80, 30, m_pMainForm,&m_pIBtnClose);
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 this, &TTabDemo::OnClose);
+
+    m_pMainForm->Show();
+
+    return NOERROR;
+}
+
+ECode TTabDemo::OnClose(
+    /* [in] */ PInterface pIObject)
+{
+    m_pMainForm->Close();
+    return NOERROR;
+}
+
+ECode TTabDemo::OnDelete(
+    /* [in] */ PInterface pIObject)
+{
+    //m_pTabControl->SetSelectedIndex(3);
+    //m_pTabControl->RemoveItem(0);
+    m_pTabControl->RemoveAllTabPages();
+
+    return NOERROR;
+}
+
+ECode TTabDemo::Quit()
+{
+    return NOERROR;
+}
+
+ECode TTabDemo::Terminate()
+{
+    return NOERROR;
+}
+
+ECode TTabDemo::Activate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTabDemo::Deactivate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTabDemo::IsActivated(
+    /* [out] */ Boolean * pActivated)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTabDemo::Snooze()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTabDemo::Wakeup()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTabDemo::GetName(
+    WStringBuf * name)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+</pre>
+
+<h3>tabctrl.car</h3>
+<pre class = "code">
+module
+{
+    importlib("elcontrols.dll");
+
+    applet TTabDemo {}
+}
+
+</pre>
+
+<h3>sources</h3>
+<pre class = "code">
+TARGET_NAME= tabctrl
+TARGET_TYPE= dll
+SPECIAL_TARGET = cpfile
+
+SOURCES= \
+    tabctrl.car \
+    TTabDemo.cpp \
+
+LIBRARIES = $(XDK_USER_LIB)\ElCRuntime.lib     $(XDK_LIB_PATH)\elastos.lib \
+</pre>
+<script>footer("KoreTide")</script>
+</body>
+</html>

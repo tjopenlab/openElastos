@@ -1,0 +1,116 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\assert\assert">assert</sample>
+    <title>assert</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> assert_idx.htm </routine_idx>
+
+    <description>
+        <para>The assert() macro tests the given expression and if it is false, the calling process is terminated. A diagnostic message
+              is written to stderr and the function abort() is called, effectively terminating the program.
+        </para>
+	<para>If expression is true, the assert() macro does nothing.</para>
+	<para>The assert() macro may be removed at compile time by defining NDEBUG as a macro (e.g., by using the cc() option -DNDEBUG).</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>assert</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>expression</param_name>
+                <param_note>
+                    <para>Expression (including pointers) that evaluates to nonzero or 0. </para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>The ANSI assert macro is typically used to identify logic errors
+              during program development, by implementing the expression argument
+              to evaluate to false only when the program is operating incorrectly.
+        </para>
+        <para>assert prints a diagnostic message when expression evaluates to false
+              (0) and calls <link class="style1" url="../stdlib/abort.htm">abort</link>
+              to terminate program execution. No action is taken if expression is
+              true (nonzero). The diagnostic message includes the failed expression
+              and the name of the source file and line number where the assertion failed.
+        </para>
+        <para>The assert routine is available in both the release and debug versions
+               of the C run-time libraries.
+        </para>
+    </remarks>
+
+    <requirements>      <routine>
+            <routine_name>assert</routine_name>
+            <headerfile>assert.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0 </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ASSERT.CPP: In this program, the analyze_string function uses
+ * the assert function to test several conditions related to
+ * string and length. If any of the conditions fails, the program
+ * prints a message indicating what caused the failure.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;assert.h&gt;
+#include &lt;string.h&gt;
+
+void analyze_string(char *string);   /* Prototype */
+
+int main()
+{
+   char  test1[] = &quot;abc&quot;, *test2 = NULL, test3[] = &quot;&quot;;
+   
+   printf (&quot;Analyzing string &apos;%s&apos;\n&quot;, test1);
+   analyze_string(test1);
+   printf (&quot;Analyzing string &apos;%s&apos;\n&quot;, test2);
+   analyze_string(test2);
+   printf (&quot;Analyzing string &apos;%s&apos;\n&quot;, test3);
+   analyze_string(test3);
+
+   return 0;
+}
+
+/* Tests a string to see if it is NULL, */
+/*   empty, or longer than 0 characters */
+void analyze_string(char * string)
+{
+   assert(string != NULL);        /* Cannot be NULL */
+   assert(*string != &apos;\0&apos;);       /* Cannot be empty */
+   assert(strlen(string) &gt; 2);  /* Length must exceed 2 */
+}
+</pre>
+    </example>
+<result>
+Analyzing string &apos;abc&apos;
+Analyzing string &apos;(null)&apos;
+Assertion failed: string != NULL, file D:/Elastos20.SDK/SRC/samples/sdk/
+operating_system/crt/libc/assert/assert/assert.cpp, line 35
+
+abnormal program termination
+</result>
+
+
+
+</manpage>

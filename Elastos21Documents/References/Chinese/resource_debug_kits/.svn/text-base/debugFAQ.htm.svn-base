@@ -1,0 +1,34 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>调试过程中常见问题汇总</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+    <h2>常见问题</h2>
+
+   <h4>1. gdb调试不工作 </h4>
+        <p>显示如下提示：</p>
+        <p>User debugger!</p>
+        <p>Program Fault,Debug Or Terminate[D/T]?</p>
+        <p>Sorry,any user debugger stub are not present!</p>
+        <p>App panic (UDB disabled).<p>
+        <p>原因可能是运行了start  %GDB_PATH%\gdb63\bin\%GDB_TOOLS% --cd=%XDK_TARGETS% --command=%XDK_TOOLS%\gdb.ini --quiet</p>
+        <p>最终原因是调试工具gdb.ini里面的target remote /dev/ttySx设置错误，x的值应该是comcons使用的串口号的值减1</p>
+        <p>对于/dev/ttySx的设置可以参考:我的电脑/属性/硬件/设备管理器/端口(COM 和 LPT)，见图4-19、图4-20。</p>
+        <center><img src="images/gdb2.jpg"></center>
+        <center>图4-19</center>
+        <p></p>
+        <p></p>
+        <center><img src="images/gdb3.jpg"></center>
+        <center>图4-20</center>
+        <p>比如：如果是串口1(COM1),设置gdb.ini中的/dev/ttySx为/dev/ttyS0.若是COM2,设置gdb.ini中的/dev/ttySx 为/dev/ttyS1。</p>
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\system">system</sample>
+    <title> system, _wsystem </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>执行一个命令。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>system</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>command</param_name>
+                <param_note>
+                    <para>待执行的命令</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wsystem</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>command</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回command命令退出时的返回值。 如果函数在执行过程中出现错误, 函数返回-1, 并将错误号置为下列值: </para>
+        <table>
+            <th>
+                <td>错误号</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>EINVAL</td>
+                <td>command为无效参数</td>
+            </tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>command指向的文件不存在</td>
+            </tr>
+            <tr>
+                <td>ENOEXEC</td>
+                <td>command指向的文件不是可执行文件或者不是有效的可执行文件</td>
+            </tr>
+            <tr>
+                <td>ENOMEM</td>
+                <td>没有足够的内存用于执行command命令，或者可用内存被破坏，或者有非法区块存在，标志进程调用无法适当分配内存。</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>_wsystem是system的宽字符版本。_wsystem的参数command为一共宽字符串。在其它方面，这两个函数表现一致。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>system</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wsystem</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* system.cpp: This program uses
+ * system to TYPE its source file.
+ */
+
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    system(&quot;dir&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+}
+</result>
+
+
+    <references>
+        <reference>
+            <ref_name>fflush</ref_name>
+            <ref_url>../stdio/fflush</ref_url>
+        </reference>
+    </references>
+
+</manpage>

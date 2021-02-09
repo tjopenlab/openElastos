@@ -1,0 +1,43 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>手机应用烧写步骤</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+
+<body>
+
+
+<h2>手机应用烧写步骤</h2>
+
+<p>本操作的硬件需求：USB连接线</p>
+<p>本操作的软件需求：TMC</p>
+
+<ul>
+<br>1)	文件准备：将准备要烧写的内容分4个目录放好，分别对应手机的4个盘符，如：准备放到F：盘的内容，放在diskF目录。
+<br>2)	将diskF目录下的内容传到手机上的F：盘：
+<ul>
+<br>(一)	手机连接主机usb数据线，打开tmc ，在comcons（手机命令行）进入手机F:盘（在命令行输入F：，然后回车），tmc传入的文件会放在当前目录下；
+<br>(二)	在tmc工具菜单栏选择File->Trans Folder；
+    <center><img src="images/BurnAPPMenu.jpg"></center>
+<br>(三)	在弹出的窗口中，按Browser按钮，选择diskF目录，tmc将会把diskF之下的目录和文件传入手机，不传diskF目录本身；
+    <center><img src="images/BurnAPPWin.jpg"></center>
+<br>(四)	按Browser按钮，tmc就会开始传输，并有列表和进度提示；传输完毕会显示Total Files:xx，Total Folders:xx ；
+    <center><img src="images/BurnAPPProgress.jpg"></center>
+    <center><img src="images/BurnAPPEnd.jpg"></center>
+<br>(五)按Close按钮，关闭弹出窗口，此时comcons命令行又可以输入命令了，输入：ls，然后回车，查看手机F：盘下的文件；
+</ul>
+<br>3)	传输其他3个目录：操作步骤同2），只是注意每个目录与相应的手机盘正确对应；
+<br>4)	执行如下命令运行应用：
+<br>SuperExe xxx.dll
+
+</ul>
+
+<script>footer("chinese")</script>
+</body>
+</html>

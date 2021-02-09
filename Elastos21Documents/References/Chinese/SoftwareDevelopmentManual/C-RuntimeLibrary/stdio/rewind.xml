@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\rewind">rewind</sample>
+    <title> rewind</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>将文件指针重新定位到文件头。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>rewind</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>函数rewind将与流相关的文件指针重新定位到文件头。rewind类似于(void) fseek(stream, 0L, SEEK_SET)；与fseek不同的是，rewind不返回任何值，来表明是否指针已经成功移动，并且rewind会清除文件流的错误标志和文件结束标志。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>rewind</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* rewind.cpp: This program first opens a file named
+ * REWIND.OUT for input and output and writes two
+ * integers to the file. Next, it uses rewind to
+ * reposition the file pointer to the beginning of
+ * the file and reads the data back in.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE *stream;
+    int data1, data2;
+
+    data1 = 1;
+    data2 = -37;
+
+    if ((stream = fopen(&quot;rewind.out&quot;, &quot;w+&quot;)) != NULL) {
+        fprintf(stream, &quot;%d %d&quot;, data1, data2);
+        printf(&quot;The values written are: %d and %d\n&quot;, data1, data2);
+        rewind(stream);
+        fscanf(stream, &quot;%d %d&quot;, &amp;data1, &amp;data2);
+        printf(&quot;The values read are: %d and %d\n&quot;, data1, data2);
+        fclose(stream);
+    }
+    else
+        printf(&quot;problem open the file!!!&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The values written are: 1 and -37
+The values read are: 1 and -37
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>fseek</ref_name>
+            <ref_url>fseek</ref_url>
+        </reference>
+        <reference>
+            <ref_name>ftell</ref_name>
+            <ref_url>ftell</ref_url>
+        </reference>
+    </references>
+
+</manpage>

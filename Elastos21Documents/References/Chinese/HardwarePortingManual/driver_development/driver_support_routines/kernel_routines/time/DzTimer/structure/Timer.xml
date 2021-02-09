@@ -1,0 +1,52 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/structuremanual.xsl"?><manpage>
+<volume>时间</volume>
+<class>DzTimer</class><function> Timer(uint_t uRelativeDueTicks, timerroutine_t routine, void * pvParameter) </function>
+    <description>
+        <para>定时器类构造函数。</para>
+    </description>
+    <syntax>
+        <apiname>Timer</apiname>
+        <parameters>
+            <api_param>
+                <param_type> uint_t  </param_type>
+                <param_name> uRelativeDueTicks  </param_name>
+                <param_note>
+                    <para>
+                        指定相对到期时间，单位为tick。此参数必须大于零。
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> timerroutine_t  </param_type>
+                <param_name> routine </param_name>
+                <param_note>
+                    <para>
+                        指向定时器对象的回调函数。参见<link url="../../method/TimerRoutine.htm">TimerRoutine</link>。
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> void *  </param_type>
+                <param_name> pvParameter </param_name>
+                <param_note>
+                    <para>
+                        将被传入回调函数的参数
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>定时器类构造函数用于构造定时器对象。定时器对象被构造出来以后并不会自动运行，必须通过调用<link url="../Start.htm">Timer::Start</link>来启动它。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+</manpage>

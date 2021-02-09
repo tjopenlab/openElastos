@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>同步</volume>
+<interface>DzMutex</interface><method> Lock </method>
+    <description>
+        <para>获取互斥体对象。 </para>
+    </description>
+    <syntax>
+        <return_val>void </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult</param_name>
+                <param_note>
+                    <para>指向<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址，不能为空。如果成员函数调用成功，则返回WaitResult_OK；如果在等待事件对象变为已通知状态期间被打断，则返回WaitResult_Interrupted  </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>
+        本成员函数用于获取互斥体对象。
+        </para>
+        <para>
+        如果互斥体对象已经被其它线程所占有，当前线程将进入等待状态，直到该互斥体被其它线程释放，并唤醒当前线程，本方法才成功返回；如果互斥体对象正处于无属主状态，当前线程将获取该互斥体对象，方法立即成功返回。
+        </para>
+        <para>
+        如果当前线程已经占有了互斥体对象，则本方法也将立即成功返回，并且当前线程必须相应多调用一次<link url="Unlock.htm">DzMutex::Unlock</link>方法才能最终释放互斥体对象。
+        </para>
+        <para>
+        当前线程在等待获取互斥体对象期间可以被打断。
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>
+

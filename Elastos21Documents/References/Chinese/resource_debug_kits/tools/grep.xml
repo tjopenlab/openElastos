@@ -1,0 +1,98 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> grep </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para>在文件中搜寻匹配的行并输出。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> GREP</cmd_name>
+        <cmd_param> [-?BELOXlnzvxy][-e string][-f file][-i file][strings][files] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name>  -?  </param_name>
+        <param_note>  打印帮助信息</param_note>
+    </param>
+    <param>
+        <param_name>  /B  </param_name>
+        <param_note>  在行首匹配</param_note>
+    </param>
+    <param>
+        <param_name> /E  </param_name>
+        <param_note> 在行尾匹配</param_note>
+    </param>
+    <param>
+        <param_name> -L  </param_name>
+        <param_note> 逐字查找</param_note>
+    </param>
+    <param>
+        <param_name> -O  </param_name>
+        <param_note> 打印查找偏移量</param_note>
+    </param>
+    <param>
+        <param_name> -X  </param_name>
+        <param_note> 用正则表达式查找字符串</param_note>
+    </param>
+    <param>
+        <param_name> -l  </param_name>
+        <param_note> 如果文件匹配，则打印文件名</param_note>
+    </param>
+    <param>
+        <param_name> -n   </param_name>
+        <param_note> 打印匹配行前的行号</param_note>
+    </param>
+    <param>
+        <param_name>  -z </param_name>
+        <param_note> 以MSC错误信息格式打印匹配行</param_note>
+    </param>
+    <param>
+        <param_name>  -v  </param_name>
+        <param_note>打印出不匹配的行</param_note>
+    </param>
+    <param>
+        <param_name> -x  </param_name>
+        <param_note> 打印完全匹配的行</param_note>
+    </param>
+    <param>
+        <param_name>  -y </param_name>
+        <param_note> 大小写不敏感</param_note>
+    </param>
+    <param>
+        <param_name>  -e </param_name>
+        <param_note>把下一个参数完整地作为查找对照字符串</param_note>
+    </param>
+    <param>
+        <param_name>  -f </param_name>
+        <param_note> 从下一个参数命名的文件中获取查找对照字符串</param_note>
+    </param>
+        <param>
+        <param_name> -i </param_name>
+        <param_note>从下一个参数命名的文件中获取文件列表</param_note>
+    </param>
+    <param>
+        <param_name> [strings]  </param_name>
+        <param_note> 要求查找的对照字符串</param_note>
+    </param>
+    <param>
+        <param_name> files  </param_name>
+        <param_note> 文件名</param_note>
+    </param>
+    </parameters>
+
+    <examples>
+    <example>
+        <eg_line>grep -y "file" file.txt</eg_line>
+        <eg_note> 在文件file.txt中查找字符串“file”（大小写不敏感）。输出结果：</eg_note>
+        <eg_result><![CDATA[
+This is the file.txt.
+]]></eg_result>
+    </example>
+
+    </examples>
+
+</manpage>

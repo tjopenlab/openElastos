@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strcoll">strcoll</sample>
+    <title>strcoll,wcscoll</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>根据给定信息对字符串进行比较。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>strcoll</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string1</param_name>
+                <param_note>
+                    <para>用于比较的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string2</param_name>
+                <param_note>
+                    <para>用于比较的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+   
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>wcscoll</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string1</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string2</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+    
+    <return>
+        <para>每个函数的返回值表明了两个字符串 string1和string2的关系，如下所示：</para>
+        <table>
+	        <th>
+               <td>返回值</td>
+               <td>字符串string1和string2的关系</td>
+            </th>
+            <tr>
+               <td>&lt;0</td>
+               <td>string1小于string2</td>
+            </tr>
+            <tr>
+               <td>0</td>
+               <td>string1与string2相等</td>
+            </tr>
+            <tr>
+               <td>&gt;0</td>
+               <td>string1大于string2</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>函数strcoll根据当前代码页的状态对string1和string2进行区分大小写的比较。只有在当前代码页的字符设置顺序与词典字符顺序存在差别，并且此差别对字符串比较产生影响时，才使用此函数。函数_stricoll是函数strcoll的大小写不敏感版本。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strcoll</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+       
+         <routine>
+            <routine_name>wcscoll</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+       
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+//strcoll.cpp:this program use strcoll to returns a value indicating the relationship of string1 to string2
+//
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+char string1[] = &quot;The quick brown dog jumps over the lazy fox&quot;;
+char string2[] = &quot;The QUICK brown dog jumps over the lazy fox&quot;;
+
+int main()
+{
+    char tmp[20];
+    int result;
+    /* Case sensitive */
+    printf(&quot;Compare strings:\n\t%s\n\t%s\n\n&quot;, string1, string2);
+    result = strcoll(string1, string2);
+    if (result &gt; 0)
+        strcpy(tmp, &quot;greater than&quot;);
+    else if (result &lt; 0)
+        strcpy(tmp, &quot;less than&quot;);
+    else
+        strcpy(tmp, &quot;equal to&quot;);
+    printf(&quot;\tstrcoll:   String 1 is %s string 2\n&quot;, tmp);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+Compare strings:
+The quick brown dog jumps over the lazy fox
+The QUICK brown dog jumps over the lazy fox
+
+strcoll:   String 1 is greater than string 2
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcscmp</ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>strxfrm</ref_name>
+            <ref_url>strxfrm</ref_url>
+        </reference>
+    </references>
+
+</manpage>

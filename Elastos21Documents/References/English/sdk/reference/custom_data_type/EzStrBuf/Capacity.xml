@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzStrBuf\capacity">Capacity</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzStrBuf   </interface>
+    <method> Capacity </method>
+
+    <description>
+        <para> Gets the total size of current string buffer in number of characters. </para>
+    </description>
+    <syntax>
+        <return_val> int </return_val>
+    <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>Returns the size of buffer (in number of characters, except the end symbol "\0"). </para>
+    </return>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStrBuf_<20> myStr;
+
+    int cap = myStr.Capacity();
+    if (!myStr.IsNull()) {
+        printf("The capacity of the string is %d.\n", cap);
+    }
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+The capacity of the string is 20.
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name> Length </ref_name>
+            <ref_url> Length </ref_url>
+        </reference>
+    </references>
+
+</manpage>

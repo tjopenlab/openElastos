@@ -1,0 +1,93 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\ezNamingService"> CSystem::UnregisterRunningObject </sample>
+    <volume>命名服务函数</volume>
+    <title>CSystem::UnregisterRunningObject</title>
+
+    <description>
+        <para>取消已注册的命名服务。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>[in]指定服务名字的字符串，不能为空</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_DOES_NOT_EXIST</td><td>指定的服务不存在</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_OPERATION</td><td>进程试图注销由其他进程注册的命名服务</td>
+            </tr>
+            <tr>
+                <td>E_PROCESS_ALREADY_EXITED</td><td>指定的进程已经退出</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+            <tr>
+                <td>E_NOT_ENOUGH_ADDRESS_SPACE</td><td>没有足够的地址空间</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>只有注册命名服务的那个进程才有权取消自己注册的服务，其它进程调用本函数则会返回失败。例如：进程A注册了命名服务"MyService"，则只能由进程A调用CSystem::UnregisterRunningObject(L("MyService"))才能将服务"MyService"取消。</para>
+        <para>一旦调用本函数取消指定的命名服务后，使用<link url="FindRunningObject.htm">CSystem::FindRunningObject</link>函数将不再能获取到该服务的接口，但这并不影响之前已经通过<link url="FindRunningObject.htm">CSystem::FindRunningObject</link>获取的服务接口，除非该服务进程已经退出。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本
+            </system_name>
+       </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CSystem::RegisterRunningObject</ref_name>
+        <ref_url>RegisterRunningObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CSystem::FindRunningObject </ref_name>
+        <ref_url>FindRunningObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CSystem::WaitForRunningObject </ref_name>
+        <ref_url>WaitForRunningObject</ref_url>
+    </reference>
+    </references>
+
+</manpage>

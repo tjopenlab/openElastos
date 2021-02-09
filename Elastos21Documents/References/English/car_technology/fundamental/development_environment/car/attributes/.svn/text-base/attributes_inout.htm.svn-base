@@ -1,0 +1,42 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--in, out</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>in,&nbsp;out</h2>
+    <p>in attribute and out attribute can only be used to modify interface method parameters.When they are combined, this parameter becomes input output parameter. This parameter is allocated and released by client program, component program (server) can reallocate the parameter. The syntax is: [in,&nbsp;out] or [out,&nbsp;in] parameter type and parameter name. For example: </p>
+    <pre class="code">
+[
+    uuid(c35f10e7-8300-41a2-9837-1a8f5629aae3),
+    uunm(http://www.koretide.com/car/InOutDemo.dll)
+]
+component InOutDemo
+{
+    [uuid(60f5c569-d4d2-4559-b437-e860acdda24d)]
+    interface IInterface {
+        ECODE Func([<b>in,&nbsp;out</b>] int* pi);
+    }
+    [uuid(ebf87d21-a9f0-444d-917e-94a6a24dcf88)]
+    class CClass {
+        interface IInterface;
+    }
+}
+</pre>
+    <p>In sample component InOutDemo, parameter pi of Func method in interface IInterface is input output parameter.</p>
+    <ol><font color="red"><b>Note: </b>Since the out attribute is included in this attribute combination, while modifying parameters using attribute combinations you must pay attention to the following: 
+        <li>[in,&nbsp;out] attribute combination cannot be used to modify callback event parameter in callback event interface defined by the <a class="style1" href="../keywords/keywords_icallback.htm">icallback</a> keyword.
+        <li>Parameters modified by [in,&nbsp;out] attribute combination, besides <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzStrBuf.htm">EzStrBuf</a>, <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzByteBuf.htm">EzByteBuf</a>, <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzPoint.htm">EzPoint</a>, <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzArray.htm">EzArray</a>, <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzWCharBuf.htm">EzWCharBuf</a> types, must be of pointer type.
+        <li>Parameters modified by [in,&nbsp;out] attribute combination cannot be of <a class="style1" href="../../../../../sdk/reference/custom_data_type/EzStr.htm">EzStr*</a> type.</font>
+    </ol>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

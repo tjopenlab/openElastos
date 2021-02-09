@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IComboBox</interface><method> GetItem </method>
+    <description>
+        <para>
+            获取指定列表项显示的文本。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+指定列表项的索引值，有效值为 0～项数-1</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf_&lt;&gt; </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+<link url="../../../../../../car_technology/fundamental/development_environment/car/data_type/WStringBuf.htm">WStringBuf_</link> 类型，用于获取指定项的文本</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取行的信息</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        某项的文本可以在插入该列表项时设置，也可以调用 <link url="SetItem.htm">SetItem</link> 方法进行修改。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CComboBox 类介绍</ref_name>
+        <ref_url>../../class/ComboBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IComboBox 接口方法列表</ref_name>
+        <ref_url>../IComboBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetItem</ref_name>
+        <ref_url>SetItem</ref_url>
+    </reference>
+</references>
+</manpage>

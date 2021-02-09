@@ -1,0 +1,181 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>Class Smart Pointer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+    <h2>Class Smart Pointer</h2>
+        <p>In COM programming, suppose a CObject object implements three interfaces IA, IB, IC. There is method <b>FA</b> in IA interface, <b>FB</b> method in IB interface, <b>FC</b> in IC interface. So if the user needs to invoke <b>FA</b>, <b>FB</b>, <b>FC</b> three methods, then the following code is required to invoke <b>FA</b>, <b>FB</b>, <b>FC</b> three methods (suppose the user already obtained interface pointer pIA of interface IA): </p>
+        <pre class="code">
+……
+pIAàFA(…);
+IB *pIB; 
+IC *pIC;
+pIAàQueryInterface(IID_IB, &pIB);
+pIAàQueryInterface(IID_IC, &pIC);
+pIBàFB(…);
+pICàFC(…);
+pIBàRelease();
+pICàRelease();
+……
+</pre>        
+        <p>To keep it simple, this chunk of code does not consider situation when method invocation fails. Obviously, just invoking three methods costs nine lines of code, the code is too complex.</p>
+        <p>In order to solve this problem, class smart pointer is invented. Class smart pointer is an encapsulation of component class, component class is class defined in a component. See "<a class="style1" href="../../fundamental/development_environment/car/about_car.htm">CAR language</a>" for details. Suppose there is class smart pointer variable m_cObject that points to the above CObject object. Code to invoke the above three methods are: </p>
+        <pre class="code">
+m_cObject.FA(…);
+m_cObject.FB(…);
+m_cObject.FC(…);
+</pre>        
+        <p>As you can see, class smart pointer simplifies the code and it makes the code more readable.</p>
+        <p>In C++ language, class smart pointer is represented by class, this class has a couple of member variables, each member variable points to an interface of the object. The number of member variables equals to the number of CAR object implemented interface. Member variable and component object implementation have a one to one correspondence. Through class smart pointer, one can invoke all interface methods implemented by component object. For example in the above example, through class smart pointer m_cObject, one can invoke interface method <b>FA</b> of interface IA, also invoke interface method <b>FB</b> of interface IB and invoke interface method <b>FC</b> of interface IC.</p>
+        <p>Class smart pointer is implemented through using class smart pointer to inherit interface smart pointer. Show as the following image: </p>
+        <center><img src="images/class.jpg"></center>
+        <p>Under this condition, when user invokes CObjectRef::FA(…), actually it invokes IARef::FA(…). About IARef::FA(…) implementation, you can see the description in the last section of this article about interface smart pointer.</p>
+        <p>Through class smart pointer, corresponding component object of class smart pointer can be created. Member variable that inherited by this class smart pointer points to this newly created object.</p>
+        <p>This article mainly includes the following content: </p>
+    <ul>
+        <li><a class="style1" href="#form">Class smart pointer representation</a>
+        <li><a class="style1" href="#create">Creation of class smart pointer</a>
+        <li><a class="style1" href="#validity">Validation of class smart pointer</a>
+        <li><a class="style1" href="#use">Usage of class smart pointer</a>
+    </ul>
+    <h4><a name="form"></a>Class smart pointer representation</h4>
+        <p>Class smart pointer representation: CxxxRef, of which Cxxx represents the class name.</p>
+        <p>The following uses Hello component as an example and introduces how to create and use class smart pointer. First please see the content of helloworld.car file: </p>
+        <pre class="code">
+[
+    uuid(29899803-5da2-45f0-a4b7-387b76590abe),
+    uunm(http://www.koretide.com/car/helloworld.dll)
+]
+component Hello
+{
+    //interface IHello
+    [uuid(225c5629-5cd8-403a-97d9-204ffda2976d)]
+    interface IHello {
+        ECODE SayHello();
+    }
+
+    //interface IWorld
+    [uuid(ba85f03f-7f55-4595-9137-cee4ea43b404)]
+    interface IWorld {
+        ECODE SayWorld();
+    }
+
+    //class CHello
+    [uuid(3b1e3a47-9a78-4466-ab11-ad8512761e0d)]
+    class CHello {
+        interface IHello;
+    }
+
+    //class CHelloWorld
+    [uuid(1627061a-36b9-4dcb-b9af-5967db085d17)]
+    class CHelloWorld {
+        interface IHello;
+        interface IWorld;
+    }
+}
+</pre>
+        <p>Two classes are defined in file helloworld.car, CHello and CHelloWorld. In client import command is used to reference Hello component, the method is as the following: </p>
+        <pre class="code">
+#import &lt;helloworld.dll&gt;
+</pre>
+        <p>Client has these two class smart pointer types: CHelloRef and CHelloWorldRef.</p>
+
+    <h4><a name="create"></a>Creation of class smart pointer</h4>
+        <p>There is only one way to create legal class smart pointer: Creates a class smart pointer, invokes <b>Instantiate</b> method instantiate corresponding class of this class smart pointer and makes this class smart pointer points to this object.</p>
+        <ul>
+            <li>When user needs to specify relative location of created object and the client, invoking <b>Instantiate</b> method need to set corresponding parameter, for example: </p>
+            <pre class="code">
+CHelloRef cHello;   //creates class smart pointer cHello
+//instantiates class CHello, makes class smart pointer cHello points to this object
+ECODE ec = cHello.<b>Instantiate(CTX_SAME_DOMAIN);</b>
+if (FAILED(ec)) {   //validates smart pointer using return value
+    printf("cHello initialize failed\n");
+    return 1;
+}
+</pre>
+            <p>Parameter <i>CTX_SAME_DOMAIN</i> specifies relative location of object and client. For options and their meaning of this parameter please see <a class="style1" href="code_running_env.htm">executable code run-time environment (context)</a>.</p>
+
+            <li>When user does not care relative location of created object and client, no parameter need to be add when invoking <b>Instantiate</b> method. For example: </p>
+            <pre class="code">
+CHelloRef cHello;   //creates class smart pointer cHello
+//instantiate class CHello, class smart pointer cHello points to this object
+ECODE ec = cHello.<b>Instantiate();</b>
+if (FAILED(ec)) {   //validate smart pointer using return value
+    printf("cHello initialize failed\n");
+    return 1;
+}
+</pre>
+            <p>In example, there is no parameter when invoking <b>Instantiate</b> method, the system default value is one of the three values of CTX_SAME_DOMAIN, CTX_DIFF_DOMAIN and CTX_DIFF_PROCESS. Relative location of created object and client is determind by priority.</p>
+        </ul>
+
+    <h4><a name="validity"></a>Validation of class smart pointer</h4>
+        <p>After the user creates a new class smart pointer, he needs to check its validity. Only valid class smart pointer is legal class smart pointer. The method is as the following: </font></p>
+        <ul>
+            <li>Method one: Checks using return value, for example: </p>
+                <pre class="code">
+……
+CHelloRef cHello;
+<b>ECODE ec = cHello.Instantiate();
+if (FAILED(ec)) {   //validate class smart pointer cHello using return value
+    printf("cHello initialize failed\n");
+    return 1;
+}</b>
+……
+</pre>
+
+            <li>Method two: Checks when invoking <b>IsValid</b> method, for example: </p>
+                <pre class="code">
+……
+CHelloRef cHello;
+ECODE ec = cHello.Instantiate();
+<b>if (!cHello.IsValid()) { //validate class smart pointer cHello by invoking <b>IsValid</b> method
+    assert(0 && "Can't create cHello");
+    return 1;
+}</b>
+……
+</pre>
+                <p><b>Remarks: </b>When invoking <b>Instantiate()</b> method initialize smart pointer, it is recommended to validate smart pointer using return value. More detailed information can be obtained through return vlue. For example: When can not find the interface or not enough memory etc. <b>IsValid()</b> only validates smart pointer, it cannot obtain specific error information.</p>
+            </ul>
+
+    <h4><a name="use"></a>How to use class smart pointer?</h4>
+        <p>Class smart pointer uses "." dot operator to invoke all interface methods in pointed object. For example: </p>
+        <pre class="code">
+//invokes class smart pointer cHello to invoke interface method in class CHello object
+CHelloRef cHello;
+ECODE ec;
+ec = cHello.Instantiate();
+if (FAILED(ec)) {   //validate class smart pointer cHello using return value
+    printf("cHello initialize failed\n");
+    return 1;
+}
+
+//invokes method SayHello() of IHello interface in class CHello object through class smart pointer cHello
+<b>cHello.SayHello();</b>
+
+//invokes interface method using CHelloWorld class smart pointer
+CHelloWorldRef cHelloWorld;
+ec = cHelloWorld.Instantiate();
+if (FAILED(ec)) {   //validate class smart pointer cHelloWorld
+    printf("cHelloWorld initialize failed\n");
+    return 1;
+}
+
+//invokes method SayHello() of interface IHello in class CHelloWorld object through class smart pointer cHelloWorld
+<b>cHelloWorld.SayHello();</b>
+//invokes method SayHello() of interface IWorld in class CHelloWorld object through class smart pointer cHelloWorld
+<b>cHelloWorld.SayWorld();</b>
+</pre>
+        <p>One can directly invoke all interface methods in the object it points to through class smart pointer.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

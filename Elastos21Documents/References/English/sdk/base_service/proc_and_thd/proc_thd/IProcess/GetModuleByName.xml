@@ -1,0 +1,82 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\Modules">GetModuleByName</sample>
+<volume>Process And Thread</volume>
+<interface>IProcess</interface><method> GetModuleByName </method>
+    <description>
+        <para>
+            Gets module interface pointer through specified module name.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString  </param_type>
+                <param_name>name </param_name>
+                <param_note>
+                    <para>
+						Represents the name of a module.
+                    </para>
+                </param_note>
+            </api_param>       
+			
+			<api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IModule  </param_type>
+                <param_name> **ppIModule </param_name>
+                <param_note>
+                    <para>
+						Handle to the specified module,which can not be null
+                    </para>
+                </param_note>
+            </api_param>       			
+			    
+        </parameters>
+    </syntax>
+	
+	<return>
+	    <table>
+	        <th>            
+		        <td>Return Value </td>
+		        <td>Description</td>            
+	        </th>            
+	        <tr>
+		        <td>NOERROR</td>
+		        <td>Successfully gets module interface pointer.</td>
+	        </tr>
+	        <tr>
+		        <td>E_NOT_EXIST</td>
+		        <td>Cannot find specified module.</td>
+	        </tr>
+	        <tr>
+		        <td>E_INVALID_ARGUMENT</td>
+		        <td>Parameter error.</td>
+	        </tr>
+	        <tr>
+		        <td>E_PROCESS_NOT_ACTIVE</td>
+		        <td>Thread is in not running mode.</td>
+	        </tr>
+	    </table>
+	    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+		<para>
+			If the module specified by the esName does not exist, ppIModule will return NULL.
+		</para>		
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.            
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

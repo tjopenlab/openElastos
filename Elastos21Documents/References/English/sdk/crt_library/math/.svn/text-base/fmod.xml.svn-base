@@ -1,0 +1,88 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\fmod">fmod</sample>
+    <title> fmod</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>Calculates the floating-point remainder.</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>fmod</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>Floating-point values.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>y</param_name>
+                <param_note>
+                    <para>Floating-point values.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>fmod returns the floating-point remainder of x / y. If the value of y is 0.0, fmod returns a quiet NAN. For information about representation of a quiet NAN by the printf family, see <link url="../stdio/wprintf.htm">printf</link>.</para>
+    </return>
+
+    <remarks>
+        <para>The fmod function calculates the floating-point remainder f of x / y such that x = i * y + f, where i is an integer, f has the same sign as x and the absolute value of f is less than the absolute value of y.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fmod</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fmod.cpp: This program displays a
+ * floating-point remainder.
+ */
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double w = -10.0, x = 3.0, y = 0.0, z;
+
+    z = fmod(w, x);
+    printf(&quot;The remainder of %.2f / %.2f is %f\n&quot;, w, x, z);
+    z = fmod(x, y);
+    printf(&quot;The remainder of %.2f / %.2f is %f\n&quot;, x, y, z);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The remainder of -10.00 / 3.00 is -1.000000
+The remainder of 3.00 / 0.00 is NaN
+</result>
+
+
+
+</manpage>

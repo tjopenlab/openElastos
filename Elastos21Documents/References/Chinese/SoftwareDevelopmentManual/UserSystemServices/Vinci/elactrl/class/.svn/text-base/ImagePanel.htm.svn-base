@@ -1,0 +1,45 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>ImagePanel</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>ImagePanel</b></h2></center>
+<small><p><b>头文件：</b>ElControls.h
+<p><b>程序库：</b>ElControls.dll
+（<b>备注：</b>当在 CAR 文件中通过 <a class="doxygen" href="../../../../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a> 引入 ElControls.dll 时，则无需在源文件中添加“include &lt;ElControls.h&gt;”该句；若 ElControls.dll 是在 sources 文件中引入的，则需要在源文件中添加“include &lt;ElControls.h&gt;”该句。有关更多信息请参考：<a class="doxygen" href="../../../../../car_technology/car.htm">CAR 编程入门</a>）</small>
+<hr size="1">
+<h4><li><b>详细描述：</b></h3>
+<center> <img src="images/ImagePanel.jpg"> </center>
+<center><small>ImagePanel 图例</small></center>
+<p>图片面板控件。ImagePanel 风格多样且运用灵活。用户可以在上面划分出一个个小窗格，即不同的点击区域，然后设置每个小窗格的 <a class="doxygen" href="CImagePanel/ImagePanelPane_struct.htm">ImagePanelPane</a> 的值，便可像图例中所显示的那样，产生在一个窗口内布局多个 <a class="doxygen" href="Button.htm">Button</a> 的效果。每个小窗格显示的图片只是从一张大图中截取的用户需要的那一部分，例如只需要图例中显示 1 的那部分图片，则可以通过 ImagePanelPane 取合适的坐标和图片宽度高度，就可以把那一部分图片显示出来，注意若此时 ImagePanel 的风格设置为 <a class="doxygen" href="../datatype/ImagePanelStyle.htm">ImagePanelStyle_ImageFrame</a>，则显示的还是整张图片，即1～9均显示在窗体内。ImagePanel 除了可以产生像 Button 一样的点击效果，也可以像 <a class="doxygen" href="CheckBox.htm">CheckBox</a> 一样，允许用户多选，并且相较于 CheckBox 的外观，ImagePanel 在视觉上更为丰富。由于可以将原先设置在多个控件的图片集中到一起形成一张大图，用户只需通过 ImagePanel 控件，然后指定所需图片在大图中的确切位置、高度和宽度就可以将该部分图片显示出来，大大减少了图片的数量，便于管理。 
+<p>ImagePanel 每一个窗格的属性值是通过 ImagePanelPane 设置的，可以设置每一个窗格在 ImagePanel 内的位置，截取图片的位置，控件显示的风格，每一个窗格的快捷键等。设置 ImagePanel 每个窗格的快捷键，可参考：<a class="doxygen" href="../reference/ImagePanel_AcceleratorKey.htm">如何为 ImagePanel 控件设置快捷键</a>。
+<p>控件所表现出来的视觉效果是是通过控件处于不同状态的图片的切换来实现的。例如 Button 被鼠标点击的效果，它是由一张 Button 处于正常状态的图片和一张 Button 被按下时候的图片切换产生。故使用 ImagePanel 模拟控件的点击效果时，需要用户自行指定窗格各个状态的图片，设置控件各个状态的图片可以通过 <a class="doxygen" href="../interface/IImagePanel/SetPanelImages.htm">SetPanelImages</a>、<a class="doxygen" href="../interface/IImagePanel/SetNormalImage.htm">SetNormalImage</a>、<a class="doxygen" href="../interface/IImagePanel/SetPressedImage.htm">SetPressedImage</a> 等方法。有关更多信息，可参考：<a class="doxygen" href="../reference/ImagePanelSample.htm">如何使用 ImagePanel 控件</a>。 
+<p><b>注意：</b>ImagePanel 不允许点击区域的重叠，否则会出现预想不到的现象。另外，ImagePanel 必须放在一个 <a class="doxygen" href="Form.htm">Form</a> 内，或者 ImagePanel 的 parent 控件在一个 Form 内。
+<hr size="1">
+<h4><li><b>CImagePanel类封装图：</b></font></h4>
+<center> <img src="images/CImagePanel.jpg"> </center>
+        <p>如图所示，JControlEvents（通用回调事件接口）、JImagePanelEvents 为回调事件接口，用户可以通过 AddXXXCallback 的方法为 ImagePanel 注册回调事件，当该 XXX 事件发生时，相应的回调处理函数会被调用。当销毁一个对象前，需要调用 RemoveXXXCallback 取消该事件。具体 Callbak 机制的介绍，详见 Elastos 编程入门中 Callback 这节。
+        <p>当使用 <a class="doxygen" href="CImagePanel/CImagePanel_New.htm">New</a> 方法创建了一个 ImagePanel 对象后，可以获得 <a class="doxygen" href="../interface/IImagePanel.htm">IImagePanel</a> 接口指针，通过该接口指针用户可以调用接口内的方法对 ImagePanel 进行一系列操作。
+
+<hr size="1">
+<h4><li><b>构造函数：</b></font></h4>
+<table>
+<thead><td>名称</td><td class="memitem">说明</td></thead>
+<tr><td><a class="doxygen" href="CImagePanel/CImagePanel_New.htm">CImagePanel::New</as></td><td>创建一个 ImagePanel 对象</td></tr>
+</table>
+<h4><li><b><a class="doxygen" href="../interface/IImagePanel.htm">IImagePanel 接口方法列表</a></b></font></h4>
+<ul><p><b>注：</b>IImagePanel 接口继承于 <a class="doxygen" href="../interface/IControl.htm">IControl</a> 接口。</ul>
+
+<h4><li><b><a class="doxygen" href="../interface/JImagePanelEvents.htm">ImagePanel 回调事件列表</a></b></font></h4>
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

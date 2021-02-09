@@ -1,0 +1,47 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>DateTimePicker</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>DateTimePicker</b></h2></center>
+<small><p><b>头文件：</b>ElControls.h
+<p><b>程序库：</b>ElControls.dll
+（<b>备注：</b>当在 CAR 文件中通过 <a class="doxygen" href="../../../../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a> 引入 ElControls.dll 时，则无需在源文件中添加“include &lt;ElControls.h&gt;”该句；若 ElControls.dll 是在 sources 文件中引入的，则需要在源文件中添加“include &lt;ElControls.h&gt;”该句。有关更多信息请参考：<a class="doxygen" href="../../../../../car_technology/car.htm">CAR 编程入门</a>）</small>
+<hr size="1">
+<h4><li><b>详细描述：</b></h3>
+<center> <img src="images/DateTimePicker_Time.jpg"> </center>
+<center><small>DateTimePicker 图例（在 Time 风格下）</small></center>
+<center> <img src="images/DateTimePicker_Date.jpg"> </center>
+<center><small>DateTimePicker 图例（在 Date 风格下）</small></center>
+<center><small>（注：DateTimePicker 在 DateTime 风格下暂未实现）</small></center>
+<p>DateTimePicker 控件用来让用户通过键盘输入或者点击控件上的上下箭头选择日期和时间，并以指定的格式显示此日期和时间。通过调用 <a class="doxygen" href="../interface/IDateTimePicker/SetMaxDate.htm">SetMaxDate</a> 和 <a class="doxygen" href="../interface/IDateTimePicker/SetMinDate.htm">SetMinDate</a> 方法可以设置在 <a class="doxygen" href="../datatype/DateTimePickerStyle.htm">DateTimePickerStyle_Date</a> 风格下，允许用户选择的日期的范围，默认的选择范围为：1970/01/01～2037/12/31。通过调用 <a class="doxygen" href="../interface/IDateTimePicker/SetMaxDate.htm">SetMaxTime</a> 和 <a class="doxygen" href="../interface/IDateTimePicker/SetMinDate.htm">SetMinTime</a> 方法可以设置在 <a class="doxygen" href="../datatype/DateTimePickerStyle.htm">DateTimePickerStyle_Time</a> 风格下，允许用户选择的时间的范围，默认的选择范围为：00:00:00～99:59:59（同时也是最大选择范围）。若用户设置的日期的各个参数值或者时间的各个参数值超过可选范围的最大值或者低于可选范围的最小值，则系统默认会以可选范围的最大或者最小值显示。
+<p>DateTimePicker 控件显示字体的风格受 <a class="doxygen" href="../../graphics/class/CFont.htm">Font</a> 控制，有关更多信息请参考：<a class="doxygen" href="../reference/SetText.htm">如何设置控件所显示的文本</a>。 当 DateTimePicker 控件内的内容的长度或者高度超过了可以显示的范围，则显示无内容。
+<p><b>注意：</b>DateTimePicker 必须放在一个 <a class="doxygen" href="Form.htm">Form</a> 内，或者 DateTimePicker 的 parent 控件在一个 Form 内。
+<hr size="1">
+<h4><li><b>CDateTimePicker类封装图：</b></font></h4>
+<center> <img src="images/CDateTimePicker.jpg"> </center>
+        <p>如图所示，JControlEvents（通用回调事件接口）、JDateTimePickerEvents 为回调事件接口，用户可以通过 AddXXXCallback 的方法为 DateTimePicker 注册回调事件，当该 XXX 事件发生时，相应的回调处理函数会被调用。当销毁一个对象前，需要调用 RemoveXXXCallback 取消该事件。具体 Callbak 机制的介绍，详见 Elastos 编程入门中 Callback 这节。
+        <p>当使用 <a class="doxygen" href="CDateTimePicker/CDateTimePicker_New.htm">New</a> 方法创建了一个 DateTimePicker 对象后，可以获得 <a class="doxygen" href="../interface/IDateTimePicker.htm">IDateTimePicker</a> 接口指针，通过该接口指针用户可以调用接口内的方法对 DateTimePicker 进行一系列操作。
+
+<hr size="1">
+<h4><li><b>构造函数：</b></font></h4>
+<table>
+<thead><td>名称</td><td class="memitem">说明</td></thead>
+<tr><td><a class="doxygen" href="CDateTimePicker/CDateTimePicker_New.htm">CDateTimePicker::New</as></td><td>创建一个 DateTimePicker 对象</td></tr>
+</table>
+<h4><li><b><a class="doxygen" href="../interface/IDateTimePicker.htm">IDateTimePicker 接口方法列表</a></b></font></h4>
+<ul><p><b>注：</b>IDateTimePicker 接口继承于 <a class="doxygen" href="../interface/IControl.htm">IControl</a> 接口。</ul>
+
+<h4><li><b><a class="doxygen" href="../interface/JDateTimePickerEvents.htm">DateTimePicker 回调事件列表</a></b></font></h4>
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

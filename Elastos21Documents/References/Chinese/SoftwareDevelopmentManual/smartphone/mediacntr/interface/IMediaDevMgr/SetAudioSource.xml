@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心</volume>
+<interface>IMediaDevMgr</interface><method> SetAudioSource </method>
+    <description>
+        <para>
+            设置音源。音源包括主麦克风、耳机麦克风和模块内录。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> AudioSource </param_type>
+                <param_name> eSourceLeft </param_name>
+                <param_note>
+                    <para>指定左声道音源，取AudioSource的枚举值</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> AudioSource </param_type>
+                <param_name> eSourceRight </param_name>
+                <param_note>
+                    <para>指定右声道音源，取AudioSource的枚举值</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>方法调用成功时，返回 NOERROR 。如果参数eSourceLeft或eSourceRight的值不在枚举值范围内时，返回E_INVALID_ARGUMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>GetAudioSource</ref_name>
+            <ref_url>GetAudioSource</ref_url>
+        </reference>
+    </references>
+</manpage>

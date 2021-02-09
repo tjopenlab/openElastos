@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\float\_isnan">_isnan</sample>
+    <title>_isnan</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> float_idx.htm </routine_idx>
+
+    <description>
+        <para>判断浮点数值是否为NaN（Not a Number）。NaN是当浮点数的结果不能被
+IEEE（Institute of Electrical and Electronics Engineers电气电子工程师协会）标准表示时产生的。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_isnan</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>浮点数值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果参数x是NaN，返回非零数（真）；否则返回0（假）。</para>
+    </return>
+
+    <remarks>
+        <para>_isnan 函数检查浮点数x。如果x是NaN，返回一个非零值。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_isnan</routine_name>
+            <headerfile>float.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _isnan.cpp: This program uses _finite function to check
+ * x is Nan.
+ */
+
+#include &lt;float.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double x = 242.55;
+
+    printf(&quot;For x, is %s\n&quot;, _isnan(x) ? &quot;NaN&quot; : &quot;not NaN&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+For x, is not NaN
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>_finite</ref_name>
+            <ref_url>_finite</ref_url>
+        </reference>
+    </references>
+
+</manpage>

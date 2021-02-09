@@ -1,0 +1,109 @@
+<html>
+<head>
+	<title>Operating Systems FAQ :: Bootloaders and Bootmenus</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="boot_sector">Boot Sectors</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+The computer follows a set sequence, one of the first things it does
+is perform its POST, Power On Self Test.
+<p>
+The POST is designed to detect faults in the system (no display,
+no keyboard, etc) and look for a bootable device
+(floppy, scsi, hard disk, cdrom)
+<p>
+In modern machnes you can set the order the BIOS determins what to
+boot from, "A, C, CDROM / C Only / CDROM, C, A" etc.
+<p>
+Back in the "old" days, the BIOS would first look for a floppy disk in
+drive A: and then it would look in drive C:.
+<p>
+Once the BIOS finds a boot sector with a bootable ID (0x55, 0xAA),
+it loads it into memory at a specifically set location, 0x0000:0x7C00,
+segment 0x0000, address 0x7C00.
+<p>
+Once the sector is loaded, execution starts at this address.
+<p>
+BIOS, all being made by different manufacturers, set its registers
+up differently according to who its maker is.  *NEVER* assume
+what the contents of registers might be, for example, NEVER assume
+that DS/SS/ES etc will be initialised to 0 because not all bios do this.
+(and this has caught many people unawares!)
+<p>
+Floppy disks and hard disks boot differently.  There are slight differences
+in the way they go about things.
+<p>
+Floppies are pretty simple, the BIOS loads the bootsector into 0x0000:0x7C00
+and proceeds to execute it.  Its a one step process.
+<p>
+A hard disk is different.  A hard disk has an MBR (Master Boot Record),
+this is because a hard disk can have multiple partitions and any one of
+them can be bootable.
+<p>
+The BIOS loads the MBR (sector 0 of the hard disk) into memory at
+0x0000:0x7C00 and executes it, now typically (ie: there is no standard)
+that sector moves its code down to 0x0000:0x0600 area and continues
+to execute itself from there.
+<p>
+Once it has moved itself, it will proceed to scan the partition table
+for a bootable partition.  When it finds a bootable partition it loads
+the first sector of that partition into 0x0000:0x7C00 and executes it.
+(Now you see why it moves its code down!)
+<p>
+The entire process is quite simple. But things get much harder
+when you decide you want your bootsector to load a file or an
+operating system kernel.
+<p>
+(see the examples <a href="files/bootr01.zip">bootr01.zip</a> and <a href="files/smbmbr03.zip">smbmbr03.zip</a>)
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="mbr">Master Boot Record</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Every hard disk has an MBR (Master Boot Record) as the very first sector
+		of the disk. 
+		<p>
+		The MBR contains a table of four entries that are used for what is known as
+		Primary Partitions.
+		<p>
+		This table is filled in by the disk paritioning programs such as FDisk and
+		Disk Druid, etc.
+		<p>
+		The layout of this table corresponds to;
+<pre>
+Offset    Size (bytes)    Description
+0x00           1          Boot Indicator (0x80=bootable, 0x00=not bootable)
+0x01           1          Starting Head Number
+0x02           2          Starting Cylinder Number (10 bits) and Sector (6 bits)
+0x04           1          Descriptor (Type of partition/filesystem)
+0x05           1          Ending Head Number
+0x06           2          Ending Cylinder and Sector numbers
+0x08           4          Starting Sector (relative to begining of disk)
+0x0C           4          Number of Sectors in partition
+</pre>
+	
+		<p>
+		(see the examples <a href="files/bootr01.zip">bootr01.zip</a> and <a href="files/smbmbr03.zip">smbmbr03.zip</a>)				
+		</TD>
+	</TR>
+</TABLE>
+
+
+</body>
+</html>

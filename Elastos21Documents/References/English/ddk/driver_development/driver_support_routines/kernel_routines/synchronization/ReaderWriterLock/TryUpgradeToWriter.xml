@@ -1,0 +1,83 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="../../../../../../xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>ReaderWriterLock</interface><method> TryUpgradeToWriter </method>
+    <description>
+        <para>
+        	Tries to upgrade the acquired reader lock to writer lock.
+        </para>
+    </description>
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_type> uint_t</param_type>
+                <param_name> uTicks </param_name>
+                <param_note>
+                    <para>
+                    	Specifies the time-out interval, in ticks. If <i>uTicks</i> is zero, then the method returns
+                    	immediately. However, if the thread upgrades the acquired reader lock to writer lock
+                    	successfully, then the method returns S_OK; otherwise, S_TIME_OUT is returned.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+    	    <th>
+    		<td>Return Value </td>
+    		<td>Hex Value</td>
+    		<td>Description</td>
+    	    </th>
+
+    		<tr>
+    		<td>S_OK</td>
+    		<td>0x00000000</td>
+    		<td>Function succeeds in trying to upgrade the acquired reader lock to writer lock.</td>
+    	    </tr>
+
+    	    <tr>
+    		<td>S_TIMED_OUT </td>
+    		<td>0x00060003</td>
+    		<td>The interval elapses; attempt to upgrade the acquired reader lock failed</td>
+    	    </tr>
+
+    	    <tr>
+    		<td>S_INTERRUPTED</td>
+    		<td>0x00060014</td>
+    		<td>The waiting of the calling thread is interrupted</td>
+    	    </tr>
+
+
+    	</table>
+	</return>
+
+	<remarks>
+	    <para>
+	    	This method is used to upgrade the acquired reader lock to writer lock . If calling thread cannot
+	    	upgrade to acquire a writer lock of the ReaderWriterLock object (In case, a ReaderWriterLock object
+	    	is acquired by one or more readers),then it enters the waiting state untill the writer lock of the
+	    	ReaderWriterLock object is acquired.Then the method returns successfully. If the interval elapses,
+	    	the thread stops waiting immediately and the method returns. The waiting of the calling thread 
+	    	can be interrupted.
+		</para>
+		<para>
+			If the calling thread has not acquired the ReaderWriterLock object as a reader, the method fails
+			and causes unpredictable results.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

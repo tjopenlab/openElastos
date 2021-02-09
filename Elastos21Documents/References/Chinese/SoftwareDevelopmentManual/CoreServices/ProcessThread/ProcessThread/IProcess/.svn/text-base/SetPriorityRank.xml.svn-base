@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+<manpage>
+	<sample url="sdk\operating_system\system_com_interface\IProcess\PriorityRank"> SetThreadPriorityRank </sample>
+	<volume>进程</volume>
+	<interface>IProcess</interface><method> SetPriorityRank</method>
+		<description>
+			<para>
+                设置IProcess接口指定的进程的优先级类别。
+			</para>
+		</description>
+		<syntax>
+			<return_val> ECode </return_val>
+			<parameters>
+				<api_param>
+					<param_inout>[in]</param_inout>
+					<param_type> ThreadPriorityRank  </param_type>
+					<param_name> priorityRank </param_name>
+					<param_note>
+						<para>
+						     用于设置进程的优先级类别的<link url="../../../DataStructure/PriorityRank.htm">ThreadPriorityRank</link>枚举类型，默认值为PriorityRank_Normal
+						</para>
+					</param_note>
+				</api_param>
+			</parameters>
+		</syntax>
+
+		<return>
+		    <table>
+		    	<th>
+		    	    <td>返回值 </td>
+		    	    <td>描述</td>
+		    	</th>
+    	        <tr>
+    	    	    <td>NOERROR</td>
+    	    	    <td>成功设置进程优先级类别</td>
+    	        </tr>
+    	        <tr>
+    	    	    <td>E_INVALID_ARGUMENT</td>
+    	    	    <td>参数错误</td>
+    	        </tr>
+    	        <tr>
+    	    	    <td>E_PROCESS_ALREADY_EXITED</td>
+    	    	    <td>进程已经退出</td>
+    	        </tr>
+    	        <tr>
+    	    	    <td>E_NOT_IMPLEMENTED</td>
+    	    	    <td>所设置进程优先级类别未被系统实现</td>
+    	        </tr>
+		    </table>
+		    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+		</return>
+
+
+    <remarks>
+        <para>线程的优先级由线程优先级和进程的优先级共同决定的。 </para>
+        <para>操作系统在同一个优先级的基础上，采用轮换的方式对每个线程进行调用，只有高一级的线程没有执行单元的时候才会调度低一级的线程。调用该方法前所创建的线程仍然使用原来的优先级类别。</para>
+        <para>程的优先级类别是约束线程优先级的一个范围。线程的不同优先级是相对于同一进程优先级类别的。 </para>
+        <para>具体的进程优先级类别参见数据结构中的<link url="../../../DataStructure/PriorityRank.htm">ThreadPriorityRank</link>枚举类型说明。</para>
+    </remarks>
+
+		<requirements>
+			<system>
+				<system_name>
+					Windows 2000 或更高版本；Elastos操作系统
+				</system_name>
+			</system>
+		</requirements>
+
+</manpage>

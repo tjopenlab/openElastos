@@ -1,0 +1,40 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="../../../../../../xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>ReaderWriterLock</interface><method> DowngradeFromWriter </method>
+    <description>
+        <para>
+            Downgrades the acquired writer lock to reader lock.
+        </para>
+    </description>
+    <syntax>
+        <return_val>void </return_val>
+        <NoArguments/>
+    </syntax>
+
+	<return>
+	    <para>
+	    	<NoReturnValue />
+	    </para>
+	</return>
+
+	<remarks>
+	    <para>
+	    	This method can always successfully downgrade the acquired writer lock to reader lock, and won't cause
+	    	the calling thread to wait. If the calling thread has not acquired the ReaderWriterLock object as a 
+	    	writer, the method will fail and causes unpredictable results.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

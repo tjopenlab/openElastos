@@ -1,0 +1,98 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\conio\_putch">_putch</sample>
+    <title> _putch</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> conio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes a character to the console.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_putch</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Character to be output.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns c if successful. If fails,then it returns EOF.</para>
+    </return>
+
+    <remarks>
+        <para>This function writes the character c directly without buffering, to the console.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_putch</routine_name>
+            <headerfile>conio.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _putch.cpp: This program reads characters from
+ * the keyboard until it receives a &apos;Y&apos; or &apos;y&apos;.
+ */
+
+#include &lt;conio.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int ch;
+
+    puts(&quot;Type &apos;Y&apos; when finished typing keys: &quot;);
+    do {
+        ch = _getch();
+        ch = toupper(ch);
+    } while (ch != &apos;Y&apos;);
+
+    _putch(ch);
+    _putch(&apos;\r&apos;);     /* Carriage return */
+    _putch(&apos;\n&apos;);     /* Line feed         */
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Type &apos;Y&apos; when finished typing keys:
+Y
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>putc</ref_name>
+            <ref_url>../stdio/putc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_getch</ref_name>
+            <ref_url>_getch</ref_url>
+        </reference>
+    </references>
+
+</manpage>

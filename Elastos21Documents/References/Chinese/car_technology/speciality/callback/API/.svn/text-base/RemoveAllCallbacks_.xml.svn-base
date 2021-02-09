@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> Callbacks相关API </volume>
+    <method>RemoveAllCallbacks</method>
+
+    <description>
+        <para>在客户端注销所有回调事件。</para>
+    </description>
+    <syntax>
+        <return_val>static _ELASTOS  ECode </return_val>
+        <parameters>
+        <api_param>
+            <param_type>PInterface</param_type>
+            <param_name>pServerObj</param_name>
+            <param_note>
+                <para> 指向server对象的接口指针，回调事件的抛出者。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <remarks>
+        <para>1.使用方法：CServer::RemoveAllCallbacks（......）,其中CServer表示抛出回调事件的server对象的类名。 </para>
+        <para>2.在客户端执行RemoveAllCallbacks，会使客户端删除所有注册的回调关系以及消息队列中未处理的回调事件。</para>
+    </remarks>
+   
+     
+</manpage>

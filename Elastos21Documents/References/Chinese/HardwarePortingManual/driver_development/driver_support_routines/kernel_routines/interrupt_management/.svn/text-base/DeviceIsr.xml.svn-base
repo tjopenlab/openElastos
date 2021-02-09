@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>中断管理</volume>
+    <title>DeviceIsr</title>
+    <routine_idx> ../interrupt_management.htm </routine_idx>
+
+    <description>
+        <para>中断服务例程回调函数的标准形式 </para>
+    </description>
+
+    <syntax>
+        <return_val>void CDECL</return_val>
+        <parameters>
+            <api_param>
+                <param_type> irq_t</param_type>
+                <param_name> irq </param_name>
+                <param_note>
+                    <para>已产生的硬件中断的中断号 </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>void *</param_type>
+                <param_name>pvDevice</param_name>
+                <param_note>
+                    <para>设备附加信息指针 </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>InterruptContext *</param_type>
+                <param_name>pContext</param_name>
+                <param_note>
+                    <para>指向当前中断的上下文的指针 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>中断服务例程回调函数的参数和返回值必须符合该标准类型。 </para>
+        <para>该函数接收三个参数：参数irq为已产生的硬件中断的中断号，该参数允许一个中断服务例程处理几个不同的硬件中断请求；参数pDevice即为注册中断服务例程时传入的附加信息指针；参数pContext为当前中断的上下文，该参数类型为struct InterruptContext，其具体定义取决于实际运行的硬件体系结构。实际上，多数中断服务例程并不使用这些参数。 </para>
+        <para>中断服务例程回调函数的情况和定时器回调函数TimerRoutine的情况类似,可用的DDK API有：公用库、DzMillisecondsToTicks、DzTicksToMilliseconds、DzEvent::NotifyByIsr、DzNotifyEventObjByIsr。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>

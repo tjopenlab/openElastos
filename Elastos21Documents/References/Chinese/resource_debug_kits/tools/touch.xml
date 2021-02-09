@@ -1,0 +1,52 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> touch </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para> 改变文件的修改时间和访问时间。</para>
+    </description>
+
+    <syntax>
+        <cmd_name>TOUCH</cmd_name>
+        <cmd_param>[-?] [/c] [/f] [/t year month day hour min sec] filenames</cmd_param>
+    </syntax>
+
+    <parameters>
+    <param>
+        <param_name>  -?  </param_name>
+        <param_note> 显示帮助信息</param_note>
+    </param>
+    <param>
+        <param_name> /c </param_name>
+        <param_note>如果文件不存在，则创建该文件</param_note>
+    </param>
+    <param>
+        <param_name> /f </param_name>
+        <param_note>强迫改变只读文件的时间</param_note>
+    </param>
+    <param>
+        <param_name> /t year month day hour min sec </param_name>
+        <param_note>指定文件的日期和时间，格式为：yyyy mm dd hh mm ss；如果不指定时间，touch用当前系统时间修改文件时间</param_note>
+    </param>
+    <param>
+        <param_name> filenames </param_name>
+        <param_note>需改变时间的文件名，支持通配符*和?</param_note>
+    </param>
+
+    </parameters>
+
+    <examples>
+    <example>
+        <eg_line>touch file.txt</eg_line>
+        <eg_note>将当前目录file.txt文件的时间设为当前系统时间。</eg_note>
+    </example>
+    <example>
+        <eg_line>touch /t 2001 11 1 2 22 2 file.txt</eg_line>
+        <eg_note>将当前目录file.txt文件时间强制设为2001年11月1日2:22:2。</eg_note>
+    </example>
+    </examples>
+
+</manpage>

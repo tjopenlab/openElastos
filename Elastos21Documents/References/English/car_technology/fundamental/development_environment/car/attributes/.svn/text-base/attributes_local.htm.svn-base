@@ -1,0 +1,35 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--local</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>local</h2>
+    <p>This attribute can only be used to modify interface. Class object that provides this interface and client program must be used in the same domain.They cannot be used in remote invocation. For example: </p>
+    <pre class="code">
+[
+    uuid(4a9a5c3b-45f1-4e1a-90d9-be56b97c5b19),
+    uunm(http://www.koretide.com/car/LocalDemo.dll)
+]
+component LocalDemo
+{
+    [uuid(7f69ad07-6f72-4fbc-bdce-1f0309bb2de6), <b>local</b>]
+    interface IInterface {
+        ……
+    }
+    ……
+}
+</pre>
+    <p>In sample component LocalDemo, local attribute is used in the interface IInterface, which means when the client program instantiate class object of provided interface IInterface, Instantiate method parameter needs to use CTX_SAME_DOMAIN value.Object creation can fail if CTX_SAME_DOMAIN value is not used. For details about initializing the object please see <a class="style1" href="../../../../speciality/smart_pointer/code_running_env.htm">executable code run-time environment (context)</a>.</p>
+    <ul><font color="red"><b>Note: </b><br>1. In component definition, an interface parameter uses non <a class="style1" href="../types.htm">CAR&nbsp;supported data type</a>.During compilation, the compiler automatically forces a local attribute to this interface.<br>2. Currently Elastos&nbsp;2.0 does not support different address space client program and component invocation.</ul>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+pubchm
+------
+
+1. 要求
+
+   htmtoc, GNU sed
+
+2. 用途
+
+   发布“资料大全”到Web上（Browsable）
+
+3. 用法
+
+   以2.1环境为例。进入PDK开发环境（Elastos PDK BOX），执行下列命令
+
+   cd /d D:\Elastos21\Documents\References\Chinese\
+   emake all
+   pd m
+   pubchm.bat Elastos21Chs.idx
+
+A. 原理
+
+   pubchm主要做了这些事情：
+
+   1. 对一个.idx文件，产生“列表文件”（行格式：标题,URL），然后喂给htmtoc，
+      产生一个TOC页面
+   2. 在“资料大全”对应的“镜像目录”中，对.htm中对.css, .js, .vbs等文件的
+      路径做修改
+
+B. 问题和解决
+
+   对.htm文件的分析，可以使用Perl等语言并使用其带的HTML解析库，取代sed脚本。

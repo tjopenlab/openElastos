@@ -1,0 +1,134 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\_ltoa">_ltoa, _ltow</sample>
+    <title>_ltoa, _ltow</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Converts long integer type data to string.</para>
+    </description>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <func_name>_ltoa</func_name>
+        <parameters>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>value</param_name>
+                <param_note>
+                    <para>Long integer data to be converted.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char *</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>Pointer to string after conversion.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+                <param_note>
+                    <para>Base (represents the base of number system).</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t *</return_val>
+        <func_name>_ltow</func_name>
+        <parameters>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>value</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t *</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each function returns a character pointer to string, there is no error return value.</para>
+    </return>
+
+    <remarks>
+        <para>_ltoa converts specified parameter value into string terminated by NULL and stores the result in parameter string (Maximum 33 bytes). Value of parameter radix specifies the base of value, this base will be a number between 2-36.If the value of radix is 10 and value is negative, the first character of string is the negative sign (-). _ltow is the wide character version of _ltoa, the second parameter of _ltow and the type of return value are both wide character strings.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_ltoa</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_ltow</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+//==========================================================================
+// discription:This program converts long of various
+// sizes to strings in various radixes.
+//==========================================================================
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buffer[40];
+    long l = -344115L;
+
+    _ltoa(l, buffer, 2);
+    printf(&quot;String of long int %ld (radix 2): %s\n&quot;, l, buffer);
+
+    _ltoa(l, buffer, 10);
+    printf(&quot;String of long int %ld (radix 10): %s\n&quot;, l, buffer);
+
+    _ltoa(l, buffer, 16);
+    printf(&quot;String of long int %ld (radix 16): 0x%s\n&quot;, l, buffer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+String of long int -344115 (radix 2): 11111111111110101011111111001101
+String of long int -344115 (radix 10): -344115
+String of long int -344115 (radix 16): 0xfffabfcd
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>atoi</ref_name>
+            <ref_url>atof</ref_url>
+        </reference>
+    </references>
+
+</manpage>

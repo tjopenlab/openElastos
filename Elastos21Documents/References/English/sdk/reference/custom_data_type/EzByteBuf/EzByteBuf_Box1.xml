@@ -1,0 +1,106 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzByteBuf\EzByteBuf_Box1">EzByeBuf</sample>
+    <volume> common data structure </volume>
+    <interface> EzByteBuf </interface>
+    <method> 
+    	EzByteBuf_Box(void *buf, const UINT size, const UINT used) 
+    </method>
+
+    <description>
+        <para>
+        	Creates an EzByteBuf object using buffer data and specifies its size and used size respectively.
+        </para>
+    </description>
+
+    <syntax>
+        <parameters>
+            <api_param>
+                <param_type>void *</param_type>
+                <param_name> buf </param_name>
+                <param_note>
+                    <para> Source data buffer.</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>UINT</param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para> The size of the buffer.</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const UINT</param_type>
+                <param_name> used </param_name>
+                <param_note>
+                    <para> The used data size of EzByteBuf.</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>
+        	This constructor is recommended to instantiate EzByteBuf object, if the data to be stored is allocated 
+        	but not initialized.
+        </para>
+        <para>
+        	NOTE:- User should release the memory which is pointed by <i>buf</i>.
+        </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+#include <string.h>
+
+int __cdecl main()
+{
+    char * buf1 = "Hello world!";
+
+    EzByteBuf_Box myBuf1(buf1, 12, 12);
+
+    printf("mybuf1:%s\n", (char*)myBuf1);
+    printf("mybuf1 Capacity:%d\n", myBuf1.Capacity());
+    printf("mybuf1 used:%d\n", myBuf1.Used());
+
+    char * buf2 = new char[30];
+    strcpy(buf2, "Hello EzByteBuf_Box!");
+
+    EzByteBuf_Box myBuf2(buf2, 30, strlen(buf2));
+    printf("myBuf2:%s\n", (char*)myBuf2);
+    printf("myBuf2 Capacity:%d\n", myBuf2.Capacity());
+    printf("myBuf2 used:%d\n", myBuf2.Used());
+
+    delete buf2;
+    return 0;
+}
+
+]]></pre></example>
+
+    <result><![CDATA[
+mybuf1:Hello world!
+mybuf1 Capacity:12
+mybuf1 used:12
+myBuf2:Hello EzByteBuf_Box!
+myBuf2 Capacity:30
+myBuf2 used:20
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Constructor(memory wont be allocated).</ref_name>
+            <ref_url> EzByteBuf</ref_url>
+        </reference>
+        <reference>
+            <ref_name> Constructor(memory will be allocated).</ref_name>
+            <ref_url> EzByteBuf_ </ref_url>
+        </reference>
+    </references>
+</manpage>

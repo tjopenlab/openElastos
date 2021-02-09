@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strncpy">strncpy</sample>
+    <title>strncpy, wcsncpy</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>拷贝字符串中的字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strncpy</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strDest</param_name>
+                <param_note>
+                    <para>目标字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strSource</param_name>
+                <param_note>
+                    <para>源字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>拷贝的字符数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>wcsncpy</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>strDest</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>strSource</param_name>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>两个函数都返回指向目标字符串的指针，如无返回值则指示错误。</para>
+    </return>
+
+    <remarks>
+        <para>函数strncpy把源串的前count个字符拷贝到目标串。</para>
+        <para>如果count小于或者等于源串的长度，目标串末尾不追加空字符。</para>
+        <para>如果count大于源串的长度，拷贝源串后，将在目标串后面填充NULL直到长度为count。</para>
+        <para>对于strSource串和strDest串重叠的情况strncpy没有定义。</para>
+        <para>函数wcsncpy是函数strncpy的宽字符版本。函数wcsncpy的参数和返回值，都是宽字符串，除此之外，和函数strncpy一样。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strncpy</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcsncpy</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strncpy.cpp:this program copies the initial count characters of strSource to strDest and returns strDest
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[100] = &quot;Cats are nice usually&quot;;
+    printf (&quot;Before: %s\n&quot;, string);
+    strncpy(string, &quot;Dogs&quot;, 4);
+    strncpy(string + 9, &quot;mean&quot;, 4);
+    printf (&quot;After:  %s\n&quot;, string);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+Before: Cats are nice usually
+After:  Dogs are mean usually
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name> wcscat</ref_name>
+            <ref_url>wcscat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcscmp </ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcscpy </ref_name>
+            <ref_url>wcscpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncat </ref_name>
+            <ref_url>wcsncat</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncmp </ref_name>
+            <ref_url>wcsncmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url>strrchr</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _strset </ref_name>
+            <ref_url>_strset</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strspn </ref_name>
+            <ref_url>strspn</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strcspn </ref_name>
+            <ref_url>strcspn</ref_url>
+        </reference>
+    </references>
+
+</manpage>

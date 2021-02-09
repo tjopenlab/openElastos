@@ -1,0 +1,113 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title> 手机烧写及升级的相关软硬件工具说明</title>
+<meta http-equiv="Content-Type" content="text/xmll; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>手机烧写及升级相关软硬件工具说明</h2>
+<h3>硬件说明</h3>
+<table>
+	<thead>
+		<td>硬件名称</td>
+		<td>要&nbsp;&nbsp;&nbsp;求</td>
+	</thead>
+	<tr>
+		<td>计算机一台</td>
+		<td>基本系统要求：安装Windows 2000或者Windows XP或者Windows 2003操作系统 </td>
+	</tr>
+	<tr>
+		<td>MiniSD卡一个</td>
+		<td>
+		本款手机支持MiniSD卡，软件的升级工作也是通过MiniSD卡完成<br>
+		格式化：通过DESAY GK100手机做过格式化<br>
+		容量要求：剩余空间必须在64M以上</td>
+	</tr>
+	<tr>
+		<td>专用USB数据线一根.</td>
+		<td>
+		本款手机的配件之一，是一根小口转大口线的USB线<br>
+		用途：连接手机和计算机</td>
+	</tr>
+	<tr>
+		<td>读卡器一个</td>
+		<td>
+		此工具可选，用来将手机软件升级数据文件COPY到SD卡上<br>
+		GK100手机软件支持将MiniSD卡仿真为U盘，此时可不使用读卡器</td>
+	</tr>
+</table>
+<h3>软件说明</h3>
+<table>
+		<thead>
+		   <td>软件名称 </td>
+		   <td>工具文件 </td>
+		   <td>说&nbsp;&nbsp;&nbsp; 明 </td>
+		</thead>
+    <tr>
+        <td>Loader烧写工具 </td>
+        <td>如omega_downloadtool_n.exe</td>
+        <td>这里omega_downloadtool_n.exe工具由硬件厂商提供 </td>
+    </tr>
+    <tr>
+        <td>TMC工具</td>
+        <td>Tmc.exe</td>
+        <td>
+           用于PC端和手机之间进行文件的上传和下载，烧写elastos.img的工具,是和欣SDK中的工具.注：<br>
+            1.如果发现在PC上不能运行，请先安装.Net&nbsp;framework&nbsp;2.0&nbsp;(D:\Elastos20.SDK\build\tools）<br>
+            2.对于第一次使用TMC的用户，如果TMC的comcons没有任何反应，请检查主机上是否安装了USB驱动
+        </td>
+    </tr>
+    <tr>
+        <td>ima文件烧写工具</td>
+        <td>res.exe</td>
+        <td >可用来烧写loader, img, ima文件，目录只提供烧写ima文件的功能</td>
+    </tr>
+    <tr>
+        <td>WinImg工具</td>
+        <td>WinImage8_oyksoft.exe</td>
+        <td>用于制作手机应用的映像文件(*.ima)的工具</td>
+    </tr>
+    <tr>
+        <td>Logo烧写工具</td>
+        <td>logo.exe</td>
+        <td>logo专烧工具，它的作用是把开机启动的图片烧写到手机上</td>
+    </tr>
+    <tr>
+       <td>loader程序</td>
+        <td>eladr.bin</td>
+        <td>ipl.bin, spl.bin,是它的拆分后的文件</td>
+    </tr>
+</table>
+<h3>升级包中的文件清单和说明
+</h3>
+<table>
+   <thead>
+		   <td>文件功能</td>
+		   <td>文件名</td>
+		   <td>使用说明</td>
+	 </thead>
+    <tr>
+        <td>手机软件升级的辅助工具 </td>
+        <td>Windows目录<br>burn.img<br>tmc.exe</td>
+           <td>存放在计算机端的升级辅助工具目录<br>本文件自动完成升级数据文件的烧写<br>用于将升级文件burn.img写入手机的通讯工具</td>
+    </tr>
+    <tr>
+        <td>手机软件升级的数据文件 </td>
+        <td>SDCard目录 <br>elastos.img<br>elastos_app.IMA<br>elastos_data.IMA<br>elastos_user.IMA</td>
+        <td>存放在SD卡上的升级数据文件目录<br>需要COPY到SD卡的根目录，用于软件升级的数据文件 </td>
+    </tr>
+    <tr>
+        <td>计算机连接手机的驱动程序 </td>
+        <td>Usb Driver目录<br>usbser.inf<br>usbser.sys</td>
+        <td>手机驱动程序目录<br>需要安装到用于升级手机的计算机上，使得计算机能够正常与手机连接</td>
+    </tr>
+</table>
+<script>footer("chinese")</script>
+</body>
+</html>

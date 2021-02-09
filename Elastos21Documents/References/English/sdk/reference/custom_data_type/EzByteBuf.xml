@@ -1,0 +1,137 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>
+
+<manpage>
+    <volume> Common Data Structure </volume>
+    <interface> EzByteBuf </interface>
+
+    <description>
+        <para>EzByteBuf is a kind of data structure designed for component based progamming support, it offered the buffer to store bytes data.
+        We can operate on an EzByteBuf object by the functions offered by EzByteBuf. Here is the details <link url="EzByteBuf/ezbytebuf_intr.htm">EzByteBuf Data Structure</link>. </para>
+    </description>
+
+    <constructs>
+        <construct>
+            <construct_name>EzByteBuf::EzByteBuf</construct_name>
+            <construct_url>EzByteBuf/structure/EzByteBuf</construct_url>
+            <construct_description> Constructs an EzByteBuf object. </construct_description>
+        </construct>
+        <construct>
+            <construct_name>template&lt;int SIZE&gt; EzByteBuf_::EzByteBuf_</construct_name>
+            <construct_url>EzByteBuf/structure/EzByteBuf_</construct_url>
+            <construct_description> Constructs an EzByteBuf object and allocates memory blocks for the object. </construct_description>
+        </construct>
+        <construct>
+            <construct_name>EzByteBuf::EzByteBuf_Box(void *buf, const UINT size, const UINT used)</construct_name>
+            <construct_url>EzByteBuf/structure/EzByteBuf_Box1</construct_url>
+            <construct_description>Constructs an EzByteBuf object by using buffer data, sets size and used size correspondingly.</construct_description>
+        </construct>
+        <construct>
+            <construct_name>EzByteBuf::EzByteBuf_Box(void *buf, const UINT size)</construct_name>
+            <construct_url>EzByteBuf/structure/EzByteBuf_Box2</construct_url>
+            <construct_description>Constructs an EzByteBuf object by using buffer area, sets both size and used size to size.</construct_description>
+        </construct>
+    </constructs>
+
+    <methods>
+        <self>
+        <method>
+        <method_name> AllocByteBuf </method_name>
+        <method_url> EzByteBuf/AllocByteBuf </method_url>
+        <m_description> Allocates memory blocks of specified size for the variable EzByteBuf. </m_description>
+        </method>
+        <method>
+        <method_name> AllocByteBufLen </method_name>
+        <method_url> EzByteBuf/AllocByteBufLen </method_url>
+        <m_description> Allocates memory blocks of specified size for the variable EzByteBuf. </m_description>
+        </method>
+        <method>
+        <method_name> Append </method_name>
+        <method_url> EzByteBuf/Append </method_url>
+        <m_description> Appends a substring with specified length to the string of this EzByteBuf object's end. </m_description>
+        </method>
+        <method>
+        <method_name> Capacity </method_name>
+        <method_url> EzByteBuf/Capacity </method_url>
+        <m_description> Gets the size of current buffer. </m_description>
+        </method>
+        <method>
+        <method_name> Copy </method_name>
+        <method_url> EzByteBuf/Copy  </method_url>
+        <m_description> Copies a new string to current byte buffer and overwites the old data. </m_description>
+        </method>
+        <method>
+        <method_name> FreeByteBuf </method_name>
+        <method_url> EzByteBuf/FreeByteBuf </method_url>
+        <m_description> Releases the memory occupied by a byte buffer. </m_description>
+        </method>
+        <method>
+        <method_name> Insert </method_name>
+        <method_url> EzByteBuf/Insert  </method_url>
+        <m_description> Inserts a string into current byte buffer at specified position. </m_description>
+        </method>
+        <method>
+        <method_name> IsNull</method_name>
+        <method_url> EzByteBuf/IsNull </method_url>
+        <m_description> Indicates whether an EzByteBuf object is NULL. </m_description>
+        </method>
+        <method>
+        <method_name> SetUsed </method_name>
+        <method_url> EzByteBuf/SetUsed </method_url>
+        <m_description>  Sets the number of used bytes of current byte buffer. </m_description>
+        </method>
+        <method>
+        <method_name> Used </method_name>
+        <method_url> EzByteBuf/Used </method_url>
+        <m_description> Gets the number of used bytes of current byte buffer. </m_description>
+        </method>
+    </self>
+    </methods>
+
+    <operators>
+        <operator>
+            <operator_name> operator = </operator_name>
+            <operator_url> EzByteBuf/operator </operator_url>
+            <operator_description> Assignment operator, assigns a EzByteBuf object. </operator_description>
+        </operator>
+        <operator>
+            <operator_name> operator DATATYPE </operator_name>
+            <operator_url> EzByteBuf/operator1 </operator_url>
+            <operator_description> Type converted operator. </operator_description>
+        </operator>
+    </operators>
+
+    <macros>
+        <macro>
+        <macro_name> EZBYTEBUF_NULL </macro_name>
+        <macro_url> EzByteBuf/EZBYTEBUF_NULL </macro_url>
+        <macro_description> Define a null EzByteBuf object </macro_description>
+        </macro>
+    </macros>
+
+    <remarks>
+        <para>
+        When we allocates memory blocks for an EzByteBuf object, the system will automatically append the bound to multiple of 4 bytes.For example, the number of bytes required is 997, it will be appended automatically to 1000 bytes when actually allocated.
+        </para>
+        
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later version；Elastos 2.0 or later version.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ezbuf.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib   </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

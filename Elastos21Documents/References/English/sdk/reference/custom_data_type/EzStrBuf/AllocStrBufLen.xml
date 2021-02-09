@@ -1,0 +1,71 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzStrBuf\alloclen">AllocStrBufLen</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzStrBuf </interface>
+    <method> AllocStrBufLen </method>
+
+    <description>
+        <para> Allocates memory of specified size and initializes with specified string. This memory should be released by FreeStrBuf. </para>
+    </description>
+
+    <return>
+        <para> Returns a pointer to the EzStrBuf variable if allocated successfully, else returns EZSTRBUF_NULL. </para>
+    </return>
+
+    <syntax>
+        <return_val> static EzStrBuf </return_val>
+        <parameters>
+        <api_param>
+            <param_type>const wchar_t*</param_type>
+            <param_name> pb </param_name>
+            <param_note>
+                <para> The string to initialize the EzStrBuf. </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>int</param_type>
+            <param_name> cb </param_name>
+            <param_note>
+                <para> The number of characters to be allocated. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStrBuf pe = EzStrBuf::AllocStrBufLen(L"Great Wall",20);
+    printf("The capacity of the string \"%S\" is %d.\n", (wchar_t *)pe, pe.Capacity());
+    printf("The length of the string \"%S\" is %d.\n", (wchar_t *)pe, pe.Length());
+    EzStrBuf::FreeStrBuf(pe);
+
+    return 0;
+}
+]]></pre></example>
+    <result><![CDATA[
+The capacity of the string "Great Wall" is 20.
+The length of the string "Great Wall" is 10.
+]]>
+    </result>
+    <references>
+        <reference>
+            <ref_name> AllocStrBuf </ref_name>
+            <ref_url> AllocStrBuf </ref_url>
+        </reference>
+        <reference>
+            <ref_name> FreeStrBuf </ref_name>
+            <ref_url> FreeStrBuf </ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,104 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IThread</interface><method> SetPriority </method>
+    <description>
+        <para>
+			Sets the priority of a thread.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ThreadPriority  </param_type>
+                <param_name> priority  </param_name>
+                <param_note>
+                    <para>
+			        	A ThreadPriority enum data that determines the priority.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value </td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>NOERROR</td>
+		<td>Function succeeds in setting the priority of a thread.</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALID_ARGUMENT</td>
+		<td>Invalid argument(s)</td>
+	    </tr>
+	    <tr>
+		<td>E_THREAD_ALREADY_FINISHED</td>
+		<td>The thread is already exited.</td>
+	    </tr>
+</table>
+    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+ </return>
+
+	<remarks>
+		<para>
+			Thread priorities are integers ranging between ThreadPriority_Lowest and ThreadPriority_Highest. If parameter
+			priority exceeds the range, the function will return E_INVALIDARG.
+		</para>
+		<para>
+			At any given point in time, when multiple threads are ready to be executed, the runtime system chooses the
+			runnable thread with the highest priority for execution. A lower priority thread starts execution, only
+			when that thread exits, yields, or becomes not runnable for some reason. If two threads of the same priority
+			are waiting for the CPU, the scheduler chooses the thread which is created first, to run.
+		</para>
+		<para>
+			If the associated thread has been finished, the function has no effect and return E_THREAD_STOPPED.
+		</para>
+		<para>
+			The default priority is ThreadPriority_Normal.
+		</para>
+		<table>
+			<th>
+				<td>Priority</td>
+				<td>Value</td>
+			</th>
+			<tr>
+				<td>ThreadPriority_Lowest</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>ThreadPriority_BelowNormal</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>ThreadPriority_Normal</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>ThreadPriority_AboveNormal</td>
+				<td>4</td>
+			</tr>
+			<tr>
+				<td>ThreadPriority_Highest</td>
+				<td>5</td>
+			</tr>
+		</table>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

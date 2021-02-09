@@ -1,0 +1,86 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\modf">modf</sample>
+    <title> modf</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>The modf function breaks the argument x into integer and fractional parts, each of which has the same sign as the argument. It stores the integer part as a double in the object pointed to by iptr.</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>modf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>Floating-point value.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>double*</param_type>
+                <param_name>iptr</param_name>
+                <param_note>
+                    <para>Pointer to stored integer portion.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>This function returns the signed fractional portion of x. There is no error return.</para>
+    </return>
+
+    <remarks>
+        <para>The modf function breaks down the floating-point value x into fractional and integer parts, each of which has the same sign as x. The signed fractional portion of x is returned. The integer portion is stored as a floating-point value at iptr.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>modf</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* modf.cpp:This program uses modf to calculate the signed fractional portion */
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double x, y, n;
+
+    x = -14.87654321;      /* Divide x into its fractional */
+    y = modf(x, &amp;n);     /* and integer parts            */
+
+    printf(&quot;For %f, the fraction is %f and the integer is %.f\n&quot;,
+           x, y, n);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+For -14.876543, the fraction is -0.876543 and the integer is -14
+</result>
+
+
+
+</manpage>

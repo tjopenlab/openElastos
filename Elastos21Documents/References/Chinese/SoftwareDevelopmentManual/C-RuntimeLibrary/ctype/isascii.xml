@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\__isascii">__isascii</sample>
+    <title>isascii iswascii</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>判断一个字符是否为ASCII字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>isascii</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>待判断的字符</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+  
+  
+  <syntax>
+        <return_val>int</return_val>
+        <func_name>iswascii</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+              
+            </func_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>如果c为一个0x00～0x7F之间的ASCII字符，isascii返回一个非0值。如果c为一个ASCII宽字符,iswascii返回一个非0值。如果c不满足这些测试条件则这些例程返回0。</para>
+    </return>
+
+    <requirements>
+       <routine>
+            <routine_name>isascii</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        
+        <routine>
+            <routine_name>iswascii</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* isascii.cpp: This program verify a character
+ * whether it is a character ASCII.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+{
+    int c, d;
+    c = 0x7f;
+    d = -3;
+    if (isascii(c)) {
+        printf(&quot;c is an ASCII character.\n&quot;);
+    }
+    else {
+        printf(&quot;error01!\n&quot;);
+    }
+    if (!isascii(d)) {
+        printf(&quot;d is not an ASCII character.\n&quot;);
+    }
+    else {
+        printf(&quot;error02!\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+c is an ASCII character.
+d is not an ASCII character.
+</result>
+
+
+
+</manpage>

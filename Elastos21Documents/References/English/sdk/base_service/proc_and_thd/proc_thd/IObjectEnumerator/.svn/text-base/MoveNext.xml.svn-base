@@ -1,0 +1,75 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface </volume>
+<interface>IObjectEnumerator</interface><method>  MoveNext</method>
+    <description>
+        <para>
+            Advances the pointer of object enumerator to the next object.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type>Boolean *  </param_type>
+                <param_name> pSucceeded </param_name>
+                <param_note>
+                    <para>
+						 Return the interface of current object if function succeeds.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+      </syntax>
+
+    <return>
+
+    <table>
+        <th>
+            <td>Return Value </td>
+            <td>Description</td>
+        </th>
+        <tr>
+            <td>NOERROR</td>
+            <td>Function succeeds in moving the pointer of object enumerator to the next object.</td>
+        </tr>
+        <tr>
+            <td>E_INVALID_ARGUMENT</td>
+            <td>Invalid argument</td>
+        </tr>
+        <tr>
+            <td>E_INVALID_OPERATION</td>
+            <td>Invalid operation</td>
+        </tr>
+         	    <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> for related help.</para>
+    </table>
+    </return>
+
+    <remarks>
+        <para>
+            After creating an object enumerator or calling <link url="Reset.htm">Reset</link> function, the pointer
+            of object enumerator will be prior to the first object in the object collection. At this time, calling
+            <link url="Current.htm">Current</link> method is useless and error information will be returned. Therefore,
+            if any of the object interface pointer is to be retrieved, <b>MoveNext</b> method should be called to
+            advance the object enumerator pointer to corresponding object, then call <link url="Current.htm">
+            Current</link> method.
+        </para>
+        <para>
+            If object enumerator has reached the last object of the collection, calling <b>MoveNext</b> will
+            return E_INVALID_OPERATION.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+    </requirements>
+</manpage>

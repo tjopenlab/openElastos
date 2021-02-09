@@ -1,0 +1,102 @@
+
+<html>
+<head>
+	<title>Operating Systems FAQ :: GRUB BootLoader</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="whats_grub">What is GRUB?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>GRUB stands for GRand Unified Bootloader and is a GNU
+        bootloader that can boot a variety of operating systems
+        from Linux, Mach4, vSTA, DOS, NT 3.51, the *BSD variants
+        and any generic OS you can add to it with its easy to use
+        boot menu.
+	<P>GRUB is a bootloader that takes away all the
+        complexities out of trying to boot your os by doing it
+        for you. GRUB can handle a variety of filesystems from
+        MS-DOS FAT systems, Linux ext2fs (Second Extended File
+        System), Amiga FFS (Fast File System) and three
+        &quot;generic&quot; executable's types, ELF files, FreeBSD
+        a.out files and &quot;generic&quot; executable's (any file
+        with a valid multiboot header).</P>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="get_grub">Where can I get GRUB from?</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Currently GRUB is at version 0.5.96 (as of writing) and the
+		main GRUB homepages is
+<pre><A href="http://www.gnu.org/software/grub/">http://www.gnu.org/software/grub/</A></pre>
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="grub_aout">Grub and DJGPP A.OUT files produced by LD</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>DJGPP's linke (LD) can produce AOUT files, one of the formats
+		that GRUB nativly supports for loading of kernel files. Unfortunatly
+		for us the DJGPP AOUT is neither the FreeBSD A.OUT nor the NetBSD
+		A.OUT format.
+		<p>
+		To get your DJGPP to output files that are correctly supported
+		by GRUB, you need to either, alter the grub source code (not a
+		good thing to do since its not official!), write a multiboot
+		header into your coder (within first 4kb), or alter djgpp's LD
+		linker to output desired formats, ELF, or Free/NetBSD A.OUT formats.
+		</p>
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="grub_nasm">Grub and NASM ELF files</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>ELF files that are produced by NASM &quot;-f elf&quot; are
+		object / relocatable files, not pure flat executable files, and require
+		further linking in order to produce an ELF executable file that can
+		be loaded by grub.
+		</TD>
+	</TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="grub_watcom">Grub and Watcom ELF files</A></H2>
+		</TD>
+	</TR>
+	<TR>
+		<TD>Watcom is another compiler that supports ELF files, but versions
+		10.6 and below produce broken ELF files that run at offset 0x00000000.
+		<p>Versions higher than 10.6 may work correctly, if anyone has 11.n
+		and would like to verify true or false for me, please do so.
+		</p>
+		</TD>
+	</TR>
+</TABLE>
+
+
+</body>
+</html>

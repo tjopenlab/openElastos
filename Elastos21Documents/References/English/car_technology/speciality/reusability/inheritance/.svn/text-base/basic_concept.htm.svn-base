@@ -1,0 +1,558 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+    <title>Basic Concept</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Basic Concept, Keywords and Basic Functions Of Component Inheritance Mechanism</h2>
+        <p>Basic concept: <a class="style1" href ="#component inheritance">Component inheritance</a>, <a class="style1" href ="#component overloading">component overloading</a>, <a class="style1" href ="#base component">base component</a>, <a class="style1" href ="#derived component">derived component</a>, <a class="style1" href ="#virtual interface">virtual interface</a>.</p>
+        <p>Keywords: <a class="style1" href ="#public">public</a>, <a class="style1" href ="#private">private</a>, <a class="style1" href ="#protected">protected</a>, <a class="style1" href ="#virtual">virtual</a>.</p>
+        <p>Basic function: <a class="style1" href ="#MyParent">XXXRef &MyParentXXX()</a>, <a class="style1" href ="#MyVirtual">XXXRef &MyVirtualXXX()</a>.</p>
+    <h3>Basic Concept</h3>
+        <p><a name="component inheritance">Component inheritance</a>: Similar to c++ class inheritance, component inheritance is interface level binary inheritance. Also use <a class="style1" href ="#public">public</a>, <a class="style1" href ="#private">private</a>, <a class="style1" href ="#protected">protected</a> restrictive keywords to indicate whether this interface is provided to the outside or derived class. Example 1: We define component CA inside component A</p>
+        <pre class="code">
+[
+    version(1.0), uuid(99b87c9e-a2de-4d79-9302-247d7b79144c),
+    uunm(www.koretide.com/ezcom/A.dll)
+] 
+component A
+{
+    [ uuid(0a9a01ac-50bc-4db1-a5af-38a262e44b1c)]
+    interface IA {
+        ECODE AFunc();    
+}
+
+    [  uuid(96598451-17b5-4ad8-8a26-78d21a8da8a4) ]
+    class CA{
+        interface IA;
+    }
+}
+</pre>
+        <p>Class CA, as the following: </p>
+        <pre class="code">
+[
+    version(1.0), uuid(5188f6da-3665-47d5-8501-fbccd2f94d8d),
+    uunm(www.koretide.com/ezcom/B.dll)
+]
+component B
+{
+importlib("A.dll"); //import meta data of component A
+
+[ uuid(4353ef6e-0c83-4473-95cb-007d624055d1)]
+interface IB {
+        ECODE BFunc();    
+}
+
+[ uuid(17625908-ab62-40b0-ae1d-db4888f43b4c) ]
+class CB : CA{     //component class CB inherits component class CA, thus component class CB
+                   //holds interface IA and IB
+        interface IB;
+    }
+}
+</pre>
+        <p><a name="component overloading">Component overloading</a>: Similar to c++ function overloading, it means overloading of interface method in component inheritance mechanism. When overloading interface method, we must pay attention that the parameters and return value type of interface method must be the same as defined in base class.Otherwise,it will become a new interface method instead of overloading. Like the previous example 1 interface method AFunc of interface IA of component class CA is implemented as the following: </p>
+        <pre class="code">
+…………………..
+// CA.cpp
+
+ECODE CA::AFunc()
+{
+    // TODO: Add your code here
+    printf(“CA::Afunc\n”);
+    return S_OK;
+}
+
+………………………
+</pre>
+        <p>In component B, automatic code generator will not generate the definition of function AFunc(), its default implementation is in _CB.cpp, this implementation is invoking CA::AFunc() in base component class.</p>
+        <p>Client program is as the following: </p>
+        <pre class="code">
+#include <stdio.h>
+#import <B.dll>
+
+EXTERN_C int __cdecl wmain(int argc,wchar_t **argv)
+{
+    //base component class interface function call
+    CARef aRef;
+    aRef.Instantiate();
+aRef.AFunc();
+
+    //derived component class interface function call
+    CBRef bRef;
+    bRef.Instantiate();
+    bRef.AFunc();
+
+return 1;
+}
+</pre>
+        <p>In component B we did not overload interface function IA::AFunc(), so client program output result is as the following: </p>
+        <pre class="code">
+CA::Afunc
+CA::Afunc
+</pre>
+        <p>If we overload interface function IA::AFunc() in component B as the following: </p>
+        <pre class="code">
+…………………..
+// CB.cpp
+
+ECODE CB::AFunc()
+{
+// TODO: Add your code here
+// override
+printf(“CB::AFunc\n”);
+    return S_OK;
+}
+
+………………………
+</pre>
+        <p>Then the client program output result becomes: </p>
+        <pre class="code">
+CA::Afunc
+CB::Afunc
+</pre>
+        <p><a name="base component">Base component</a>: Similar to C++ base class, it refers to a user defined component class in component inheritance mechanism. If the user defined a component class A, then component class B is inherited by component class A. In relation to component class B, we say that component class A is a base component or base component class and also sometimes we call it parent component or parent component class.</p>
+        <p><a name="derived component">Derived component</a>: Similar to C++ derived class,it refers to a user defined component class in component inheritance mechanism. This component class inherits another component class. If the user defined a component class A, then component class A is inherited by component class B.  In relation to component class A, we say that component class B is derived component or derived component class, and also sometimes we call it child component or child component class.</p>
+        <p><a name="virtual interface">Virtual interface</a>: In component inheritance mechanism, we call interfaces modified by keyword virtual, virtual interface. Virtual interface has characteristics similar to C++ function, which is run-time polymorphism. During program execution, if virtual interface method is invoked in base component, the program will jump into corresponding virtual interface method of derived component and continue execution.A derived component can overload and directly call corresponding virtual interface method implementation in the base component. Let's go through example 2 to understand run-time polymorphism of virtual interface.</p>
+        <p>samplea.car file of component A is as the following: </p>
+        <pre class="code">
+[
+    version(1.0), uuid(efe6ba04-b8f9-4569-9fd5-29a9168d2d0b),
+    uunm(www.koretide.com/ezcom/samplea.dll)
+] 
+component EZCOMA
+{
+[ uuid(cd0d4176-e5f8-436b-96e7-34dbfd5fc0bd)]
+    interface ICommonInterface {
+        ECODE PrintCommon();    
+}
+
+[ uuid(a4f70d77-f781-4add-8223-f88e3ec1807e)]
+    interface IVirtualInterface {
+        ECODE VirtualFunc();    
+}
+
+    [  uuid(aed8e1d8-0bf4-4859-b554-761177abc7d5) ]
+    class CA{
+        virtual interface IVirtualInterface; //virtual interface
+	interface ICommonInterface;          //normal interface, none virtual interface
+    }
+}
+</pre>
+        <p> CA.cpp as the following: </p>
+        <pre class="code">
+#include "CA.h"
+#include "_CA.cpp"
+
+DECLARE_CLASSFACTORY(CA)
+
+ECODE CA::VirtualFunc()
+{
+    return E_NOTIMPL;// This virtual interface method is not implemented in base component class, let derived component overload
+}
+
+ECODE CA::PrintCommon()
+{
+// call IvirturalInterface interface method VirtualFunc(), will jump into overloaded VirtualFunc() of derived component
+//to execute, thus execute the function CB::VirtualFunc()
+    MyVirtualIVirtualInterface().VirtualFunc();
+    return S_OK;
+}
+</pre>
+        <p>In CA.cpp, <a class="style1" href ="#MyVirtual">MyVirtualXXX()</a> function is used and the XXX represents certain virtual interface name.TThis function returns smart pointer reference of virtual interface overloaded by derived component.</p>
+        <p>sampleb.car file of component B is as the following: </p>
+        <pre class="code">
+[
+    version(1.0), uuid(52a03adb-ff4c-43d6-a76e-2d6e04876a86),
+    uunm(www.koretide.com/ezcom/sampleb.dll)
+]
+component EZCOMB
+{
+    importlib("samplea.dll");
+    [  uuid(053a9211-e09d-40a9-bd74-f630fb358ea9) ]
+    class CB : CA {
+    }
+}
+</pre>
+        <p>CB.CPP is as the following: </p>
+        <pre class="code">
+#include "CB.h"
+#include "_CB.cpp"
+#include <stdio.h>
+
+DECLARE_CLASSFACTORY(CB)
+
+ECODE CB::VirtualFunc()
+{
+    // TODO: Add your code here
+    printf("CB::VirtualFunc()\n");
+    return S_OK;
+}
+</pre>
+        <p>Component class CB reloaded IVirtualInterface::VirtualFunc(), did not overload ICommonInterface::PrintCommon();</p>
+        <p>The client program is as the following: </p>
+        <pre class="code">
+#include <stdio.h>
+#import <sampleb.dll>
+
+EXTERN_C int __cdecl wmain(int argc, wchar_t **argv)
+{
+    CBRef bRef;
+    bRef.Instantiate();
+    bRef.VirtualFunc(); //invokes CB::VirtualFunc()
+    bRef.PrintCommon(); //invokes CA::PrintCommon()
+
+    return 1;
+}
+</pre>
+        <p>Client program bRef.VirtualFunc() invokes VirtualFunc() overloaded by component class CB. bRef.PrintCommon() invokes PrintCommon() of component class CA, and CA::PrintCommon() invokes virtual interface function IVirtualInterface::VirtualFunc(), which eventually invokes CB::VirtualFunc() overloaded by derived component CB of component class CA. So the client program end output interface is as the following: </p>
+        <pre class="code">
+CB::VirtualFunc()
+CB::VirtualFunc()
+</pre>
+    <h3>Keywords</h3>
+        <p>Keywords specially used for component inheritance mechanism are: <a class="style1" href ="#public">public</a>, <a class="style1" href ="#private">private</a>, <a class="style1" href ="#protected">protected</a>, <a class="style1" href ="#virtual">virtual</a>. The first three keywords are used when the user is defining component class, indicating whether the defined interface is provided to use by the outside or derived component. The virtual keyword is used by the user to define a <a class="style1" href ="#virtual interface">virtual interface</a>. <font color="red">What need to be clarified is that these keywords are component class attributes in car language, they can only modify interface when defining component class</font>. These keywords are similar to corresponding keywords in c++, there's significant difference in component inheritance mechanism, the following paragraphs provide us the comparison between the two.</p>
+        <p><a name="Public">public</a>: Use public modified interface in component class.It means this interface can be used by the outside world.It means outsider can obtain smart pointer of this interface, and can invoke interface functions through this interface smart pointer. public modified interface can also be modified by virtual. Under default conditions, when defining component class, the interfaces that not modified by <a class="style1" href ="#public">public</a>, <a class="style1" href ="#private">private</a>, <a class="style1" href ="#protected">protected</a> all have the public attribute.
+        <p>In example 2, two interfaces IVirtualInterface and ICommonInterface of component A by default have the public attribute.The outsider can use both interfaces, so that the client program can invoke methods of these two interfaces through object class smart pointer.</p>
+        <p><a name="Private">private</a>: Interface that modified by private in component class cannot be inherited by other component class, visited by the outsider, and also cannot be modified by the virtual keyword.Usually it is used to define those interfaces that you do not want to expose to the client but only used internally inside the component, just like private member defined in c++ class.</p>
+        <p>In example 2, if ICommonInterface interface implemented by component class A has the private attribute, then</p>
+        <pre class="code">
+[
+    version(1.0), uuid(efe6ba04-b8f9-4569-9fd5-29a9168d2d0b),
+    uunm(www.koretide.com/ezcom/samplea.dll)
+] 
+component EZCOMA
+{
+[ uuid(cd0d4176-e5f8-436b-96e7-34dbfd5fc0bd)]
+    interface ICommonInterface {
+        ECODE PrintCommon();    
+}
+
+[ uuid(a4f70d77-f781-4add-8223-f88e3ec1807e)]
+    interface IVirtualInterface {
+        ECODE VirtualFunc();    
+}
+
+    [  uuid(aed8e1d8-0bf4-4859-b554-761177abc7d5) ]
+    class CA{
+        virtual interface IVirtualInterface;
+    private:
+	interface ICommonInterface; //private interface, cannot be used by the outside, cannot be inherited by derived component
+    }
+}
+</pre>
+        <p>For component B that is derived from component A, only the IVirtualInterface interface is inherited.Both component A and component B expose only the IVirtualInterface interface to the outsider while ICommonInterface interface method can only be used inside component A.</p>
+        <p><a name="Protected">protected</a>: Interface modified by protected in component class can only be used in derived component of this component. It cannot be used by the outside world just as the protected member defined in c++ class.</p>
+        <p><font color="red">Note that if the interface is event interface, it cannot be modified by the protected attribute</font>.</p>
+        <p>In example 2, if interface ICommonInterface implemented by component class A has the protected attribute, then</p>
+        <pre class="code">
+[
+    version(1.0), uuid(efe6ba04-b8f9-4569-9fd5-29a9168d2d0b),
+    uunm(www.koretide.com/ezcom/samplea.dll)
+] 
+component EZCOMA
+{
+[ uuid(cd0d4176-e5f8-436b-96e7-34dbfd5fc0bd)]
+    interface ICommonInterface {
+        ECODE PrintCommon();    
+}
+
+[ uuid(a4f70d77-f781-4add-8223-f88e3ec1807e)]
+    interface IVirtualInterface {
+        ECODE VirtualFunc();    
+}
+
+    [  uuid(aed8e1d8-0bf4-4859-b554-761177abc7d5) ]
+    class CA{
+        virtual interface IVirtualInterface;
+    <font color="red">protected：</font>
+	<font color="red">interface ICommonInterface; //protected interface, cannot be used by the outside world, can be inherited by derived component, its</font>
+                                    <font color="red">//interface methods can be invoked by base component and derived component</font>
+                     }
+}
+</pre>
+        <p>Both component A and its derived component B have IVirtualInterface interface and ICommonInterface interface.The protected ICommonInterface is not exposed to the outside world.Its interface methods can only be invoked in component A and its derived component B and the following client program's ICommonInterface interface method invocation is wrong.</p>
+        <pre class="code">
+#include <stdio.h>
+#import <sampleb.dll>
+
+EXTERN_C int __cdecl wmain(int argc, wchar_t **argv)
+{
+    CBRef bRef;
+    bRef.Instantiate();
+    bRef.VirtualFunc(); //invokes CB::VirtualFunc()
+<font color="red">bRef.PrintCommon(); //wrong invocation, ICommonInterface is protected interface, </font>
+                    <font color="red">//the outside world cannot use this interface function</font>
+    return 1;
+}
+</pre>
+        <p><a name="Virtual">virtual</a>: In component class, interface modified by virtual is virtual interface. During program execution, if virtual interface method is invoked in base component, then the program will jump into corresponding virtual interface method of derived component to continue the execution.The derived component can overload or directly invoke corresponding virtual interface method implementation in the base component.</p>
+        <p>Interface modified by the virtual keyword implements component level polymorphism, which is similar to c++ virtual function polymorphism. For details please see <a class="style1" href ="#virtual interface">virtual interface</a>.</p>
+    <h3>Basic Functions</h3>
+        <p>The basic functions provided by component inheritance mechanism used for component development are:  </p>
+        <p><a class="style1" name="MyParent">XXXRef &MyParentXXX():</a> Obtains smart pointer reference points to interface XXX of the parent component that is provided by the component inheritance mechanism.This function can be invoked in the child component. The naming convention is to prefix MyParent before interface name XXX.It represents corresponding interface implemented by parent component class. All interfaces modified by public or keywords inherited from parent component class have corresponding MyParent function.It is for the convenience of overloading or invoking parent component class interface method implementation while implementing other interface methods.</p>
+        <p><a class="style1" name="MyVirtual">XXXRef &MyVirtualXXX():</a> For component class that has virtual interface, this function can be invoked to obtain reference pointing to corresponding XXX interface smart pointer in the derived component. The naming convention is to prefix MyVirtual in front of virtual interface name, all virtual interfaces have similar corresponding function.</p>
+        <p>Let's look at example 3 in order to understand how to use these two functions:.</p>
+        <p>Example 3 calculates the volume of a column and a half column.It realizes multiple inheritance of component inheritance mechanism. This example have three component classes: Base component class CVolume, component class CColumn (Column component class) and component class CHalfColumn (Half column component class), of which component class CHalfColumn is inherited from component class CColumn,which is inherited from base component class CVolume.</p>
+        <p>Description file of base component volume.car is as the following: </p>
+        <pre class="code">
+[
+    uuid(7677c5cf-9d3e-4d1f-bcfe-9e70feb62e5b),
+    uunm(www.koretide.com/ezcom/volume.dll)
+]
+component VolumeComponent
+{
+    [ uuid(27ae16a8-3f9f-4c5b-b33f-1be1cb2f3655) ]
+    interface ICrossSection {
+        ECODE CalcArea([out] double *pdfArea); //calculate area
+    }
+    [ uuid(7b03e076-3bd2-4231-b2a4-75644179836e) ]
+    interface IVolume {
+	     //set height of column or half column
+        ECODE SetHigh([in] double dfHigh);
+        ECODE CalcVolume([out] double *pdfVolume); //calculate volumn
+    }
+    [  uuid(07060acb-3026-4150-b770-7b34bd217264) ]
+    class CVolume {
+        virtual interface ICrossSection;	// virtual interface
+        interface IVolume;				// normal interface
+    }
+}
+</pre>
+        <p>CVolume.cpp as the following: </p>
+        <pre class="code">
+#include "CVolume.h"
+#include "_CVolume.cpp"
+
+DECLARE_CLASSFACTORY(CVolume)
+
+ECODE CVolume::CalcArea(
+        /* [out] */ double * pdfArea)
+{
+    return E_NOTIMPL;   // this base class does not implement algorithm to calculate the area, derived class need to overload
+}
+
+ECODE CVolume::SetHigh(
+        /* [in] */ double dfHigh)
+{
+    m_dfHigh = dfHigh;
+    return S_OK;
+}
+
+ECODE CVolume::CalcVolume(
+        /* [out] */ double * pdfVolume)
+{
+    if (pdfVolume) {
+        double dfArea;
+        // invokes CalcArea() method of virtual interface ICrossSection to calculate area
+        // will jump into CalcArea() method overloaded by derived component class and execute
+        MyVirtualICrossSection().CalcArea(&dfArea);
+        // column volumn = cross section area * height
+        *pdfVolume = dfArea * m_dfHigh;
+        return S_OK;
+    }
+    return S_FALSE;
+}
+</pre>
+        <p>CVolume.h is as the following: </p> 
+        <pre class="code">
+#if _MSC_VER > 1000
+#pragma once
+#endif
+#if !defined(_CVOLUME_H_)
+#define _CVOLUME_H_
+#include "_CVolume.h"
+class CVolume : public _CVolume
+{
+public:
+    CARAPI CalcArea(
+        /* [out] */ double * pdfArea);
+
+    CARAPI SetHigh(
+        /* [in] */ double dfHigh);
+
+    CARAPI CalcVolume(
+        /* [out] */ double * pdfVolume);
+
+private:
+    double m_dfHigh;
+};
+</pre>
+        <p>Component description file column.car of derived column component class CColumn: </p>  
+        <pre class="code">
+[
+    uuid(272eb044-0e9a-45db-a158-3a4cf60ddcb3),
+    uunm(www.koretide.com/ezcom/column.dll)
+]
+component ColumnComponent
+{
+    importlib("volume.dll"); 	// meta data of imported base class
+    [ uuid(0c608066-fd0c-4ad8-a2c0-149e7cbaf1a6) ]
+    interface IColumn {
+        ECODE SetRadius([in] double dfRadius); //set radius of column cross section
+    }
+    [ uuid(4f145e76-80c1-4239-bb78-b1ec54211c57) ]
+    class CColumn : CVolume {	// inherit CVolume component class
+        interface IColumn;
+    }
+}
+</pre>
+        <p>CColumn.cpp as the following: </p>
+        <pre class="code">
+#include "CColumn.h"
+#include "_CColumn.cpp"
+
+DECLARE_CLASSFACTORY(CColumn)
+
+// overload CalcArea() method
+ECODE CColumn::CalcArea(
+        /* [out] */ double *pdfArea)
+{
+    if (pdfArea) {
+    // circle area = PI * radius * radius
+        *pdfArea = 3.1415926 * m_dfRadius * m_dfRadius;
+        return S_OK;
+    }
+    return S_FALSE;
+}
+
+ECODE CColumn::SetRadius(
+        /* [in] */ double dfRadius)
+{
+    m_dfRadius = dfRadius;
+    return S_OK;
+}
+</pre>
+        <p>CColumn.h as the following: </p> 
+        <pre class="code">
+#if _MSC_VER > 1000
+#pragma once
+#endif
+
+#if !defined(_CCOLUMN_H_)
+#define _CCOLUMN_H_
+
+#include "_CColumn.h"
+
+class CColumn : public _CColumn
+{
+public:
+    CARAPI CalcArea(
+        /* [out] */ double *pdfArea);
+
+    CARAPI SetRadius(
+        /* [in] */ double dfRadius);
+
+private:
+    double m_dfRadius;
+};
+
+#endif //!(_CCOLUMN_H_)
+</pre>
+        <p>Descriptive file halfcolumn.car of half column main component class: </p> 
+        <pre class="code">
+[
+    uuid(a464fadf-9f54-46bb-8e2d-798d0bb239c6),
+    uunm(www.koretide.com/ezcom/halfcolumn.dll)
+]
+component HalfColumnComponent
+{
+    importlib("volume.dll");    // meta data of imported base class
+    importlib("column.dll");    // meta data of imported base class
+
+    [ uuid(24b74b7d-76af-46bf-ad37-8fb73cffd78b) ]
+    class CHalfColumn : CColumn {   // component class that inherits CColumn
+    }
+}
+</pre>
+        <p>CHalfColumn.cpp is as the following: </p> 
+        <pre class="code">
+#include "CHalfColumn.h"
+#include "_CHalfColumn.cpp"
+
+DECLARE_CLASSFACTORY(CHalfColumn)
+
+// overloading CalcArea method
+ECODE CHalfColumn::CalcArea(
+        /* [out] */ double *pdfArea)
+{
+    if (pdfArea) {
+        double dfArea;
+        // obtains parent class CColumn cross section area (circle area)
+        MyParentICrossSection().CalcArea(&dfArea);
+    // half circle area = circle area / 2
+        *pdfArea = dfArea / 2;
+        return S_OK;
+    }
+    return S_FALSE;
+}
+</pre>
+        <p>The implementation of half column component class overloaded CalcArea() method is to calculate cross section area of parent component class CColumn and then divide by 2. In order to obtain parent class cross section area, initially we invoke MyParentICrossSection() function to get ICrossSection interface smart pointer implemented by parent class, then execute its CalcArea() method.In this way we can get the cross section area of parent class CColumn.</p> 
+        <p>CHalfColumn.h is as the following: </p> 
+        <pre class="code">
+#if _MSC_VER > 1000
+#pragma once
+#endif
+
+#if !defined(_CHALFCOLUMN_H_)
+#define _CHALFCOLUMN_H_
+
+#include "_CHalfColumn.h"
+
+class CHalfColumn : public _CHalfColumn
+{
+public:
+    CARAPI CalcArea(
+        /* [out] */ double *pdfArea);
+};
+
+#endif //!(_CHALFCOLUMN_H_)
+</pre>
+        <p>Finally let's take a look at client program volclient.cpp: </p> 
+        <pre class="code">
+#include <stdio.h>
+#import <column.dll>	// import component DLL
+#import <halfcolumn.dll>
+
+    EXTERN_C int __cdecl wmain(int argc, wchar_t **argv)
+{
+    CColumnRef columnRef;
+    double dfColumnVolume;
+
+    columnRef.Instantiate(); // instantiate column component
+    columnRef.SetRadius(3);	 // set column radius 3
+    columnRef.SetHigh(10);	 // set column height 10
+    // calculate column volume
+    columnRef.CalcVolume(&dfColumnVolume);
+    printf("Column volume:%g\n", dfColumnVolume);
+
+    CHalfColumnRef halfcolumnRef;
+    double dfHalfColumnVolume;
+
+    halfcolumnRef.Instantiate();	// instantiate half column component
+    halfcolumnRef.SetRadius(3);	// set half column radius 3
+    halfcolumnRef.SetHigh(10);	// set half column height 10
+    // calculate half column volume
+    halfcolumnRef.CalcVolume(&dfHalfColumnVolume);
+    printf("Half Column volume:%g\n", dfHalfColumnVolume);
+
+    return 0;
+}
+</pre>
+        <p>The final run-time result is as the following: </p>
+        <pre class="code">
+Column volume:282.743
+Half Column volume:141.372
+</pre>
+        <p>In order to intensify understanding of the significance of <a class="style1" href ="#MyVirtual">MyVirtualXXX()</a> and <a class="style1" href ="#MyParent">MyParentXXX()</a> in virtual interface invocation process, the following figure explains virtual interface function invocation process for calculating half column volume: </p>
+        <center><img src="images/flow.jpg"></center>
+        <p>Of which the MyVirtualICrossSection().CalcArea() function is CalArea() function of derived component class CHalfColumn. The implementation of CHalfColumn::CalcArea() invokes MyParentICrossSection().CalcArea() function, it corresponds to CalcArea() function of base component class CColumn.</p>
+               
+<script>footer("english")</script>
+</body>
+</html>

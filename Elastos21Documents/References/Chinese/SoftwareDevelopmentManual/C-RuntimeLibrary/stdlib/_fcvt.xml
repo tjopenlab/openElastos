@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\_fcvt">_fcvt</sample>
+    <title> _fcvt</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>将浮点数转化为字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <func_name>_fcvt</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>value</param_name>
+                <param_note>
+                    <para>要转换的浮点数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>转换后，小数点后保留的数字位数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int*</param_type>
+                <param_name>dec</param_name>
+                <param_note>
+                    <para>小数点相对于字符串开始处的位置</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int*</param_type>
+                <param_name>sign</param_name>
+                <param_note>
+                    <para>浮点数的符号</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_fcvt返回指向数字字符串的指针。无错误返回值。</para>
+    </return>
+
+    <remarks>
+	    <para>函数_fcvt将浮点数转化为以null结尾的字符串。参数value是要转换的浮点数。函数_fcvt将参数value的数字存成一个字符串，并在串尾添加空字符('\0')；参数count指定小数点后存储的位数，超出部分将被四舍五入，如果小数后位数小于count，则用0填充至count位。</para>
+	    <para>在函数调用后，只有数字部分被存储为字符串。从参数dec和sign中可获得小数点的位置和参数value的符号。参数dec指向一个整数，该整数值给出小数点相对于字符串开始处的位置。0和负数表示小数点位置在第一个数字的左边。参数sign指向一整数，表示参数value的符号。sign为0则value为正，sign非0则value为负。</para>
+	    <para>函数_ecvt和_fcvt在进行转换时，使用单一的静态分配的缓冲区。每次调用此类函数，都会破坏前一次调用的结果。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_fcvt</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _fcvt.cpp: This program converts the constant
+ * 3.1415926535 whose type is double to a string .
+*/
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int  decimal, sign;
+    char *buffer;
+    double source = 3.1415926535;
+
+    buffer = _fcvt(source, 7, &amp;decimal, &amp;sign);
+    printf(&quot;source: %2.10f    buffer: &apos;%s&apos;    decimal: %d    sign: %d\n&quot;,
+                source, buffer, decimal, sign);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+source: 3.1415926535    buffer: &apos;31415927&apos;    decimal: 1    sign: 0
+</result>
+
+  
+
+    <references>
+        <reference>
+            <ref_name>_ecvt</ref_name>
+            <ref_url>_ecvt</ref_url>
+        </reference>
+    </references>
+
+</manpage>

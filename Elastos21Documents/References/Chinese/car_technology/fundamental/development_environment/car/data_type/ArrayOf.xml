@@ -1,0 +1,148 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface> ArrayOf </interface>
+
+    <description>       
+        <para>ArrayOf是一个继承自<link url= "..\others\CarQuintet.htm">五元组结构体CarQuintet</link>,且具有<link url= "../../../../../SoftwareDevelopmentManual/QuickReference/CustomDataType.htm">自描述数据类型</link>功能的类模板。</para>
+        <para>ArrayOf_是一个继承自ArrayOf&lt;T&gt;的类模板,ArrayOf构造函数和各种方法使用介绍：</para>
+        
+   </description>
+    <constructs>
+        
+        <construct>
+            <construct_name>ArrayOf( T*, Int32)</construct_name>
+            <construct_url>ArrayOf/structure/ArrayOf</construct_url>
+            <construct_description>在栈中构造一个对象，并指向用户指定的内存块，同时设置其长度。</construct_description>
+        </construct>
+        
+         <construct>
+            <construct_name>ArrayOf_&lt;T ,size&gt;</construct_name>
+            <construct_url>ArrayOf/structure/ArrayOf_</construct_url>
+            <construct_description>在栈中构造一个对象，同时设置其长度及数组元素类型。</construct_description>
+        </construct>
+     </constructs>   
+        
+    <methods>
+      <self>
+
+        <method>
+        <method_name>Alloc</method_name>
+        <method_url>ArrayOf/Alloc/index/Alloc</method_url>
+        <m_description> 已重载。(在堆上)动态创建ArrayOf对象。</m_description>
+        </method>
+                       
+        <method>
+        <method_name>Clone</method_name>
+        <method_url>ArrayOf/Clone</method_url>
+        <m_description> 获取一个ArrayOf对象直接复制ArrayOf数组。</m_description>
+        </method>
+
+        <method>
+        <method_name>Copy</method_name>
+        <method_url>ArrayOf/Copy/index/Copy</method_url>
+        <m_description> 已重载。将指定对象拷贝到当前ArrayOf数组。 </m_description>
+        </method>
+
+        <method>
+        <method_name>Free</method_name>
+        <method_url>ArrayOf/Free</method_url>
+        <m_description> 释放由Alloc或Clone在堆上创建的ArrayOf对象。 </m_description>
+        </method>
+        
+        <method>
+        <method_name>GetLength</method_name>
+        <method_url>ArrayOf/GetLength</method_url>
+        <m_description> 获取当前ArrayOf数组长度。 </m_description>
+        </method>      
+
+
+        <method>
+        <method_name>GetPayload</method_name>
+        <method_url>ArrayOf/GetPayload</method_url>
+        <m_description>返回指向ArrayOf对象的数据区的指针。 </m_description>
+        </method>
+ 
+        <method>
+        <method_name>Insert</method_name>
+        <method_url>ArrayOf/Insert</method_url>
+        <m_description>将源数据插入到指定位置。</m_description>
+        </method>
+
+        <method>
+        <method_name>Replace</method_name>
+        <method_url>ArrayOf/Replace</method_url>
+        <m_description>用指定源数据覆盖指定位置的内容。</m_description>
+        </method>
+        
+
+                                 
+      </self>
+    </methods>
+
+    <operators>
+        <operator>
+            <operator_name>operator[]</operator_name>
+            <operator_url>ArrayOf/operator/index/operator</operator_url>
+            <operator_description>已重载。存取数组元素操作符，用来对数组元素进行只读或保存操作。</operator_description>
+        </operator>
+
+        <operator>
+            <operator_name>operator CarQuintet  </operator_name>
+            <operator_url>ArrayOf/operator2</operator_url>
+            <operator_description>取五元组的指针。</operator_description>
+        </operator>
+        <operator>
+            <operator_name> operator BufferOf &lt;T&gt;<![CDATA[&]]> </operator_name>
+            <operator_url>ArrayOf/operator3</operator_url>
+            <operator_description>类型转换操作符，将ArrayOf转成BufferOf。
+            </operator_description>
+        </operator>
+    </operators>
+   
+    <macros>
+        <macro>
+        <macro_name> NULL_ARRAYOF&lt;T&gt;  </macro_name>
+          <macro_url>ArrayOf/NULL_ARRAYOF</macro_url>
+        <macro_description> 构造一个内容为空的ArrayOf&lt;T&gt;对象。  </macro_description>
+        </macro>
+        <macro>
+        <macro_name> AUTO_ARRAYOF(T, n) </macro_name>
+          <macro_url>ArrayOf/AUTO_ARRAYOF</macro_url>
+        <macro_description> 构造一个ArrayOf对象。  </macro_description>
+        </macro>
+    </macros>    
+    <requirements>
+        <headerfile>
+            <file_name> elastos.h  </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>    
+
+ <references>
+    <reference>
+        <ref_name> ArrayOf类型定义 </ref_name>
+        <ref_url> ../data_type/ArrayOf/Definition</ref_url>
+    </reference>
+    </references>       
+        
+</manpage>     
+        
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+
+    

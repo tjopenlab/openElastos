@@ -1,0 +1,61 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> where </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para> Searches all files with the same file name as the specified file name.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> WHERE </cmd_name>
+        <cmd_param>  [-?] [/r dir] [/qte] pattern ... </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> -? </param_name>
+        <param_note> Displays help information </param_note>
+    </param>
+    <param>
+        <param_name> /r dir </param_name>
+        <param_note> Recursively search in directory dir</param_note>
+    </param>
+    <param>
+        <param_name>  /q </param_name>
+        <param_note> Does not display search information, uses exit code to check if the file is found, 0 means found, 1 means not found</param_note>
+    </param>
+    <param>
+        <param_name>  /t </param_name>
+        <param_note> Displays file size, creation time</param_note>
+    </param>
+    <param>
+        <param_name>  /e  </param_name>
+        <param_note> Displays .exe file type (Windows 2000, DOS)</param_note>
+    </param>
+    <param>
+        <param_name> /Q </param_name>
+        <param_note> Adds double quotes when output file name</param_note>
+    </param>
+
+    </parameters>
+    <remarks>
+        <para>where by default searches file in current PATH environment variable specified path.If /r parameter is used, then it searches recursively in the path follows this parameter.
+        </para>
+    </remarks>
+    <examples>
+    <example>
+        <eg_line>where /t where.exe </eg_line>
+        <eg_note> Lists the size, time and path of where.exe file. Output result: </eg_note>
+        <eg_result><![CDATA[
+    10000  10-19-101   3:19p  d:\Elastos.SDK\build\tools\where.exe
+]]></eg_result>
+    </example>
+    </examples>
+
+</manpage>

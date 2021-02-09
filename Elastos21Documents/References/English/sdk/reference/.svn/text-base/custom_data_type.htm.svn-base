@@ -1,0 +1,218 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Summary of Self-Descriptive Data</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>Summary of Self-Descriptive Data</h2>
+
+    <h3>An Example of Traditional Data Definition</h3>
+        <p>
+        	In traditional application programming practice, if programmers need to specify a buffer space of 1000 bytes, 
+        	it is simply defined as :
+        </p>
+        <pre class="code">
+#define BUFLENGTH 1000
+BYTE buf[BUFLENGTH];
+</pre>
+        <p>        	        	
+        	While programming, developers pay much attention to the content in buffer space rather than its 
+        	self-description. In network computation, an uncharacteristic data may create some unnecessary 
+        	overhead to the service. The <i>buf</i> in this example has very less information about itself. When this
+        	data segment is sent to the method of a remote service interface, the size of the <i>buf</i> must be 
+        	attached to avoid memory overflow. For example:
+        	
+        </p>
+        <pre class="code">
+ECODE foo(
+    BYTE *pBuf,
+    INT capacity);
+</pre>
+        <p>
+        	If part of the buffer is being used by other services and need not cover in current service, then the 
+        	implementation of the interface method becomes as follows:
+        </p>
+        <pre class="code">
+ECODE foo(
+          BYTE *pBuf,
+          INT capacity，
+          INT used);
+</pre>
+        <p>
+        	<i>used</i> means bytes used. We do not think it is a good definition, because it is a waste of the resource 
+        	to recognize the last two parameters in the server side. This kind of definition is due to inappropriate  
+        	data types to define this common parameter passing in the traditional operating system. Data 
+        	must be self-descriptive in distributed applications.
+        </p>
+    <h3>Types of Self-Descriptive Data</h3>
+        <p>
+        	From the example it is clear that we need several extra parameters to define itself while 
+        	passing data types which are not self-descriptive. What is self-descriptive data type?
+        </p>
+        <p>
+        	In an explicit way, self-descriptive data type is the data type <b>that contains enough information 
+        	to describe its characteristics.For example, memory; its basic attributes and other related informations.
+        	Precisely, it is the data type that can be self-descriptive without any extra parameters.</b>
+        </p>
+        <p>
+        	We can categorize the traditional data types according to this definition; double, float and other data 
+        	types that are compatible with IEEE real number standard are self-descriptive data types. If the server 
+        	side gets a double parameter, it is confirmed that：
+        	<pre>
+	        	1. It is an 8-byte continual memory area; 
+	        	2. 64-bit in total; 
+	        	3. The first bit is sign, the 11th is exponent, 52nd is mantissa position;
+	        	4. Its ranges is +/-1.7E308. 
+        	</pre>
+        	This information is very clear and enough to describe the characteristics of this data type. If we pass 
+        	the pointer type parameter char&nbsp;*, we know that it is a 32-bit pointer, which points to a 
+        	continuous character buffer space and the unit is byte, this continual space ends with ‘\0’. We get the 
+        	starting and ending address of this continual character space, which is the length of this character 
+        	string, so we call char&nbsp;* a self-descriptive data type. How about byte&nbsp;* or void&nbsp;*/PVOID?
+        	it is certain that these are not self-descriptive data types, because they do not contain enough 
+        	information to describe themselves, which is mentioned in the previous example.
+        </p>
+        <p>
+        	The non-pointer data types are basically self-descriptive except character pointer and other 
+        	basic data types are not self-descriptive.
+        </p>
+        <p>
+        	C/C++ supports not only these basic data types, but also the user defined data types. i.e.:
+        </p>
+        <pre class="code">
+typedef class CStudent CStudent ,*pStudent;
+
+class CStudent{
+    BYTE  *pData;
+public:
+    INT age;
+    Char *pClassName;
+};
+</pre>
+        <p>
+        	In this case, <i>CStudent</i> and <i>pStudent</i> are not self-descriptive data type, its member 
+        	<i>pData</i> cannot describe itself. if we make some changes here:
+        </p>
+        <pre class="code">
+typedef class Cstudent Cstudent, *pStudent;
+
+class Cstudent {
+    INT dataLen;
+    BYTE  *pData;
+public:
+    INT age;
+    Char *pClassName;
+};
+</pre>
+        <p>
+        	The newly added member variable <i>dataLen</i> is to record the size of <i>pData</i>. This almost 
+        	meets the requirement of the self-descriptive data type to some extent. (But this is not the basic 
+        	self-descriptive data type of operating system, because this is defined by users, which operating 
+        	system does not know) From this point, we can see that self-descriptive data type is relative to 
+        	requirements. We should make sufficient designs containing most effective information according to the 
+        	requirements in practise.One need not make everything looks like self-descriptive, because it 
+        	takes more system resources.
+        </p>
+
+    <h3>The Importance of Self-Descriptive Data Type in CAR Component Development.</h3>
+    <p>
+    	Fundamental self-descriptive data types cannot fully reveal its advantages in traditional development, 
+    	because in traditional single thread program or (Client/Server) two-tier architecture design.It is not 
+    	required to make it self-descriptive because it can be solved by user defined or passing extra parameters, plus 
+    	there is little resource consumption.
+    </p>
+    <p>
+    	With the rapid growth of network technology, "client/middleware/server" three-tier and multi-tier 
+    	architecture, middleware technology, grid network computing and other new concepts come out, the 
+    	traditional operating system cannot meet the requirements of WEB services well. <b>Elastos</b>, 
+    	which is based on component, is just developed to meet these requirements. We know that in the development 
+    	of middleware, Marshaling and UnMarshaling of component interface parameter play a very important role.
+    	Data types except integer and BOOL consume lots of resources to pass Marshaling and UnMarshaling of 
+    	parameter. Defining a set of basic self-descripitve data type can benefit us in the following aspects: 
+    </p>
+    <ul>
+        <li>We get the data information we want by limited parameter passing;
+        <li>It can reduce the burden of the service component effectively and quickly respond user's requirements;
+        <li>It can avoid ambiguity of the data,avoid human error and unnecessary computation error effectively;
+        <li>It meets the requirements of component compatibility in CAR technology.
+    </ul>
+
+    <h3>Elastos Self-Descriptive Data Types</h3>
+
+    <p>
+    	A part of standard data type of C/C++ are self-descriptive.They are defined as <a class="style1" 
+    	href="basetype.htm"> basic data types by Elastos</a>. Self-descriptive data types of Elastos include:
+    </p>
+
+<table>
+    <thead>
+        <td>Data Type</td><td>Description</td>
+    </thead>
+    <tr>
+        <td>
+            <a class="style1" href="EzArray.htm"> EzArray </a>
+        </td>
+        <td>
+            EzArray is a self-descriptive array.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="EzByteBuf.htm"> EzByteBuf </a>
+        </td>
+        <td>
+            Data structure to store the byte buffer.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="EzPoint.htm"> EzPoint </a>
+        </td>
+        <td>
+            EzPoint is a point in two-dimensional co-ordinate.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="EzStr.htm"> EzStr </a>
+        </td>
+        <td>
+			The data structure which stores a character string.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="EzStrBuf.htm"> EzStrBuf </a>
+        </td>
+        <td>
+           The buffer data structure which stores a character string. 
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="EzVar.htm"> EzVar </a>
+        </td>
+        <td>
+            EzVar is a general data type, which can store any type of data.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a class="style1" href="EzWCharBuf.htm"> EzWCharBuf </a>
+        </td>
+        <td>
+            Data structure to store a double byte buffer.
+        </td>
+    </tr>
+</table>
+
+<script>footer("english")</script>
+</body>
+</html>

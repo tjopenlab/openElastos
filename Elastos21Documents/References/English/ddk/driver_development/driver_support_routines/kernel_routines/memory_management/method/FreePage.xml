@@ -1,0 +1,77 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\FreePage">FreePage</sample>
+    <volume>Memory Management Methods</volume>
+    <title>FreePage</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>
+        	Releases an allocated physical page.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>void </return_val>
+        <parameters>
+            <api_param>
+                <param_type> physaddr_t </param_type>
+                <param_name> pa </param_name>
+                <param_note>
+                    <para>
+                    	Specified starting address (physical address) of physical page to be released.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para> 
+        	This method releases continuous physical pages allocated by the <link url="AllocPage.htm">AllocPage</link> 
+        	method. Attempts to release invalid physical pages (physical pages that were not allocated by <link url=
+        	"AllocPage.htm">AllocPage</link> method) will cause unpredictable error.
+        </para>
+        <para>
+        	In fact FreePage(pa) is equivalent to FreePages(pa, 0).
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>AllocPage</ref_name>
+            <ref_url>AllocPage</ref_url>
+        </reference>
+        <reference>
+            <ref_name>AllocPages</ref_name>
+            <ref_url>AllocPages</ref_url>
+        </reference>
+        <reference>
+            <ref_name>FreePages</ref_name>
+            <ref_url>FreePages</ref_url>
+        </reference>
+    </references>
+
+</manpage>

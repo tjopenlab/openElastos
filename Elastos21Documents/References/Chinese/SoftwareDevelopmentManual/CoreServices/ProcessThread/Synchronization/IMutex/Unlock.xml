@@ -1,0 +1,46 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IMutex\MutexUsage">Unlock</sample>
+<volume>互斥体</volume>
+<interface>IMutex</interface><method> Unlock</method>
+    <description>
+        <para>释放已占有的互斥体对象。</para>
+    </description>
+    <syntax_nopara>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_NOT_OWNER</td>
+	    	    <td>调用失败，线程并未占有互斥体对象</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>如果当前线程并未占有互斥体对象，本方法将会返回失败。</para>
+		<para>互斥体对象是递归的。这意味着一个已经占有互斥体对象的线程可以再次成功的获取本互斥体对象，但是需要调用与已经调用过的<link url="Lock.htm">IMutex::Lock</link>方法和<link url="TryLock.htm">IMutex::TryLock</link>方法次数相等的<link url="Unlock.htm">IMutex::Unlock</link>方法才能最终释放本互斥体对象。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

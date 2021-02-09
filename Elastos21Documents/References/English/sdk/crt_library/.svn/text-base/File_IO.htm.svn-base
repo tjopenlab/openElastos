@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>File Input And Output</title>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>File Input And Output</h2>
+    <p>Input output function is used to read data from file or device or write data to file or device. File input output operation can use text mode or binary mode.</p>
+<h3>  Text mode and binary mode input output</h3>
+    <p>What mode (Text mode or binary mode) to use during file input output operation depends on the file opening mode. Data files are usually processed using text mode. In order to control file conversion mode, you can use the following method: </p>
+    <ul>
+        <li>Keeps the current defaul setting, only can specify one of the two modes when opens the selected file.
+    </ul>
+    <p>When you invokes a function that opens a file, such as <a class="style1" href="io/_wopen.htm">_open</a> or <a class="style1" href="stdio/_wfopen.htm">fopen</a>, you can specify file conversion mode by directly through corresponding parameter of these functions. Standard input stream (stdin), standard output stream (stdout), and standard error stream (stderr) normally by defaul set to open in text mode, you can ignor the default setting when opening these files.</p>
+<h3>UNICODE stream input/output in text mode and binary mode</h3>
+    <p>When a UNICODE stream input/output function program (For example <a class="style1" href="stdio/fwprintf.htm">fwprintf</a>, <a class="style1" href="stdio/fgetwc.htm">fgetwc</a>, <a class="style1" href="stdio/fputc.htm">fputwc</a>, <a class="style1" href="stdio/fgetws.htm">fgetws</a>, or <a class="style1" href="stdio/fputws.htm">fputws</a>) operating on open file in text mode (by default), the following operation will be performed: </p>
+    <ul>
+        <li>Unicode-to-MBCS or MBCS-to-Unicode converts files. When a UNICODE stream - input/output function operates on text mode, source or target stream is assumed to be a multibyte character set. So UNICODE stream - input function will convert multibyte character to wide character, similarily, UNICODE stream - output function converts wide character to multibyte character.
+    </ul>
+    <p>However, when a UNICODE stream input/output function operates under binary mode, the current processing file will be assumed to be UNICODE, and there is no character conversion during input/output operation.</p>
+    <p><b>Remarks: </b> Since files on Elastos are of UNIX format, carrage return operation is slightly different from Microsoft, there is no '\r'.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: database.car源文件</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="annotated.html"><span>类</span></a></li>
+    <li class="current"><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<h1>database.car</h1><a href="database_8car.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//==========================================================================</span>
+<a name="l00002"></a>00002 <span class="comment">// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.</span>
+<a name="l00003"></a>00003 <span class="comment">//==========================================================================</span>
+<a name="l00004"></a>00004
+<a name="l00020"></a><a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19">00020</a>     <span class="keyword">enum</span> <a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19" title="支持的字符编码。">DbEncoding</a> {
+<a name="l00021"></a><a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19184b965ec2290221158eb59d64a5c6c6">00021</a>         <a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19184b965ec2290221158eb59d64a5c6c6">DbEncoding_DEFAULT</a>  = 0,
+<a name="l00022"></a><a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19cd467a86c4e96be829ee8f5b778d678d">00022</a>         <a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19cd467a86c4e96be829ee8f5b778d678d">DbEncoding_UTF8</a>     = 1,
+<a name="l00023"></a><a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19cc09c0df4b795c8e5ac74c36605e1d4c">00023</a>         <a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19cc09c0df4b795c8e5ac74c36605e1d4c">DbEncoding_UTF16LE</a>  = 2,
+<a name="l00024"></a><a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e1949504a42f2c8e62f6d3aa6afa1d54fcc">00024</a>         <a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e1949504a42f2c8e62f6d3aa6afa1d54fcc">DbEncoding_UTF16BE</a>  = 3,
+<a name="l00025"></a><a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e192ec6c3956ed3c750b06576619f3f5c28">00025</a>         <a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e192ec6c3956ed3c750b06576619f3f5c28">DbEncoding_UTF16</a>    = 4
+<a name="l00026"></a>00026     };
+<a name="l00027"></a>00027
+<a name="l00031"></a><a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea3">00031</a>     <span class="keyword">enum</span> <a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea3" title="支持的数据类型。">DbDatatype</a> {
+<a name="l00032"></a><a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea365ba2869bb7376fe86848aec71ebaf79">00032</a>         <a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea365ba2869bb7376fe86848aec71ebaf79">DbDatatype_INTEGER</a>  = 1, <span class="comment">// 带符号整数</span>
+<a name="l00033"></a>00033                                  <span class="comment">// 根据数值大小存储在1, 2, 3, 4, 6, 或 8 个字节中</span>
+<a name="l00034"></a><a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea3f71a1738d90f12f48ecbfd12b7055509">00034</a>         <a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea3f71a1738d90f12f48ecbfd12b7055509">DbDatatype_FLOAT</a>    = 2, <span class="comment">// 浮点数</span>
+<a name="l00035"></a>00035                                  <span class="comment">// 占用8个字节</span>
+<a name="l00036"></a><a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea320d25ae03781ba5a2eb027be5a7a9847">00036</a>         <a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea320d25ae03781ba5a2eb027be5a7a9847">DbDatatype_TEXT</a>     = 3, <span class="comment">// 字符型</span>
+<a name="l00037"></a>00037                                  <span class="comment">// 使用数据库编码(GB2312, UTF-16BE或UTF-16-LE)存储</span>
+<a name="l00038"></a><a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea381fed5de79d08b5f874c1a5e71eb69e7">00038</a>         <a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea381fed5de79d08b5f874c1a5e71eb69e7">DbDatatype_BLOB</a>     = 4, <span class="comment">// 二进制数据(Binary Large Object)</span>
+<a name="l00039"></a>00039                                  <span class="comment">// 采用二进制格式存储的大数据对象</span>
+<a name="l00040"></a><a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea359add7cc89cd13267d90d494dfde42bc">00040</a>         <a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea359add7cc89cd13267d90d494dfde42bc">DbDatatype_NULL</a>     = 5  <span class="comment">// 空值</span>
+<a name="l00041"></a>00041     };
+<a name="l00042"></a>00042
+<a name="l00043"></a><a class="code" href="database_8car.html#c2032f3238adbbd01623b890e136a384">00043</a>     <span class="keyword">const</span> <a class="code" href="database_8car.html#c2032f3238adbbd01623b890e136a384">MAX_DATABASE_TYPE_NAME</a>   = 64;
+<a name="l00044"></a><a class="code" href="database_8car.html#a9b89fdc0e016e0d2d1112d14b3b50b6">00044</a>     <span class="keyword">const</span> <a class="code" href="database_8car.html#a9b89fdc0e016e0d2d1112d14b3b50b6">MAX_COLUMN_NAME</a>         = 64;
+<a name="l00045"></a><a class="code" href="database_8car.html#da9a6aec26cd01ab44d72e1843f7c278">00045</a>     <span class="keyword">const</span> <a class="code" href="database_8car.html#da9a6aec26cd01ab44d72e1843f7c278">MAX_DATABASE_NAME</a>       = 64;
+<a name="l00046"></a><a class="code" href="database_8car.html#497666a77f6efa701423352ee984b328">00046</a>     <span class="keyword">const</span> <a class="code" href="database_8car.html#497666a77f6efa701423352ee984b328">MAX_TABLE_NAME</a>          = 64;
+<a name="l00047"></a><a class="code" href="database_8car.html#9e221168f2054b259aeabfae066a44d8">00047</a>     <span class="keyword">const</span> <a class="code" href="database_8car.html#9e221168f2054b259aeabfae066a44d8">MAX_PARAMETER_NAME</a>      = 64;
+<a name="l00048"></a><a class="code" href="database_8car.html#76ba946579e96ec5262532236badb305">00048</a>     <span class="keyword">const</span> <a class="code" href="database_8car.html#76ba946579e96ec5262532236badb305">MAX_PROPERTY_VALUE</a>      = 256;
+<a name="l00049"></a><a class="code" href="database_8car.html#c43bfbda4c1990d69f5f2649414f5580">00049</a>     <span class="keyword">const</span> <a class="code" href="database_8car.html#c43bfbda4c1990d69f5f2649414f5580">MAX_DATA_TIME</a>           = 32;
+<a name="l00050"></a><a class="code" href="database_8car.html#0507c19bc80a97a21f8b7fb547cd037e">00050</a>     <span class="keyword">const</span> <a class="code" href="database_8car.html#0507c19bc80a97a21f8b7fb547cd037e">MaxStringValue</a>        = 512;
+<a name="l00051"></a><a class="code" href="database_8car.html#5ec09223d0c29e2cdf8b11c01c88b9d4">00051</a>     <span class="keyword">const</span> <a class="code" href="database_8car.html#5ec09223d0c29e2cdf8b11c01c88b9d4">MAX_ERROR_MESSAGE</a>       = 512;
+<a name="l00052"></a>00052
+<a name="l00053"></a>00053     interface <a class="code" href="interface_i_database.html" title="特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。...">IDatabase</a>;
+<a name="l00054"></a>00054     interface <a class="code" href="interface_i_statement.html" title="Statement接口，该接口用来执行静态的SQL语句并返回相应的结果集。...">IStatement</a>;
+<a name="l00055"></a>00055     interface <a class="code" href="interface_i_prepared_statement.html" title="Represents接口，该接口用于执行预编译的SQL语句。">IPreparedStatement</a>;
+<a name="l00056"></a>00056     interface <a class="code" href="interface_i_result_set.html" title="对数据库进行执行一条查询语句的操作通常会创建一个代表数据库查询结果笮.">IResultSet</a>;
+<a name="l00057"></a>00057     interface <a class="code" href="interface_i_parameter_meta_data.html" title="该接口用于从一个PreparedStatement对象获取关于其参数类型和属性的信息描述?..">IParameterMetaData</a>;
+<a name="l00058"></a>00058     interface <a class="code" href="interface_i_result_set_meta_data.html" title="该接口被用于从一个ResultSet对象获取某列的类型和属性的信息描述。...">IResultSetMetaData</a>;
+<a name="l00059"></a>00059
+<a name="l00068"></a><a class="code" href="interface_i_database.html">00068</a>     interface <a class="code" href="interface_i_database.html" title="特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。...">IDatabase</a>
+<a name="l00069"></a>00069     {
+<a name="l00077"></a>00077         Close();
+<a name="l00078"></a>00078
+<a name="l00088"></a>00088         IsClosed(
+<a name="l00089"></a>00089                 [out] Boolean *closed
+<a name="l00090"></a>00090         );
+<a name="l00091"></a>00091
+<a name="l00097"></a>00097         GetErrorCode(
+<a name="l00098"></a>00098                 [out] ECode *code
+<a name="l00099"></a>00099         );
+<a name="l00100"></a>00100
+<a name="l00106"></a>00106         GetErrorMessage(
+<a name="l00107"></a>00107                 [out] WStringBuf * message
+<a name="l00108"></a>00108         );
+<a name="l00109"></a>00109
+<a name="l00110"></a>00110
+<a name="l00118"></a>00118         CreateStatement(
+<a name="l00119"></a>00119                 [out] <a class="code" href="interface_i_statement.html" title="Statement接口，该接口用来执行静态的SQL语句并返回相应的结果集。...">IStatement</a> **stmt
+<a name="l00120"></a>00120         );
+<a name="l00121"></a>00121
+<a name="l00132"></a>00132         PrepareStatement(
+<a name="l00133"></a>00133                 [in] WString sql,
+<a name="l00134"></a>00134                 [out] <a class="code" href="interface_i_prepared_statement.html" title="Represents接口，该接口用于执行预编译的SQL语句。">IPreparedStatement</a> **stmt
+<a name="l00135"></a>00135         );
+<a name="l00136"></a>00136
+<a name="l00142"></a>00142         Commit();
+<a name="l00143"></a>00143
+<a name="l00149"></a>00149         Rollback();
+<a name="l00150"></a>00150
+<a name="l00165"></a>00165         SetAutoCommit(
+<a name="l00166"></a>00166                 [in] Boolean autoCommit
+<a name="l00167"></a>00167         );
+<a name="l00168"></a>00168
+<a name="l00174"></a>00174         IsAutoCommit(
+<a name="l00175"></a>00175                 [out] Boolean *autoCommit
+<a name="l00176"></a>00176         );
+<a name="l00177"></a>00177
+<a name="l00185"></a>00185         GetTotalEffectiveRowCount(
+<a name="l00186"></a>00186                 [out] Int32 *rowCount
+<a name="l00187"></a>00187         );
+<a name="l00188"></a>00188
+<a name="l00195"></a>00195         GetBusyTimeout(
+<a name="l00196"></a>00196                 [out] Int32 *millisecond
+<a name="l00197"></a>00197         );
+<a name="l00198"></a>00198
+<a name="l00205"></a>00205         SetBusyTimeout(
+<a name="l00206"></a>00206                 [in] Int32 millisecond
+<a name="l00207"></a>00207         );
+<a name="l00208"></a>00208
+<a name="l00214"></a>00214         GetCacheSize(
+<a name="l00215"></a>00215                 [out] Int32 *pages
+<a name="l00216"></a>00216         );
+<a name="l00217"></a>00217
+<a name="l00229"></a>00229         SetCacheSize(
+<a name="l00230"></a>00230                 [in] Int32 pages
+<a name="l00231"></a>00231         );
+<a name="l00232"></a>00232
+<a name="l00238"></a>00238         GetDefaultCacheSize(
+<a name="l00239"></a>00239                 [out] Int32 *pages
+<a name="l00240"></a>00240         );
+<a name="l00241"></a>00241
+<a name="l00251"></a>00251         SetDefaultCacheSize(
+<a name="l00252"></a>00252                 [in] Int32 pages
+<a name="l00253"></a>00253         );
+<a name="l00254"></a>00254
+<a name="l00260"></a>00260         GetPageSize(
+<a name="l00261"></a>00261                 [out] Int32 *pageSize
+<a name="l00262"></a>00262         );
+<a name="l00263"></a>00263
+<a name="l00270"></a>00270         GetEncoding(
+<a name="l00271"></a>00271                 [out] <a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19" title="支持的字符编码。">DbEncoding</a> *encoding
+<a name="l00272"></a>00272         );
+<a name="l00273"></a>00273
+<a name="l00280"></a>00280         IsReadOnly(
+<a name="l00281"></a>00281                 [out] Boolean *readOnly
+<a name="l00282"></a>00282         );
+<a name="l00283"></a>00283
+<a name="l00297"></a>00297         GetBlobAsStream(
+<a name="l00298"></a>00298                 [in] WString dbAlias,
+<a name="l00299"></a>00299                 [in] WString table,
+<a name="l00300"></a>00300                 [in] WString column,
+<a name="l00301"></a>00301                 [in] Int64 rowId,
+<a name="l00302"></a>00302                 [out] IInputStream **stream
+<a name="l00303"></a>00303         );
+<a name="l00304"></a>00304
+<a name="l00319"></a>00319         SetBlobOfStream(
+<a name="l00320"></a>00320                 [in] WString dbAlias,
+<a name="l00321"></a>00321                 [in] WString table,
+<a name="l00322"></a>00322                 [in] WString column,
+<a name="l00323"></a>00323                 [in] Int64 rowId,
+<a name="l00324"></a>00324                 [in] Int32 newSize,
+<a name="l00325"></a>00325                 [out] IOutputStream **stream
+<a name="l00326"></a>00326         );
+<a name="l00327"></a>00327
+<a name="l00335"></a>00335         LoadUserExtension(
+<a name="l00336"></a>00336                 [in] WString extModule,
+<a name="l00337"></a>00337                 [in] WString entryPoint
+<a name="l00338"></a>00338         );
+<a name="l00339"></a>00339
+<a name="l00343"></a>00343         Defragment();
+<a name="l00344"></a>00344
+<a name="l00348"></a>00348         SetProperty(
+<a name="l00349"></a>00349                 [in] WString property,
+<a name="l00350"></a>00350                 [in] WString value
+<a name="l00351"></a>00351         );
+<a name="l00352"></a>00352
+<a name="l00356"></a>00356         GetProperty(
+<a name="l00357"></a>00357                 [in] WString property,
+<a name="l00358"></a>00358                 [out] WStringBuf * value
+<a name="l00359"></a>00359         );
+<a name="l00360"></a>00360
+<a name="l00384"></a>00384     };
+<a name="l00385"></a>00385
+<a name="l00389"></a><a class="code" href="interface_i_statement_base.html">00389</a>     interface <a class="code" href="interface_i_statement_base.html" title="IStatementBase接口">IStatementBase</a>
+<a name="l00390"></a>00390     {
+<a name="l00398"></a>00398         Close();
+<a name="l00399"></a>00399
+<a name="l00408"></a>00408         IsClosed(
+<a name="l00409"></a>00409             [out] Boolean *closed);
+<a name="l00410"></a>00410
+<a name="l00414"></a>00414         Cancel();
+<a name="l00415"></a>00415
+<a name="l00421"></a>00421         GetQueryTimeout(
+<a name="l00422"></a>00422                 [out] Millisecond32 *timeout
+<a name="l00423"></a>00423         );
+<a name="l00424"></a>00424
+<a name="l00430"></a>00430         SetQueryTimeout(
+<a name="l00431"></a>00431                 [in] Millisecond32 timeout
+<a name="l00432"></a>00432         );
+<a name="l00433"></a>00433
+<a name="l00441"></a>00441         GetResultSet(
+<a name="l00442"></a>00442                 [out] <a class="code" href="interface_i_result_set.html" title="对数据库进行执行一条查询语句的操作通常会创建一个代表数据库查询结果笮.">IResultSet</a> **resultSet
+<a name="l00443"></a>00443         );
+<a name="l00444"></a>00444
+<a name="l00450"></a>00450         GetDatabase(
+<a name="l00451"></a>00451                 [out] <a class="code" href="interface_i_database.html" title="特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。...">IDatabase</a> **db
+<a name="l00452"></a>00452         );
+<a name="l00453"></a>00453
+<a name="l00460"></a>00460         GetUpdateCount(
+<a name="l00461"></a>00461                 [out] Int32 *rowCount
+<a name="l00462"></a>00462         );
+<a name="l00463"></a>00463
+<a name="l00475"></a>00475         GetLastInsertRowId(
+<a name="l00476"></a>00476                 [out] Int64 *rowId
+<a name="l00477"></a>00477         );
+<a name="l00478"></a>00478
+<a name="l00485"></a>00485         GetErrorCode(
+<a name="l00486"></a>00486                 [out] ECode *code
+<a name="l00487"></a>00487         );
+<a name="l00488"></a>00488
+<a name="l00495"></a>00495         GetErrorMessage(
+<a name="l00496"></a>00496                [out] WStringBuf * message
+<a name="l00497"></a>00497         );
+<a name="l00498"></a>00498     };
+<a name="l00499"></a>00499
+<a name="l00509"></a><a class="code" href="interface_i_statement.html">00509</a>     interface <a class="code" href="interface_i_statement.html" title="Statement接口，该接口用来执行静态的SQL语句并返回相应的结果集。...">IStatement</a> : <a class="code" href="interface_i_statement_base.html" title="IStatementBase接口">IStatementBase</a>
+<a name="l00510"></a>00510     {
+<a name="l00516"></a>00516         Execute(
+<a name="l00517"></a>00517                 [in] WString sql
+<a name="l00518"></a>00518         );
+<a name="l00519"></a>00519
+<a name="l00526"></a>00526         ExecuteQuery(
+<a name="l00527"></a>00527                 [in] WString sql,
+<a name="l00528"></a>00528                 [out] <a class="code" href="interface_i_result_set.html" title="对数据库进行执行一条查询语句的操作通常会创建一个代表数据库查询结果笮.">IResultSet</a> **resultSet
+<a name="l00529"></a>00529         );
+<a name="l00530"></a>00530
+<a name="l00539"></a>00539         ExecuteUpdate(
+<a name="l00540"></a>00540                 [in] WString sql,
+<a name="l00541"></a>00541                 [out] Int32 *rowCount
+<a name="l00542"></a>00542         );
+<a name="l00543"></a>00543
+<a name="l00558"></a>00558         ExecuteBatch(
+<a name="l00559"></a>00559             [in] WString sqlBatch,
+<a name="l00560"></a>00560             [out] ArrayOf&lt;Int32&gt; * rowCounts
+<a name="l00561"></a>00561         );
+<a name="l00562"></a>00562    };
+<a name="l00563"></a>00563
+<a name="l00564"></a>00564
+<a name="l00565"></a>00565
+<a name="l00575"></a><a class="code" href="interface_i_prepared_statement.html">00575</a>     interface <a class="code" href="interface_i_prepared_statement.html" title="Represents接口，该接口用于执行预编译的SQL语句。">IPreparedStatement</a> : <a class="code" href="interface_i_statement_base.html" title="IStatementBase接口">IStatementBase</a>
+<a name="l00576"></a>00576     {
+<a name="l00581"></a>00581         Reset();
+<a name="l00582"></a>00582
+<a name="l00586"></a>00586         Execute();
+<a name="l00587"></a>00587
+<a name="l00593"></a>00593         ExecuteQuery(
+<a name="l00594"></a>00594                 [out] <a class="code" href="interface_i_result_set.html" title="对数据库进行执行一条查询语句的操作通常会创建一个代表数据库查询结果笮.">IResultSet</a> **resultSet
+<a name="l00595"></a>00595         );
+<a name="l00596"></a>00596
+<a name="l00605"></a>00605         ExecuteUpdate(
+<a name="l00606"></a>00606                 [out] Int32 *rowCount
+<a name="l00607"></a>00607         );
+<a name="l00608"></a>00608
+<a name="l00614"></a>00614         GetParameterMetaData(
+<a name="l00615"></a>00615                 [out] <a class="code" href="interface_i_parameter_meta_data.html" title="该接口用于从一个PreparedStatement对象获取关于其参数类型和属性的信息描述?..">IParameterMetaData</a> **metadata
+<a name="l00616"></a>00616         );
+<a name="l00617"></a>00617
+<a name="l00626"></a>00626         ClearParameters();
+<a name="l00627"></a>00627
+<a name="l00636"></a>00636         SetBlobArgByIndex(
+<a name="l00637"></a>00637                 [in] Int32 param,
+<a name="l00638"></a>00638                 [in] const BufferOf&lt;Byte&gt; &value
+<a name="l00639"></a>00639         );
+<a name="l00640"></a>00640
+<a name="l00649"></a>00649         SetBlobArgByName(
+<a name="l00650"></a>00650                 [in] WString param,
+<a name="l00651"></a>00651                 [in] const BufferOf&lt;Byte&gt; &value
+<a name="l00652"></a>00652         );
+<a name="l00653"></a>00653
+<a name="l00662"></a>00662         SetBlobArgToZeroByIndex(
+<a name="l00663"></a>00663                 [in] Int32 param,
+<a name="l00664"></a>00664                 [in] Int32 size
+<a name="l00665"></a>00665         );
+<a name="l00666"></a>00666
+<a name="l00675"></a>00675         SetBlobArgToZeroByName(
+<a name="l00676"></a>00676                 [in] WString param,
+<a name="l00677"></a>00677                 [in] Int32 size
+<a name="l00678"></a>00678         );
+<a name="l00679"></a>00679
+<a name="l00688"></a>00688         SetBooleanArgByIndex(
+<a name="l00689"></a>00689                 [in] Int32 param,
+<a name="l00690"></a>00690                 [in] Boolean value
+<a name="l00691"></a>00691         );
+<a name="l00692"></a>00692
+<a name="l00701"></a>00701         SetBooleanArgByName(
+<a name="l00702"></a>00702                 [in] WString param,
+<a name="l00703"></a>00703                 [in] Boolean value
+<a name="l00704"></a>00704         );
+<a name="l00705"></a>00705
+<a name="l00714"></a>00714         SetByteArgByIndex(
+<a name="l00715"></a>00715                 [in] Int32 param,
+<a name="l00716"></a>00716                 [in] Byte value
+<a name="l00717"></a>00717         );
+<a name="l00718"></a>00718
+<a name="l00727"></a>00727         SetByteArgByName(
+<a name="l00728"></a>00728                 [in] WString param,
+<a name="l00729"></a>00729                 [in] Byte value
+<a name="l00730"></a>00730         );
+<a name="l00731"></a>00731
+<a name="l00764"></a>00764         SetDateTimeArgOfStringByIndex(
+<a name="l00765"></a>00765                 [in] Int32 param,
+<a name="l00766"></a>00766                 [in] WString value
+<a name="l00767"></a>00767         );
+<a name="l00768"></a>00768
+<a name="l00801"></a>00801         SetDateTimeArgOfStringByName(
+<a name="l00802"></a>00802                 [in] WString param,
+<a name="l00803"></a>00803                 [in] WString value
+<a name="l00804"></a>00804         );
+<a name="l00805"></a>00805
+<a name="l00814"></a>00814         SetDateTimeArgByIndex(
+<a name="l00815"></a>00815                 [in] Int32 param,
+<a name="l00816"></a>00816                 [in] DateTime value
+<a name="l00817"></a>00817         );
+<a name="l00818"></a>00818
+<a name="l00827"></a>00827         SetDateTimeArgByName(
+<a name="l00828"></a>00828                 [in] WString param,
+<a name="l00829"></a>00829                 [in] DateTime value
+<a name="l00830"></a>00830         );
+<a name="l00831"></a>00831
+<a name="l00840"></a>00840         SetDoubleArgByIndex(
+<a name="l00841"></a>00841                 [in] Int32 param,
+<a name="l00842"></a>00842                 [in] Double value
+<a name="l00843"></a>00843         );
+<a name="l00844"></a>00844
+<a name="l00853"></a>00853         SetDoubleArgByName(
+<a name="l00854"></a>00854                 [in] WString param,
+<a name="l00855"></a>00855                 [in] Double value
+<a name="l00856"></a>00856         );
+<a name="l00857"></a>00857
+<a name="l00866"></a>00866         SetInt32ArgByIndex(
+<a name="l00867"></a>00867                 [in] Int32 param,
+<a name="l00868"></a>00868                 [in] Int32 value
+<a name="l00869"></a>00869         );
+<a name="l00870"></a>00870
+<a name="l00879"></a>00879         SetInt32ArgByName(
+<a name="l00880"></a>00880                 [in] WString param,
+<a name="l00881"></a>00881                 [in] Int32 value
+<a name="l00882"></a>00882         );
+<a name="l00883"></a>00883
+<a name="l00892"></a>00892         SetInt64ArgByIndex(
+<a name="l00893"></a>00893                 [in] Int32 param,
+<a name="l00894"></a>00894                 [in] Int64 value
+<a name="l00895"></a>00895         );
+<a name="l00896"></a>00896
+<a name="l00905"></a>00905         SetInt64ArgByName(
+<a name="l00906"></a>00906                 [in] WString param,
+<a name="l00907"></a>00907                 [in] Int64 value
+<a name="l00908"></a>00908         );
+<a name="l00909"></a>00909
+<a name="l00917"></a>00917         SetNullArgByIndex(
+<a name="l00918"></a>00918                 [in] Int32 param
+<a name="l00919"></a>00919         );
+<a name="l00920"></a>00920
+<a name="l00928"></a>00928         SetNullArgByName(
+<a name="l00929"></a>00929                 [in] WString param
+<a name="l00930"></a>00930         );
+<a name="l00931"></a>00931
+<a name="l00940"></a>00940         SetStringArgByIndex(
+<a name="l00941"></a>00941                 [in] Int32 param,
+<a name="l00942"></a>00942                 [in] WString value
+<a name="l00943"></a>00943         );
+<a name="l00944"></a>00944
+<a name="l00953"></a>00953         SetStringArgByName(
+<a name="l00954"></a>00954                 [in] WString param,
+<a name="l00955"></a>00955                 [in] WString value
+<a name="l00956"></a>00956         );
+<a name="l00957"></a>00957     };
+<a name="l00958"></a>00958
+<a name="l00987"></a><a class="code" href="interface_i_result_set.html">00987</a>     interface <a class="code" href="interface_i_result_set.html" title="对数据库进行执行一条查询语句的操作通常会创建一个代表数据库查询结果笮.">IResultSet</a>
+<a name="l00988"></a>00988     {
+<a name="l00992"></a>00992         Close();
+<a name="l00993"></a>00993
+<a name="l01003"></a>01003         IsClosed(
+<a name="l01004"></a>01004             [out] Boolean *closed);
+<a name="l01005"></a>01005
+<a name="l01012"></a>01012         GetBlobColumnSizeByIndex(
+<a name="l01013"></a>01013             [in] Int32 column,
+<a name="l01014"></a>01014             [out] Int32 *size
+<a name="l01015"></a>01015         );
+<a name="l01016"></a>01016
+<a name="l01023"></a>01023         GetBlobColumnSizeByName(
+<a name="l01024"></a>01024             [in] WString column,
+<a name="l01025"></a>01025             [out] Int32 *size
+<a name="l01026"></a>01026         );
+<a name="l01027"></a>01027
+<a name="l01028"></a>01028
+<a name="l01035"></a>01035         GetBlobColumnByIndex(
+<a name="l01036"></a>01036                 [in] Int32 column,
+<a name="l01037"></a>01037                 [out] BufferOf&lt;Byte&gt; value
+<a name="l01038"></a>01038         );
+<a name="l01039"></a>01039
+<a name="l01046"></a>01046         GetBlobColumnByName(
+<a name="l01047"></a>01047                 [in] WString column,
+<a name="l01048"></a>01048                 [out] BufferOf&lt;Byte&gt; value
+<a name="l01049"></a>01049         );
+<a name="l01050"></a>01050
+<a name="l01057"></a>01057         GetBooleanColumnByIndex(
+<a name="l01058"></a>01058                 [in] Int32 column,
+<a name="l01059"></a>01059                 [out] Boolean *value
+<a name="l01060"></a>01060         );
+<a name="l01061"></a>01061
+<a name="l01068"></a>01068         GetBooleanColumnByName(
+<a name="l01069"></a>01069                 [in] WString column,
+<a name="l01070"></a>01070                 [out] Boolean *value
+<a name="l01071"></a>01071         );
+<a name="l01072"></a>01072
+<a name="l01079"></a>01079         GetByteColumnByIndex(
+<a name="l01080"></a>01080                 [in] Int32 column,
+<a name="l01081"></a>01081                 [out] Byte *value
+<a name="l01082"></a>01082         );
+<a name="l01083"></a>01083
+<a name="l01090"></a>01090         GetByteColumnByName(
+<a name="l01091"></a>01091                 [in] WString column,
+<a name="l01092"></a>01092                 [out] Byte *value
+<a name="l01093"></a>01093         );
+<a name="l01094"></a>01094
+<a name="l01101"></a>01101         GetDateTimeColumnAsStringByIndex(
+<a name="l01102"></a>01102                 [in] Int32 column,
+<a name="l01103"></a>01103                 [out] WStringBuf * value
+<a name="l01104"></a>01104         );
+<a name="l01105"></a>01105
+<a name="l01112"></a>01112         GetDateTimeColumnAsStringByName(
+<a name="l01113"></a>01113                 [in] WString column,
+<a name="l01114"></a>01114                 [out] WStringBuf * value
+<a name="l01115"></a>01115         );
+<a name="l01116"></a>01116
+<a name="l01123"></a>01123         GetDateTimeColumnByIndex(
+<a name="l01124"></a>01124                 [in] Int32 column,
+<a name="l01125"></a>01125                 [out] DateTime *value
+<a name="l01126"></a>01126         );
+<a name="l01127"></a>01127
+<a name="l01134"></a>01134         GetDateTimeColumnByName(
+<a name="l01135"></a>01135                 [in] WString column,
+<a name="l01136"></a>01136                 [out] DateTime *value
+<a name="l01137"></a>01137         );
+<a name="l01138"></a>01138
+<a name="l01145"></a>01145         GetDoubleColumnByIndex(
+<a name="l01146"></a>01146                 [in] Int32 column,
+<a name="l01147"></a>01147                 [out] Double *value
+<a name="l01148"></a>01148         );
+<a name="l01149"></a>01149
+<a name="l01156"></a>01156         GetDoubleColumnByName(
+<a name="l01157"></a>01157                 [in] WString column,
+<a name="l01158"></a>01158                 [out] Double *value
+<a name="l01159"></a>01159         );
+<a name="l01160"></a>01160
+<a name="l01167"></a>01167         GetInt32ColumnByIndex(
+<a name="l01168"></a>01168                 [in] Int32 column,
+<a name="l01169"></a>01169                 [out] Int32 *value
+<a name="l01170"></a>01170         );
+<a name="l01171"></a>01171
+<a name="l01178"></a>01178         GetInt32ColumnByName(
+<a name="l01179"></a>01179                 [in] WString column,
+<a name="l01180"></a>01180                 [out] Int32 *value
+<a name="l01181"></a>01181         );
+<a name="l01182"></a>01182
+<a name="l01189"></a>01189         GetInt64ColumnByIndex(
+<a name="l01190"></a>01190                 [in] Int32 column,
+<a name="l01191"></a>01191                 [out] Int64 *value
+<a name="l01192"></a>01192         );
+<a name="l01193"></a>01193
+<a name="l01200"></a>01200         GetInt64ColumnByName(
+<a name="l01201"></a>01201                 [in] WString column,
+<a name="l01202"></a>01202                 [out] Int64 *value
+<a name="l01203"></a>01203         );
+<a name="l01204"></a>01204
+<a name="l01211"></a>01211         GetStringColumnSizeByIndex(
+<a name="l01212"></a>01212             [in] Int32 column,
+<a name="l01213"></a>01213             [out] Int32 *size
+<a name="l01214"></a>01214         );
+<a name="l01215"></a>01215
+<a name="l01222"></a>01222         GetStringColumnSizeByName(
+<a name="l01223"></a>01223             [in] WString column,
+<a name="l01224"></a>01224             [out] Int32 *size
+<a name="l01225"></a>01225         );
+<a name="l01226"></a>01226
+<a name="l01233"></a>01233         GetStringColumnByIndex(
+<a name="l01234"></a>01234                 [in] Int32 column,
+<a name="l01235"></a>01235                 [out] WStringBuf * value
+<a name="l01236"></a>01236         );
+<a name="l01237"></a>01237
+<a name="l01244"></a>01244         GetStringColumnByName(
+<a name="l01245"></a>01245                 [in] WString column,
+<a name="l01246"></a>01246                 [out] WStringBuf * value
+<a name="l01247"></a>01247         );
+<a name="l01248"></a>01248
+<a name="l01257"></a>01257         Next(
+<a name="l01258"></a>01258                 [out] Boolean *rowValid
+<a name="l01259"></a>01259         );
+<a name="l01260"></a>01260
+<a name="l01267"></a>01267         GetErrorCode(
+<a name="l01268"></a>01268                 [out] ECode *code
+<a name="l01269"></a>01269         );
+<a name="l01270"></a>01270
+<a name="l01277"></a>01277         GetErrorMessage(
+<a name="l01278"></a>01278                 [out] WStringBuf * message
+<a name="l01279"></a>01279         );
+<a name="l01280"></a>01280
+<a name="l01286"></a>01286         GetMetaData(
+<a name="l01287"></a>01287                 [out] <a class="code" href="interface_i_result_set_meta_data.html" title="该接口被用于从一个ResultSet对象获取某列的类型和属性的信息描述。...">IResultSetMetaData</a> **metadata
+<a name="l01288"></a>01288         );
+<a name="l01289"></a>01289
+<a name="l01293"></a>01293         Reset();
+<a name="l01294"></a>01294     };
+<a name="l01295"></a>01295
+<a name="l01299"></a><a class="code" href="interface_i_parameter_meta_data.html">01299</a>     interface <a class="code" href="interface_i_parameter_meta_data.html" title="该接口用于从一个PreparedStatement对象获取关于其参数类型和属性的信息描述?..">IParameterMetaData</a>
+<a name="l01300"></a>01300     {
+<a name="l01311"></a>01311         GetParameterCount(
+<a name="l01312"></a>01312                 [out] Int32 *count
+<a name="l01313"></a>01313         );
+<a name="l01314"></a>01314
+<a name="l01322"></a>01322         GetParameterIndex(
+<a name="l01323"></a>01323                 [in] WString name,
+<a name="l01324"></a>01324                 [out] Int32 *index
+<a name="l01325"></a>01325         );
+<a name="l01326"></a>01326
+<a name="l01338"></a>01338         GetParameterName(
+<a name="l01339"></a>01339                 [in] Int32 index,
+<a name="l01340"></a>01340                 [out] WStringBuf * name);
+<a name="l01341"></a>01341     };
+<a name="l01342"></a>01342
+<a name="l01348"></a><a class="code" href="interface_i_result_set_meta_data.html">01348</a>     interface <a class="code" href="interface_i_result_set_meta_data.html" title="该接口被用于从一个ResultSet对象获取某列的类型和属性的信息描述。...">IResultSetMetaData</a>
+<a name="l01349"></a>01349     {
+<a name="l01355"></a>01355         GetColumnCount(
+<a name="l01356"></a>01356                 [out] Int32 *count
+<a name="l01357"></a>01357         );
+<a name="l01358"></a>01358
+<a name="l01365"></a>01365         GetColumnDeclareTypeName(
+<a name="l01366"></a>01366                 [in] Int32 column,
+<a name="l01367"></a>01367                 [out] WStringBuf * typeName
+<a name="l01368"></a>01368         );
+<a name="l01369"></a>01369
+<a name="l01376"></a>01376         GetColumnType(
+<a name="l01377"></a>01377                 [in] Int32 column,
+<a name="l01378"></a>01378                 [out] <a class="code" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea3" title="支持的数据类型。">DbDatatype</a> *type
+<a name="l01379"></a>01379         );
+<a name="l01380"></a>01380
+<a name="l01387"></a>01387         GetColumnName(
+<a name="l01388"></a>01388                 [in] Int32 column,
+<a name="l01389"></a>01389                 [out] WStringBuf * name
+<a name="l01390"></a>01390         );
+<a name="l01391"></a>01391
+<a name="l01398"></a>01398         GetColumnOriginName(
+<a name="l01399"></a>01399                 [in] Int32 column,
+<a name="l01400"></a>01400                 [out] WStringBuf * name
+<a name="l01401"></a>01401         );
+<a name="l01402"></a>01402
+<a name="l01409"></a>01409         GetTableName(
+<a name="l01410"></a>01410                 [in] Int32 column,
+<a name="l01411"></a>01411                 [out] WStringBuf * name
+<a name="l01412"></a>01412         );
+<a name="l01413"></a>01413
+<a name="l01420"></a>01420         GetDatabaseName(
+<a name="l01421"></a>01421                 [in] Int32 column,
+<a name="l01422"></a>01422                 [out] WStringBuf * name
+<a name="l01423"></a>01423         );
+<a name="l01424"></a>01424
+<a name="l01432"></a>01432         IsAutoIncrement(
+<a name="l01433"></a>01433                 [in] Int32 column,
+<a name="l01434"></a>01434                 [out] Boolean *autoIncrement
+<a name="l01435"></a>01435         );
+<a name="l01436"></a>01436
+<a name="l01444"></a>01444         IsNullable(
+<a name="l01445"></a>01445                 [in] Int32 column,
+<a name="l01446"></a>01446                 [out] Boolean *nullable
+<a name="l01447"></a>01447         );
+<a name="l01448"></a>01448
+<a name="l01456"></a>01456         IsPrimaryKey(
+<a name="l01457"></a>01457                 [in] Int32 column,
+<a name="l01458"></a>01458                 [out] Boolean *primaryKey
+<a name="l01459"></a>01459         );
+<a name="l01460"></a>01460     };
+<a name="l01461"></a>01461
+<a name="l01462"></a><a class="code" href="interface_c_database.html">01462</a>     interface <a class="code" href="interface_c_database.html">CDatabase</a>
+<a name="l01463"></a>01463     {
+<a name="l01464"></a>01464         interface <a class="code" href="interface_i_database.html" title="特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。...">IDatabase</a>;
+<a name="l01465"></a>01465
+<a name="l01479"></a>01479         constructor(
+<a name="l01480"></a>01480                 [in] WString database
+<a name="l01481"></a>01481         );
+<a name="l01482"></a>01482
+<a name="l01493"></a>01493         constructor(
+<a name="l01494"></a>01494                 [in] WString database,
+<a name="l01495"></a>01495                 [in] Int32 pageSize,
+<a name="l01496"></a>01496                 [in] Int32 cacheSize,
+<a name="l01497"></a>01497                 [in] <a class="code" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19" title="支持的字符编码。">DbEncoding</a> encoding
+<a name="l01498"></a>01498         );
+<a name="l01499"></a>01499     };
+</pre></div>
+<script>footer("chinese")</script>
+</body>
+</html>

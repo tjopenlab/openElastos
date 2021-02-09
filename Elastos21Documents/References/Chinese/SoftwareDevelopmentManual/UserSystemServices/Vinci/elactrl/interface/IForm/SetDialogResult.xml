@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> SetDialogResult </method>
+    <description>
+        <para>
+            设置对话框返回的结果值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> dialogResult </param_name>
+                <param_note>
+                    <para>
+对话框结果，详见 <link url="../../datatype/DialogResult.htm">DialogResult</link> 枚举值</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_CONTROL_NO_OPERATION</td>
+	    	    <td>该对话框已经设置了结果</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>窗体的对话框结果是当窗体显示为模式对话框时从该窗体返回的值。
+    	    如果窗体显示为对话框，调用该方法设置对话框结果值，会隐藏模式对话框并将控制返回给它的owner窗体。
+    	  一般可以通过 <link url="../../class/Button.htm">Button</link> 、 <link url="../../class/Label.htm">Label</link> 的 Click 事件处理函数中调用该方法。
+    </para>
+    <para>当用户调用了该方法后，并不会对对话框调用 Close 方法，而是将窗体隐藏并可重新显示，
+    	    进而可以不用创建该对话框的新实例，除非用户对该窗体调用了 <link url="Close.htm">Close</link> 方法。
+    </para>
+    <para>对于显示为无模式的窗体，调用该方法将毫无意义。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>DialogResult枚举值</ref_name>
+        <ref_url>../../datatype/DialogResult</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ShowDialog</ref_name>
+        <ref_url>ShowDialog</ref_url>
+    </reference>
+        <reference>
+        <ref_name>GetDialogResult</ref_name>
+        <ref_url>GetDialogResult</ref_url>
+    </reference>
+</references>
+</manpage>

@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/structuremanual.xsl"?><manpage>
+<volume>Time</volume>
+<class>Timer</class><function> Timer(uint_t uRelativeDueTicks, timerroutine_t routine, void * pvParameter) </function>
+    <description>
+        <para>Timer class constructor.</para>
+    </description>
+    <syntax>
+        <apiname>Timer</apiname>
+        <parameters>
+            <api_param>
+                <param_type> uint_t  </param_type>
+                <param_name> uRelativeDueTicks  </param_name>
+                <param_note>
+                    <para>
+                        Specifies relative due time, in ticks. This parameter must be greater than zero.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> timerroutine_t  </param_type>
+                <param_name> routine </param_name>
+                <param_note>
+                    <para>
+                        Callback routine that points to timer object. See <link url="../../method/TimerRoutine.htm">TimerRoutine</link>.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> void *  </param_type>
+                <param_name> pvParameter </param_name>
+                <param_note>
+                    <para>
+                        Parameter to be passed into callback routine
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>Timer class constructor is used to construct timer object. Timer object cannot automatically run wen constructed, it needs to be started through invoking <link url="../Start.htm">Timer::Start</link>.</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+    </requirements>
+</manpage>

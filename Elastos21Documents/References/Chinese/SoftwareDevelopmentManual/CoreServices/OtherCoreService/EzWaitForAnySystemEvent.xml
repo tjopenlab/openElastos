@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\_CSystem_WaitForAnySystemEvent">_CSystem_WaitForAnySystemEvent</sample>
+    <volume>其他系统服务</volume>
+    <title>_CSystem_WaitForAnySystemEvent</title>
+    <routine_idx> ../OtherCoreService.htm </routine_idx>
+
+    <description>
+        <para>等待系统事件。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> SystemEvents </param_type>
+                <param_name> interestedEvents </param_name>
+                <param_note>
+                    <para>[in]指定用户所关心的系统事件集合</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> SystemEvent * </param_type>
+                <param_name> pSystemEvent </param_name>
+                <param_note>
+                    <para>[out]指向一个变量，用于存放所获取已发生的系统事件。参见上述<link url="../DataStructure/SystemEvent.htm">SystemEvent</link>枚举类型。如果此参数为NULL，则表明忽略此参数</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td> E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>此函数用来等待用户所关心的系统事件集合中的任意一个系统事件的发生。如果所指定的系统事件集合中的所有系统事件都没有发生，当前线程将进入等待状态，直到其中任意一个系统事件发生了，才结束等待并从此方法中成功返回已发生的事件。</para>
+        <para>参数interestedEvents可以为系统事件集中的一个或多个值。</para>
+        <para>具体的系统事件定义参见数据结构中的<link url="../DataStructure/SystemEvent.htm">SystemEvent</link>枚举类型说明。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

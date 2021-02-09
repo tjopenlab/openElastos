@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: IStatement接口参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>IStatement接口参考</h1><!-- doxytag: class="IStatement" --><!-- doxytag: inherits="IStatementBase" -->Statement接口，该接口用来执行静态的SQL语句并返回相应的结果集。
+<a href="#_details">更多...</a>
+<p>
+<code>import &quot;<a class="el" href="database_8car-source.html">database.car</a>&quot;;</code>
+<p>
+<div class="dynheader">
+继承图，类IStatement</div>
+<div class="dynsection">
+<p><center><img src="interface_i_statement__inherit__graph.png" border="0" usemap="#_i_statement__inherit__map" alt="Inheritance graph"></center>
+<map name="_i_statement__inherit__map">
+<area shape="rect" href="interface_i_statement_base.html" title="IStatementBase接口" alt="" coords="5,5,123,32"></map>
+<center><font size="2">[<a href="graph_legend.html">图例</a>]</font></center></div>
+
+<p>
+<a href="interface_i_statement-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement.html#35b2e4f67a8b5274a8c876f46a72a25f">Execute</a> ([in] WString sql)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">执行SQL语句。  <a href="#35b2e4f67a8b5274a8c876f46a72a25f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement.html#2b4134722e421e4e64314c479d81788e">ExecuteQuery</a> ([in] WString sql,[out] <a class="el" href="interface_i_result_set.html">IResultSet</a> **resultSet)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">执行给定的SQL语句(通常为SELECT语句)，并返回一个结果集接口。  <a href="#2b4134722e421e4e64314c479d81788e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement.html#2a17b6556ecbe1a3d1f75a5726986470">ExecuteUpdate</a> ([in] WString sql,[out] Int32 *rowCount)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">执行给定的SQL语句，可以是INSERT，UPDATE，DELETE语句， 或者其他不返回任何内容的SQL语句，如SQL DDL语句。  <a href="#2a17b6556ecbe1a3d1f75a5726986470"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement.html#ee879cf9088ac2076d3164056630a09c">ExecuteBatch</a> ([in] WString sqlBatch,[out] ArrayOf&lt;Int32&gt; * rowCounts)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">提交一组命令到数据库执行，如果所有命令执行成功，返回更新后的结果， 使其中Int32型的数据和批处理中的指令保持一致，执行ExecuteBatch方法 后可能以下几种结果： 1、大于或等于零的数－－说明指令成功运行并更新了所提交的所有行。 2、返回一个ECode值－－说明指令运行失败并且在失败后会重新处理指令。  <a href="#ee879cf9088ac2076d3164056630a09c"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+Statement接口，该接口用来执行静态的SQL语句并返回相应的结果集。
+<p>
+在默认情况下，同一时间每个 Statement 对象只能打开一个 ResultSet 对象。 因此，如果读取一个 ResultSet 对象与读取另一个交叉， 则这两个对象必须是由不同的 Statement 对象生成的。 如果存在某个语句的打开的当前 ResultSet 对象， 则 Statement 接口中的所有执行方法都会隐式关闭它。 <dl compact><dt><b>示例: </b></dt><dd>
+
+<p>
+<a class="el" href="_close_8cpp-example.html#_a1">Close.cpp</a>、<a class="el" href="_effective_row_8cpp-example.html#_a1">EffectiveRow.cpp</a>、<a class="el" href="_execute_8cpp-example.html#_a1">Execute.cpp</a>、<a class="el" href="_get_error_8cpp-example.html#_a1">GetError.cpp</a>及<a class="el" href="_get_result_8cpp-example.html#_a1">GetResult.cpp</a>.</dl>
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00509">509</a>行定义。</p>
+<hr><h2>成员函数文档</h2>
+<a class="anchor" name="35b2e4f67a8b5274a8c876f46a72a25f"></a><!-- doxytag: member="IStatement::Execute" ref="35b2e4f67a8b5274a8c876f46a72a25f" args="([in] WString sql)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatement::Execute           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>sql</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+执行SQL语句。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>sql</em>&nbsp;</td><td>- 待执行的SQL语句。 </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_execute_8cpp-example.html#a3">Execute.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="2b4134722e421e4e64314c479d81788e"></a><!-- doxytag: member="IStatement::ExecuteQuery" ref="2b4134722e421e4e64314c479d81788e" args="([in] WString sql,[out] IResultSet **resultSet)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatement::ExecuteQuery           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>sql</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] <a class="el" href="interface_i_result_set.html">IResultSet</a> **&nbsp;</td>
+          <td class="paramname"> <em>resultSet</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+执行给定的SQL语句(通常为SELECT语句)，并返回一个结果集接口。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>sql</em>&nbsp;</td><td>- 待执行的SQL SELECT语句。如一个静态SQL查询语句。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>resultSet</em>&nbsp;</td><td>- 包含给定查询所生成数据的ResultSet对象；永远不能为 null. </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_close_8cpp-example.html#a4">Close.cpp</a>及<a class="el" href="_get_result_8cpp-example.html#a4">GetResult.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="2a17b6556ecbe1a3d1f75a5726986470"></a><!-- doxytag: member="IStatement::ExecuteUpdate" ref="2a17b6556ecbe1a3d1f75a5726986470" args="([in] WString sql,[out] Int32 *rowCount)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatement::ExecuteUpdate           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>sql</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>rowCount</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+执行给定的SQL语句，可以是INSERT，UPDATE，DELETE语句， 或者其他不返回任何内容的SQL语句，如SQL DDL语句。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>sql</em>&nbsp;</td><td>- 待执行的SQL语句(SQL INSERT、UPDATE 或 DELETE 语句，或者不返回任何内容的SQL语句)。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>rowCount</em>&nbsp;</td><td>- 执行INSERT, UPDATE或DELETE语句所影响的行数； 执行了不返回任何内容的 SQL 语句则返回0. </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>示例: </b></dt><dd>
+<a class="el" href="_effective_row_8cpp-example.html#a3">EffectiveRow.cpp</a>及<a class="el" href="_get_error_8cpp-example.html#a3">GetError.cpp</a>.</dl>
+</div>
+</div><p>
+<a class="anchor" name="ee879cf9088ac2076d3164056630a09c"></a><!-- doxytag: member="IStatement::ExecuteBatch" ref="ee879cf9088ac2076d3164056630a09c" args="([in] WString sqlBatch,[out] ArrayOf_&lt; Int32 &gt; rowCounts)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IStatement::ExecuteBatch           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>sqlBatch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] ArrayOf&lt;Int32&gt; * &nbsp;</td>
+          <td class="paramname"> <em>rowCounts</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+提交一组命令到数据库执行，如果所有命令执行成功，返回更新后的结果， 使其中Int32型的数据和批处理中的指令保持一致，执行ExecuteBatch方法 后可能以下几种结果： 1、大于或等于零的数－－说明指令成功运行并更新了所提交的所有行。 2、返回一个ECode值－－说明指令运行失败并且在失败后会重新处理指令。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>sqlBatch</em>&nbsp;</td><td>- SQL指令,尤其是静态的INSERT, UPDATE or DELETE语句。</td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>rowCounts</em>&nbsp;</td><td>- 包含批中每个命令的一个元素的更新计数所组成的数组。 数组的元素根据将命令添加到批中的顺序排序。 </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b>备注: </b></dt><dd>
+<p>ExecuteBatch遇到SQL语法错误将停止执行并返回错误。<p>
+</div>
+</div><p>
+<hr>该接口的文档由以下文件生成：<ul>
+<li><a class="el" href="database_8car-source.html">database.car</a></ul>
+<script>footer("chinese")</script>
+</body>
+</html>

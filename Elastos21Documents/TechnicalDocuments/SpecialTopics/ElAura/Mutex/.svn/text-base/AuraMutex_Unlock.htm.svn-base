@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<TITLE>
+AuraMutex_Unlock
+</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<h3>
+AuraMutex_Unlock
+</h3>
+<p></p>
+</div>
+<p>Releases the owned mutex object.</p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">
+AURA_API AuraMutex_Unlock
+
+            (</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">)
+                    
+                ;</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return Value</TD>
+<TD class="cell">Hex Value</TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">0x00000000</TD>
+<TD class="cell">Function succeeds in releasing the owned mutex object.</TD>
+</TR>
+<TR><TD class="cell">E_INVALID_ARGUMENT</TD>
+<TD class="cell">0x80060090</TD>
+<TD class="cell">Invalid argument(s)</TD>
+</TR>
+<TR><TD class="cell">E_SERVICE_NAME_TOO_LONG</TD>
+<TD class="cell">0x80060090</TD>
+<TD class="cell">The specified service name is beyond the cofines  (256 characters)</TD>
+</TR>
+<TR><TD class="cell">E_ALREADY_EXIST</TD>
+<TD class="cell">0x80060090</TD>
+<TD class="cell">A non-mutex object already existed ,whose name is the same as the mutex object</TD>
+</TR>
+<TR><TD class="cell">E_OUT_OF_MEMORY</TD>
+<TD class="cell">0x80060090</TD>
+<TD class="cell">Insufficiend memory</TD>
+</TR>
+</table></p>
+<h4>Remarks</h4>
+<p>If the current thread does not own the mutex object, the method will fail.</p>
+<p>
+			The mutex object is recursive. It means that a thread that has owned a mutex object can call
+			IMutex::Lock</a> or IMutex::TryLock</a> to 
+			get the mutex object again. However, it must call IMutex::UnLock</a> the same number of times as IMutex::Lock</a>
+			and IMutex::TryLock</a> to release the mutex object.
+		</p>
+<h4>Requirements</h4>
+<p>
+<table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>
+Windows 2000 or later; Elastos 2.0 or later.
+</td>
+<td></td>
+</tr>
+</table></p>
+<script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>

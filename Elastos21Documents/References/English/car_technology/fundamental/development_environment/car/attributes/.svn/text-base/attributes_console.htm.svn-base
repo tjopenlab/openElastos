@@ -1,0 +1,37 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--console</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>console</h2>
+    <p>This attribute can only modify component. This component is an executable component. When running this component, it provides the user an initial environment. Components using this attribute can use <a class="style1" href="../../../../environment/use_elastos/elastos_tools/commands/elahost.htm">elahost</a> to start, enters console mode. For example: </p>
+    <pre class="code">
+[
+    uuid(5ff51dac-aec1-4e91-8583-4b0ca3f64522), <b>console</b>,
+    uunm(http://www.koretide.com/car/samples/ConsoleDemo.dll)
+]
+component ConsoleDemo
+{
+    ……
+    [uuid(000257b2-45aa-4117-b625-3dbc9c5d7a5d), main]
+    class CClass { }
+    ……
+}
+</pre>
+    <p>In the example component ConsoleDemo, component ConsoleDemo has console attribute.It means this component is an executable component. You can use elahost start it, enters console mode. Class CClass with <a class="style1" href="attributes_main.htm">main</a> attribute is the program entry point while executing this component program.</p>
+    <ol><font color="red"><b>Note: </b>
+        <li>In a component, this attribute and <a class="style1" href="attributes_graphics.htm">graphics</a> attribute, <a class="style1" href="attributes_graphics(lite).htm">graphics(lite)</a> attribute are exclusive to each other.
+        <li>When component has this attribute, component must and can only have one class that has the main attribute, the class entry point of this executable component, otherwise it cannot be compiled.</font>
+    </ol>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

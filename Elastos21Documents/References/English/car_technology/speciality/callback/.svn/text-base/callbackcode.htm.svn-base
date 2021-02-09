@@ -1,0 +1,124 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Callback Event Mechanism</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Generating Source Code Framework And Filling In The Implementation Code</h2>
+    <h4>Generating the framework of source code.</h4>
+        <p>Execute the following command: </p>
+        <pre class="code">
+emake guesssvr.car
+</pre>
+        <p>Generates the framework of source code framework from the directory where car file locates, which includes: <b>CGuessNum.h</b> file, <b>CGuessNum.cpp</b> file and <b>sources</b> file.</p>
+    <h4>Filling in the implementation code</h4>
+        <p>Please check the implementation of component <b>guesssvr</b>. The first file is the <b>CGuessNum.h</b> file, the bolded words are the added or modified contents.<p>
+        <pre class="code">
+#if _MSC_VER > 1000
+#pragma once
+#endif
+
+#if !defined(_CGUESSNUM_H_)
+#define _CGUESSNUM_H_
+
+#include "_CGuessNum.h"
+
+class CGuessNum : public _CGuessNum
+{
+public:
+    CARAPI StartGame();
+
+    CARAPI GetNumber(
+        /* [out] */ EzArray<int> iaNum);
+
+    CARAPI Guess(
+        /* [in] */ EzArray<int> iaNum);
+
+    <b>CARAPI OnAddYouLoseHandler();</b>
+
+private:
+    <b>int m_iaNum[4];
+    int m_iGuessTimes;</b>
+};
+
+#endif //!(_CGUESSNUM_H_)
+
+</pre>
+        <p>Overloads the method <b>OnAddYouLoseHandler</b> for the initialization of event <b>YouLose</b>, adds two private member variables, <b>m_iaNum</b> stores 4 digits, <b>m_iGuessTimes</b> stores the number of times of guesses made so far.</p>
+        <p><b>Remarks: </b>In the example, <b>CARAPI</b> is a macro for <b>ECODE __stdcall</b>.</p>
+        <p>Please see the following <b>CGuessNum.cpp</b> implementation:</p>
+        <pre class="code">
+#include "CGuessNum.h"
+#include "_CGuessNum.cpp"
+<b>#include <time.h>
+#include <stdio.h></b>
+
+DECLARE_CLASSFACTORY(CGuessNum)
+
+ECODE CGuessNum::StartGame()
+{
+  <b>  ……    //initialize the game.</b>
+    return <b>S_OK;</b>
+}
+
+ECODE CGuessNum::GetNumber(
+        /* [out] */ EzArray<int> iaNum)
+{
+   <b> ……    //gets 4 numbers.</b>
+    return <b>S_OK;</b>
+}
+
+ECODE CGuessNum::Guess(
+        /* [in] */ EzArray<int> iaNum)
+{
+    <b>……    //guesses the number, estimates the result, triggers events.</b>
+    return <b>S_OK;</b>
+}
+
+<b>ECODE CGuessNum::OnAddYouLoseHandler()
+{
+    StartGame();
+    return S_OK;
+}</b>
+
+</pre>
+        <ul>
+            <li>In CAR, the system provides two overload functions for every callback event: 
+                <p><b>OnAddXXXHandler</b> method and <b>OnRemoveXXXHandler</b> method, XXX is the name of callback event.</p>
+                <p>The OnAddXXXHandler method is called on the first time the client registers event XXX. The OnRemoveXXXHandler method is called the last time client removes event XXX. Null action is taken when it is not overloaded. In the demonstration, component guessnum overloaded the method OnAddYouLoseHandler provided by the system, and it executed method StartGame and initialized new game when the client first registers event <a class="style1" href="callbackclient.htm#Add">YouLose</a>.</p>
+            <li>From the code above, it is obvious that the user need not write code in the method defined in callback interface. This is because the methods defined in callback interface are to trigger events, and the process of trigger events is implemented by CAR. So we only need to call methods to trigger events when writing components. The way to trigger events is: Call method OnXXX to trigger XXX event. For example, in method Guess: 
+                <pre class="code">
+ECODE CGuessNum::Guess(
+        /* [in] */ EzArray<int> iaNum)
+{
+    ……    //guess the number, estimate result.
+
+   <b> OnTips(++m_iGuessTimes, iA, iB);</b> //information of guess statue
+
+    if (iA == 4) {
+        <b>OnBingo();</b> //all correct
+        StartGame();
+        return S_OK;
+    }
+    if (m_iGuessTimes == 8) {
+       <b> OnYouLose();</b> //8 wrong guesses
+        StartGame();
+        return S_OK;
+    }
+
+    return <b>S_OK;</b>
+}
+
+</pre>
+        </ul>
+        <p>After estimating the guess of numbers, the method Guess call OnTips to trigger event Tips, which sends the information of guess status to client. When all the guesses are correct, it calls method OnBingo to trigger event Bingo. When all the 8 guesses are incorrect, it calls OnYouLose method to trigger YouLose event. Please consult event handling function to see the corresponding <a class="style1" href="callbackclient.htm#events">event handling function</a> to each events.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method> ToUpperCase </method>
+
+    <description>
+        <para> 返回此对象转换为大写形式的副本。</para>
+    </description>
+     <syntax>
+        <return_val> AStringBuf &amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name> encoding </param_name>
+            <param_default> Encoding_Default</param_default>
+            <param_note>
+                <para> 编码格式。参见<link url="../../others/Encoding.htm">Encoding</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>
+        </parameters>        
+    </syntax>
+    <return>
+        <para>返回AStringBuf对象的引用</para>
+    </return>
+<example>
+<pre>
+AStringBuf_&lt;20&gt; asbuf;
+asbuf.Copy("Hello World!");
+CConsole::WriteLine(asbuf.ToUpperCase());  //Display : "HELLO WORLD!"
+</pre>
+</example> 
+
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::ToLowerCase </ref_name>
+        <ref_url>../AStringBuf/ToLowerCase</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::ToUpperCase </ref_name>
+        <ref_url>../WStringBuf/ToUpperCase</ref_url>
+    </reference>
+</references>    
+</manpage>

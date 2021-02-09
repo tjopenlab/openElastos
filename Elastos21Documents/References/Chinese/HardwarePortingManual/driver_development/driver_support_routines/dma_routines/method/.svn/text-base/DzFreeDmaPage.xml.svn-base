@@ -1,0 +1,62 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="dma_routines\FreeDmaPage">FreeDmaPage</sample>
+    <volume>DMA例程</volume>
+    <title>DzFreeDmaPage</title>
+    <routine_idx> ../../dma_routines.htm </routine_idx>
+
+    <description>
+        <para>释放一个已分配的DMA内存页。</para>
+    </description>
+
+    <syntax>
+        <return_val>void </return_val>
+        <parameters>
+            <api_param>
+                <param_type> virtaddr_t </param_type>
+                <param_name> va </param_name>
+                <param_note>
+                    <para>指定所释放的DMA内存页的地址（虚拟地址）</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para> 此函数释放一个通过调用<link url="DzAllocDmaPage.htm">DzAllocDmaPage</link>分配的DMA内存页。试图释放无效的内存页（并非由<link url="DzAllocDmaPage.htm">DzAllocDmaPage</link>函数所分配的内存页），将引起未知错误。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>dma.h</file_name>
+        </headerfile>
+
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>DzAllocDmaPage</ref_name>
+            <ref_url>DzAllocDmaPage</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzAllocDmaPages</ref_name>
+            <ref_url>DzAllocDmaPages</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzFreeDmaPages</ref_name>
+            <ref_url>DzFreeDmaPages</ref_url>
+        </reference>
+    </references>
+
+</manpage>

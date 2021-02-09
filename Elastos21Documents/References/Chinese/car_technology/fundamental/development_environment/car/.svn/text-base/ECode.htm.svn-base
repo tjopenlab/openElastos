@@ -1,0 +1,671 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>ECode返回值</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<h3>ECode返回值 </h3>
+    <p>在CAR文件中定义的接口方法，返回值类型全部都是ECode。</p>
+    <p>ECode是一个32位二进制整数。ECode高16位中，最高位表示方法调用错误(1)或成功(0)；其余15位表示具体的错误信息，例如：接口错误、驱动错误、CRT错误、文件系统错误、图形系统错误等。对于许多CAR兼容的实现语言（例如：Visual Basic、Java）而言，这些ECode被运行时库或者虚拟机截取，然后被映射为语言中特定的异常（exception）。ECode低16位用作调试和测试用。</p>
+    <p>常见的ECode返回值及其解释，列表如下：</p>
+
+    <table>
+        <thead>
+            <td width="25%">返回值</td>
+            <td width="17%">十六进制值</td>
+            <td width="58%">描述</td>
+        </thead>
+        <tr>
+            <td>NOERROR</td>
+            <td>0x00000000</td>
+            <td>方法调用成功</td>
+        </tr>
+        <tr>
+            <td>E_PROCESS_NOT_ACTIVE</td>
+            <td>0x81010000</td>
+            <td>进程不是活动状态</td>
+        </tr>
+        <tr>
+            <td>E_PROCESS_STILL_ACTIVE</td>
+            <td>0x81020000</td>
+            <td>进程仍是活动状态</td>
+        </tr>
+        <tr>
+            <td>E_PROCESS_NOT_STARTED</td>
+            <td>0x81030000</td>
+            <td>进程未开始执行</td>
+        </tr>
+        <tr>
+            <td>E_PROCESS_ALREADY_STARTED</td>
+            <td>0x81040000</td>
+            <td>进程已经开始执行</td>
+        </tr>
+        <tr>
+            <td>E_PROCESS_ALREADY_EXITED</td>
+            <td>0x81050000</td>
+            <td>进程已经结束</td>
+        </tr>
+        <tr>
+            <td>E_PROCESS_NOT_EXITED</td>
+            <td>0x81060000</td>
+            <td>进程未结束</td>
+        </tr>
+        <tr>
+            <td>E_THREAD_NOT_ACTIVE</td>
+            <td>0x81070000</td>
+            <td>线程未处于活动状态</td>
+        </tr>
+        <tr>
+            <td>E_THREAD_STILL_ACTIVE</td>
+            <td>0x81080000</td>
+            <td>线程仍处于活动状态</td>
+        </tr>
+        <tr>
+            <td>E_THREAD_UNSTARTED</td>
+            <td>0x81090000</td>
+            <td>线程未开始执行</td>
+        </tr>
+        <tr>
+            <td>E_THREAD_ALREADY_FINISHED</td>
+            <td>0x810A0000</td>
+            <td>线程已经完成</td>
+        </tr>
+        <tr>
+            <td>E_THREAD_NOT_STOPPED</td>
+            <td>0x810B0000</td>
+            <td>线程未停止</td>
+        </tr>
+        <tr>
+            <td>E_DOES_NOT_EXIST</td>
+            <td>0x810C0000</td>
+            <td>某资源不存在</td>
+        </tr>
+        <tr>
+            <td>E_ALREADY_EXIST</td>
+            <td>0x810D0000</td>
+            <td>某资源已经存在</td>
+        </tr>
+        <tr>
+            <td>E_INVALID_OPTIONS</td>
+            <td>0x810E0000</td>
+            <td>选项无效</td>
+        </tr>
+        <tr>
+            <td>E_INVALID_OPERATION</td>
+            <td>0x810F0000</td>
+            <td>进行无效操作</td>
+        </tr>
+        <tr>
+            <td>E_TIMED_OUT</td>
+            <td>0x81100000</td>
+            <td>方法超时</td>
+        </tr>
+        <tr>
+            <td>E_INTERRUPTED</td>
+            <td>0x81110000</td>
+            <td>方法被中断</td>
+        </tr>
+        <tr>
+            <td>E_NOT_OWNER</td>
+            <td>0x81120000</td>
+            <td>线程并未占有互斥体对象</td>
+        </tr>
+        <tr>
+            <td>E_ALREADY_LOCKED</td>
+            <td>0x81130000</td>
+            <td>调用线程已经以读者身份占有了读写锁对象</td>
+        </tr>
+        <tr>
+            <td>E_INVALID_LOCK</td>
+            <td>0x81140000</td>
+            <td>调用线程已经以写者身份占有了读写锁对象</td>
+        </tr>
+        <tr>
+            <td>E_NOT_READER</td>
+            <td>0x81150000</td>
+            <td>调用线程并未以读者身份占有读写锁对象</td>
+        </tr>
+        <tr>
+            <td>E_NOT_WRITER</td>
+            <td>0x81160000</td>
+            <td>调用线程并未以写者身份占有读写锁对象</td>
+        </tr>
+        <tr>
+            <td>E_NOT_ENOUGH_ADDRESS_SPACE</td>
+            <td>0x81170000</td>
+            <td>没有足够的地址空间</td>
+        </tr>
+        <tr>
+            <td>E_BAD_FILE_FORMAT</td>
+            <td>0x81180000</td>
+            <td>错误的文件格式</td>
+        </tr>
+        <tr>
+            <td>E_BAD_EXE_FORMAT</td>
+            <td>0x81190000</td>
+            <td>错误的exe格式</td>
+        </tr>
+        <tr>
+            <td>E_BAD_DLL_FORMAT</td>
+            <td>0x811A0000</td>
+            <td>错误的dll格式</td>
+        </tr>
+        <tr>
+            <td>E_PATH_TOO_LONG</td>
+            <td>0x811B0000</td>
+            <td>路径名太长</td>
+        </tr>
+        <tr>
+            <td>E_PATH_NOT_FOUND</td>
+            <td>0x811C0000</td>
+            <td>路径未找到</td>
+        </tr>
+        <tr>
+            <td>E_FILE_NOT_FOUND</td>
+            <td>0x811D0000</td>
+            <td>文件未找到</td>
+        </tr>
+        <tr>
+            <td>E_NOT_SUPPORTED</td>
+            <td>0x811E0000</td>
+            <td>方法不支持该操作</td>
+        </tr>
+        <tr>
+            <td>E_IO</td>
+            <td>0x811F0000</td>
+            <td>I/O错误</td>
+        </tr>
+        <tr>
+            <td>E_BUFFER_TOO_SMALL</td>
+            <td>0x81200000</td>
+            <td>缓存太小</td>
+        </tr>
+        <tr>
+            <td>E_THREAD_ABORTED</td>
+            <td>0x81210000</td>
+            <td>线程中止</td>
+        </tr>
+        <tr>
+            <td>E_SERVICE_NAME_TOO_LONG</td>
+            <td>0x81220000</td>
+            <td>服务名太长</td>
+        </tr>
+        <tr>
+            <td>E_READER_LOCKS_TOO_MANY</td>
+            <td>0x81230000</td>
+            <td>调用线程所获取的读锁个数已达到了MAXIMUM_OWNED_READER_LOCKS个</td>
+        </tr>
+        <tr>
+            <td>E_ACCESS_DENIED</td>
+            <td>0x81240000</td>
+            <td>拒绝访问</td>
+        </tr>
+        <tr>
+            <td>E_OUT_OF_MEMORY</td>
+            <td>0x81250000</td>
+            <td>内存分配不成功</td>
+        </tr>
+        <tr>
+            <td>E_INVALID_ARGUMENT</td>
+            <td>0x81260000</td>
+            <td>一个或多个无效参数</td>
+        </tr>
+    </table>
+    <ul><font color="red"><b>注意：</b>NOERROR的值的定义与C/C++中TRUE的定义相反。 </font></ul>
+
+    <p>CAR中提供以下两个宏，使用这两个宏可以通过判断ECode返回值得知方法调用是否成功： </p>
+    <table>
+        <thead>
+            <td>宏定义</td><td>含义</td>
+        </thead>
+        <tr>
+            <td>SUCCEEDED(ec)</td>
+            <td>判断方法调用是否成功</td>
+        </tr>
+        <tr>
+            <td>FAILED(ec)</td>
+            <td>判断方法调用是否失败</td>
+        </tr>
+    </table>
+
+<p><font color="green"><b>＞＞＞＞＞＞</font></p>
+<p>CAR技术中ECode的定义的源程序carerr.h</p>
+<pre>
+<tt>
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+</font><font color=#9A1900>//==========================================================================
+</font>
+<font color=#0000FF>#ifndef</font> __CAR_CARERR_H__
+<font color=#0000FF>#define</font> __CAR_CARERR_H__
+
+<font color=#9A1900>//  ECODEs' layout:
+</font><font color=#9A1900>//
+</font><font color=#9A1900>//   3 3 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1
+</font><font color=#9A1900>//   1 0 9 8 7 6 5 4 3 2 1 0 9 8 7 6 5 4 3 2 1 0 9 8 7 6 5 4 3 2 1 0
+</font><font color=#9A1900>//  +-+-+-+-+-+-+-+-+---------------+-------------------------------+
+</font><font color=#9A1900>//  |S| family code |   info code   |         debug code            |
+</font><font color=#9A1900>//  +-+-+-+-+-+-+-+-+---------------+-------------------------------+
+</font><font color=#9A1900>//
+</font><font color=#9A1900>//
+</font>
+<font color=#0000FF>#include</font> <font color=#FF0000>&lt;elatypes.h&gt;</font>
+
+<font color=#9A1900>// Success codes
+</font><font color=#9A1900>//
+</font><font color=#0000FF>#ifndef</font> NOERROR
+<font color=#0000FF>#define</font> NOERROR         ((_ELASTOS ECode)<font color=#CC33CC>0</font>x00000000L)
+<font color=#0000FF>#endif</font>
+
+<font color=#0000FF>#define</font> S_FALSE         ((_ELASTOS ECode)<font color=#CC33CC>0</font>x00000001L)
+<font color=#9A1900>//#define FALSE    0
+</font><font color=#9A1900>//
+</font><font color=#9A1900>// Severity values
+</font><font color=#9A1900>//
+</font><font color=#0000FF>#define</font> SEVERITY_SUCCESS    <font color=#CC33CC>0</font>
+<font color=#0000FF>#define</font> SEVERITY_ERROR      <font color=#CC33CC>1</font>
+
+<font color=#9A1900>//
+</font><font color=#9A1900>// Create an ECode value from component pieces
+</font><font color=#9A1900>//
+</font>
+<font color=#0000FF>#define</font> MAKE_ECODE(sev, family, code) \
+        (_ELASTOS ECode)(((family &lt;&lt; <font color=#CC33CC>24</font>) | (code &lt;&lt; <font color=#CC33CC>16</font> )) | (sev &lt;&lt; <font color=#CC33CC>31</font>))
+
+<font color=#0000FF>#define</font> MAKE_SUCCESS(family, code) \
+        (_ELASTOS ECode)(((family &lt;&lt; <font color=#CC33CC>24</font>) | (code &lt;&lt; <font color=#CC33CC>16</font> )) &amp; <font color=#CC33CC>0</font>x7FFFFFFF)
+
+<font color=#0000FF>#define</font> ERROR_DETAIL(c) \
+        (_ELASTOS ECode)((c) &amp; <font color=#CC33CC>0</font>x0000FFFF)
+
+<font color=#0000FF>#define</font> ERROR(c) \
+        (_ELASTOS ECode)((c) &amp; <font color=#CC33CC>0</font>xFFFF0000)
+
+<font color=#0000FF>#define</font> SUCCEEDED(x)    ((_ELASTOS ECode)(x) &gt;= <font color=#CC33CC>0</font>)
+<font color=#0000FF>#define</font> FAILED(x)       ((_ELASTOS ECode)(x) &lt; <font color=#CC33CC>0</font>)
+<font color=#9A1900>//
+</font><font color=#9A1900>// Define the family codes
+</font><font color=#9A1900>//
+</font><font color=#0000FF>#define</font> FAMILY_NULL         <font color=#CC33CC>0</font>x00    <font color=#9A1900>// Elastos interface error codes
+</font><font color=#0000FF>#define</font> FAMILY_KERNEL       <font color=#CC33CC>0</font>x01    <font color=#9A1900>// Elastos kernel error codes
+</font><font color=#0000FF>#define</font> FAMILY_DRIVER       <font color=#CC33CC>0</font>x02    <font color=#9A1900>// Driver error codes
+</font><font color=#0000FF>#define</font> FAMILY_CRT          <font color=#CC33CC>0</font>x03    <font color=#9A1900>// ECode from CRT error number
+</font><font color=#0000FF>#define</font> FAMILY_FILESYS      <font color=#CC33CC>0</font>x04    <font color=#9A1900>// Elastos file system error codes
+</font><font color=#0000FF>#define</font> FAMILY_TCPIP        <font color=#CC33CC>0</font>x05    <font color=#9A1900>// Elastos network error codes
+</font><font color=#0000FF>#define</font> FAMILY_DRM          <font color=#CC33CC>0</font>x06    <font color=#9A1900>// Elastos drm error codes
+</font><font color=#0000FF>#define</font> FAMILY_CAR          <font color=#CC33CC>0</font>x07    <font color=#9A1900>// CAR Error codes
+</font>
+<font color=#0000FF>#define</font> FAMILY_MOBILE       <font color=#CC33CC>0</font>x08    <font color=#9A1900>// Smartphone error codes
+</font><font color=#0000FF>#define</font> FAMILY_GRAPHIC      <font color=#CC33CC>0</font>x09    <font color=#9A1900>// graphic error codes
+</font><font color=#0000FF>#define</font> FAMILY_DATABASE     <font color=#CC33CC>0</font>x0B    <font color=#9A1900>// Database error codes
+</font><font color=#0000FF>#define</font> FAMILY_XML          <font color=#CC33CC>0</font>x0E    <font color=#9A1900>// XML error codes
+</font><font color=#0000FF>#define</font> FAMILY_XMLGLUE      <font color=#CC33CC>0</font>x0F    <font color=#9A1900>// XML_Glue error codes
+</font>
+<font color=#0000FF>#define</font> FAMILY_REFLECTION   <font color=#CC33CC>0</font>x10    <font color=#9A1900>// Reflection Error codes
+</font><font color=#0000FF>#define</font> FAMILY_STREAM       <font color=#CC33CC>0</font>X11    <font color=#9A1900>// Stream Error codes
+</font>
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// BUGBUG: Remove these in future. Only for passing compilation.
+</font><font color=#0000FF>#define</font> ECODE_FROM_WIN32(x) (x)
+<font color=#0000FF>#define</font> ELASTOS_ERROR(x) (x)
+<font color=#0000FF>#define</font> FACILITY_ITF <font color=#CC33CC>0</font>x80808080
+<font color=#9A1900>//==========================================================================
+</font>
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// Macros and constants for FAMILY_NULL error codes
+</font><font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// BUGBUG
+</font><font color=#0000FF>#define</font> E_UNEXPECTED            MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x00)
+
+<font color=#9A1900>// Not implemented
+</font><font color=#0000FF>#define</font> E_NOT_IMPLEMENTED       MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x01)
+
+<font color=#9A1900>// No such interface supported
+</font><font color=#0000FF>#define</font> E_NO_INTERFACE          MAKE_ECODE(SEVERITY_ERROR,FAMILY_NULL, <font color=#CC33CC>0</font>x02)
+
+<font color=#9A1900>// Invalid pointer
+</font><font color=#9A1900>// TODO: Use E_INVALIDARG replaceing E_INVALID_POINTER
+</font><font color=#0000FF>#define</font> E_INVALID_POINTER       MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x03)
+
+<font color=#9A1900>// Operation aborted
+</font><font color=#0000FF>#define</font> E_ABORT                 MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x04)
+
+<font color=#9A1900>// Unspecified error
+</font><font color=#0000FF>#define</font> E_FAIL                  MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x05)
+
+<font color=#9A1900>// No default constructor in class
+</font><font color=#0000FF>#define</font> E_NO_DEFAULT_CTOR       MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x06)
+
+<font color=#9A1900>// Class does not support aggregation (or class object is remote,
+</font><font color=#9A1900>// SEVERITY_ERROR)
+</font><font color=#0000FF>#define</font> E_CLASS_NO_AGGREGATION  MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x07)
+
+<font color=#9A1900>// ClassFactory cannot supply requested class
+</font><font color=#0000FF>#define</font> E_CLASS_NOT_AVAILABLE   MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x08)
+
+<font color=#9A1900>// CATID does not exist
+</font><font color=#0000FF>#define</font> E_CATID_NOT_EXIST       MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x09)
+
+<font color=#9A1900>// Description not found
+</font><font color=#0000FF>#define</font> CAT_E_NODESCRIPTION     MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x0A)
+
+<font color=#9A1900>//aspect cannot Aggregate aspect
+</font><font color=#0000FF>#define</font> E_ASPECT_CANNOT_AGGREGATE_ASPECT \
+                                MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x0B)
+
+<font color=#9A1900>//Unaggregate failed
+</font><font color=#0000FF>#define</font> E_UNAGGREGATE_FAILED    MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x0C)
+
+<font color=#9A1900>// No generic defined
+</font><font color=#0000FF>#define</font> E_NO_GENERIC            MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x0D)
+
+<font color=#9A1900>// Wrong generic defined
+</font><font color=#0000FF>#define</font> E_WRONG_GENERIC         MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x0E)
+
+<font color=#9A1900>//Aspect refuse to attach
+</font><font color=#0000FF>#define</font> E_ASPECT_REFUSE_TO_ATTACH \
+                                MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x0F)
+
+<font color=#9A1900>//Aspect object has been unaggregated
+</font><font color=#0000FF>#define</font> E_ZOMBIE_ASPECT         MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x10)
+
+<font color=#9A1900>//Aspect has been aggregated
+</font><font color=#0000FF>#define</font> E_DUPLICATE_ASPECT      MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x11)
+
+<font color=#9A1900>//A class with local constructor or interface cannot be created in diff process
+</font><font color=#0000FF>#define</font> E_CONFLICT_WITH_LOCAL_KEYWORD \
+                                MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x12)
+
+<font color=#0000FF>#define</font> E_NOT_IN_PROTECTED_ZONE \
+                                MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x13)
+
+<font color=#0000FF>#define</font> CO_NOTALLINTERFACES     MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x14)
+
+<font color=#9A1900>// Reference count of dll is not zero
+</font><font color=#0000FF>#define</font> E_DLL_CANNOT_UNLOAD_NOW MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x15)
+
+<font color=#9A1900>// It is not standard car dll
+</font><font color=#0000FF>#define</font> E_NOT_CAR_DLL           MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x16)
+
+<font color=#9A1900>// Dll is not in active dll list, maybe has been unloaded or hasn't been loaded.
+</font><font color=#0000FF>#define</font> E_DLL_NOT_LOADED        MAKE_ECODE(SEVERITY_ERROR, FAMILY_NULL, <font color=#CC33CC>0</font>x17)
+
+<font color=#0000FF>#endif</font> <font color=#9A1900>// __CAR_CARERR_H__
+</font></tt>
+</pre>
+<p><font color="green"><b>＞＞＞＞＞＞</font></p>
+<p>CAR技术中一些系统基本服务构件的ECode的定义的源程序elaerror.h</p>
+<pre>
+<tt>
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+</font><font color=#9A1900>//==========================================================================
+</font>
+<font color=#0000FF>#if</font> _MSC_VER &gt; <font color=#CC33CC>1000</font>
+<font color=#0000FF>#pragma</font> once
+<font color=#0000FF>#endif</font>
+
+<font color=#0000FF>#ifndef</font> __ELAERROR_H__
+<font color=#0000FF>#define</font> __ELAERROR_H__
+
+<font color=#0000FF>#include</font> <font color=#FF0000>&lt;carerr.h&gt;</font>
+
+<font color=#9A1900>//  Elastos extend ECODEs' layout:
+</font><font color=#9A1900>//
+</font><font color=#9A1900>//   3 3 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1
+</font><font color=#9A1900>//   1 0 9 8 7 6 5 4 3 2 1 0 9 8 7 6 5 4 3 2 1 0 9 8 7 6 5 4 3 2 1 0
+</font><font color=#9A1900>//  +-+-+-+-+-+-+-+-+---------------+-------------------------------+
+</font><font color=#9A1900>//  |S| family code |   info code   |         debug code            |
+</font><font color=#9A1900>//  +-+-+-+-+-+-+-+-+---------------+-------------------------------+
+</font><font color=#9A1900>//
+</font>
+<font color=#0000FF>#define</font> KERNEL_ERROR(c)         MAKE_ECODE(SEVERITY_ERROR, FAMILY_KERNEL, c)
+<font color=#0000FF>#define</font> DRIVER_ERROR(c)         MAKE_ECODE(SEVERITY_ERROR, FAMILY_DRIVER, c)
+<font color=#0000FF>#define</font> FILESYS_ERROR(c)        MAKE_ECODE(SEVERITY_ERROR, FAMILY_FILESYS, c)
+<font color=#0000FF>#define</font> TCPIP_ERROR(c)          MAKE_ECODE(SEVERITY_ERROR, FAMILY_TCPIP, c)
+<font color=#0000FF>#define</font> DRM_ERROR(c)            MAKE_ECODE(SEVERITY_ERROR, FAMILY_DRM, c)
+<font color=#0000FF>#define</font> DATABASE_ERROR(c)       MAKE_ECODE(SEVERITY_ERROR, FAMILY_DATABASE, c)
+<font color=#0000FF>#define</font> XML_ERROR(c)            MAKE_ECODE(SEVERITY_ERROR, FAMILY_XML, c)
+<font color=#0000FF>#define</font> XMLGLUE_ERROR(c)        MAKE_ECODE(SEVERITY_ERROR, FAMILY_XMLGLUE, c)
+
+<font color=#0000FF>#define</font> FAMILY_MOBILE_ERROR(c)  MAKE_ECODE(SEVERITY_ERROR, FAMILY_MOBILE, c)
+<font color=#0000FF>#define</font> FAMILY_GRAPHIC_ERROR(c) MAKE_ECODE(SEVERITY_ERROR, FAMILY_GRAPHIC, c)
+<font color=#0000FF>#define</font> CAR_ERROR(c)            MAKE_ECODE(SEVERITY_ERROR, FAMILY_CAR, c)
+<font color=#9A1900>// CAR Error codes
+</font><font color=#0000FF>#define</font> REFLECTION_ERROR(c)    MAKE_ECODE(SEVERITY_ERROR, FAMILY_REFLECTION, c)
+<font color=#0000FF>#define</font> STREAM_ERROR(c)        MAKE_ECODE(SEVERITY_ERROR, FAMILY_STREAM, c)
+
+<font color=#0000FF>#define</font> KERNEL_SUCCESS(c)       MAKE_SUCCESS(FAMILY_KERNEL, c)
+<font color=#0000FF>#define</font> DRIVER_SUCCESS(c)       MAKE_SUCCESS(FAMILY_DRIVER, c)
+<font color=#0000FF>#define</font> FILESYS_SUCCESS(c)      MAKE_SUCCESS(FAMILY_FILESYS, c)
+<font color=#0000FF>#define</font> TCPIP_SUCCESS(c)        MAKE_SUCCESS(FAMILY_TCPIP, c)
+
+<font color=#9A1900>//
+</font><font color=#9A1900>//=========================================================================
+</font><font color=#9A1900>//Elastos file system error codes(Family:0x3)
+</font>
+<font color=#0000FF>#include</font> <font color=#FF0000>&lt;fserror.h&gt;</font>
+
+<font color=#0000FF>#define</font> ECODE_FROM_ERRNO(x)    \
+    (_ELASTOS ECode) ( x ? MAKE_ECODE(FAMILY_CRT, x, SEVERITY_ERROR) : <font color=#CC33CC>0</font>)
+
+<font color=#0000FF>#define</font> ECODE_TO_ERRNO(x) ((x &gt;&gt; <font color=#CC33CC>16</font>) &amp; <font color=#CC33CC>0</font>xFF)
+
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// Elastos kernel error codes (Family: 0x0)
+</font>
+<font color=#0000FF>#define</font> E_PROCESS_NOT_ACTIVE        KERNEL_ERROR(<font color=#CC33CC>0</font>x01) <font color=#9A1900>// 0x81010000
+</font><font color=#0000FF>#define</font> E_PROCESS_STILL_ACTIVE      KERNEL_ERROR(<font color=#CC33CC>0</font>x02) <font color=#9A1900>// 0x81020000
+</font><font color=#0000FF>#define</font> E_PROCESS_NOT_STARTED       KERNEL_ERROR(<font color=#CC33CC>0</font>x03) <font color=#9A1900>// 0x81030000
+</font><font color=#0000FF>#define</font> E_PROCESS_ALREADY_STARTED   KERNEL_ERROR(<font color=#CC33CC>0</font>x04) <font color=#9A1900>// 0x81040000
+</font><font color=#0000FF>#define</font> E_PROCESS_ALREADY_EXITED    KERNEL_ERROR(<font color=#CC33CC>0</font>x05) <font color=#9A1900>// 0x81050000
+</font><font color=#0000FF>#define</font> E_PROCESS_NOT_EXITED        KERNEL_ERROR(<font color=#CC33CC>0</font>x06) <font color=#9A1900>// 0x81060000
+</font><font color=#0000FF>#define</font> E_THREAD_NOT_ACTIVE         KERNEL_ERROR(<font color=#CC33CC>0</font>x07) <font color=#9A1900>// 0x81070000
+</font><font color=#0000FF>#define</font> E_THREAD_STILL_ACTIVE       KERNEL_ERROR(<font color=#CC33CC>0</font>x08) <font color=#9A1900>// 0x81080000
+</font><font color=#0000FF>#define</font> E_THREAD_UNSTARTED          KERNEL_ERROR(<font color=#CC33CC>0</font>X09) <font color=#9A1900>// 0x81090000
+</font><font color=#0000FF>#define</font> E_THREAD_ALREADY_FINISHED   KERNEL_ERROR(<font color=#CC33CC>0</font>x0A) <font color=#9A1900>// 0x810A0000
+</font><font color=#0000FF>#define</font> E_THREAD_NOT_STOPPED        KERNEL_ERROR(<font color=#CC33CC>0</font>x0B) <font color=#9A1900>// 0x810B0000
+</font><font color=#0000FF>#define</font> E_DOES_NOT_EXIST            KERNEL_ERROR(<font color=#CC33CC>0</font>x0C) <font color=#9A1900>// 0x810C0000
+</font><font color=#0000FF>#define</font> E_ALREADY_EXIST             KERNEL_ERROR(<font color=#CC33CC>0</font>x0D) <font color=#9A1900>// 0x810D0000
+</font><font color=#0000FF>#define</font> E_INVALID_OPTIONS           KERNEL_ERROR(<font color=#CC33CC>0</font>x0E) <font color=#9A1900>// 0x810E0000
+</font><font color=#0000FF>#define</font> E_INVALID_OPERATION         KERNEL_ERROR(<font color=#CC33CC>0</font>x0F) <font color=#9A1900>// 0x810F0000
+</font><font color=#0000FF>#define</font> E_TIMED_OUT                 KERNEL_ERROR(<font color=#CC33CC>0</font>x10) <font color=#9A1900>// 0x81100000
+</font><font color=#0000FF>#define</font> E_INTERRUPTED               KERNEL_ERROR(<font color=#CC33CC>0</font>x11) <font color=#9A1900>// 0x81110000
+</font><font color=#0000FF>#define</font> E_NOT_OWNER                 KERNEL_ERROR(<font color=#CC33CC>0</font>x12) <font color=#9A1900>// 0x81120000
+</font><font color=#0000FF>#define</font> E_ALREADY_LOCKED            KERNEL_ERROR(<font color=#CC33CC>0</font>x13) <font color=#9A1900>// 0x81130000
+</font><font color=#0000FF>#define</font> E_INVALID_LOCK              KERNEL_ERROR(<font color=#CC33CC>0</font>x14) <font color=#9A1900>// 0x81140000
+</font><font color=#0000FF>#define</font> E_NOT_READER                KERNEL_ERROR(<font color=#CC33CC>0</font>x15) <font color=#9A1900>// 0x81150000
+</font><font color=#0000FF>#define</font> E_NOT_WRITER                KERNEL_ERROR(<font color=#CC33CC>0</font>x16) <font color=#9A1900>// 0x81160000
+</font><font color=#0000FF>#define</font> E_NOT_ENOUGH_ADDRESS_SPACE  KERNEL_ERROR(<font color=#CC33CC>0</font>x17) <font color=#9A1900>// 0x81170000
+</font><font color=#0000FF>#define</font> E_BAD_FILE_FORMAT           KERNEL_ERROR(<font color=#CC33CC>0</font>x18) <font color=#9A1900>// 0x81180000
+</font><font color=#0000FF>#define</font> E_BAD_EXE_FORMAT            KERNEL_ERROR(<font color=#CC33CC>0</font>x19) <font color=#9A1900>// 0x81190000
+</font><font color=#0000FF>#define</font> E_BAD_DLL_FORMAT            KERNEL_ERROR(<font color=#CC33CC>0</font>x1A) <font color=#9A1900>// 0x811A0000
+</font><font color=#0000FF>#define</font> E_PATH_TOO_LONG             KERNEL_ERROR(<font color=#CC33CC>0</font>x1B) <font color=#9A1900>// 0x811B0000
+</font><font color=#0000FF>#define</font> E_PATH_NOT_FOUND            KERNEL_ERROR(<font color=#CC33CC>0</font>x1C) <font color=#9A1900>// 0x811C0000
+</font><font color=#0000FF>#define</font> E_FILE_NOT_FOUND            KERNEL_ERROR(<font color=#CC33CC>0</font>x1D) <font color=#9A1900>// 0x811D0000
+</font><font color=#0000FF>#define</font> E_NOT_SUPPORTED             KERNEL_ERROR(<font color=#CC33CC>0</font>x1E) <font color=#9A1900>// 0x811E0000
+</font><font color=#0000FF>#define</font> E_IO                        KERNEL_ERROR(<font color=#CC33CC>0</font>x1F) <font color=#9A1900>// 0x811F0000
+</font><font color=#0000FF>#define</font> E_BUFFER_TOO_SMALL          KERNEL_ERROR(<font color=#CC33CC>0</font>x20) <font color=#9A1900>// 0x81200000
+</font><font color=#0000FF>#define</font> E_THREAD_ABORTED            KERNEL_ERROR(<font color=#CC33CC>0</font>x21) <font color=#9A1900>// 0x81210000
+</font><font color=#0000FF>#define</font> E_SERVICE_NAME_TOO_LONG     KERNEL_ERROR(<font color=#CC33CC>0</font>x22) <font color=#9A1900>// 0x81220000
+</font><font color=#0000FF>#define</font> E_READER_LOCKS_TOO_MANY     KERNEL_ERROR(<font color=#CC33CC>0</font>x23) <font color=#9A1900>// 0x81230000
+</font><font color=#0000FF>#define</font> E_ACCESS_DENIED             KERNEL_ERROR(<font color=#CC33CC>0</font>x24) <font color=#9A1900>// 0x81240000
+</font><font color=#0000FF>#define</font> E_OUT_OF_MEMORY             KERNEL_ERROR(<font color=#CC33CC>0</font>x25) <font color=#9A1900>// 0x81250000
+</font><font color=#0000FF>#define</font> E_INVALID_ARGUMENT          KERNEL_ERROR(<font color=#CC33CC>0</font>x26) <font color=#9A1900>// 0x81260000
+</font><font color=#0000FF>#define</font> E_NOT_CALLBACK_THREAD       KERNEL_ERROR(<font color=#CC33CC>0</font>x27) <font color=#9A1900>// 0x81270000
+</font>
+<font color=#0000FF>#define</font> S_TIMED_OUT                 KERNEL_SUCCESS(<font color=#CC33CC>0</font>x01)   <font color=#9A1900>// 0x01010000
+</font><font color=#0000FF>#define</font> S_INTERRUPTED               KERNEL_SUCCESS(<font color=#CC33CC>0</font>x02)   <font color=#9A1900>// 0x01020000
+</font><font color=#0000FF>#define</font> S_NOT_EXIST                 KERNEL_SUCCESS(<font color=#CC33CC>0</font>x03)   <font color=#9A1900>// 0x01030000
+</font><font color=#0000FF>#define</font> S_ALREADY_EXISTS            KERNEL_SUCCESS(<font color=#CC33CC>0</font>x04)   <font color=#9A1900>// 0x01040000
+</font><font color=#0000FF>#define</font> S_BUFFER_TOO_SMALL          KERNEL_SUCCESS(<font color=#CC33CC>0</font>x05)   <font color=#9A1900>// 0x01050000
+</font>
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// Driver error codes (Family: 0x1)
+</font><font color=#9A1900>// Error codes 0x001 - 0x04f are reserved for system
+</font>
+<font color=#9A1900>// The length of a device name exceeds the maximum length allowed.
+</font><font color=#0000FF>#define</font> E_DEVICE_NAME_TOO_LONG              DRIVER_ERROR(<font color=#CC33CC>0</font>x01)
+
+<font color=#9A1900>// The specified device already exists.
+</font><font color=#0000FF>#define</font> E_DEVICE_EXISTS                     DRIVER_ERROR(<font color=#CC33CC>0</font>x02)
+
+<font color=#9A1900>// The system cannot find the device specified.
+</font><font color=#0000FF>#define</font> E_DEVICE_NOT_FOUND                  DRIVER_ERROR(<font color=#CC33CC>0</font>x03)
+
+<font color=#9A1900>// The specified device is busy.
+</font><font color=#0000FF>#define</font> E_DRIVER_BUSY                       DRIVER_ERROR(<font color=#CC33CC>0</font>x04)
+
+<font color=#9A1900>// The system cannot find the DMA Controller.
+</font><font color=#0000FF>#define</font> E_DMAC_NOT_FOUND                    DRIVER_ERROR(<font color=#CC33CC>0</font>x05)
+
+<font color=#9A1900>// The system cannot find the driver specified.
+</font><font color=#0000FF>#define</font> ELADRV_S_DRIVER_NOT_FOUND           DRIVER_SUCCESS(<font color=#CC33CC>0</font>x01)
+
+<font color=#9A1900>// The specified driver cannot be created.
+</font><font color=#0000FF>#define</font> ELADRV_S_CREATE_DRIVER_FAILED       DRIVER_SUCCESS(<font color=#CC33CC>0</font>x02)
+
+<font color=#9A1900>// The specified driver cannot be registered.
+</font><font color=#0000FF>#define</font> ELADRV_S_REGISTER_DRIVER_FAILED     DRIVER_SUCCESS(<font color=#CC33CC>0</font>x03)
+
+<font color=#9A1900>// The specified driver cannot be unregistered.
+</font><font color=#0000FF>#define</font> ELADRV_S_UNREGISTER_DRIVER_FAILED   DRIVER_SUCCESS(<font color=#CC33CC>0</font>x04)
+
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// Macros and constants for FACILITY_CAR error codes
+</font><font color=#9A1900>//==========================================================================
+</font>
+<font color=#9A1900>// No class information
+</font><font color=#0000FF>#define</font> E_NO_CLASS_INFO                     CAR_ERROR(<font color=#CC33CC>0</font>X01)
+
+<font color=#9A1900>// not a export server
+</font><font color=#0000FF>#define</font> E_NO_EXPORT_SERVER                  CAR_ERROR(<font color=#CC33CC>0</font>X02)
+
+<font color=#9A1900>// not import server
+</font><font color=#0000FF>#define</font> E_NO_IMPORT_SERVER                  CAR_ERROR(<font color=#CC33CC>0</font>X03)
+
+<font color=#9A1900>// marshaling: data transport error
+</font><font color=#0000FF>#define</font> E_MARSHAL_DATA_TRANSPORT_ERROR      CAR_ERROR(<font color=#CC33CC>0</font>X04)
+
+<font color=#0000FF>#define</font> E_ERROR_STRING                      CAR_ERROR(<font color=#CC33CC>0</font>x10)
+
+<font color=#0000FF>#define</font> E_ERROR_STRING_A                    CAR_ERROR(<font color=#CC33CC>0</font>x11)
+
+<font color=#0000FF>#define</font> E_ERROR_URL                         CAR_ERROR(<font color=#CC33CC>0</font>x12)
+
+<font color=#9A1900>// IConnectionPoint status codes
+</font><font color=#9A1900>//
+</font><font color=#9A1900>// there is no connection for this connection id
+</font><font color=#0000FF>#define</font> CONNECT_E_NOCONNECTION              CAR_ERROR(<font color=#CC33CC>0</font>x13)
+
+<font color=#9A1900>// this implementation's limit for advisory connections has been reached
+</font><font color=#0000FF>#define</font> CONNECT_E_ADVISELIMIT               CAR_ERROR(<font color=#CC33CC>0</font>x14)
+
+<font color=#9A1900>// connection attempt failed
+</font><font color=#0000FF>#define</font> CONNECT_E_CANNOTCONNECT             CAR_ERROR(<font color=#CC33CC>0</font>x15)
+
+<font color=#9A1900>//// must use a derived interface to connect
+</font><font color=#0000FF>#define</font> CONNECT_E_OVERRIDDEN                CAR_ERROR(<font color=#CC33CC>0</font>x16)
+
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// Refection error codes (Family: 0x10)
+</font><font color=#0000FF>#define</font> E_OUT_OF_NUMBER                     REFLECTION_ERROR(<font color=#CC33CC>0</font>x01)
+<font color=#0000FF>#define</font> E_DATAINFO_EXIST                    REFLECTION_ERROR(<font color=#CC33CC>0</font>x02)
+
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// Stream error codes (Family: 0x11)
+</font><font color=#0000FF>#define</font> E_OUT_OF_STREAM                     STREAM_ERROR(<font color=#CC33CC>0</font>x01)
+<font color=#0000FF>#define</font> E_CLOSED_STREAM                     STREAM_ERROR(<font color=#CC33CC>0</font>x02)
+
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// DRM error codes (Family: 0x5)
+</font><font color=#0000FF>#define</font> E_DRM_FILE_PARSE                    DRM_ERROR(<font color=#CC33CC>0</font>X01)
+<font color=#0000FF>#define</font> E_DRM_NOT_OPEN_RODB                 DRM_ERROR(<font color=#CC33CC>0</font>X02)
+<font color=#0000FF>#define</font> E_DRM_NORO                          DRM_ERROR(<font color=#CC33CC>0</font>X03)
+<font color=#0000FF>#define</font> E_DRM_FILE_OP                       DRM_ERROR(<font color=#CC33CC>0</font>X04)
+<font color=#0000FF>#define</font> E_DRM_NO_COUNT                      DRM_ERROR(<font color=#CC33CC>0</font>X05)
+<font color=#0000FF>#define</font> E_DRM_OUT_OF_DATE                   DRM_ERROR(<font color=#CC33CC>0</font>X06)
+<font color=#0000FF>#define</font> E_DRM_MEDIA_OBJECT_EXIST            DRM_ERROR(<font color=#CC33CC>0</font>X07)
+<font color=#0000FF>#define</font> E_DRM_RO_EXIST                      DRM_ERROR(<font color=#CC33CC>0</font>X08)
+<font color=#0000FF>#define</font> E_DRM_PERMISSION_DISABLE            DRM_ERROR(<font color=#CC33CC>0</font>X09)
+<font color=#0000FF>#define</font> E_DRM_INVALID_RO                    DRM_ERROR(<font color=#CC33CC>0</font>X0A)
+<font color=#0000FF>#define</font> E_DRM_DB_KEY_NOT_EXIST              DRM_ERROR(<font color=#CC33CC>0</font>X0B)
+<font color=#0000FF>#define</font> E_DRM_INVALID_XML_FORMAT            DRM_ERROR(<font color=#CC33CC>0</font>X0C)
+<font color=#0000FF>#define</font> E_DRM_TIME_UNAVOIDABLE              DRM_ERROR(<font color=#CC33CC>0</font>X0D)
+
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// Database error codes (Family: 0xB)
+</font>
+<font color=#0000FF>#define</font> E_DB_SQL_ERROR                  DATABASE_ERROR(<font color=#CC33CC>0</font>x01)
+<font color=#0000FF>#define</font> E_DB_INTERNAL_ERROR             DATABASE_ERROR(<font color=#CC33CC>0</font>x02)
+<font color=#0000FF>#define</font> E_DB_PERMISSION_DENIED          DATABASE_ERROR(<font color=#CC33CC>0</font>x03)
+<font color=#0000FF>#define</font> E_DB_REQUESTED_ABORT            DATABASE_ERROR(<font color=#CC33CC>0</font>x04)
+<font color=#0000FF>#define</font> E_DB_FILE_BUSY                  DATABASE_ERROR(<font color=#CC33CC>0</font>x05)
+<font color=#0000FF>#define</font> E_DB_TABLE_LOCKED               DATABASE_ERROR(<font color=#CC33CC>0</font>x06)
+<font color=#0000FF>#define</font> E_DB_OUT_OF_MEMORY              DATABASE_ERROR(<font color=#CC33CC>0</font>x07)
+<font color=#0000FF>#define</font> E_DB_READ_ONLY_DATABASE         DATABASE_ERROR(<font color=#CC33CC>0</font>x08)
+<font color=#0000FF>#define</font> E_DB_OPERATION_INTERRUPTED      DATABASE_ERROR(<font color=#CC33CC>0</font>x09)
+<font color=#0000FF>#define</font> E_DB_DISK_IO_ERROR              DATABASE_ERROR(<font color=#CC33CC>0</font>x0A)
+<font color=#0000FF>#define</font> E_DB_FILE_CORRUPTED             DATABASE_ERROR(<font color=#CC33CC>0</font>x0B)
+<font color=#0000FF>#define</font> E_DB_TABLE_NOT_FOUND            DATABASE_ERROR(<font color=#CC33CC>0</font>x0C)
+<font color=#0000FF>#define</font> E_DB_DATABASE_FULL              DATABASE_ERROR(<font color=#CC33CC>0</font>x0D)
+<font color=#0000FF>#define</font> E_DB_CANT_OPEN_DATABASE         DATABASE_ERROR(<font color=#CC33CC>0</font>x0E)
+<font color=#0000FF>#define</font> E_DB_LOCK_PROTOCOL_ERROR        DATABASE_ERROR(<font color=#CC33CC>0</font>x0F)
+<font color=#0000FF>#define</font> E_DB_DATABSE_EMPTY              DATABASE_ERROR(<font color=#CC33CC>0</font>x10)
+<font color=#0000FF>#define</font> E_DB_SCHEMA_CHANGED             DATABASE_ERROR(<font color=#CC33CC>0</font>x11)
+<font color=#0000FF>#define</font> E_DB_DATA_TOO_BIG               DATABASE_ERROR(<font color=#CC33CC>0</font>x12)
+<font color=#0000FF>#define</font> E_DB_CONSTRAINT_VIOLATION       DATABASE_ERROR(<font color=#CC33CC>0</font>x13)
+<font color=#0000FF>#define</font> E_DB_DATA_TYPE_MISMATCH         DATABASE_ERROR(<font color=#CC33CC>0</font>x14)
+<font color=#0000FF>#define</font> E_DB_LIBRARY_MISUSE             DATABASE_ERROR(<font color=#CC33CC>0</font>x15)
+<font color=#0000FF>#define</font> E_DB_NO_OS_SUPPORT              DATABASE_ERROR(<font color=#CC33CC>0</font>x16)
+<font color=#0000FF>#define</font> E_DB_AUTHORIZATION_DENIED       DATABASE_ERROR(<font color=#CC33CC>0</font>x17)
+<font color=#0000FF>#define</font> E_DB_AUXILIARY_DB_FORMAT_ERROR  DATABASE_ERROR(<font color=#CC33CC>0</font>x18)
+<font color=#0000FF>#define</font> E_DB_PARAMETER_OUT_OF_RANGE     DATABASE_ERROR(<font color=#CC33CC>0</font>x19)
+<font color=#0000FF>#define</font> E_DB_NOT_A_DATABASE_FILE        DATABASE_ERROR(<font color=#CC33CC>0</font>x1A)
+<font color=#0000FF>#define</font> E_DB_OPERATE_ON_CLOSED_OBJECT   DATABASE_ERROR(<font color=#CC33CC>0</font>x30)
+
+<font color=#0000FF>#endif</font> <font color=#9A1900>// __ELAERROR_H__
+</font></tt>
+</pre>
+<p><font color="green"><b>＞＞＞＞＞＞</font></p>
+<p>CAR技术中文件系统错误信息的定义的源程序fserror.h</p>
+<pre>
+<tt>
+<font color=#9A1900>//==========================================================================
+</font><font color=#9A1900>// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+</font><font color=#9A1900>//==========================================================================
+</font>
+<font color=#0000FF>#if</font> _MSC_VER &gt; <font color=#CC33CC>1000</font>
+<font color=#0000FF>#pragma</font> once
+<font color=#0000FF>#endif</font>
+
+<font color=#0000FF>#ifndef</font> __FSERROR_H__
+<font color=#0000FF>#define</font> __FSERROR_H__
+
+<font color=#0000FF>#define</font> E_FS_NO_PERMISSION      FILESYS_ERROR(<font color=#CC33CC>0</font>x01)    <font color=#9A1900>/* Not sufficient
+                                                        * permissions */</font>
+<font color=#0000FF>#define</font> E_FS_NO_SUCH_FILE       FILESYS_ERROR(<font color=#CC33CC>0</font>x03)    <font color=#9A1900>/* No such file */</font>
+<font color=#0000FF>#define</font> E_FS_IO_ERROR           FILESYS_ERROR(<font color=#CC33CC>0</font>x05)    <font color=#9A1900>/* I/O error */</font>
+<font color=#0000FF>#define</font> E_FS_TRY_AGAIN          FILESYS_ERROR(<font color=#CC33CC>0</font>x0b)    <font color=#9A1900>/* Try again later */</font>
+<font color=#0000FF>#define</font> E_FS_FILE_BUSY          FILESYS_ERROR(<font color=#CC33CC>0</font>x10)    <font color=#9A1900>/* File busy */</font>
+<font color=#0000FF>#define</font> E_FS_FILE_EXISTS        FILESYS_ERROR(<font color=#CC33CC>0</font>x11)    <font color=#9A1900>/* File exists */</font>
+<font color=#0000FF>#define</font> E_FS_NOT_DIRECTORY      FILESYS_ERROR(<font color=#CC33CC>0</font>x14)    <font color=#9A1900>/* Not a directory */</font>
+<font color=#0000FF>#define</font> E_FS_IS_DIRECTORY       FILESYS_ERROR(<font color=#CC33CC>0</font>x15)    <font color=#9A1900>/* Is a directory */</font>
+<font color=#0000FF>#define</font> E_FS_NO_SPACE           FILESYS_ERROR(<font color=#CC33CC>0</font>x1c)    <font color=#9A1900>/* No space left
+                                                        * on device */</font>
+<font color=#0000FF>#define</font> E_FS_READ_ONLY          FILESYS_ERROR(<font color=#CC33CC>0</font>x1e)    <font color=#9A1900>/* Read-only file
+                                                        * system */</font>
+<font color=#0000FF>#define</font> E_FS_NO_ROOT            FILESYS_ERROR(<font color=#CC33CC>0</font>x21)    <font color=#9A1900>/* No root fs*/</font>
+<font color=#0000FF>#define</font> E_FS_NO_ENTRY           FILESYS_ERROR(<font color=#CC33CC>0</font>x23)    <font color=#9A1900>/* No directory entry */</font>
+
+<font color=#0000FF>#endif</font> <font color=#9A1900>// __FSERROR_H__
+</font></tt>
+</pre>
+
+<script>footer("chinese")</script>
+</body>
+</html>

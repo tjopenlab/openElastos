@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    
+    <volume> 常用数据结构 </volume>
+    <interface>BufferOf</interface>
+    <method>GetUsed </method>
+
+    <description>
+        <para>获取BufferOf数组已使用长度。</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para>返回BufferOf数组已使用长度。</para>
+    </return>
+
+<example>
+<pre>
+BufferOf&lt;Int8&gt; *MyArray = BufferOf&lt;Int8&gt;::Alloc(16);
+MyArray-&gt;SetUsed(10);
+CConsole::WriteLine(MyArray-&gt;GetUsed());    //Display : 10	    	
+BufferOf&lt;Int8>::Free(MyArray);     	    	
+</pre>
+</example>
+<references>
+    <reference>
+        <ref_name>BufferOf</ref_name>
+        <ref_url>../BufferOf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>BufferOf::SetUsed </ref_name>
+        <ref_url>SetUsed</ref_url>
+    </reference>
+</references> 
+</manpage>

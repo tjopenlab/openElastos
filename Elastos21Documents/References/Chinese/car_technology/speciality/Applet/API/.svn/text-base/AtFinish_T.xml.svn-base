@@ -1,0 +1,32 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> CApplet相关API介绍 </volume>
+    <interface>CApplet</interface>
+    <method> AtFinish </method>
+
+    <description>
+        <para>注册当前applet退出时需要执行的函数</para>
+    </description>
+
+<syntax>
+        <return_val>template &lt;class T&gt; STATIC CARAPI</return_val>
+        <parameters>
+        <api_param>
+            <param_type>T * </param_type>
+            <param_name>pThis</param_name>
+            <param_note>
+                <para>[in] 当前applet退出时上下文对象的this指针。</para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>void</param_type>
+            <param_name>(ELAPICALLTYPE T::*pEntry)()</param_name>
+            <param_note>
+                <para>[in] 线程退出时需要执行的上下文对象的方法。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+</manpage>

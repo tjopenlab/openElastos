@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\conio\_getch">_getch</sample>
+    <title> _getch</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> conio_idx.htm </routine_idx>
+
+    <description>
+        <para>从控制台获取一个字符，不回显。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_getch</func_name>
+        <NoArguments/>
+        <parameters>
+            <func_param>
+                <param_type>void</param_type>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回读取到的字符。无错误返回。</para>
+    </return>
+
+    <remarks>
+        <para>_getch函数从控制台读取一个字符，不回显。该函数无法读取组合键“CTRL+C”。当读取到功能键或方向键时，该方法必须调用两次，第一次调用返回0或0xE0，第二次调用将返回该键的实际值。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_getch</routine_name>
+            <headerfile>conio.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _getch.cpp: This program reads characters from
+ * the keyboard until it receives a &apos;Y&apos; or &apos;y&apos;.
+ */
+
+#include &lt;conio.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+
+
+int main()
+{
+    int ch;
+
+    puts(&quot;Type &apos;Y&apos; when finished typing keys: &quot;);
+    do {
+        ch = _getch();
+        ch = toupper(ch);
+    } while (ch != &apos;Y&apos;);
+
+    _putch(ch);
+    _putch(&apos;\r&apos;);     /* Carriage return */
+    _putch(&apos;\n&apos;);     /* Line feed         */
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Type &apos;Y&apos; when finished typing keys:
+Y
+</result>
+
+   
+    <references>
+        <reference>
+            <ref_name>getc</ref_name>
+            <ref_url>../stdio/getwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_putch</ref_name>
+            <ref_url>_putch</ref_url>
+        </reference>
+    </references>
+
+</manpage>

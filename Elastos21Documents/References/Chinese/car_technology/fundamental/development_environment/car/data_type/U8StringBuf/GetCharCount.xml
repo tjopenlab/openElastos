@@ -1,0 +1,41 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>U8StringBuf</interface>
+    <method> GetCharCount </method>
+
+    <description>
+        <para>按UTF-8编码格式返回此对象字符串所占的字符数。</para>
+    </description>
+
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+
+    </syntax>
+
+    <return>
+        <para>返回U8StringBuf对象字符串在UTF-8编码格式下的长度。</para>
+    </return>
+<example>
+<pre>
+U8StringBuf_&lt;20&gt; u8sbuf;
+u8sbuf.Copy("123456");
+CConsole::WriteLine(u8sbuf.GetCharCount());  //Display : 6
+CConsole::WriteLine(u8sbuf.GetCharCount(Encoding_ASCII));  //Display : 6
+CConsole::WriteLine(u8sbuf.GetCharCount(Encoding_UTF7));  //Display : 5
+CConsole::WriteLine(u8sbuf.GetCharCount(Encoding_UTF8));  //Display : 7
+CConsole::WriteLine(u8sbuf.GetCharCount(Encoding_UTF16));  //Display : 2
+CConsole::WriteLine(u8sbuf.GetCharCount(Encoding_GB18030));  //Display : 6 
+
+U8StringBuf_&lt;20&gt; u8sbuf1;
+u8sbuf1.Copy(L"dd中d");
+CConsole::WriteLine(u8sbuf1.GetCharCount());  //Display : 5
+</pre>
+</example>
+
+    
+
+</manpage>

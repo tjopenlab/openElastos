@@ -1,0 +1,169 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>通讯引擎</volume>
+    <types> SMS_STATUS_INFORMATION </types>
+    <description>
+        <para>
+            短信发送状态信息结构。
+        </para>
+    </description>
+
+  <struct>
+        <struct_member>
+            <mem_type>SMS_MESSAGE_ID</mem_type>
+            <mem_name>smsmidMessageID</mem_name>
+            <mem_description>短信参考ID </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwMessageStatus0</mem_name>
+            <mem_description>状态0 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwMessageStatus1</mem_name>
+           <mem_description>状态1</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>SMS_ADDRESS</mem_type>
+            <mem_name> smsaRecipientAddress </mem_name>
+            <mem_description>短信接收方地址 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>SYSTEMTIME</mem_type>
+            <mem_name>stServiceCenterTimeStamp；</mem_name>
+            <mem_description>短信中心收到短信的时间</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>SYSTEMTIME</mem_type>
+            <mem_name>stDischargeTime</mem_name>
+            <mem_description>与短信接收状态相关的时间，如短信发送成功，表示对方收到短信的时间；短信未能完成发送，表示最后一次发送尝试的时间</mem_description>
+        </struct_member>
+   </struct>
+
+    <remarks>
+		<para>dwMessageStatus0和dwMessageStatus1共同表示短信的接收状态。dwMessageStatus0的每个bit位和dwMessageStatus1的最后一个bit位分别对应一种短信发送状态。</para>
+	  <para>dwMessageStatus0对应的值定义如下：</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+
+    <tr>
+       <td>MESSAGE_STATUS_UNKNOWN</td><td>未知</td>
+    </tr>
+    <tr>
+       <td>MESSAGE_STATUS_0_RECEIVEDBYSME</td><td>	成功发送给对方</td>
+    </tr>
+    <tr>
+       <td>MESSAGE_STATUS_0_FORWARDEDTOSME</td><td>	成功转发</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_REPLACEDBYSC</td><td>由于又收到相同MessageID的短信，原有短信</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_CONGESTION_TRYING</td><td>拥塞，继续尝试发送中</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_SMEBUSY_TRYING</td><td>	对方正忙，尝试中</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_SMENOTRESPONDING_TRYING</td><td>对方无回应，尝试中</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_SVCREJECTED_TRYING</td><td>	服务被拒绝，尝试中</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_QUALITYUNAVAIL_TRYING</td><td>信号无法获取，尝试中</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_SMEERROR_TRYING</td><td>	对方发生错误，尝试中</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_CONGESTION</td><td>	拥塞，不再尝试</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_SMEBUSY	</td><td>对方忙，不再尝试</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_SMENOTRESPONDING</td><td>	对方无回应，不再尝试</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_SVCREJECTED	</td><td>服务被拒绝，不在尝试</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_QUALITYUNAVAIL_TEMP</td><td>信号无法获取，不再尝试</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_SMEERROR</td><td>对方出错，不再尝试</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_REMOTEPROCERROR</td><td>远程处理机错误，放弃发送</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_INCOMPATIBLEDEST</td><td>目的地有冲突或不合适，放弃</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_CONNECTIONREJECTED</td><td>目的地拒绝连接，放弃</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_NOTOBTAINABLE</td><td>目的地无法到达，放弃</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_NOINTERNETWORKING</td><td>英特网不通，放弃</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_VPEXPIRED</td><td>超过短信的有效时间，放弃</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_DELETEDBYORIGSME</td><td>发送方撤销发送，放弃</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_DELETEDBYSC</td><td>被短信中心删除，放弃</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_NOLONGEREXISTS</td><td>短信不存在了，放弃</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_QUALITYUNAVAIL</td><td>无法获取信号,放弃</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_RESERVED_COMPLETED</td><td>	保留值，传送已成功</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_RESERVED_TRYING</td><td>	保留值，发生暂时错误仍在尝试中</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_RESERVED_ERROR</td><td>	保留值，发生永久性错误</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_RESERVED_TMPERROR</td><td>	保留值，发生暂时错误，不再发送</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_SCSPECIFIC_COMPLETED</td><td>	SMSC（短信中心）指定值，发送已成功</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_SCSPECIFIC_TRYING	</td><td>SMSC特定值，仍在尝试中</td>
+    </tr>
+   <tr>
+       <td>MESSAGE_STATUS_0_SCSPECIFIC_ERROR</td><td>	SMSC的特点错误值，发生错误</td>
+    </tr>
+
+    </table>
+    <para>dwMessageStatus1指定的值定义如下：</para>
+    <table>
+    <th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>MESSAGE_STATUS_UNKNOWN</td><td>未知</td>
+    </tr>
+
+    <tr>
+       <td>MESSAGE_STATUS_1_SCSPECIFIC_TMPERROR</td><td>SMSC特定</td>
+    </tr>
+    </table>
+
+  </remarks>
+
+</manpage>

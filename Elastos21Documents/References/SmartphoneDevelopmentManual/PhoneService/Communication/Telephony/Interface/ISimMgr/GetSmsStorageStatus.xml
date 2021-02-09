@@ -1,0 +1,94 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>ISimMgr</interface><method> GetSmsStorageStatus </method>
+    <description>
+        <para>
+          查询SIM卡短信的存储状态。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> DWORD </param_type>
+                <param_name> dwStorage </param_name>
+                <param_note>
+                    <para>
+                       要查询的短信存储类型
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> PDWORD </param_type>
+                <param_name> pdwUsed </param_name>
+                <param_note>
+                    <para>
+                     已经写入的条数
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> PDWORD </param_type>
+                <param_name> pdwTotal </param_name>
+                <param_note>
+                    <para>
+                      总的存储条数
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+      <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_RESINITFAILED</td>
+	    	    <td>初始化失败</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_NOTREADY</td>
+	    	    <td>通讯模块没有准备好，原因可能是没有被初始化或者连接线接触不良</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_GEN_TIMEOUT</td>
+	    	    <td>命令发送后，通讯模块没有及时响应而超时</td>
+	        </tr>
+	         <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	         <tr>
+	    	    <td>E_GEN_INTERNAL</td>
+	    	    <td>通讯模块内部错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../Telephony_Error.htm">Telephony_Error</link>相关帮助。</para>
+	   </return>
+	    <remarks>
+	     <para>通常在开机时调用，查询SIM卡是否要求输入有关的PIN或是PUK等密码。</para>
+		   <para>要查询的短信存储类型为SIM_SMSSTORAGE_BROADCAST表示广播信息存储 CMS91不支持;短信存储类型为SIM_SMSSTORAGE_SIM	表示SIM卡短信存储。</para>
+		</remarks>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

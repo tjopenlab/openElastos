@@ -1,0 +1,82 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>make程序的描述文件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>范例：一个sources文件</h2>
+    <p>源文件</p>
+    <pre>
+    ##########################################################################
+    #
+    # Usually there is only one target to build in each directory.
+    # The target types are normally EXE (executable),DLL (dynamic-load-library),
+    # LIB (library)
+    #
+    TARGET_NAME= hello
+    TARGET_TYPE= exe
+
+    ##########################################################################
+    #
+    # INCLUDES lists the C/C++/IDL header directories.
+    # $(EXTERN_INC) points GnuSDK and $(XDK_INC_PATH)/$(XDK_USER_INC)
+    # points to Elastos, both in DDK and SDK.
+    #
+    # INCLUDES=$(EXTERN_INC);$(EXTERN_INC)\crt
+    # INCLUDES=$(XDK_INC_PATH);$(XDK_USER_INC)
+
+    ##########################################################################
+    #
+    # C_FLAGS defines user specific C\C++ compiler(gcc) flags, this macro is
+    # often used to specify the command flags of C\C++
+    #
+    # C_FLAGS=-s
+
+    ##########################################################################
+    #
+    # CPP_FLAGS defines user specific C\C++ compiler(gcc) flags, this macro is
+    # only used to specify C++ flags which would not be used while compiling
+    # C files
+    #
+    # CPP_FLAGS=-fno-rtti
+
+    ##########################################################################
+    #
+    # LINK_FLAGS defines user specific C/C++ linker flags
+    #
+    # LINK_FLAGS=--image-base $(IMAGE_BASE)
+
+    ##########################################################################
+    #
+    # List of SOURCES files which could be one of the following types:
+    # .cpp .c .rc .idl .def
+    #
+    SOURCES= hello.cpp
+    SOURCES+= world.cpp
+
+    ##########################################################################
+    #
+    # ELASTOS_LIBS lists all .lib or .obj files which are needed to build
+    # this app.  No dependency checking for libs listed in ELASTOS_LIBS.
+    # ELASTOS_LIBS is used only in SDK Enviroment
+    ELASTOS_LIBS= ElCRuntime.lib
+    ELASTOS_LIBS+= elastos.lib
+
+    ##########################################################################
+    #
+    # LIBRARIES lists all .lib or .obj files which are needed to build
+    # this app.  It will do dependency checking for libs listed in LIBRARIES.
+    #
+    # LIBRARIES= $(XDK_USER_LIB)\LibB.lib
+</pre>
+
+<script>footer("chinese")</script>
+</body>
+</html>

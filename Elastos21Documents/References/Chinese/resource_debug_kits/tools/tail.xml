@@ -1,0 +1,78 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> tail </title>
+    <volume>Elastos常用工具</volume>
+
+    <description>
+        <para> 显示指定文件的最后n行（n为指定参数）。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> TAIL </cmd_name>
+        <cmd_param> [-? | -n | -f filename] [filename...] </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name>  -?  </param_name>
+        <param_note> 显示帮助信息</param_note>
+    </param>
+    <param>
+        <param_name>  -n  </param_name>
+        <param_note> 显示文件的最后n行，默认为10</param_note>
+    </param>
+    <param>
+        <param_name>  -f filename  </param_name>
+        <param_note> 到文件最后并不停止，等待输入。使用-f参数时只能打开一个文件</param_note>
+    </param>
+    <param>
+        <param_name>  filename  </param_name>
+        <param_note> 文件名，可为多个文件</param_note>
+    </param>
+    </parameters>
+
+    <remarks>
+        <para>显示多个文件内容时在显示每个文件内容之前打印文件名。</para>
+    </remarks>
+
+    <examples>
+    <example>
+        <eg_line>tail -1 file1.txt</eg_line>
+        <eg_note> 显示文件file1.txt的最后1行。输出结果：</eg_note>
+        <eg_result><![CDATA[
+the last line in file1.txt.
+]]></eg_result>
+
+    </example>
+    <example>
+        <eg_line>tail -1 file1.txt file2.txt  </eg_line>
+        <eg_note> 显示文件file1.txt和file2.txt的最后1行。输出结果：</eg_note>
+        <eg_result><![CDATA[
+==> file1.txt <==
+the last line in file1.txt.
+
+==> file2.txt <==
+the last line in file2.txt.
+]]></eg_result>
+
+    </example>
+
+    </examples>
+
+    <references>
+    <reference>
+        <ref_name> head </ref_name>
+        <ref_url> head </ref_url>
+    </reference>
+    <reference>
+        <ref_name> grep </ref_name>
+        <ref_url> grep </ref_url>
+    </reference>
+    <reference>
+        <ref_name> tee </ref_name>
+        <ref_url> tee </ref_url>
+    </reference>
+    </references>
+
+</manpage>

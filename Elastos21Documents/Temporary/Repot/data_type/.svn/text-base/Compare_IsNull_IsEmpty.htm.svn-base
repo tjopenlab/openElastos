@@ -1,0 +1,161 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR中的数据类型</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+td
+	{padding-top:1.0px;
+	padding-right:1.0px;
+	padding-left:1.0px;
+	color:windowtext;
+	font-size:18.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Arial;
+	text-align:general;
+	vertical-align:bottom;
+	border:medium none;
+	}
+.oa1
+	{border:1.0pt solid black;
+	text-align:center;
+	vertical-align:top;
+	padding-bottom:3.6pt;
+	padding-left:7.2pt;
+	padding-top:3.6pt;
+	padding-right:7.2pt;}
+.oa2
+	{border:1.0pt solid black;
+	vertical-align:middle;
+	padding-bottom:3.6pt;
+	padding-left:7.2pt;
+	padding-top:3.6pt;
+	padding-right:7.2pt;}
+.oa3
+	{border:1.0pt solid black;
+	vertical-align:middle;
+	padding-bottom:3.6pt;
+	padding-left:7.2pt;
+	padding-top:3.6pt;
+	padding-right:7.2pt;}
+-->
+</style>
+</head>
+
+<body>
+
+
+<p><span style="font-weight:700"><font size="5">IsNull、 
+IsEmpty对比</font></span></p>
+<p>　</p>
+<table border="0" cellpadding="0" cellspacing="0" width="921" style="border-collapse:
+ collapse;width:691pt" height="370">
+	<colgroup>
+		<col width="151" style="width: 114pt">
+		<col width="287" style="width: 215pt">
+		<col width="483" style="width: 362pt">
+	</colgroup>
+	<tr height="82" style="height: 61.13pt">
+		<td class="oa1" width="151" style="height:50px;width:114pt">
+		<p style="line-height: normal; text-indent: 0in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: 0in; margin-right: 0in; margin-top: 6.72pt; margin-bottom: 0pt">　</td>
+		<td class="oa2" width="287" style="width:215pt" height="50">
+		<p style="line-height: normal; text-indent: -.38in; text-align: center; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: bold; font-style: normal; vertical-align: baseline">
+		<font size="5">2.0</font></span></td>
+		<td class="oa2" width="483" style="width:362pt" height="50">
+		<p style="line-height: normal; text-indent: -.38in; text-align: center; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: bold; font-style: normal; vertical-align: baseline">
+		<font size="5">2.1</font></span></td>
+	</tr>
+	<tr height="54" style="height: 40.5pt">
+		<td class="oa3" width="151" style="height:86px;width:114pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">IsNull</font></span></td>
+		<td class="oa3" width="287" style="width:215pt" height="86">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">m_psa == 0</font></span></td>
+		<td class="oa3" width="483" style="width:362pt" height="86">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">m_pBuf == NULL</font></span></td>
+	</tr>
+	<tr height="86" style="height: 64.25pt">
+		<td rowspan="2" class="oa3" width="151" style="height:141px;
+  width:114pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">IsEmpty</font></span></td>
+		<td class="oa3" width="287" style="width:215pt" height="71">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">EzArray</font></span><span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">、</font></span><font size="4"><span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">EzByteBuf</span></font><font size="4"><span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">:</span></font></p>
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: simple; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">m_psa-&gt;pvData == 0</font></span></td>
+		<td class="oa3" width="483" style="width:362pt" height="71">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">ArrayOf</font></span><span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">、</font></span><font size="4"><span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">MemoryBuf</span></font><font size="4"><span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">:</span></font></p>
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: simple; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">m_used == 0</font></span></td>
+	</tr>
+	<tr height="89" style="height: 66.63pt">
+		<td class="oa3" width="287" style="height:71px;width:215pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">EzAStrBuf</font></span><span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">、</font></span><span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">EzWStrBuf</font></span></p>
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: simple; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">N/A</font></span></td>
+		<td class="oa3" width="483" style="width:362pt" height="71">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">TStringBuf T=A/W:</font></span></p>
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: simple; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">*(TChar *)m_pBuf == '\0'</font></span></td>
+	</tr>
+	<tr height="110" style="height: 82.75pt">
+		<td class="oa3" width="151" style="height:96px;width:114pt">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">IsNullOrEmpty</font></span></td>
+		<td class="oa3" width="287" style="width:215pt" height="96">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">N/A</font></span></td>
+		<td class="oa3" width="483" style="width:362pt" height="96">
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: hanging; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">ArrayOf</font></span><span style="font-family: 宋体; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline"><font size="4">、</font></span><font size="4"><span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">MemoryBuf</span></font><font size="4"><span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		</span></font></p>
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: simple; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">(m_pBuf == NULL || m_used == 0)</font></span></p>
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: simple; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">TStringBuf T=A/W:</font></span></p>
+		<p style="line-height: normal; text-indent: -.38in; text-align: left; direction: ltr; unicode-bidi: embed; vertical-align: baseline; word-break: normal; punctuation-wrap: simple; margin-left: .38in; margin-right: 0in; margin-top: 0pt; margin-bottom: 0pt">
+		<span style="font-family: Times New Roman; font-variant: normal; color: black; text-transform: none; font-weight: normal; font-style: normal; vertical-align: baseline">
+		<font size="4">m_pBuf == NULL || *(TChar *)m_pBuf == '\0'</font></span></td>
+	</tr>
+</table>
+
+
+    </body>
+</html>

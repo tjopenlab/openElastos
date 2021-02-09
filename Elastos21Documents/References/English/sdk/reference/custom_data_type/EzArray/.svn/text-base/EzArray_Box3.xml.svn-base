@@ -1,0 +1,106 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzArray\EzArray_Box3">EzArray_Box</sample>
+    <volume> Common Data Structures </volume>
+    <method>template&lt;T&gt; EzArray::EzArray_Box(EzArray_Box&lt;T&gt; &amp; src)</method>
+
+    <description>
+        <para>
+        	EzArray's Copy Constructor，it can only get the copy of array pointer.
+        </para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>EzArray_Box&lt;T&gt; &amp;</param_type>
+            <param_name>src </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>
+                	The reference of EzArray object. 
+                </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>
+        	EzArray_Box is a template class, and a subclass of EzArray. Template parameter T specifies the type of the 
+        	array elements.
+        </para>
+        <para>
+        	This constructor creates EzArray object and allocate memory in stack, so no need to call 
+        	<link url="Dispose.htm">Dispose</link>to release memory.
+        </para>
+        <para>
+        	Since source and the target EzArray objects point to the same memory, the 
+        	operation on one EzArray object data area will affect the other.
+        </para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <EzArray.h>
+
+int __cdecl main()
+{
+    int array1[4] = {0, 1, 2, 3};
+
+    EzArray_Box<int> array2(array1, 4, 4);
+
+    printf("EzArray array2:\n");
+
+    for(int i = 0; i < array2.GetLength(); i++) {
+        printf("array2[%d] = %d\n", i, array2[i]);
+    }
+    printf("EzArray array2 used: %d\n", array2.Used());
+
+    EzArray_Box<int> myArray(array2);
+
+    printf("EzArray myArray instantiated using array2.\nEzArray myArray:\n");
+
+    for(i = 0; i < myArray.GetLength(); i++) {
+        printf("myArray[%d] = %d\n", i, myArray[i]);
+    }
+    printf("EzArray myArray used: %d\n", myArray.Used());
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+EzArray array2:
+array2[0] = 0
+array2[1] = 1
+array2[2] = 2
+array2[3] = 3
+EzArray array2 used: 4
+EzArray myArray instantiated using array2.
+EzArray myArray:
+myArray[0] = 0
+myArray[1] = 1
+myArray[2] = 2
+myArray[3] = 3
+EzArray myArray used: 4
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Constructor (T type array) </ref_name>
+            <ref_url> EzArray_Box1 </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Constructor 2 (T type array) </ref_name>
+            <ref_url> EzArray_Box2 </ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\io\fsopen">fsopen</sample>
+    <title>fsopen,_wfsopen</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>打开一个共享流文件。</para>
+    </description>
+
+    <syntax>
+        <return_val>FILE *</return_val>
+        <func_name>fsopen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char *</param_type>
+                <param_name>filename</param_name>
+                <param_note>
+                    <para>文件名</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char *</param_type>
+                <param_name>mode</param_name>
+                <param_note>
+                    <para>允许对文件进行的操作</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>shflag </param_name>
+                <param_note>
+                    <para>文件共享方式</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>FILE *</return_val>
+        <func_name>_wfsopen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t *</param_type>
+                <param_name>filename</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t *</param_type>
+                <param_name>mode</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>shflag </param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>运行成功返回流指针，出错返回NULL</para>
+    </return>
+
+    <remarks>
+        <para>字符串类型的参数mode，有如下的定义：</para>
+        <table>
+    	    <th>
+    	        <td>mode参数值</td>
+    	        <td>描述</td>
+    	    </th>
+            <tr>
+                <td>"r"</td>
+                <td>以只读方式打开文件。如果文件不存在或者没有找到，函数调用失败。</td>
+            </tr>
+            <tr>
+                <td>"w"</td>
+                <td>以只写方式打开空文件。如果给定的文件存在，内容将被清空。</td>
+            </tr>
+            <tr>
+                <td>"a"</td>
+                <td>以追加方式打开文件，在写入数据前不删除EOF标志。如果文件不存在，则首先创建文件。</td>
+            </tr>
+            <tr>
+                <td>"r+"</td>
+                <td>以读/写方式打开文件(此文件必须存在）。</td>
+            </tr>
+           <tr>
+                <td>"w+"</td>
+                <td>以读/写方式打开一个空文件。如果给定的文件存在，内容将被清空。</td>
+            </tr>
+            <tr>
+                <td>"a+"</td>
+                <td>以读/追加方式打开文件；追加操作包括：
+                向文件写入新数据之前删除EOF标志，完成写入后重建EOF标志；如果文件不存在，则首先创建文件。</td>
+            </tr>
+            <tr>
+                <td>t</td>
+                <td>以文本方式打开文件。</td>
+            </tr>
+            <tr>
+                <td>b</td>
+                <td>以二进制方式打开文件。</td>
+            </tr>
+        </table>
+        <para>shflag的定义有以下几种：</para>
+        <table>
+    	    <th>
+    	        <td>shflag参数值</td>
+    	        <td>描述</td>
+    	    </th>
+            <tr>
+                <td>_SH_COMPAT</td>
+                <td>与16位兼容</td></tr>
+            <tr>
+                <td>_SH_DENYNO</td>
+                <td>允许读写文件</td></tr>
+            <tr>
+                <td>_SH_DENYRD</td>
+                <td>拒绝读文件</td></tr>
+            <tr>
+                <td>_SH_DENYRW</td>
+                <td>拒绝读写文件</td></tr>
+            <tr>
+                <td>_SH_DENYWR</td>
+                <td>拒绝写文件</td></tr>
+       </table>
+    </remarks>
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fsopen.cpp: This program opens files named &quot;data&quot;
+ * and &quot;data2&quot;.It  uses fclose to close &quot;data&quot; and
+ * _fcloseall to close all remaining files.
+ */
+
+#include &lt;stdio.h&gt;
+
+FILE *stream, *stream2;
+
+int main()
+{
+
+    /* Open for read (will fail if file &quot;data&quot; does not exist) */
+    if ((stream  = fsopen(&quot;fsopen.exe&quot;, &quot;r&quot;,1)) == NULL)
+        printf(&quot;The file &apos;fsopen.cpp&apos; was not opened\n&quot;);
+    else
+        printf(&quot;The file &apos;fsopen.cpp&apos; was opened\n&quot;);
+
+     /* Close stream */
+    if (fclose(stream))
+        printf(&quot;The file &apos;fsopen.cpp&apos; was not closed\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The file &apos;fsopen.cpp&apos; was opened.
+</result>
+    <requirements>
+        <routine>
+            <routine_name>_fsopen</routine_name>
+            <headerfile>_fsopen.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+</manpage>

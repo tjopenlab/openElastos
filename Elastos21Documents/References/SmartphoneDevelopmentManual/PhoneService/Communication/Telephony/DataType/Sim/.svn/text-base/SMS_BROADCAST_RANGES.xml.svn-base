@@ -1,0 +1,125 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>通讯引擎</volume>
+    <types> SMS_BROADCAST_RANGES </types>
+    <description>
+        <para>
+            广播信息范围数据结枸。
+        </para>
+    </description>
+  <struct>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>cbSize</mem_name>
+            <mem_description>校验值，等于sizeof(SMS_BROADCAST_RANGES) </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwParams</mem_name>
+            <mem_description>设置参数有效性的掩码 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>BOOL</mem_type>
+            <mem_name>bAccept</mem_name>
+            <mem_description>当bAccept为TRUE, dwBroadcastMsgLangs和smsrBroadcastRanges接受的值，否则是不接受的值</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name> dwBroadcastMsgLangs </mem_name>
+            <mem_description>语言选项 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwNumRanges</mem_name>
+            <mem_description>smsrBroadcastRanges的有效值个数（不大于SMS_MAX_BROADCASTRANGES）</mem_description>
+        </struct_member>
+         <struct_member>
+            <mem_type>SMS_RANGE</mem_type>
+            <mem_name>smsrBroadcastRanges[SMS_MAX_BROADCASTRANGES]</mem_name>
+            <mem_description>广播范围设定</mem_description>
+        </struct_member>
+   </struct>
+
+    <remarks>
+		<para>dwParams取值定义如下：</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+
+    <tr>
+       <td>MESSAGE_STATUS_UNKNOWN</td><td>未知</td>
+    </tr>
+    <tr>
+       <td>SMS_PARAM_SBR_BROADCASTMSGIDS</td><td>smsrBroadcastRanges域有效</td>
+    </tr>
+    <tr>
+       <td>SMS_PARAM_SBR_BROADCASTMSGLANGS</td><td>dwBroadcastMsgLangs域有效</td>
+    </tr>
+    <tr>
+       <td>SMS_PARAM_SBR_ACCEPTIDS</td><td>bAccept域有效</td>
+    </tr>
+ </table>
+    <para>dwBroadcastMsgLangs（语言掩码）取值定义如下：</para>
+    <table>
+    <th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>SMS_DCSLANG_GERMAN</td><td>提供德语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_ENGLISH</td><td>提供英语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_ITALIAN</td><td>提供意大利语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_FRENCH</td><td>提供法语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_SPANISH</td><td>提供西班牙语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_DUTCH</td><td>提供荷兰语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_SWEDISH</td><td>提供瑞典语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_DANISH	</td><td>提供丹麦语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_PORTUGUESE</td><td>提供葡萄牙语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_FINNISH</td><td>提供芬兰语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_NORWEGIAN</td><td>提供挪威语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_GREEK</td><td>提供希腊语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_TURKISH</td><td>提供土尔其语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_HUNGARIAN</td><td>	提供匈牙利语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_POLISH</td><td>提供波兰语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_CZECH</td><td>提供捷克语</td>
+    </tr>
+    <tr>
+       <td>SMS_DCSLANG_ALL</td><td>	提供所有语言</td>
+    </tr>
+
+
+    </table>
+
+  </remarks>
+
+</manpage>

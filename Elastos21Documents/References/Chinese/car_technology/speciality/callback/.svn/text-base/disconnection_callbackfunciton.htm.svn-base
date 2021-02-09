@@ -1,0 +1,30 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>回调事件机制</title>
+</head>
+
+<body>
+<h2><span lang="en-us">释放</span><span style="font-family: 黑体">接口指针</span></h2>
+<h3><span style="font-size: 10.5pt; line-height: 173%; font-family: 宋体">引用计数</span></h3>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size:10.5pt;line-height:150%;font-family:宋体">多个客户端使用同一<span lang="EN-US">CAR</span>构件时，只要有客户要使用构件，需要保证构件对象不被销毁，而当没有客户使用构件时，要及时销毁构件对象，以回收资源。那么如何才能知道还有没有客户使用构件呢，在<span lang="EN-US">CAR</span>构件中使用引用计数可以解决这个问题。</span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size:10.5pt;line-height:150%;font-family:宋体">引用计数基本规则：</span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size:10.5pt;line-height:150%;font-family:宋体">
+客户创建构件对象并获得了第一个接口指针后，引用计数应该为<span lang="EN-US">1;</span></span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size:10.5pt;line-height:150%;font-family:宋体">
+在客户程序中，当把接口指针赋给其他变量时，应该调用<span lang="EN-US">AddRef</span>，使用引用计数增<span lang="EN-US">1;</span></span></p>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size:10.5pt;line-height:150%;font-family:宋体">
+在客户程序中，当一个接口指针被使用完后，应该调用<span lang="EN-US">Release</span>，使引用计数减<span lang="EN-US">1</span>。</span></p>
+<h3><span lang="EN-US" style="font-size:10.5pt;line-height:173%">Release</span></h3>
+<p class="MsoNormal" style="text-indent: 21.0pt; line-height: 150%; layout-grid-mode: char">
+<span style="font-size:10.5pt;line-height:150%;font-family:宋体">当一个接口指针被使用完后，应该调用<span lang="EN-US">Release</span>，使引用计数减<span lang="EN-US">1</span>。当引用计数的值为<span lang="EN-US">0</span>时，<span lang="EN-US">CAR</span>构件自动析构。</span></p>
+</body>
+</html>

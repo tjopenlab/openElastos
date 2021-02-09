@@ -1,0 +1,64 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> cls2src </title>
+    <volume>Common Elastos Tools</volume>
+
+    <description>
+        <para>Using carc cls file generate files needed by CAR component development and testing.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> CAR2SRC </cmd_name>
+        <cmd_param> [-f] [-i] [-b] [-c] [-p path] [-h] clsfilename </cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> -h   </param_name>
+        <param_note> Displays help information </param_note>
+    </param>
+    <param>
+        <param_name> -f clsfilename </param_name>
+        <param_note> Uses cls file to generate component source framework </param_note>
+    </param>
+    <param>
+        <param_name> -i  clsfilename </param_name>
+        <param_note> Generated idl file with the same name as class (with different extension) </param_note>
+    </param>
+    <param>
+        <param_name> -c  clsfilename  </param_name>
+        <param_note> Generates CAR file with the same name as class (different extension) </param_note>
+    </param>
+    <param>
+        <param_name>  -p  path </param_name>
+        <param_note> Specified path of generated file </param_note>
+    </param>
+    </parameters>
+    <examples>
+     <example>
+        <eg_line>cls2src -p D:\Elastos.Dev\src\samples\sam1\ -c hello.cls </eg_line>
+        <eg_note> Generates CAR file corresponding to hello.cls under specified directory.</eg_note>
+    </example>
+    </examples>
+
+    <references>
+        <reference>
+            <ref_name> carc </ref_name>
+            <ref_url> carc </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Introduction to CAR component technology </ref_name>
+            <ref_url> ../../preface/elastos_technic/elastos_car </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Automatic code generation framework </ref_name>
+            <ref_url> ../../car_technology/fundamental/development_environment/auto_generate_code/auto_generate</ref_url>
+        </reference>
+    </references>
+
+</manpage>

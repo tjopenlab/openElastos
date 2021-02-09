@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicFile</interface><method> CheckAccessMode </method>
+    <description>
+        <para>
+            检验操作对象是否具有指定的读写模式。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> FileAccessMode </param_type>
+                <param_name> mode </param_name>
+                <param_note>
+                    <para>
+待检验的读写模式，参见<link url="../../FileSystemDataType/FileAccessMode.htm">FileAccessMode</link>数据类型                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功且对象具有指定的读写模式，返回NOERROR； </para>
+    <para>如果参数mode非法，返回E_INVALID_ARGUMENT； </para>
+    <para>如果对象不具有指定的读写模式，返回E_FS_NO_PERMISSION。</para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>            
+        	  所有文件和目录均可读;对于可写或可读可写文件和目录，当参数为FileAccessMode_Read, FileAccessMode_Write或FileAccessMode_ReadWrite时，都将返回NOERROR。
+        </para>
+    </remarks>
+</manpage>

@@ -1,0 +1,138 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strncat">strncat</sample>
+    <title> strncat, wcsncat</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Append characters of a string.</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strncat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strDest</param_name>
+                <param_note>
+                    <para>Null-terminated destination string.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strSource</param_name>
+                <param_note>
+                    <para>Null-terminated source string.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Number of characters to append.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>wcsncat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>strDest</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>strSource</param_name>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns a pointer to the destination string. No return value is reserved to indicate an error.</para>
+    </return>
+
+    <remarks>
+        <para>The strncat function appends, at most, the first count characters of strSource to strDest. The initial charcter of strSource overwrites the terminating null character of strDest. If a null character appears in strSource before count characters are appended, strncat appends all charcters from strSource, up to the null character. If count is greater than the length of strSource, the length of strSource is used in place of count. The resulting string is terminated with a null character. If copying takes place between strings that overlap, the behavior is undefined.</para>
+        <para> wcsncat is the wide-character version of strncat. The string arguments and return value of wcsncat are wide-character strings. These two functions behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strncat</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcsncat</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strncat.cpp:this program use strncat to appends, at most, the first count characters of suffix to string
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[80] = &quot;This is the initial string!&quot;;
+    char suffix[] = &quot; extra text to add to the string...&quot;;
+    /* Combine strings with no more than 19 characters of suffix: */
+    printf(&quot;Before: %s\n&quot;, string);
+    strncat(string, suffix, 19);
+    printf(&quot;After:  %s\n&quot;, string);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Before: This is the initial string!
+After:  This is the initial string! extra text to add
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcscat</ref_name>
+            <ref_url>wcscat</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcsncpy</ref_name>
+            <ref_url>wcsncpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strspn </ref_name>
+            <ref_url> strspn  </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strcspn </ref_name>
+            <ref_url> strcspn  </ref_url>
+        </reference>
+    </references>
+
+</manpage>

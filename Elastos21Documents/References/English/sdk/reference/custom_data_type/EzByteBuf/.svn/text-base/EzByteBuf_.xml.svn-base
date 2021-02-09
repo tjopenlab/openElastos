@@ -1,0 +1,54 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzByteBuf\DECL">EzByteBuf_</sample>
+    <volume> COMMON STRUCTURE </volume>
+    <method>template&lt;int SIZE&gt; EzByteBuf_::EzByteBuf_</method>
+
+    <description>
+        <para> Constructor of EzByteBuf used to create an EzByteBuf object, and allocates memory blocks for the object. </para>
+    </description>
+
+    <syntax>
+        <NoArguments/>
+    </syntax>
+
+    <remarks>
+        <para> EzByteBuf_ is a template class and a subclass of EzByteBuf. The template parameter SIZE assigned the number of bytes of buffer. </para>
+        <para> It can allocate memory in STACK(if we declare an EzByteBuf variant as local variant) or in DATA SEGMENT(if we declare an EzByteBuf variant as static or global variant). </para>
+        <para> [WARNING] In the functions which prefixed extern "C" to, this function is forbidden to create an EzByteBuf object. </para>
+    </remarks>
+
+<example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzByteBuf_<100> buf;
+    int capa;
+
+    capa = buf.Capacity();
+    printf("EzByteBuf is declared and capacity is %d\n", capa);
+
+    return 0;
+}
+]]></pre></example>
+
+<result><![CDATA[
+EzByteBuf is declared and capacity is 100.
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Constructor（not allocated memory blocks） </ref_name>
+            <ref_url> EzByteBuf </ref_url>
+        </reference>
+    </references>
+
+</manpage>

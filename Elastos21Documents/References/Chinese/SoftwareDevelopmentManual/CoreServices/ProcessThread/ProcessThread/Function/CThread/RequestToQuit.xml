@@ -1,0 +1,62 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\ezThread"> CThread::RequestToQuit </sample>
+    <volume>线程</volume>
+    <title>CThread::RequestToQuit</title>
+    <routine_idx>../../../Thread.htm</routine_idx>
+
+    <description>
+        <para>异步退出线程，仅适用CallBack线程。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> QuitCode </param_type>
+                <param_name> quitCode </param_name>
+                <param_note>
+                    <para>[in]线程退出时的退出码，使用<link url="../../IThread/GetFinishCode.htm">IThread::GetQuitCode</link>方法能得到线程的QuitCode。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+	<table>
+		<td>返回值 </td>
+		<td>此方法没有返回值</td>
+	</table>
+    </return>
+
+    <remarks>
+    <para>如果线程是CallBack线程，优先使用该方法退出线程。线程将在当前正在处理的消息处理完后，安全退出CallBack线程。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CThread::Quit </ref_name>
+        <ref_url> Quit</ref_url>
+    </reference>
+    </references>
+
+</manpage>

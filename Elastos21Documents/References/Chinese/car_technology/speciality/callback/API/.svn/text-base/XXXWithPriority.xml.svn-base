@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+     <volume> Callbacks相关API </volume>
+    <method>XXXWithPriority</method>
+    <description>
+        <para>按照优先级顺序激发回调事件。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32   </param_type>
+            <param_name>cFlags</param_name>
+            <param_note>
+                <para> 优先级指数，优先级越高，事件被压入消息队列的位置越靠前。参见<link url="..\references\callbackPriority.htm ">CallbackPriority </link>枚举类型说明  </para>
+            </param_note>
+        </api_param> 
+
+        </parameters>
+    </syntax>
+    
+    <remarks>
+        <para>调用Callback：：XXX（）激发回调事件后，每个被激发的事件都会被Push到消息队列中等待处理，通常情况下是先入先出。</para>
+        <para>调用Callback::XXXWithPriority(...)激发回调事件后，该事件在进入队列时会根据优先级选择入列的位置，优先级越高就被排在靠前，更快被处理，优先级相同则按到达先后顺序处理。 </para>
+        <para>实际上对于Callback：：XXX（）激发的回调事件，系统会为其加上一个默认的优先级别CallbackPriority_Normal。 </para>
+    </remarks>
+     
+</manpage>

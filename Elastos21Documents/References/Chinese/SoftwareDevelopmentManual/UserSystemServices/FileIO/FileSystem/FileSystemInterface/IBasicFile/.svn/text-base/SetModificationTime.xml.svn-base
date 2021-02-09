@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicFile</interface><method> SetModificationTime </method>
+    <description>
+        <para>
+            设置操作对象的最后一次修改时间。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> time </param_name>
+                <param_note>
+                    <para>
+设置的秒数                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果文件对象为只读属性，返回E_FS_NO_PERMISSION； </para>
+    <para>如果设置的时间在1980年1月1日以前，返回E_INVALID_ARGUMENT； </para>
+    <para>当文件的共享方式被其他用户设置为 FileShareMode_Deny 或 FileShareMode_Read 时，返回E_FS_FILE_BUSY。 </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            返回的时间是从UTC时间1970年1月1日00:00:00时起，至文件最后一次修改对象所经历的时间，单位为秒。</para><para>            要求设置的时间为1980年1月1日以后的时间，即time不能小于315532800。
+        </para>
+    </remarks>
+</manpage>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ILanguagePack</interface><method> GetText </method>
+    <description>
+        <para>
+            获取指定的字符串资源。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> languageID </param_name>
+                <param_note>
+                    <para>
+语言ID                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> textID </param_name>
+                <param_note>
+                    <para>
+字符串的索引                 </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf_&lt;&gt; </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+字符串资源，不能为空                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；如果esbText为空，返回E_INVALID_ARGUMENT；如果如果所查询的字串不存在、无法取出或语言库尚未打开，返回E_DOES_NOT_EXIST；如果BUFFER过小，则方法调用失败，并返回E_BUFFER_TOO_SMALL。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.1》或更高版本            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElControls.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

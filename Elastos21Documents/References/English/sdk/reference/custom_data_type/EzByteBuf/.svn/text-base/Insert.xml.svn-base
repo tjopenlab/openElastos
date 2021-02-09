@@ -1,0 +1,91 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzByteBuf\Insert">insert</sample>
+    <volume> COMMON DATA STRUCTURE </volume>
+    <interface> EzByteBuf   </interface>
+    <method> Insert </method>
+
+    <description>
+        <para>Inserts a string into current byte buffer at specified position. </para>
+    </description>
+
+    <syntax>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const void* </param_type>
+            <param_name> p </param_name>
+            <param_note>
+                <para> Pointer to the data to be inserted.  </para>
+            </param_note>
+        </api_param>
+
+        <api_param>
+            <param_type> int </param_type>
+            <param_name> offset </param_name>
+            <param_note>
+                <para> offset to the start address of the buffer. The extension of offset is greater than or equal to 0 and less than or equal to the length of the assigned part of the buffer. </para>
+            </param_note>
+        </api_param>
+
+        <api_param>
+            <param_type> int </param_type>
+            <param_name> n</param_name>
+            <param_note>
+                <para> The number of bytes to be inserted. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If operation is successful, returns the actual number of bytes inserted. if parameter <i>offset</i> is less than 0 or greater than the length of the assigned part of buffer, insert operation fails and returns 0.</para>
+    </return>
+
+    <remarks>
+        <para>After inserting, if the length of result data beyond the max length of current buffer, the part out of buffer will be cut off.</para>
+        <para>If parameter <i>p</i> is 0 (that means the pointer to data is NULL), but parameter <i>n</i> is not 0 (that means the number of bytes is not 0), it leads to a run time error.</para>
+    </remarks>
+
+<example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzByteBuf_<200> buf;
+
+    buf.Copy("Good to you!", 13);
+    printf("Original: %s\n", (char*)buf);
+
+    buf.Insert("luck ", 5, 5);
+    printf("After inserting at pos=5: %s\n", (char*)buf);
+
+
+    return 0;
+}
+]]></pre></example>
+
+<result><![CDATA[
+Original: Good to you!
+After inserting at pos=5: Good luck to you!
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Append </ref_name>
+            <ref_url> Append </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Copy </ref_name>
+            <ref_url> Copy </ref_url>
+        </reference>
+    </references>
+
+</manpage>

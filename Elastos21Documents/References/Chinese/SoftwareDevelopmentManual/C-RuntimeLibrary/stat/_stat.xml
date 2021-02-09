@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stat\_stat">_wstat</sample>
+    <title>_stat, _wstat </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stat_idx.htm </routine_idx>
+
+    <description>
+        <para>获取文件描述信息。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_stat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>path</param_name>
+                <param_note>
+                    <para>指向已存在文件的路径的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>struct stat*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>指向存储结果的结构指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wstat</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>path</param_name>
+            </func_param>
+            <func_param>
+                <param_type>struct stat*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>成功获得文件描述信息返回0，出错则返回-1，并将errno设为ENOENT，说明文件或路径不存在。</para>
+    </return>
+
+    <remarks>
+        <para>_stat函数获取由参数path指定的文件或目录信息，并把它存储在由buffer参数指定的结构里。_stat函数能根据当前使用的多字节代码页，自动将多字节字符串变量处理为相应的多字节字符序列。</para>
+        <para>_wstat是_stat的宽字符版本；_wstat的参数path是宽字符串；除_wstat不处理多字节字符串之外，_wstat和_stat是一样的。</para>
+        <para>结构stat在stat.h中定义，包含以下几个域：</para>
+        <table>
+            <th>
+                <td>stat域</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td> st_gid </td>
+                <td>文件组的数字标志（unix特有）。在NT系统下该项值为0。重定向文件归类为NT文件。目前无效。</td>
+            </tr>
+            <tr>
+                <td> st_atime</td>
+                <td>最后访问文件时间。</td>
+            </tr>
+            <tr>
+                <td> st_ctime </td>
+                <td>创建文件时间。</td>
+            </tr>
+            <tr>
+                <td> st_mtime</td>
+                <td>最后修改文件时间。</td>
+            </tr>
+            <tr>
+                <td> st_dev </td>
+                <td>包含该文件的磁盘符号（同st_rdev)。目前无效。</td>
+            </tr>
+            <tr>
+                <td> st_ino </td>
+                <td>UNIX文件系统里的文件索引节（the inode)号。索引节记录了文件日期，时间标志，权限和容量。如果文件之间是相互硬连接的，则他们共享同一个索引节。索引节和st_ino在FAT，HPFS，以及NTFS文件系统中是无效的。目前无效。 </td>
+            </tr>
+            <tr>
+                <td> st_mode </td>
+                <td>文件模式信息的比特掩码，如果path参数是目录，_S_IFDIR位被设置；如果path参数为普通文件或设备，_S_IFREG位被设置；根据文件访问权限来设置用户写/读位；根据文件扩展名来设置用户的执行位。 </td>
+            </tr>
+            <tr>
+                <td> st_nlink</td>
+                <td>在非NTFS文件系统中设置为1。目前无效。</td>
+            </tr>
+            <tr>
+                <td> st_size </td>
+                <td>文件字节大小。</td>
+            </tr>
+            <tr>
+                <td> st_rdev </td>
+                <td>包含该文件的磁盘符号（同st_dev)。目前无效。</td>
+            </tr>
+            <tr>
+                <td> st_uid </td>
+                <td>文件拥有者（UNIX特有）的数字标志符。在NT系统中该域为0。重定向文件归类为NT文件。目前无效。</td>
+            </tr>
+        </table>
+
+        <para>如果path参数代表设备，则stat结构中的size，time，_dev，和_rdev域是无效的。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_stat</routine_name>
+            <headerfile>stat.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wstat</routine_name>
+            <headerfile>stat.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _stat.cpp: This program uses the _stat function to
+ * report information about the file named _stat.cpp.
+ */
+
+#include &lt;time.h&gt;
+#include &lt;stat.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    struct stat buf;
+    int result;
+
+    /* Get data associated with &quot;stat.c&quot;: */
+    result = _stat(&quot;_stat.exe&quot;, &amp;buf);
+
+    /* Check if statistics are valid: */
+    if (result != 0)
+        perror(&quot;Problem getting information&quot;);
+    else {
+        
+        printf(&quot;File size      : %ld\n&quot;, buf.st_size);
+        printf(&quot;Drive            : %c:\n&quot;, buf.st_dev + &apos;A&apos;);
+        printf(&quot;Time modified : %s\n&quot;, ctime(&amp;buf.st_atime));
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+some of the statistics:
+File size      : 41088
+Drive            :  :
+Time modified : Tue Nov 06 00:00:00 2007
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_access</ref_name>
+            <ref_url>../io/_waccess</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_fstat</ref_name>
+            <ref_url>_fstat</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IThemeOption</interface><method> GetThemeValue </method>
+    <description>
+        <para>
+            根据传入的主题名字从数据库中读取某一主题的配置文件到pThemeData数据块中。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esName </param_name>
+                <param_note>
+                    <para>
+主题名字                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IThemeDataRef * </param_type>
+                <param_name> pThemeData </param_name>
+                <param_note>
+                    <para>
+指向IThemeData类型指针的指针，用于存放主题中所有参数的数据模块                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；esName和pThemeData为空或者esName的长度为0，返回E_INVALIDARG；读取环境变量（数据库名）失败，返回E_INVALID_ENVIRONMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

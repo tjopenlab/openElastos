@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>OnReadyStateChange (JHTTPRequestEvents)</volume>
+<interface>JHTTPRequestEvents</interface><method> OnReadyStateChange </method>
+    <description>
+        <para>
+            HTTP 请求状态改变时触发。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ReadState  </param_type>
+                <param_name> emuReadState </param_name>
+                <param_note>
+                    <para>
+HTTP 请求的当前状态</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+<remarks>
+    <para>
+        当 readState 为 <link url="../datatype/ReadState.htm">ReadState_INTERACTIVE</link> 时，该事件可能会被触发多次。更多回调事件信息，参见 Callback 机制介绍。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CHttpRequest 类介绍 </ref_name>
+        <ref_url>../../HttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>HttpRequest 回调事件列表</ref_name>
+        <ref_url>../HttpRequestEvents</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ReadState</ref_name>
+        <ref_url>../datatype/ReadState</ref_url>
+    </reference>
+</references>    
+</manpage>

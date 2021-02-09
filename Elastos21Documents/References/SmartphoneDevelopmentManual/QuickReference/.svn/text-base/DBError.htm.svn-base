@@ -1,0 +1,174 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>sqlite数据库错误码</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<h3>sqlite数据库错误码 </h3>
+    <p>数据库常见的错误码其解释，列表如下：</p>
+
+    <table>
+        <thead>
+            <td width="25%">返回值</td>
+            <td width="17%">十六进制值</td>
+            <td width="58%">描述</td>
+        </thead>
+        <tr>
+            <td>NOERROR</td>
+            <td>0x0</td>
+            <td>返回正确</td>
+        </tr>
+        <tr>
+            <td>S_DB_ROW_READY</td>
+            <td>0x40d064</td>
+            <td>成功获取一行记录</td>
+        </tr>
+        <tr>
+            <td>S_DB_FINISHED_EXECUTION</td>
+            <td>0x40d065</td>
+            <td>已完成执行</td>
+        </tr>
+        <tr>
+            <td>E_DB_SQL_ERROR</td>
+            <td>0x8040D001</td>
+            <td>SQL错误或数据库丢失</td>
+        </tr>
+        <tr>
+            <td>E_DB_INTERNAL_ERROR</td>
+            <td>0x8040D002</td>
+            <td>数据库内部逻辑错误</td>
+        </tr>
+        <tr>
+            <td>E_DB_PERMISSION_DENIED </td>
+            <td>0x8040D003</td>
+            <td>拒绝授权访问</td>
+        </tr>
+        <tr>
+            <td>E_DB_REQUESTED_ABORT  </td>
+            <td>0x8040D004</td>
+            <td>回调程序需要一个中断</td>
+        </tr>
+        <tr>
+            <td>E_DB_FILE_BUSY </td>
+            <td>0x8040D005</td>
+            <td>数据库文件被锁</td>
+        </tr>
+        <tr>
+            <td>E_DB_TABLE_LOCKED</td>
+            <td>0x8040D006</td>
+            <td>数据库表被锁</td>
+        </tr>
+        <tr>
+            <td>E_DB_OUT_OF_MEMORY  </td>
+            <td>0x8040D007</td>
+            <td>malloc() 函数失败</td>
+        </tr>
+        <tr>
+            <td>E_DB_READ_ONLY_DATABASE  </td>
+            <td>0x8040D008</td>
+            <td>试图写一个只读数据库</td>
+        </tr>
+        <tr>
+            <td>E_DB_OPERATION_INTERRUPTED </td>
+            <td>0x8040D009</td>
+            <td>用户中断操作 </td>
+        </tr>
+        <tr>
+            <td>E_DB_DISK_IO_ERROR </td>
+            <td>0x8040D00A</td>
+            <td>某种硬盘I/O错误</td>
+        </tr>
+        <tr>
+            <td>E_DB_FILE_CORRUPTED</td>
+            <td>0x8040D00B</td>
+            <td>数据磁盘映象异常</td>
+        </tr>
+        <tr>
+            <td>E_DB_TABLE_NOT_FOUND </td>
+            <td>0x8040D00C</td>
+            <td>表或记录没有找到（仅限数据库内部）</td>
+        </tr>
+        <tr>
+            <td>E_DB_DATABASE_FULL  </td>
+            <td>0x8040D00D</td>
+            <td>数据库已满致使插入失败</td>
+        </tr>
+        <tr>
+            <td>E_DB_CANT_OPEN_DATABASE</td>
+            <td>0x8040D00E</td>
+            <td>不能打开数据库文件</td>
+        </tr>
+        <tr>
+            <td>E_DB_LOCK_PROTOCOL_ERROR </td>
+            <td>0x8040D00F</td>
+            <td>数据库锁协议错误</td>
+        </tr>
+        <tr>
+            <td>E_DB_DATABSE_EMPTY  </td>
+            <td>0x8040D010</td>
+            <td>数据库为空</td>
+        </tr>
+        <tr>
+            <td>E_DB_SCHEMA_CHANGED </td>
+            <td>0x8040D011</td>
+            <td>数据库模式改变</td>
+        </tr>
+        <tr>
+            <td>E_DB_DATA_TOO_BIG  </td>
+            <td>0x8040D012</td>
+            <td>超过行的数据范围限制</td>
+        </tr>
+        <tr>
+            <td>E_DB_CONSTRAINT_VIOLATION</td>
+            <td>0x8040D013</td>
+            <td>违反约束条件导致中断</td>
+        </tr>
+        <tr>
+            <td>E_DB_DATA_TYPE_MISMATCH  </td>
+            <td>0x8040D014</td>
+            <td>数据类型不匹配</td>
+        </tr>
+        <tr>
+            <td>E_DB_LIBRARY_MISUSE  </td>
+            <td>0x8040D015</td>
+            <td>库函数使用不正确</td>
+        </tr>
+        <tr>
+            <td>E_DB_NO_OS_SUPPORT  </td>
+            <td>0x8040D016</td>
+            <td>使用了操作系统不支持的特性</td>
+        </tr>
+        <tr>
+            <td>E_DB_AUTHORIZATION_DENIED </td>
+            <td>0x8040D017</td>
+            <td>授权被拒绝</td>
+        </tr>
+        <tr>
+            <td>E_DB_AUXILIARY_DB_FORMAT_ERROR </td>
+            <td>0x8040D018</td>
+            <td>辅助数据库的格式错误</td>
+        </tr>
+        <tr>
+            <td>E_DB_PARAMETER_OUT_OF_RANGE  </td>
+            <td>0x8040D019</td>
+            <td>第二个参数超出范围</td>
+        </tr>
+        <tr>
+            <td>E_DB_NOT_A_DATABASE_FILE  </td>
+            <td>0x8040D01A</td>
+            <td>打开的文件不是数据库文件</td>
+        </tr>
+        <tr>
+            <td>E_DB_OPERATE_ON_CLOSED_OBJECT  </td>
+            <td>0x8040D030</td>
+            <td>操作一个已关闭的数据库/数据库语句/记录集</td>
+        </tr>
+
+    </table>
+<script>footer("chinese")</script>
+</body>
+</html>

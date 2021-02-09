@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\float\_scalb">_scalb</sample>
+    <title> _scalb</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> float_idx.htm </routine_idx>
+
+    <description>
+        <para>计算浮点数与2的若干次幂的乘积。</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>_scalb</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>浮点数值</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>exp</param_name>
+                <param_note>
+                    <para>长整型指数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果计算成功，返回浮点数与2的若干次幂的乘积。溢出时（依据x的符号），_scalb返回+/- HUGE_VAL，错误号设置为ERANGE。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>_scalb</routine_name>
+            <headerfile>float.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _scalb.cpp: This program scales argument by a power of 2.
+ */
+
+#include &lt;float.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double x, z;
+    long y;
+
+    x = 123.456789;
+    y = 16;
+    z = _scalb(x, y);
+    printf(&quot;_scalb(%f, %ld) = %f\n&quot;, x, y, z);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+_scalb(123.456789, 16) = 8090864.123904
+</result>
+
+
+
+</manpage>

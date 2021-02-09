@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICurThemeOption</interface><method> SetCurThemeName </method>
+    <description>
+        <para>
+            设置当前主题的名字。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esThemeName </param_name>
+                <param_note>
+                    <para>
+要设置的主题名字                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；当esThemeName为空或者esThemeName的长度为0，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            设置的名字是所选中的系统主题或是用户自定义主题的名字，把该名字写入配置文件中，成为当前启动的主题名字。</para><para>            在这个接口中，对于esThemeName字符串的长度没有作限制，但是从UI界面传入下来的字符串长度应该不会超过20个字符，同时esThemeName不能为空。
+        </para>
+    </remarks>
+</manpage>

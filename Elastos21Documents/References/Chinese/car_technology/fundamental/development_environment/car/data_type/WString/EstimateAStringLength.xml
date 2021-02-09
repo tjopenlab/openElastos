@@ -1,0 +1,56 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WString</interface>
+    <method>EstimateAtringLength </method>
+
+    <description>
+        <para>估算把WString的实例按特定的编码格式转成AString对象时所占的字符数，单位为sizeof(AChar)。 </para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name> encoding  </param_name>
+            <param_default> Encoding_Default </param_default>
+            <param_note>
+                <para> 编码格式。参见<link url="../../others/Encoding.htm">Encoding</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>        
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>所估算的字符数。 </para>
+    </return>
+
+<example>
+<pre>
+WString as1 = L"中";
+CConsole::WriteLine(as1.GetLength());//Display : 1
+CConsole::WriteLine(as1.EstimateAStringLength());//Display : 2
+WString as2 = L"a";
+CConsole::WriteLine(as2.GetLength());//Display : 1
+CConsole::WriteLine(as2.EstimateAStringLength());//Display : 1
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>WString</ref_name>
+        <ref_url>../WString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::GetLength </ref_name>
+        <ref_url>../WString/GetLength</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::EstimateWStringLength</ref_name>
+        <ref_url>../AString/EstimateWStringLength</ref_url>
+    </reference>
+</references>     
+</manpage>

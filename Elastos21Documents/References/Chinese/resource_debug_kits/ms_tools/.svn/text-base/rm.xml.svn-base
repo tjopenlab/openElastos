@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> rm </title>
+    <volume>微软的工具</volume>
+
+    <description>
+        <para> 删除文件。详细内容请参见微软文档。</para>
+    </description>
+
+    <syntax>
+        <cmd_name> RM </cmd_name>
+        <cmd_param> [/help] [/ikft] [/x [/d]] [/r dir] files </cmd_param>
+    </syntax>
+
+    <parameters>
+        <param>
+            <param_name>  /help  </param_name>
+            <param_note> 调用帮助信息</param_note>
+        </param>
+        <param>
+            <param_name>  /i  </param_name>
+            <param_note> 提示用户是否删除文件</param_note>
+        </param>
+        <param>
+            <param_name>  /k  </param_name>
+            <param_note> 删除文件时跳过只读文件</param_note>
+        </param>
+        <param>
+            <param_name>  /r dir  </param_name>
+            <param_note> 把文件移到子目录</param_note>
+        </param>
+        <param>
+            <param_name>   /f    </param_name>
+            <param_note> 删除只读文件时不提示</param_note>
+        </param>
+        <param>
+            <param_name>  /t   </param_name>
+            <param_note> 删除文件时，测试文件所用者身份</param_note>
+        </param>
+        <param>
+            <param_name>  /x  </param_name>
+            <param_note> 不把被删除的文件保存到deleted子目录中</param_note>
+        </param>
+        <param>
+            <param_name>  /d   </param_name>
+            <param_note> 延迟删除到重起</param_note>
+        </param>
+    </parameters>
+
+    <remarks>
+        <para>用rm删除文件时，会在文件所在目录建立一个隐藏属性的deleted目录，保存被删除文件；如果使用了/x参数，则不会保存被删除文件，删除后的文件不可恢复。
+        </para>
+    </remarks>
+
+    <references>
+        <reference>
+            <ref_name> ls </ref_name>
+            <ref_url> ../tools/ls </ref_url>
+        </reference>
+        <reference>
+            <ref_name> cp </ref_name>
+            <ref_url> ../tools/cp </ref_url>
+        </reference>
+    </references>
+
+    <examples>
+        <example>
+            <eg_line>rm file.txt  </eg_line>
+            <eg_note> 删除文件file.txt。</eg_note>
+        </example>
+    </examples>
+
+</manpage>

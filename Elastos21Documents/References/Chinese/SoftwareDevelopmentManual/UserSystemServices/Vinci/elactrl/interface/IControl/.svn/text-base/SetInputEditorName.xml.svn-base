@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> SetInputEditorName </method>
+    <description>
+        <para>
+            设置控件输入法编辑器名。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> editorName </param_name>
+                <param_note>
+                    <para>
+输入法编辑器名</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+    	  输入法编辑器名称，如陈桥五笔；输入法名，如陈桥五笔里有五笔、拼音等。请注意：具体的编辑器名和类型名是输入法自己定的，只有输入法去公布它的名字让用户使用。
+    </para>
+    <para>
+    	  调用 <link url="SetInputMethod.htm">SetInputMethod</link> 方法也能设置输入法编辑器。设置具体的输入法可以通过 <link url="SetInputMethod.htm">SetInputMethod</link> 或 <link url="SetInputMethodName.htm">SetInputMethodName</link> 方法。
+    </para>
+</remarks>    
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetInputEditorName</ref_name>
+        <ref_url>GetInputEditorName</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetInputMethod</ref_name>
+        <ref_url>SetInputMethod</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetInputMethodName</ref_name>
+        <ref_url>SetInputMethodName</ref_url>
+    </reference>
+</references>  
+</manpage>

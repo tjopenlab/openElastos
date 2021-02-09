@@ -1,0 +1,41 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <volume>Kernel Provided Method</volume>
+    <title>KernelInitialize</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>Initializes kernel.</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>bool_t</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+	<return>
+	    <para>Initializes kernel successfully; returns TRUE, otherwise returns FALSE.</para>
+    </return>
+
+    <remarks>
+        <para>This method is used to initialize kernel. Before initializing kernel,<b>KernelSetup</b> method to setup kernel has to be invoked. Major task in kernel initialization phase depends mostly on board supporting interface.Hence before invoking this method you need to make sure that you keep all methods and variables of board supporting interface available.The kernel becomes bootable after invoking this method successfully.</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+</manpage>
+   

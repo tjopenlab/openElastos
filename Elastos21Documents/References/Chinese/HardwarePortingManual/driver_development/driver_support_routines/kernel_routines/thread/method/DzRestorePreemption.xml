@@ -1,0 +1,56 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+
+    <volume>线程与调度</volume>
+    <title>DzRestorePreemption</title>
+    <routine_idx> ../../thread.htm </routine_idx>
+
+    <description>
+        <para>根据指定的状态恢复系统抢占。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> bool_t</param_type>
+                <param_name> bPreemption </param_name>
+                <param_note>
+                    <para>指定将被恢复的系统抢占状态</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本函数将根据指定的状态来恢复系统抢占。所指定的系统抢占状态应该是前一次调用<link url="DzDisablePreemption.htm">DzDisablePreemption</link>函数以禁止系统抢占时所返回的原先的系统抢占状态。如果调用本函数前未禁止系统抢占，则本函数的行为是未定义的。</para>
+        <para>如果bPreemption为TRUE，会使系统恢复抢占状态；如果bPreemption为FALSE，则系统将保持禁止抢占状态。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>DzDisablePreemption</ref_name>
+            <ref_url>DzDisablePreemption</ref_url>
+        </reference>
+    </references>
+
+
+
+</manpage>

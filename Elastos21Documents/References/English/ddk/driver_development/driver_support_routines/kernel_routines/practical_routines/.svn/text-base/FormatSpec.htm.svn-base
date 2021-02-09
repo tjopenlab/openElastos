@@ -1,0 +1,244 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Format Specification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>Format Specification </h2>
+    <p>A format specification, which consists of optional and required fields; has the following form :</p>
+    <pre class="code">
+		%[flags] [width] [.precision] type
+	</pre>
+    <p>
+	    Each field of the format specification is a single character or a number signifying a particular format 
+	    option. The simplest format specification contains only the percent sign and a type character 
+	    (for example, %s). If a percent sign is followed by a character that has no meaning as a format field, 
+	    the character is copied to stdout. For example, to print a percent-sign character, use %%.
+    </p>
+    <p>
+    	The optional fields, which appear before the type character control other aspects of the formatting 
+    	as follows: </p>
+    <h2>type</h2>
+    <p>
+    	Required character that determines whether the associated argument is interpreted as a character, 
+    	a string, or a number. 
+    </p>
+    <p>Type Field Characters:</p>
+    <table>
+        <thead>
+            <td>Character</td><td>Type</td><td>Output format</td>
+        </thead>
+        <tr>
+            <td>
+                c
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Single-byte character
+            </td>
+        </tr>
+        <tr>
+            <td>
+                d
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Signed decimal integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                o
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Unsigned octal integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                u
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Unsigned decimal integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                x
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Unsigned hexadecimal integer, using "abcdef"
+            </td>
+        </tr>
+        <tr>
+            <td>
+                X
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Unsigned hexadecimal integer, using "ABCDEF"
+            </td>
+        </tr>
+         <tr>
+            <td>
+                s
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Single-byte–character string. Characters are printed up to the first null character or until 
+                the precision value is reached.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                S
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Wide-character string. Characters are printed up to the first null character or until the 
+                precision value is reached.
+            </td>
+        </tr>
+    </table>
+    <h2>flags</h2>
+    <p>
+    	Optional character or characters that control justification of output and printing of signs, blanks, 
+    	decimal points, and octal and hexadecimal prefixes. 
+    </p>
+    <p>Flag Characters</p>
+    <table>
+        <thead>
+            <td>Flag</td><td>Meaning</td><td>Default</td>
+        </thead>
+        <tr>
+            <td>
+                –
+            </td>
+            <td>
+                Left align the result within the given field width.
+            </td>
+            <td>
+                Right align.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                0
+            </td>
+            <td>
+               type d(none negative), u, o, x, X can be used with width，If width is prefixed with 0, zeros are 
+               added until the minimum width is reached.
+            </td>
+            <td>
+                No padding.
+            </td>
+        </tr>
+    </table>
+    <h2>width</h2>
+    <p>
+    	Optional number that specifies the minimum number of characters output.
+    </p>
+    <p>
+    	The second optional field of the format specification is the width specification. The width argument 
+    	is a nonnegative decimal integer controlling the minimum number of characters printed. If the number 
+    	of characters in the output value is less than the specified width, blanks are added to the left or 
+    	the right of the values — depending on whether the – flag (for left alignment) is specified — until 
+    	the minimum width is reached. If width is prefixed with 0, zeros are added until the minimum width 
+    	is reached (not useful for left-aligned numbers).
+    </p>
+    <p>
+    	The width specification never causes a value to be truncated. If the number of characters in the output 
+    	value is greater than the specified width, or if width is not given, all characters of the value are 
+    	printed (depends on precision)
+    </p>
+    <p>
+    	If the width specification is an asterisk (*), an int argument from the argument list supplies the 
+    	value. The width argument must precede the value being formatted in the argument list. A nonexistent 
+    	or small field width does not cause the truncation of a field; if the result of a conversion is 
+    	wider than the field width, the field expands to contain the conversion result.
+    </p>
+
+    <h2>precision</h2>
+    <p>
+    	Optional number that specifies the maximum number of characters printed for all or part of the output 
+    	field, or the minimum number of digits printed for integer values. 
+    </p>
+    <p>
+    	It specifies a nonnegative decimal integer, preceded by a period (.), which specifies the number of 
+    	characters to be printed, the number of decimal places, or the number of significant digits, Unlike 
+    	the width specification, the precision specification can cause either truncation of the output value 
+    	or rounding of a floating-point value. If precision is specified as 0 and the value to be converted 
+    	is 0, the result is no characters output, as shown below:
+    </p>
+    <pre class="code">
+    kprintf( "%.0d", 0 );      /* No characters output */
+    </pre>
+    <p>
+    	If the precision specification is an asterisk (*), an int argument from the argument list supplies the 
+    	value. The precision argument must precede the value being formatted in the argument list.
+    </p>
+    <p>
+    	The type determines the interpretation of precision and the default when precision is omitted, as shown 
+    	in the following table.
+    </p>
+    <p>How Precision Values Affect Type</p>
+    <table>
+        <thead>
+            <td>Type</td><td>Meaning</td><td>Default</td>
+        </thead>
+        <tr>
+            <td>
+                c
+            </td>
+            <td>
+                The precision has no effect.
+            </td>
+            <td>
+                Character is printed.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                s, S
+            </td>
+            <td>
+                The precision specifies the maximum number of characters to be printed. Characters in excess of 
+                precision are not printed.
+            </td>
+            <td>
+                Characters are printed until a null character is encountered.
+            </td>
+        </tr>
+    </table>
+
+
+<script>footer("KoreTide")</script>
+</body>
+
+</html>

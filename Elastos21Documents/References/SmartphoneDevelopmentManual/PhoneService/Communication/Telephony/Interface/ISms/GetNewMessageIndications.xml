@@ -1,0 +1,94 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通讯引擎</volume>
+<interface>ISms</interface><method> GetNewMessageIndications </method>
+    <description>
+        <para>
+          查询新到信息的提示方式。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> DWORD * </param_type>
+                <param_name> pdwSmsOptions </param_name>
+                <param_note>
+                    <para>
+                       新到短信提示选项
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> DWORD * </param_type>
+                <param_name> pdwBroadcastOptions </param_name>
+                <param_note>
+                    <para>
+                      新小区广播选项选项
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> DWORD * </param_type>
+                <param_name> pdwSmsStatusReportOptions </param_name>
+                <param_note>
+                    <para>
+                      新短信状态报告选项
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+      <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>FAMILY_GEN 类或FAMILY_CME类错误值</td>
+	    	    <td>表示指令发送到通讯模块过程中遇到错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>和<link url="../../Telephony_Error.htm">Telephony_Error</link>相关帮助。</para>
+	   </return>
+
+    <remarks>
+      <para>新到短信提示选项定义如下：</para>
+		<table>
+		<th>
+       <td>取值</td><td>描述</td>
+    </th>
+    <tr>
+       <td>SMS_NEWMSG_INDICATOR_NONE</td><td>无提示</td>
+    </tr>
+     <tr>
+       <td>SMS_NEWMSG_INDICATOR_SIM</td><td>提示，并存至SIM卡中</td>
+    </tr>
+     <tr>
+       <td>SMS_NEWMSG_INDICATOR_NOTIFICATION</td><td>提示，附加短信原始PDU信息</td>
+    </tr>
+    </table>
+    </remarks>
+    <para>dwBroadcastOptions为SMS_NEWCBM_INDICATOR_NONE表示无提示;为SMS_NEWCBM_INDICATOR_NOTIFICATION表示提示，附加原始PDU信息。</para>
+     <para>dwSmsStatusReportOptions为SMS_STATUSREPORT_INDICATOR_NONE表示无提示;为SMS_STATUSREPORT_INDICATOR_NOTIFICATION表示提示，附加原始PDU信息。</para>
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+         <headerfile>
+            <file_name>elastos.h, stdio.h, stdlib.h, CTelephony.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib, elacrt.lib, elautil.lib, _atspec.lib, _atcommon.lib</lib_name>
+        </library>
+    </requirements>
+</manpage>

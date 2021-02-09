@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>AStringBuf</class>
+    <method> PadLeft </method>
+
+    <description>
+        <para> 右对齐此对象中的字符，在左边用空格填充以达到指定的总长度。</para>
+    </description>
+    <syntax>
+        <return_val> AStringBuf &amp;  </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> width </param_name>
+            <param_note>
+                <para> 填充后字符串长度。 </para>
+            </param_note>
+        </api_param>
+        </parameters>        
+    </syntax>
+    <return>
+        <para>AStringBuf对象引用。</para>
+    </return>
+     <remarks>
+        <para>如果width &lt; 0，本函数不起作用。</para>
+        <para>如果width 大于当前对象的Capacity，则填充后AStringbuf对象字符串长度为Capacity。当前对象字符串的Capacity值可以通过调用函数GetCapacity()获得。</para>
+    </remarks>
+<example>
+<pre>
+AStringBuf_&lt;20&gt; asbuf;  
+asbuf.Copy("abcd");
+CConsole::Write("|");
+CConsole::Write(asbuf.PadLeft(3));
+CConsole::WriteLine("|");  //Display : |abcd|
+CConsole::Write("|");
+CConsole::Write(asbuf.PadLeft(10) );
+CConsole::WriteLine("|");  //Display : |      abcd|
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::PadLeft </ref_name>
+        <ref_url>index/PadLeft</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::PadRight </ref_name>
+        <ref_url>../PadRight/index/PadRight</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>WStringBuf::PadLeft </ref_name>
+        <ref_url>../../WStringBuf/PadLeft/index/PadLeft</ref_url>
+    </reference>
+</references>   
+</manpage>

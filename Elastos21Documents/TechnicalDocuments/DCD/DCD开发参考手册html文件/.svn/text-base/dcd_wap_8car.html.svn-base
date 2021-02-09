@@ -1,0 +1,191 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Kortide DCD API: dcdWap.car文件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<div class="tabs">
+  <ul>
+    <li><a href="main.html"><span>首页</span></a></li>
+    <li><a href="globals.html"><span>全部</span></a></li>
+    <li class="current"><a href="Engineglobals.html"><span>引擎部分</span></a></li>
+    <li><a href="UIglobals.html"><span>UI部分</span></a></li>
+  </ul>
+</div>
+<h1>Wap服务相关API参考</h1>
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>类型定义</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef int(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_wap_8car.html#b927e3a8a9b4e547a020a0ea1df751d0">DCDWapGetCallBack</a> )(int nStatus, void *pBuf, int nBufLen, char *pHeaders)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">请求数据时的回调方法.  <a href="#b927e3a8a9b4e547a020a0ea1df751d0"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>函数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">DCD_Extern Handle&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_wap_8car.html#9fa8648adc3b3fbd9eb21e4b0b4a55aa">DCDWapConnect</a> (DcdChar *pWapGatewayAddr, unsigned int port)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">连接wap网关.  <a href="#9fa8648adc3b3fbd9eb21e4b0b4a55aa"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">DCD_Extern int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_wap_8car.html#a19095ec3f3f7f703e0467c1bdfe6639">DCDWapDisconnect</a> (Handle wapHandle)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">断开wap连接.  <a href="#a19095ec3f3f7f703e0467c1bdfe6639"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">DCD_Extern int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_wap_8car.html#e4157bc0281c8258299b5a41fe81f6ef">DCDWapGet</a> (Handle wapHandle, char *pUri, char *pHeaders, <a class="el" href="dcd_wap_8car.html#b927e3a8a9b4e547a020a0ea1df751d0">DCDWapGetCallBack</a> resCallBack, DcdChar *pFileName)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">请求Wap数据, http get方法.  <a href="#e4157bc0281c8258299b5a41fe81f6ef"></a><br></td></tr>
+</table>
+<hr><h2>类型定义文档</h2>
+<a class="anchor" name="b927e3a8a9b4e547a020a0ea1df751d0"></a><!-- doxytag: member="dcdWap.car::DCDWapGetCallBack" ref="b927e3a8a9b4e547a020a0ea1df751d0" args=")(int nStatus, void *pBuf, int nBufLen, char *pHeaders)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int(* <a class="el" href="dcd_wap_8car.html#b927e3a8a9b4e547a020a0ea1df751d0">DCDWapGetCallBack</a>)(int nStatus,void *pBuf,int nBufLen,char *pHeaders)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+请求数据时的回调方法.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>nStatus</em>&nbsp;</td><td>- 为-1下载失败，0下载数据成功. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pBuf</em>&nbsp;</td><td>- 请求返回的数据. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>szHeaders</em>&nbsp;</td><td>- 指示数据的长度. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pUserData</em>&nbsp;</td><td>- 返回的头部. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功时返回0, 失败返回-1. </dd></dl>
+<dl class="note" compact><dt><b>注解:</b></dt><dd>DCDWapGet函数实现者只需将该参数直接传递给DCDWapGetCallBack回调函数即可. </dd></dl>
+
+</div>
+</div><p>
+<hr><h2>函数文档</h2>
+<a class="anchor" name="9fa8648adc3b3fbd9eb21e4b0b4a55aa"></a><!-- doxytag: member="dcdWap.car::DCDWapConnect" ref="9fa8648adc3b3fbd9eb21e4b0b4a55aa" args="(DcdChar *pWapGatewayAddr, unsigned int port)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DCD_Extern Handle DCDWapConnect           </td>
+          <td>(</td>
+          <td class="paramtype">DcdChar *&nbsp;</td>
+          <td class="paramname"> <em>pWapGatewayAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&nbsp;</td>
+          <td class="paramname"> <em>port</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+连接wap网关.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pWapGatewayAddr</em>&nbsp;</td><td>- 网关地址，"10.0.0.172". </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>port</em>&nbsp;</td><td>- 端口，为80. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>返回Wap连接句柄，如果失败返回NULL. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="a19095ec3f3f7f703e0467c1bdfe6639"></a><!-- doxytag: member="dcdWap.car::DCDWapDisconnect" ref="a19095ec3f3f7f703e0467c1bdfe6639" args="(Handle wapHandle)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DCD_Extern int DCDWapDisconnect           </td>
+          <td>(</td>
+          <td class="paramtype">Handle&nbsp;</td>
+          <td class="paramname"> <em>wapHandle</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+断开wap连接.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>wapHandle</em>&nbsp;</td><td>- DCDWapConnect成功返回的句柄. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功时返回0, 失败返回-1. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e4157bc0281c8258299b5a41fe81f6ef"></a><!-- doxytag: member="dcdWap.car::DCDWapGet" ref="e4157bc0281c8258299b5a41fe81f6ef" args="(Handle wapHandle, char *pUri, char *pHeaders, DCDWapGetCallBack resCallBack, DcdChar *pFileName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DCD_Extern int DCDWapGet           </td>
+          <td>(</td>
+          <td class="paramtype">Handle&nbsp;</td>
+          <td class="paramname"> <em>wapHandle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>pUri</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>pHeaders</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="dcd_wap_8car.html#b927e3a8a9b4e547a020a0ea1df751d0">DCDWapGetCallBack</a>&nbsp;</td>
+          <td class="paramname"> <em>resCallBack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DcdChar *&nbsp;</td>
+          <td class="paramname"> <em>pFileName</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+请求Wap数据, http get方法.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>wapHandle</em>&nbsp;</td><td>- Wap句柄. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pUri</em>&nbsp;</td><td>- 请求的URL. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pHeaders</em>&nbsp;</td><td>- 请求时的头部信息. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>resCallBack</em>&nbsp;</td><td>- DCDWapGetCallBack. </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pFileName</em>&nbsp;</td><td>- 如果该参数不为NULL, 那么下载数据会保存在该文件名表示的文件里，注意该文件名必须是绝对路径. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功时返回0, 失败返回非0. </dd></dl>
+<dl class="note" compact><dt><b>注解:</b></dt><dd>在DCDWapGet的实现中，如果同步执行DCDWapGetCallBack后的返回为非0，则要求DCDWapGet返回失败. </dd></dl>
+
+</div>
+</div><p>
+<hr size="1"><address style="text-align: right;"><small>
+<a href="http://www.kortide.com.cn">© Kortide Corp.All rights reserved.</a></small></address></body>
+</html>

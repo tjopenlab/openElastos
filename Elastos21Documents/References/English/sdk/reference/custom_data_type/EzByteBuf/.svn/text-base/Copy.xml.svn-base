@@ -1,0 +1,83 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzByteBuf\bufCopy">bufcopy</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzByteBuf   </interface>
+    <method> Copy </method>
+
+    <description>
+        <para>Copies a new string to current byte buffer and overwrites the old data.</para>
+    </description>
+
+    <syntax>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const void* </param_type>
+            <param_name> p </param_name>
+            <param_note>
+                <para> Pointer to the source data to be copied.  </para>
+            </param_note>
+        </api_param>
+
+        <api_param>
+            <param_type> int  </param_type>
+            <param_name> n </param_name>
+            <param_note>
+                <para> The number of bytes to be copied. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns the number of bytes that actually copied.</para>
+    </return>
+
+    <remarks>
+        <para>Copies specialized length data to the buffer at the start address and overwrites the old data of the first n bytes. But if parameter <i>n</i> is greater than the length of buffer, then the remaining part will be cut off and returns the size of buffer.</para>
+        <para>If parameter <i>p</i> equals to 0 (that means the pointer to data to be inserted is NULL), but parameter <i>n</i> unequals to 0 (that means the number of bytes to be inserted unequals to 0), then it leads to a run time error.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzByteBuf_<200> buf;
+
+    buf.Copy("Hello!", 7);
+
+    if (!buf.IsNull()) {
+        printf("%s\n", (char*)buf);
+    } else {
+        printf("wrong!\n");
+    }
+
+    return 0;
+}
+]]></pre></example>
+
+<result><![CDATA[
+Hello!
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Append </ref_name>
+            <ref_url> Append </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Insert </ref_name>
+            <ref_url> Insert </ref_url>
+        </reference>
+    </references>
+
+</manpage>

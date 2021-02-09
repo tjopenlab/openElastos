@@ -1,0 +1,79 @@
+addsam
+======
+
+1. 描述
+
+   addsam用来将示例程序加入到文档源代码（资料大全）中。
+
+   想马上使用请参见：A. 安装、 3. 如何使用。
+   更详细描述请参见：B. 常见问题解答。
+
+2. 何时使用
+
+   1. 当前救急：发布“资料大全”前，加入所有示例程序。
+   2. 日常开发：在日构建时，首先Build示例程序，再将其自动加入到“资料大
+      全”中。这样，文档更为“同步”，对新人培训也有益。
+
+3. 如何使用
+
+   1. 手工使用
+
+      首先确定文档源码的位置，如：D:\Elastos21\Documents\References\Chinese
+      然后运行
+
+         addsam -r .\References\Chinese
+
+      addsam将处理指定目录中所有.xml页面。如果有的页面处理失败（找不到对
+      应.cpp文件），addsam会生成一个列表。如：addsam_failed.txt。这时，我
+      们需要手工复查列表中的.xml文件，修改<sample>的指向位置。然后，多次运
+      行下列命令之一，直到所有页面处理都成功为止：
+
+         addsam -r .\References\Chinese      处理某目录中所有.xml（递归）
+         addsam -flist_unsolved              处理上次失败的文件
+         addsam crt_library\stdio            处理某目录中所有.xml（不递归）
+         addsam crt_library\stdio\fscanf.xml 单单处理某个.xml
+
+      当然，对同一个页面，可以多次运行addsam。
+
+      要察看更多的帮助，请运行：
+
+         addsam -h
+
+      报告页面report.html生成在当前驱动器根目录下的addsam.log目录下。
+
+   2. 在日构建时使用
+
+      :: 流程如下
+      rcs_co Reference to D:\Elastos21\Documents\References
+      rcs_co Samples to D:\Elastos21\Documents\Samples
+      cd D:\Elastos21\Documents\Samples && emake
+      addsam -r D:\Elastos21\Documents\References
+
+4. BUG和解决
+
+   1. 使用了sed script做程序文本的分析（.xml, .cpp），本身维护性较差。
+      考虑使用perl程序，并使用已有的xml解析工具。或是使用Xinclude等其他
+      XML技术。
+
+A. 安装
+
+   0. 测试过的操作系统：Win2K Eng、WinXP Chs
+   1. 解压到任意目录，以"e:\"为例
+   2. 保证下面的目录和文件在Path中：sed.exe, %SystemRoot%\System32, e:\mytools
+
+B. 常见问题解答
+
+   Q1: addsam是如何工作的 ?
+
+   A1: 1. 首先，addsam会根据命令行参数，确定要处理的页面文件（.xml）。
+       2. 对于每个页面文件（foo.xml），addsam通过分析<sample>标签来确定它
+          要的例子程序（foo.cpp，注释中含有的运行结果）。
+       3. 如果foo.cpp文件存在，addsam将对它作简单的分析，并将其拆分为“代
+          码”和“运行结果”；否则将此文件记录在“处理失败”的日志中。
+       4. 然后，addsam会再次扫描foo.xml，定位到<example>标签的位置。在此处
+          插入上一步骤得到的“代码”和“运行结果”。
+       5. 重复2-4步，直到处理完所有.xml文件。
+
+   Q1: 还有... ?
+
+   A1: 请自己看代码吧。: )

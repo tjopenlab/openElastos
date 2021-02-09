@@ -1,0 +1,66 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+   
+    <volume>内存管理函数</volume>
+    <title>DzIoUnmap</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>撤销IO内存地址区域在当前进程地址空间中的映射。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Address  </param_type>
+                <param_name> virtualAddr </param_name>
+                <param_note>
+                    <para>[in]已建立映射的用户虚拟内存的起始地址，必须是由成功调用DzIoRemap函数后得到的地址。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> UInt32   </param_type>
+                <param_name> uSize </param_name>
+                <param_note>
+                    <para>[in]已建立映射的用户虚拟内存的大小。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序调用成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>参数不正确</td>
+            </tr>
+        </table>
+    </return>
+    
+    <remarks>
+    	<para>本函数用于撤销IO内存地址区域在当前进程地址空间中的映射。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                《Elastos2.1》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+    </requirements>
+
+    <example>
+    </example>
+
+</manpage>

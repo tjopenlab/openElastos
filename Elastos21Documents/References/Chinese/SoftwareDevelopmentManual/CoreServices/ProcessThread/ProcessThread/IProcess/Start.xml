@@ -1,0 +1,101 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\Start">Start</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> Start </method>
+    <description>
+        <para>
+            用指定的应用程序名启动一个已经存在的进程对象，并设置命令行参数。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para> 指定用于启动进程的应用程序名，不能为空, 最大长度不能超过宏(MAXIMUM_FULL_PATH_LENGTH)个(含”\0”)。</para>
+                    <para> name是需要启动的应用程序名，需要包含扩展名，例如：“hello.exe”，而不是“hello”。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString</param_type>
+                <param_name> args </param_name>
+                <param_note>
+                    <para>
+                        指定要启动进程的命令行参数, 最大长度不能超过宏(MAXIMUM_ARGS_LENGTH)个(含”\0”)。
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值 </td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>成功启动进程</td>
+            </tr>
+            <tr>
+                <td>E_ABORT</td>
+                <td>进程已经被Kill</td>
+            </tr>
+            <tr>
+                <td>E_BAD_FILE_FORMAT</td>
+                <td>不可执行的文件格式</td>
+            </tr>
+            <tr>
+                <td>E_BAD_EXE_FORMAT</td>
+                <td>可执行文件已损坏</td>
+            </tr>
+            <tr>
+                <td>E_FILE_NOT_FOUND</td>
+                <td>没有找到指定的文件</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td>
+                <td>参数错误</td>
+            </tr>
+            <tr>
+                <td>E_NOT_ENOUGH_ADDRESS_SPACES</td>
+                <td>地址空间不足</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>内存不足</td>
+            </tr>
+            <tr>
+                <td>E_PROCESS_ALREADY_STARTED</td>
+                <td>进程已经启动</td>
+            </tr>
+            <tr>
+                <td>E_UNEXPECTED</td>
+                <td>不可预期的错误</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>
+        </para>
+
+
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

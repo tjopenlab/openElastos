@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\free">free</sample>
+    <title> free</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>释放内存块。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>free</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>memblock</param_name>
+                <param_note>
+                    <para>指向已分配的并准备释放的内存块的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>函数free释放由函数calloc、malloc、realloc分配的内存块。释放的字节数等于申请时分配到的字节数（若调用realloc，则是重新分配的字节数）。如果memblock为NULL，忽略此指针，函数free立即返回。试图释放无效指针（指向不是由calloc、malloc、realloc函数所分配的内存块的指针），可能影响以后的分配请求，并引起错误。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>free</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* free.cpp: This program allocates memory with
+ * malloc, then frees the memory with free.
+ */
+
+#include &lt;stdlib.h&gt;            /* For _MAX_PATH definition */
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char *string;
+
+    /* Allocate space for a path name */
+    string = (char *)malloc(_MAX_PATH);
+    if (string == NULL)
+        printf(&quot;Insufficient memory available\n&quot;);
+    else {
+        printf(&quot;Memory space allocated for path name\n&quot;);
+        free(string);
+        printf(&quot;Memory freed\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Memory space allocated for path name
+Memory freed
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_alloca </ref_name>
+            <ref_url>../malloc/_alloca</ref_url>
+        </reference>
+        <reference>
+            <ref_name>malloc</ref_name>
+            <ref_url>malloc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>realloc</ref_name>
+            <ref_url>realloc</ref_url>
+        </reference>
+    </references>
+
+</manpage>

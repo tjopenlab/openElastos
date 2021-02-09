@@ -1,0 +1,102 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IMutex</interface><method> TryLock</method>
+    <description>
+        <para>
+        	Tries to get the mutex lock object.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+       <parameters>  
+        <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type>Millisecond </param_type>
+                <param_name> timeout </param_name>
+                <param_note>
+                    <para>
+	                    Specifies a time-out interval, in milliseconds. 
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type>WaitResult *</param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>
+	                    
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+
+    </syntax>
+
+	<return>
+	    
+	<table>
+	    <th>
+			<td>Return Value</td>
+			<td>Hex Value</td>
+			<td>Description</td>
+	    </th>
+	     <tr>
+			<td>NOERROR</td>
+			<td>0x00000000</td>
+			<td>Function succeeds in trying to Lock the mutex object. </td>
+	    </tr>
+	    <tr>
+			<td>E_INVALID_ARGUMENT</td>
+			<td>0x00060003</td>
+			<td>Invalid argument(s).</td>
+	    </tr>
+	</table>
+        <para>See <link url="../../../../reference/basic_data_type/hresult.htm">ECODE</link> related help.</para>   
+    </return>
+
+	<remarks>
+		<para>
+			This method attempts to get the mutex object. 
+		</para>
+		<para>
+			If other thread has owned the mutex object, 
+			the calling thread will be blocked. During the specified waiting time, the calling thread 
+			will wait for the mutex object until other thread that owns the mutex, releases the mutex object, and wakes 
+			up the calling thread. The calling thread then gets the mutex object, and the method returns successfully. 
+			If the specified time runs out, the calling thread will stop waiting immediately, and return S_TIMED_OUT. 
+		</para>
+		<para>
+			If the waiting time is out, the calling
+	        thread will return from the method. If <i>msTimeout</i> is 0, the method will return immediately. 
+	        if the calling thread gets the mutex object successfully, the method returns S_OK, or it 
+	        returns S_TIMED_OUT.
+	    </para>
+		<para>
+			If none of the threads own the mutex object, the calling thread will get it successfully and the method 
+			will return immediately. 
+		</para>
+		<para>
+			If the calling thread has owned the mutex object by calling
+			<link url="Lock.htm">IMutex::Lock</link> or <link url="TryLock.htm">IMutex::TryLock</link> 
+			before, the method will also return immediately. And the thread must call <link url="UnLock.htm">
+			IMutex::Unlock</link> accordingly to release the mutex object. 
+		</para>
+		<para>
+			The thread can be interrupted while waiting for the mutex object.
+		</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

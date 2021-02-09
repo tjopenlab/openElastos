@@ -1,0 +1,78 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR Attribute--driver</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>driver</h2>
+    <p>This attribute can only modify class. It means this class can support component device driver. Syntax is: driver[([noisr][,resident])]. This attribute has a couple of usages, which are described below.</p>
+    <ul>
+        <li>driver: This class is a driver implementation class. For example: 
+            <pre class="code">
+component DriverDemo1
+{
+    ……
+    [uuid(d33b9b23-7e0a-48ad-83f6-e670599e3b24), <b>driver</b>]
+    class CClass {
+        ……
+    }
+}
+</pre>
+            <p>Demo component DriverDemo1 is a driver implementation class.</p>
+
+        <li>driver(noisr): This driver implementation does not implement interrupt service routine (ISR): 
+            <pre class="code">
+component DriverDemo2
+{
+    ……
+    [uuid(0cd5d681-1756-44d3-80aa-3447f9e382ad),<b>driver(noisr)</b>]
+    class CClass {
+        ……
+    }
+}
+</pre>
+            <p>Sample component DriverDemo2 is a driver implementation class. This class does not implement interrupt service routine (ISR).</p>
+
+        <li>driver(resident): Once this driver implementation class is loaded, it becomes a resident program and can never be unloaded.
+            <pre class="code">
+component DriverDemo3
+{
+    ……
+    [uuid(a801842a-2dd4-4178-876b-0368d3ee7a3c),<b>driver(resident)</b>]
+    class CClass {
+        ……
+    }
+}
+</pre>
+            <p>Sample component DriverDemo3 is a driver implementation class.Once this class is loaded, it becomes a resident program and can never be unloaded.</p>
+
+        <li>driver(noisr, resident): This usage is the combination of the two attributes mentioned above. This driver implementation does not implement interrupt service routine. It is a resident program too.
+            <pre class="code">
+component DriverDemo4
+{
+    ……
+    [uuid(2a9a19d8-2de0-4290-b274-12357681ce3d),<b>driver(noisr, resident)</b>]
+    class CClass {
+        ……
+    }
+}
+</pre>
+            <p>Sample component DriverDemo4 is a driver implementation class.This class does not implement interrupt service routine and it is a resident program too.</p>
+    </ul>
+    <p>In a component there can be multiple classes that can have this attribute.</p>
+    <ol><font color="red"><b>Note: </b>
+        <li>This attribute cannot be in the same class with <a class="style1" href="attributes_main.htm">main</a> attribute.
+        <li>Class using this attribute must implement methods in the <a class="style1" href="../../../../../ddk/driver_development/standard_driver_routines/IDriver.htm">IDriver</a> interface. If driver attribute does not use the parameter noisr, then you have to implement methods in the <a class="style1" href="../../../zee/interface/IDriverISR.htm">IDriverISR</a> interface.</font>
+    </ol>
+    <p>About component device driver development, please see the article <a class="style1" href="../../../../../ddk/frame.htm">How to develop component device driver?</a>.</p>
+    <b><a class="style1" href="../attribute.htm">CAR Attribute Table</a></b>
+<script>footer("english")</script>
+</body>
+</html>

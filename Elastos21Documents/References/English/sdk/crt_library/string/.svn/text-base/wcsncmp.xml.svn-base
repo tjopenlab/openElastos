@@ -1,0 +1,178 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strncmp">strncmp</sample>
+    <title>strncmp, wcsncmp</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Compare characters of two strings.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>strncmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string1</param_name>
+                <param_note>
+                    <para>String to compare.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string2</param_name>
+                <param_note>
+                    <para>String to compare.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Number of characters to compare.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>wcsncmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string1</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string2</param_name>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The return value indicates the relation of the substrings of string1 and string2 as follows.</para>
+        <table>
+            <th>
+               <td>Return value</td>
+               <td>Description</td>
+            </th>
+            <tr>
+               <td><![CDATA[< 0]]></td>
+               <td>string1 substring less than string2 substring. </td>
+            </tr>
+            <tr>
+               <td>0</td>
+               <td>string1 substring identical to string2 substring. </td>
+            </tr>
+            <tr>
+               <td><![CDATA[> 0]]></td>
+               <td>string1 substring greater than string2 substring.</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The strncmp function lexicographically compares, at most, the first count characters in string1 and string2 and returns a value indicating the relationship between the substrings. strncmp is a case-sensitive version of _strnicmp. strncmp is not affected by locale. wcsncmp is wide-character version of strncmp. The arguments and return value of wcsncmp are wide-character strings, otherwise, it is the same as strncmp. wcsncmp is the case-sensitive version of _wcsnicmp.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strncmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcsncmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strncmp.cpp:this program lexicographically compares, at most, the first count characters in string1 and string2
+               and returns a value indicating the relationship between the substrings
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+char string1[] = &quot;The quick brown dog jumps over the lazy fox&quot;;
+char string2[] = &quot;The QUICK brown dog jumps over the lazy fox&quot;;
+
+int main()
+{
+    char tmp[20];
+    int result;
+
+    printf(&quot;Compare strings:\n      %s\n      %s\n\n&quot;, string1, string2);
+    printf(&quot;Function:   strncmp (first 10 characters only)\n&quot;);
+    result = strncmp(string1, string2, 10);
+    if (result &gt; 0)
+        strcpy(tmp, &quot;greater than&quot;);
+    else if (result &lt; 0)
+        strcpy(tmp, &quot;less than&quot;);
+    else
+    strcpy(tmp, &quot;equal to&quot;);
+    printf(&quot;Result:      String 1 is %s string 2\n&quot;, tmp);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Compare strings:
+The quick brown dog jumps over the lazy fox
+The QUICK brown dog jumps over the lazy fox
+
+Function:   strncmp (first 10 characters only)
+Result:      String 1 is greater than string 2
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name> wstrcmp </ref_name>
+            <ref_url> wcscmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> _wstrnicmp </ref_name>
+            <ref_url> _wcsnicmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> wstrchr </ref_name>
+            <ref_url> wcschr </ref_url>
+        </reference>
+        <reference>
+            <ref_name> _strset </ref_name>
+            <ref_url> _strset </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strspn </ref_name>
+            <ref_url> strspn  </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strcspn </ref_name>
+            <ref_url> strcspn  </ref_url>
+        </reference>
+    </references>
+
+</manpage>

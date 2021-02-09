@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\strftime">strftime</sample>
+    <title> strftime </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>格式化一时间字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>strftime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strDest</param_name>
+                <param_note>
+                    <para>输出字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>maxsize</param_name>
+                <param_note>
+                    <para>字符串的最大长度</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format</param_name>
+                <param_note>
+                    <para>格式控制字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const struct tm*</param_type>
+                <param_name>timeptr</param_name>
+                <param_note>
+                    <para>tm 数据结构</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果结果字符中包括终结符在内的字符总数不超过maxsize，strftime返回strDest中的字符数。否则，函数返回0，strDest中的内容不确定。</para>
+    </return>
+
+    <remarks>
+        <para>函数strftime根据提供的格式参数格式化timeptr所指的时间值，并将结果存放在strDest中。strDest中至多有maxsize个字符。</para>
+        <para>关于结构体tm的具体含义说明：</para>
+        <table>
+            <th>
+               <td>指针域</td>
+               <td>含义</td>
+            </th>
+            <tr>
+               <td>tm_sec</td>
+               <td>一分钟内的第几秒 （0 – 59） </td>
+            </tr>
+            <tr>
+               <td>tm_min</td>
+               <td>一小时内的第几分钟 （0 – 59） </td>
+            </tr>
+            <tr>
+               <td>tm_hour</td>
+               <td>从0:00算起的小时数 （0 – 23） </td>
+            </tr>
+            <tr>
+               <td>tm_mday</td>
+               <td>在一个月中的第几日 （1 – 31） </td>
+            </tr>
+            <tr>
+               <td>tm_mon</td>
+               <td>月 （0 – 11；一月为0） </td>
+            </tr>
+            <tr>
+               <td>tm_year</td>
+               <td>年 （从1900年算起） </td>
+            </tr>
+            <tr>
+               <td>tm_wday</td>
+               <td>一周内的第几天 （0 – 6；Sunday = 0）</td>
+            </tr>
+            <tr>
+               <td>tm_yday</td>
+               <td>一年内的第几天 （0 – 365；January 1 = 0）</td>
+            </tr>
+            <tr>
+               <td>tm_isdst</td>
+               <td>如夏时制有效则为正数，如夏时制无效则为0，如未知夏时制是否有效，或夏时制信息无可用，则为负数。
+               </td>
+            </tr>
+        </table>
+        <para>格式的幅角由一个或多个代码组成，如在printf函数中，格式化代码是由一个百分号（%）打头的。不以%开始的字符将原封不动地复制到strDest中。本地LC_TIME的种类影响strftime的输出格式（关于LC_TIME, 更多的信息见setlocale）。strftime的格式化代码如下所列：</para>
+        <table>
+            <tr>
+               <td>%a</td>
+               <td>缩写的周日名</td>
+            </tr>
+            <tr>
+               <td>%A</td>
+               <td>全称的周日名</td>
+            </tr>
+            <tr>
+               <td>%b</td>
+               <td>缩写的月名</td>
+            </tr>
+            <tr>
+               <td>%B</td>
+               <td>全称的月名</td>
+            </tr>
+            <tr>
+               <td>%c</td>
+               <td>日期和时间的本地表示法</td>
+            </tr>
+            <tr>
+               <td>%d</td>
+               <td>以十进制表示月和日（01 – 31）</td>
+            </tr>
+            <tr>
+               <td>%H</td>
+               <td>时间的24-计时格式（00 – 23）</td>
+            </tr>
+            <tr>
+               <td>%I</td>
+               <td>时间的12-计时格式（01 – 12）</td>
+            </tr>
+            <tr>
+               <td>%j</td>
+               <td>以十进制表示一年中的日期（001 – 366）</td>
+            </tr>
+            <tr>
+               <td>%m</td>
+               <td>以十进制表示月份（01 – 12）</td>
+            </tr>
+            <tr>
+               <td>%M</td>
+               <td>以十进制表示分钟（00 – 59）</td>
+            </tr>
+            <tr>
+               <td>%p</td>
+               <td>指示12-记时格式时钟的本地A.M./P.M.</td>
+            </tr>
+            <tr>
+               <td>%S</td>
+               <td>以十进制表示秒（00 – 59）</td>
+            </tr>
+            <tr>
+               <td>%U</td>
+               <td>以十进制表示一年中的周数，以星期天作为一周的第一天</td>
+            </tr>
+            <tr>
+               <td>%w</td>
+               <td>以十进制表示一周中的每一天（0 – 6；0表示星期天）</td>
+            </tr>
+            <tr>
+               <td>%W</td>
+               <td>以十进制表示一年中的周数，以星期一作为一周的第一天（00 – 53）</td>
+            </tr>
+            <tr>
+               <td>%x</td>
+               <td>本地的日期表示法</td>
+            </tr>
+            <tr>
+               <td>%X</td>
+               <td>本地的时间表示法</td>
+            </tr>
+            <tr>
+               <td>%y</td>
+               <td>以十进制表示年份（无世纪）（00 – 99）</td>
+            </tr>
+            <tr>
+               <td>%Y</td>
+               <td>以十进制表示年份（有世纪）</td>
+            </tr>
+            <tr>
+               <td>%z, %Z</td>
+               <td>时区名称和缩写；如果时区未知，则无符号</td>
+            </tr>
+            <tr>
+               <td>%%</td>
+               <td>百分比符号</td>
+            </tr>
+        </table>
+        <para>在printf函数中#标记可以作为格式化符号的前缀，在此情况下，格式化代码的意义改变如下：</para>
+        <table>
+            <th>
+               <td>格式化代码</td>
+               <td>含义</td>
+            </th>
+            <tr>
+               <td>%#a, %#A, %#b, %#B, %#p, %#X, %#z, %#Z, %#%</td>
+               <td>忽略#标记</td>
+            </tr>
+            <tr>
+               <td>%#c</td>
+               <td>适合本地的长日期和时间的表示法。例如: “Tuesday, March 14, 1995, 12:41:29”</td>
+            </tr>
+            <tr>
+               <td>%#x</td>
+               <td>适合本地的长日期的表示法。例如:“Tuesday, March 14, 1995”</td>
+            </tr>
+            <tr>
+               <td>%#d, %#H, %#I, %#j, %#m, %#M, %#S, %#U, %#w, %#W, %#y, %#Y</td>
+               <td>如果格式化代码以0打头，则去掉这个0</td>
+            </tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strftime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strftime.cpp: this program use strftime to calculate the number of characters placed in today
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+    char tmpbuf[128];
+    struct tm *today;
+    time_t ltime;
+    time(&amp;ltime);
+    today = localtime(&amp;ltime);
+    strftime(tmpbuf, 128,
+         &quot;Today is %A, day %d of %B in the year %Y.\n&quot;, today);
+    printf(tmpbuf);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Today is Monday, day 20 of May in the year 2002.
+</result>
+
+
+
+</manpage>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <volume>InlineFunction</volume>
+    <title>MyMainGraphics</title>
+
+    <description>
+        <para>Obtains reference points to <link url="../../../graphics/elagdi/class/CGraphics.htm">CGraphics</link> object class smart pointer provided by the system.</para>
+    </description>
+
+    <syntax>
+        <return_val>CGraphicsRef&amp;</return_val>
+        <NoArguments/>
+    </syntax>
+
+    <return>
+        <para>Returns reference points to CGraphics object class smart pointer provided by the system. This return value is reference of <link url="../../../graphics/elagdi/class/CGraphicsRef.htm">CGraphicsRef</link> type.</para>
+    </return>
+    <remarks>
+        <para>In user defined CAR files, if and only if the component has the <link url="../attributes/attributes_graphics(lite).htm">graphics(lite)</link> attribute, can the user directly invoke MyMainGraphics function in program. Now the user can invoke methods in <link url="../../../graphics/elagdi/class/CGraphics.htm">CGraphics</link> class to directly do draw dots draw lines operations through MyMainGraphics function return value.If you want to exit the application, you need to invoke <link url="../../../graphics/elagdi/interface/IGraphics/Quit.htm">Quit</link> method, the syntax is MyMainGraphics().Quit() .</para>
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elactrl.h; elagdi.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib; elacrt.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

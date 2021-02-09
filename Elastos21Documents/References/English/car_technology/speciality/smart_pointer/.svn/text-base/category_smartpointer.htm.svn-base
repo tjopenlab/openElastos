@@ -1,0 +1,147 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>Category Smart Pointer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+
+</head>
+
+<body>
+    <h2>Category Smart Pointer</h2>
+        <p>Just like interface smart pointer is encapsulation of interface, category smart pointer is encapsulation of category. Birds of a feather flock together. We can categorize objects of the same characteristics into a category. For example, various types of sound card are hardware used to record and play sound. We call them sound cards, therefore, sound card is a category.</p>
+        <p>On computers, each type of sound card has corresponding driver, though application does not care spesifically what sound card driver is used when using driver. It only wants to use available sound card in the system. In order to solve this kind of problem, we introduce the concept of category in CAR, CAR category in a set of interface, this set represents shared characteristics of this category. This way, CAR allows component client create object through specified specific component class when creating component object. One can also create object through a specified component category.</p>
+        <p>Also use sound card as an example, one can extract common interface of sound card and define a category. When component client specify component object of created sound card category, the system will automatically create a current available sound card driver component object for the client.</p>
+        <p>As described previously, a category is a set of interfaces, it can be inherited by component class and category. We put all component classes that inherits this category into one class. Component class that inherits this category will implement all interfaces included in this category.</p>
+        <p>When inherit the category of this category, its interface set becomes the common set of the two interface sets.</p>
+        <p>The difference between category and component class is: Category is a set of interfaces, but these interfaces does not need to be implemented directly. Component class is also a set of interfaces, component developer must implement all interfaces included in component class. Meanwhile, all component classes that inherit category must implement all interfaces included by this category. So, one can also treate component category as virtual base class or superclass.</p>
+        <p>Implementation of category smart pointer is basically similar to class smart pointer. But specific implementation of some of their methods are different. For example there implementation of component object creation method are different.</p>
+        <p>This article includes the following: </p>
+    <ul>
+        <li><a class="style1" href="#form">Representation of category smart pointer</a>
+        <li><a class="style1" href="#create">Creation of category smart pointer</a>
+        <li><a class="style1" href="#validity">Validation of category smart pointer</a>
+        <li><a class="style1" href="#use">How to use category smart pointer?</a>
+    </ul>
+    <h4><a name="form"></a>Representation of category smart pointer</h4>
+        <p>Representation of category smart pointer: CatxxxRef, of which Catxxx represents the category name.</p>
+        <p>The following takes CatDemo component as an example, introduce to how to create and use category smart pointer. First please see the content of CatDemo.car file: </p>
+        <pre class="code">
+[
+    uuid(31824084-3b23-4cbb-90f3-652eb992279c),
+    uunm(http://www.koretide.com/car/CatDemo.dll)
+]
+component CatDemo
+{
+    //interface IHello
+    [uuid(c320e651-6bbd-4ed6-b5a8-d3ebf6f8a863)]
+    interface IHello {
+        ECODE SayHello();
+    }
+
+    //interface IWorld
+    [uuid(7ec00dd3-54a2-4d64-8327-e4d92eb100a4)]
+    interface IWorld {
+        ECODE SayWorld();
+    }
+
+    //category CatHello
+    [uuid(8955065b-d939-4cdd-af9a-bd8aa42d8424)]
+    category CatHello {
+        interface IHello;
+    }
+
+    //class CHelloWorld
+    [uuid(1627061a-36b9-4dcb-b9af-5967db085d17)]
+    class CHelloWorld : CatHello {
+        interface IWorld;
+    }
+}
+</pre>
+        <p>A category CatHello was defined in CatDemo.car file. We use import keyword in client to reference CatDemo component, method as the following: </p>
+        <pre class="code">
+#import &lt;CatDemo.dll&gt;
+</pre>
+        <p>Client has this category smart pointer type: CatHelloRef.</p>
+
+    <h4><a name="create"></a>Creation of category smart pointer</h4>
+        <p>There is only one way to create leagal category smart pointer: Creates a category smart pointer, invokes <b>Instantiate</b> method to instantiate corresponding category of this category smart pointer and makes this category smart pointer points to this object.</p>
+        <ul>
+            <li>When user needs to specify relative location of created object and client, corresponding parameter need to be set when invoking <b>Instantiate</b> method. For example: </p>
+            <pre class="code">
+CatHelloRef catHello;   //create category smart pointer catHello
+//instantiate category CatHello and makes category smart pointer catHello points to this object
+ECODE ec = catHello.<b>Instantiate(CTX_SAME_DOMAIN);</b>
+if (FAILED(ec)) {   //validate smart pointer using return value
+    printf("catHello initialize failed\n");
+    return 1;
+}
+</pre>
+            <p>Parameter <i>CTX_SAME_DOMAIN</i> specifies relative location of object and client. For available options of this parameter and their meaning please see <a class="style1" href="code_running_env.htm">executable code run-time environment (context)</a>.</p>
+
+            <li>When user does not care the relative location of created object and client, no parameter need to be added when invoking <b>Instantiate</b> method. For example: </p>
+            <pre class="code">
+CatHelloRef catHello;   //creates category smart pointer catHello
+//instantiate category CatHello, category smart pointer catHello points to this object
+ECODE ec = catHello.<b>Instantiate();</b>
+if (FAILED(ec)) {   //validate smart pointer using return value
+    printf("catHello initialize failed\n");
+    return 1;
+}
+</pre>
+            <p>In the example, no parameter is set when invoking <b>Instantiate</b> method, the system default is one of three values of CTX_SAME_DOMAIN, CTX_DIFF_DOMAIN and CTX_DIFF_PROCESS. Relative location of created object and client is determined by priority.</p>
+        </ul>
+
+    <h4><a name="validity"></a>Validation of category smart pointer</h4>
+        <p>After creating new category smart pointer, the user must validate it. Only valid category smart pointer is leagal category smart pointer. The method is as the following: </font></p>
+        <ul>
+            <li>Method one: Checks using return value. For example: </p>
+                <pre class="code">
+……
+CatHelloRef catHello;
+<b>ECODE ec = catHello.Instantiate();
+if (FAILED(ec)) {   //validate category smart pointer catHello using return value
+    printf("catHello initialize failed\n");
+    return 1;
+}</b>
+……
+</pre>
+
+            <li>Method two: Checks by invoking <b>IsValid</b> method. For example: </p>
+                <pre class="code">
+……
+CatHelloRef catHello;
+ECODE ec = catHello.Instantiate();
+<b>if (!catHello.IsValid()) { //validate category smart pointer catHello using IsValid method
+    assert(0 && "Can't create catHello");
+    return 1;
+}</b>
+……
+</pre>
+                <p><b>Remarks: </b>When initializing smart pointer using <b>Instantiate()</b> method, it is recommended to validate smart pointer using return value. More detailed information can be obtained through return value. For example: Interface not found, or not enough memory etc. <b>IsValid()</b> method simply validates smart pointer. You cannot obtain specific error information.</p>
+            </ul>
+
+    <h4><a name="use"></a>How to use category smart pointer?</h4>
+        <p>Category smart pointer uses "." dot operator to point to all interface method in pointed object. For example: </p>
+        <pre class="code">
+//invokes interface method in category CatHello object using category smart pointer catHello
+CatHelloRef catHello;
+ECODE ec;
+ec = catHello.Instantiate();
+if (FAILED(ec)) {   //validate category smart pointer catHello using return value
+    printf("catHello initialize failed\n");
+    return 1;
+}
+
+//invokes method SayHello() of IHello interface in category CatHello object through category smart pointer catHello
+<b>catHello.SayHello();</b>
+</pre>
+        <p>You can directly invoke all interface methods it points to through category smart pointer.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

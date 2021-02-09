@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>媒体中心</volume>
+<interface>IMediaDevMgr</interface><method> SetSpeaker </method>
+    <description>
+        <para>
+            设置扬声器。扬声器包括主扬声器和耳机。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> AudioSpeaker </param_type>
+                <param_name> eSpeaker </param_name>
+                <param_note>
+                    <para>指定需要控制的扬声器，取AudioSpeaker的枚举值</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> BOOL  </param_type>
+                <param_name> bOpen </param_name>
+                <param_note>
+                    <para>是否打开扬声器，TRUE为开启，FALSE为关闭 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>方法调用成功时，返回 NOERROR 。如果参数eSpeaker的值不在枚举值范围内时，返回E_INVALID_ARGUMENT  </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

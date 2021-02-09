@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISceneData</interface><method> SetValue </method>
+    <description>
+        <para>
+            根据某一key值，设置其value值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> SceneData </param_type>
+                <param_name> key </param_name>
+                <param_note>
+                    <para>
+输入参数                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esValue </param_name>
+                <param_note>
+                    <para>
+为根据key设置的值                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；esValue为空或枚举类型key值不对或者不在SceneData定义的范围内，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            根据输入的参数，再设置其对应的返回值，该参数必须是            <link url="../../datatype/SceneData.htm">            SceneData            </link>            枚举类型。
+        </para>
+    </remarks>
+</manpage>

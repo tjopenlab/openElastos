@@ -1,0 +1,88 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通话记录</volume>
+<interface>ICallRecord</interface><method> GetLastCallInfo </method>
+    <description>
+        <para>
+
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzWStrBuf </param_type>
+                <param_name> ewsbNumber </param_name>
+                <param_note>
+                    <para>
+                    返回最后通话的电话号码
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pnStartTime </param_name>
+                <param_note>
+                    <para>
+                    指向INT类型的指针，用于返回最后通话开始时间
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pnDuration </param_name>
+                <param_note>
+                    <para>
+                    指向INT类型的指针，用于返回呼叫时长
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> enum CallType * </param_type>
+                <param_name> peCallType </param_name>
+                <param_note>
+                    <para>
+                    指向INT类型的指针，用于返回呼叫类型
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_BUFFER_TOO_SMALL </td>
+	    	    <td>电话号码buffer不够大 </td>
+	        </tr>
+	        <tr>
+	    	    <td>E_DB_INTERNAL_ERROR </td>
+	    	    <td>数据库错误 </td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>、<link url="../../../../../QuickReference/DBError.htm">E_DB_INTERNAL_ERROR</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>  </para>
+	</remarks>
+
+   <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

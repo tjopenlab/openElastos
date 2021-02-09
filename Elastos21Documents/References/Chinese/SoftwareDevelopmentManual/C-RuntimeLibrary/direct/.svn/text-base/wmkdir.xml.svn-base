@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\direct\mkdir">wmkdir</sample>
+    <title> mkdir, wmkdir</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> dir_idx.htm </routine_idx>
+
+    <description>
+        <para>创建一个新的目录。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>mkdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>dirname</param_name>
+                <param_note>
+                    <para>指向要创建目录路径的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+        <parameters>
+            <func_param>
+                <param_type>mode_t</param_type>
+                <param_name>mode</param_name>
+                <param_note>
+                    <para>指定新目录的权限。目前不起作用。</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>wmkdir</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>dirname</param_name>
+            </func_param>
+        </parameters>
+        <parameters>
+            <func_param>
+                <param_type>mode_t</param_type>
+                <param_name>mode</param_name>
+                <param_note>
+                    <para></para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果新的目录建立成功，函数返回0，如果函数在执行过程中出现错误，函数返回-1，并将错误号置为下列值：</para>
+        <table>
+            <th>
+                <td>错误号</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>EEXIST</td>
+                <td>因为dirname与已经存在的文件名、目录名以及设备名相同，目录没有创建</td></tr>
+            <tr>
+                <td>ENOENT</td>
+                <td>路径没有找到</td></tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>功能与 _mkdir、_wmkdir相同。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>mkdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wmkdir</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>同_mkdir,_wmkdir</ref_name>
+            <ref_url>_wmkdir</ref_url>
+        </reference>
+    </references>
+   
+
+</manpage>

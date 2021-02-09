@@ -1,0 +1,59 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IConnectionSetting</interface><method> GetValue </method>
+    <description>
+        <para>
+           获得网络配置的某项信息
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> enum NetConfig </param_type>
+                <param_name> nField </param_name>
+                <param_note>
+                    <para>
+                       为NetConfig枚举类型，表示网络配置项
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzWStrBuf </param_type>
+                <param_name> wsbValue </param_name>
+                <param_note>
+                    <para>
+                       返回的网络配置项信息
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	    </table>
+</return>
+	   
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.1》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IIPAddressCtrl</interface><method> SetAddress </method>
+    <description>
+        <para>
+            设置 IP 地址栏中各个域的值。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> field0 </param_name>
+                <param_note>
+                    <para>
+IP 地址栏第一个域中的值                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> field1 </param_name>
+                <param_note>
+                    <para>
+IP 地址栏第二个域中的值                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> field2 </param_name>
+                <param_note>
+                    <para>
+IP 地址栏第三个域中的值                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> field3 </param_name>
+                <param_note>
+                    <para>
+IP 地址栏第四个域中的值                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	    	  </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  设置的域值必须在每个域允许输入的范围内，否则若设置的域值小于或者超过允许输入范围的最小或最大值，则会以该最小或最大值显示。
+	  </para>
+	  <para>
+	  	  该方法的调用等效于通过键盘输入某个 IP 地址。同时会触发 <link url="../JIPAddressCtrlEvents/IPAddressChanged.htm">IPAddressChanged</link> 事件。 
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CIPAddressCtrl 类介绍</ref_name>
+        <ref_url>../../class/IPAddressCtrl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IIPAddressCtrl 接口方法列表</ref_name>
+        <ref_url>../IIPAddressCtrl</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetAddress</ref_name>
+        <ref_url>GetAddress</ref_url>
+    </reference>
+</references>
+</manpage>

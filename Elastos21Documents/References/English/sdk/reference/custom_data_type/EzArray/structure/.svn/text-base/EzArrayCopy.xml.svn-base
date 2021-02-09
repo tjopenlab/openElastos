@@ -1,0 +1,47 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/structuremanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\EzArray\EzArrayT">EzArrayCopy</sample>
+    <volume> Common Data Structure </volume>
+    <function>template&lt;class T&gt; EzArray::EzArray(EzArray&lt;T&gt;&amp;)</function>
+
+    <description>
+        <para> 
+            Constructor of EzArray gets a fleet copy of an EzArray object, namely only copying pointers to this array.
+        </para>
+    </description>
+
+    <syntax>
+        <apiname>EzArray</apiname>
+        <parameters>
+        <api_param>
+            <param_type> EzArray&lt;T&gt;&amp;  </param_type>
+            <param_name>src </param_name>
+            <param_rem>  </param_rem>
+            <param_note>
+                <para>Reference of EzArray objects </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <remarks>
+        <para>EzArray is a template class, template parameter T determines the type of array elements.</para>
+        <para>The former EzArray and EzArray copied point to the same memory block, so if calling <link url="../Dispose.htm">Dispose</link> function to release memory of some one, then the other cannot call Dispose to release.</para>
+    </remarks>
+
+<example></example>
+
+    <references>
+        <reference>
+            <ref_name> Copy Constructor (Deep copy) </ref_name>
+            <ref_url> EzArrayCopy_ </ref_url>
+        </reference>
+    </references>
+
+</manpage>

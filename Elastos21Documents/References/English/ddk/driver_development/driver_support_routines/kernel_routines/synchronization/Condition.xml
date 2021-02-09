@@ -1,0 +1,114 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>    <manpage>
+    <volume>Synchronization</volume>
+    <interface> Condition </interface>
+    <description>
+        <para>Condition class.</para>
+    </description>
+    <methods>
+<self>
+
+    <method>
+        <method_name>Condition constructor</method_name>
+        <method_url>Condition\structure\Condition</method_url>
+    <m_description>
+        Creates a Condition object.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Wait</method_name>
+        <method_url>Condition\Wait</method_url>
+    <m_description>
+        Makes the calling thread wait on the condition variable.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>TryWait</method_name>
+        <method_url>Condition\TryWait</method_url>
+    <m_description>
+        Tries to make the calling thread wait on the condition variable.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>Pulse</method_name>
+        <method_url>Condition\Pulse</method_url>
+    <m_description>
+        Wakes up a waiting thread.
+    </m_description>
+    </method>
+
+    <method>
+        <method_name>PulseAll</method_name>
+        <method_url>Condition\PulseAll</method_url>
+    <m_description>
+        Wakes up all the waiting threads.
+    </m_description>
+    </method>
+
+
+</self>
+
+    </methods>
+
+    <remarks>
+        <para>
+        	An instance of a <b>Condition</b> represents a synchronization object that provides a mechanism to make 
+        	a conclusion on some shared data (the result is a boolean expression).
+        </para>
+		<para>
+			To use <b>Condition</b>, it is necessary to use its constructor <link url="Condition/structure/Condition.htm">
+			Condition::Condition</link> to construct an instance. A condition object can be defined as a global 
+			or local variable, or be created on the kernel heap. 
+		</para>
+		<para>
+			Condition allows a thread to call its member function <link url="Condition/Wait.htm">Condition::Wait
+			</link> or <link url="Condition/TryWait.htm">Condition::TryWait</link> to enter wait state when necessary 
+			(usually after conclusion estimation). After the conclusion has changed, it can call member function 
+			<link url="Condition/Pulse.htm">Condition::Pulse</link> to wake up one thread waiting on this Condition, 
+			or call member function <link url="Condition/PulseAll.htm">Condition::PulseAll</link> to wake up all 
+			threads waiting on this Condition.
+		</para>
+        <para>
+			A condition object effects with a mutex object and provides an atomic operation composed of a
+			conclusion estimation and a waiting action. The mutex object provides protection for the shared
+			data and avoids any loss on waking up. User's thread, requests the mutex object first, and then
+			tests the conclusion, if needs waiting, calls the <link url="Condition/Wait.htm">Condition::
+			Wait</link> method or the <link url="Condition/TryWait.htm">Condition::TryWait</link> method
+			with the owned mutex object as the parameter. Calling the <link url="Condition/Wait.htm">
+			Condition::Wait</link> method or the <link url="Condition/TryWait.htm">Condition::TryWait
+			</link> method blocks the calling thread and releases the mutex object in an atomic step. When the
+			result of the conclusion changes, other threads call <link url="Condition/Pulse.htm">Condition
+			::Pulse</link> method or <link url="Condition/PulseAll.htm">Condition::PulseAll</link> method
+			to wake up the waiting threads. The <link url="Condition/Wait.htm">Condition::Wait</link>
+			method and <link url="Condition/TryWait.htm">Condition::TryWait</link> method will own the
+			mutex object again before return.
+		</para>
+		<para>
+			Make sure no thread is waiting on the condition before the condition object destructs.
+		</para>
+        <para>
+			If multiple threads are waiting on a condition object, while a wake up occurs, the operating system will
+			wake up the waiting thread with the highest priority. If multiple waiting threads have the same
+			highest priority, the thread with the longest waiting time will be woken up.
+		</para>
+
+    </remarks>
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>
+

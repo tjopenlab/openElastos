@@ -1,0 +1,76 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+
+    <volume> 常用数据结构 </volume>
+    <class>U8StringBuf</class>
+    <method> Append </method>
+
+    <description>
+        <para>按指定字符格式在U8StringBuf对象字符串中追加Double数值所对应的字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val> U8StringBuf &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Double</param_type>
+            <param_name>value</param_name>
+            <param_note>
+                <para> 待添加的数值。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>Flags32</param_type>
+            <param_name>fmt</param_name>
+            <param_default> 0 </param_default>
+            <param_note>
+                <para> 设置要追加的字符的格式可以使用<link url="../../../others/MakeNumberFormate/MakeNumberFormat.htm">MakeNumberFormat</link>产生一个fmt或直接使用<link url="../../../others/NumberFormatFlag.htm">_NumberFormat</link>枚举类型。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+   
+    <return>
+        <para>返回U8StringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>超过U8StringBuf对象可用的长度会被省略掉。 </para>
+    </remarks>
+
+<example>
+<pre>
+U8StringBuf_&lt;20&gt; asbuf;
+Double value1 = -1.11;
+asbuf.Copy("123");
+asbuf.Append(value1);   
+CConsole::WriteLine(asbuf.GetLength());  //Display : 12
+CConsole::Write("|");
+CConsole::Write(asbuf);
+CConsole::WriteLine("|");  //Display : |123-1.110000|
+
+asbuf.SetEmpty();
+
+Double value2 = 16;
+asbuf.Append(value2, MakeNumberFormat(NumberFormat_Hex | NumberFormat_LeftAlign, 10, 3));
+CConsole::WriteLine(asbuf.GetLength());  //Display : 10
+CConsole::Write("|");
+CConsole::Write(asbuf);
+CConsole::WriteLine("|");  //Display : |16.000    |
+
+asbuf.SetEmpty();
+
+Double value3 = 1555552e-3;
+asbuf.Append(value3, MakeNumberFormat(NumberFormat_Decimal | NumberFormat_RightAlign, 10, 2));
+CConsole::WriteLine(asbuf.GetLength());  //Display : 10
+CConsole::Write("|");
+CConsole::Write(asbuf);
+CConsole::WriteLine("|");  //Display : |   1555.55| 
+</pre>
+</example>
+
+
+</manpage>

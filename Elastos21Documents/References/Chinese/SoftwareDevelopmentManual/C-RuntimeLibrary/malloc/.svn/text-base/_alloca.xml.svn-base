@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\malloc\_alloca">_alloca</sample>
+    <title> _alloca</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> mal_idx.htm </routine_idx>
+
+    <description>
+        <para>在栈中分配的内存数。</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <func_name>_alloca</func_name>
+        <parameters>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>在栈中分配内存。</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_alloca返回所分配空间的无类型指针，以保证适用于任一对象类型。为了得到所需类型的指针，应对返回值进行类型转换。如果空间分配失败，产生栈溢出例外。</para>
+    </return>
+
+    <remarks>
+        <para>_alloca函数从栈中分配所需的字节数。当所调用的函数退出时，所分配的空间自动被回收。因此，不必通过由alloca函数返回的指针值作为参数去释放所分配的空间。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_alloca</routine_name>
+            <headerfile>malloc.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _alloca.cpp: This program uses _alloca function to
+ * allocates memory on the stack.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;malloc.h&gt;
+
+#define NUM 0x80
+
+int main()
+{
+    int *intArray;
+
+    intArray = (int*)_alloca(sizeof(int) * NUM);
+    printf(&quot;Integer allocating (number: %d)  OK!\n&quot;, sizeof(int) * NUM);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Integer allocating (number: 512)  OK!
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>malloc</ref_name>
+            <ref_url>../stdlib/malloc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>realloc</ref_name>
+            <ref_url>../stdlib/realloc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>free</ref_name>
+            <ref_url>../stdlib/free</ref_url>
+        </reference>
+    </references>
+
+</manpage>

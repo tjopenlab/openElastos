@@ -1,0 +1,214 @@
+<html>
+<head>
+<title>printf Type Field Characters</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>printf Type Field Characters</h2>
+    <p>The type character is the only required format field; it appears after 
+any optional format fields. The type character determines whether the associated
+argument is interpreted as a character, string or number. The types C and S 
+and the behavior of c and s with <a class="style1" href="../wprintf.htm">printf</a> functions, are Microsoft extensions and 
+are not ANSI compatible.  </p>
+
+    <p>printf Type Field Characters</p>
+    <table>
+        <thead>
+            <td>Character</td><td>Type</td><td>Output format</td>
+        </thead>
+        <tr>
+            <td>
+                c
+            </td>
+            <td>
+                int or wint_t
+            </td>
+            <td>
+                When used with printf functions, specifies a single-byte character; when used with wprintf functions, specifies a wide character.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                C
+            </td>
+            <td>
+                int or wint_t
+            </td>
+            <td>
+                When used with printf functions, specifies a wide character; when used with wprintf functions, specifies a single-byte character.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                d
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Signed decimal integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                i
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Signed decimal integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                o
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Unsigned octal integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                u
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Unsigned decimal integer.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                x
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Unsigned hexadecimal integer, using "abcdef".
+            </td>
+        </tr>
+        <tr>
+            <td>
+                X
+            </td>
+            <td>
+                int
+            </td>
+            <td>
+                Unsigned hexadecimal integer, using "ABCDEF".
+            </td>
+        </tr>
+        <tr>
+            <td>
+                e
+            </td>
+            <td>
+                double
+            </td>
+            <td>
+                Signed value having the form [ – ]d.dddd e [sign]ddd where d is a single decimal digit, dddd is one or more decimal digits, ddd is exactly three decimal digits; and sign is + or –.
+            </td>
+        </tr>
+       <tr>
+            <td>
+                E
+            </td>
+            <td>
+                double
+            </td>
+            <td>
+                Identical to the e format except that E rather than e introduces the exponent.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                f
+            </td>
+            <td>
+                double
+            </td>
+            <td>
+                Signed value having the form [ – ]dddd.dddd, where dddd is one or more decimal digits. The number of digits before the decimal point depends on the magnitude of the number and the number of digits after the decimal point depends on the requested precision.
+            </td>
+        </tr>
+         <tr>
+            <td>
+                g
+            </td>
+            <td>
+                double
+            </td>
+            <td>
+                Signed value printed in f or e format, whichever is more compact for the given value and precision. The e format is used only when the exponent of the value is less than –4 or greater than or equal to the precision argument. Trailing zeros are truncated and the decimal point appears only if one or more digits follow it.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                G
+            </td>
+            <td>
+                double
+            </td>
+            <td>
+                Identical to the g format, except that E, rather than e, introduces the exponent (where appropriate).
+            </td>
+        </tr>
+        <tr>
+            <td>
+                n
+            </td>
+            <td>
+                Pointer to integer.
+            </td>
+            <td>
+                Number of characters successfully written so far to the stream or buffer; this value is stored in the integer whose address is given as the argument.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                p
+            </td>
+            <td>
+                Pointer to void.
+            </td>
+            <td>
+                Prints the address of the argument in hexadecimal digits.
+            </td>
+        </tr>
+         <tr>
+            <td>
+                s
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                When used with printf functions, specifies a single-byte–character string; when used with wprintf functions, specifies a wide-character string. Characters are printed up to the first null character or until the precision value is reached.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                S
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                When used with printf functions, specifies a wide-character string; when used with wprintf functions, specifies a single-byte–character string. Characters are printed up to the first null character or until the precision value is reached.
+            </td>
+        </tr>
+    </table>
+
+<script>footer("english")</script>
+</body>
+
+</html>

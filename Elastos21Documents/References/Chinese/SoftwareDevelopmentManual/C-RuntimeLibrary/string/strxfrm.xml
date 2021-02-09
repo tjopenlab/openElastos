@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strxfrm">strxfrm</sample>
+    <title>strxfrm</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>根据给定的信息改变源字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>strxfrm</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>strDest</param_name>
+                <param_note>
+                    <para>目标字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strSource</param_name>
+                <param_note>
+                    <para>源字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>要放置在目标串中的字符的最大数目</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>此函数返回源字符串的长度，不包括结束符。如果返回值大于或等于count，则目的串的内容是不可预测的。当出错时，此函数会设置errno值，并返回INT_MAX。</para>
+    </return>
+
+    <remarks>
+        <para>函数strxfrm用strSource指向的字符串替换strDest所指串的某一部分，使之成为新串。替换到目的串中的字符，包括空字符在内，不超过count个。</para>
+        <para>此函数会检查参数有效性。如果strSource是空指针，或者strDest是空指针且count不为零，或者count大于INT_MAX，此函数设置errno值为EINVAL，并返回INT_MAX。</para>
+        <para>调用strcmp比较替换后的两个串，其结果与直接调用strcoll比较两个原串的结果是一致的。</para>
+        <para>下面的表达式将会得到包含strxfrm函数转换的源字符串的数组的大小：</para>
+        <para>1 + strxfrm( NULL, string, 0 )</para>
+        <para>strncpy( _string1, _string2, _count );</para>
+        <para>return( strlen( _string2 ) );</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strxfrm</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strxfrm.cpp:this transforms the string pointed to by strSource into a new collated form that is stored in strDestprogram
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[100] = &quot;Cats are nice usually&quot;;
+    printf(&quot;Before: %s\n&quot;, string);
+    strxfrm(string, &quot;Dogs&quot;, 4);
+    strxfrm(string + 9, &quot;mean&quot;, 4);
+    printf(&quot;After:  %s\n&quot;, string);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+Before: Cats are nice usually
+After:  Dogs are mean usually
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcscmp</ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcsncmp</ref_name>
+            <ref_url>wcsncmp</ref_url>
+        </reference>
+    </references>
+
+</manpage>

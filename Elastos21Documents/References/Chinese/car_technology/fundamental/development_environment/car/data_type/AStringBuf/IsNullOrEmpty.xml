@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\eztypes\AStringBuf\IsNullOrEmpty">IsNullOrEmpty</sample>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method>IsNullOrEmpty</method>
+
+    <description>
+        <para> 判断指向此对象的字符串指针是否为NULL或者包含的字符串是否为空字符串("")。</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val> Boolean </return_val>
+        <modifier>const</modifier>
+    </syntax_nopara>
+
+    <return>
+        <para>指向当前AStringBuf对象的字符串指针或者字符串为空时，返回TRUE，否则返回FALSE。</para>
+    </return>
+<example>
+<pre>
+AStringBuf_&lt;10&gt; asbuf;  
+CConsole::WriteLine(asbuf.IsNullOrEmpty());  //Display : ture
+asbuf.Copy("abc");
+CConsole::WriteLine(asbuf.IsNullOrEmpty());  //Display : false
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::IsEmpty </ref_name>
+        <ref_url>../AStringBuf/IsEmpty</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::IsNull </ref_name>
+        <ref_url>../AStringBuf/IsNull</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::IsNullOrEmpty </ref_name>
+        <ref_url>../WStringBuf/IsNullOrEmpty</ref_url>
+    </reference>
+</references>
+    
+</manpage>

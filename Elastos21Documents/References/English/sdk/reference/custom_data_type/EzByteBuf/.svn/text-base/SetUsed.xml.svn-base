@@ -1,0 +1,78 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzByteBuf\SetUsed">setused</sample>
+    <volume> COMMON DATA STRUCTURE </volume>
+    <interface> EzByteBuf   </interface>
+    <method> SetUsed </method>
+
+    <description>
+        <para>Sets the number of used bytes of current byte buffer.  </para>
+    </description>
+
+    <syntax>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> int </param_type>
+            <param_name> used </param_name>
+            <param_note>
+                <para> The number of the bytes to be set.  </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns the length actually set.</para>
+    </return>
+
+<example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzByteBuf_<200> buf;
+    int old_used, new_used;
+
+    buf.Copy("Good luck!", 11);
+    old_used = buf.Used();
+
+    buf.SetUsed(20);
+    new_used = buf.Used();
+
+    if (!buf.IsNull()) {
+        printf("'%s' original used %d byte,\n", (char*)buf, old_used);
+        printf("After setused 20, now used %d bytes.\n", new_used);
+    } else {
+        printf("wrong EzByteBuf!");
+    }
+
+
+    return 0;
+}
+]]></pre></example>
+
+<result><![CDATA[
+'Good luck!' original used 11 byte,
+After setused 20, now used 20 bytes.
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Used </ref_name>
+            <ref_url> Used </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Capacity </ref_name>
+            <ref_url> Capacity </ref_url>
+        </reference>
+    </references>
+
+</manpage>

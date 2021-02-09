@@ -1,0 +1,51 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>基本CAR函数</volume>
+    <title>CObject::Compare</title>
+    <routine_idx>../../BasicCAR.htm</routine_idx>
+
+    <description>
+        <para>比较两个构件对象。</para>
+    </description>
+
+    <syntax>
+        <return_val>Boolean</return_val>
+        <api_name>Compare</api_name>
+        <parameters>
+            <api_param>
+                <param_type>/* [in] */ PInterface </param_type>
+                <param_name> pObjectA </param_name>
+                <param_note>
+                    <para>[in] 指向第一个构件对象的接口指针。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>/* [in] */ PInterface </param_type>
+                <param_name> pObjectB </param_name>
+                <param_note>
+                    <para>[in] 指向第二个构件对象的接口指针。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<para>如果两个接口指针指向同一构件对象，返回TRUE；否则将返回FALSE。</para>
+    </return>
+
+    <remarks>
+        <para>本函数只能用于比较CAR构件对象，不能比较普通C++对象。参数可以是构件对象的任意接口指针。</para>
+    </remarks>
+
+    <requirements>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

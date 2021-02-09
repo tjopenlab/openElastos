@@ -1,0 +1,95 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>bind</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>将本地地址与一套接口捆绑。 </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>未绑定的套接口。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>struct sockaddr*</param_type>
+                <param_name>addr</param_name>
+                <param_note>
+                    <para>用于绑定的地址，数据类型为sockaddr结构。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>namelen</param_name>
+                <param_note>
+                    <para>名字的长度。用户需要保证namelen的合法性，对于TCP/IP，可以令namelen = sizeof(SOCKADDR)。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>程序执行成功时返回0；否则，返回SOCKET_ERROR。调用WSAGetLastError函数可得到具体的错误信息。</para>
+    </return>
+
+    <remarks>
+        <para>该函数给未连接的套接口赋一个本地地址。</para>
+        <para>本函数适用于未连接字节流套接口或者数据报套接口。对字节流套接口，需在connect()或listen()前调用bind()。当用socket()函数创建套接口后，新的套接口便具有了尚未赋值的地址变量。bind()函数将给套接口赋一个本地地址以建立捆绑（主机地址/端口号）。</para>
+        <para>一个地址由三部分组成：地址族，主机地址和端口号。</para>
+        <para>如果应用程序不需要考虑地址设置，可将地址族取为INADDR_ANY，端口号取为0。地址族为INADDR_ANY时可使用任意网络接口，可简化对复合地址的网络编程。端口号为0时elasock将给应用程序自动分配一个端口号，值在1024到5000之间。</para>
+        <para>应用程序可在bind()后用getsockname()获知分配的地址，但必须注意的是，由于可能存在多种可能的地址形式（例如复合地址），getsockname()只在套接口连接成功后才会输出地址参数。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>connect</ref_name>
+            <ref_url>connect</ref_url>
+        </reference>
+        <reference>
+            <ref_name>listen</ref_name>
+            <ref_url>listen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getsockname</ref_name>
+            <ref_url>getsockname</ref_url>
+        </reference>
+        <reference>
+            <ref_name>setsockopt</ref_name>
+            <ref_url>setsockopt</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

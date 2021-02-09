@@ -1,0 +1,237 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>图形控件IScrollBar</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2> IScrollBar 范例程序 </h2>
+
+
+<h3> TScroll.h </h3>
+<pre class = "code">
+
+#ifndef __TScroll_H__
+#define __TScroll_H__
+
+#include "_TScroll.h"
+
+CarClass(TScroll)
+{
+public:
+    TScroll();
+    ~TScroll();
+    CARAPI Main(
+        /* [in] */ const BufferOf<WString> & argcv);
+
+    CARAPI OnValueChanged(
+        /* [in] */ PInterface pIObject, Int32 nValue);
+
+    CARAPI OnClose(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI Quit();
+
+    CARAPI Terminate();
+
+    CARAPI Activate();
+
+    CARAPI Deactivate();
+
+    CARAPI IsActivated(
+        /* [out] */ Boolean * pActivated);
+
+    CARAPI Snooze();
+
+    CARAPI Wakeup();
+
+    CARAPI GetName(
+        /* [out] */ WStringBuf * pName);
+private:
+    IForm        * m_pMainForm;
+    IScrollBar   * m_pIHScroll;
+    IScrollBar   * m_pIVScroll;
+    IButton      * m_pIBtnClose;
+};
+
+#endif // __TScroll_H__
+
+</pre>
+<h3> TScroll.cpp </h3>
+<pre class = "code">
+
+#include "TScroll.h"
+#include "_TScroll.cpp"
+#include <stdio.h>
+
+TScroll::TScroll()
+{
+    m_pIBtnClose = NULL;
+    m_pIVScroll = NULL;
+    m_pIHScroll = NULL;
+    m_pMainForm = NULL;
+}
+
+TScroll::~TScroll()
+{
+    if (m_pMainForm) {
+        m_pMainForm->Release();
+    }
+
+    if (m_pIHScroll) {
+        m_pIHScroll->Release();
+    }
+
+    if (m_pIVScroll) {
+        m_pIVScroll->Release();
+    }
+
+    if (m_pIBtnClose) {
+        m_pIBtnClose->Release();
+    }
+}
+
+ECode TScroll::Main(
+    /* [in] */ const BufferOf<WString> & argcv)
+{
+
+//////////      form
+    CForm::New(L"MAIN", 0, 0, 0, 200, 280,  NULL,&m_pMainForm);
+
+    printf("m_pMainForm = %x\n", m_pMainForm);
+
+//////////////  hscrollbar
+    CScrollBar::New(L" ", 0, 10, 60, 120, 20,  m_pMainForm,&m_pIHScroll);
+
+    printf("m_pIHScroll = %x\n", m_pIHScroll);
+
+////////////    vscrollbar
+    CScrollBar::New(L" ", SliderBarStyle_Vertical,
+                    150, 30, 20, 120,  m_pMainForm,&m_pIVScroll);
+
+    printf("m_pIVScroll = %x\n", m_pIVScroll);
+
+//    m_pIVScroll->SetMinimum(0);
+    m_pIVScroll->SetMaximum(100);
+    m_pIVScroll->SetSingleStep(1);
+    m_pIVScroll->SetPageStep(4);
+    m_pIVScroll->SetMaximum(1);
+//    m_pIVScroll->SetMaximum(2);
+
+    CScrollBar::AddValueChangedCallback(m_pIHScroll,
+                 this, &TScroll::OnValueChanged);
+    CScrollBar::AddValueChangedCallback(m_pIVScroll,
+                 this, &TScroll::OnValueChanged);
+
+    //DebugBreak();
+    //m_pMainForm->GrabKey(Keys_Q, 0);
+
+///////////////  Exit Button
+    CButton::New(L"Exit", 0,
+                0, 0, 80, 30,  m_pMainForm,&m_pIBtnClose);
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 this, &TScroll::OnClose);
+
+    m_pMainForm->Show();
+
+    return NOERROR;
+}
+
+ECode TScroll::OnValueChanged(
+    /* [in] */ PInterface pIObject,
+    Int32 nValue)
+{
+    printf("TScrollSample::OnValueChanged:nValue = %d\n", nValue);
+    return NOERROR;
+}
+
+ECode TScroll::OnClose(
+    /* [in] */ PInterface pIObject)
+{
+    m_pMainForm->Close();
+    return NOERROR;
+}
+
+ECode TScroll::Quit()
+{
+    return NOERROR;
+}
+
+ECode TScroll::Terminate()
+{
+    return NOERROR;
+}
+
+ECode TScroll::Activate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TScroll::Deactivate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TScroll::IsActivated(
+    /* [out] */ Boolean * pActivated)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TScroll::Snooze()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TScroll::Wakeup()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TScroll::GetName(
+    WStringBuf * name)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+
+</pre>
+
+</pre>
+<h3> scroll.car </h3>
+<pre class = "code">
+module www.koretide.com/ezcom/scroll.dll
+{
+    importlib("elcontrols.dll");
+
+    applet TScroll {}
+}
+</pre>
+
+<h3> sources </h3>
+<pre class = "code">
+TARGET_NAME= scroll
+TARGET_TYPE= dll
+
+SOURCES= \
+    scroll.car \
+    TScroll.cpp \
+
+LIBRARIES = $(XDK_USER_LIB)\ElCRuntime.lib     $(XDK_LIB_PATH)\elastos.lib \
+</pre>
+<script>footer("KoreTide")</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> 常用数据结构 </volume>
+    <class>WStringBuf</class>
+    <method> Copy </method>
+
+    <description>
+        <para> 把源宽串的前len个字符拷贝到目标宽串。</para>
+    </description>
+
+   
+    <syntax>
+        <return_val> WStringBuf &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type> WString </param_type>
+            <param_name>ws</param_name>
+            <param_note>
+                <para> WString对象 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type> Int32 </param_type>
+            <param_name>len</param_name>
+            <param_note>
+                <para> 要拷贝的字符个数 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回WStringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>超过WStringBuf对象可用的长度会被省略掉。 </para>
+    </remarks>
+<example>
+<pre>
+WStringBuf_&lt;5&gt; wsbuf;
+WString ws="123";
+wsbuf.Copy(ws, 2);
+CConsole::WriteLine(wsbuf);  //Display : "12"
+
+</pre>
+</example>
+ <references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Copy</ref_name>
+        <ref_url>index/Copy</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Replace</ref_name>
+        <ref_url>../Replace</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Append</ref_name>
+        <ref_url>../Append/index/Append</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Copy</ref_name>
+        <ref_url>../../WStringBuf/Copy/index/Copy</ref_url>
+    </reference>
+</references>   
+
+     
+</manpage>

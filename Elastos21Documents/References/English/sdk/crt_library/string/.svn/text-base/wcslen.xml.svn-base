@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strlen">strlen</sample>
+    <title>strlen, wcslen</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Get the length of a string.</para>
+    </description>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>strlen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>Null-terminated string.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>size_t</return_val>
+        <func_name>wcslen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Both functions return the number of characters in string, excluding the terminal NULL. No return value is reserved to indicate an error.</para>
+    </return>
+
+    <remarks>
+        <para>Both functions return the number of characters in string, not including the terminating null character. wcslen is a wide-character version of strlen; the argument of wcslen is a wide-character string. wcslen and strlen behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strlen</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcslen</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strlen.cpp:this program use strlength to get the length of string
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buffer[61] = &quot;How long am I?&quot;;
+    int  len;
+    len = strlen(buffer);
+    printf(&quot;&apos;%s&apos; is %d characters long\n&quot;, buffer, len);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+&apos;How long am I?&apos; is 14 characters long
+</result>
+
+
+    <references>
+        <reference>
+            <ref_name> wcscat</ref_name>
+            <ref_url>  wcscat</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcscmp </ref_name>
+            <ref_url>  wcscmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcscpy </ref_name>
+            <ref_url>  wcscpy </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url>  strrchr </ref_url>
+        </reference>
+        <reference>
+            <ref_name> _strset </ref_name>
+            <ref_url>  _strset </ref_url>
+        </reference>
+    </references>
+
+</manpage>

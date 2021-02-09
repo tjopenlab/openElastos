@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>同步</volume>
+<interface>DzEvent</interface><method> Clear </method>
+    <description>
+        <para>将事件对象重新设置为未通知状态。</para>
+    </description>
+    <syntax_nopara>
+        <return_val>void</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本成员函数会将事件对象重置为未通知状态，从而使其后所有等待本事件对象的线程进入等待状态。</para>
+        <para>本成员函数主要用于手动重置的事件对象，以重置本事件对象为未通知状态；自动重置的事件对象在唤醒一个等待线程后，会自动被重置为未通知状态。</para>
+        <para>本成员函数既用于驱动程序的上半部分，也可用于驱动程序下半部分。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+
+</manpage>

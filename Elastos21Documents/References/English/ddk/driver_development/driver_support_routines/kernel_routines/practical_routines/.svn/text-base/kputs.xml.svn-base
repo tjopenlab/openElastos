@@ -1,0 +1,70 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="practical_routines\kputs">kputs</sample>
+    <volume>Practical Routines</volume>
+    <title>kputs</title>
+    <routine_idx> ../practical_routines.htm </routine_idx>
+
+    <description>
+        <para>
+        	Sends a string to the kernel console.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> const char *</param_type>
+                <param_name> szMessage </param_name>
+                <param_note>
+                    <para>	
+                    	Pointer to the output string. 
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>Non-negative value</td>
+				<td>Function succeeds in sending a string to the kernel console.</td>
+            </tr>
+            <tr>
+                <td>EOF</td>
+				<td>Function fails.</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>
+            This function sends a string to the kernel console.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+
+</manpage>

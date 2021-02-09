@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\isalnum">isalnum</sample>
+    <title>isalnum iswalnum</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>判断一个字符是否为字母或数字（A – Z，a – z 或 0 – 9）。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>isalnum</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>需要判断的字符</para>
+                </param_note>
+            </func_param>
+        </parameters>
+       </syntax>
+       
+     <syntax>
+        <return_val>int</return_val>
+        <func_name>iswalnum</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+               
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果isalpha或isdigit对于c为真,也就是,如果c在A-Z、a-z或0-9的范围内,isalnum返回一个非0值。如果iswalpha或iswdigit对于c为真,iswalnum返回一个非0值,如果c不满足测试条件,函数返回0。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>isalnum</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>iswalnum</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+    
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* isalnum.cpp: This program uses isalnum to verify c
+ * whether it is an alphanumeric character.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+{
+    int c = 100;
+    if (isalnum(c)) {
+        printf(&quot;it is a particular representation&quot;
+            &quot; of an alphanumeric character.\n&quot;);
+    }
+    else {
+        printf(&quot;it is not a particular representation &quot;
+                &quot;of an alphanumeric character.\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+it is a particular representation of an alphanumeric character.
+</result>
+
+
+</manpage>

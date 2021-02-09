@@ -1,0 +1,66 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzWCharBuf\FreeBuf">freebuf</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzWCharBuf </interface>
+    <method> FreeWCharBuf </method>
+
+    <description>
+        <para> Releases the memory space occupied by the buffer.</para>
+    </description>
+
+    <syntax>
+        <return_val> static void</return_val>
+        <parameters>
+        <api_param>
+            <param_type> EzWCharBuf&amp; </param_type>
+            <param_name> buf </param_name>
+            <param_note>
+                <para> The existing EzWCharBuf object.</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzWCharBuf mybuf = EzWCharBuf::AllocWCharBuf(20);
+
+    mybuf.Copy(L"hello!",7);
+    wprintf(L"%s\n",(wchar_t*)mybuf);
+    EzWCharBuf::FreeWCharBuf(mybuf);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+hello!
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> AllocWCharBuf </ref_name>
+            <ref_url> AllocWCharBuf </ref_url>
+        </reference>
+        <reference>
+            <ref_name> AllocWCharBufLen </ref_name>
+            <ref_url> AllocWCharBufLen </ref_url>
+        </reference>
+    </references>
+
+</manpage>

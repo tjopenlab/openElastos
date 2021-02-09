@@ -1,0 +1,70 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+    <manpage>
+    <volume>IArgumentList Interface Functions </volume>
+     <interface>IArgumentList</interface><method>SetOutInt64PtrArg  </method>
+    <description>
+        <para>
+        Acquires the method interface
+        </para>
+    </description>
+    <syntax>
+         
+        <return_val> ECODE </return_val>
+      <parameters>
+        <api_param>
+        <param_inout>[in]</param_inout>
+        <param_type>Int32</param_type>
+        <param_name>index</param_name>
+        <param_note>
+        <para>
+       index number
+        </para>
+        </param_note>
+        </api_param>
+      </parameters>
+      <parameters>
+       <api_param>
+        <param_inout>[in]</param_inout>
+        <param_type>Int64 *</param_type>
+        <param_name>value</param_name>
+        <param_note>
+        Set Int64 type value
+        </param_note>
+        </api_param>
+      </parameters>
+       </syntax>
+
+	<return>
+		<table>
+		<th>
+		<td>Return value</td><td>Description</td>
+		</th>
+		<tr>
+		<td>NOERROR</td><td>Succeeds in acquiring  the method interface</td>
+		 </tr>
+		 <tr>
+		<td>E_INVALID_ARGUMENT</td><td>The input parameter serial number exceeds the  number of method parameter or the data type of the seted parameter  mismatches that of the corresponding method </td>
+		 </tr>
+		  <tr>
+		<td>E_INVALID_OPERATION</td><td>Fail to create parameter list or set  value</td>
+		 </tr>
+		 </table>   
+		    <para>See <link url="..\..\..\..\reference\basic_data_type\hresult.htm">ECODE</link> for related help.</para>
+    </return>
+
+	<remarks>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

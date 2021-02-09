@@ -1,0 +1,38 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/custom_type.xsl"?>
+
+<manpage>
+    <volume>Elastos Network Programming Interface（elasock API）</volume>
+    <types>in_addr</types>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>This structure is to describe the address format of the host computer.</para>
+    </description>
+
+    <struct>
+        <embeded_struct>
+            <embeded_struct_name>S_un</embeded_struct_name>
+            <embeded_struct_type>union</embeded_struct_type>
+            <embeded_struct_member>
+                <mem_type>struct { u_char s_b1, s_b2, s_b3, s_b4; }</mem_type>
+                <mem_name>S_un_b</mem_name>
+                <mem_description>Four addresses format of the host computer represented by u_char data.</mem_description>
+            </embeded_struct_member>
+            <embeded_struct_member>
+                <mem_type>struct { u_short s_w1,s_w2; }</mem_type>
+                <mem_name>S_un_w</mem_name>
+                <mem_description>Two addresses format of the host computer represented by u_short data.</mem_description>
+            </embeded_struct_member>
+            <embeded_struct_member>
+                <mem_type>u_long</mem_type>
+                <mem_name>S_addr</mem_name>
+                <mem_description>One address format of the host computer represented by u_long data.</mem_description>
+            </embeded_struct_member>
+        </embeded_struct>
+    </struct>
+</manpage>

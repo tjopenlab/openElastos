@@ -1,0 +1,72 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Automatic Code Framework Generation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+<h2>Developing Component Client</h2>
+    <p>By reading the above articles, the user already knows how to write simple CAR component. Next, let us write two simple client programs using hello component.</p>
+    <p>Please see the C++ client code (client.cpp file) of component hello : </p>
+    <pre class="code">
+#include &lt;stdio.h&gt;
+<b>#import &lt;hello.dll&gt;</b>
+
+int __cdecl main()
+{
+    EzStr outStr;
+<b>    CHelloRef cHello;    //creates class smart pointer
+    ECODE ec = cHello.Instantiate();  //creates object of class CHello</b>
+    if (!cHello.IsValid()) {
+        assert(0 && "Can't create cHello");
+        return 1;
+    }
+
+<b>    ec = cHello.Hello(EZCSTR("Hello,"), &outStr);    //invokes Hello() method using class smart pointer cHello</b>
+    if (FAILED(ec)) {
+        return 1;
+    }
+
+    printf("%S\n", (wchar_t*)outStr);   //prints the result
+    EzStr::FreeString(outStr);
+
+    return 0;
+}
+</pre>
+    <p>Write sources file as the following: </p>
+    <pre class="code">
+TARGET_NAME= hello_c
+TARGET_TYPE= exe
+
+SOURCES= \
+    client.cpp \
+
+ELASTOS_LIBS= \
+    elacrt.lib \
+    elastos.lib \
+</pre>
+    <p>The execution result of this program: </p>
+    <pre class="code">
+Hello, world!
+</pre>
+    <ul>
+    <li>In client the import line is used to include component, for example: 
+    <pre class="code">
+#import &lt;hello.dll&gt;
+</pre>
+    <p>During source program compilation, the compiler searches imported component according to the following order: Current directory-&gt;system directory-&gt;Elastos.SDK development environment bin directory.</p>
+    <font color="red"><b>Note: </b>#import&nbsp;&lt;XXX.dll&gt; line can only be used in cpp files. If declaration of included variable in the component is required in XXX header file, please insert the line #import <XXX.dll> before the line #include <XXX.h> .</font>
+        <li></a>How can we use Smart&nbsp;Pointer?
+                <p>In the example, parameter <i>cHello</i> is class smart pointer of the CHello class. When included hello component using import, one can use smart pointer provided by CHello class. Through class smart pointer cHello, the client can invoke methods in all interfaces of class CHello object. For example: </p>
+                <pre class="code">
+cHello.Hello(EZCSTR("Hello,"), &outStr);    //invokes Hello() method using class smart pointer cHello.
+</pre>
+    <p>In the example, class smart pointer cHello uses dot operator "." to invoke <b>Hello</b> method in interface IHello . In the parameter of interface method <b>Hello</b> <a class="style1" href="../../../../sdk/reference/custom_data_type/EzStr.htm">EzStr</a> is a macro that converts a single byte character string to EzStr object. It is used to initialize an EzStr object.</p>
+    </ul>
+
+<body><script>footer("english")</script>
+</body>
+</html>

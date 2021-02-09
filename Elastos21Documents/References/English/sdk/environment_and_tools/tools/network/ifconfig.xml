@@ -1,0 +1,66 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/shellmanual.xsl"?>
+
+<manpage>
+    <title> ifconfig </title>
+    <volume>Network Commands</volume>
+
+    <description>
+        <para> Checks and configures network interface address and parameters.</para>
+    </description>
+
+    <syntax>
+        <cmd_name> ifconfig.exe </cmd_name>
+        <cmd_param>interface [address][netmask address][broadcast address] </cmd_param>
+    </syntax>
+
+    <parameters>
+        <param>
+            <param_name>  interface </param_name>
+            <param_note> Network device defined in system core, usually it is network card. </param_note>
+        </param>
+        <param>
+            <param_name> [address] </param_name>
+            <param_note> Interface IP address. </param_note>
+        </param>
+        <param>
+            <param_name>[netmask address]</param_name>
+            <param_note>Interface subnet mask.</param_note>
+        </param>
+        <param>
+            <param_name>[broadcast address]</param_name>
+            <param_note>Address for broadcasting messages to all machines in the subnet.</param_note>
+        </param>
+    </parameters>
+
+    <remarks>
+        <para>There are mainly two ways to use ifconfig: </para>
+        <para>
+        	1. ifconfig.exe [interface] or does not have any parameter. It is used to check network configuration 
+        	of the current system. If no parameter is given, ifconfig displays the current valid interface mode. If 
+        	single interface is given as parameter, only specified interface mode is displayed. If given parameter [-a], 
+        	displays all interface modes including stopped interface.
+        </para>
+        <para>
+        	2. ifconfig.exe interface address ..., IP address, network mask, and broadcasting address used to 
+        	configure network interface. ifconfig is used to configure kernel resident network interface when 
+        	bootstrap successful. After that it is only used when debugging or rearranging the system.
+        </para>
+    </remarks>
+
+    <examples>
+        <example>
+            <eg_line>ifconfig.exe lo0 127.0.0.1 netmask 255.255.248.0</eg_line>
+            <eg_note>Configures loop-back interface IP address and subnet mask.</eg_note>
+        </example>
+        <example>
+            <eg_line>ifconfig.exe eth0 192.168.2.88 netmask 255.255.248.0 broadcast 192.168.0.255</eg_line>
+            <eg_note>Configures ethernet card IP address, subnet mask and broadcasting address.</eg_note>
+        </example>
+    </examples>
+
+</manpage>

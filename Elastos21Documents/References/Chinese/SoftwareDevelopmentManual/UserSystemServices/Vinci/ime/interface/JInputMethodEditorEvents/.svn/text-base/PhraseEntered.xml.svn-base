@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>JInputMethodEditorEvents</interface><method> PhraseEntered </method>
+    <description>
+        <para>
+            键入字符串事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> phrase </param_name>
+                <param_note>
+                    <para>
+当前转义后的字符(串)。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> formerPhrase </param_name>
+                <param_note>
+                    <para>
+之前转义的字符(串)。                    </para>
+                </param_note>
+            </api_param>            
+       </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统              </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElControls.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib </lib_name>
+        </library>
+    </requirements>
+    <remarks>
+      <para>例如：在字母abc模式下，按一下2，转义得到的字符为a，输入法应发事件PhraseEntered(L"a", L"");再按一下2时，则转义后得到的字符为b，这时应发事件PhraseEntered(L"b", L"a");</para>
+    </remarks>
+</manpage>

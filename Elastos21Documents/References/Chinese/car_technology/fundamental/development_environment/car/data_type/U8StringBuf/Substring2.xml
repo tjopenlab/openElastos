@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>U8StringBuf</class>
+    <method> Substring </method>
+
+    <description>
+        <para> 按UTF-8编码格式从此对象检索子字符串。子字符串从指定的字符位置开始且具有指定的长度。 </para>
+    </description>
+    <syntax>
+        <return_val> AString </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> start </param_name>
+            <param_note>
+                <para> 开始位置</para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> len  </param_name>
+            <param_note>
+                <para> 子字符串长度 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>U8StringBuf &amp;</param_type>
+            <param_name> sub </param_name>
+            <param_note>
+                <para>保存子字符串的U8StringBuf对象 </para>
+            </param_note>
+        </api_param>
+                        
+        </parameters>        
+    </syntax>
+    <return>
+        <para>返回子字符串。如果源对象包含的字符串指针为NULL或sub U8StringBuf对象的m_pBuf指针为NULL， start 小于0 或大于源字符串的长度， 返回的U8StringBuf对象包含的字符串指针指向NULL。</para>
+    </return>
+
+<example>
+<pre>
+U8StringBuf_&lt;20&gt; u8sbuf;
+U8StringBuf_&lt;20&gt; u8ssub;
+u8sbuf.Copy("123456789");  
+CConsole::WriteLine(u8sbuf);  //Display : "123456789"
+CConsole::WriteLine(u8sbuf.Substring(2,2,u8ssub));  //Display : "34"
+CConsole::WriteLine(u8ssub);  //Display : "34"
+</pre>
+</example> 
+
+</manpage>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IComboBox</interface><method> SetComparator </method>
+    <description>
+        <para>
+            为 ComboBox 设置比较器，用于按照自定义排序顺序排序。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IComparator* </param_type>
+                <param_name> comparator </param_name>
+                <param_note>
+                    <para>
+比较器接口指针</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        通常情况下，列表项的自动排序是基于项文本对项进行排序。若要自定义排序方式，必须编写一个实现 <link url="../IComparator.htm">IComparator</link> 接口的类，而该类有一个 <link url="../IComparator/Compare.htm">Compare</link> 方法。若新比较器实例已经作用到列表项，则对 <link url="Sort.htm">Sort</link> 方法的后续调用也会使用同一对象。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CComboBox 类介绍</ref_name>
+        <ref_url>../../class/ComboBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IComboBox 接口方法列表</ref_name>
+        <ref_url>../IComboBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetComparator</ref_name>
+        <ref_url>GetComparator</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IComparator</ref_name>
+        <ref_url>../IComparator</ref_url>
+    </reference>
+</references>
+</manpage>

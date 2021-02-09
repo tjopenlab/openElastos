@@ -1,0 +1,219 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\atof">atof</sample>
+    <title>atof, atoi, _atoi64, _wtoi, _wtoi64, atol, _wtol</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Converts a string to double (atof), integer (atoi, _atoi64, _wtoi and _wtoi64) or long integer (atol and _wtol).</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>atof</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>String to convert.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>atoi</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>__int64</return_val>
+        <func_name>_atoi64</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wtoi</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>__int64</return_val>
+        <func_name> _wtoi64</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>atol</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>_wtol</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+
+    <return>
+        <para>Each function returns the double, int, __int64, or long value produced by interpreting the input characters as a number. The return value is 0 (for atoi, _atoi64, _wtoi, and _wtoi64), 0L (for atol and _wtol), or 0.0 (for atof) if the input cannot be converted to a value of that type. The return value is undefined in case of overflow.</para>
+    </return>
+
+    <remarks>
+        <para>These functions convert a character string to a double-precision, floating-point value (atof), an integer value (atoi, _atoi64, _wtoi and _wtoi64) or a long integer value (atol and _wtol). </para>
+        <para>The input string is a sequence of characters that can be interpreted as a numerical value of the specified type. The function stops reading the input string at the first character that it cannot recognize as part of a number. This character may be the null character ('\0' or L'\0') terminating the string.</para>
+        <para>The string argument to atof has the following form:</para>
+        <para>[whitespace] [sign] [digits] [.digits] [ {d | D | e | E }[sign]digits]</para>
+        <para>A whitespace consists of space or tab characters, which are ignored; sign is either plus (+) or minus (-); and digits are one or more decimal digits. If no digits appear before the decimal point, at least one must appear after the decimal point. The decimal digits may be followed by an exponent, which consists of an introductory letter (d, D, e, or E) and an optionally signed decimal integer.</para>
+        <para>atoi, _atoi64, atol, _wtoi, _wtoi64 and _wtol do not recognize decimal points or exponents. The string argument for these functions has the form:</para>
+        <para>[whitespace] [sign]digits</para>
+        <para>Where whitespace, sign, and digits are as described for atof.</para>
+    </remarks>
+
+
+    <requirements>
+        <routine>
+            <routine_name>atof</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>atoi</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_atoi64</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wtoi</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wtoi64</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>atol</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wtol</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* atof.cpp: This program shows how numbers stored
+ * as strings can be converted to numeric values
+ * using the atof, atoi, and atol functions.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char *s; double x; int i; long l;
+
+    s = &quot;  -2309.12E-15&quot;;     /* Test of atof */
+    x = atof(s);
+    printf(&quot;atof test: ASCII string: %s\tfloat:  %e\n&quot;, s, x);
+
+    s = &quot;7.8912654773d210&quot;;  /* Test of atof */
+    x = atof(s);
+    printf(&quot;atof test: ASCII string: %s\tfloat:  %e\n&quot;, s, x);
+
+    s = &quot;  -9885 pigs&quot;;        /* Test of atoi */
+    i = atoi(s);
+    printf(&quot;atoi test: ASCII string: %s\t\tinteger: %d\n&quot;, s, i);
+
+    s = &quot;98854 dollars&quot;;      /* Test of atol */
+    l = atol(s);
+    printf(&quot;atol test: ASCII string: %s\t\tlong: %ld\n&quot;, s, l);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+atof test: ASCII string:   -2309.12E-15 float:  -2.309120e-012
+atof test: ASCII string: 7.8912654773d210       float:  7.891265e+210
+atoi test: ASCII string:   -9885 pigs           integer: -9885
+atol test: ASCII string: 98854 dollars          long: 98854
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcstod</ref_name>
+            <ref_url> wcstod</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcstol</ref_name>
+            <ref_url>  wcstol</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _ecvt</ref_name>
+            <ref_url>  _ecvt</ref_url>
+        </reference>
+        <reference>
+            <ref_name> _fcvt</ref_name>
+            <ref_url>  _fcvt</ref_url>
+        </reference>
+    </references>
+
+</manpage>

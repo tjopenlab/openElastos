@@ -1,0 +1,92 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzCreateObject">EzCreateObject</sample>
+    <volume></volume>
+    <title>CVirtualMemory::SetProtection</title>
+    <routine_idx>.../mem_management_idx.htm</routine_idx>
+
+    <description>
+        <para>
+        Changes the access protection of the specified virtual memory. 
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECode  </return_val>
+        <api_name>CVirtualMemory::SetProtection</api_name>
+       <parameters>
+            <api_param>
+                <param_type> Address </param_type>
+                <param_name>baseAddr</param_name>
+                <param_note>
+                    <para>
+                   [in]The specified virtual address.	
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemorySize </param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>
+                    [in] Size, in bytes, of the specified virtual memory block. 
+	                 </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemoryProtection </param_type>
+                <param_name>protection</param_name>
+                <param_note>
+                    <para>
+                    	[in]The access protection of the virtual memory block.
+                    </para>
+                </param_note>
+            </api_param>
+      </parameters>      
+    </syntax>
+
+    <return>
+       <table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Funtion succeeds in changing the access protection of the specified virtual memory. </td>
+            </tr>
+           <tr>
+                <td>E_INVALID_ARGUMENT </td>
+                <td>Invalid argument(s)</td>
+            </tr>
+        </table>
+        <para>See <link url="/sdk/reference/basic_data_type/hresult.htm">ECODE</link> related help for more details.</para>
+    </return>   	
+    
+
+    <remarks>
+         <para>
+         The passed in addresses and sizes are obtained by <link url="\sdk\base_service\mem_management\virtual memory management\Alloc.htm">CVirtualMemory::Alloc</link>, it will return E_INVALIDARG if one of them is not matching
+         </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+</manpage>

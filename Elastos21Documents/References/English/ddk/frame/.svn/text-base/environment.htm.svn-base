@@ -1,0 +1,37 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Device Driver Framework</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Introduction To Device Driver And Development Environment</h2>
+    <p>Elastos&nbsp;2.0 device driver is a part of Elastos&nbsp;2.0 embedded real time kernel. This kernel has the following important characteristics: </p>
+    <ul>
+        <li>The kernel is single block structure and device driver is linked to kernel image file statically.
+        <li>Supports multi-process and multi-thread run-time model.
+        <li>Supports two types of kernel thread.
+        <li>Completelly preemptive kernel.
+        <li>Fixed priority based interrupt management.
+        <li>Supports time division, real time scheduling and priority inheritance.
+    </ul>
+    <p>So, as part of the kernel, device driver is directly affected by the above kernel characteristics.These effects show in many aspects of device driver development.</p>
+    <p>In order to develop Elastos&nbsp;2.0 device driver, we defined a development environment. This development environment consists of a main directory tree and corresponding command tools. The level structure of this main directory tree is illustrated in graph 1 (here only expands the part that is related to device driver development):  </p>
+    <center><img src="images/drvtree.jpg"></center>
+    <center>Graph 1: Main Directory Tree Level Structure</center>
+    <p>Some points must be made about graph 1: </p>
+    <ul>
+        <li>arch marked green to represent hardware architecture directory.Actually it is the name of the specified hardware architecture (for example: x86, arm, mips).
+        <li>board marked red to represent hardware board directory.Actually it is the name of the specified hardware board.
+        <li>Under normal conditions, driver is hardware architecture and board specific.It is located under specified $Elastos/src/kernel/drivers/arch/board/ directory. Each category of driver must occupy a directory (for example: In graph 1 mouse, keyboard, video card driver).
+    </ul>
+    <p>Development environment uses emake/sources/dirs compilation mechanism of Elastos development environment standard.</p>
+
+<script>footer("english")</script>
+</body>
+</html>

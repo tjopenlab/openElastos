@@ -1,0 +1,358 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR中的数据类型</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</head>
+
+<body>
+<h2 align="left">线程函数</h2>
+
+    <h3 align="left">线程函数对比表</h3>
+    <p align="left">下表列出线程函数分别在2.0和2.1上的对比以及在其它语言中的映射：</p>
+
+
+    <table class="MsoNormalTable" border="1" cellpadding="0" style="width: 771px" id="table2" height="601">
+		<thead>
+			<tr>
+				<td style="width:201px;padding:.75pt; " height="35">
+				<p class="MsoNormal" align="left">2.1</td>
+				<td style="width:178px;padding:.75pt" height="35">
+				<p class="MsoNormal" align="left"><span lang="EN-US">2.0</span></td>
+				<td style="padding:.75pt .75pt .75pt .75pt" height="35">
+				<p class="MsoNormal" align="left"><span lang="EN-US">C++</span>数据类型</td>
+			</tr>
+		</thead>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::New </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="36">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateThread(...)</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="36">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CThread_New(pEntry, 
+			pArg, flags, ppThread); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="25">
+			<p align="left">
+			<span style="font-family: 宋体">创建一个新线程</span> </td>
+		</tr>
+		<tr style="height: 13.2pt">
+			<td style="padding:.75pt;" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::Delay </span></td>
+			<td style="padding:.75pt;height:28px">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzDelay(...);</span></td>
+			<td style="padding:.75pt;height:28px">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread_Delay(us); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="33">
+			<p align="left">使当前线程进入忙等待</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::Quit&nbsp; </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="36">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			EzExitThread</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="36">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CThread_Quit(quitCode);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="28">
+			<p align="left">退出当前线程</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::AtQuit</span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="38">
+		<p class="MsoNormal" align="left">
+		没有对应</td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="38">
+		<p class="MsoNormal" align="left">
+		<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+		CThread_AtQuit(pEntry, pUserData)</span></td>
+		</tr>
+		<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="29">
+		<p class="MsoNormal" align="left">退出当前线程</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::RequestToQuit </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="29">
+			<p class="MsoNormal" align="left">
+			<span style="font-size: 10.5pt" lang="en-us">没有对应</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="29">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CThread_AtQuit(pEntry, 
+			pUserData);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="40" colspan="2">
+			<p align="left">请求退出当前线程</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::GetCurrent&nbsp;</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="37">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetCurrentThread(...);</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="37">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CThread_GetCurrent(ppCurrentThread);&nbsp;&nbsp;
+			</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="36" colspan="2">
+			<p class="MsoNormal" align="left">获取当前线程接口的IThread指针</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="73" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::Sleep</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="37">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzSleep(...);</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="37">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CThread_Sleep(ms, 
+			pResult);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="34" colspan="2">
+			<p class="MsoNormal" align="left">
+			使当前线程进入睡眠状态</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="64" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::Yield</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzYield();</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CThread_Yield();
+			</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="30" colspan="2">
+			<p align="left">主动放弃当前线程的调度权</td>
+		</tr>
+		</table>
+
+
+<p>　</p>
+<h2><span lang="EN-US">ThreadLocalStorage</span>（<span lang="EN-US">Thread Local 
+Storage</span>）</h2>
+
+
+    <table class="MsoNormalTable" border="1" cellpadding="0" style="width: 771px" id="table3">
+		<thead>
+			<tr>
+				<td style="width:201px;padding:.75pt; ">
+				<p class="MsoNormal" align="left">2.1</td>
+				<td style="width:178px;padding:.75pt">
+				<p class="MsoNormal" align="left"><span lang="EN-US">2.0</span></td>
+				<td style="padding:.75pt .75pt .75pt .75pt">
+				<p class="MsoNormal" align="left"><span lang="EN-US">C++</span>数据类型</td>
+			</tr>
+		</thead>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::AcquireLocalSlot</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">EzAcquireThreadLocalSlot()</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">_CThread_AcquireLocalSlot(slotType, 
+			pSlotIndex);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="28">
+			<p align="left">
+			<span style="font-family: 宋体">分配一个<span lang="EN-US">ThreadLocalStorage 
+			index</span>（<span lang="EN-US">Thread Local Storage</span>索引号）</span></td>
+		</tr>
+		<tr style="height: 13.2pt">
+			<td style="padding:.75pt;" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::GetLocalMemory </span></td>
+			<td style="padding:.75pt;height:28px">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: Times New Roman">&nbsp;EzGetThreadLocalMem(...);</span></td>
+			<td style="padding:.75pt;height:28px">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">_CThread_GetLocalMemory(slotIndex, 
+			ppMemory);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="33">
+			<p align="left">
+			<span style="font-family: 宋体">根据指定的<span lang="EN-US">ThreadLocalStorage</span>索引号，获取调用线程的相应<span lang="EN-US">tls</span>槽（<span lang="EN-US">slot</span>）中存储的数据（堆内存指针）</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::GetLocalObject&nbsp;&nbsp; </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="25">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: Times New Roman">
+			EzSetThreadLocalObj(...);</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="25">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">_CThread_GetLocalObject(slotIndex, 
+			ppObj);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="33">
+			<p align="left">
+			<span style="font-family: 宋体">根据指定的<span lang="EN-US">ThreadLocalStorage</span>索引号，获取调用线程的相应<span lang="EN-US">tls</span>槽（<span lang="EN-US">slot</span>）中存储的数据（构件对象指针）</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::GetLocalValue</span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="26">
+		<p class="MsoNormal" align="left">
+		<span lang="EN-US" style="font-family: Times New Roman">
+		EzGetThreadLocalValue(...);</span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="26">
+		<p class="MsoNormal" align="left">
+		<span lang="EN-US" style="font-family: 宋体">_CThread_GetLocalValue(slotIndex, 
+		pValue);</span></td>
+		</tr>
+		<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="35">
+		<p class="MsoNormal" align="left"><span style="font-family: 宋体">根据指定的<span lang="EN-US">ThreadLocalStorage</span>索引号，获取调用线程的相应<span lang="EN-US">tls</span>槽（<span lang="EN-US">slot</span>）中存储的数据（立即数指针）</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::RelinquishLocalSlot </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: Times New Roman">
+			EzRelinquishThreadLocalSlot();</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">_CThread_RelinquishLocalSlot(slotIndex);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38" colspan="2">
+			<p align="left">
+			<span style="font-family: 宋体">释放一个<span lang="EN-US">ThreadLocalStorage</span>索引号，使该索引号可以被重用，并回收堆内存<span lang="EN-US">/</span>释放构件对象</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::SetLocalMemory </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: Times New Roman">
+			EzSetThreadLocalMem(...); </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38">
+			<span lang="EN-US" style="font-family: 宋体">_CThread_SetLocalMemory(slotIndex, 
+			pMemory);&nbsp;&nbsp; </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="37" colspan="2">
+			<p class="MsoNormal" align="left"><span style="font-family: 宋体">
+			通过指定的<span lang="EN-US">ThreadLocalStorage</span>索引号，将某个值（堆内存指针）存储在调用线程中对应的私有<span lang="EN-US">tls</span>槽（<span lang="EN-US">slot</span>）中</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="66" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::SetLocalObject</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: Times New Roman">
+			EzSetThreadLocalObj(...);</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: 宋体">_CThread_SetLocalObject(slotIndex, 
+			pObject); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="33" colspan="2">
+			<p class="MsoNormal" align="left">
+			<span style="font-family: 宋体">通过指定的<span lang="EN-US">ThreadLocalStorage</span>索引号，将某个值（构件对象指针）存储在调用线程中对应的私有<span lang="EN-US">tls</span>槽（<span lang="EN-US">slot</span>）中 
+			</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="66" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CThread::SetLocalValue</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="26">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-family: Times New Roman">
+			EzGetThreadLocalValue(...);</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="26">
+			<span lang="EN-US" style="font-family: 宋体">_CThread_SetLocalValue(slotIndex, 
+			value);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="30" colspan="2">
+			<p align="left">
+			<span style="font-family: 宋体">通过指定的<span lang="EN-US">ThreadLocalStorage</span>索引号，将某个值（立即数指针）存储在调用线程中对应的私有<span lang="EN-US">tls</span>槽（<span lang="EN-US">slot</span>）中 
+			</span></td>
+		</tr>
+		</table>
+
+
+<p>　</p>
+
+
+    <p>　</p>
+
+
+    </body>
+</html>

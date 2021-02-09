@@ -1,0 +1,87 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\FreePages">FreePages</sample>
+    <volume>Memory Management Methods</volume>
+    <title>FreePages</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>
+        	Releases specified numbers of allocated continuous physical pages.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> physaddr_t </param_type>
+                <param_name> pa </param_name>
+                <param_note>
+                    <para>
+                    	Starting address (physical address) of the specified first physical page to be freed.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> uint_t</param_type>
+                <param_name> uOrder </param_name>
+                <param_note>
+                    <para>
+                    	The specified logarithmic value to the base 2 of the total number of continuous physical pages 
+                    	to be freed. The total number of continuous physical pages must be 2 to the power of <i>uOrder</i> 
+                    	(i.e. 2^uOrder pages), the maximum value cannot exceed order of allocated pages.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>
+        	This method releases specified number of continuous physical pages, the total number must be an 
+        	exponent of 2. The released continuous physical pages must be previously allocated by using the <link url=
+        	"AllocPages.htm">AllocPages</link> method. Attempts to free invalid physical page (Pages that were 
+        	not allocated by <link url="AllocPages.htm">AllocPages</link> method) will cause unpredictable error. 
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>AllocPages</ref_name>
+            <ref_url>AllocPages</ref_url>
+        </reference>
+        <reference>
+            <ref_name>AllocPage</ref_name>
+            <ref_url>AllocPage</ref_url>
+        </reference>
+        <reference>
+            <ref_name>FreePage</ref_name>
+            <ref_url>FreePage</ref_url>
+        </reference>
+    </references>
+</manpage>

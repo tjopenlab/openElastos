@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListView</interface><method> GetComparator </method>
+    <description>
+        <para>
+            获取比较器。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IComparator** </param_type>
+                <param_name> comparator </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../IComparator.htm">IComparator</link> 接口指针的指针，用于获取比较器接口指针，不能为 NULL                   </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        通常情况下，当 ListView 的 style 被指定为 <link url="../../datatype/ListViewStyle.htm">ListViewStyle_Sort</link> 是基于项文本对项进行排序。若要自定义排序方式，必须编写一个实现 <link url="../IComparator.htm">IComparator</link> 接口的类，而该类有一个 <link url="../IComparator/Compare.htm">Compare</link> 方法。 
+    </para>
+    <para>
+    	  您可以通过该方法提供自定义排序，例如，点击某列的列标头，希望该列按照新规则排序，为此，请创建一个类，该类实现 IComparer 接口，并提供一个接受排序所依据的列索引的构造函数。然后可以为 <link url="../JListViewEvents/ItemClick.htm">ItemClick</link> 事件实现一个处理程序，以使用被单击列的索引创建此类的实例。再通过该方法将此实例作用到 ListView 上，会自动使用指定的对象对 ListView 控件进行排序。对 <link url="Sort.htm">Sort</link> 方法的后续调用也会使用同一对象。
+    </para>
+    <para>
+    	  通过该方法成功获取 IComparator 接口后，会自动对该接口的引用计数增加 1，故当该接口不再需要时，需要用户自行调用 Release() 方法释放该接口，否则在销毁 ListView 对象时会造成内存泄漏。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CListView 类介绍 </ref_name>
+        <ref_url>../../class/ListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListView 接口方法列表</ref_name>
+        <ref_url>../IListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListViewPaint 接口方法列表</ref_name>
+        <ref_url>../IListViewPaint</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetComparator</ref_name>
+        <ref_url>SetComparator</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IComparator</ref_name>
+        <ref_url>../IComparator</ref_url>
+    </reference>
+</references> 
+</manpage>

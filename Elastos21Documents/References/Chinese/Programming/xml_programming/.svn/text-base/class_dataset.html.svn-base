@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>dataset标签/控件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li  class="current"><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<h1>dataset非图形标签/控件参考</h1><!-- doxytag: class="window" -->
+    <p>允许用户指定数据源。
+<a href="#_details">更多...</a>
+
+<hr><h2>命名空间</h2>
+http://www.elastos.com/XmlGlue/2.1
+
+<hr><a name="_details"></a><h2>详细描述</h2>
+允许用户指定数据源，当指定好数据源后，在控件标签中通过<a href="data.html">data</a>标签完成绑定。具体支持与数据源绑定的控件有：<a href="class_comboBox.html">comboBox</a>、<a href="class_listBox.html">listBox</a>、<a href="class_listView.html">listView</a>。
+<p><table>
+<tr><td><b>注：</b></td><td>1. 由于dataset标签的命名空间在http://www.elastos.com/XmlGlue/2.1里，而它并不是默认的命名空间，故使用时需要在dataset标签前加http://www.elastos.com/XmlGlue/2.1命名空间的别名"x"加以标示，像这样：x:dataset。</td></tr>
+<tr><td></td><td>2. 当type属性指定为database后，可以使用sql标签来执行sql语句以获得需要绑定到控件上的数据库信息，具体使用见<a href="class_sql.html">sql标签参考</a>和<a href="#_example1">示例一</a>。</td></tr>
+<tr><td></td><td>3. 当type属性指定为enumerator后，需要用户指定自定义car构件，具体使用见<a href="usertag.html">用户自定义标签</a>和<a href="#_example2">示例二</a>。</td></tr>
+</table>
+
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>属性</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">此属性用于设置元素的唯一标识.标识将用于脚本代码中，它不可以包含任何空格或非 ASCII 字符。一经指定，对象名称将无法改变。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><b>注：</b>由于该属性的命名空间在http://www.elastos.com/XmlGlue/2.1里，而它并不是默认的命名空间，故使用时需要在dataset标签前加http://www.elastos.com/XmlGlue/2.1命名空间的别名"x"加以标示。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>属性值的数值类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>x：id="id"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;x:dataset type="database" x:id="db1" database="asset/wt.db"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">用于指定数据源类型，可以指定为database或者enumerator。同时其属性值不可为已设置的参数名。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><b>注：</b>type指定为database或者enumerator的区别在于，前者是通过sql标签，执行具体sql语句来获取绑定到控件上的数据信息；而后者的运用需要用户自定义一个car构件，在其中定义一些相应获取数据的方法，再在脚本中调用这些方法获取数据信息，然后绑定到控件中。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>type="typevalue"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;x:dataset type="database" x:id="db1" database="asset/wt.db"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>database</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">用于指定数据库文件的相对路径，在type属性设置为database情况下有效。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>database="filepath"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;x:dataset type="database" x:id="db1" database="asset/wt.db"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>enumerator</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">枚举器名，用于指定对象枚举器，枚举器名的确定，详见<a href="..\Widgets\dataset.html">数据集的使用</a>。该属性在type属性设置为enumerator情况下有效。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>database="filepath"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;x:dataset type="enumerator" x:id="enum1" enumerator="AllFoos" object="mye"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>object</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">该属性的取值即为用户自定义对象的id。在type属性设置为enumerator情况下有效。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>WString</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>database="filepath"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;x:dataset type="enumerator" x:id="enum1" enumerator="AllFoos" object="mye"/&gt;</td></tr>
+</table>
+
+<hr>
+<a name="_example1"></a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>示例一</h2></td></tr>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td class="memitem" valign="bottom"><pre>
+&lt;x:dataset type="database" x:id="db1" database="asset/wt.db"&gt;
+    &lt;x:sql&gt;
+    &lt;![CDATA[
+        select * from t1 where col2 < 1000000;
+    ]]&gt;
+   &lt;/x:sql&gt;
+&lt;/x:dataset&gt;
+...
+...
+&lt;comboBox width="200" height="30" y="285"&gt;
+    &lt;data source="db1" max="5"&gt;
+        &lt;item text="col2"/&gt;
+    &lt;/data&gt;
+&lt;/comboBox&gt;
+...
+...
+</td></tr></table>
+</table>
+
+<a name="_example2"></a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>示例二</h2></td></tr>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td class="memitem" valign="bottom"><pre>
+&lt;u:allFoo xmlns:u="myenum.dll" MYGOD="123" x:id="mye"/&gt;
+    &lt;x:dataset type="enumerator" enumerator="AllFoos" x:id="enum1" object="mye"/&gt;
+...
+...
+&lt;comboBox width="200" height="30" y="285"&gt;
+    &lt;data source="enum1" max="2"&gt;
+        &lt;item text="col2"/&gt;
+    &lt;/data&gt;
+&lt;/comboBox&gt;
+...
+...
+ </td></tr></table>
+</table>
+
+ <script>footer("chinese")</script>
+</body>
+</html>

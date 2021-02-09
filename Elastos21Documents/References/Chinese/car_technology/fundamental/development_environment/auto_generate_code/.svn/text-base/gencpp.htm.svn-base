@@ -1,0 +1,81 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>自动生成代码框架</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>生成构件源程序框架并填写实现代码</h2>
+<h3>生成源程序框架：</h3>
+        <P>在编写完CAR文件后，用户在ElastosSDK开发环境下，使用emake工具可以生成构件源程序框架。这将减少程序员的输入量，并且可以有效避免此环节的拼写错误。具体用法是执行下面的语句：<BR>
+        <pre class="code">
+emake &lt;carfile&gt;
+</pre>
+    <p>其中&lt;carfile&gt;为CAR文件路径名。执行该命令后，将在当前目录生成相应的头文件、cpp文件和sources文件，其中头文件和cpp文件为程序框架文件，sources文件用于指定如何编译源代码，生成什么类型的目标文件等信息。头文件和cpp文件的文件名由CAR文件中定义的类名指定。当CAR文件中定义了多个类时，将生成对应的多个头文件和.cpp文件。</p>
+    <p>在本示例中，执行下面语句：</p>
+        <pre class="code">
+emake hello.car
+</pre>
+    <p>将生成CHello.h文件、CHello.cpp文件和sources文件。sources文件生成后一般不需要修改，下面是生成的sources文件的内容：<br></p>
+        <pre class="code">
+TARGET_NAME= hello
+TARGET_TYPE= <b>dll</b>
+
+SOURCES= hello.car
+SOURCES+= CHello.cpp
+
+ELASTOS_LIBS = elastos.lib
+ELASTOS_LIBS += ElCRuntime.lib
+</pre>
+    <p>TARGET_NAME指定生成构件的名字，此名字必须与CAR文件名相同，否则不能通过编译。生成构件的类型默认为dll，由TARGET_TYPE指定。</p>
+    <h3>填写实现代码：</h3>
+        <p>本示例中无须修改生成的头文件。首先来看一下生成的cpp源程序框架的内容：</p>
+        <pre class="code">
+#include "CHello.h"
+#include "_CHello.cpp"
+
+<b>DECLARE_CLASSFACTORY(CHello)</b>
+
+ECODE CHello::Hello(
+        /* [in] */ EzStr InStr,
+        /* [out,retval] */ EzStr * pOutStr)
+{
+    // TODO: Add your code here
+    return <b>E_NOTIMPL</b>;
+}
+</pre>
+        <p>在生成的代码框架中，除了包括的头文件和方法代码外有一个宏：</p>
+        <pre class="code">
+DECLARE_CLASSFACTORY(CHello)
+</pre>
+    <p>该宏构造了一个通用的类厂，它根据传进去的类名生成该类的一个对象。上述例子中，客户程序将创建类CHello的一个对象。用户一般不需要更改这个宏。在Elastos.SDK\system\inc\ezcom.h文件中有该宏的定义。</p>
+    <ul><font color="red"><b>注意：</b>在生成的文件框架中，方法的返回的ECODE值为E_NOTIMPL，表示此方法未实现。在填写完实现代码后，需要修改为适当的<a class="style1" href="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECODE</a>值。</font></ul>
+    <p>下面请看构件hello的实现，使用实现代码替换TODO注释（文中<b>黑体</b>部分为填充代码）：</p>
+        <p>CHello.cpp文件：</p>
+        <pre class="code">
+#include "CHello.h"
+#include "_CHello.cpp"
+
+DECLARE_CLASSFACTORY(CHello)
+
+ECODE CHello::Hello(
+        /* [in] */ EzStr InStr,
+        /* [out,retval] */ EzStr * pOutStr)
+{
+<b>    EzStrBuf_<50> buf;
+    buf.Copy(InStr);
+    buf.Append(L" world!");
+    *pOutStr = EzStr::AllocString(buf);</b>
+    return <b>S_OK;</b>
+}
+</pre>
+    <p>执行完以上步骤，基本上完成了构件hello的编写。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

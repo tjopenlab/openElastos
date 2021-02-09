@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\freopen">freopen</sample>
+    <title>freopen，_wfreopen</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>重新分配一个文件指针</para>
+    </description>
+
+    <syntax>
+        <return_val>FILE *</return_val>
+        <func_name>freopen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char *</param_type>
+                <param_name>path</param_name>
+                <param_note>
+                    <para>指向新文件的路径</para>
+                </param_note>
+            </func_param>
+        </parameters>
+        <parameters>
+            <func_param>
+                <param_type>const char *</param_type>
+                <param_name>mode</param_name>
+                <param_note>
+                    <para>指向文件打开模式的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+        <parameters>
+            <func_param>
+                <param_type>FILE *</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针 </para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+<syntax>
+        <return_val>FILE *</return_val>
+        <func_name>_wfreopen</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t *</param_type>
+                <param_name>path</param_name>
+            </func_param>
+        </parameters>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t *</param_type>
+                <param_name>mode</param_name>
+            </func_param>
+        </parameters>
+        <parameters>
+            <func_param>
+                <param_type>FILE *</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>每一个函数都返回一个指向重新被打开的文件的指针.如果发生错误，文件将被关闭，函数返回一个空指针 </para>
+    </return>
+
+    <remarks>
+        <para>freopen函数关闭和当前流有关的文件，并重新分配一个流给由path指定的文件._wfreopen是freopen的宽字符版本;_wfreopen的参数path和mode都是宽字符串.除此之外，_wfreopen和freopen是一样的.</para>
+        <para>参数mode指定了的文件打开方式，具体内容如下： </para>
+        <table>
+            <th>
+                <td>参数mode的值 </td>
+                <td>对应的文件打开方式 </td>
+            </th>
+            <tr>
+                <td> "w" </td>
+                <td>以只写方式打开空文件。如果给定的文件存在，内容将被清空。 </td>
+            </tr>
+
+            <tr>
+                <td> "r" </td>
+                <td>以只读方式打开文件。如果文件不存在或者没有找到，函数调用失败。 </td>
+            </tr>
+
+            <tr>
+                <td> "a" </td>
+                <td>以追加方式打开文件，在写入数据前不删除EOF标志。如果文件不存在，则首先创建文件。 </td>
+            </tr>
+
+            <tr>
+                <td> "w+" </td>
+                <td>以读/写方式打开一个空文件。如果给定的文件存在，内容将被清空。 </td>
+            </tr>
+
+            <tr>
+                <td> "r+" </td>
+                <td>以读/写方式打开文件(此文件必须存在）。 </td>
+            </tr>
+
+            <tr>
+                <td> "a+" </td>
+                <td>以读/追加方式打开文件；追加操作包括：向文件写入新数据之前删除EOF标志，完成写入后重建EOF标志；如果文件不存在，则首先创建文件。 </td>
+            </tr>
+        </table>
+
+        <para>当文件以"a"或"a+"的方式打开时，所有写操作都发生在文件末尾。调用函数fseek或rewind可以重新定位文件指针，但是进行任何写操作之前，文件指针都会移回到文件末尾。因而，已有数据不能被改写。 </para>
+        <para>当指定"r+"、"w+"或者"a+"的访问方式后，读和写都是允许的(也就是说，文件是为更新而打开的)。然而，在读和写之间切换时，必须插入fflush、fseek或者rewind操作。如果需要，可以用fseek或者fsetpos函数操作指定文件指针的当前位置。 </para>
+
+        <para>除了上述参数以外，mode中可以包含如下字符，来指定换行符的转换方式。 </para>
+        <table>
+            <th>
+                <td>参数mode中包含的字符 </td>
+                <td>对应的换行符的转换方式 </td>
+            </th>
+            <tr>
+                <td> t </td>
+                <td>以文本（转换后）方式打开文件，在文本模式下，输入时的回车和换行符转换为单个换行符；输出时，换行符转换为回车和换行两个字符。 </td>
+            </tr>
+
+            <tr>
+                <td>b</td>
+                <td>以二进制方式（未转换）打开文件，不进行包括回车和换行符在内的转换。 </td>
+            </tr>
+
+        </table>
+        <para>如果mode没有给出t或b，转换模式将由默认的_fmode变量指定.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>freopen</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wfreopen</routine_name>
+            <headerfile>stdio.h or wchar.h </headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* freopen: This program reassigns stderr to the file
+ * named freopen.out and writes a line to that file.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+FILE *stream;
+
+void main( void )
+{
+   /* Reassign &quot;stderr&quot; to &quot;freopen.out&quot;: */
+   stream = freopen( &quot;freopen.out&quot;, &quot;w&quot;, stderr );
+
+   if( stream == NULL )
+      fprintf( stdout, &quot;error on freopen\n&quot; );
+   else
+   {
+      fprintf( stream, &quot;This will go to the file &apos;freopen.out&apos;\n&quot; );
+      fprintf( stdout, &quot;successfully reassigned\n&quot; );
+      fclose( stream );
+   }
+   system( &quot;type freopen.out&quot; );
+}
+</pre>
+    </example>
+<result>
+successfully reassigned
+This will go to the file &apos;freopen.out&apos;
+</result>
+
+    <references>
+        <reference>
+            <ref_name>fclose</ref_name>
+            <ref_url>fclose</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_fdopen</ref_name>
+            <ref_url>_fdopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_fileno</ref_name>
+            <ref_url>_fileno</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fopen</ref_name>
+            <ref_url>_wfopen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>open</ref_name>
+            <ref_url>../io/_wopen</ref_url>
+        </reference>
+    </references>
+
+</manpage>

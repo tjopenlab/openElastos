@@ -1,0 +1,89 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\new">new</sample>
+    <volume>Operator</volume>
+    <method>new</method>
+    <title>new</title>
+    <routine_idx> ../operator.htm </routine_idx>
+
+    <description>
+        <para>
+        	Dynamically creates kernel object or kernel object array.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val> void * </return_val>
+        <method_name> operator new </method_name>
+        <parameters>
+            <api_param>
+                <param_type> size_t </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>
+                    	Size of specified kernel object or kernel object array to be created (unit: bytes). The size 
+                    	of dynamically created kernel object or kernel object array cannot exceed the maximum allocated 
+                    	byte number specified by the c_uMaxAllocationSize constant.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val> void * </return_val>
+        <method_name> operator new []</method_name>
+        <parameters>
+            <api_param>
+                <param_type> size_t </param_type>
+                <param_name> size </param_name>
+            </api_param>
+        </parameters>
+    </syntax>
+    <return>
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>0</td>
+                <td>Memory allocation fails; Insufficient memory</td>
+            </tr>
+            <tr>
+                <td>Non-zero value</td>
+                <td>
+                	Memory successfully allocated; returns the starting address of allocated kernel object or kernel 
+                	object array.
+                </td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+    	<para>
+    		This operator is used to create kernel object dynamically or kernel object array.
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>delete</ref_name>
+            <ref_url>delete</ref_url>
+        </reference>
+    </references>
+</manpage>

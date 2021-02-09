@@ -1,0 +1,148 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Callback Event Mechanism</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Client Console Program</h2>
+    <p>This article includes the following: </p>
+    <ul>
+        <li><a class="style1" href="#events">Event handling function in component guesssvr</a>
+        <li><a class="style1" href="#Add">Methods for registering and removing event handling function</a>
+    </ul>
+    <p>The C++ client program below (client.cpp file) uses component guesssvr: </p>
+    <pre class="code"><b>
+#import &lt;guesssvr.dll&gt;</b>
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+
+BOOL bExit = FALSE;
+
+ECODE Win(<b>CGuessNumRef& cGnRef</b>)
+{
+    ……    //prints success information.
+}
+
+ECODE Lose(CGuessNumRef& cGnRef)
+{
+    ……    //prints game over information.
+}
+
+ECODE GetNum(CGuessNumRef& cGnRef)
+{
+    ……    //gets 4 correct numbers and prints.
+}
+
+ECODE PrintTips(<b>CGuessNumRef& cGnRef</b>, int iTimes, int iA, int iB)
+{
+    ……    //prints the current game status, including the number of times guessed, whether correct or wrong.
+}
+
+void InputNumber(EzArray&lt;int&gt; iaNum)
+{
+    ……    //parse the user input information.
+}
+
+int __cdecl main()
+{
+    EzArray_&lt;int, 4&gt; iaNum;
+
+    CGuessNumRef cGnRef;
+    cGnRef.Instantiate();
+    if (!cGnRef.IsValid()) {
+        assert(0 && "Can't create CGuessNum.");
+        return 1;
+    }
+
+    cGnRef.AddBingoHandler(CGuessNumBingoHandler(&Win));
+    cGnRef.AddYouLoseHandler(CGuessNumYouLoseHandler(&Lose));
+    cGnRef.AddYouLoseHandler(CGuessNumYouLoseHandler(&GetNum));
+    cGnRef.AddTipsHandler(CGuessNumTipsHandler(&PrintTips));
+    while (!bExit) {
+        InputNumber(iaNum);
+        if (bExit) {
+            GetNum(cGnRef);
+            break;
+        }
+        cGnRef.Guess(iaNum);
+    }
+    cGnRef.RemoveBingoHandler(CGuessNumBingoHandler(&Win));
+    cGnRef.RemoveYouLoseHandler(CGuessNumYouLoseHandler(&Lose));
+    cGnRef.RemoveYouLoseHandler(CGuessNumYouLoseHandler(&GetNum));
+    cGnRef.RemoveTipsHandler(CGuessNumTipsHandler(&PrintTips));
+    return 0;
+}
+</pre>
+    <p><font color="red"><b>Note: </b>#import&nbsp;&lt;XXX.dll&gt; can only appear in cpp files. If you have to declare variable in referenced components, please add #import&nbsp;&lt;XXX.dll&gt; before #include&nbsp;&lt;XXX.h&gt;.</font></p>
+    <h3><a name="events"></a>Event Handling Functions In guesssvr Component</h3>
+        <p>In the example, we write four functions Win(), Lose(), GetNum() and PrintTips() for 3 callback events in component guessnum.</p>
+        <table>
+            <thead>
+                <td>Callback Event</td><td>Event Handling Function</td><td>Description</td>
+            </thead>
+            <tr>
+                <td>Bingo</td>
+                <td>Win()</td>
+                <td>Print success information</td>
+            </tr>
+            <tr>
+                <td>YouLose</td>
+                <td>Lose()<br>GetNum()</td>
+                <td>Print game over information<br>gets four correct numbers and prints them</td>
+            </tr>
+            <tr>
+                <td>Tips</td>
+                <td>PrintTips()</td>
+                <td>prints current status of the game, including the guess time, right or wrong information.</td>
+            </tr>
+        </table>
+        <p>From the example we can see that one callback event can have several callback event handling functions.</p>
+        <ol><font color="red"><b>Note: </b>The parameters for event handling function must obey the following rules:
+            <li>The first parameter must be the reference of a intelligent pointer to the object in which the corresponding event locates. It marks the sender of the event.
+            <li>The second and successive parameters have the same definition to the parameters defined for component.</font>
+        </ol>
+        <p>For example: Event Bingo() has no parameter. In its event handling function Win(CGuessNumRef&amp;&nbsp;cGnRef), cGnRef is a class smart pointer for class CGuessNum. Event Tips is defined as Tips([in]&nbsp;int&nbsp;iTimes, [in]&nbsp;int&nbsp;iA, [in]&nbsp;int&nbsp;iB). Its event handling function is PrintTips(CGuessNumRef&amp;&nbsp;cGnRef, int&nbsp;iTimes, int&nbsp;iA, int&nbsp;iB).</p>
+    <h3><a name="Add"></a>Methods For Registering And Removing Event Handler</h3>
+        <p>Two ways are provided for registering and removing events in CAR: The <b>AddXXXHandler</b> method and <b>RemoveXXXHandler</b> method. AddXXXHandler method is to register event handler, while RemoveXXXHandler method is to remove event handler. They are to be invoked by class smart pointer.</p>
+        <p>When the client program needs to use an event handler in response to a callback event, it needs to register the event handler. When it no longer needs that event handler, it can remove it. For example: </p>
+        <pre class="code">
+……
+cGnRef.AddBingoHandler(CGuessNumBingoHandler(&Win));
+cGnRef.AddYouLoseHandler(CGuessNumYouLoseHandler(&Lose));
+cGnRef.AddYouLoseHandler(CGuessNumYouLoseHandler(&GetNum));
+cGnRef.AddTipsHandler(CGuessNumTipsHandler(&PrintTips));
+……
+</pre>
+        <p>In which</p>
+        <pre class="code">
+cGnRef.AddYouLoseHandler(CGuessNumYouLoseHandler(&Lose));
+</pre>
+        <p>Registers Lose event handler for event YouLose. Sincle this is the first time to register event YouLose, system will call method OnAddYouLoseHandler.</p>
+        <pre class="code">
+cGnRef.AddYouLoseHandler(CGuessNumYouLoseHandler(&GetNum));
+</pre>
+        <p>This phrase registers GetNum event handler for event YouLose, because event YouLose was registered before, the system will not call method OnAddYouLoseHandler.</p>
+        <p><font color="red"><b>Note: </b> When triggering events, system will call each event handling function based on their registration sequence.</font></p>
+        <p>The parameters of method AddXXXHandler and RemoveXXXHandler are handles for event XXX, which are expressed as: CClassnameXXXHandler. For example: handler for event Bingo is CGuessNumBingoHandler.</p>
+        <p>There are two formats for the parameter of handler of event handler: </p>
+        <ul>
+        <li>When event handler is a common function, use the following parameter format:
+            <pre class="code">
+CGuessNumBingoHandler(&Win);
+</pre>
+        <li>When event handler is a member function of a class, use the following parameter format, for example, if event handling function for event Win is a member function of user defined class CClientGuess, the parameter format is:
+            <pre class="code">
+CGuessNumBingoHandler(this, &CClientGuess::Win);
+</pre>
+            <p>The first parameter (this) is a pointer to C++ class object, the second parameter (&amp;CClientGuess::Win) is the address of that class' member function.</p>
+
+
+<script>footer("english")</script>
+</body>
+</html>

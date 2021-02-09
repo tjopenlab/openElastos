@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>
+
+<manpage>
+    <sample url=""></sample>
+    <volume>Elastos网络编程接口（elasock API）</volume>
+    <types>hostent</types>
+    <routine_idx> ElastosSocketIndex.htm </routine_idx>
+
+    <description>
+        <para>该结构保存了给定的主机的相关信息，诸如主机名，IP地址等等。不允许用户修改结构或者释放该结构的成员。每个线程仅保有一份struct hostent的内容，再次调用API将修改其中的值，在此之前用户应当把需要的信息复制出来。 </para>
+    </description>
+
+    <struct>
+        <struct_member>
+            <mem_type> char * </mem_type>
+            <mem_name> h_name </mem_name>
+            <mem_description> 主机的正式名称</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char ** </mem_type>
+            <mem_name> h_aliases </mem_name>
+            <mem_description> 别名非终止列表</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> short </mem_type>
+            <mem_name> h_addrtype </mem_name>
+            <mem_description> 正在返回的主机地址类型</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> short </mem_type>
+            <mem_name> h_length </mem_name>
+            <mem_description> 主机的地址长度</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char ** </mem_type>
+            <mem_name> h_addr_list </mem_name>
+            <mem_description> 主机的IP非终止地址列表</mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type> char * </mem_type>
+            <mem_name> h_addr </mem_name>
+            <mem_description> 主机的IP地址列表中的第一个IP地址</mem_description>
+        </struct_member>
+    </struct>
+
+    <remarks>
+        <para>该结构是不允许修改的。此外，一个线程仅仅分配一个hostent结构的拷贝。</para>
+    </remarks>
+    
+  
+
+</manpage>

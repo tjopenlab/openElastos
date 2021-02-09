@@ -1,0 +1,44 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>TMC手机调试工具 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h3>TMC工具介绍 </h3>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;TMC是用于在PC端和手机之间进行文件的上传和下载、烧写elastos.img以及进行手机调试的工具,是和欣SDK中的工具。 </p>
+    <P>使用TMC工具烧制映像文件的方法，参见：<a class="style1" href="../Common/OSBurn/imgBurn.htm">映像文件烧制操作。 </a></P>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;作为手机调试工具，TMC支持多个设备连接、断开连接、切换连接的功能。即：使同一台PC可同时打开多个TMC.EXE，分别对多个不同的Elastos手机终端进行同时调试、传输文件。其中：“ChangeDevice”菜单动态显示连接到当前PC的手机终端的端口名字。控制台标题动态显示为连接终端的端口，当TMC.EXE没有连接终端时则标题显示“None Connect”。 </p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;注：屏蔽切换终端时的互斥状态的功能尚未实现。 </p>
+<h3>TMC工具使用方法 </h3>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;使用TMC进行手机调试时，主要通过“ChangeDevice”菜单选择要连接、要断开连接的手机终端。参见下表： </p>
+    <table>
+		<thead>
+			<td>ChangeDevice”菜单状态显示 </td>
+			<td>控制台标题 </td>
+			<td>Elastos手机终端状态 </td>
+		</thead>
+		<tr>
+			<td>None ElaDevice</td>
+			<td>None Connect</td>
+			<td>没有Elastos手机终端连接到PC </td>
+		</tr>
+		<tr>
+			<td>所有设备名前没有"钩" </td>
+			<td>None Connect</td>
+			<td>有Elastos手机终端连接到PC，但TMC.exe连接没有连接任意一个终端 </td>
+		</tr>
+		<tr>
+			<td>已经连接的设备名前会有一个"钩"</td>
+			<td>串口名字 </td>
+			<td>有Elastos手机终端连接到PC，且TMC.exe连接到Elastos手机终端 </td>
+		</tr>
+	</table>
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <volume> Class Smart Pointer Class Shared Method </volume>
+    <interface> ClassNameRef </interface>
+    <method>IsValid</method>
+
+    <description>
+        <para>Validate ClassName class smart pointer.</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>BOOL</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para>If ClassName class smart pointer is valid, returns TRUE; otherwise, returns FALSE.</para>
+    </return>
+
+    <remarks>
+        <para> Before using class smart pointer, it must be validated. Only validated class smart pointer can invoke all method in corresponding class smart pointer class.If the current class smart pointer is not initialized through <b>Instantiate</b>, then it need to be validated by invoking <b>IsValid</b> method.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+Situation one: Class smart pointer passed to function as parameter, it needs to be checked by invoking IsValid method.For example: 
+void Foo(ClassNameRef& senderRef)
+{
+    if (!senderRef.IsValid()) { //validate class smart pointer senderRef by invoking IsValid method.
+        assert(0 && "senderRef is invalid.");
+        return;
+    }
+    ……
+}
+]]></pre>
+        <pre><![CDATA[
+Situation two: Class smart pointer is converted through i2i function, IsValid method is needed to check.For example: 
+ClassNameRef cClassNameRef
+
+//interface smart pointer IXXXRef already points to ClassName object, corresponding class smart pointer can be obtained through it
+ClassNameRef cClassNameRef = i2i(IXXXRef);
+
+if (!cClassNameRef.IsValid()) { //validate class smart pointer cClassNameRef by invoking IsValid method.
+    assert(0 && "cClassNameRef is invalid.");
+    return 1;
+}
+]]></pre></example>
+
+</manpage>

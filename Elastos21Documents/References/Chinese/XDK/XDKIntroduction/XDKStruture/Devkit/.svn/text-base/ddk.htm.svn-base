@@ -1,0 +1,20 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Devkit的目录结构介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>ddk</h2>
+    <p>在ddk中将根据平台来区分提供的头文件和库文件，并且根据选择的编译工具和编译版本，以及目标板卡来区分具体的库文件。</p>
+    <p>inc：目录下存放系统头文件，在编译过程中，XDK会将该目录自动设置为优先搜索的路径。</p>
+    <p>lib: 目录下根据平台存放lib文件，现在Elastos暂时提供MSVC编译的x86、GNU编译的ARM和GNU编译的x86。在编译链接过程中，XDK会根据用户开发窗口的环境变量来选择相应的lib，通过XDK_BUILD_KIND来确定。</p>
+    
+<script>footer("chinese")</script>
+</body>
+</html>

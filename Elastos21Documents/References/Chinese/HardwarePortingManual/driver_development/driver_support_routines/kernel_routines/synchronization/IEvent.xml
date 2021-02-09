@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>    <manpage>
+    <volume>同步</volume>
+    <interface> IEvent </interface>
+    <description>
+        <para>事件对象接口。</para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Wait</method_name>
+        <method_url>IEvent\Wait</method_url>
+    <m_description>
+		等待事件对象变成已通知状态
+    </m_description>
+    </method>
+    <method>
+        <method_name>TryWait</method_name>
+        <method_url>IEvent\TryWait</method_url>
+    <m_description>
+		尝试在指定时间间隔内等待事件对象变成已通知状态
+    </m_description>
+    </method>
+    <method>
+        <method_name>Notify</method_name>
+        <method_url>IEvent\Notify</method_url>
+    <m_description>
+		设置事件对象为一个指定的已通知状态
+    </m_description>
+    </method>
+    <method>
+        <method_name>Clear</method_name>
+        <method_url>IEvent\Clear</method_url>
+    <m_description>
+        将事件对象重新设置为未通知状态
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+
+	<remarks>
+		<para>一个事件对象代表一个“事件”（一种同步对象），一个线程可以通过它来通知其他线程一个事件已经发生了。事件对象通过暴露出IEvent接口来提供服务。</para>
+		<para>事件对象在某个时刻将处于未通知状态或已通知状态。当事件对象处于未通知状态时，所有等待此事件对象的线程将全部进入等待状态；当事件对象处于已通知状态时，等待此事件对象的线程则不会进入等待状态。</para>
+        <para>当前线程可以通过调用<link url="function/DzCreateEventObj.htm">DzCreateEventObj</link>函数来创建一个事件对象。</para>
+        <para>事件对象有两种类型：手动重置和自动重置。事件对象的类型是在创建时由传入的类型参数指定的。手动重置的事件对象可以通过调用<link url="IEvent/Notify.htm">IEvent::Notify</link>方法（对于驱动程序的下半部分必须使用<link url="function/DzNotifyEventObjByIsr.htm">DzNotifyEventObjByIsr</link>函数）设置为已通知状态，或是通过调用<link url="IEvent/Clear.htm">IEvent::Clear</link>方法设置为未通知状态。手动重置的事件对象会保持已通知状态，直到通过调用IEvent::Clear方法重置为未通知状态为止。而自动重置的事件对象也可以通过调用IEvent::Notify方法（驱动程序的下半部分则调用NotifyEventObjByIsr函数）或IEvent::Clear方法设置为已通知状态或未通知状态，并且自动重置的事件对象会在一个线程被唤醒后自动重置为未通知状态。</para>
+        <para>事件对象只有一个预定义的未通知状态，而已通知状态则允许有任意多个，由用户自行定义的一个非零无符号整数来表示。调用IEvent::Notify方法（驱动程序的下半部分必须使用NotifyEventObjByIsr函数）时将指定事件对象的已通知状态。被唤醒线程可以从<link url="IEvent/Wait.htm">IEvent::Wait</link>或<link url="IEvent/TryWait.htm">IEvent::TryWait</link>方法中取得事件对象被指定的已通知状态。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

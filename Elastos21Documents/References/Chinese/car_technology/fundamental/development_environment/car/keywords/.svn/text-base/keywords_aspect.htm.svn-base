@@ -1,0 +1,117 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--aspect </title>
+</head>
+
+<body>
+	<h2>aspect</h2>
+	    <b>含义 </b>
+	        <p> 此关键字用来定义方面构件类。方面构件类对象的主要特征是可以被其它构件对象聚合。</p>
+	
+	    <b>语法 </b>
+	    	<p><b>aspect</b> AspectName  aspectBody;  </p>
+	    <b>使用说明 </b>
+	        <p>1.方面构件类名必须以字母“A”开头。 </p>
+	        <p>2.方面构件类不能独立的创建出对象，类中不允许定义带参数的构造函数。 </p>
+	        <p>3.方面构件类除了实现自身声明的接口以外，还会实现IAspect接口</a>。 </p>
+	        <p>4.CAR构件中，只有方面构件对象可以被聚合，并且只能被其他非方面构件对象聚合。 </p>
+	        <p>5.aspect可以包含<a class= "style1" href= "keywords_callback.htm">callbacks接口</a>，但必须使用aspect的类名前缀注册和删除，server指针也必须是aspect的指针，而不能使用与之聚合的主体对象指针。 </p>
+	        <p>6.aspect最佳适用范围是与被聚合对象没有直接关系，比较独立的情况，至少对于被聚合一方是在完全透明的情况下扩展被聚合对象（aspect）的功能和能力。 </p>
+	        <p>7.注意:如果aspect与主体class声明了相同的接口之后，则由主体对象查询不出aspect对象接口。 </p>
+	        <p>8.禁止在car文件里设置aspect线程模型，只能从主体对象“继承”线程模型，与主体对象保持一致，比如主体对象是<a class= "style1" href= "..\attributes\attributes_sequenced.htm">sequenced</a>模型，aspect就会使用主体对象的锁实现<a class= "style1" href= "..\attributes\attributes_sequenced.htm">sequenced</a>。 </p>
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    interface IFoo {
+        Foo();
+    }
+     
+    interface IHello {
+        Hello();
+    }
+    <b>aspect</b> AFoo {
+        interface IFoo;
+    }
+    class CHello {
+        interface IHello;
+    }
+}
+
+</pre>
+	        <p>编译上述aspectDemo.car文件，自动生成代码框架。 </p>
+            <p>填充AFoo.cpp和CHello.cpp文件如下：(其中黑体部分是编译器自动生成的代码框架) </p>
+<pre class= code>
+//AFoo.cp文件
+<b>#include "AFoo.h"
+#include "_AFoo.cpp"
+
+ECode AFoo::Foo()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("AFoo::Foo()");
+    return NOERROR;
+<b>}</b>
+
+//CHello.cpp文件
+<b>#include "CHello.h"
+#include "_CHello.cpp"
+
+ECode CHello::Hello()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("CHello::Hello()");
+    return NOERROR;
+<b>}</b>
+
+</pre>
+	        <p> 客户端代码如下：</p>
+<pre class= code>
+#include "aspectDemo.h"
+using namespace Elastos;
+
+
+ECode ElastosMain(const BufferOf&lt;WString&gt; & args)
+{
+    IHello *pIHello;
+    ECode ec;
+    IFoo *pFoo;
+    
+    ec = CHello::New(&pIHello);
+    if (FAILED(ec)) return ec;
+      
+    pIHello->Hello();
+    
+    ec = AFoo::Attach(pIHello);
+    if (FAILED(ec)) return ec;
+     
+    pFoo = IFoo::Probe(pIHello);
+    if (NULL == pFoo) return E_NO_INTERFACE;
+    
+    pFoo->Foo();
+    CObject::ReleaseAtThreadQuit(pIHello);
+     
+    CProcess::Exit(0);
+    return NOERROR;
+}
+
+</pre>
+	        <p>运行结果如下： </p>
+<pre class= code>
+CHello::Hello()
+AFoo::Foo()
+</pre>
+	        <p> 上述示例中定义了一个方面类AFoo,其他对象可以通过AFoo::Attach聚合该方面AFoo,从而使用AFoo的接口。</p>
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

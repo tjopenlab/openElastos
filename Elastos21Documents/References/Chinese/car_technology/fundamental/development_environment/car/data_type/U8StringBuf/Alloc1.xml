@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>U8StringBuf</class>
+    <method> Alloc </method>
+
+    <description>
+        <para> (在堆上)动态创建 U8StringBuf对象,并指向用户所分配的内存块。</para>
+    </description>
+
+    <syntax>
+        <return_val> static U8StringBuf * </return_val>
+        <parameters>
+        <api_param>
+            <param_type>char*</param_type>
+            <param_name> pstr </param_name>
+            <param_note>
+                <para> 指向用户所分配的内存块的指针。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> size </param_name>
+            <param_note>
+                <para> 用户分配的内存块的大小，单位为sizeof(char)。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果分配成功，返回指向U8StringBuf对象的指针，否则返回NULL。</para>
+    </return>
+
+    <remarks>
+        <para>1.调用此函数分配的内存，需要调用Free函数来释放。 </para>
+       <para> 2.此函数是一个Box的函数，只分配五元组的内存，数据的内存是放在pstr指向的内存块。size为这块内存块的大小。如果传进来的是一个有效的字符串并想保证字符串的完整性，要注意必须szie &gt;= strlen(pstr) + 1;如：传进来的是”abcde”根据不同的size 会box成不一样的字符串。</para>
+       <para> Char[6] str = ”12345”; //或char str=(char*)malloc(6); strcpy(str, ”12345”);</para>
+       <para> U8StringBuf::Alloc(str, 6) // 6 = strlen(str) + 1, 内存情况是 ‘1’’2’’3’’4’’5’’\0’。</para>
+       <para> U8StringBuf::Alloc(str, 5) // 5 = strlen(str) , 内存情况是 ‘1’’2’’3’’4’’\0’, ‘\0’ 自动把第5个字符覆盖。</para>
+       <para>3.U8StringBuf是一个Buf,可以用来修改字符串里的字符，也可以作为一个out参数,所以不可以将常量字符的内存作为数据内存，下面这种形式不正确：U8StringBuf::Alloc(”12345”, 6)。</para>
+  </remarks>
+
+
+<example>
+<pre>
+U8StringBuf *u8sbuf;
+char *pstr="1234";
+u8sbuf = U8StringBuf::Alloc(pstr,10);
+CConsole::WriteLine(u8sbuf.GetCapacity());  //Display : 9
+CConsole::WriteLine(u8sbuf.GetLength());  //Display : 4
+U8StringBuf::Free(u8sbuf);
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>U8StringBuf::Alloc</ref_name>
+        <ref_url>Alloc2</ref_url>
+    </reference>
+
+</references>
+
+
+
+</manpage>

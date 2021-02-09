@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址簿引擎</volume>
+<interface>IDataStore</interface><method> RemoveAllRelation </method>
+    <description>
+        <para>
+            通过指定的ID，删除联系人与所属组的关系或删除组中的所有联系人成员。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ENTITY_CLASS </param_type>
+                <param_name> ecEntity </param_name>
+                <param_note>
+                    <para>
+指定记录的类型，参见数据结构<link url="../../datatype/_ENTITY_CLASS.htm">ENTITY_CLASS</link>                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> long </param_type>
+                <param_name> nEntityId </param_name>
+                <param_note>
+                    <para>
+指定的联系人ID或组ID                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，返回S_OK。</para><para>            其他参见            <link url="../../ab_error.htm">            地址簿错误返回值列表            </link>            。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+        <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CDBStore.h, CContact.h, CContactGroup.h, abdata.h, CEntityEnumeration.h, spcomm.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>ElCRuntime.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+    <remarks>
+        <para>
+            如果指定的是组ID，则删除该组中的所有联系人成员；如果指定的是联系人ID，则删除该联系人与所属组的关系。
+        </para>
+    </remarks>
+    <references>
+        <reference>
+            <ref_name>SearchRelatedEntities</ref_name>
+            <ref_url>SearchRelatedEntities</ref_url>
+        </reference>
+    </references>
+</manpage>

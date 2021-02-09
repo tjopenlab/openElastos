@@ -1,0 +1,128 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR文件结构</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>CAR文件结构</h2>
+    <p>CAR（Component Assembly Runtime）即基于CPU指令集的软件零部件运行单元。CAR文件用于定义构件中的类、接口以及接口方法等信息。</p>
+    <h3>CAR文件概述</h3>
+    <p>每个CAR构件都可以由一个或多个类组成，每个类可以提供一个或多个接口，每个接口中可以定义一个或多个方法。例如：下图为构件HelloDemo的示意图：</p>
+    <center><img src="images/hello.jpg"></center>
+    <center>图1:构件HelloDemo示意图</center>
+    <p>从图中可以看出：构件HelloDemo中定义了三个类：CHello1、CHello2和CHello3。其中，类CHello2提供了接口IHello，类CHello3提供了接口IHei，而类CHello1同时提供了接口IHello和IHei。这些信息都定义在HelloDemo.car文件中。</p>
+    <p>下面以HelloDemo构件的CAR文件HelloDemo.car为例，介绍的CAR文件的结构。</p>
+    <p>HelloDemo.car文件：</p>
+    <pre class="code">
+module        　　　　　　//构件HelloDemo
+{
+    //接口IHello
+    [local]　　　　　　　　 //接口属性　local
+    interface IHello {
+        Hello([in] int i);  //方法
+    }
+
+    //接口IHey
+    interface IHey {
+        Hey(int i, char* pChar);
+    }
+
+    //类CHello1
+    class CHello1 {
+        interface IHello;
+        interface IHey;
+    }
+
+    //类CHello2
+    class CHello2 {
+        interface IHello;
+    }
+
+    //类CHello3
+    [aggregate(AspectObj1)] //类属性aggregate
+    class CHello3 {
+        interface IHey;
+    }
+}
+
+</pre>
+    <ul><b>备注：</b>CAR文件中使用双斜杠“//”作为语句注释符。</ul>
+
+    <p>在CAR文件中，对构件、接口、类、类别等的描述都分为两个部分：<b>属性</b>和<b>定义</b>。CAR属性位于方括号“[]”中，多个属性之间以逗号“,”作为分隔符；对构件、接口、类、类别等的定义位于花括号“{}”中。属性总是出现在相应主题的定义之前。</p>
+
+    <h3>CAR中对构件、接口、类等的描述</h3>
+    <p>下面的内容将针对CAR中的构件、接口、类等的定义给出详细介绍。</p>
+    <p><b>构件：</b>在CAR中使用<a class="style1" href="./keywords/keywords_module.htm">module</a>关键字定义构件。在一个CAR文件中只能有一个构件的定义。例如：</p>
+        <pre class="code">
+//构件HelloDemo的属性
+[version 1.0]
+//构件HelloDemo的定义
+<b>module</b> www.elastos.com/car/HelloDemo.dll
+{
+    ……
+}
+</pre>
+        <ul>
+        <li><b>构件属性</b>
+            <p>构件属性对构件起修饰作用，详细情况请参见<a class="style1" href="attribute.htm">CAR属性</a>。</p>
+        <li><b>构件定义</b>
+            <p>构件定义中主要包括接口的定义和类的定义，还包括其它一些类型定义。在HelloDemo构件定义部分中定义了两个接口：IHello和IHei；三个类：CHello1，CHello2和CHello3。</p>
+            <ul>
+            <li><b>接口：</b>在CAR中使用<a class="style1" href="./keywords/keywords_interface.htm">interface</a>关键字定义接口。例如：</p>
+                <pre class="code">
+……
+//接口IHello的属性
+[local]　
+//接口IHello的定义
+<b>interface</b> IHello {
+    Hello([in] int i);  //方法
+}
+……
+</pre>
+                <ul>
+                <li><b>接口属性</b>
+                    <p>接口属性对接口起修饰作用，详细情况请参见<a class="style1" href="attribute.htm">CAR属性</a>。</p>
+                <li><b>接口定义</b>
+                    <p>接口定义主要包括接口方法的声明。在CAR文件中最重要的当属接口的定义。因为在构件中，能够与外界打交道的只有接口。一个没有接口方法的接口在现实中没有意义。IHello接口中的Hello方法声明为：</p>
+                    <pre class="code">
+Hello([<b>in</b>] int i);
+</pre>
+                    <p>接口中的方法定义必须遵守如下规定：<br>
+                        1.接口方法必须使用<a class="style1" href="../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</a>作为返回值；</br>
+                        2.接口方法参数可以显式指明接口方法的参数是输入参数（in）或输出参数（out），如不显式指明，则系统会自动给其加上默认的属性，详细情况请参见CAR属性中的<a class="style1" href="attribute.htm#para">用于修饰接口方法参数的属性</a>。</p>
+                </ul>
+
+            <li><b>类：</b>在CAR中使用<a class="style1" href="./keywords/keywords_class.htm">class</a>关键字定义类，例如：</p>
+                <pre class="code">
+……
+//类属性
+[main]
+//类定义
+<b>class</b> CHello1 {
+    interface IHello;
+    interface IHei;
+}
+……
+</pre>
+                <p>在CAR文件中，类的定义非常重要。与C++中对象的概念相似，客户程序与CAR构件进行交互的实体是类对象，所以必须要有类定义的存在。</p>
+                <ul>
+                <li><b>类的属性</b>
+                    <p>类属性对类起修饰作用，详细情况请参见<a class="style1" href="attribute.htm">CAR属性</a>。</p>
+                <li><b>类的定义</b>
+                    <p>类定义中主要包括接口的声明。表示该类对象提供的接口。因为对于类对象来说，接口是它与外界进行交互的唯一途径，所以一个没有接口的类的存在，是没有意义的。</p>
+                </ul>
+            <li><b>其它定义</b>
+                <p>构件定义中还可以包括方面构件类（<a class="style1" href="./keywords/keywords_aspect.htm">aspect</a>）、类型（<a class="style1" href="./keywords/keywords_struct.htm">struct</a>）、枚举（<a class="style1" href="./keywords/keywords_enum.htm">enum</a>）等的定义，构件的引入（<a class="style1" href="./keywords/keywords_import.htm">import</a>）等，详细情况请参见<a class="style1" href="keyword.htm">CAR关键字</a>。</p>
+            </ul>
+    </ul>
+
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IListView</interface><method> GetItem </method>
+    <description>
+        <para>
+            获取 ListView 中指定项的状态、文本和图标信息。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+指定项的行索引值，有效值为 0～行数-1                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> subIndex </param_name>
+                <param_note>
+                    <para>
+指定项的列索引值，有效值为 0～列数-1                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ItemState * </param_type>
+                <param_name> state </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../datatype/ItemState.htm">ItemState</link> 枚举类型的指针，用户获取行的状态（是否选中或者具有焦点）                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf_&lt;&gt; </param_type>
+                <param_name> text </param_name>
+                <param_note>
+                    <para>
+<link url="../../../../../../car_technology/fundamental/development_environment/car/data_type/WStringBuf.htm">WStringBuf_</link> 类型，用于获取指定行的文本信息                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IImage ** </param_type>
+                <param_name> image </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口的指针的指针，用于获取指定行的图标信息                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功获取行的信息</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+
+<remarks>
+    <para>
+        设置某项的状态、文本和图片信息可以通过调用 <link url="SetItem.htm">SetItem</link> 方法。<link url="AddItem.htm">AddItem</link> 和 <link url="InsertItem.htm">InsertItem</link> 方法的调用只是设置某行的第一列的信息。
+    </para>
+    <para>
+    	  通过该方法成功获取指定项的图片对象的接口后，会自动对该接口的引用计数增加 1，故当该接口不再需要时，需要用户自行调用 Release() 方法释放该接口，否则在销毁 ListView 对象时会造成内存泄漏。
+    </para>
+</remarks>
+
+<references>
+    <reference>
+        <ref_name>CListView 类介绍 </ref_name>
+        <ref_url>../../class/ListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListView 接口方法列表</ref_name>
+        <ref_url>../IListView</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IListViewPaint 接口方法列表</ref_name>
+        <ref_url>../IListViewPaint</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetItem</ref_name>
+        <ref_url>SetItem</ref_url>
+    </reference>
+</references>
+</manpage>

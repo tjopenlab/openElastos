@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>GetResponseStream (IHttpRequest)</volume>
+<interface>IHttpRequest</interface><method> GetResponseStream </method>
+    <description>
+        <para>
+            以输入流形式获取从服务器返回的响应数据。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IInputStream** </param_type>
+                <param_name> stream </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../StreamIO/interface_i_input_stream.html">IInputStream</link> 接口指针的指针，用于以输入流形式获取从服务器返回的响应数据，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION</td>
+	    	    <td>无效操作</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	      只有在 HTTP 请求状态为 <link url="../../datatype/ReadState.htm">ReadState_COMPLETED</link> 下方可调用该方法，否则将返回错误。成功调用该方法得到返回数据的输入流接口，系统会自动对该接口的引用计数加 1，故一旦不再需要该接口时，需要调用 Release() 方法释放该接口，否则在销毁当前 HttpRequest 对象时将造成内存泄漏。通过获得的输入流接口，用户可以对返回数据进行想要的操作。
+	  </para>
+	  <para>
+	      若用户在 <link url="Send.htm">Send</link> 方法前调用了 <link url="../IHttpRequestEx/SetResponseStream.htm">SetResponseStream</link> 方法，则 HttpRequest 对象在接收到服务器端返回的响应数据后会自动将这些数据保存到用户指定的文件中，此时再在 Send 方法后调用该方法将无效并返回错误。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CHttpRequest 类介绍 </ref_name>
+        <ref_url>../../HttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IHttpRequest 接口方法列表</ref_name>
+        <ref_url>../IHttpRequest</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetResponseStream</ref_name>
+        <ref_url>SetResponseStream</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetResponseText</ref_name>
+        <ref_url>GetResponseText</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetResponseBody</ref_name>
+        <ref_url>GetResponseBody</ref_url>
+    </reference>
+</references>
+</manpage>

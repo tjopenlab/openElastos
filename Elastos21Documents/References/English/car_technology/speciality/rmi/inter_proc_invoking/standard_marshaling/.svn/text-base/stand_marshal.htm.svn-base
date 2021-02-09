@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Standard Marshaling</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Standard Marshaling</h2>
+    <h3>Introduction To Standard Marshaling Concept</h3>
+        <p>CAR (Component&nbsp;Application&nbsp;Run-Time) is component technology patented by Koretide. CAR component technology supports remote interface invocation and allows component service and component service user to be located in different operating system address space.Direct access between these two different spaces or different access rights in these two different spaces is not allowed. Now we need some kind of communication mechanism to implement data interaction between different address spaces.This process is defined as CAR component data invocation marshaling.</p>
+        <p>CAR component technology supports remote interface automatic marshaling (i.e. standard marshaling/unmarshaling). Standard marshaling/unmarshaling mechanism provides a set of standard marshaling/unmarshaling process. By using this mechanism you can exchange various types of data invoked by CAR over different address spaces and the user feels the same as using the component in the same address space.The system invokes remote interface transparently.This is to say that this mechanism completely shields the user from low level standard marshaling/unmarshaling process. </p>
+    <h3>Characteristics Of Standard Marshaling/Unmarshaling</h3>
+        <p>The position of CAR remote interface marshaling/unmarshaling in component invocation is similar to COM automatic marshaling/unmarshaling.It achieves transfer and interaction of CAR calling data between different address spaces. It has the following characteristics: </p>
+        <ul>
+            <li>CAR standard marshaling/unmarshaling is completely transparent to the user. If the user uses the default marshaling/unmarshaling process,then using a remote interface is similar to using a local interface.It completely hides the data exchange and passing process.
+            <li>CAR standard marshaling/unmarshaling is implemented by dynamically generate proxy/stub opposite to the way COM generates proxy/stub components through statical compilation. Statical compiled proxy/stub usually causes a huge increase in code size.It causes many problems and even the code logic to become very complex. 
+            <li>Support for user custom marshaling/unmarshaling is embedded in the CAR standard marshaling/unmarshaling process.The user can implement support for custom marshaling/unmarshaling through standard marshaling/unmarshaling and thus satisfies some special requirements of the user. Through this technology, Elastos component platform has realized inter-machine SOAP protocol based web&nbsp;service.
+            <li>CAR standard marshaling/unmarshaling in Elastos system is mainly focused on some kernel system utility, which is also a derivation of component technology. In order to improve remote invocation efficiency, CAR standard marshaling/unmarshaling can be categorized according to the relation between the service component and the address space that the component caller locates. According to different address space client side and server side located, marshaling/unmarshaling can be divided into the following categories: 
+                <table>
+                    <thead>
+                        <td></td>
+                        <td>Client</td>
+                        <td>Server</td>
+                    </thead>
+                    <tr>
+                        <td>Case 1</td>
+                        <td>Process A space</td>
+                        <td>Process B space</td>
+                    </tr>
+                    <tr>
+                        <td>Case 2</td>
+                        <td>Same process user space</td>
+                        <td>Same process kernel space</td>
+                    </tr>
+                    <tr>
+                        <td>Case 3</td>
+                        <td>Same process kernel space</td>
+                        <td>Same process user space</td>
+                    </tr>
+                </table>
+                <p>For these three cases, address space differences located in each side and strategies of data transfer between spaces, the process of marshaling/unmarshaling also have differences. CAR standard marshaling/unmarshaling mechanism satisfies different data protection requirements through different marshaling/unmarshaling, it tries to improve system run-time efficiency as much as possible, especially the efficiency of exporting kernel in the form of interface.</p>
+            <li>CAR standard marshaling/unmarshaling supports class based marshaling/unmarshaling, which is different from COM's interface based marshaling/unmarshaling. Traditionally, interface only provides exchange method between component and the outside world.Class is the carrier of interface implementation and class based component allows multiple interfaces in a class. From remote interface standard marshaling/unmarshaling implementation point of view, you have the choice of class based marshaling/unmarshaling or interface based marshaling/unmarshaling. Elastos 2.0 operating system component platform technology chooses to implement remote interface automatic marshaling/unmarshaling based on class, because the user usually obtains component interface for the same implementation class through QI (QueryInterface). If using interface based automatic marshaling/unmarshaling, it is unavoidable to remotely obtain data, recreate proxy/stub and returns corresponding interface proxy to user. To obtain data remotely,time consumption is high if it is in distributed environment. This makes us obtain data remotely as less as possible.Each time when we obtain data we try to bring enough information. Class based fit this concept when the user obtains interface through QI.All the transactions are in the client side. In real world implementations, often use component class as the smallest lifecycle management unit.All interface based lifecycle management eventually end up with reference count operation and transaction of implementation component class the interface is located in. So, use class based remote interface automatic marshaling/unmarshaling is more appropriate for real world component lifecycle management model. Similar to QI, interface lifecycle management of class based marshaling/unmarshaling can reduce invocation across spaces. Practically, class based method does not cost much.
+        </ul>
+    <h3>How To Use Standard Marshaling/Unmarshaling?</h3>
+        <p>Elastos component platform allows obtaining remote component pointer through <a class="style1" href="../../../naming_service/naming_service.htm">naming service</a> or <a class="style1" href="../../../../../sdk/base_service/car_naming_service/basic_com_lib.htm">related API</a>. The user can release a remote component service through naming service. For specific operations please see <a class="style1" href="../../../../../sdk/base_service/car_naming_service/naming_service_idx.htm">naming service</a> and CAR&nbsp;API related documentation for details.</p>
+
+
+<script>footer("english")</script>
+</body>
+</html>

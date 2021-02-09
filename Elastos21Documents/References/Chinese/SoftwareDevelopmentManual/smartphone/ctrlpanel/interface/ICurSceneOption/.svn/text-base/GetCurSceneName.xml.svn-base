@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ICurSceneOption</interface><method> GetCurSceneName </method>
+    <description>
+        <para>
+            从配置文件中获取当前正在使用的情景模式的名字。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzStrBuf </param_type>
+                <param_name> esbCurSceneName </param_name>
+                <param_note>
+                    <para>
+获取的当前正在使用的情景模式名字                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；esbCurSceneName为空，返回E_INVALIDARG。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            获取的名字是先前设置成当前情景模式的系统情景模式或是用户自定义情景模式的名字。恢复出厂设置时，默认启动的情景模式名字是“普通模式”。</para><para>            esbCurSceneName不能为空，并且在调用该方法前要分配足够的空间，在UI界面上的程序保证存入数据库的情景模式名字不超过20个字符串，所以esbCurSceneName应该至少可以存20个字符.
+        </para>
+    </remarks>
+</manpage>

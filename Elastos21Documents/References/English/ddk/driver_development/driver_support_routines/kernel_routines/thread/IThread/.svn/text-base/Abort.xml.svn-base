@@ -1,0 +1,57 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Thread and Scheduling</volume>
+<interface>IThread</interface><method> Abort </method>
+    <description>
+        <para>
+        	Aborts the associated thread.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <NoArguments/>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value </td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>S_OK</td>
+		<td>0x00000000</td>
+		<td>The thread is successfully aborted</td>
+	    </tr>
+	    <tr>
+		<td>S_FALSE</td>
+		<td>0x00000001</td>
+		<td>The thread is already terminated</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+        <para>
+            If the associated thread has been finished, the function has no effect and returns S_FALSE.
+			If Abort function is invoked on main thread, the process that the main thread belongs to,
+			will get terminated, and all the child threads will also be terminated forcefully. If the thread
+			is in waiting thread list or running thread list, it is removed from list and sets its state as
+			ThreadState_Finished. <link url="GetState.htm">IThread::GetState</link> can be used to
+			retrieve the state of the thread.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

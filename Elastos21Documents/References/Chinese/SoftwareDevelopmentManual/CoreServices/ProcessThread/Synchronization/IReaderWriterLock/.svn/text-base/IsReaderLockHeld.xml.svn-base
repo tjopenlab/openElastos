@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IReaderWriterLock\ReaderWriterHeld">IsReaderLockHeld</sample>
+<volume>同步</volume>
+<interface>IReaderWriterLock</interface><method> IsReaderLockHeld </method>
+    <description>
+        <para>判断是否已经获得了读者锁。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Boolean * </param_type>
+                <param_name> pIsHeld </param_name>
+                <param_note>
+                    <para>指向Boolean型的指针，当为TRUE时，表示调用线程已经以读者身份占有了读者锁对象；当为FALSE时，表示调用线程未以读者身份占有读者锁对象</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功返回</td>
+	        </tr>
+	        <tr>
+	            <td>E_INVALID_ARGUMENT</td>
+	            <td>参数不正确</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+        <para>本方法用于判断调用线程是否已经获得了读者锁（即调用线程是否已经以读者身份占有了该读者锁对象）。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

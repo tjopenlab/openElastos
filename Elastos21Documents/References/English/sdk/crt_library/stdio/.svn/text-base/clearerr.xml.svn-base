@@ -1,0 +1,99 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\clearerr">clearerr</sample>
+    <title>clearerr</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Resets the error indicator for a stream</para>
+    </description>
+
+    <syntax>
+        <return_val>void </return_val>
+        <func_name>clearerr </func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return></return>
+
+    <remarks>
+        <para>The clearerr function resets the error indicator and end-of-file indicator for stream. Error indicators are not automatically cleared; once the error indicator for a specified stream is set, operations on that stream continue to return an error value until clearerr, fseek, fsetpos, or rewind is called.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>clearerr</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* clearerr.cpp: This program creates an error
+ * on the standard input stream, then clears
+ * it so that future reads won&apos;t fail.
+ */
+
+#include &lt;stdio.h&gt;
+
+void main( void )
+{
+   int c;
+   /* Create an error by writing to standard input. */
+   putc( &apos;c&apos;, stdin );
+   if( ferror( stdin ) )
+   {
+      printf( &quot;Write error\n&quot; );
+      clearerr( stdin );
+   }
+
+   /* See if read causes an error. */
+   printf( &quot;Will input cause an error? &quot; );
+   c = getc( stdin );
+   if( ferror( stdin ) )
+   {
+      printf( &quot;Read error&quot; );
+      clearerr( stdin );
+   }
+}
+</pre>
+    </example>
+<result>
+Write error: No error
+Will input cause an error? n
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>feof </ref_name>
+            <ref_url>feof </ref_url>
+        </reference>
+        <reference>
+            <ref_name>ferror</ref_name>
+            <ref_url>ferror</ref_url>
+        </reference>
+    </references>
+
+</manpage>

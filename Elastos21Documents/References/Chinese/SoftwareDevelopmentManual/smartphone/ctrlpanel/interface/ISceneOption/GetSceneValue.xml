@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISceneOption</interface><method> GetSceneValue </method>
+    <description>
+        <para>
+            根据传入的名字从数据库中读取某一情景模式的配置文件到pSceneData中。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esName </param_name>
+                <param_note>
+                    <para>
+情景模式名字                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ISceneDataRef * </param_type>
+                <param_name> ppSceneData </param_name>
+                <param_note>
+                    <para>
+指向ISceneData类型指针的指针，用于存放情景模式中所有参数的数据模块                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；esName和pSceneData为空，返回E_INVALIDARG，读取环境变量（数据库名）失败或者esName的长度为0，返回E_INVALID_ENVIRONMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

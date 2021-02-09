@@ -1,0 +1,39 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+	<head>
+		<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+		<title>carCompile</title>
+	</head>
+
+	<body>
+<h2>CAR文件编译 </h2>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;编译一个CAR文件主要分为四个步骤：</p>
+    <li><p>第一步：编写.car文件，声明方法、接口、类和构件</p>
+    <li><p>第二步：调用“emake xxx.car”生成前台代码框架 </p>
+    <li><p>第三步：在前台代码框架中编写实现代码</p>
+    <li><p>第四步：调用“emake”生成后台代码，然后编译链接成构件(.dll或.lib) </p>
+
+<h3>自动生成前台代码框架 </h3>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;Car编译器主要包括四个工具：carusage.exe carc.exe lubc.exe和lube.exe。简单来说，carc.exe工具是用来编译.car文件的；lubc.exe工具用来编译.lub模板的；Lube.exe工具根据模板产生代码。其中lub模板是由一组特定规则组成的扩展名为lub的文件。可以使用命令 xxx -? 分别查看这些工具的使用说明。例如命令carc -? 会列出carc工具的使用方法。  </p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;在XDK命令行输入“emake xxx.car”后，将首先使用carc工具在当前目录下（可以指定目录）生成xxx.car文件对应的xxx.cls文件，该文件主要包括元数据的信息,编译时这些信息被打包到dll中。元数据，是一种描述数据的数据。CAR构件中的元数据主要包括模块信息（ModuleInfo）,接口信息（InterfaceInfo），类信息（ClassInfo）等。这些信息是在CAR文件编译后得到，是CAR文件的二进制表述。 </p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;然后使用lube工具根据刚才生成的xxx.cls文件，按照foreground.lub模板生成构件的前台代码框架，即为构件中定义的所有类生成该类对应的xxx.cpp和xxx.h文件，此外还包括sources文件和xml文件。这些文件的含义如下： </p>
+       
+    <p><b>xxx.h</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.car文件中定义的类对应的头文件 </p>
+    <p><b>xxx.cpp</b>&nbsp;&nbsp;&nbsp;&nbsp;.car文件中定义的类对应的C++代码文件 </p>
+    <p><b>sources</b>&nbsp;&nbsp;&nbsp;&nbsp;用于指定如何编译源代码，生成什么类型的目标文件等信息 </p>
+    <p><b>xxx.xml</b>&nbsp;&nbsp;&nbsp;&nbsp;分别用中文和英文描述car文件内容的xml文件</p>
+
+<h3>自动生成后台代码框架 </h3>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;在前台代码框架中填充实现代码后，执行emake命令,将首先使用carc工具在<a class= "style1" href="../../XDK/XDKUsage/XDKCompile/MirrorDirectory.htm">镜像目录</a>下生成扩展的xxxEx.cls文件。相比较前台代码框架生成使用的xxx.cls文件，该扩展xxxEx.cls文件增加了一些额外的接口和类。然后使用lube工具，按照header.lub、public.lub、background.lub、cls2abrg.lub等模板生成后台代码框架，最后编译链接成xxx.dll（或xxx.lib）。 </p>
+<h3>自动生成代码框架的优点 </h3>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;编译环境自动生成代码的主要作用是封装和抽象构件的编写和使用，让用户更方便的开发和使用CAR构件。 </p>
+    <li><p>用car书写CAR构件接口描述文件简单方便。Hello构件虽然接口简单，但如果用户用C++编写，仍然要考虑到许多技术细节。采用car语言编写构件，不仅简单而且让用户更加习惯构件编程的思维方法，不纠缠于内部的技术细节。 </p>
+    <li><p>自动生成元数据。CLS文件是CAR文件压缩后的样式库，里面描述了整个构件的接口、类、方法、结构、枚举等的定义。有了cls文件，就可以得到该构件的接口，函数的调用方法，甚至生成源码框架。在链接生成构件的时候，将cls也放入构件中，这样就等于将一本说明书和构件捆绑在一起。无论构件被复制移动到哪里，都可以知道该构件该如何使用。  </p>
+	  <li><p>许多构件的重要组成部分，比如类厂，DLL中的注册函数等，都由编译环境自动生成，不必用户再手工实现。  </p>
+	</body>
+		
+</html>

@@ -1,0 +1,74 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<method> InterlockedExchangeAdd </method>
+    <description>
+        <para>
+            The <b>InterlockExchangeAdd</b> function performs an atomic addition of an increment
+            value to an addend variable. The function prevents more than one thread from
+            using the same variable simultaneously.
+        </para>
+    </description>
+    <syntax>
+        <return_val>LONG</return_val>
+        <parameters>
+            <api_param>
+                <param_type> PLONG </param_type>
+                <param_name> Addend </param_name>
+                <param_note>
+                    <para>
+                        Pointer to the number, which has the <i>Increment</i> added to it.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+
+        <parameters>
+            <api_param>
+                <param_type> LONG </param_type>
+                <param_name> Increment </param_name>
+                <param_note>
+                    <para>
+                        Specifies the number to be added to the variable pointed by the <i>Addend</i> parameter.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <para>Initial value of the variable pointed by the <i>Addend</i> parameter.</para>
+	</return>
+
+	<remarks>
+		<para>
+            The Interlocked functions provide a simple mechanism for synchronizing access to a variable
+            that is shared by multiple threads. The threads of different processes can use this mechanism
+            if the variable is in shared memory.
+        </para>
+        <para>
+            The <b>InterlockedExchangeAdd</b> function performs an atomic addition of <i>Increment</i> to the value
+            pointed by <i>Addend</i>. The result is stored in the address specified by <i>Addend</i>. The initial
+            value of the variable pointed by <i>Addend</i> is returned as the function value.
+        </para>
+        <para>
+            The variables for <b>InterlockedExchangeAdd</b> must be aligned on a 32-bit boundary;
+            otherwise, this function will fail on multiprocessor x86 systems and any non-x86 systems.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+</manpage>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>ITextBox</interface><method> GetSelectionStart </method>
+    <description>
+        <para>
+            获取选中文本的起始位置。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> position </param_name>
+                <param_note>
+                    <para>
+指向 Int32 型的指针，用于获取选中文本的起始位置，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+    	  成功调用该方法得到的 SelectionStart 是开始选中时光标的起始位置，例如，同样是选中第5个到第10个的字符，当按着光标从第10个字符从右往左选择到第5个字符，则此时的 SelectionStart 将是10；若按着光标从第5个字符从左往右选择到第10个字符，则此时的 SelectionStart 将是5。若当前 TextBox 内没有选中的文本，则得到的 SelectionStart 将是新文本的插入点。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CTextBox 类介绍</ref_name>
+        <ref_url>../../class/TextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ITextBox 接口方法列表</ref_name>
+        <ref_url>../ITextBox</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetSelectionStart</ref_name>
+        <ref_url>SetSelectionStart</ref_url>
+    </reference>
+</references>
+</manpage>

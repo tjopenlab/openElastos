@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzTaskMemRealloc">CMemoryHeap::Realloc</sample>
+    <volume>堆</volume>
+    <title>CMemoryHeap::Realloc</title>
+    <routine_idx>../Heap.htm</routine_idx>
+
+    <description>
+        <para>重新分配内存的大小。</para>
+    </description>
+
+    <syntax>
+        <return_val>PVoid  </return_val>
+        <parameters>
+            <api_param>
+                <param_type> PVoid  </param_type>
+                <param_name> pMemory </param_name>
+                <param_note>
+                    <para>[in]重新分配的内存块首地址（可为空）</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> MemorySize  </param_type>
+                <param_name> size </param_name>
+                <param_note>
+                    <para>[in]重新分配的内存块大小（以字节为单位，可以为0）</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<para>内存不足或size为零时返回NULL；重新分配成功时返回指向内存块首地址的指针。</para>
+    </return>
+
+    <remarks>
+         <para>本函数改变已分配的内存的大小。</para>
+         <para>如果pMemory为NULL，分配一块新内存。如果参数pMemory非NULL，它应该是在此前调用<link url="Alloc.htm">CMemoryHeap::Alloc</link>返回的指针。 </para>
+         <para>新的内存块可能与旧的内存块在不同的内存地址，但是新内存块将复制旧内存块的内容，同时，返回的指针可能不同于pMemory参数。如果pMemory非空并且size为零，那么pMemory指向的内存将被释放。</para>
+        <para>本函数返回void型指针，指向重新分配的内存块（可能被移动了）。如果size大小为零，或者没有足够的内存可供扩展，返回值将为NULL。第一种情况，原块被释放。第二种情况，原块不变。 </para>
+         <para>返回值指向的存储空间被保证适合存储任何类型的对象。可用类型转化得到其他类型的指针。 </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+       </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CMemoryHeap::Alloc</ref_name>
+        <ref_url> Alloc</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CMemoryHeap::Free</ref_name>
+        <ref_url> Free</ref_url>
+    </reference>
+    </references>
+
+</manpage>

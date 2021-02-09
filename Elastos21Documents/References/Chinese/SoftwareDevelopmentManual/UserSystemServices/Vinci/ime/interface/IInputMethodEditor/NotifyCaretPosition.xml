@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IInputMethodEditor</interface><method> NotifyCaretPosition </method>
+    <description>
+        <para>
+            通知输入法光标的位置，输入法面板可以根据这个位置调整其坐标。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> x </param_name>
+                <param_note>
+                    <para>
+光标的横坐标，该值相对于屏幕。                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> y </param_name>
+                <param_note>
+                    <para>
+光标的纵坐标，该值相对于屏幕。              </para>
+                </param_note>
+            </api_param>
+       </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统          </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElControls.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib </lib_name>
+        </library>
+    </requirements>
+</manpage>

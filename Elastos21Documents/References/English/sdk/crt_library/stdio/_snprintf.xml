@@ -1,0 +1,144 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\_snprintf">_snprintf</sample>
+    <title> _snprintf, _snwprintf</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes formatted data to a string.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_snprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>Storage location for output.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Maximum number of characters to store.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format [, argument] ...</param_name>
+                <param_note>
+                    <para>Format-control string(argument is Optional arguments).</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_snwprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchat_t*</param_type>
+                <param_name>format [, argument] ...</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_snprintf returns the number of bytes stored in buffer, not counting the terminating null character. If the number of bytes required to store the data exceeds count, then count bytes of data are stored in buffer and a negative value is returned. _snwprintf returns the number of wide characters stored in buffer, not counting the terminating null wide character. If the storage required to store the data exceeds count wide characters, then count wide characters are stored in buffer and a negative value is returned.</para>
+    </return>
+
+    <remarks>
+        <para>The _snprintf function formats and stores count or fewer characters and values (including a terminating null character that is always appended unless count is zero or the formatted string length is greater than or equal to count characters) in buffer. Each argument (if any) is converted and output according to the corresponding format specification in format. The format consists of ordinary characters and has the same form and function as the format argument for printf. </para>
+        <para>_snwprintf is a wide-character version of _snprintf; the pointer arguments to _snwprintf are wide-character strings.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_snprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_snwprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* snprintf.cpp: This program uses sprintf to format various
+ * data and place them in the string named buffer.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char  buffer[200], s[] = &quot;computer&quot;, c = &apos;l&apos;;
+    int    i = 35, j;
+    float fp = 1.7320534f;
+
+    /* Format and print various data: */
+    j  = sprintf(buffer,      &quot;\tString:     %s\n&quot;, s);
+    j += sprintf(buffer + j, &quot;\tCharacter: %c\n&quot;, c);
+    j += sprintf(buffer + j, &quot;\tInteger:    %d\n&quot;, i);
+    j += sprintf(buffer + j, &quot;\tReal:        %f\n&quot;, fp);
+
+    printf(&quot;Output:\n%s\ncharacter count = %d\n&quot;, buffer, j);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Output:
+String:     computer
+Character: l
+Integer:    35
+Real:        1.732053
+
+character count = 75
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>sprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>printf</ref_name>
+            <ref_url>wprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

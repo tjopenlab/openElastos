@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Elastos Widgets开发</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>基于XmlGlue编程模型下的Widgets开发介绍</span></a></li>
+    <li><a href="flow.html"><span>Widgets开发流程</span></a></li>
+    <li><a href="dataset.html"><span>Widgets开发专题介绍</span></a></li>
+    <li class="current"><a href="sample.html"><span>Widgets开发示例</span></a></li>
+  </ul>
+</div>
+
+<h1>Widgets开发示例:电子时钟</h1>
+<h2>◆	设计阶段</h2>
+<h3>需求分析</h3>
+<p>实现一个钟表。具体而言：在一个圆形表盘上，用3根分别代表时针、分针和秒针的指针动态显示时间的变化，同时在表盘内，用文本形式显示日期;当鼠标长按时则退出应用程序。
+<h3>界面设计</h3>
+<p>用一张画有表盘的图片作为该时钟窗口的背景，然后再这个窗口上创建5个画布，分别用来画时针，分针，秒针，日期十位数字以及日期个位数字的图片。
+<h3>逻辑设计</h3>
+<p>通过需求可知，在钟表的界面上，要显示图形形式的日期、时间包括3根针的转动。在交互方面，要实现鼠标的拖动。
+<p>在XML中编程部分，实现界面布局。用一个表示整个窗口的form标签,一个panel标签以显示整个钟表的所在区域。
+<p>在脚本编程部分，在这个panel上创建5个canvas，同时调用canvas的TranslateTransform方法把canvas移动form的适当位置。如要实现时针围绕窗口中心转动的效果，就要把这个canvas移到window中间正确位置。
+<p>在脚本中，通过注册函数，实现交互操作及时间的实时更新及鼠标长按时时退出应用程序，对应的注册函数为：function OnTimer和function OnClickExit。
+<p>函数OnTimer被注册到form标签控件对象的回调函数Timer，Timer是定时器事件，每通过方法SetTimer所设置的时间，回调函数Timer就会被调用。在OnTimer中，要实现时间的实时显示，具体实现是：获得系统时间，然后根据系统时间计算时针、分针和秒针所需旋转的角度，以及显示日期的2个canvas所需要显示的数字图片。通过图形构件ElGrafix的canvas中的RotateTransform方法，根据时间分别旋转画有3根指针的canvas，动态显示时间效果。
+<p>OnClickExit方法被注册到panel标签控件对象,用来实鼠标长按时时退出应用程序。
+
+<h2>◆	实现阶段</h2>
+<h3>实现模型(Model)程序</h3>
+<p>在XmlGlue中，模型是由一个个的构件实现。在这个例子中，用到的构件有标签构件:ElControls和图形构件:ElGrafix，由XmlGlue编程环境提供，通过相应模块名调用。
+<h3>实现视图(View)布局</h3>
+<p>在XmlGlue技术中，View用XML语言直接书写，XmlGlue负责将其解释为相应的图形元素，并将图形请求全部发给图形系统构件。
+<p>此处 ，我们通过在应用的入口文件main.xgl中实现视图布局,且此文件存放在当前应用的根目录下。相应的代码如下：
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+ 
+ &lt;x:elastos xmlns="http://www.elastos.com/XmlGlue/Widgets"
+          xmlns:x="http://www.elastos.com/XmlGlue/2.1"&gt;
+ 
+     &lt;form x:id="main" x="30" y="30" width="124" height="126"
+        style="ControlStyle:Transparent FormStyle:PixelAlphaChannel"&gt;
+        &lt;panel x:id="backGround"
+            x="0" y="0" width="124" height="126"
+            style="ControlStyle:Transparent"
+            StylusHeld="OnClickExit()"/&gt;        
+     &lt;/form&gt;
+     &lt;x:script&gt;
+     &lt;![CDATA[
+     … … --脚本代码，实现控制器程序。详细代码及说明请参见下文。
+     ]]&gt;
+    &lt;/x:script&gt;
+ &lt;/elastos&gt;
+</td></tr></table>
+<h3>实现控制器(Controller)程序</h3>
+<p>本例中，逻辑控制部分，用脚本语言：Lua语言在main.xgl中实现。 
+<p>下面是程序中实现逻辑控制的部分：
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>
+require("math");    --包含LUA语言中的函数库，相当于C语言里的 #include &lt;math.h&gt;
+require("os");  	  --通过该函数可以获得系统时间等信息。
+
+local second ,minute, hour = 0, 0, 0; --定义3个变量并分别赋初值为零
+
+graphicsA = backGround:CreateCanvas();
+
+imgName = {"images/0.jpg","images/1.jpg","images/2.jpg",
+            "images/3.jpg","images/4.jpg","images/5.jpg",
+            "images/6.jpg","images/7.jpg","images/8.jpg",
+            "images/9.jpg"};
+
+-- xmlglue里用CreateObject创建对象，在这里用一个for循环创建了10个image对象。用来显示当天的日期
+imgObject = {};
+for i=1,10 do
+imgObject[i] = Grafix.image:CreateObject({filePath =
+imgName[i]},{format = 4});
+end
+
+--电子时钟背景圆盘的image对象
+background_img = Grafix.image:CreateObject({filePath =  
+            "images/background.jpg"},{format = 4});
+
+--电子时钟时针的image对象
+hour_img = Grafix.image:CreateObject({filePath =
+           "images/hour.jpg"},{format = 4});
+
+--电子时钟分针的image对象
+minute_img = Grafix.image:CreateObject({filePath =
+            "images/minute.jpg"},{format = 4});
+
+--电子时钟秒针的image对象
+second_img = Grafix.image:CreateObject({filePath =
+            "images/second.jpg"},{format = 4});
+
+--通过调用SetBackgroundImage方法设置背景
+backGround:SetBackgroundImage(background_img);
+
+local day = os.date("*t", os.time()).day;   --获得当前日期。
+
+--定义一个获得当前的时，分，秒，日期的方法。
+function GetTime()
+    local now = os.date("*t", os.time());
+    second = now.sec;
+    minute = now.min;
+    hour = now.hour;
+    day = now.day;
+end
+
+--更新秒针。该方法通过定时器调用，每秒钟调用一次
+function UpdateSecond()
+    GetTime();
+    UpdateMinute();
+    local secondAngle = (second * 6) % 360;
+    patternSecond = Grafix.pattern:CreateObject(
+                    {image = second_img});
+    patternSecond:SetWrapMode(WrapMode_Normal);
+		graphicsA:SetPattern(patternSecond);
+		graphicsA:ResetTransform();
+    graphicsA:TranslateTransform(62, 63);
+    graphicsA:RotateTransform(secondAngle);
+	  graphicsA:TranslateTransform(-9, -43);
+		graphicsA:FillRectangle(0, 0, 124, 126, 0);
+		graphicsA:ResetTransform();
+end    
+    
+
+function UpdateMinute()   ----更新分针
+    UpdateHour();
+    local minuteAngle = (minute * 6 + second / 10) % 360;
+    patternMinute = Grafix.pattern:CreateObject(
+                    {image = minute_img});
+    patternMinute:SetWrapMode(WrapMode_Normal);
+		graphicsA:SetPattern(patternMinute);
+		graphicsA:ResetTransform();
+    graphicsA:TranslateTransform(62, 63);
+    graphicsA:RotateTransform(minuteAngle);
+	  graphicsA:TranslateTransform(-9, -43);
+	  graphicsA:FillRectangle(0, 0, 124, 126, 0);
+end    
+
+
+function UpdateHour()   ----更新时针
+      UpdateDay();
+			local hourAngle = (hour * 30 + minute / 2) % 360;
+      patternHour = Grafix.pattern:CreateObject(
+                    {image = hour_img});
+      patternHour:SetWrapMode(WrapMode_Normal);
+			graphicsA:SetPattern(patternHour);
+			graphicsA:ResetTransform();
+      graphicsA:TranslateTransform(62, 63);
+      graphicsA:RotateTransform(hourAngle);
+			graphicsA:TranslateTransform(-9, -43);
+			graphicsA:FillRectangle(0, 0, 124, 126, 0);
+end
+
+function UpdateDay()   --更新日期
+    patternDayLeft = Grafix.pattern:CreateObject(
+                     {image = imgObject[math.floor(day / 10) + 1]});
+    patternDayLeft:SetWrapMode(WrapMode_Normal);
+    graphicsA:SetPattern(patternDayLeft);
+    graphicsA:ResetTransform();
+    graphicsA:TranslateTransform(79, 56);
+    graphicsA:FillRectangle(0, 0, 124, 126, 0);
+
+    patternDayRight = Grafix.pattern:CreateObject(
+                     {image = imgObject[day % 10 + 1]});
+    patternDayRight:SetWrapMode(WrapMode_Normal);
+    graphicsA:SetPattern(patternDayRight);
+    graphicsA:ResetTransform();
+    graphicsA:TranslateTransform(87, 56);
+    graphicsA:FillRectangle(0, 0, 124, 126, 0);
+end
+--注册backGround这个面板上的OnPaint事件
+        backGround.Paint = UpdateSecond;
+
+        function OnTimer(src,id)
+            main:Update();
+        end
+
+        function OnClickExit()
+            main:Close();
+        end
+
+        main:SetTimer(1,1000);
+        main.Timer = OnTimer;
+        main:SetAttributes(0x1);
+        main:Show()
+</td></tr></table>
+<h3>编写manifest.xml文件，并将此文件保存至当前应用的根目录中。源代码如下：</h3>
+<p><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom"><pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;widget name="SAMPLE WIDGET" version="1.0"
+            xmlns="http://www.elastos.com/XmlGlue/2.1/widget"&gt;
+    &lt;settings&gt;
+        &lt;setting name="defaultScriptLanguage" value="lua"/&gt;
+    &lt;/settings&gt;
+&lt;/widget&gt;
+</td></tr></table>
+<h3>图片资源</h3>
+<p>在这个示例中我们用到了以下图片资源，将它们保存至一个新建的文件夹images中，且置此文件夹于当前应用的根目录下。
+<center><img src="images/0.jpg"></center>
+<center>0.jpg</center>
+<center><img src="images/1.jpg"></center>
+<center>1.jpg</center>
+<center><img src="images/2.jpg"></center>
+<center>2.jpg</center>
+<center><img src="images/3.jpg"></center>
+<center>3.jpg</center>
+<center><img src="images/4.jpg"></center>
+<center>4.jpg</center>
+<center><img src="images/5.jpg"></center>
+<center>5.jpg</center>
+<center><img src="images/6.jpg"></center>
+<center>6.jpg</center>
+<center><img src="images/7.jpg"></center>
+<center>7.jpg</center>
+<center><img src="images/8.jpg"></center>
+<center>8.jpg</center>
+<center><img src="images/9.jpg"></center>
+<center>9.jpg</center>
+<center><img src="images/background.jpg"></center>
+<center>background.jpg</center>
+<center><img src="images/hour.jpg"></center>
+<center>hour.jpg</center>
+<center><img src="images/minute.jpg"></center>
+<center>minute.jpg</center>
+<center><img src="images/second.jpg"></center>
+<center>second.jpg</center>
+<h3>◆	编译运行及运行效果</h3
+<ol>
+  <li>将以上main.xgl、manifest.xml、图片资源文件夹images保存在同一个文件夹内。
+  <li>在建立的SDK命令行开发环境中，输入命令:SuperExe  &lt;filepath&gt;，filepath为当前应用所在的路径，绝对或相对路径均可。运行效果如下图所示。
+  <p>
+  <center><img src="images/result.jpg"></center>
+</ol>
+<script>footer("chinese")</script>
+</body>
+</html>

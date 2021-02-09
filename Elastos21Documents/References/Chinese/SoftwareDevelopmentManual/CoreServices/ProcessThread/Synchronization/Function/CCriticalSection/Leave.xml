@@ -1,0 +1,66 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\CriticalSection">CCriticalSection::Leave</sample>
+    <volume>临界区</volume>
+    <title>CCriticalSection::Leave</title>
+    <routine_idx>../../CriticalSection.htm</routine_idx>
+
+    <description>
+        <para>离开临界区。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+    </syntax>
+
+    <return>
+    	<NoReturnValue/>
+    </return>
+
+    <remarks>
+         <para>CriticalSection是一种同步对象， 主要用于进程内多线程互斥地使用临界区。</para>
+         <para>在使用临界区对象之前，必须使用<link url="Initialize.htm">CCriticalSection::Initialize</link>初始化临界区对象。</para>
+         <para>线程使用<link url="Enter.htm">CCriticalSection::Enter</link>来获取临界区对象的使用权。使用完之后线程必须调用CCriticalSection::Leave释放对临界区对象的占有。</para>
+         <para>调用本函数的线程必须是该对象的属主，试图释放不属于当前线程的对象将引起未知错误。</para>
+         <para>进程中的任何线程都可以使用<link url="Terminate.htm">CCriticalSection::Terminate</link>删除临界区对象，被删除的对象将不能再用来同步。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CCriticalSection::Terminate </ref_name>
+        <ref_url> Terminate</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::TryEnter </ref_name>
+        <ref_url> TryEnter</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::Initialize </ref_name>
+        <ref_url> Initialize</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::Enter </ref_name>
+        <ref_url> Enter</ref_url>
+    </reference>
+    </references>
+
+</manpage>

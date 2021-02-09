@@ -1,0 +1,64 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzStrBuf\alloc">AllocStrBuf</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzStrBuf </interface>
+    <method> AllocStrBuf </method>
+
+    <description>
+        <para> Allocates new memory blocks of specified size for EzStrBuf and it requires FreeStrBuf method to release the memory.</para>
+    </description>
+
+    <syntax>
+        <return_val> static EzStrBuf </return_val>
+        <parameters>
+        <api_param>
+            <param_type>int</param_type>
+            <param_name> cb </param_name>
+            <param_note>
+                <para> The number of characters to be allocated. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Returns a pointer, which points to the EzStrBuf variable if allocates successfully, else returns EZSTRBUF_NULL.</para>
+    </return>
+
+    <remarks>
+        <para>To release memory allocated by this method, program needs to call <link url="FreeStrBuf.htm">FreeStrBuf</link> method.</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStrBuf pe = EzStrBuf::AllocStrBuf(20);
+    printf("The capacity of the string is %d.\n", pe.Capacity());
+    EzStrBuf::FreeStrBuf(pe);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+The capacity of the string is 20.
+]]>
+    </result>
+    <references>
+        <reference>
+            <ref_name> AllocStrBufLen </ref_name>
+            <ref_url> AllocStrBufLen </ref_url>
+        </reference>
+    </references>
+
+</manpage>

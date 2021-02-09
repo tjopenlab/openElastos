@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WStringBuf</interface>
+    <method> StartWith </method>
+
+    <description>
+        <para> 确定此对象的开头是否与指定的字符串匹配。</para>
+    </description>
+    <syntax>
+        <return_val> Boolean </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const WString &amp;</param_type>
+            <param_name> substr </param_name>
+            <param_note>
+                <para> 指定的字符串。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive</param_default>
+            <param_note>
+                <para> 是否区分大小写标志。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。</para>
+            </param_note>
+        </api_param>               
+        </parameters>        
+    </syntax>
+    <return>
+        <para>若以指定字符串开始，返回TRUE。否则返回FALSE。</para>
+    </return>
+   <remarks>
+        <para>若子串为空串，则返回True。</para>
+        <para>如果源对象或substr包含的字符串指针为空则返回FALSE。</para>
+    </remarks>
+<example>
+<pre>
+请参见：<link url="../AStringBuf/StartWith.htm">AStringBuf::StartWith</link>
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>WStringBuf</ref_name>
+        <ref_url>../WStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::EndWith </ref_name>
+        <ref_url>../WStringBuf/EndWith</ref_url>
+    </reference>
+
+</references>       
+</manpage>

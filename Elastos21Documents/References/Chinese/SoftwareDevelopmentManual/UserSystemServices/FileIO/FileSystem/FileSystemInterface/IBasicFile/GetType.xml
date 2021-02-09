@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IBasicFile</interface><method> GetType </method>
+    <description>
+        <para>
+            获取操作对象的文件类型。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> FileType * </param_type>
+                <param_name> pType </param_name>
+                <param_note>
+                    <para>
+指向<link url="../../FileSystemDataType/FileType.htm">FileType</link>类型的指针，用于返回的文件类型                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果参数pType为空或文件类型异常，返回E_INVALID_ARGUMENT。 </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            当操作对象是一般文件时，pType返回FileType_RegularFile；当操作对象是目录时，pType返回FileType_Directory。
+        </para>
+    </remarks>
+</manpage>

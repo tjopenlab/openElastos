@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\localtime">localtime</sample>
+    <title> localtime </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>将指定UTC（Coordinated Universal Time，通用协调时间）时间转换为本地时间。</para>
+    </description>
+
+    <syntax>
+        <return_val>struct tm*</return_val>
+        <func_name>localtime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const time_t*</param_type>
+                <param_name>timer</param_name>
+                <param_note>
+                    <para>该指针指向保存的时间</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回一指向时间结构体tm的指针，如果timer表示的时间在UTC时间1970年1月1日00:00:00之前，则返回NULL。</para>
+        <para>函数把UTC时间值转化成表示本地时间的tm结构体，通常通过函数time()来获取UTC时间。时间结构体tm在头文件time.h中定义。</para>
+        <para>关于结构体tm的具体含义说明，结构体tm包含的变量值均为整型：</para>
+        <table>
+            <th>
+               <td>指针域</td>
+               <td>含义</td>
+            </th>
+            <tr>
+               <td>tm_sec</td>
+               <td>一分钟内的第几秒 （0 – 59） </td>
+            </tr>
+            <tr>
+               <td>tm_min</td>
+               <td>一小时内的第几分钟 （0 – 59） </td>
+            </tr>
+            <tr>
+               <td>tm_hour</td>
+               <td>从0:00算起的小时数 （0 – 23） </td>
+            </tr>
+            <tr>
+               <td>tm_mday</td>
+               <td>在一个月中的第几日 （1 – 31） </td>
+            </tr>
+            <tr>
+               <td>tm_mon</td>
+               <td>月 （0 – 11；一月为0） </td>
+            </tr>
+            <tr>
+               <td>tm_year</td>
+               <td>年 （从1900年算起） </td>
+            </tr>
+            <tr>
+               <td>tm_wday</td>
+               <td>一周内的第几天 （0 – 6；Sunday = 0）</td>
+            </tr>
+            <tr>
+               <td>tm_yday</td>
+               <td>一年内的第几天 （0 – 365；January 1 = 0）</td>
+            </tr>
+            <tr>
+               <td>tm_isdst</td>
+               <td>如夏令时制有效则为正数，如夏令时制无效则为0，如未知夏令时制是否有效，或夏令时制信息无可用，则为负数。
+               </td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>localtime函数将time_t型的UTC时间（即timer参数值）转换成本地时间后存储在tm结构体中。timer值表示的是从UTC时间1970年1月1日00:00:00到当前系统时间所过去的总秒数。需要注意的是，如果timer的值设置过大的话，有可能导致一些操作失败甚至进入debug。timer值通常是调用time函数来获得的。</para>
+        <para>localtime用单个静态分配的tm结构体实现转换。每次调用函数将会摒弃从前调用函数所得到的结果。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>localtime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* localtm.cpp: This program uses time to get the current time
+ * and then uses localtime to convert this time to a structure
+ * representing the local time. The program converts the result
+ * from a 24-hour clock to a 12-hour clock and determines the
+ * proper extension (AM or PM).
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+    struct tm *ptime;
+    time_t long_time;
+
+    time(&amp;long_time);                /* Get time as long integer. */
+    ptime = localtime(&amp;long_time); /* Convert to local time. */
+
+    printf(&quot;The long_time:       %d\n&quot;, long_time);
+    printf(&quot;Current Date :       %d-%d-%d\n&quot;,
+        ptime-&gt;tm_year + 1900, ptime-&gt;tm_mon + 1, ptime-&gt;tm_mday);
+    printf(&quot;Current time :       %d-%d-%d\n&quot;,
+        ptime-&gt;tm_hour, ptime-&gt;tm_min, ptime-&gt;tm_sec);
+    printf(&quot;Current weekday :    %d\n&quot;, ptime-&gt;tm_wday);
+    printf(&quot;Current year_day :   %d\n&quot;, ptime-&gt;tm_yday);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The long_time:    1179307373
+Current Date :    2007-5-16
+Current time :    17-22-53
+Current weekday : 3
+Current year_day :135
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>ctime</ref_name>
+            <ref_url>ctime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_ftime</ref_name>
+            <ref_url>_ftime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>time</ref_name>
+            <ref_url>time</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wasctime</ref_name>
+            <ref_url>_wasctime</ref_url>
+        </reference>
+    </references>
+
+</manpage>

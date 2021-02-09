@@ -1,0 +1,67 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>userCar</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+	<h2>调用CAR构件</h2>
+
+<p> &nbsp;&nbsp;通常把dll定义的一端称之为服务器端，调用dll的一端称之为客户端。下面演示如何在客户端调用上节服务器端编写的HelloWorld.dll。</p>
+<p> &nbsp;&nbsp;调用一个DLL一般需要两步：</p>
+<p>1.在相应sources文件中导入该DLL，例如下述sources文件的第四行IMPORTS部分。</p> 
+<p>2.cpp文件中必须包含该DLL对应的头文件，例如下述client.cpp文件的第一行。</p></font>
+
+<h3>应用实现代码</h3>
+<p>新建一个<b>client.cpp</b>文件,内容实现如下：</p>
+<pre class=code>
+#include "HelloWorld.h" 
+using namespace Elastos;
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    IHello * pHello;
+
+    ECode ec = CHello::New(&pHello);    //创建CHello对象，获取其IHello接口指针pHello
+    if (FAILED(ec)) {
+        return ec;
+    }
+    pHello->HelloWorld();               //调用IHello接口方法，输出“HelloWorld”
+
+    if (pHello) {
+        pHello->Release();              //释放pHello接口指针
+    }
+
+    CProcess::Exit(0);                  //退出当前进程
+    return NOERROR; 
+}
+</pre>
+
+<h3>新建sources文件</h3>
+<p> 在client.cpp文件的同一目录下新建一个<b>sources</b>文件，用以编译客户端源文件。内容如下：</p>
+<pre class=code>
+TARGET_NAME= client             //编译产生的目标文件名
+TARGET_TYPE= exe                //目标文件类型
+
+IMPORTS= HelloWorld.dll         //导入需要的dll
+
+SOURCES= client.cpp             //顺序编译的源文件
+
+LIBRARIES= $(XDK_LIB_PATH)\elastos.lib 	 //链接程序库
+</pre>
+
+<h3>编译运行</h3>
+<p>进入xdk环境，在client.cpp目录下输入<b>emake</b>编译,编译成功后生成client.exe。如图：2-4所示：</p>
+<center><img src="images\emakeClient.JPG"/></center>
+<center>图2-4 输入emake进行编译  </center>
+<p>运行：输入<b>elaura client.exe</b>，运行结果如如图：2-5所示： </p>
+<center><img src="images\runClient.JPG"/></center>
+<center>图2-5 输入elaura client.exe 得到运行结果 </center>
+</body>
+</html>

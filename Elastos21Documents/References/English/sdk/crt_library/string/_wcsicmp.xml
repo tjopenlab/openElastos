@@ -1,0 +1,171 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_wcsicmp">_wcsicmp</sample>
+    <title> _stricmp, _wcsicmp</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Perform a lowercase comparison of strings.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_stricmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string1</param_name>
+                <param_note>
+                    <para>Null-terminated strings to compare.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string2</param_name>
+                <param_note>
+                    <para>Null-terminated strings to compare.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wcsicmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string1</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string2</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The return value indicates the relation of string1 to string2 in
+            lexicon. as follows:
+        </para>
+        <table>
+            <th>
+               <td>Return Value</td>
+               <td>Description</td>
+            </th>
+            <tr>
+               <td><![CDATA[< 0]]></td>
+               <td>string1 less than string2.</td>
+            </tr>
+            <tr>
+               <td>0</td>
+               <td>string1 identical to string2.</td>
+            </tr>
+            <tr>
+               <td><![CDATA[> 0]]></td>
+               <td>string1 greater than string2.</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>The _stricmp function lexicographically compares lowercase versions
+            of string1 and string2 and then returns a value indicating their relationship.
+            _wcsicmp is a wide-character version of _stricmp.The arguments and
+            return value of _wcsicmp are wide-character strings;These two
+            functions behave identically otherwise.
+        </para>
+        <para>_wcsicmp and wcscmp behave identically except that wcscmp does not
+            convert its arguments to lowercase before comparing them.
+        </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_stricmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wcsicmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _stricmp.cpp:this program compares lowercase versions of str1 and str2
+                and returns a value indicating their relationship
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    int isMatch;
+    char str1[20] = &quot;Hello&quot;;
+    char str2[20] = &quot;hello&quot;;
+    isMatch = _stricmp(str1, str2);
+
+    if (isMatch == 0) {
+        printf(&quot;str1: %s = str2: %s \n&quot;, str1, str2);
+    }
+    else if (isMatch &gt; 0) {
+        printf(&quot;str1: %s &gt; str2: %s \n&quot;, str1, str2);
+    }
+    else if (isMatch &lt; 0) {
+        printf(&quot;str1: %s &lt; str2: %s \n&quot;, str1, str2);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+str1: Hello = str2: hello
+</result>
+
+
+
+
+    <references>
+        <reference>
+            <ref_name> memcmp </ref_name>
+            <ref_url> memcmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcscmp </ref_name>
+            <ref_url> wcscmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncmp </ref_name>
+            <ref_url> wcsncmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> _wcsnicmp </ref_name>
+            <ref_url> _wcsnicmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url> strrchr </ref_url>
+        </reference>
+        <reference>
+            <ref_name> _strset  </ref_name>
+            <ref_url> _strset  </ref_url>
+        </reference>
+    </references>
+
+</manpage>

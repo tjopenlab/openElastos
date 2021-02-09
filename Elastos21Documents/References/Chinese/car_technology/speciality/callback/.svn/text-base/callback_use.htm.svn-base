@@ -1,0 +1,112 @@
+<html>
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title>callback_use</title>
+	</head>
+	
+	<body>
+		<h2>客户端：调用DLL</h2>
+		  <P>对于使用Building.dll的用户来说，他需要为所关心的回调事件注册回调函数，并一一将其实现；当用户不再关心某个回调事件时，需及时为其注销对应回调函数。</P>
+		  <P>客户端在People目录下调用Building.dll步骤如下：</P>
+		<h3>1.编写客户端实现文件</h3>
+		  <P>(1)用户要将所引用到的dll信息包括到实现文件中去。</P>
+		  <P>(2)实现各个回调函数。</P>
+		  <P>(3)编写ElastosMain()。该函数流程为：创建大楼对象--->注册回调事件--->激发回调事件--->注销回调事件--->释放对象。</P>
+		  <P>client.cpp文件</P>
+<pre class= code>
+#include &lt;elastos.h&gt;
+#include "Building.h"
+                                                    
+using namespace Elastos;                              
+                                                      
+ECode EmployeeRunAway(PVoid, PInterface pSender)
+{                                                     
+    CConsole::WriteLine("The employee are running away......");
+    CBuilding::RemoveEmployeeEventCallback(pSender, EmployeeRunAway);
+                                                      
+    return NOERROR;
+}
+
+ECode FiremanRushIntoFire(PVoid, PInterface pSender)
+{
+    CConsole::WriteLine("Firemen are fighting with fire...");
+    CBuilding::RemoveFiremanEventCallback(pSender, FiremanRushIntoFire);
+
+    return NOERROR; 
+}
+
+class CResult
+{
+public:
+
+    CARAPI FiremanPutFireOut(PInterface pSender)
+    {
+        CConsole::WriteLine("Firemen have put the fire out...");
+        CBuilding::RemoveFiremanEventCallback(pSender, this , &CResult::FiremanPutFireOut);
+        CApplet::Finish(AppletFinish_ASAP);
+
+        return NOERROR;
+    }
+};
+
+ECode ElastosMain( const BufferOf<WString>& args)
+{
+    IBuilding* pBuilding;
+    CResult fireResult;
+
+    ECode ec = CBuilding::New(&pBuilding); 
+    if (FAILED(ec)) {
+        return ec;
+    }
+
+    CConsole::WriteLine("Before register the callback interface......");
+    pBuilding->CatchFire();
+
+    ec = CBuilding::AddEmployeeEventCallback(pBuilding, &EmployeeRunAway, NULL);
+
+    ec = CBuilding::AddFiremanEventCallback(pBuilding, &FiremanRushIntoFire, NULL);
+
+    ec = CBuilding::AddFiremanEventCallback(pBuilding, &fireResult,&CResult::FiremanPutFireOut);
+
+    CConsole::WriteLine("After register the callback interface......");
+
+    pBuilding->CatchFire(); 
+
+    CObject::ReleaseAtThreadQuit(pBuilding);
+
+    return NOERROR;
+}
+
+</pre>
+		<h3>2.编写客户端sources文件</h3>
+			<P>(1)添加目标程序名以及程序类型。</P>
+		  <P>(2)添加所引用到的动态链接库以及编译所要用到的源文件。</P>
+		  <P>(3)添加库文件</P>
+		  <P>sources文件</P>
+<pre class=code>
+TARGET_NAME= client
+TARGET_TYPE= exe
+
+IMPORTS= Building.dll
+
+SOURCES= client.cpp
+
+LIBRARIES= $(XDK_LIB_PATH)\elastos.lib
+LIBRARIES+= $(XDK_LIB_PATH)\ElcRuntime.lib
+</pre>
+		<h3>运行结果</h3>
+<pre class=code>
+Before register the callback interface......
+The building is on fire!
+After register the callback interface......
+The building is on fire!
+The employee are running away......
+Firemen are fighting with fire...
+Firemen have put the fire out...
+</pre>
+
+		
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>AStringBuf</class>
+    <method> Append </method>
+
+    <description>
+        <para>按指定编码在AStringBuf对象字符串中追加WString对象中的字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val> AStringBuf &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type>const WString &amp;</param_type>
+            <param_name>ws</param_name>
+            <param_note>
+                <para> WString对象。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name>encoding</param_name>
+            <param_default> Encoding_Default</param_default>
+            <param_note>
+                <para> 指定编码格式。参见<link url="../../../others/Encoding.htm">Encoding</link>枚举类型说明。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回AStringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>1.添加字符之后如果超过AStringBuf对象可用的长度会被省略掉。</para>
+        <para>2.如果待添加的宽字符串中有汉字，且出现在字符串末尾处，则该文字会丢失。</para>
+    </remarks>
+
+<example>
+<pre>
+AStringBuf_&lt;10&gt; asbuf;
+WString ws=L"WString";
+asbuf.Append(ws);
+CConsole::WriteLine(asbuf);  //Display : "WString" 
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Append</ref_name>
+        <ref_url>index/Append</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::operator &lt;&lt; </ref_name>
+        <ref_url>../operator3</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Append</ref_name>
+        <ref_url>../../WStringBuf/Append/index/Append</ref_url>
+    </reference>
+</references>
+
+</manpage>

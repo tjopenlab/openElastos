@@ -1,0 +1,48 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AString</interface>
+    <method> LastIndexOfAny</method>
+
+    <description>
+        <para> 获得strCharSet中任意一个字符在当前AString对象字符串中的最后的索引值。</para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const AString &amp;</param_type>
+            <param_name> strCharSet </param_name>
+            <param_note>
+                <para> 指定字符集。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive </param_default>
+            <param_note>
+                <para> 大小写标示符。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。(StringCase_Insensitive暂不支持) </para>
+            </param_note>
+        </api_param>               
+        </parameters>        
+    </syntax>
+    <return>
+        <para>返回strCharSet中任意一个字符在当前AString对象字符串中的最后的索引值，若没有出现则返回-1。</para>
+    </return>
+<remarks>
+	<para> 若当前AString对象字符串指针为NULL或内容为空，则返回-1。</para>
+	<para> 若指定字符集strCharSet指针为NULL或内容为空，则返回-1。</para>
+	</remarks>
+<references>
+    <reference>
+        <ref_name> CAR支持的数据类型对比表 </ref_name>
+        <ref_url> ../../data_type</ref_url>
+    </reference>
+</references>   
+
+ 
+</manpage>

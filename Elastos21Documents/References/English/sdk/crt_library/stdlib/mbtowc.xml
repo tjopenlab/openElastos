@@ -1,0 +1,138 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\mbtowc">mbtowc</sample>
+    <title>mbtowc</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>Converts a multibyte character to a corresponding wide character. </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>mbtowc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>wchar</param_name>
+                <param_note>
+                    <para>Address of a wide character (type wchar_t).</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char* </param_type>
+                <param_name>mbchar</param_name>
+                <param_note>
+                    <para>Address of a sequence of bytes (a multibyte character). </para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>Number of bytes to check. </para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>If mbchar is not NULL and if the object that mbchar points to forms a valid multibyte character, mbtowc returns the length in bytes of the multibyte character. If mbchar is NULL or the object that it points to is a wide-character null character (L'\0'), the function returns 0. If the object that mbchar points to does not form a valid multibyte character within the first count characters, it returns –1. </para>
+    </return>
+
+    <remarks>
+        <para>The mbtowc function converts count or fewer bytes pointed to by mbchar, if mbchar is not NULL, to a corresponding wide character. mbtowc stores the resulting wide character at wchar, if wchar is not NULL. mbtowc does not examine more than MB_CUR_MAX bytes. </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>mbchar</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* mbtowc.cpp: illustrates the behavior of the mbtowc function
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int i;
+    wchar_t *pwc = (wchar_t *)malloc(sizeof(wchar_t));
+
+    printf(&quot;Convert multibyte character back to a wide &quot;
+            &quot;character:\n&quot;);
+    i = mbtowc(pwc, &quot;    aaaa&quot;, 1);
+    printf(&quot;\tBytes converted: %u\n&quot;, i);
+    printf(&quot;\tWide character: %x\n\n&quot;, pwc);
+
+    printf(&quot;Attempt to convert when target is NULL\n&quot;);
+    printf(&quot;\tReturns the length of the multibyte character:\n&quot;);
+    i = mbtowc(NULL, &quot;   aaaa&quot;, 1);
+    printf(&quot;\tLength of multibyte character: %u\n\n&quot;, i);
+
+    printf(&quot;Attempt to convert a NULL pointer to a&quot;);
+    printf(&quot; wide character:\n&quot;);
+    i = mbtowc(pwc, NULL, 1);
+    printf(&quot;\tBytes converted: %u\n\n&quot;, i);
+
+    printf(&quot;Attempt to convert a Zero-count to a&quot;);
+    printf(&quot; wide character:\n&quot;);
+    i = mbtowc(pwc, &quot;aaaa&quot;, 0);
+    printf(&quot;\tBytes converted: %u\n&quot;, i);
+
+    free(pwc);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Convert multibyte character back to a wide character:
+Bytes converted: 1
+Wide character: 153420
+
+Attempt to convert when target is NULL
+Returns the length of the multibyte character:
+Length of multibyte character: 1
+
+Attempt to convert a NULL pointer to a wide character:
+Bytes converted: 0
+
+Attempt to convert a Zero-count to a wide character:
+Bytes converted: 0
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>mblen</ref_name>
+            <ref_url>mblen</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wcstombs</ref_name>
+            <ref_url>wcstombs</ref_url>
+        </reference>
+        <reference>
+            <ref_name>wctomb</ref_name>
+            <ref_url>wctomb</ref_url>
+        </reference>
+    </references>
+
+</manpage>

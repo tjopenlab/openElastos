@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>radioButton标签/控件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li class="current"><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li class="current"><a href="annotated.html"><span>图形标签(控件)列表</span></a></li>
+    <li><a href="attribute.html"><span>图形标签通用属性</span></a></li>
+    <li><a href="event.html"><span>图形标签通用事件</span></a></li>
+    <li><a href="genstyle_8car.html"><span>图形标签通用风格</span></a></li>
+  </ul>
+</div>
+<h1>radioButton标签/控件参考</h1><!-- doxytag: class="window" -->
+<center> <img src="images/radiobutton.jpg"> </center>
+<center><small>radioButton控件</small></center>
+    <p>允许用户从互相排斥的选项中进行选择。
+<a href="#_details">更多...</a>
+
+<hr><h2>命名空间</h2>
+http://www.elastos.com/XmlGlue/Widgets
+
+<hr><a name="_details"></a><h2>详细描述</h2>
+允许用户从互相排斥的选项中进行选择。
+<p>
+<a href="class_checkBox.html">checkBox</a>和 radioButton (单选框控件)拥有一个相似的功能：允许用户从选项列表中进行选择。checkBox 控件允许用户选择一组选项。与之相反，radioButton 控件允许用户从互相排斥的选项中进行选择。
+
+<hr>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><br><h2>属性</h2></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>checked</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">复选框是否被选中的状态，Boolean型，若为TRUE，则复选框控件选中；若为FALSE，则复选框控件未被选中，默认为未选中。</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>类型 :</b></dt><dd>Boolean</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>用法(XML) :</b></dt><dd>checked=" true"</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><dl compact><dt><b>示例 :</b></dt><dd>&lt;radioButton x:id="myradioButton" x="50" y="50" width="80" height="40" checked="true"/&gt;</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><h3>其他属性：见<a class="el" href="attribute.html">通用属性</a></h3></td></tr>
+</table>
+
+<hr><h2>事件</h2>
+<p>
+<b>注：</b>在xml部分注册回调事件时，可以写一个具体的执行语句，也可以写在脚本中定义的事件处理函数。
+   若在xml部分注册回调事件时，给该回调事件写了一个具体的执行语句，之后又在脚本中定义了该事件的事件处理函数，则触发该事件后会直接调用事件处理函数而忽略xml部分的具体的执行语句。
+   具体在xml部分注册回调事件的方法，可参照如下代码，示例中为radioButton注册了一个checkedChanged事件。
+<table border="0" cellpadding="0" cellspacing="10">
+<tr><td class="memitem" valign="bottom">
+    &lt;radioButton x:id="myradioButton" caption="radioButton1" x="50" y="50" width="80" height="30" <font color=red>checkedChanged="print('checkedChanged')"</font>/&gt;（事件发生时，若脚本中没有另外定义事件处理函数，执行该可执行语句）
+</td></tr>
+<tr><td class="memitem" valign="bottom">
+    &lt;radioButton x:id="myradioButton" caption="radioButton1" x="50" y="50" width="80" height="30" <font color=red>checkedChanged="oncheckedChanged()"</font>/&gt;（事件发生时，执行事件处理函数）
+</td></tr>
+</table>
+<p>
+
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">checkedChanged</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当复选框中选中项改变时，产生checkedChanged事件。同时checkedChanged指定的事件处理程序将被执行。 
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">checkedChanged = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.checkedChanged = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;radioButton x:id="myradioButton" caption="radioButton1" x="50" y="50" width="60" height="40" checkedChanged="on_checkedChanged()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_checkedChanged() {
+...
+...
+}
+myradioButton.checkedChanged= on_checkedChanged
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+	
+<a class="anchor" name="7422654514f14353fa3684bd341e1a79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">click</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+当复选框被点击时，产生click事件。同时click指定的事件处理程序将被执行。
+<dl compact><dt><b>用法:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">click = <em>"可执行语句"&nbsp;/&nbsp;"Function"</em></td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top"><em>Controlid</em>.click = <em>Function</em></td></tr>
+  </table>
+</dl>
+
+<dl compact><dt><b>示例: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[XML]</tt>&nbsp;</td><td valign="top">&lt;radioButton x:id="myradioButton" caption="radioButton1" x="50" y="50" width="80" height="40" click="on_click()"/&gt;</td></tr>
+    <tr><td valign="top"><tt>[Script]</tt>&nbsp;</td><td valign="top">
+    <pre>function on_click() {
+...
+...
+}
+myradioButton. click= on_click
+</td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a><!-- doxytag: member="IDatabase::IsClosed" ref="80f8bf3a49657380380f1cf7ba46dec0" args="([out] Boolean *closed)" -->
+<b>其他事件</b>: 见<a class="el" href="event.html">通用事件</a>
+
+<hr><h2>控件风格</h2>
+<div class="memitem">
+<dl compact><dt><b>枚举值: </b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><em>AutoCheck = 0x00000000,</em>&nbsp;</td><td>自动选择（默认） </td></tr>
+    <tr><td valign="top"><em>ManualCheck = 0x00000001,</em>&nbsp;</td><td>手动选择 </td></tr>
+    <tr><td valign="top"><em>ButtonRight = 0x00000002,</em>&nbsp;</td><td>复选框图标居右 </td></tr>
+    <tr><td valign="top"><em>Left = 0x00000000,</em>&nbsp;</td><td>文本居左（默认） </td></tr>
+    <tr><td valign="top"><em>Right = 0x00000010,</em>&nbsp;</td><td>文本居右 </td></tr>
+    <tr><td valign="top"><em>Center = 0x00000020,</em>&nbsp;</td><td>文本居中 </td></tr>
+    <tr><td valign="top"><em>MultiLine = 0x00000040,</em>&nbsp;</td><td>多行显示 </td></tr>
+    <tr><td valign="top"><em>AutoSize = 0x00000080,</em>&nbsp;</td><td>根据文本大小自动调整复选框大小 </td></tr>
+  </table>
+</dl>
+<a class="anchor" name="80f8bf3a49657380380f1cf7ba46dec0"></a>
+<b>其他风格</b>：见<a class="el" href="genstyle_8car.html">通用风格</a></td></tr>
+</div>
+<p>
+<b>注：</b>控件风格允许配合使用，例如将radioButton的风格（枚举名为:CheckButtonStyle）设置成具有焦点并显示文本居右，可以这样：
+<center><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+    &lt;radioButton ... style="CheckButtonStyle:Right ControlStyle:Focused" .../&gt;
+</td></tr></table></center>
+枚举名:枚举值的形式表示，且大小写敏感，不同风格间用空格分开。也可以将两种风格的枚举值作或运算，得到的结果赋给style，例如CheckButtonStyle:Right = 0x00000010，ControlStyle:Focused = 0x00400000，将两者进行或运算得0x00400010，于是style="0x00400010"。建议采用第一种写法，清晰明了。
+
+ <script>footer("chinese")</script>
+</body>
+</html>

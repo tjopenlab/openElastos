@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+     <volume>Callbacks相关API </volume>
+    <method>Wait</method>
+    <description>
+        <para>等待回调事件。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+        <api_param>
+            <param_type>[in] Milliseconds32  </param_type>
+            <param_name>timeout</param_name>
+            <param_note>
+                <para> 等待的时间，单位是毫秒 </para>
+            </param_note>
+        </api_param> 
+        <api_param>
+            <param_type>[out] WaitResult * </param_type>
+            <param_name>result</param_name>
+            <param_note>
+                <para> 指向<link url="../../../../SoftwareDevelopmentManual/CoreServices/DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址,允许为空。如果成员函数调用成功，则返回WaitResult_OK；如果事件对象仍处于未通知状态，则返回WaitResult_TimedOut；如果在等待事件对象变为已通知状态期间被打断，则返回WaitResult_Interrupted  </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    
+
+     
+</manpage>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>图形标签/控件通用风格</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="conlist.html"><span>非图形标签列表</span></a></li>
+    <li class="current"><a href="annotated.html"><span>图形标签/控件列表</span></a></li>
+    <li><a href="usertag.html"><span>用户自定义标签介绍</span></a></li>
+    <li><a href="intro_css.htm"><span>级联式样式表CSS的功能支持</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>图形标签(控件)列表</span></a></li>
+    <li><a href="attribute.html"><span>图形标签通用属性</span></a></li>
+    <li><a href="event.html"><span>图形标签通用事件</span></a></li>
+    <li  class="current"><a href="genstyle_8car.html"><span>图形标签通用风格</span></a></li>
+  </ul>
+</div>
+<h1>Elastos Widgets:图形标签/控件通用风格参考</h1>
+
+<p>	
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td>controlStyle</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+控件公共风格。 
+<dl compact><dt><b>枚举值: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>None = 0x00000000,</em>&nbsp;</td><td>无风格 </td></tr>
+<tr><td valign="top"><em>Transparent = 0x00010000,</em>&nbsp;</td><td>控件为透明，可以显示其下层的图像 </td></tr>
+<tr><td valign="top"><em>Border = 0x00020000,</em>&nbsp;</td><td>边界 </td></tr>
+<tr><td valign="top"><em>Invisible = 0x00040000</em>&nbsp;</td><td>控件不可见 </td></tr>
+<tr><td valign="top"><em>Disabled = 0x00080000</em>&nbsp;</td><td>控件无效 </td></tr>
+<tr><td valign="top"><em>VScroll = 0x00100000</em>&nbsp;</td><td>垂直滚动条 </td></tr>
+<tr><td valign="top"><em>HScroll = 0x00200000</em>&nbsp;</td><td>水平滚动条 </td></tr>
+<tr><td valign="top"><em>Focused = 0x00400000</em>&nbsp;</td><td>具有焦点 </td></tr>
+<tr><td valign="top"><em>ManualUpdate = 0x00800000</em>&nbsp;</td><td>手动更新，调用所有方法都不会自动刷新 </td></tr>
+<tr><td valign="top"><em>IgnoreStylus = 0x01000000</em>&nbsp;</td><td>控件创建后屏蔽鼠标操作，并将鼠标事件扔给在它下面的控件 </td></tr>
+<tr><td valign="top"><em>AdaptableToIME = 0x08000000</em>&nbsp;</td><td>输入法适配。当出现输入法后，找到拥有此风格的控件，将它的底部调整到输入法的顶部，并将拥有输入法的控件移到可视的位置。 </td></tr>
+</table>
+</dl>
+</div>
+</div>
+<p>
+<b>注：</b>控件风格允许配合使用，例如将button的风格设置成具有焦点并显示文本居右，可以这样：
+<center><table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+    &lt;button ... style="ButtonStyle:Right ControlStyle:Focused" .../&gt;
+</td></tr></table></center>
+枚举名:枚举值的形式表示，且大小写敏感，不同风格间用空格分开。也可以将两种风格的枚举值作或运算，得到的结果赋给style，例如ButtonStyle:Right = 0x00000002，ControlStyle:Focused = 0x00400000，将两者进行或运算得0x00400002，于是style="0x00400002"。建议采用第一种写法，清晰明了。
+	
+ <script>footer("chinese")</script>
+
+</body>
+</html>

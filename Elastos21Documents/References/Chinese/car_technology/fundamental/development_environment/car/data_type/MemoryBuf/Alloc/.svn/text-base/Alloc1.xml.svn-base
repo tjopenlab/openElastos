@@ -1,0 +1,62 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    
+    
+    <volume> 常用数据结构 </volume>
+    <class>MemoryBuf</class>
+    <method> Alloc </method>
+
+    <description>
+        <para> (在堆上)动态创建MemoryBuf对象,并用源buffer中的数据初始化。</para>
+    </description>
+
+    <syntax>
+        <return_val> static MemoryBuf * </return_val>
+        <parameters>
+        <api_param>
+            <param_type> Byte *</param_type>
+            <param_name> pBuf </param_name>
+            <param_note>
+                <para> 指向源buffer的指针。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type> Int32</param_type>
+            <param_name> capacity </param_name>
+            <param_note>
+                <para> 指定MemoryBuf对象buffer的总大小。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type> Int32</param_type>
+            <param_name> used </param_name>
+            <param_note>
+                <para> 设置MemoryBuf对象buffer的已使用大小。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回指向MemoryBuf对象的指针。</para>
+    </return>
+     <remarks>
+        <para>MemoryBuf对象buffer总大小为capacity，已使用大小为used。</para>
+    </remarks>
+
+
+<references>
+    <reference>
+        <ref_name>MemoryBuf</ref_name>
+        <ref_url>../../MemoryBuf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>MemoryBuf::Alloc </ref_name>
+        <ref_url>index/Alloc</ref_url>
+    </reference>
+</references>
+
+</manpage>

@@ -1,0 +1,53 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\Live">Kill</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> Kill </method>
+    <description>
+        <para>
+    		强行停止IProcess接口指定的进程的执行。。
+        </para>
+    </description>
+    <syntax_nopara>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>成功终止进程</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION</td>
+	    	    <td>进程在调用Kill时还未启动</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		    <link url="Kill.htm">IProcess::Kill</link>强制终止接口指定的进程。进程被终止会导致CAR服务停止，该进程内的所有线程终止和包括地址空间在内的所有资源被回收。
+		</para>
+		<para>如果调用Kill终止进程，进程拥有的数据和资源将会丢失。Kill方法导致进程非正常退出，所以只有当必须要使用Kill方法的时候才使用。 </para>
+		<para>只能在本地机器上调用Kill方法，不能导致远程机器上进程退出, 仅仅只能查看到远程机器上进程的信息。</para>
+		<para>
+		    如果已经获得该进程的接口指针，仍然可以调用<link url="GetExitCode.htm">IProcess::GetQuitCode()</link>等方法。只有释放所有接口指针的引用记数，在内核的进程对象才会被删除。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

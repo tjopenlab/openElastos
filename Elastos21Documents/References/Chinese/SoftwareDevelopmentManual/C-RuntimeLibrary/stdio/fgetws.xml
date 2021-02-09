@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fgets">fgets</sample>
+    <title>fgets, fgetws</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>从文件流中读入字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <func_name>fgets</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>字符串保存位置的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>n</param_name>
+                <param_note>
+                    <para>读入的最大字符数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t *</return_val>
+        <func_name>fgetws</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>n</param_name>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回指针string。返回NULL，表示读取错误或已到文件尾。调用ferror可以确定是否出错。</para>
+    </return>
+
+    <remarks>
+        <para>函数fgets从文件流读字符串，并把它保存在string指定的位置。fgets从文件流的当前位置读字符，遇到任意的下述情况，停止读操作：第一个换行符，文件流末尾，读入的字符为n-1个。结果字符串尾部要追加空字符。读到的换行符，也包括在字符串中。</para>
+        <para>函数fgets和gets大体相同；只是，gets用NULL替代换行符。fgetws是fgets的宽字符版本。如果文件流以文本模式打开，fgetws按多字节字符方式读字符串；如果以二进制模式打开，按宽字符方式读字符串。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fgets</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>fgetws</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fgets.cpp: This program uses fgets to display
+ * a line from a file on the screen.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE *stream;
+    char line[100];
+
+    if ((stream = fopen(&quot;fgets.exe&quot;, &quot;r&quot;)) != NULL) {
+        if (fgets(line, 100, stream) == NULL)
+            printf(&quot;fgets error\n&quot;);
+        else
+            printf(&quot;%s\n&quot;, line);
+        fclose(stream);
+    }
+    else
+        printf(&quot;problem open the file!\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+MZ?
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>fputws</ref_name>
+            <ref_url>fputws</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_getws</ref_name>
+            <ref_url>_getws</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_putws</ref_name>
+            <ref_url>_puts</ref_url>
+        </reference>
+    </references>
+
+</manpage>

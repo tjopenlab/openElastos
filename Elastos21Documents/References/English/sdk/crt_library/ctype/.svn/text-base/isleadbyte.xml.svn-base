@@ -1,0 +1,89 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\isleadbyte">isleadbyte</sample>
+    <title>isleadbyte</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>The isleadbyte macro returns a nonzero value if its argument is the first byte of a multibyte character.or it returns 0 .</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>isleadbyte </func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Input integer</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>isleadbyte returns a nonzero value if the argument satisfies the test condition or 0 if it does not. </para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>isleadbyte </routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* isleadbyte.cpp: This program uses isleadbyte to verify
+ * whether the first byte of c is a multibyte character.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;elastos.h&gt;
+
+int main()
+      {
+        int c;
+        int wc = 0xD6;
+        
+        c=&apos;k&apos;;
+        {  
+        if(isleadbyte(c))
+              printf(&quot;the first byte of &apos;%c&apos; is a multibyte character\n&quot;,c);
+        else
+              printf(&quot;the first byte of &apos;%c&apos; is not a multibyte character\n&quot;,c);
+        }
+        
+        c=wc;
+        {
+        if (isleadbyte(c))  
+              printf(&quot;the first byte of &apos;%c&apos; is a multibyte character\n&quot;,c);
+        else
+              printf(&quot;the first byte of &apos;%c&apos; is not a multibyte character\n&quot;,c);
+        }
+        return 0;
+      }
+</pre>
+    </example>
+<result>
+the first byte of &apos;k&apos; is not a multibyte character
+the first byte of &apos;0xD6**&apos; is a multibyte character
+</result>
+
+
+
+</manpage>

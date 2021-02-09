@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>预定义对象Event参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="Script_Language.html"><span>XmlGlue支持的脚本语言</span></a></li>
+    <li><a href="XmlGlue_CAR.html"><span>脚本中的CAR构件及其使用</span></a></li>
+    <li class="current"><a href="XmlGlue_Globals.html"><span>预定义对象</span></a></li>
+  </ul>  
+</div>
+ <div class="tabs"> 
+  <ul>
+    <li  class="current"><a href="Event_Object.html"><span>预定义对象Event参考</span></a></li>
+    <li><a href="Locale_Object.html"><span>预定义对象Locale参考</span></a></li>
+    <li><a href="LocaleManager_Object.html"><span>预定义对象LocaleManager参考</span></a></li>
+    <li><a href="Arguments_Object.html"><span>预定义对象Arguments参考</span></a></li>
+    <li><a href="Widget_Object.html"><span>预定义对象widget参考</span></a></li>
+  </ul>  
+</div>
+<h1>预定义对象Event参考</h1>
+<p>Event对象针对对象的回调事件，如控件对象label的事件stylusPressed,通过在事件处理函数中使用Event对象的相应属性可以获得
+	此事件发生时的有关参数。
+<p><b>注意：</b>Event的作用域仅在回调事件的事件处理函数中。即仅当我们在脚本中实现某个事件的事件处理函数时，才可以使用Event对象，同时此时Event对象的一般属性即此事件的参数名。
+<p>
+<p>
+<h2>属性</h2>
+<ul>
+	<li>一般属性：即事件的参数名。这里的事件为对象的回调事件，每个事件本身都有一定的参数。如控件对象label的事件stylusPressed,当我们在实现此事件的事件处理函数stylusPressed时，我们可使用Event.x获得stylusPressed事件发生时的鼠标所在位置x坐标的值。由于任何一个回调事件都被封装在一个事件接口中，涉及具体的回调事件请参见<a href="../../SoftwareDevelopmentManual/UserSystemServices/Vinci/elactrl.htm">控件</a>一节。
+  <li>特殊属性：sender。即触发事件的对象。当我们使用Event.sender时，其值为根据不同的触发对象可分为两类:	
+  	<ol>
+  		<li>当触发事件的对象为控件时，其值为对应控件对象的接口指针的地址值。
+  		<li>当触发事件的对象为非控件对象时，其值为此事件对象的接口指针的地址值。如当在LocaleManager对象的LocaleChanged的事件处理函数的实现源代码中使用Event.sender，此时的值为LocaleManager对象的接口指针（IWidgetLocaleManager *）的地址值。
+  	</ol>
+</ul>         
+<script>footer("chinese")</script>
+
+
+</body>
+</html>

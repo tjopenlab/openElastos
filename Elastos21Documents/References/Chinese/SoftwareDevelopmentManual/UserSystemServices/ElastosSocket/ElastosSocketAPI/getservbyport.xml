@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API</volume>
+    <title>getservbyport</title>
+    <routine_idx>ElastosSocketIndex.htm</routine_idx>
+
+    <description>
+        <para>返回与端口号和协议名相关的服务信息。</para>
+    </description>
+
+    <syntax>
+        <return_val>struct servent *</return_val>
+        <parameters>
+            <api_param>
+                <param_type>int</param_type>
+                <param_name>port</param_name>
+                <param_note>
+                    <para>[in]网络字节顺序的端口号。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>const char *</param_type>
+                <param_name>proto</param_name>
+                <param_note>
+                    <para>[in]指向协议名的指针（可选）。如果此指针为NULL，getservbyport()返回与SERVENT结构体中的成员s_port匹配的第一个服务条目。否则，getservbyport()将对port、proto两个参数都匹配。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，getservbyport()返回一个指向SERVENT结构的指针。否则，返回一个NULL指针。调用<link url="WSAGetLastError.htm">WSAGetLastError()</link>可获取具体的错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>此方法尚未实现。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> ElSocket.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>getservbyname</ref_name>
+            <ref_url>getservbyname</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

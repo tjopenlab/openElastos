@@ -1,0 +1,58 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>通话记录</volume>
+<interface>ICallRecord</interface><method> Update </method>
+    <description>
+        <para>
+         将ICallRecordItem中的数据更新到数据库中。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ICallRecordItemRef </param_type>
+                <param_name> pItem </param_name>
+                <param_note>
+                    <para>
+                    指向<link url="../ICallRecordItem.htm">ICallRecordItem</link>对象的指针，指定要更新记录的条目
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT </td>
+	    	    <td>参数错误 </td>
+	        </tr>
+	        <tr>
+	    	    <td>E_DB_INTERNAL_ERROR </td>
+	    	    <td>数据库错误 </td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>、<link url="../../../../../QuickReference/DBError.htm">E_DB_INTERNAL_ERROR</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>调用数据库接口，将数据存入数据库，并且更新通话记录的统计信息。当该类型的记录超过限定（目前限定是50条记录），需要把最旧的一条记录删除。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

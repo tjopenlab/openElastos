@@ -1,0 +1,35 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> IApplet相关API介绍 </volume>
+    <interface>IApplet</interface>
+    <method> SetEnvironmentVariable </method>
+
+    <description>
+        <para>设置当前applet的环境变量  </para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>[in] WString</param_type>
+            <param_name>name</param_name>
+
+            <param_note>
+                <para>环境变量的名称，name长度不能超过127 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>WStringBuf *</param_type>
+            <param_name>value</param_name>
+            <param_note>
+                <para>环境变量的值, value长度不能超过511   </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+  <remarks>
+        <para>Applet的环境变量由applet的用户指定，设置了当前applet的环境变量后，可通过<link url="GetEnvironmentVariable.htm" >GetEnvironmentVariable</link>来获取其值。 </para>
+    </remarks>
+</manpage>

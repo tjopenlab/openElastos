@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\strpbrk">strpbrk</sample>
+    <title> strpbrk, wcspbrk</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>在字符串中，查找指定字符集中的字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strpbrk</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>被查找的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>strCharSet</param_name>
+                <param_note>
+                    <para>以NULL结尾的字符集</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>wcspbrk</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>strCharSet</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数strpbrk返回指针，该指针指向指定字符集中任意一个字符在字符串中出现的第一个位置。如果两个串没有相同的字符，返回NULL。</para>
+    </return>
+
+    <remarks>
+        <para>函数返回的指针指向指定字符集中任意一个字符在字符串中出现的第一个位置。查找范围不包括字符串的终结符。函数wcspbrk则是strpbrk的宽字符版本。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strpbrk</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcspbrk</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* strpbrk.cpp:this program returns a pointer to the first occurrence of a character in string
+               that belongs to the set of characters in strCharSet
+ */
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char string[100] = &quot;The 3 men and 2 boys ate 5 pigs\n&quot;;
+    char *result;
+    /* Return pointer to first &apos;a&apos; or &apos;b&apos; in &quot;string&quot; */
+    printf(&quot;1: %s\n&quot;, string);
+    result = strpbrk(string, &quot;0123456789&quot;);
+    printf(&quot;2: %s\n&quot;, result++);
+    result = strpbrk(result, &quot;0123456789&quot;);
+    printf(&quot;3: %s\n&quot;, result++);
+    result = strpbrk(result, &quot;0123456789&quot;);
+    printf(&quot;4: %s\n&quot;, result);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+1: The 3 men and 2 boys ate 5 pigs
+
+2: 3 men and 2 boys ate 5 pigs
+
+3: 2 boys ate 5 pigs
+
+4: 5 pigs
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>wcschr</ref_name>
+            <ref_url>wcschr</ref_url>
+        </reference>
+        <reference>
+            <ref_name>strrchr</ref_name>
+            <ref_url>strrchr</ref_url>
+        </reference>
+    </references>
+
+</manpage>

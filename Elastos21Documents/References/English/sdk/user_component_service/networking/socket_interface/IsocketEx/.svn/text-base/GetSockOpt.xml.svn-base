@@ -1,0 +1,234 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Socket Interface </volume>
+<interface>IsocketEx</interface><method> GetSockOpt </method>
+    <description>
+        <para>
+            Gets socket option.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32  </param_type>
+                <param_name> Level </param_name>
+                <param_note>
+                    <para>
+						Sets socket level.The possible values are as the following: 
+                    </para>
+                    <para_table>
+	                        <th>
+		                    <td>Value Name</td>
+		                    <td>Value</td>
+	                        <td>Description</td>
+	                        </th>
+	                        <tr>
+		                    <td>SOL_SOCKET</td>
+		                    <td>0xffff</td>
+		                    <td>Basic Socket</td>
+	                        </tr>
+	                        <tr>
+		                    <td>IPPROTO_TCP</td>
+		                    <td>6</td>
+		                    <td>TCP Socket</td>
+	                        </tr>
+	                        <tr>
+		                    <td>IPPROTO_IP</td>
+		                    <td>0</td>
+		                    <td>IPv4 Socket</td>
+	                        </tr>
+	                    </para_table>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32  </param_type>
+                <param_name> optName </param_name>
+                <param_note>
+                    <para>
+						Specified socket option to get.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32   </param_type>
+                <param_name> optSize </param_name>
+                <param_note>
+                    <para>
+						This buffer stores corresponding value of specified option. Its size is determined by type of option corresponding value.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzByteBuf   </param_type>
+                <param_name> ebbOptVal </param_name>
+                <param_note>
+                    <para>
+						This buffer stores corresponding value of specified option. Its size is determined by corresponding type of the option. Major option and its corresponding values are as the following: 
+                        Level ＝SOL_SOCKET
+                    </para>
+                    <para_table>
+	                        <th>
+		                    <td>Value </td>
+		                    <td>Type</td>
+	                        <td>Description</td>
+	                        </th>
+	                        <tr>
+		                    <td>SO_BROADCAST</td>
+		                    <td>BOOL</td>
+		                    <td>Whether socket can broadcast information.</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SO_KEEPALIVE</td>
+		                    <td>BOOL</td>
+		                    <td>Sents keep-alive information</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SO_LINGER</td>
+		                    <td>struct linger</td>
+		                    <td>Socket current linger option.</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SO_OOBINLINE</td>
+		                    <td>BOOL</td>
+		                    <td>Receives out of band data in the data stream.</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SO_REUSEADDR</td>
+		                    <td>BOOL</td>
+		                    <td>Allows socket bind with an address in use.</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SO_TYPE</td>
+		                    <td>int</td>
+		                    <td>Socket type (Such as SOCK_STREAM).This option cannot be set.</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SO_SNDBUF</td>
+		                    <td>int</td>
+		                    <td>Specifies receiving buffer size.</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SO_RCVBUF</td>
+		                    <td>int</td>
+		                    <td>Specifies the size of receiving buffer.</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SO_RCVLOWAT</td>
+		                    <td>int</td>
+		                    <td>Receives buffer lower bound (affects select).</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SO_SNDLOWAT</td>
+		                    <td>int</td>
+		                    <td>Sends buffer lower bound (affects select).</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SO_SNDTIMEO</td>
+		                    <td>struct timeval</td>
+		                    <td>Send time out.</td>
+	                        </tr>
+	                        <tr>
+		                    <td>SO_RCVTIMEO</td>
+		                    <td>struct timeval</td>
+		                    <td>Receive time out.</td>
+	                        </tr>
+	                    </para_table>
+	                    <para>Level ＝IPPROTO_TCP</para>
+	                    <para_table>
+	                        <th>
+		                    <td>Value </td>
+		                    <td>Type</td>
+	                        <td>Description</td>
+	                        </th>
+	                        <tr>
+		                    <td>TCP_NODELAY</td>
+		                    <td>BOOL</td>
+		                    <td>Disables sending merge Nagle algorithm.</td>
+	                        </tr>
+	                        <tr>
+		                    <td>TCP_MAXSEG</td>
+		                    <td>int</td>
+		                    <td>Gets the maximum TCP segment size.</td>
+	                        </tr>
+	                    </para_table>
+	                    <para>Level ＝IPPROTO_IP</para>
+	                    <para_table>
+	                        <th>
+		                    <td>Value </td>
+		                    <td>Type</td>
+	                        <td>Description</td>
+	                        </th>
+	                        <tr>
+		                    <td>IP_MULTICAST_IF</td>
+		                    <td>struct in_addr</td>
+		                    <td>Local interface of multicast.</td>
+	                        </tr>
+	                        <tr>
+		                    <td>IP_MULTICAST_TTL</td>
+		                    <td>UINT8</td>
+		                    <td>Multicast time to live(TTL).</td>
+	                        </tr>
+	                        <tr>
+		                    <td>IP_MULTICAST_LOOP</td>
+		                    <td>UINT8</td>
+		                    <td>Enable or disable multicast loop feedback.</td>
+	                        </tr>
+	                    </para_table>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int *  </param_type>
+                <param_name> pError </param_name>
+                <param_note>
+                    <para>
+						When function execution fails,this parameter gets the error return value.See <link url="../socket_wsa.htm">network interface error return value</link> for this return value documentations.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Returns </td>
+		<td>Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>S_OK</td>
+		<td>0x00000000</td>
+		<td>Method invocation successful. </td>
+	    </tr>
+	    <tr>
+		<td>STATUS_WIN32_ERROR(error)</td>
+		<td>See appendix</td>
+		<td>See appendix</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+		    getsockopt function is used to get the current value of socket option of any type, with any state and stores the result in optval. Options can exist on top of different protocol level. Setting of these options affect socket operation, such as datagram routing, out of band data passing etc.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

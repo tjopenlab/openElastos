@@ -1,0 +1,195 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Elastos Database: TIPAddressDemo.cpp源文件</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+
+<h1>TIPAddressDemo.cpp</h1><div class="fragment"><pre class="fragment">
+<span class="preprocessor">#include "<a class="code" href="IIPAddressCtrl_h.htm">TIPAddressDemo.h</a>"</span>
+<span class="preprocessor">#include "_TIPAddressDemo.cpp"</span>
+<span class="preprocessor">#include "stdio.h"</span>
+
+TIPAddressDemo::TIPAddressDemo()
+{
+    m_pIBtnClose = NULL;
+    m_pISetRange = NULL;
+    m_pISetFocus = NULL;
+    m_pISetAddress = NULL;
+    m_pIBlank = NULL;
+    m_pIGetAddress = NULL;
+    m_pIClear = NULL;
+    m_pIAddressCtrl = NULL;
+    m_pMainForm = NULL;
+}
+
+TIPAddressDemo::~TIPAddressDemo()
+{
+    <span class="keywordflow">if</span> (m_pIBtnClose) m_pIBtnClose-&gt;Release();
+
+    <span class="keywordflow">if</span> (m_pISetRange) m_pISetRange-&gt;Release();
+
+    <span class="keywordflow">if</span> (m_pISetFocus) m_pISetFocus-&gt;Release();
+
+    <span class="keywordflow">if</span> (m_pISetAddress) m_pISetAddress-&gt;Release();
+
+    <span class="keywordflow">if</span> (m_pIBlank) m_pIBlank-&gt;Release();
+
+    <span class="keywordflow">if</span> (m_pIGetAddress) m_pIGetAddress-&gt;Release();
+
+    <span class="keywordflow">if</span> (m_pIClear) m_pIClear-&gt;Release();
+
+    <span class="keywordflow">if</span> (m_pIAddressCtrl) m_pIAddressCtrl-&gt;Release();
+
+    <span class="keywordflow">if</span> (m_pMainForm) m_pMainForm-&gt;Release();
+}
+
+ECode TIPAddressDemo::Main(
+    <span class="comment">/* [in] */</span> <span class="keyword">const</span> BufferOf&lt;WString&gt; &amp; argcv)
+{
+
+    CForm::New(L<span class="stringliteral">"MAIN"</span>, 0,
+               0, 0, 240, 320,  NULL,&amp;m_pMainForm);
+
+    CIPAddressCtrl::New(L<span class="stringliteral">"IPAddressCtrl"</span>, 0,
+                       70, 50, 120, 21, m_pMainForm,&amp;m_pIAddressCtrl);
+    printf(<span class="stringliteral">"m_pIButton = %x\n"</span>, m_pIAddressCtrl);
+
+    CButton::New(L<span class="stringliteral">"ClearAddress"</span>, 0, <span class="comment">//ButtonStyle_Gradient</span>
+                 30, 100, 80, 21,  m_pMainForm,&amp;m_pIClear);
+
+    CButton::AddClickCallback(m_pIClear,
+                 <span class="keyword">this</span>, &amp;TIPAddressDemo::OnClear);
+
+    CButton::New(L<span class="stringliteral">"GetAddress"</span>, 0, <span class="comment">//ButtonStyle_Gradient</span>
+                            130, 100, 80, 21,  m_pMainForm,&amp;m_pIGetAddress);
+
+    CButton::AddClickCallback(m_pIGetAddress,
+                 <span class="keyword">this</span>, &amp;TIPAddressDemo::OnGetAddress);
+
+    CButton::New(L<span class="stringliteral">"IsBlank"</span>, 0, <span class="comment">//ButtonStyle_Gradient</span>
+                            30, 130, 80, 21, m_pMainForm,&amp;m_pIBlank);
+
+    CButton::New(L<span class="stringliteral">"SetAddress"</span>, 0, <span class="comment">//ButtonStyle_Gradient</span>
+                            130, 130, 80, 21,  m_pMainForm,&amp;m_pISetAddress);
+
+    CButton::AddClickCallback(m_pISetAddress,
+                 <span class="keyword">this</span>, &amp;TIPAddressDemo::OnSetAddress);
+
+    CButton::New(L<span class="stringliteral">"SetFieldFocus"</span>, 0, <span class="comment">//ButtonStyle_Gradient</span>
+                            30, 160, 80, 21,  m_pMainForm,&amp;m_pISetFocus);
+
+    CButton::AddClickCallback(m_pISetFocus,
+                 <span class="keyword">this</span>, &amp;TIPAddressDemo::OnSetFocus);
+
+    CButton::New(L<span class="stringliteral">"SetFieldRange"</span>, 0, <span class="comment">//ButtonStyle_Gradient</span>
+                            130, 160, 80, 21,  m_pMainForm,&amp;m_pISetRange);
+
+    CButton::AddClickCallback(m_pISetRange,
+                 <span class="keyword">this</span>, &amp;TIPAddressDemo::OnSetRange);
+
+    CButton::New(L<span class="stringliteral">"Exit"</span>, 0, 0, 0, 80, 30, m_pMainForm,&amp;m_pIBtnClose);
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 <span class="keyword">this</span>, &amp;TIPAddressDemo::OnClose);
+
+    m_pMainForm-&gt;Show();
+
+    <span class="keywordflow">return</span> NOERROR;
+}
+
+ECode TIPAddressDemo::OnClear(
+    <span class="comment">/* [in] */</span> PInterface pIObject)
+{
+    m_pIAddressCtrl-&gt;ClearAddress();
+    <span class="keywordflow">return</span> NOERROR;
+}
+
+ECode TIPAddressDemo::OnGetAddress(
+    <span class="comment">/* [in] */</span> PInterface pIObject)
+{
+    Int32 a, b, c, d;
+    m_pIAddressCtrl-&gt;GetAddress(&amp;a, &amp;b, &amp;c, &amp;d);
+    printf(<span class="stringliteral">"address: %d %d %d %d\n"</span>, a, b, c, d);
+    <span class="keywordflow">return</span> NOERROR;
+}
+
+ECode TIPAddressDemo::OnSetAddress(
+    <span class="comment">/* [in] */</span> PInterface pIObject)
+{
+    m_pIAddressCtrl-&gt;SetAddress(-1, 256, 12,255);
+    <span class="keywordflow">return</span> NOERROR;
+}
+
+ECode TIPAddressDemo::OnSetFocus(
+    <span class="comment">/* [in] */</span> PInterface pIObject)
+{
+    m_pIAddressCtrl-&gt;SetFieldFocus(3);
+    <span class="keywordflow">return</span> NOERROR;
+}
+
+ECode TIPAddressDemo::OnSetRange(
+    <span class="comment">/* [in] */</span> PInterface pIObject)
+{
+    m_pIAddressCtrl-&gt;SetFieldRange(3, 30, 123);
+    m_pIAddressCtrl-&gt;SetFieldRange(1, 30, 123);
+    <span class="keywordflow">return</span> NOERROR;
+}
+
+ECode TIPAddressDemo::OnClose(
+    <span class="comment">/* [in] */</span> PInterface pIObject)
+{
+    m_pMainForm-&gt;Close();
+    <span class="keywordflow">return</span> NOERROR;
+}
+
+ECode TIPAddressDemo::Quit()
+{
+    <span class="keywordflow">return</span> NOERROR;
+}
+
+ECode TIPAddressDemo::Terminate()
+{
+    <span class="keywordflow">return</span> NOERROR;
+}
+
+ECode TIPAddressDemo::Activate()
+{
+    <span class="comment">// TODO: Add your code here</span>
+    <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+}
+
+ECode TIPAddressDemo::Deactivate()
+{
+    <span class="comment">// TODO: Add your code here</span>
+    <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+}
+
+ECode TIPAddressDemo::IsActivated(
+    <span class="comment">/* [out] */</span> Boolean * pActivated)
+{
+    <span class="comment">// TODO: Add your code here</span>
+    <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+}
+
+ECode TIPAddressDemo::Snooze()
+{
+    <span class="comment">// TODO: Add your code here</span>
+    <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+}
+
+ECode TIPAddressDemo::Wakeup()
+{
+    <span class="comment">// TODO: Add your code here</span>
+    <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+}
+
+ECode TIPAddressDemo::GetName(
+    WStringBuf * name)
+{
+    <span class="comment">// TODO: Add your code here</span>
+    <span class="keywordflow">return</span> E_NOT_IMPLEMENTED;
+}
+</pre></div>
+</body>
+</html>

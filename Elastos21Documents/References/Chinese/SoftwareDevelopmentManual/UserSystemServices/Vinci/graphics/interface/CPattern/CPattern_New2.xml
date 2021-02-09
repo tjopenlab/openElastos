@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<method>CPattern::New </method>
+    <description>
+        <para>
+            创建填充对象。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> x1 </param_name>
+                <param_note>
+                    <para>
+A点的横坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> y1 </param_name>
+                <param_note>
+                    <para>
+A点的纵坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Color </param_type>
+                <param_name> color1 </param_name>
+                <param_note>
+                    <para>
+A点处颜色,颜色的取值指定为<link url="../../datatype/ColorChart.htm">ColorChart</link>数据类型。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> x2 </param_name>
+                <param_note>
+                    <para>
+B点的横坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> y2 </param_name>
+                <param_note>
+                    <para>
+B点的纵坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Color </param_type>
+                <param_name> color2 </param_name>
+                <param_note>
+                    <para>
+B点处颜色,颜色的取值指定为<link url="../../datatype/ColorChart.htm">ColorChart</link>数据类型。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IPattern** </param_type>
+                <param_name> pattern </param_name>
+                <param_note>
+                    <para>
+指向<link url="../IPattern.htm">           IPattern             </link>接口指针的指针，用于获取IPattern接口指针。                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElGrafix.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+<remarks>
+	<para>
+线性渐变填充，即AB两点形成一条直线，从端点A的颜色渐变到端点B的颜色，此时PatternType = PatternType_Linear。
+	</para>
+</remarks>
+</manpage>

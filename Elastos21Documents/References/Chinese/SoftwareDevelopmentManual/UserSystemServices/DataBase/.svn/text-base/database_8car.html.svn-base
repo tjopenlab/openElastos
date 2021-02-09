@@ -1,0 +1,318 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: database.car文件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="annotated.html"><span>类</span></a></li>
+    <li class="current"><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<h1>database.car文件参考</h1>Elastos Database CAR文件 <a href="#_details">更多...</a>
+<p>
+
+<p>
+<a href="database_8car-source.html">浏览该文件的源代码。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>组合类型</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">interface &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database.html">IDatabase</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">特定数据库的会话接口。 在会话上下文中执行 SQL 语句并返回结果。  <a href="interface_i_database.html#_details">更多...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">interface &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement_base.html">IStatementBase</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">IStatementBase接口  <a href="interface_i_statement_base.html#_details">更多...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">interface &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_statement.html">IStatement</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Statement接口，该接口用来执行静态的SQL语句并返回相应的结果集。  <a href="interface_i_statement.html#_details">更多...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">interface &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_prepared_statement.html">IPreparedStatement</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Represents接口，该接口用于执行预编译的SQL语句。  <a href="interface_i_prepared_statement.html#_details">更多...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">interface &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set.html">IResultSet</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">对数据库进行执行一条查询语句的操作通常会创建一个代表数据库查询结果集的数据表。  <a href="interface_i_result_set.html#_details">更多...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">interface &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_parameter_meta_data.html">IParameterMetaData</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">该接口用于从一个PreparedStatement对象获取关于其参数类型和属性的信息描述。  <a href="interface_i_parameter_meta_data.html#_details">更多...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">interface &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set_meta_data.html">IResultSetMetaData</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">该接口被用于从一个ResultSet对象获取某列的类型和属性的信息描述。  <a href="interface_i_result_set_meta_data.html#_details">更多...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">interface &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_c_database.html">CDatabase</a></td></tr>
+
+<tr><td colspan="2"><br><h2>枚举</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19">DbEncoding</a> { <br>
+&nbsp;&nbsp;<a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19184b965ec2290221158eb59d64a5c6c6">DbEncoding_DEFAULT</a> =  0, 
+<a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19cd467a86c4e96be829ee8f5b778d678d">DbEncoding_UTF8</a> =  1, 
+<a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19cc09c0df4b795c8e5ac74c36605e1d4c">DbEncoding_UTF16LE</a> =  2, 
+<a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e1949504a42f2c8e62f6d3aa6afa1d54fcc">DbEncoding_UTF16BE</a> =  3, 
+<br>
+&nbsp;&nbsp;<a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e192ec6c3956ed3c750b06576619f3f5c28">DbEncoding_UTF16</a> =  4
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">支持的字符编码。  <a href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19">更多...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea3">DbDatatype</a> { <br>
+&nbsp;&nbsp;<a class="el" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea365ba2869bb7376fe86848aec71ebaf79">DbDatatype_INTEGER</a> =  1, 
+<a class="el" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea3f71a1738d90f12f48ecbfd12b7055509">DbDatatype_FLOAT</a> =  2, 
+<a class="el" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea320d25ae03781ba5a2eb027be5a7a9847">DbDatatype_TEXT</a> =  3, 
+<a class="el" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea381fed5de79d08b5f874c1a5e71eb69e7">DbDatatype_BLOB</a> =  4, 
+<br>
+&nbsp;&nbsp;<a class="el" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea359add7cc89cd13267d90d494dfde42bc">DbDatatype_NULL</a> =  5
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">支持的数据类型。  <a href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea3">更多...</a><br></td></tr>
+<tr><td colspan="2"><br><h2>常量</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8car.html#c2032f3238adbbd01623b890e136a384">MAX_DATABASE_TYPE_NAME</a> = 64</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8car.html#a9b89fdc0e016e0d2d1112d14b3b50b6">MAX_COLUMN_NAME</a> = 64</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8car.html#da9a6aec26cd01ab44d72e1843f7c278">MAX_DATABASE_NAME</a> = 64</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8car.html#497666a77f6efa701423352ee984b328">MAX_TABLE_NAME</a> = 64</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8car.html#9e221168f2054b259aeabfae066a44d8">MAX_PARAMETER_NAME</a> = 64</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8car.html#76ba946579e96ec5262532236badb305">MAX_PROPERTY_VALUE</a> = 256</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8car.html#c43bfbda4c1990d69f5f2649414f5580">MAX_DATA_TIME</a> = 32</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8car.html#0507c19bc80a97a21f8b7fb547cd037e">MaxStringValue</a> = 512</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="database_8car.html#5ec09223d0c29e2cdf8b11c01c88b9d4">MAX_ERROR_MESSAGE</a> = 512</td></tr>
+
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+Elastos Database CAR文件 
+<p>
+该文件定义了Elastos数据库服务的相关数据类型和字符编码及数据库系统接口. 
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>中定义。</p>
+<hr><h2>枚举类型文档</h2>
+<a class="anchor" name="4ac4dce7c3e9f977c81e290b193dfea3"></a><!-- doxytag: member="database.car::DbDatatype" ref="4ac4dce7c3e9f977c81e290b193dfea3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea3">DbDatatype</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+支持的数据类型。 
+<p>
+<dl compact><dt><b>枚举值: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" name="4ac4dce7c3e9f977c81e290b193dfea365ba2869bb7376fe86848aec71ebaf79"></a><!-- doxytag: member="DbDatatype_INTEGER" ref="4ac4dce7c3e9f977c81e290b193dfea365ba2869bb7376fe86848aec71ebaf79" args="" -->DbDatatype_INTEGER</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" name="4ac4dce7c3e9f977c81e290b193dfea3f71a1738d90f12f48ecbfd12b7055509"></a><!-- doxytag: member="DbDatatype_FLOAT" ref="4ac4dce7c3e9f977c81e290b193dfea3f71a1738d90f12f48ecbfd12b7055509" args="" -->DbDatatype_FLOAT</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" name="4ac4dce7c3e9f977c81e290b193dfea320d25ae03781ba5a2eb027be5a7a9847"></a><!-- doxytag: member="DbDatatype_TEXT" ref="4ac4dce7c3e9f977c81e290b193dfea320d25ae03781ba5a2eb027be5a7a9847" args="" -->DbDatatype_TEXT</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" name="4ac4dce7c3e9f977c81e290b193dfea381fed5de79d08b5f874c1a5e71eb69e7"></a><!-- doxytag: member="DbDatatype_BLOB" ref="4ac4dce7c3e9f977c81e290b193dfea381fed5de79d08b5f874c1a5e71eb69e7" args="" -->DbDatatype_BLOB</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" name="4ac4dce7c3e9f977c81e290b193dfea359add7cc89cd13267d90d494dfde42bc"></a><!-- doxytag: member="DbDatatype_NULL" ref="4ac4dce7c3e9f977c81e290b193dfea359add7cc89cd13267d90d494dfde42bc" args="" -->DbDatatype_NULL</em>&nbsp;</td><td>
+</td></tr>
+</table>
+</dl>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00031">31</a>行定义。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7e12dd6e69749fed6ec2f1ec1db57e19"></a><!-- doxytag: member="database.car::DbEncoding" ref="7e12dd6e69749fed6ec2f1ec1db57e19" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19">DbEncoding</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+支持的字符编码。 
+<p>
+<dl compact><dt><b>枚举值: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" name="7e12dd6e69749fed6ec2f1ec1db57e19184b965ec2290221158eb59d64a5c6c6"></a><!-- doxytag: member="DbEncoding_DEFAULT" ref="7e12dd6e69749fed6ec2f1ec1db57e19184b965ec2290221158eb59d64a5c6c6" args="" -->DbEncoding_DEFAULT</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" name="7e12dd6e69749fed6ec2f1ec1db57e19cd467a86c4e96be829ee8f5b778d678d"></a><!-- doxytag: member="DbEncoding_UTF8" ref="7e12dd6e69749fed6ec2f1ec1db57e19cd467a86c4e96be829ee8f5b778d678d" args="" -->DbEncoding_UTF8</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" name="7e12dd6e69749fed6ec2f1ec1db57e19cc09c0df4b795c8e5ac74c36605e1d4c"></a><!-- doxytag: member="DbEncoding_UTF16LE" ref="7e12dd6e69749fed6ec2f1ec1db57e19cc09c0df4b795c8e5ac74c36605e1d4c" args="" -->DbEncoding_UTF16LE</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" name="7e12dd6e69749fed6ec2f1ec1db57e1949504a42f2c8e62f6d3aa6afa1d54fcc"></a><!-- doxytag: member="DbEncoding_UTF16BE" ref="7e12dd6e69749fed6ec2f1ec1db57e1949504a42f2c8e62f6d3aa6afa1d54fcc" args="" -->DbEncoding_UTF16BE</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" name="7e12dd6e69749fed6ec2f1ec1db57e192ec6c3956ed3c750b06576619f3f5c28"></a><!-- doxytag: member="DbEncoding_UTF16" ref="7e12dd6e69749fed6ec2f1ec1db57e192ec6c3956ed3c750b06576619f3f5c28" args="" -->DbEncoding_UTF16</em>&nbsp;</td><td>
+</td></tr>
+</table>
+</dl>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00020">20</a>行定义。</p>
+
+</div>
+</div><p>
+<hr><h2>常量文档</h2>
+<a class="anchor" name="a9b89fdc0e016e0d2d1112d14b3b50b6"></a><!-- doxytag: member="database.car::MAX_COLUMN_NAME" ref="a9b89fdc0e016e0d2d1112d14b3b50b6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="database_8car.html#a9b89fdc0e016e0d2d1112d14b3b50b6">MAX_COLUMN_NAME</a> = 64          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00044">44</a>行定义。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="da9a6aec26cd01ab44d72e1843f7c278"></a><!-- doxytag: member="database.car::MAX_DATABASE_NAME" ref="da9a6aec26cd01ab44d72e1843f7c278" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="database_8car.html#da9a6aec26cd01ab44d72e1843f7c278">MAX_DATABASE_NAME</a> = 64          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00045">45</a>行定义。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c2032f3238adbbd01623b890e136a384"></a><!-- doxytag: member="database.car::MAX_DATABASE_TYPE_NAME" ref="c2032f3238adbbd01623b890e136a384" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="database_8car.html#c2032f3238adbbd01623b890e136a384">MAX_DATABASE_TYPE_NAME</a> = 64          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00043">43</a>行定义。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c43bfbda4c1990d69f5f2649414f5580"></a><!-- doxytag: member="database.car::MAX_DATA_TIME" ref="c43bfbda4c1990d69f5f2649414f5580" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="database_8car.html#c43bfbda4c1990d69f5f2649414f5580">MAX_DATA_TIME</a> = 32          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00049">49</a>行定义。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5ec09223d0c29e2cdf8b11c01c88b9d4"></a><!-- doxytag: member="database.car::MAX_ERROR_MESSAGE" ref="5ec09223d0c29e2cdf8b11c01c88b9d4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="database_8car.html#5ec09223d0c29e2cdf8b11c01c88b9d4">MAX_ERROR_MESSAGE</a> = 512          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00051">51</a>行定义。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9e221168f2054b259aeabfae066a44d8"></a><!-- doxytag: member="database.car::MAX_PARAMETER_NAME" ref="9e221168f2054b259aeabfae066a44d8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="database_8car.html#9e221168f2054b259aeabfae066a44d8">MAX_PARAMETER_NAME</a> = 64          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00047">47</a>行定义。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="76ba946579e96ec5262532236badb305"></a><!-- doxytag: member="database.car::MAX_PROPERTY_VALUE" ref="76ba946579e96ec5262532236badb305" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="database_8car.html#76ba946579e96ec5262532236badb305">MAX_PROPERTY_VALUE</a> = 256          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00048">48</a>行定义。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0507c19bc80a97a21f8b7fb547cd037e"></a><!-- doxytag: member="database.car::MaxStringValue" ref="0507c19bc80a97a21f8b7fb547cd037e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="database_8car.html#0507c19bc80a97a21f8b7fb547cd037e">MaxStringValue</a> = 512          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00050">50</a>行定义。</p>
+
+</div>
+</div><p>
+<a class="anchor" name="497666a77f6efa701423352ee984b328"></a><!-- doxytag: member="database.car::MAX_TABLE_NAME" ref="497666a77f6efa701423352ee984b328" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="database_8car.html#497666a77f6efa701423352ee984b328">MAX_TABLE_NAME</a> = 64          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l00046">46</a>行定义。</p>
+
+</div>
+</div><p>
+<script>footer("chinese")</script>
+</body>
+</html>

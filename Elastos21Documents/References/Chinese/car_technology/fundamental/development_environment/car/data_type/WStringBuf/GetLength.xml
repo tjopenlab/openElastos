@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WStringBuf</interface>
+    <method>GetLength</method>
+
+    <description>
+        <para> 返回此对象字符串所占的字符数，以字符数为单位。</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para>返回字符串的字符数，不包含"\0"结束符。</para>
+    </return>
+    <remarks>
+        <para>如果WStringBuf的m_pBuf 指针为空或m_size&lt;sizeof(wchar_t), 则返回0。</para>
+    </remarks>
+<example>
+<pre>
+请参见：<link url="../AStringBuf/GetLength.htm">AStringBuf::GetLength</link>
+</pre>
+</example>
+  <references>
+    <reference>
+        <ref_name>WStringBuf</ref_name>
+        <ref_url>../WStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::SetLength</ref_name>
+        <ref_url>../WStringBuf/SetLength</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::GetCapacity</ref_name>
+        <ref_url>../WStringBuf/GetCapacity</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::GetAvailableSpace</ref_name>
+        <ref_url>../WStringBuf/GetAvailableSpace</ref_url>
+    </reference>
+
+</references>   
+</manpage>

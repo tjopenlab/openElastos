@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>主函数ElastosMain</title>
+</head>
+
+<body>
+	<h2>主函数ElastosMain</h2>
+	<p>程序总是从<b>ElastosMain</b>函数开始执行的。</p>
+ 
+<h3>ElasotsMain函数的形式</h3>
+
+    <pre class = code>
+#include &lt;elastos.h&gt;
+using namespace Elastos;
+ 
+ECode ElastosMain(const BufferOf&lt;WString&gt; &args)
+{
+    CConsole::WriteLine("HelloWorld");
+
+    CProcess::Exit(0);
+    return NOERROR;   //如果注释掉前一句代码CProcess::Exit(0)，这里return NOERROR后会进入消息循环。
+}
+    </pre>
+    <p><b>函数说明： </b> </p>
+    <p>#include &lt;elastos.h&gt; 头文件，Elastos平台编程所需基本的头文件。 </p>
+    <p>using namespace Elastos; 命名空间，避免elastos平台与其他第三方库的命名冲突。</p>
+    <p>CProcess::Exit(0) 正常退出进程。</p>
+
+<h3>ElasotsMain函数的返回值 </h3>
+   <p>在CAR文件中定义的接口方法，返回值类型全部都是<b>ECode</b>。</p>
+   <p>ECode是一个32位二进制整数。ECode高16位中，最高位表示方法调用错误(1)或成功(0)；其余15位表示具体的错误信息，例如：接口错误、驱动错误、CRT错误、文件系统错误、图形系统错误等。对于许多CAR兼容的实现语言（例如：Visual Basic、Java）而言，这些ECode被运行时库或者虚拟机截取，然后被映射为语言中特定的异常（exception）。ECode低16位用作调试和测试用。</p>
+   <p>详细内容请参见 <a class= "style1" href="..\..\fundamental\development_environment\car\Ecode.htm">ECode返回值说明</a>。</p>
+<h3>ElasotsMain函数的参数 </h3>
+   <p>参数类型：<b>BufferOf&lt;WString&gt;</b>详情请参见<a class= "style1" href="..\..\fundamental\development_environment\car\data_type\BufferOf.htm">car数据类型BufferOf</a>。 </p>
+   <p>参数说明：命令行输入的参数列表。</p>
+<h3>编译运行</h3>
+   <p> 编译：在xdk命令行切换到程序目录，输入<b>emake</b>。 </p>
+   <p> 运行：<b>elaura </b>程序名。 </p>
+   <p> </p>
+
+<h3> 其他说明 </h3>
+<p> 1.elastos平台同样支持main及wmain函数。 </p>
+<p> 2.<font color= "red">注意：C/C++语言的mian执行到最后一句return时，进程就结束了。但ElastosMain不同，return NOERROR后进入了系统的消息循环。 </font></p>
+<script>footer("chinese")</script>
+</body>
+</html>

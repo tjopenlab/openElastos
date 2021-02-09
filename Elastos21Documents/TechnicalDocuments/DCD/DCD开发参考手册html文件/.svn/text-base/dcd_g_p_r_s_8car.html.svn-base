@@ -1,0 +1,88 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Kortide DCD API: dcdGPRS.car文件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<div class="tabs">
+  <ul>
+    <li><a href="main.html"><span>首页</span></a></li>
+    <li><a href="globals.html"><span>全部</span></a></li>
+    <li class="current"><a href="Engineglobals.html"><span>引擎部分</span></a></li>
+    <li><a href="UIglobals.html"><span>UI部分</span></a></li>
+  </ul>
+</div>
+<h1> GPRS服务相关API参考</h1>
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>函数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">DCD_Extern Handle&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_g_p_r_s_8car.html#cccbf1e0ded665dddb88c0698349838a">DCDConnectGPRS</a> (DcdChar *pApn)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">连接GPRS(GSM网的CMWAP,或T网).  <a href="#cccbf1e0ded665dddb88c0698349838a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">DCD_Extern int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcd_g_p_r_s_8car.html#286c0b2dbc3929022aae410e3dc1285f">DCDDisconnectGPRS</a> (Handle handle)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">断开GPRS服务.  <a href="#286c0b2dbc3929022aae410e3dc1285f"></a><br></td></tr>
+</table>
+<hr><h2>函数文档</h2>
+<a class="anchor" name="cccbf1e0ded665dddb88c0698349838a"></a><!-- doxytag: member="dcdGPRS.car::DCDConnectGPRS" ref="cccbf1e0ded665dddb88c0698349838a" args="(DcdChar *pApn)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DCD_Extern Handle DCDConnectGPRS           </td>
+          <td>(</td>
+          <td class="paramtype">DcdChar *&nbsp;</td>
+          <td class="paramname"> <em>pApn</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+连接GPRS(GSM网的CMWAP,或T网).
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pApn</em>&nbsp;</td><td>- 连接时的网络接入点, 必须是cmwap方式. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>返回连接句柄，如果失败，链接句柄为NULL.</dd></dl>
+<dl class="note" compact><dt><b>注解:</b></dt><dd>如果终端在连接CMWAP时已经存在一个CMNET连接，则视终端是否支持双连接而定，如果不支持双连接应先断开CMNET再连CMWAP，或直接报告连接失败. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="286c0b2dbc3929022aae410e3dc1285f"></a><!-- doxytag: member="dcdGPRS.car::DCDDisconnectGPRS" ref="286c0b2dbc3929022aae410e3dc1285f" args="(Handle handle)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DCD_Extern int DCDDisconnectGPRS           </td>
+          <td>(</td>
+          <td class="paramtype">Handle&nbsp;</td>
+          <td class="paramname"> <em>handle</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+断开GPRS服务.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>handle</em>&nbsp;</td><td>- 函数DCDConnectGPRS成功返回的链接句柄. </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>成功则返回0, 失败返回-1.</dd></dl>
+<dl class="note" compact><dt><b>注解:</b></dt><dd>断开GPRS是指DCD不再使用GPRS服务了，不等于终端一定要断开GPRS. </dd></dl>
+
+</div>
+</div><p>
+<hr size="1"><address style="text-align: right;"><small>
+<a href="http://www.kortide.com.cn">© Kortide Corp.All rights reserved.</a></small></address></body></body>
+</html>

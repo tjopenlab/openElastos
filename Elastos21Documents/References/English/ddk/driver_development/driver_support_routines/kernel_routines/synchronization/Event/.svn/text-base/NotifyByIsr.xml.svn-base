@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>Event</interface><method> NotifyByIsr </method>
+    <description>
+        <para>
+            Sets <b>Event</b> object as a concrete notified state (only used in the bottom half of a driver).
+        </para>
+    </description>
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> uint_t </param_type>
+                <param_name> uState </param_name>
+                <param_note>
+                    <para>
+                         Specifies a notified state. It can be expressed by using a user defined non-zero unsigned 
+                         integer. Default is SIGNALED.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <NoReturnValue/>
+	</return>
+
+	<remarks>
+		<para>
+            This member function sets Event object to a specific notified state, so as to wake up the waiting thread.
+            If the Event object is reset automatically, only one waiting thread will be woke up, and the Event object
+            will be reset to not notified state. If Event object is reset manually, all the waiting thread will be woken up,
+            and Event object will keep this notified state. What makes it different from <link url="Notify.htm">
+            Event::Notify</link> is that it can only be used in the second half of the driver.
+            (i.e; in the interrupted service routine).
+		</para>
+		<para>
+        	This method can not be misused with Event::Notify.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

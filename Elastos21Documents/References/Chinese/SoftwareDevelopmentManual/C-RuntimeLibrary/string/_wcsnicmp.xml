@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_strnicmp">_strnicmp</sample>
+    <title>_strnicmp, _wcsnicmp</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>比较两个字符串中的字符（不区分大小写）。</para>
+    </description>
+    
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_strnicmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string1</param_name>
+                <param_note>
+                    <para>用于比较的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string2</param_name>
+                <param_note>
+                    <para>用于比较的以NULL结尾的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>比较的字符个数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>_wcsnicmp</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string1</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string2</param_name>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+   
+    <return>
+        <para>函数的返回值表示string1和string2的子串的关系，具体含义如下表所示：</para>
+        <table>
+            <th>
+                <td>返回值</td>
+                <td>含义</td>
+            </th>
+            <tr>
+                <td><![CDATA[< 0]]></td>
+                <td>string1的子串小于string2的子串</td>
+            </tr>
+            <tr>
+                <td><![CDATA[= 0]]></td>
+                <td>string1的子串与string2的子串相等</td>
+            </tr>
+            <tr>
+                <td><![CDATA[> 0]]></td>
+                <td>string1的子串大于string2的子串</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>函数_strnicmp按词典顺序比较string1和string2的前count（至多）个字符。函数_strnicmp忽略大小写，是函数strncmp的大小写不敏感型版本。在比较的字符数未达到count时，如果两个串中任何一个达到结束符，比较都将结束。在此情况下，如果比较结束前两个串相等，那么短的那个串小。 </para>
+        <para>字符串中若包含在ASCII表中位于‘Z’和‘a’之间的字符（'[', '\', ']', '^', '_', and '`'），根据字母的大小写不同，比较结果不同。例如，比较字符串"ABCDE"和 "ABCD^"，若按小写方式比较，则"abcde" &gt; "abcd^"；若按大写方式比较，则"ABCDE" &lt; "ABCD^"。 </para>
+        <para>_wcsnicmp是_strnicmp的宽字符版本，也是函数wcsncmp的大小写不敏感型版本。函数_wcsnicmp的参数和返回值，都是宽字符串，除此之外，和函数_strnicmp一样。</para>
+    </remarks>
+
+    <requirements>
+        
+        <routine>
+            <routine_name>_strnicmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        
+        <routine>
+            <routine_name>_wcsnicmp</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+// strnicmp.cpp:this program compares, at most, the first count characters of string1 and string2
+
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+
+char string1[] = &quot;The quick brown dog jumps over the lazy fox&quot;;
+char string2[] = &quot;The QUICK brown fox jumps over the lazy dog&quot;;
+
+int main()
+{
+    char tmp[20];
+     int result;
+     printf(&quot;Compare strings:\n\t\t%s\n\t\t%s\n\n&quot;, string1, string2);
+
+     printf(&quot;Function:\tstrnicmp _strnicmp (first 10 characters only)\n&quot;);
+     result = _strnicmp(string1, string2, 10);
+     if (result &gt; 0)
+         strcpy(tmp, &quot;greater than&quot;);
+     else if (result &lt; 0)
+         strcpy(tmp, &quot;less than&quot;);
+     else
+         strcpy(tmp, &quot;equal to&quot;);
+     printf(&quot;Result:\t\tString 1 is %s string 2\n\n&quot;, tmp);
+
+     return 0;
+}
+</pre>
+    </example>
+<result>
+
+Compare strings:
+The quick brown dog jumps over the lazy fox
+The QUICK brown fox jumps over the lazy dog
+
+Function:       strnicmp _strnicmp (first 10 characters only)
+Result:         String 1 is equal to string 2
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name> wcscmp </ref_name>
+            <ref_url>wcscmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcscpy </ref_name>
+            <ref_url>wcscpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncat </ref_name>
+            <ref_url>wcsncat</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncmp </ref_name>
+            <ref_url>wcsncmp</ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncpy </ref_name>
+            <ref_url>wcsncpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strspn </ref_name>
+            <ref_url>strspn</ref_url>
+        </reference>
+        <reference>
+            <ref_name> strcspn </ref_name>
+            <ref_url>strcspn</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,116 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title> applet_use</title>
+	</head>
+	
+	<body>
+		<h2>编写DLL </h2>
+            <p> applet是一种新的class类型,具体语法规则请参见<a class="style1"href="..\..\fundamental\development_environment\car\keywords\keywords_applet.htm">applet关键字</a>。</p>
+
+		     <p>下面是一个applet的简单示例程序。</p>
+		<h3> 编写applet的CAR文件</h3>
+	         <p> 为了统一管理编写和调用，可以先建一个AppletDemo目录，在此目录下再分别建一个AppletDllDemo和AppletExeDemo目录，在AppletDllDemo目录下实现如何编写一个applet的例子，在AppletExeDemo目录下实现如何调用该DLL。</p>
+             <p> 下面在AppletDllDemo目录下新建一个AppletDemo.car文件，并在文件中添加如下内容：</P>
+   
+    <pre class = code>
+module
+{
+    interface IMail {
+        SendMail();
+
+        RecvMail();
+    }
+    
+    applet TMail {
+        interface IMail;
+    }
+}
+</pre>
+<p>在这个CAR文件中，定义了一个接口IMail，一个applet类TMail实现了这个接口。</p>
+<h3> 编译此CAR文件</h3>
+    <p>在XDK环境下编译该CAR文件，自动代码框架会生成如下几个文件： </p>
+    <p><a href= "code\TMail_cpp.htm">TMail.cpp </a></p>
+    <p><a href= "code\TMail_h.htm">TMail.h </a> </p>
+
+    <p><a href= "code\sources.htm">sources </a></p>
+    <p>可以看到，生成的pp文件中自动包含了其接口的方法。所以，接下来的工作只需要添加应用代码即可。</p>
+<h3>修改自动代码生成框架生成的代码</h3>
+<p>可以看到，该文件中包含了自动生成的IApplet接口方法，如Activate，Deactivate等，并包含一个Main方法，该Main方法即applet程序的入口地址。我们修改Main方法和在CAR文件中定义接口方法：SendMail和RecvMail，修改后的TMail.cpp文件如下：</p>
+<p><b>注： </b>下述代码片断中粗体部分是自动生成的代码，非粗体部分是用户添加的代码。</p>
+<pre class = code>
+<b>#include "TMail.h"
+#include "_TMail.cpp"
+
+ECode TMail::Main(const BufferOf&lt;WString&gt; & args)
+{</b>
+    CConsole::WriteLine("applet start ...");
+
+    return  NOERROR; // 返回NOERROR后进入applet的消息循环
+<b>}</b>
+
+<b>ECode TMail::SendMail()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("send a mail...");
+    return NOERROR;
+<b>}
+
+ECode TMail::RecvMail()
+{
+    // TODO: Add your code here</b>
+    CConsole::WriteLine("receive a mail...");
+    CApplet::Finish(AppletFinish_ASAP);  //退出applet的消息循环
+    return NOERROR;
+<b>}
+
+ECode TMail::Activate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::Deactivate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::IsActivated(
+    /* [out] */ Boolean * pActivated)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::Snooze()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::Wakeup()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TMail::GetName(
+    WStringBuf * name)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}</b>
+</pre>
+
+<h3>生成相应的dll</h3>
+    <p>进入正确的XDK目录，emake编译后会生成car文件对应的dll。</p> 		
+	</body>
+	
+</html>

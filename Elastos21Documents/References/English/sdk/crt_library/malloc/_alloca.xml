@@ -1,0 +1,96 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\malloc\_alloca">_alloca</sample>
+    <title> _alloca</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> mal_idx.htm </routine_idx>
+
+    <description>
+        <para>The _alloca function allocates size bytes of space in the stack frame of the caller. This temporary space is automatically freed on return.</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <func_name>_alloca</func_name>
+        <parameters>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>Bytes to be allocated from stack.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The _alloca routine returns a void pointer to the allocated space, which is guaranteed to be suitably aligned for storage of any type of object. To get a pointer to a type other than char, use a type cast on the return value. A stack overflow exception is generated if the space cannot be allocated.</para>
+    </return>
+
+    <remarks>
+        <para>_alloca allocates size bytes from the program stack. The allocated space is automatically freed when the calling function exits. Therefore, its not necessary to pass the pointer value returned by _alloca as an argument to free.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_alloca</routine_name>
+            <headerfile>malloc.h</headerfile>
+            <compatibility>Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _alloca.cpp: This program uses _alloca function to
+ * allocates memory on the stack.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;malloc.h&gt;
+
+#define NUM 0x80
+
+int main()
+{
+    int *intArray;
+
+    intArray = (int*)_alloca(sizeof(int) * NUM);
+    printf(&quot;Integer allocating (number: %d)  OK!\n&quot;, sizeof(int) * NUM);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Integer allocating (number: 512)  OK!
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>malloc</ref_name>
+            <ref_url>../stdlib/malloc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>realloc</ref_name>
+            <ref_url>../stdlib/realloc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>free</ref_name>
+            <ref_url>../stdlib/free</ref_url>
+        </reference>
+    </references>
+
+</manpage>

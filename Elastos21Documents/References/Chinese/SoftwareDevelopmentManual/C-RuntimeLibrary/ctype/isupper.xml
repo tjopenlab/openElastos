@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\isupper">isupper iswupper</sample>
+    <title>isupper iswupper</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>判断一个字符是否为大写字母（A - Z）。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>isupper</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>需要判断的整型值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+   <syntax>
+        <return_val>int</return_val>
+        <func_name>iswupper</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+              
+            </func_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>返回值如果c是一个大写字母(a-z),则isupper返回一个非0值。如果c是对应于大写字母的宽字符或者c是iswcntrl,iswdigit,iswpunct或iswspace为假的宽字符的定义集之一,则iswupper返回一个非0值。如果c不满足这个测试条件则函数返回0。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>isupper</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>iswupper</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* isupper.cpp: This program uses isupper to verify c
+ * whether it is a uppercase character.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+{
+    int c = 67;
+    if (isupper(c)) {
+        printf(&quot;the character is an uppercase letter !\n&quot;);
+    }
+    else {
+        printf(&quot;the character is not an uppercase letter !\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+the character is an uppercase letter !
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>islower</ref_name>
+            <ref_url>islower</ref_url>
+        </reference>
+    </references>
+
+</manpage>

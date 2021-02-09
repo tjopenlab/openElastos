@@ -1,0 +1,56 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzWCharBuf\operAssi">opertor=</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzWCharBuf </interface>
+    <method> operator = </method>
+
+    <description>
+        <para> Assignment operator for assigning a EzWCharBuf object.</para>
+    </description>
+
+    <syntax>
+        <return_val> EzWCharBuf&amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type> const EzWCharBuf&amp; </param_type>
+            <param_name> buf </param_name>
+            <param_note>
+                <para> Reference of the EzWCharBuf object. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+void __cdecl main()
+{
+    EzWCharBuf_<50> buf1;
+    EzWCharBuf_<50> buf2;
+
+    buf1.Copy(L"Hello,world!", 13);
+    buf2.Copy(L"World,hello!", 13);
+
+    printf("Before change,buf1 is \"%S\".\n",(wchar_t*)buf1);
+    buf1 = buf2;
+    printf("After change,buf1 is \"%S\".\n",(wchar_t*)buf1);
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+Before change,buf1 is "Hello,world!".
+After change,buf1 is "World,hello!".
+]]>
+    </result>
+
+</manpage>

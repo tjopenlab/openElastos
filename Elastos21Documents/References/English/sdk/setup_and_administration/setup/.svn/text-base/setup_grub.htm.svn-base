@@ -1,0 +1,102 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>Install GRUB Loader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Install GRUB Loader</h2>
+    <p>For the description of GRUB, see <a class="style1" href="elastos_boot.htm">installation of Elastos and start</a>.</p>
+    <h3>Requirements</h3>
+        <ul>You should finish: 
+        <li><a class="style1" href="../setup.htm">Elastos.SDK installation.</a>
+        <li>Setup computer to run Elastos.
+        <li>Prepare a blank floppy.
+        </ul>
+    <h3>Make GRUB installation floppy.</h3>
+        <p>The steps to make GRUB installation floppy are as the following: </p>
+        <ul>
+            <li>Insert prepared floppy into A drive of Windows&nbsp;2000 side machine.
+            <li>Input under Elastos.SDK development environment command line: mkfloppy&nbsp;-s command, and hit enter. Details operations are as the following: <br>
+            <pre class="code">
+D:\Elastos.SDK\src>mkfloppy -s &lt;enter&gt;
+</pre>
+        </ul>
+        <p>You can browse content of GRUB installation floppy as the following: </p>
+        <table>
+            <thead>
+                <td align='center'>
+                    <b>Directory</b>
+                </td>
+                <td  align='center'>
+                    <b>File Listing</b>
+                </td>
+            </thead>
+            <tr>
+                <td>
+                    grub
+                </td>
+                <td>
+                    menu.lst<br>stage1<br>stage2<br>stage2.ne
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    inst
+                </td>
+                <td>
+                    menu.lst<br>stage2
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    readme.txt
+                </td>
+            </tr>
+        </table>
+
+    <h3>Install GRUB</h3>
+        <p>You can select from the menu to install GRUB to floppy disk or the hard disk. The former need target machine to have floppy drive and another start up floppy disk. The latter needs to have harddisk.</p>
+        <p>First, copy all contents in the \GRUB directory of installation floppy made to target machine harddisk or start up floppy root directory, for example A:\GRUB or C:\GRUB .</p>
+        <p>Then, if you hope to start using the network, please change the "THE.CLIENT.IP.ADDR" in menu.lst file under target machine GRUB directory to IP address of target machine, change the "THE.SERVER.IP.ADDR" to host machine IP address.</p>
+        <p>Currently Elastos only supports TP-Link&nbsp;Rtl8139 series network card.</p>
+        <p>Start the machine using GRUB installation floppy disk, after start up, the monitor displays GRUB installation menu, as the following: </p>
+        <pre class="code">
+Install GRUB to Master Boot Record (MBR)
+Install GRUB to Boot Record of C:
+Install GRUB to A:
+Boot from Hard Disk
+Boot from Floppy
+</pre>
+        <p>The meaning of each item in GRUB installation menu are list as the following: </p>
+        <pre class="code">
+Install GRUB to Master Boot Record (MBR)    : Install GRUB to hard disk master boot record (Default installation).
+Install GRUB to Boot Record of C:           : Install GRUB to hard disk C drive boot record.
+Install GRUB to A:                          : Install GRUB to floppy.
+Boot from Hard Disk                         : Boot from hard disk.
+Boot from Floppy                            ：Boot from floppy.
+</pre>
+        <p>You can move the scrollbar through up and down arrows in order to select the installation location of GRUB. It is recommended to install to the hard disk master boot record.</p>
+        <ol>
+        <li>Installs GRUB to hard disk.<br>
+            Select the first two options of the menu can install GRUB to hard disk. Recommended to use the first installation method, thus install GRUB to hard disk master boot record.<br>
+        <font color="red">Warning: Installation of GRUB on hard disk causes the original operating system unable to boot.</font>
+        <li>Installs GRUB to floppy drive.<br>
+            Move scrollbar to "Install&nbsp;GRUB&nbsp;to&nbsp;A:", hit enter. The monitor then displays: 
+        <pre class="code">
+Booting 'Install GRUB to A:'
+pause:Please insert target floppy and press any key...
+</pre>
+            <p>According to requirements in the prompt, insert boot floppy disk (Floppy must contains GRUB directory), hit enter to start the installation process. After successful installation you can start the computer through this boot disk and bootstrap the Elastos operating system.</p>
+        </ol>
+
+<script>footer("english")</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>短信彩信引擎</volume>
+<interface>IInfoSrvConfig</interface><method> EnumNextChannel </method>
+    <description>
+        <para>
+         列举下一个频道。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> INT * </param_type>
+                <param_name> pnChannelId </param_name>
+                <param_note>
+                    <para>
+
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> UINT * </param_type>
+                <param_name> puChannel </param_name>
+                <param_note>
+                    <para>
+
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzWStrBuf </param_type>
+                <param_name> wsbName </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> BOOL * </param_type>
+                <param_name> pbStatus </param_name>
+                <param_note>
+                    <para>
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT </td>
+	    	    <td>参数错误 </td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION </td>
+	    	    <td>无效的操作 </td>
+	        </tr>
+	        <tr>
+	    	    <td>短信彩信错误码 </td>
+	    	    <td>短信彩信相关错误</td>
+	        </tr>
+	    </table>
+	    <para>更多返回值，参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>、<link url="../../SmsMmsError.htm">短信彩信错误码</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+	    <para>  </para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+            《Elastos 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>elatype.h、stdlib.h、mmsdef.h、mmstype.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>database.lib、elastos.lib、elacrt.lib、elautil.lib</lib_name>
+        </library>
+    </requirements>
+
+</manpage>

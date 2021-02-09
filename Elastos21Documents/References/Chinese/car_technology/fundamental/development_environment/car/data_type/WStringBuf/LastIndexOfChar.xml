@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WStringBuf</interface>
+    <method> LastIndexOfChar </method>
+
+    <description>
+        <para> 报告指定字符在此对象中的最后一个匹配项的索引。</para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>Char32</param_type>
+            <param_name> ch </param_name>
+            <param_note>
+                <para> 指定字符 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive</param_default>
+            <param_note>
+                <para> 是否区分大小写标志。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。(StringCase_Insensitive暂不支持)</para>
+            </param_note>
+        </api_param>   
+        </parameters>        
+    </syntax>
+    <return>
+        <para>返回指定字符在WStringBuf对象字符串中最后出现的索引值，若没出现则返回-1。</para>
+    </return>
+    <remarks>
+        <para>如果WStringBuf对象字符串指针为NULL或内容为空，则返回-1。</para>
+    </remarks>
+<example>
+<pre>
+请参见：<link url="../AStringBuf/LastIndexOfChar.htm">AStringBuf::LastIndexOfChar</link>
+</pre>
+</example>
+ <references>
+    <reference>
+        <ref_name>WStringBuf</ref_name>
+        <ref_url>../WStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::LastIndexOf</ref_name>
+        <ref_url>LastIndexOf/index/LastIndexOf</ref_url>
+    </reference>
+
+    <reference>
+        <ref_name>WStringBuf::IndexOfChar</ref_name>
+        <ref_url>IndexOfChar</ref_url>
+    </reference>
+
+</references>    
+</manpage>

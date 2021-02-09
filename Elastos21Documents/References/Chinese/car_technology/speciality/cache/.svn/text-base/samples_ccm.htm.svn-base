@@ -1,0 +1,53 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+
+<head>
+    <title>构件缓存机制</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>使用CAR构件缓存机制的范例</h2>
+    <p>下面通过一个范例来演示使用CAR构件缓存机制来实现CAR构件自滚动下载运行的方法。该范例程序位于SDK\src\samples\ezcom\cachemgr\autoroll目录中。</p>
+    <p>在这个例子中，实现了四个构件：CA、CB、CC、CD，分别在四个构件程序cma.dll、cmb.dll、cmc.dll、cmd.dll中实现，各构件分别实现了IA、IB、IC、ID接口，每个接口有个对应的方法，分别为FA、FB、FC、FD。</p>
+    <p>客户程序调用了构件CA的FA方法；在构件CA中，FA方法调用了构件CB的FB方法、构件CC的FC方法；在构件CB中，FB方法调用了构件CD的FD方法。如下图所示：</p>
+    <center><img src="images/samples.jpg"></center>
+    <p>为方便观察演示结果，CCM中添加了一些打印信息，用于输出构件的uunm信息或对应的本地文件路径名。程序运行两次，显示结果如下：</p>
+    <pre class="code">
+[/ $]autoroll.exe
+Download the file: 192.168.1.82/car/cma.dll
+        CA::FA() is called.
+CA: I'll call CB::FB().
+Download the file: 192.168.1.82/car/cmb.dll
+        CB::FB() is called.
+CB: I'll call CD::FD().
+Download the file: 192.168.1.82/car/cmd.dll
+        CD::FD() is called.
+CA: I'll call CC::FC().
+Download the file: 192.168.1.82/car/cmc.dll
+        CC::FC() is called.
+</pre>
+        <pre class="code">
+[/ $]autoroll.exe
+File is in the Cache: 192.168.1.82/car/cma.dll->/msdos/cache/1727.dll
+        CA::FA() is called.
+CA: I'll call CB::FB().
+File is in the Cache: 192.168.1.82/car/cmb.dll->/msdos/cache/6a40.dll
+        CB::FB() is called.
+CB: I'll call CD::FD().
+File is in the Cache: 192.168.1.82/car/cmd.dll->/msdos/cache/4654.dll
+        CD::FD() is called.
+CA: I'll call CC::FC().
+File is in the Cache: 192.168.1.82/car/cmc.dll->/msdos/cache/54ef.dll
+        CC::FC() is called.
+</pre>
+    <p>第一次运行时，因为本地还没有对应的文件，需要从网络上下载，只输出了构件的uunm信息；第二次运行时因为本地Cache已经有对应文件，所以直接使用，不需从网络再次下载，输出了构件的uunm信息和对应的本地文件路径名。</p>
+    <p><b>备注：</b>范例中car文件中的uunm标识的是该构件在互联网上的地址，可以是IP地址也可以是域名，用户需要根据实际情况来重新指定。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>  

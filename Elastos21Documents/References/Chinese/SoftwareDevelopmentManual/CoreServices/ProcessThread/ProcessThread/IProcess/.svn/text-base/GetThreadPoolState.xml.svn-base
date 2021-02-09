@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IProcess\Thread">GetThreadPoolState</sample>
+<volume>进程</volume>
+<interface>IProcess</interface><method> GetThreadPoolState </method>
+    <description>
+        <para>
+    		获取线程池的状态。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32  * </param_type>
+                <param_name> pCapacity </param_name>
+                <param_note>
+                    <para>
+                        指向Int32型指针，用于获取线程池容量，不能与参数pThreadCount同时为空，默认为3
+                    </para>
+                </param_note>
+            </api_param>
+
+			<api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32  * </param_type>
+                <param_name> pThreadCount </param_name>
+                <param_note>
+                    <para>
+                        指向Int32型指针，用于获取线程池里线程数，不能与参数pCapacity同时为空
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>正确获取线程池的状态</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+
+		<para>
+		    本方法用于获取该进程的线程池状态信息，通过参数pThreadCount获得当前线程池里的线程数。
+		</para>
+    <para>
+        线程池里的最大线程数受限于线程池容量，默认容量是3。线程池容量可以通过<link url="SetThreadPoolCapacity.htm">SetThreadPoolCapacity()</link>方法设置。
+	  </para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

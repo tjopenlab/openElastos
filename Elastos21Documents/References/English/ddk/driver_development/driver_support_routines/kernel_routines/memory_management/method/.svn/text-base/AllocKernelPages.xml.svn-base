@@ -1,0 +1,77 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="memory_management\AllocKernelPages">AllocKernelPages</sample>
+    <volume>Memory Management Methods</volume>
+    <title>AllocKernelPages</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>
+        	Allocates specified number of continuous kernel pages.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>virtaddr_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> uint_t</param_type>
+                <param_name> uOrder </param_name>
+                <param_note>
+                    <para>
+                    	Logarithmic to the base 2 of the specified allocated total number of continuous kernel pages, 
+                    	i.e. The method allocates 2^uOrder continuous kernel pages. The maximum value of uOrder should 
+                    	not exceed the maximum order specified by the c_uMaxOrder constant.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>0</td>
+                <td>Allocation fails; Insufficient memory</td>
+            </tr>
+            <tr>
+                <td>Non-zero value</td>
+                <td>Allocation successful, returns the starting address (virtual address) of the first kernel page</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+    	<para>
+    		This method is used to allocate specified continuous kernel pages, the total number is 2^uOrder. Once the 
+    		kernel page is successfully allocated, kernel driver can access it directly.
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>FreeKernelPages</ref_name>
+            <ref_url>FreeKernelPages</ref_url>
+        </reference>
+    </references>
+</manpage>

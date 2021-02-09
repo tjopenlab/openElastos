@@ -1,0 +1,86 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\EzSleep"> CThread::Sleep </sample>
+    <volume>线程</volume>
+    <title>CThread::Sleep</title>
+    <routine_idx>../../../Thread.htm</routine_idx>
+
+    <description>
+        <para>使当前线程在指定的时间间隔内挂起。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> Millisecond </param_type>
+                <param_name> ms </param_name>
+                <param_note>
+                    <para>[in]线程挂起的最小时间间隔，单位为毫秒</para>
+                    <para>当ms的值为0,表示线程放弃剩下的时间片，任何同等优先级的线程将准备运行。如果线程没有其他同等优先级的线程，那该方法将立即返回，继续往下执行。当ms 为INFINITE表示挂起的线程不会超时醒来。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>[out]指向<link url="../../../../DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>WaitResult_Interrupted</td><td>被其它线程中断睡眠</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+    <para>调用此函数的线程会进入睡眠状态，在指定时间达到之后，系统会自动唤醒此线程并继续执行。其它线程可以使用<link url="..\..\IThread\Interrupt.htm">Interrupt</link>方法打断线程的睡眠状态。</para>
+    <para>当参数ms为0时，线程放弃时间片所有权，将其让给任意具有同优先级的就绪线程，如果没有其它同优先级就绪线程，函数立即返回，线程继续执行；当参数ms为INFINITE时，调用CThread::Sleep函数的线程将一直保持睡眠状态。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+
+    <references>
+    <reference>
+        <ref_name> CThread::Yield</ref_name>
+        <ref_url> Yield</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CThread::Delay </ref_name>
+        <ref_url> Delay</ref_url>
+    </reference>
+    </references>
+
+</manpage>

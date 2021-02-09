@@ -1,0 +1,96 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\asin">asin</sample>
+    <title> asin</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>The asin function compute the principal value of the arcsine of x. A domain error occurs for arguments not in the range [-1, +1].</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>asin</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>Value whose arcsine is to be calculated.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The asin function returns the arcsine of x in the range –π/2 to π/2 radians. If x is less than -1 or greater than 1, asin returns an indefinite (same as a quiet NAN).</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>asin</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* asin.cpp: This program uses asin to calculates the arcsine.
+ */
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double x = 0.32696, y;
+
+    y = asin(x);
+    printf(&quot;Arcsine of %f = %f\n&quot;, x, y);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Arcsine of 0.326960 = 0.333085
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>cos</ref_name>
+            <ref_url>cos</ref_url>
+        </reference>
+        <reference>
+            <ref_name>acos</ref_name>
+            <ref_url>acos</ref_url>
+        </reference>
+        <reference>
+            <ref_name>sin</ref_name>
+            <ref_url>sin</ref_url>
+        </reference>
+        <reference>
+            <ref_name>tan</ref_name>
+            <ref_url>tan</ref_url>
+        </reference>
+        <reference>
+            <ref_name>atan</ref_name>
+            <ref_url>atan</ref_url>
+        </reference>
+    </references>
+
+</manpage>

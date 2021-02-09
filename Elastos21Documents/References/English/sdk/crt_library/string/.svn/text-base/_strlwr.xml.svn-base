@@ -1,0 +1,109 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\_strlwr">_strlwr</sample>
+    <title>_strlwr, _wcslwr</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Convert a string to lowercase.</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>_strlwr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>Null-terminated string to convert to lowercase.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_wcslwr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>Null-terminated string to convert to lowercase.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Both of these functions return a pointer to the converted string. Because the modification is done in place, the pointer returned is the same as the pointer passed as the input argument. No return value is reserved to indicate an error.</para>
+    </return>
+
+    <remarks>
+        <para>The _strlwr function converts any uppercase letters in string to lowercase as determined by the LC_CTYPE category setting of the current locale. Other characters are not affected.</para>
+        <para>The _wcslwr function is a wide-character version of _strlwr. The argument and return value of _wcslwr are wide-character strings. These two functions behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_strlwr</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wcslwr</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+//_strlwr.cpp: This program uses _strlwr to create
+//lowercase copies of a mixed-case string.
+//
+
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    char string[100] = &quot;The String to End All Strings!&quot;;
+    char *copy1;
+    copy1 = _strlwr(_strdup(string));
+    printf(&quot;Mixed: %s\n&quot;, string);
+    printf(&quot;Lower: %s\n&quot;, copy1);
+    free(copy1);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+
+Mixed: The String to End All Strings!
+Lower: the string to end all strings!
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_strupr</ref_name>
+            <ref_url>_strupr</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\vprintf">vprintf</sample>
+    <title>vprintf, vwprintf </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>使用参数链表指针格式化输出到标准输出。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>vprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format</param_name>
+                <param_note>
+                    <para>格式化控制</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+                <param_note>
+                    <para>参数链表指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>vwprintf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>format</param_name>
+            </func_param>
+            <func_param>
+                <param_type>va_list</param_type>
+                <param_name>argptr</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数vprintf和vwprintf返回输出的字符数，不包括终结符，如果输出错误，返回负值。</para>
+    </return>
+
+    <remarks>
+        <para>两个函数都接收参数链表指针，将给定的数据格式化输出到标准输出。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>vprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>vwprintf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* vprintf.cpp:this program display a line to screen*/
+
+#include &lt;stdio.h&gt;
+
+void __cdecl test(char *, ...);
+
+int main(int argc, char** argv)
+{
+    test(&quot;Hello,world! %s\n&quot;, &quot;This is Elastos!&quot;);
+
+    return 0;
+}
+
+void __cdecl test(char *first, ...)
+{
+    int result = 0;
+    va_list parglist;
+
+    va_start(parglist, first);
+    result = vprintf(first, parglist);
+    va_end(parglist);
+}
+</pre>
+    </example>
+<result>
+Hello, world! This is Elastos!
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>printf</ref_name>
+            <ref_url>wprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>sprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>vsprintf</ref_name>
+            <ref_url>vswprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

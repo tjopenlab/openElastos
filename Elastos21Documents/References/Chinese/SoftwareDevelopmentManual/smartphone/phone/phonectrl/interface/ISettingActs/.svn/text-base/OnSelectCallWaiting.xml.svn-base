@@ -1,0 +1,42 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+<manpage>
+<volume>电话控制</volume>
+<interface>ISettingActs</interface><method>OnSelectCallWaiting</method>
+    <description>
+        <para>
+            响应用户UI请求，选择呼叫等待设置。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+        	<api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> BOOL </param_type>
+                <param_name> bEnable </param_name>
+                <param_note>
+                    <para>如果参数bEnable指向TRUE，表示启用呼叫等待功能；否则表示禁用呼叫等待功能</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> BOOL* </param_type>
+                <param_name> pbfSuccess </param_name>
+                <param_note>
+                    <para>指向BOOL型的指针，如果参数pbfSuccess为TRUE，表示呼叫等待成功；否则表示呼叫等待失败</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>方法调用成功时，返回S_OK。</para>
+</return>
+    <requirements>
+        <system>
+            <system_name>《Elastos 2.0》或更高版本</system_name>
+        </system>
+    </requirements>
+
+</manpage>

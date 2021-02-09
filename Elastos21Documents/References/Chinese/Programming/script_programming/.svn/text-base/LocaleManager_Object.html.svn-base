@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>预定义对象Locale参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li><a href="Script_Language.html"><span>XmlGlue支持的脚本语言</span></a></li>
+    <li><a href="XmlGlue_CAR.html"><span>脚本中的CAR构件及其使用</span></a></li>
+    <li class="current"><a href="XmlGlue_Globals.html"><span>预定义对象</span></a></li>
+  </ul>  
+</div>
+ <div class="tabs"> 
+  <ul>
+    <li><a href="Event_Object.html"><span>预定义对象Event参考</span></a></li>
+    <li><a href="Locale_Object.html"><span>预定义对象Locale参考</span></a></li>
+    <li class="current"><a href="LocaleManager_Object.html"><span>预定义对象LocaleManager参考</span></a></li>
+    <li><a href="Arguments_Object.html"><span>预定义对象Arguments参考</span></a></li>
+    <li><a href="Widget_Object.html"><span>预定义对象widget参考</span></a></li>
+  </ul>  
+</div>
+<h1>预定义对象LocaleManager参考</h1>
+<p>用来设置多语言环境，对Locale对象进行管理。
+<p>在使用此对象时，请确认已加载多语言包，并已在mainfest.xml正确设置此多语言包的信息，详见<a href="../Widgets/locale.html">多语言的使用</a>该章节。
+
+<p>
+<p>
+<hr><h2>方法</h2>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] U8String database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LocaleManager:SetLocale           </td>
+          <td>(</td>
+          <td class="paramtype">[in] U8String </td>
+          <td class="paramname">locale</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设置当前的语言环境的字符集，语言环境，如中文简体（zh_CN）,中文繁体（zh_TW）,英文（en）等。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>locale</em>&nbsp;</td><td>-语言环境，如中文简体（zh_CN）,中文繁体（zh_TW）,英文（en）等。</td></tr>
+  </table>
+</dl>
+
+</div>
+</div>
+<p>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] U8String database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LocaleManager:GetLocale          </td>
+          <td>(</td>
+          <td class="paramtype">[out] U8StringBuf *;  </td>
+          <td class="paramname">locale</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>
+获取当前的语言环境的字符集。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+      <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>locale</em>&nbsp;</td><td>-语言环境，如中文简体（zh_CN）,中文繁体（zh_TW）,英文（en）等。</td></tr>
+  </table>
+</dl>
+</div>
+</div>
+
+<p>
+<a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] U8String database)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LocaleManager:GetString          </td>
+          <td>(</td>
+          <td class="paramtype">[in] U8String</td><td class="paramname">stringID</td>
+        </tr>
+        <tr>
+	        <td class="paramkey"></td>
+        	<td></td>        	
+          <td class="paramtype">[out] U8StringBuf *  </td>
+          <td class="paramname"><em>localstring</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取当前语言环境下字符集中id为stringID的对应的字符串。
+<p>
+
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>stringID</em>&nbsp;</td><td>-当前语言环境下相应的多语言字符串的id属性值，用法为：Locale.<i>id</i>或"<i>id</i>"。</td></tr>
+      <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>localstring</em>&nbsp;</td><td>-返回的当前语言环境下的与stingID对应的的字符串。</td></tr>
+  </table>
+</dl>
+</div>
+</div>
+
+<hr><h2>事件</h2>
+   <a class="anchor" name="36135f8ceaea444c175b8a97d30fa1c8"></a><!-- doxytag: member="CDatabase::constructor" ref="36135f8ceaea444c175b8a97d30fa1c8" args="([in] U8String database)" -->
+  <div class="memitem">
+  <div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LocaleManager.LocaleChanged           </td>
+          <td>(</td>
+          <td class="paramtype">[in] U8String </td>
+          <td class="paramname">newLocale</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+当当前语言环境发生改变时触发此事件。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+   <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>newLocale</em>&nbsp;</td><td>-切换的语言环境，该参数需要通过<a href="Event_Object.html">Event</a>对象调用，用法为：Event.newLocale。</td></tr>
+  </table>
+</dl>
+</div>
+</div>       
+<script>footer("chinese")</script>
+
+
+</body>
+</html>

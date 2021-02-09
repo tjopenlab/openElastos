@@ -1,0 +1,50 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR属性关键字--applet </title>
+</head>
+
+<body>
+	<h2>applet</h2>
+	    <b>含义 </b>
+	        <p> 此属性用于修饰类，表示该类接口方法的调用具有类似于applet的接口方法行为。</p>
+	
+	    <b>语法 </b>
+	    	<pre class=code>
+[applet]
+class className classBody
+	        </pre>
+	    <b>使用范例 </b>
+<pre class= code>
+interface IBar {
+    Bar();
+}
+
+[applet]
+class CBar {
+    interface IBar;
+}
+</pre>
+
+<pre class= code>
+ ...
+IBar *pBar;
+ECode ec = CBar::New(&pBar);
+pBar->Bar();  //此调用类似于applet接口方法行为
+...
+</pre>
+	        <p>如果CBar没有applet属性，那么这是一个普通的接口方法的调用。</p>
+	        <p>上述代码片断中，对pBar->Bar()的调用，会转变为一个事件被抛到消息队列中，最终由pBar创建时所在的applet来完成实际的调用。 </p>
+
+        <b><a class="style1" href="../attribute.htm">【CAR属性关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

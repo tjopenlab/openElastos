@@ -1,0 +1,132 @@
+<html>
+<head>
+	<title>Operating Systems FAQ :: C++ Programming</title>
+
+	<link rel=stylesheet type="text/css" href="default.css">
+</head>
+
+<body>
+
+
+<P>&nbsp;</P>
+<TABLE border="0" width="100%">
+	<TR>
+		<TD><H2><A name="k6_writeback">AMD K6 WriteBack Optimisations</A></H2></TD>
+	</TR>
+	<TR>
+		<td>This source code uses GCC inline assembler (AT&amp;T syntax).
+		<p>I wrote and tested this on my own K6 (k6-200) and it works ok,
+		but I was unable to find anyone with a K6-2 (CXT core) or K6-3 since
+		there is two different methods for enabling writeback mode. It _should_
+		work fine on k6-2 CXT and K6-3 processors.
+		<p>With some tweaking, can be put into anyone's OS.
+		<p>You call AMD_K6_writeback with the CPUID results
+		family, model and stepping, only when you are sure
+		you have an AMD cpu.
+<pre>
+void AMD_K6_writeback(int family, int model, int stepping)
+{
+    /* mem_end == top of memory in bytes */
+    int mem=(mem_end>>20)/4; /* turn into 4mb aligned pages */
+    int c;
+    union REGS regs;
+
+    if(family==5)
+    {
+        c=model;
+
+        /* model 8 stepping 0-7 use old style, 8-F use new style */
+        if(model==8)
+        {
+            if(stepping<8)
+                c=7;
+            else
+                c=9;
+        }
+
+        switch(c)
+        {
+        /* old style write back */
+        case 6:
+        case 7:
+            AMD_K6_read_msr(0xC0000082, &amp;regs);
+            if(((regs.x.eax>>1)&0x7F)==0)
+                kprintf(&quot;AMD K6 : WriteBack currently disabled\n&quot;);
+            else
+                kprintf(&quot;AMD K6 : WriteBack currently enabled (%luMB)\n&quot;,
+                    ((regs.x.eax>>1)&0x7F)*4);
+
+            kprintf(&quot;AMD K6 : Enabling WriteBack to %luMB\n&quot;, mem*4);
+            AMD_K6_write_msr(0xC0000082, ((mem<<1)&0x7F), 0, &amp;regs);
+            break;
+
+        /* new style write back */
+        case 9:
+            AMD_K6_read_msr(0xC0000082, &amp;regs);
+            if(((regs.x.eax>>22)&0x3FF)==0)
+                kprintf(&quot;AMD K6 : WriteBack Disabled\n&quot;);
+            else
+                kprintf(&quot;AMD K6 : WriteBack Enabled (%luMB)\n&quot;,
+                    ((regs.x.eax>>22)&0x3FF)*4);
+
+            kprintf(&quot;AMD K6 : Enabled WriteBack (%luMB)\n&quot;, mem*4);
+            AMD_K6_write_msr(0xC0000082, ((mem<<22)&0x3FF), 0, &amp;regs);
+            break;
+        default:    /* dont set it on Unknowns + k5's */
+            break;
+        }
+    }
+}
+
+void AMD_K6_write_msr(ULONG msr, ULONG v1, ULONG v2, union REGS *regs)
+{
+    asm __volatile__ (
+        &quot;pushfl\n&quot;
+        &quot;cli\n&quot;
+        &quot;wbinvd\n&quot;
+        &quot;wrmsr\n&quot;
+        &quot;popfl\n&quot;
+        : &quot;=a&quot; (regs->x.eax),
+          &quot;=b&quot; (regs->x.ebx),
+          &quot;=c&quot; (regs->x.ecx),
+          &quot;=d&quot; (regs->x.edx)
+        : &quot;a&quot; (v1),
+          &quot;d&quot; (v2),
+          &quot;c&quot; (msr)
+        : &quot;eax&quot;,
+          &quot;ecx&quot;,
+          &quot;edx&quot;,
+          &quot;ebx&quot;,
+          &quot;memory&quot;);
+}
+
+void AMD_K6_read_msr(ULONG msr, union REGS *regs)
+{
+    asm __volatile__ (
+        &quot;pushfl\n&quot;
+        &quot;cli\n&quot;
+        &quot;wbinvd\n&quot;
+        &quot;xorl %%eax, %%eax\n&quot;
+        &quot;xorl %%edx, %%edx\n&quot;
+        &quot;rdmsr\n&quot;
+        &quot;popfl\n&quot;
+        : &quot;=a&quot; (regs->x.eax),
+          &quot;=b&quot; (regs->x.ebx),
+          &quot;=c&quot; (regs->x.ecx),
+          &quot;=d&quot; (regs->x.edx)
+        : &quot;c&quot; (msr)
+        : &quot;eax&quot;,
+          &quot;ecx&quot;,
+          &quot;edx&quot;,
+          &quot;ebx&quot;,
+          &quot;memory&quot;);
+}
+</pre>
+		</TD>
+	</TR>
+</TABLE>
+
+
+
+</body>
+</html>

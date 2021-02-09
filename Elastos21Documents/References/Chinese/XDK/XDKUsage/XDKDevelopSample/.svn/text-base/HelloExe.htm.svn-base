@@ -1,0 +1,65 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>开发应用程序</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h2>开发应用程序：Hello.exe</h2>
+
+
+<p>这一节中，我们将以在SDK中开发“hello world”样例的开发流程来说明如何用“Elastos”的模拟器环境来编译、链接以及运行一个应用程序。</p>
+<h3>1、创建应用程序目录</h3>
+<p>首先，我们在%XDK_SOURCE_PATH%目录下新建一个目录，用于放置源文件。新建目录的目录名尽量与应用程序名相近，此例中我们将新建目录命名为“hello”，注意，目录名不可包含中文字或空格，因为解析工具和编译工具不支持目录名包含中文字符或带有空格的路径。</p>
+<h3>2.编写源程序hello.cpp</h3>
+<p>建好应用程序的目录后，我们就可以着手编写源程序hello.cpp的代码了。源程序代码的编辑过程并不受开发环境所限制，您可以用您习惯用的编辑器来完成源代码的编辑工作。以下为一段简单的程序代码： </p>
+<pre>
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf("Hello World!\n");
+
+    return 0;
+}
+
+
+</pre>
+<p>开发程序中所要include的头文件是由开发环境提供的，全部放在%XDK_ROOT%\DevKit\ddk\inc，或%XDK_ROOT%\DevKit\pdk\inc，或%XDK_ROOT%\DevKit\sdk\inc目录下（具体位置根据用户当前使用的是哪个具体开发包而定）。如果您只用到了标准C或C++函数库里的函数，那么您只需按照标准C或C++函数要求，在源程序中include相应的头文件即可。</p>
+<h3>3.在相同目录下编写sources文件</h3>
+<p>在写完hello.cpp源程序后，还必须在hello.cpp同级目录下下编写sources文件（名为sources，且无扩展名的文件）。sources文件指定在当前目录下将生成的目标程序的名称、类型以及所需的源程序文件等。</p>
+<p>本例中，sources文件代码如下：</p>
+<pre>
+TARGET_NAME = hello
+TARGET_TYPE = exe
+
+SOURCES = hello.cpp
+
+ELASTOS_LIBS = elastos.lib
+ELASTOS_LIBS += ElCRuntime.lib
+</pre>
+<p>由以上代码可知，本例编译所需要产生的可执行文件为hello.exe，编译所需源程序为hello.cpp，需要链接的程序库为Elastos平台提供的系统库elastos.lib以及ElCRuntime.lib。</p>
+<h3>4.编译链接产生目标文件</h3>
+<p>编写完成源程序hello.cpp和sources文件，就开始进行下一步操作——编译链接。由于Elastos XDK提供多种编译环境，同一个源程序，在不同的开发环境下编译链接会生成不同版本的可执行文件，用户可以根据自己的需要选择不同的开发环境对源程序进行编译。</p>
+<p>开发环境提供了编译工具emake。打开任意开发环境窗口，进入hello目录，在命令行输入emake命令，编译系统便会对您的程序进行编译链接。具体命令如下：</p>
+<p>emake 回车</p>
+<p>如果编译器在编译过程中发现应用程序中有错误，编译会自动中止，并以error的方式提示您出错的信息。如果在链接过程中发现错误，编译仍然会通过，但是编译结束时，开发环境会以warning的方式提示您出错信息。如果您的程序正确无误，在编译链接之后，就会在当前目录的镜像目录下生成中间文件和最终的目标文件：depend.mk，hello.exe，hello.obj，hello.map，hello.pdb（使用MSVC win32开发环境为例）。</p>
+<p>用户可以通过命令“pd ~”（注意：pd后有一个空格）进入当前目录的镜像目录，查看目标文件信息。</p>
+<h3>5.运行可执行程序 hello.exe</h3
+<p>通过对应用程序进行编译链接后，就会在镜像目录里生成可执行文件，通过“pd ~”命令进入当前目录的镜像目录。</p>
+<p>如果想执行可执行文件hello.exe，就在进入镜像目录后，直接在命令行运行此程序：</p>
+<p>pd @</p>
+<p>%XDK_TARGETS%>elaura.exe hello.exe</p>
+<p>hello world!</p>
+<p>上面命令中的“elaura.exe”是启动模拟器，除了使用这种方式运行程序外，也可以先启动模拟器：elaura.exe，而后再启动可执行程序：hello.exe,来运行程序。</p>
+<p>如何从当前代码目录切换到镜像目录或目标目录，参见“Elastos XDK的镜像目录”一页中的“<a class="style1" href="../../XDKUsage/XDKCompile/MirrorDirectory.htm#DiretoryJump">如何查看镜像目录</a>”一节。</p>
+
+
+<script>footer("chinese")</script>
+</body>
+</html>

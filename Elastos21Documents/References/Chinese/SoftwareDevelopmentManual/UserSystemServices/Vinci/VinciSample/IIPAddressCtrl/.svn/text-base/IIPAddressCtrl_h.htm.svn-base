@@ -1,0 +1,75 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Elastos Database: TIPAddressDemo.h源文件</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+
+<h1>TIPAddressDemo.h</h1><div class="fragment"><pre class="fragment">
+<span class="preprocessor">#ifndef __TIPAddressDemo_H__</span>
+<span class="preprocessor"></span><span class="preprocessor">#define __TIPAddressDemo_H__</span>
+<span class="preprocessor"></span>
+<span class="preprocessor">#include "_TIPAddressDemo.h"</span>
+
+CarClass(TIPAddressDemo)
+{
+<span class="keyword">public</span>:
+    TIPAddressDemo();
+    ~TIPAddressDemo();
+
+    CARAPI Main(
+        <span class="comment">/* [in] */</span> <span class="keyword">const</span> BufferOf&lt;WString&gt; &amp; argcv);
+
+    CARAPI OnClear(
+        <span class="comment">/* [in] */</span> PInterface pIObject);
+
+    CARAPI OnGetAddress(
+        <span class="comment">/* [in] */</span> PInterface pIObject);
+
+    CARAPI OnSetAddress(
+        <span class="comment">/* [in] */</span> PInterface pIObject);
+
+    CARAPI OnSetFocus(
+        <span class="comment">/* [in] */</span> PInterface pIObject);
+
+    CARAPI OnSetRange(
+        <span class="comment">/* [in] */</span> PInterface pIObject);
+
+    CARAPI OnClose(
+        <span class="comment">/* [in] */</span> PInterface pIObject);
+
+    CARAPI Quit();
+
+    CARAPI Terminate();
+
+    CARAPI Activate();
+
+    CARAPI Deactivate();
+
+    CARAPI IsActivated(
+        <span class="comment">/* [out] */</span> Boolean * pActivated);
+
+    CARAPI Snooze();
+
+    CARAPI Wakeup();
+
+    CARAPI GetName(
+        <span class="comment">/* [out] */</span> WStringBuf * pName);
+
+<span class="keyword">private</span>:
+    IForm        * m_pMainForm;
+    IIPAddressCtrl      * m_pIAddressCtrl;
+    IButton *m_pIClear;
+    IButton *m_pIGetAddress;
+    IButton *m_pIBlank;
+    IButton *m_pISetAddress;
+    IButton *m_pISetFocus;
+    IButton *m_pISetRange;
+
+    IButton      * m_pIBtnClose;
+};
+
+<span class="preprocessor">#endif // __TIPAddressDemo_H__</span>
+</pre></div>
+</body>
+</html>

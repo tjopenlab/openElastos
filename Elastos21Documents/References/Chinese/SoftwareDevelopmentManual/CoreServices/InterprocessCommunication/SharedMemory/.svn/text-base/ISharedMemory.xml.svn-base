@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/interfaceman.xsl"?>    <manpage>
+    <volume>内存共享</volume>
+    <interface> ISharedMemory </interface>
+    <methods>
+<self>
+    <method>
+        <method_name>Attach</method_name>
+        <method_url>ISharedMemory\Attach</method_url>
+    <m_description>
+		映射共享内存到进程空间
+    </m_description>
+    </method>
+    <method>
+        <method_name>Detach</method_name>
+        <method_url>ISharedMemory\Detach</method_url>
+    <m_description>
+		去除共享内存在进程空间中的映射
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+	<remarks>
+		<para>
+		 通常我们可以通过<link url="Function/CSharedMemory/New.htm">CSharedMemory::New</link>去创建一个内核共享内存对象，通过返回的接口指针用Attach方法将获得的共享内存和虚拟地址绑定，然后可以对该虚拟地址上的空间进行读写操作。其它进程则可以通过<link url="../../CARServices/NamingService/CSystem/FindRunningObject.htm">CSystem::FindRunningObject</link>找到该共享内存，并对其进行相应操作。
+		</para>
+	</remarks>
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

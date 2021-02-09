@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\malloc">malloc</sample>
+    <title> malloc</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>分配内存块。</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <func_name>malloc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>所需分配内存的字节数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数malloc返回void型指针，该指针指向所分配的空间；如果内存不够分配，返回NULL。为了返回void类型以外的指针，要对返回值进行类型转换。返回值指向的存储空间会被恰当地分配，以保证存储任一类型的对象。如果参数size为0，函数malloc在堆中分配长度为0的对象，并返回指向该对象的有效指针。即使所要分配的内存数量较少，也应每次都检查malloc函数的返回值。</para>
+    </return>
+
+    <remarks>
+        <para>函数malloc分配的内存块，至少size个字节。因为内存对齐和存放维护信息等原因，分配的内存块可能大于size个字节。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>malloc</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* malloc.cpp:This program allocates memory with
+ * malloc, then frees the memory with free.
+ */
+
+#include &lt;stdlib.h&gt;            /* For _MAX_PATH definition */
+#include &lt;stdio.h&gt;
+#include &lt;malloc.h&gt;
+
+int main()
+{
+    char *string;
+
+    /* Allocate space for a path name */
+    string = (char *)malloc(_MAX_PATH);
+    if (string == NULL)
+        printf(&quot;Insufficient memory available\n&quot;);
+    else {
+        printf(&quot;Memory space allocated for path name\n&quot;);
+        free(string);
+        printf(&quot;Memory freed\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Memory space allocated for path name
+Memory freed
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_alloca </ref_name>
+            <ref_url>../malloc/_alloca</ref_url>
+        </reference>
+        <reference>
+            <ref_name>free</ref_name>
+            <ref_url>free</ref_url>
+        </reference>
+        <reference>
+            <ref_name>realloc</ref_name>
+            <ref_url>realloc</ref_url>
+        </reference>
+    </references>
+
+</manpage>

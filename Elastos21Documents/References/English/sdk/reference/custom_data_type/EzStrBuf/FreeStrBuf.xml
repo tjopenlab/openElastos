@@ -1,0 +1,67 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzStrBuf\freebuf">FreeStrBuf</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzStrBuf </interface>
+    <method> FreeStrBuf </method>
+
+    <description>
+        <para> Releases the memory allocated by AllocStrBuf or AllocStrBufLen method. </para>
+    </description>
+
+    <syntax>
+        <return_val> static void </return_val>
+        <parameters>
+        <api_param>
+            <param_type> EzStrBuf&amp; </param_type>
+            <param_name> buf </param_name>
+            <param_note>
+                <para> An existing EzStrBuf object. </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStrBuf pe = EzStrBuf::AllocStrBuf(20);
+    printf("The capacity of the string is %d.\n", pe.Capacity());
+    EzStrBuf::FreeStrBuf(pe);
+    printf("The allocated memory has been freed.\n");
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+The capacity of the string is 20.
+The allocated memory has been freed.
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name> AllocStrBuf </ref_name>
+            <ref_url> AllocStrBuf </ref_url>
+        </reference>
+        <reference>
+            <ref_name> AllocStrBufLen </ref_name>
+            <ref_url> AllocStrBufLen </ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="libc\string\strchr">strchr</sample>
+    <title> strchr, wcschr</title>
+    <volume>C Run-Time Library</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>Find a character in a string.</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>strchr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>Null-terminated source string.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Character to be located.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>wcschr</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wint_t</param_type>
+                <param_name>c</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Both functions returns a pointer to the first occurrence of c in string or NULL if c is not found.</para>
+    </return>
+
+    <remarks>
+        <para>The strchr function finds the first occurrence of c in string or it returns NULL if c is not found. The null-terminating character is included in the search.</para>
+        <para>wcschr is a wide-character version of strchr. The arguments and return value of wcschr are wide-character strings. Both functions behave identically otherwise.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>strchr</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>wcschr</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example><pre><![CDATA[
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+
+#include <string.h>
+#include <stdio.h>
+
+wchar_t ch = L'r';
+wchar_t string[] = L"The quick brown dog jumps over the lazy fox";
+wchar_t fmt1[] = L"         1         2         3         4         5";
+wchar_t fmt2[] = L"12345678901234567890123456789012345678901234567890";
+
+int __cdecl wmain()
+{
+    wchar_t *pdest;
+    int result;
+    wprintf(L"String to be searched:\n\t\t%s\n", string);
+    wprintf(L"\t\t%s\n\t\t%s\n\n", fmt1, fmt2);
+
+    wprintf(L"Search wchar_t:\t%c\n", ch);
+    pdest = wcschr(string, ch);
+    result = pdest - string + 1;
+    if (pdest != NULL)
+        wprintf(L"Result:\t\tfirst %c found at position %d\n\n", ch, result);
+    else
+        wprintf(L"Result:\t\t%c not found\n", ch);
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+String to be searched:
+                The quick brown dog jumps over the lazy fox
+                         1         2         3         4         5
+                12345678901234567890123456789012345678901234567890
+
+Search char:   r
+Result:        first r found at position 12
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> wcsncat </ref_name>
+            <ref_url>  wcsncat </ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncmp </ref_name>
+            <ref_url>  wcsncmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> wcsncpy </ref_name>
+            <ref_url>  wcsncpy </ref_url>
+        </reference>
+        <reference>
+            <ref_name> _wcsnicmp </ref_name>
+            <ref_url>  _wcsnicmp </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strpbrk </ref_name>
+            <ref_url>  strpbrk </ref_url>
+        </reference>
+        <reference>
+            <ref_name> strrchr </ref_name>
+            <ref_url>  strrchr </ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<!--<sample url="sdk\operating_system\system_com_interface\IActiveTimer">SetInterval</sample>-->
+<volume>定时器</volume>
+<interface>IActiveTimer</interface><method> SetInterval </method>
+    <description>
+        <para>设置时间间隔</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+       <parameters>
+            <api_param>
+              <param_inout>[in]</param_inout>
+                <param_type> Millisecond32  </param_type>
+                <param_name> interval </param_name>
+                <param_note>
+                    <para>定时器的时间间隔</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		本方法设置定时器的时间间隔，不应小于30ms。对于一个已经开始计时的定时器，调用这个方法设置的时间间隔，将在本次间隔到期、下次计时开始时起作用。		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

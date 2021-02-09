@@ -1,0 +1,120 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\putc">putc</sample>
+    <title> putc, putwc </title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes the character c (converted to an "unsigned char") to the output stream pointed to by stream. </para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>putc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Character to be written.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>putwchar</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wint_t</param_type>
+                <param_name>c</param_name>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Each of these functions returns the character written. To indicate an error or end-of-file condition, putc and putchar return EOF; putwc and putwchar return WEOF. For all four routines, use <link url="ferror.htm">ferror</link> or <link url="feof.htm">feofr</link> to check for an error or end of file. </para>
+    </return>
+
+    <remarks>
+        <para>The putc routine writes the single character c to the output stream at the current position. Any integer can be passed to putc, but only the lower 8 bits are written. The putchar routine is identical to putc. For each routine, if a read error occurs, the error indicator for the stream is set. putwc and putwchar are wide-character versions of putc and putchar, respectively. </para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>putc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>putwc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* putc.cpp: This program uses putc to write buffer
+ * to a stream. If an error occurs, the program
+ * stops before writing the entire buffer.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE *stream;
+    char *p, buffer[] = &quot;This is the line of output\n&quot;;
+    int  ch;
+
+    ch = 0;
+    /* Make standard out the stream and write to it. */
+    stream = stdout;
+    for (p = buffer; (ch != EOF) &amp;&amp; (*p != &apos;\0&apos;); p++)
+        ch = putc(*p, stream);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+This is the line of output
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fputc</ref_name>
+            <ref_url>fputc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getc</ref_name>
+            <ref_url>getwc</ref_url>
+        </reference>
+    </references>
+
+</manpage>

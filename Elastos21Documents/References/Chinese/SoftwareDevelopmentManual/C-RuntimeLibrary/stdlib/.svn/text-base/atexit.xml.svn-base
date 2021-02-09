@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\atexit">atexit</sample>
+    <title> atexit </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>进程退出时执行指定函数。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>atexit</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void</param_type>
+                <param_name>(__cdecl *func)(void)</param_name>
+                <param_note>
+                    <para>函数指针，指向将调用的函数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>成功返回0，出错返回非零值。</para>
+    </return>
+
+    <remarks>
+        <para>当程序正常终止时，将要调用的函数(func)的入口地址传递给函数atexit。成功调用atexit函数，将按后进先出（LIFO）的顺序，为执行的函数生成一张注册表。传递给atexit的函数不能带参数。atexit将函数注册表保存在堆中。因此，可登记的函数数目仅受限于堆的大小。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>atexit</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* atexit.cpp: This program pushes four functions onto
+ * the stack of functions to be executed when atexit
+ * is called. When the program exits, these programs
+ * are executed on a &quot;last in, first out&quot; basis.
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+void __cdecl fn1()
+{
+    printf(&quot;next.\n&quot;);
+}
+
+void __cdecl fn2()
+{
+    printf(&quot;executed &quot;);
+}
+
+void __cdecl fn3()
+{
+    printf(&quot;is &quot;);
+}
+
+void __cdecl fn4()
+{
+    printf(&quot;This &quot;);
+}
+
+int main()
+{
+    atexit(fn1);
+    atexit(fn2);
+    atexit(fn3);
+    atexit(fn4);
+    printf(&quot;This is executed first.\n&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+This is executed first.
+This is executed next.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>abort</ref_name>
+            <ref_url>abort</ref_url>
+        </reference>
+        <reference>
+            <ref_name>exit</ref_name>
+            <ref_url>exit</ref_url>
+        </reference>
+    </references>
+
+</manpage>

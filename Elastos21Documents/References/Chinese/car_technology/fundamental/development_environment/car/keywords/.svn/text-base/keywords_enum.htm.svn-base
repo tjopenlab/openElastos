@@ -1,0 +1,57 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2009,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+<title>CAR关键字--enum </title>
+</head>
+
+<body>
+	<h2>enum</h2>
+	    <b>含义 </b>
+	        <p>此关键字用于定义枚举类型，使用方法与C语言中的enum用法基本相同。 </p>
+	
+	    <b>语法 </b>
+	    	<p><b>enum</b> enumName enumBody;  </p>
+	    <b>使用说明 </b>
+	        <p>枚举类型中的成员命名必须使用枚举类型名前缀。 </p>
+	        <p>CAR文件中枚举类型的定义目前不支持下面定义的形式。 </p>
+<pre class= code>
+enum  {
+  
+    ...
+} EnumName;
+
+</pre>
+	    <b>使用范例 </b>
+<pre class= code>
+module
+{
+    ...
+    
+    <b>enum</b> MyEnum {
+        MyEnum_red,
+        MyEnum_blue,
+        MyEnum_white = 1976,
+        MyEnum_black,
+    }
+    interface IMyEnum {
+        ECode Func([in] MyEnum eMyEnum);
+    }
+    
+    ...
+}
+
+</pre>
+	        <p>示例中，在CAR文件中定义了一个枚举类型MyEnum以及使用MyEnum类型的参数eMyEnum，其中类型MyEnum成员名字均以MyEnum_开头。 </p>
+
+        <b><a class="style1" href="../keyword.htm">【CAR关键字列表】</a></b>
+<script>footer("chinese")</script>
+
+</body>
+
+</html>

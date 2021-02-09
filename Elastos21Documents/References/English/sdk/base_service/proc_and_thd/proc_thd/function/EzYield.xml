@@ -1,0 +1,66 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\EzYield"> EzYield </sample>
+    <volume>System API</volume>
+    <title>CThread::Yield</title>
+    <routine_idx> ..\thread_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	A thread calls this function to give up the rest of its time slice.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+            <NoArguments/>
+    </syntax>
+
+    <return>
+    	<table>
+    	<thead>
+    	<td>Return value</td>
+    	<td> Description</td>
+    	</thead>
+    	<tr>
+    	<td>NOERROR</td>
+    	<td>Successfully executing</td>
+    	</tr>
+    	</table>
+        <para>See <link url="../../hresult.htm">ECODE</link> related help for more details.</para>
+    </return>
+
+    <remarks>
+        <para>
+	        Calling <b>CThread::Yield</b> function will give up the rest of the current thread's time slice. The particular 
+	        operation is based on the scheduler policy. In a time-sharing policy, calling <b>CThread::Yield</b> may reduce 
+	        the priority of the thread. In a real-time policy, calling this method will suspend the thread until all 
+	        the threads end, which have the same priority with the current thread. If no such threads exists, the 
+	        current thread will continue to execute.
+	    </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+    </requirements>
+  <references>
+    <reference>
+        <ref_name>CThread::Sleep</ref_name>
+        <ref_url>EzSleep</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CThread::Delay</ref_name>
+        <ref_url>EzDelay</ref_url>
+    </reference>
+    </references>
+    </manpage>

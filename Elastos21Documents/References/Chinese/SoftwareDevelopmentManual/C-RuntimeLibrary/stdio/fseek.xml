@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fseek">fseek</sample>
+    <title>fseek</title>
+    <volume>C 运行库函数</volume>
+   	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>将文件指针移动到指定位置。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fseek</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>offset</param_name>
+                <param_note>
+                    <para>相对origin的偏移字节数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>origin</param_name>
+                <param_note>
+                    <para>初始位置</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>如果成功，返回0。否则，返回非零值。如果设备无法查找，没有定义此类情况的返回值。</para>
+    </return>
+
+    <remarks>
+        <para>函数fseek将文件指针移动到新位置，新位置相对初始位置的偏移量是offset个字节，下一次操作在新位置进行。在被打开的文件流中，下一次操作既可以是读，也可以是写。参数origin必须是如下常量（定义在stdio.h里）中的一个：</para>
+        <table>
+            <th>
+                <td>参数origin的值</td>
+                <td>描述</td>
+            </th>
+	        <tr>
+		        <td>SEEK_CUR</td>
+        	    <td>文件指针的当前位置</td>
+	        </tr>
+	        <tr>
+		        <td>SEEK_END</td>
+        	    <td>文件尾</td>
+	        </tr>
+	        <tr>
+		        <td>SEEK_SET</td>
+        	    <td>文件头</td>
+	        </tr>
+	    </table>
+        <para>函数fseek可以将文件指针定位到文件的任意一个位置，甚至可以超出文件尾。fseek清除文件结束标志，并且取消以前任何调用函数ungetc对文件流产生的作用。</para>
+        <para>当打开文件准备追加数据时，文件指针的当前位置由最后一次I/O操作决定，而不是由将要写入的位置决定。如果在此文件上还没有做过任何I/O操作，文件指针指向文件头。</para>
+        <para>对于以文本模式打开的文件流，由于回车换行符的转换会导致fseek产生不可预期的结果，fseek的使用受到限制。仅有以下两种以文本模式打开的文件流，可以保证fseek正常工作：</para>
+        <para>·以0偏移量定位文件指针。</para>
+        <para>·从文件开始处，以调用函数ftell返回的偏移量定位。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fseek</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fseek.cpp: This program opens the file FSEEK.OUT and
+ * moves the pointer to the file&apos;s beginning.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    FILE *stream;
+    char line[81];
+    int  result;
+
+    stream = fopen(&quot;fseek.out&quot;, &quot;w+&quot;);
+    if (stream == NULL)
+        printf(&quot;The file fseek.out was not opened\n&quot;);
+    else {
+        fprintf(stream, &quot;The fseek begins here: &quot;
+                              &quot;This is the file &apos;fseek.out&apos;.\n&quot;);
+        result = fseek(stream, 23L, SEEK_SET);
+        if (result)
+            perror(&quot;Fseek failed&quot;);
+        else {
+            printf(&quot;File pointer is set to middle of first line.\n&quot;);
+            fgets(line, 80, stream);
+            printf(&quot;%s&quot;, line);
+
+        }
+        fclose(stream);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+File pointer is set to middle of first line.
+This is the file &apos;fseek.out&apos;.
+</result>
+
+   
+
+    <references>
+        <reference>
+            <ref_name>ftell</ref_name>
+            <ref_url>ftell</ref_url>
+        </reference>
+        <reference>
+            <ref_name>rewind</ref_name>
+            <ref_url>rewind</ref_url>
+        </reference>
+    </references>
+
+</manpage>

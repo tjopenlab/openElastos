@@ -1,0 +1,56 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/custom_type.xsl"?>    <manpage>
+    <volume>通讯引擎</volume>
+    <types> TAPITIME </types>
+    <description>
+        <para>
+            TAPI时间
+        </para>
+    </description>
+
+  <struct>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwNumOfCall</mem_name>
+            <mem_description>发生事件的电话数目，也即crResult的元素个数 </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>DWORD</mem_type>
+            <mem_name>dwErrorCode</mem_name>
+            <mem_description>错误码（见TAPI_CSERR） </mem_description>
+        </struct_member>
+        <struct_member>
+            <mem_type>TAPI_CALLRESULT</mem_type>
+            <mem_name>crResult[TAPI_MAX_CURRENT_NUMOFCALL]</mem_name>
+            <mem_description><link url="..\Gsm\TAPI_CALLRESULT.htm">TAPI_CALLRESULT</link>结构类型的，表示通话结果信息，为<link url="..\Gsm\TAPI_CALLINFO.htm">TAPI_CALLINFO</link>结构的一个子集</mem_description>
+        </struct_member>
+    </struct>
+    <remarks>
+      <para>
+        TAPI_CSERR定义如下：
+      </para>
+      <table>
+       <th>
+         <tr>
+           <td>取值</td><td>描述</td>
+         </tr>
+       </th>
+       <tr>
+           <td>TAPI_CSERR_NOERROR</td><td>无错误</td>
+         </tr>
+       <tr>
+           <td>TAPI_CSERR_BUSY</td><td>对方忙</td>
+         </tr>
+       <tr>
+           <td>TAPI_CSERR_NOANSWER</td><td>无应答</td>
+         </tr>
+       <tr>
+           <td>TAPI_CSERR_NOCARRIER</td><td>无载波</td>
+         </tr>
+       <tr>
+           <td>TAPI_CSERR_NOSPECIAL</td><td>未知错误</td>
+         </tr>
+      </table>
+    </remarks>
+
+</manpage>

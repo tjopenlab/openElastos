@@ -1,0 +1,55 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+<script src="/xsl/docstyles.js"></script>
+
+<title>Executable Code Run-Time Environment (context)</title>
+</head>
+
+<body>
+<h2>Executable Code Run-Time Environment (context)</h2>
+    <p>When writing CAR program, the user usually invokes <b>Instantiate</b> method to initialize object. Parameter <i>dwClsContext</i> of this method is used to specify relative location of object to client. It's available options are listed as the following: </p>
+    <table>
+        <THEAD>
+            <TD>Parameter Options</TD>
+            <TD>Description</TD>
+        </THEAD>
+        <TR>
+            <TD>CTX_SAME_DOMAIN</TD>
+            <TD>Object and client are located in the same address space</TD>
+        </TR>
+        <TR>
+            <TD>CTX_DIFF_DOMAIN</TD>
+            <TD>Object and client are located in different address spaces, but they are in the same process</TD>
+        </TR>
+        <TR>
+            <TD>CTX_KERN_DOMAIN</TD>
+            <TD>Object and client are located in different address spaces and the object is running in the kernel</TD>
+        </TR>
+        <TR>
+            <TD>CTX_DIFF_PROCESS</TD>
+            <TD>Object and client are located in different process spaces, but they are in the same machine</TD>
+        </TR>
+        <TR>
+            <TD>CTX_DIFF_MACHINE</TD>
+            <TD>Object and client are located in different machines</TD>
+        </TR>
+    </table>
+    <p>The five options of the parameter are related to program execution efficiency and security issues.</p>
+    <ul>
+        <li>When the parameter value is CTX_SAME_DOMAIN, program is the most efficient, for object and client are located in the same address space, no context&nbsp;switch is needed. Direct pointer jump can be used. When parameter value is CTX_SAME_DOMAIN, program security is the worst. For now object and client live and die together.If any party executes illegal instruction, both object and client will crash.
+        <li>When the parameter value is CTX_DIFF_DOMAIN, keeps a certain level of security, object and client cannot visit eachother's private data. It's efficiency is worse than CTX_SAME_DOMAIN.
+        <li>When the parameter value is CTX_KERN_DOMAIN, similarily a certain level of security is ensured, <b>this parameter is required when creating file system object, other situations will not use this parameter</b>.
+        <li>When the parameter value is CTX_DIFF_PROCESS, object and client are located in different process, even one of the process crashes, it won't affect the other process.
+        <li>When the parameter value is CTX_DIFF_MACHINE, object and client are located in different machines, even one of the machine crashes, it won't affect the program running on the other machine.</p>
+    </ul>
+    <p><font color="red"><b>Note: </b>Currently Elastos&nbsp;2.0 only supports CTX_SAME_DOMAIN and CTX_KERN_DOMAIN (CTX_KERN_DOMAIN is only used when creating file system object).</font></p>
+
+<script>footer("english")</script>
+</body>
+</html>

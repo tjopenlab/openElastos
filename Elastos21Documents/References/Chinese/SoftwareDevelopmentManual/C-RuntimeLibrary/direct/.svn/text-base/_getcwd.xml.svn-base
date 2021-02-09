@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\direct\_getcwd">_getcwd</sample>
+    <title> _getcwd, _wgetcwd </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> dir_idx.htm </routine_idx>
+
+    <description>
+        <para>获取当前的工作目录。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>_getcwd</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>buffer</param_name>
+                <param_note>
+                    <para>存储返回的路径</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>maxlen</param_name>
+                <param_note>
+                    <para>路径最大的字符个数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_wgetcwd</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>buffer</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>maxlen</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数返回指向buffer的指针。如果函数在执行过程中出现错误，函数返回NULL，并将错误号置为下列值：</para>
+        <table>
+            <th>
+                <td>错误号</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>ENOENT</td>
+                <td>路径没有找到</td>
+            </tr>
+            <tr>
+                <td>ERANGE</td>
+                <td>表明路径的长度大于maxlen个字符</td>
+            </tr>
+            <tr>
+                <td>ENOMEM</td>
+                <td>当参数buffer为NULL时，发现没有足够的内存分配maxlen字节大小</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>_getcwd函数获取默认驱动器下全部的当前工作路径，并存储在buffer中。整型参数maxlen指定了路径的最大长度。如果路径的长度超过了maxlen，则会产生错误。buffer参数可以是NULL；通过malloc，会自动分配大小至少为maxlen的buffer（如果必要会更大），来存储路径。可以调用free来释放这个buffer。向free中传递_getcwd返回的值（指向分配buffer的指针）。</para>
+        <para>_getcwd返回表达了当前工作路径的字符串。如果当前工作路径是根目录，字符串以“\”结尾。如果当前工作目录不是根目录，字符串以目录名结尾，后面没有“\”。</para>
+        <para>_wgetcwd是_getcwd的宽字符版本；buffer参数和_wgetcwd的返回值是宽字节字符串，除此外两者一样。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_getcwd</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wgetcwd</routine_name>
+            <headerfile>direct.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _getcwd.cpp:This program places the name of the current directory in the
+ * buffer array, then displays the name of the current directory
+ * on the screen. Specifying a length of _MAX_PATH leaves room
+ * for the longest legal path name.
+ */
+
+#include &lt;direct.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buffer[_MAX_PATH];
+
+    /* Get the current working directory: */
+    printf(&quot;the current working directory is:\n&quot;);
+    if (_getcwd(buffer, _MAX_PATH) == NULL)
+        perror(&quot;_getcwd error&quot;);
+    else
+        printf(&quot;%s\n&quot;, buffer);
+
+   return 0;
+}
+</pre>
+    </example>
+<result>
+the current working directory is:
+/
+</result>
+
+    
+
+</manpage>

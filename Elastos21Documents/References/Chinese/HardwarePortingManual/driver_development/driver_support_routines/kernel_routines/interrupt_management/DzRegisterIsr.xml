@@ -1,0 +1,76 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>中断管理</volume>
+    <title>DzRegisterIsr</title>
+    <routine_idx> ../interrupt_management.htm </routine_idx>
+
+    <description>
+        <para>为指定的硬件中断注册相应的中断服务例程。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+        <parameters>
+            <api_param>
+                <param_type> irq_t</param_type>
+                <param_name> irq </param_name>
+                <param_note>
+                    <para>所指定的硬件中断的中断号</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> ipl_t</param_type>
+                <param_name> ipl </param_name>
+                <param_note>
+                    <para>所指定的硬件中断的中断优先级，必须为IPL0到IPL31</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> isr_t</param_type>
+                <param_name> isr </param_name>
+                <param_note>
+                    <para>指向被注册的<link url="DeviceIsr.htm">中断服务例程回调函数</link></para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> void *</param_type>
+                <param_name> pvDevice </param_name>
+                <param_note>
+                    <para>附加信息指针。当被注册的中断服务例程回调函数被调用时，会将该附加信息指针作为一个参数传入</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>本函数为指定的硬件中断注册相应的中断服务例程。系统启动后，所有的硬件中断都处于未激活状态。该中断服务例程一旦被成功注册，系统就能够响应所指定的硬件中断了（即，指定的硬件中断将处于激活状态）。当系统响应此硬件中断时，会调用被注册的中断服务例程进行相应处理。</para>
+        <para>如果已经在指定的硬件中断上注册了的某个中断服务例程，那么当前被注册的中断服务例程会覆盖掉先前注册的那个。</para>
+        <para>可以为多个硬件中断注册同一个中断服务例程，当系统响应其中任意一个硬件中断时，都会调用该中断服务例程进行相应处理。因此，对该中断服务例程的调用可能会被重入。</para>
+        <para>指定的硬件中断的中断号具体取决于特定的硬件架构。</para>
+        <para>关于中断服务例程回调函数参见<link url="DeviceIsr.htm">DeviceIsr</link>。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>DzUnregisterIsr</ref_name>
+            <ref_url>DzUnregisterIsr</ref_url>
+        </reference>
+    </references>
+
+</manpage>

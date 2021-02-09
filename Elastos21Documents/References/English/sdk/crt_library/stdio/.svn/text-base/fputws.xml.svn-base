@@ -1,0 +1,116 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fputs">fputs</sample>
+    <title> fputs, fputws</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes the string pointed to by string to the stream pointed to by stream.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fputs</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>Output string; pointer to string to be written to file stream.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fputws</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The function returns a nonnegative value if successful. On error, fputs returns EOF and fputws returns WEOF.</para>
+    </return>
+
+    <remarks>
+        <para>The function copies string to the output stream at the current position. fputws copies the wide-character argument string to stream as a multibyte-character string or a wide-character string according to whether stream is opened in text mode or binary mode, respectively. Function does not copy the terminating NULL character.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fputs</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>fputws</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fputs.cpp: TThis program uses fputs to write
+ * a single line to the stdout stream.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    fputs(&quot;Hello world from fputs.\n&quot;, stdout);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Hello world from fputs.
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fgetws</ref_name>
+            <ref_url>fgetws</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_getws</ref_name>
+            <ref_url>_getws</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_putws</ref_name>
+            <ref_url>_putws</ref_url>
+        </reference>
+    </references>
+
+</manpage>

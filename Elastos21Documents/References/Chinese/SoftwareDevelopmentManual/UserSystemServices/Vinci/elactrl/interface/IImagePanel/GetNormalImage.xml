@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IImagePanel</interface><method> GetNormalImage </method>
+    <description>
+        <para>
+            获取图片面板中的窗格在无焦点且不被选中时的图片。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IImage ** </param_type>
+                <param_name> normalImage </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../../graphics/interface/IImage.htm">IImage</link> 接口的指针的指针，用于获取窗格在无焦点且不被选中时的图片对象的接口，不能为 NULL</para>
+                </param_note>
+            </api_param>                                   
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        参数地址为 NULL 时，方法将调用失败。
+    </para>
+    <para>
+    	  成功调用该方法获取图片对象的接口时，会自动对该接口的引用计数加 1，故一旦不再需要该接口，需要调用 Release() 方法释放该接口，否则在销毁 ImagePanel 对象时将造成内存泄漏。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CImagePanel 类介绍 </ref_name>
+        <ref_url>../../class/ImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IImagePanel 接口方法列表</ref_name>
+        <ref_url>../IImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetNormalImage</ref_name>
+        <ref_url>SetNormalImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetFocusedPressedImage</ref_name>
+        <ref_url>GetFocusedPressedImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetFocusedPressedImage</ref_name>
+        <ref_url>SetFocusedPressedImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetFocusedImage</ref_name>
+        <ref_url>GetFocusedImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetFocusedImage</ref_name>
+        <ref_url>SetFocusedImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetPressedImage</ref_name>
+        <ref_url>GetPressedImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetPressedImage</ref_name>
+        <ref_url>SetPressedImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetDisabledImage</ref_name>
+        <ref_url>GetDisabledImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetDisabledImage</ref_name>
+        <ref_url>SetDisabledImage</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GetPanelImages</ref_name>
+        <ref_url>GetPanelImages</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetPanelImages</ref_name>
+        <ref_url>SetPanelImages</ref_url>
+    </reference>
+</references>
+</manpage>

@@ -1,0 +1,217 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2007,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>图形控件ITrackBar</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+
+<h3> ITrackBar 范例程序 </h3>
+
+<h3> TTrackSam.h </h3>
+<pre class = "code">
+
+#ifndef __TTrackSam_H__
+#define __TTrackSam_H__
+
+#include "_TTrackSam.h"
+
+CarClass(TTrackSam)
+{
+public:
+    TTrackSam();
+    ~TTrackSam();
+    CARAPI Main(
+        /* [in] */ const BufferOf<WString> & argcv);
+
+    CARAPI OnValueChanged(
+        /* [in] */ PInterface pIObject, Int32 nValue);
+
+    CARAPI OnClose(
+        /* [in] */ PInterface pIObject);
+
+    CARAPI Quit();
+
+    CARAPI Terminate();
+
+    CARAPI Activate();
+
+    CARAPI Deactivate();
+
+    CARAPI IsActivated(
+        /* [out] */ Boolean * pActivated);
+
+    CARAPI Snooze();
+
+    CARAPI Wakeup();
+
+    CARAPI GetName(
+        /* [out] */ WStringBuf * pName);
+private:
+    IForm        * m_pMainForm;
+    ITrackBar    * m_pIHTrack;
+    ITrackBar    * m_pIVTrack;
+    IButton      * m_pIBtnClose;
+};
+
+#endif // __TTrackSam_H__
+
+</pre>
+<h3> TTrackSam.cpp </h3>
+<pre class = "code">
+
+#include "TTrackSam.h"
+#include "_TTrackSam.cpp"
+#include <stdio.h>
+
+TTrackSam::TTrackSam()
+{
+    m_pIVTrack = NULL;
+    m_pMainForm = NULL;
+    m_pIHTrack = NULL;
+    m_pIBtnClose = NULL;
+}
+
+TTrackSam::~TTrackSam()
+{
+    if (m_pMainForm) {
+        m_pMainForm->Release();
+    }
+
+    if (m_pIHTrack) {
+        m_pIHTrack->Release();
+    }
+
+    if (m_pIVTrack) {
+        m_pIVTrack->Release();
+    }
+
+    if (m_pIBtnClose) {
+        m_pIBtnClose->Release();
+    }
+}
+
+ECode TTrackSam::Main(
+    /* [in] */ const BufferOf<WString> & argcv)
+{
+
+////////////    form
+    CForm::New(L"MAIN", 0, 0, 0, 200, 280, NULL,&m_pMainForm);
+
+    printf("m_pMainForm = %x\n", m_pMainForm);
+
+///////////     htrack
+    CTrackBar::New(L" ", 0, 10, 50, 120, 50,  m_pMainForm,&m_pIHTrack);
+
+    printf("m_pIHTrack = %x\n", m_pIHTrack);
+
+    CTrackBar::AddValueChangedCallback(m_pIHTrack,
+                 this, &TTrackSam::OnValueChanged);
+
+    //DebugBreak();
+    //m_pMainForm->GrabKey(Keys_Q, 0);
+
+///////////////  Exit Button
+    CButton::New(L"Exit", 0, 0, 0, 80, 30, m_pMainForm,&m_pIBtnClose);
+
+    CButton::AddClickCallback(m_pIBtnClose,
+                 this, &TTrackSam::OnClose);
+
+    m_pMainForm->Show();
+
+    return NOERROR;
+}
+
+ECode TTrackSam::OnValueChanged(
+    /* [in] */PInterface pIObject, Int32 nValue)
+{
+    printf("OnValueChanged:this = %x\n", pIObject);
+    return NOERROR;
+}
+
+ECode TTrackSam::OnClose(
+    /* [in] */ PInterface pIObject)
+{
+    m_pMainForm->Close();
+    return NOERROR;
+}
+
+ECode TTrackSam::Quit()
+{
+    return NOERROR;
+}
+
+ECode TTrackSam::Terminate()
+{
+    return NOERROR;
+}
+
+ECode TTrackSam::Activate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTrackSam::Deactivate()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTrackSam::IsActivated(
+    /* [out] */ Boolean * pActivated)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTrackSam::Snooze()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTrackSam::Wakeup()
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+ECode TTrackSam::GetName(
+    WStringBuf * name)
+{
+    // TODO: Add your code here
+    return E_NOT_IMPLEMENTED;
+}
+
+</pre>
+
+<h3> tracksam.car </h3>
+<pre class = "code">
+module www.koretide.com/ezcom/tracksam.dll
+{
+    importlib("elcontrols.dll");
+
+    applet TTrackSam {}
+}
+</pre>
+
+<h3> sources </h3>
+<pre class = "code">
+TARGET_NAME= tracksam
+TARGET_TYPE= dll
+
+SOURCES= \
+    tracksam.car \
+    TTrackSam.cpp \
+
+LIBRARIES = $(XDK_USER_LIB)\ElCRuntime.lib     $(XDK_LIB_PATH)\elastos.lib \
+</pre>
+<script>footer("KoreTide")</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\atan">atan</sample>
+    <title> atan, atan2</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>The atan function computes the principal value of the arctangent of x.</para>
+    </description>
+
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>atan</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+                <param_note>
+                    <para>Any double precision numbers.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+    <syntax>
+        <return_val>double</return_val>
+        <func_name>atan2</func_name>
+        <parameters>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>y</param_name>
+                <param_note>
+                    <para>Any double precision numbers.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>double</param_type>
+                <param_name>x</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>atan returns the arctangent of x. atan2 returns the arctangent of y/x.</para>
+    </return>
+
+    <remarks>
+        <para>The atan function calculates the arctangent of x. atan2 calculates the arctangent of y/x. atan2 is well defined for every point other than the origin, even if x equals 0 and y does not equal to 0.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>atan</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* atan.cpp: This program uses atan to calculates the arctangent.
+ */
+
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    double x, y;
+
+    x = -862.4200;
+    y = atan(x);
+    printf(&quot;Arctangent of %f: %f\n&quot;, x, y);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Arctangent of -862.420000: -1.569637
+</result>
+
+
+
+    <references>
+        <reference>
+        <reference>
+            <ref_name>sin</ref_name>
+            <ref_url>sin</ref_url>
+        </reference>
+        <reference>
+            <ref_name>asin</ref_name>
+            <ref_url>asin</ref_url>
+        </reference>
+            <ref_name>cos</ref_name>
+            <ref_url>cos</ref_url>
+        </reference>
+        <reference>
+            <ref_name>acos</ref_name>
+            <ref_url>acos</ref_url>
+        </reference>
+        <reference>
+            <ref_name>tan</ref_name>
+            <ref_url>tan</ref_url>
+        </reference>
+    </references>
+
+</manpage>

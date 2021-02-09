@@ -1,0 +1,59 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>U8StringBuf</class>
+    <method> IndexOf </method>
+
+    <description>
+        <para> 按UTF-8编码格式报告指定U8String在此对象中的第一个匹配项的索引。</para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const U8String &amp; </param_type>
+            <param_name> str </param_name>
+            <param_note>
+                <para> 子串。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive</param_default>
+            <param_note>
+                <para> 是否区分大小写标志。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。</para>
+            </param_note>
+        </api_param>  
+          
+        </parameters>        
+    </syntax>
+    <return>
+        <para>返回str在U8StringBuf对象字符串中首次出现的索引值,如果没有出现，则返回-1。</para>
+    </return>
+  <remarks>
+     <para> 若str内容为空串，则返回0。 </para>
+     <para> 若U8StringBuf对象指针为NULL或字符串内容为空，或str指针为NULL,则返回-1。 </para>
+    </remarks>
+<example>
+<pre>
+U8StringBuf_&lt;20&gt; u8sbuf;  
+u8sbuf.Copy("abcabc");
+U8String as1 = "bc";
+U8String as2 = "bd";
+CConsole::WriteLine(u8sbuf.IndexOf(as1));  //Display : 1
+CConsole::WriteLine(u8sbuf.IndexOf(as2));  //Display : -1
+</pre>
+</example>
+<references>
+
+    <reference>
+        <ref_name>U8StringBuf::IndexOf </ref_name>
+        <ref_url>IndexOf</ref_url>
+    </reference>
+</references>    
+    
+</manpage>

@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<TITLE>
+AuraThread_Resume
+</TITLE>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=gb2312" />
+<SCRIPT SRC="/xsl/runningbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="VBSCRIPT" src="/xsl/samplemenu.vbs"></SCRIPT>
+</HEAD>
+<BODY>
+<DIV id="nstext" valign="bottom">
+<div>
+<h3>
+AuraThread_Resume
+</h3>
+<p></p>
+</div>
+<p>
+			Resumes a thread that has been suspended.
+        </p>
+<div class="proto">
+<TABLE cellspacing="3" cellpadding="2" style="font-size:90%">
+<TR valign="top">
+<TD colspan="5" class="datatype">
+AURA_API AuraThread_Resume
+
+            (</TD>
+</TR>
+<TR>
+<TD colspan="5" class="datatype">)
+                    
+                ;</TD>
+</TR>
+</TABLE>
+</div>
+<br />
+<h4>Parameters</h4>
+<DL></DL>
+<h4>Return Value</h4>
+<p><table class="agility_table" cellspacing="0" cellpadding="0">
+<THEAD class="head"><TD class="cell">Return Value </TD>
+<TD class="cell">Description</TD>
+</THEAD>
+<TR><TD class="cell">NOERROR</TD>
+<TD class="cell">
+			Function succeeds in resuming a thread that has been suspended or decrements the count of
+			threads that want to suspend the associated thread.
+		</TD>
+</TR>
+<TR><TD class="cell">E_INVALID_OPERATION</TD>
+<TD class="cell">The thread did not enter suspend state.</TD>
+</TR>
+</table></p>
+<p>　</p>
+<h4>Remarks</h4>
+<p>
+			If the thread is not already suspended, this method has no effect and return E_INVALID_OPERATION. If there is other
+			thread which has suspended the associated thread, this method decrements the count of threads that want
+			to suspend the associated thread.
+		</p>
+<h4>Requirements</h4>
+<p>
+<table style="font-size:95%;vertical-align:top" cellpadding="5">
+<tr>
+<td>Operating System: </td>
+<td>
+Elastos 2.0 or later.
+</td>
+<td></td>
+</tr>
+</table></p>
+<script>footer("e_KoreTide")</script>
+</DIV>
+</BODY>
+</HTML>

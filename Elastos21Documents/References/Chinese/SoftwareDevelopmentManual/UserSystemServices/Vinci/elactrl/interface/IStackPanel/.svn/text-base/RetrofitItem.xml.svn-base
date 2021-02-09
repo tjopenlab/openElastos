@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IStackPanel</interface><method> RetrofitItem </method>
+    <description>
+        <para>
+            将指定位置处的控件替换为新控件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> index </param_name>
+                <param_note>
+                    <para>
+待替换控件的索引值，有效值为0 ～ 控件数-1</para>
+                </param_note>
+            </api_param>        
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IControl* </param_type>
+                <param_name> control </param_name>
+                <param_note>
+                    <para>
+新控件的接口指针</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        替换的控件必须是 StackPanel 的子类，否则方法将调用失败。若该位置处原控件的显示高度是自动根据控件自身高度改变大小的（即插入控件时 height 参数取值为 -1），则替换后控件的显示高度也为其自身高度，并刷新后面控件的位置；否则替换后的控件的显示高度为原控件的显示高度。
+    </para>
+    <para>
+        该方法与 <link url="ReplaceItem.htm">ReplaceItem</link> 方法类似，都可以将指定位置处的控件替换掉。调用 ReplaceItem 方法替换的控件的显示高度由参数 height 控制。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CStackPanel 类介绍 </ref_name>
+        <ref_url>../../class/StackPanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IStackPanel 接口方法列表</ref_name>
+        <ref_url>../IStackPanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>RetrofitItem</ref_name>
+        <ref_url>RetrofitItem</ref_url>
+    </reference>
+</references>
+</manpage>

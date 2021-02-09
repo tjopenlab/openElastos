@@ -1,0 +1,144 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="../../../../xsl/xsl_e/interfaceman.xsl"?>    
+<manpage>
+    <volume>System COM Interface</volume>
+    <interface> IReaderWriterLock </interface>
+    <description>
+        <para>
+	        An object of class <b>ReaderWriterLock</b> represents a "reader writer lock", which is a synchronization object 
+	        that allows one thread to exclusively access a shared resource as a single writer, or multiple threads 
+	        to inclusively access it as multiple readers. <b>ReaderWriterLock</b> objects offer services by exposing 
+	        interface <b>IReaderWriterLock</b>.
+	</para>
+        <para>
+        	Sometimes, a single writer or multiple readers can acquire objects that implement <b>IReaderWriterLock</b>. 
+        	When a writer acquires the <b>ReaderWriterLock</b> object, other threads that try to become a writer or readers 
+        	will wait on it, until the writer releases it. When one or more readers acquire the <b>ReaderWriterLock</b> 
+        	object, all the threads that try to become a writer will wait on it, until the last reader releases it.
+        </para>
+        <para>
+        	A thread uses the <link url="../synchronization/function/EzCreateReaderWriterLock.htm">CReaderWriterLock::New</link>
+		function to create a <b>ReaderWriterLock</b> object and get an <b>IReaderWriterLock</b> pointer to this object. Also, 
+		a thread can use the <link url="../synchronization/function/EzCreateNamedReaderWriterLock.htm">
+		CReaderWriterLock::New</link> function to create a named <b>ReaderWriterLock</b> object and get an 
+		<b>IReaderWriterLock</b> pointer to this object. <b>ReaderWriterLock</b> clients specify the its name 
+		when they call the <link url="sdk/base_service/car_naming_service/naming_service_api/FindRunningObject.htm">CSystem::FindRunningObject</link> function to get 
+		an <b>IReaderWriterLock</b> pointer to the named <b>ReaderWriterLock</b> object.
+
+        </para>
+        <para>
+        	Current thread can use the IReaderWriterLock::WriterLock or IReaderWriterLock::WriterTryLock
+        	function (try) to acquire the <b>ReaderWriterLock</b> object as a single-writer. A writer thread uses the IReaderWriterLock::WriterUnlock function to 
+        	release the acquired <b>ReaderWriterLock</b> object. Similarly, current thread can use the IReaderWriterLock::ReaderLockor 
+        	IReaderWriterLock::ReaderTryLock function (try) to acquire the ReaderWriterLock object as a reader. A reader thread uses the IReaderWriterLock::ReaderUnlock function to 
+        	release the acquired <b>ReaderWriterLock</b> object. In addition, a writer thread uses the IReaderWriterLock::DowngradeFromWriter
+        	function to become a reader and a reader thread uses the IReaderWriterLock::UpgradeToWriter
+        	function to become a writer. <b>ReaderWriterLock</b> objects are not recursive, which means that a reader 
+        	or writer thread cannot acquire the same <b>ReaderWriterLock</b> object as a reader or writer again. A thread 
+        	can use the IReaderWriterLock::IsReaderLockHeld function to determine whether it has acquired this <b>ReaderWriterLock</b> object as a reader; similarly, 
+        	a thread can use the IReaderWriterLock::IsWriterLockHeld function to determine whether it has acquired this <b>ReaderWriterLock</b> object as a writer.
+        </para>
+        <para>
+        	The priority inheritance can occur on <b>ReaderWriterLock</b> objects. But because of the limits of 
+        	implementation, if multiple reader threads acquire a <b>ReaderWriterLock</b> object, priority inheritance 
+        	will occur only in the first reader thread.
+        </para>
+        <para>
+        	To avoid the reader or writer starvation, <b>ReaderWriterLock</b> objects will switch between the writer 
+        	and readers using some schema. So, it is not supposed that when the <b>ReaderWriterLock</b> object is 
+        	acquired by a reader, any other threads will successfully acquire it as a reader immediately without 
+        	waiting.
+        </para>
+        <para>
+        	When the reader or writer thread of the <b>ReaderWriterLock</b> object exits or be killed, the 
+        	<b>ReaderWriterLock</b> object will be released automatically.
+        </para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>ReaderLock</method_name>
+        <method_url>IReaderWriterLock\ReaderLock</method_url>
+    <m_description>
+		Acquires the reader lock.
+    </m_description>
+    </method>
+    <method>
+        <method_name>ReaderTryLock</method_name>
+        <method_url>IReaderWriterLock\ReaderTryLock</method_url>
+    <m_description>
+		Tries to acquire the reader lock within given time interval.
+    </m_description>
+    </method>
+    <method>
+        <method_name>ReaderUnlock</method_name>
+        <method_url>IReaderWriterLock\ReaderUnlock</method_url>
+    <m_description>
+		Releases the acquired reader lock.
+    </m_description>
+    </method>
+    <method>
+        <method_name>UpgradeToWriter</method_name>
+        <method_url>IReaderWriterLock\UpgradeToWriter</method_url>
+    <m_description>
+        Upgrades acquired reader lock to writer lock.
+    </m_description>
+    </method>
+    <method>
+        <method_name>WriterLock</method_name>
+        <method_url>IReaderWriterLock\WriterLock</method_url>
+    <m_description>
+		Acquires the writer lock.
+    </m_description>
+    </method>
+    <method>
+        <method_name>WriterTryLock</method_name>
+        <method_url>IReaderWriterLock\WriterTryLock</method_url>
+    <m_description>
+		Tries to acquire the writer lock within given time interval.
+    </m_description>
+    </method>
+    <method>
+        <method_name>WriterUnlock</method_name>
+        <method_url>IReaderWriterLock\WriterUnlock</method_url>
+    <m_description>
+		Releases the acquired writer lock.
+    </m_description>
+    </method>
+    <method>
+        <method_name>DowngradeFromWriter</method_name>
+        <method_url>IReaderWriterLock\DowngradeFromWriter</method_url>
+    <m_description>
+        Downgrades acquired writer lock to reader lock.
+    </m_description>
+    </method>
+    <method>
+        <method_name>IsReaderLockHeld</method_name>
+        <method_url>IReaderWriterLock\IsReaderLockHeld</method_url>
+    <m_description>
+        Checks whether the thread has acquired the reader lock.
+    </m_description>
+    </method>
+    <method>
+        <method_name>IsWriterLockHeld</method_name>
+        <method_url>IReaderWriterLock\IsWriterLockHeld</method_url>
+    <m_description>
+        Checks whether the thread has acquired the writer lock.
+    </m_description>
+    </method>
+
+
+</self>
+    </methods>
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later.
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

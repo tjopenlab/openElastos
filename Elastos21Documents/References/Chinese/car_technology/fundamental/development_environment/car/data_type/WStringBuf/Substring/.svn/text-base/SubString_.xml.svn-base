@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>WStringBuf</class>
+    <method> Substring </method>
+
+    <description>
+        <para> 从此对象检索子字符串。子字符串从指定的字符位置开始且具有指定的长度。</para>
+    </description>
+    <syntax>
+        <return_val> WString </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> start </param_name>
+            <param_note>
+                <para> 子字符串的起始位置</para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>Int32</param_type>
+            <param_name> len  </param_name>
+            <param_note>
+                <para> 子字符长度 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>WStringBuf &amp;</param_type>
+            <param_name> sub </param_name>
+            <param_note>
+                <para>保存子字符串的WStringBuf对象 </para>
+            </param_note>
+        </api_param>                
+        </parameters>        
+    </syntax>
+   <return>
+        <para>返回子字符串。如果源对象包含的字符串指针为NULL或sub WStringBuf对象的m_pBuf指针为NULL， start 小于0 或大于源字符串的长度， 返回的WStringBuf对象包含的字符串指针指向NULL。</para>
+    </return>
+<example>
+<pre>
+请参见：<link url="../../AStringBuf/Substring/index/Substring.htm">AStringBuf::SubString(Int32, Int32, AStringBuf&amp;, Encoding)</link>
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>WStringBuf</ref_name>
+        <ref_url>../../WStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Substring</ref_name>
+        <ref_url>index/Substring</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Insert</ref_name>
+        <ref_url>../Insert</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Replace</ref_name>
+        <ref_url>../Replace</ref_url>
+    </reference>
+</references>    
+</manpage>

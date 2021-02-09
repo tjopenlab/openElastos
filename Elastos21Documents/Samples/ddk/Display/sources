@@ -1,0 +1,20 @@
+#==========================================================================
+# 科泰世纪科技有限公司 版权所有 2000年--2004年
+# Copyright (c) 2000-2004,  KoreTide Corp.  All Rights Reserved.
+#==========================================================================
+TARGET_NAME= lcd
+TARGET_TYPE= exe
+
+
+SOURCES= \
+    lcdtest.cpp
+
+LIBRARIES = $(XDK_USER_LIB)\ElCRuntime.lib     $(XDK_LIB_PATH)\elastos.lib \
+
+ifeq "$(XDK_TARGET_PLATFORM)" "win32"
+
+EXTERN_LIBS= \
+    msvcrt \
+
+LIBRARIES = $(XDK_LIB_PATH)\elastos.lib 
+endif

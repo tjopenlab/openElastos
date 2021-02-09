@@ -1,0 +1,64 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\basic_com_lib\EzTaskMemory">CMemoryHeap::Free</sample>
+    <volume>堆</volume>
+    <title>CMemoryHeap::Free</title>
+    <routine_idx>../Heap.htm</routine_idx>
+
+    <description>
+        <para>释放此前由<link url="Alloc.htm">CMemoryHeap::Alloc</link>或<link url="Realloc.htm">CMemoryHeap::Realloc</link>函数调用分配的内存块。</para>
+    </description>
+
+    <syntax>
+        <return_val> void </return_val>
+        <parameters>
+            <api_param>
+                <param_type> PVoid  </param_type>
+                <param_name> pMemory  </param_name>
+                <param_note>
+                    <para>[in]被释放的内存块地址</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<para>本函数无返回值。</para>
+    </return>
+
+    <remarks>
+         <para>本函数释放此前由<link url="Alloc.htm">CMemoryHeap::Alloc</link>或<link url="Realloc.htm">CMemoryHeap::Realloc</link>函数调用分配的内存块。释放的字节数等于被分配或重新分配的字节数。调用完后，pMemory指向的内存不再有效，不能再用。</para>
+         <para>参数pMemory可为NULL，此时，<link url="Free.htm">CMemoryHeap::Free</link>函数不起任何作用。</para>
+    </remarks>
+
+  <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统 
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CMemoryHeap::Alloc</ref_name>
+        <ref_url> Alloc</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CMemoryHeap::Realloc</ref_name>
+        <ref_url> Realloc</ref_url>
+    </reference>
+    </references>
+
+</manpage>

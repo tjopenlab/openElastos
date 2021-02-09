@@ -1,0 +1,53 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/interfaceman.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzStrBuf\EzstrBuf_">EzstrBuf_</sample>
+    <macro>template&lt;int SIZE&gt; EzStrBuf_::EzStrBuf_</macro>
+
+    <description>
+        <para> Constructor of EzStrBuf. Creates an EzStrBuf object and allocates memory for it. </para>
+    </description>
+
+    <remarks>
+        <para> EzStrBuf_ is a template class. It is a subclass of EzStrBuf. The parameter SIZE specifies the number of characters of this buffer. </para>
+        <para> This method can allocate memory in STACK (if EzStrBuf variable is declared as local variable) or in DATA SEGMENT (if EzStrBuf variable is declared as static or global variable). </para>
+        <para> [NOTE] In functions with extern "C" prefix, one cannot use this method to create a EzStrBuf object. </para>
+    </remarks>
+
+    <syntax>
+        <NoArguments/>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezstr.h>
+
+int __cdecl main()
+{
+    EzStrBuf_<20> myStr;
+
+    myStr.Copy(L"Great Wall");
+    printf("The string \"%S\" length = %d\n", (wchar_t *)myStr, myStr.Length());
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+The string "Great Wall" length = 10
+]]>
+    </result>
+
+    <references>
+        <reference>
+            <ref_name> constructor function (does not allocate memory) </ref_name>
+            <ref_url> EzStrBuf </ref_url>
+        </reference>
+    </references>
+
+</manpage>

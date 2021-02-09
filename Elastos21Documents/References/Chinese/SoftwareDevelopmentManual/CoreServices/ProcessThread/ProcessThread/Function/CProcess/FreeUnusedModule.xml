@@ -1,0 +1,95 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\ezProcess"> CProcess::FreeUnusedModule </sample>
+    <volume>进程</volume>
+    <title>CProcess::FreeUnusedModule</title>
+    <routine_idx>../../../Process.htm</routine_idx>
+
+    <description>
+        <para>释放指定名的构件dll。</para>
+    </description>
+
+    <syntax>
+        <return_val> Ecode </return_val>
+        <parameters>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> wszDllName </param_name>
+                <param_note>
+                    <para>需释放的指定dll名。 </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+    
+    <return>
+        <table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+           
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>参数无效</td>
+            </tr>
+             <tr>
+                <td>E_NOT_CAR_DLL</td><td>非CAR的DLL</td>
+            </tr>
+            <tr>
+                <td>E_DLL_CANNOT_UNLOAD_NOW</td><td>目前不能卸载DLL,仍有用户在使用此dll</td>
+            </tr>
+            <tr>
+                <td>E_DLL_NOT_LOADED</td><td>该DLL没有被加载</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>如果该指定构件dll的引用计数为0，则将其释放。 </para>
+        <para>应用程序可以周期性地调用本函数去释放资源。可以在一些idle线程中调用本函数。</para> 
+        <para>本函数会在内部调用指定构件DLL所实现并导出的DllCanUnloadNow函数。</para>       
+        <para>本函数不能释放用<link url="../../../../../../SoftwareDevelopmentManual/CoreServices/ProcessThread/Module/Function/CModule/Load.htm">CModule::Load</link>装载起来的DLL。</para>
+        <para>
+        
+        </para>
+        <para></para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+<!--
+    <references>
+    <reference>
+        <ref_name> CThread::Quit</ref_name>
+        <ref_url>../CThread/Quit</ref_url>
+    </reference>
+    </references>
+-->
+
+</manpage>
+
+
+
+
+
+
+
+
+

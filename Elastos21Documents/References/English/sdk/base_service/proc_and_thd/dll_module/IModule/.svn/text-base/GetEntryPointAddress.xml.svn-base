@@ -1,0 +1,68 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>System COM Interface</volume>
+<interface>IModule</interface>
+<method> GetEntryPointAddress </method>
+    <description>
+        <para>
+         	Gets the entry point address of the module.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+	   <parameters>
+		<api_param>
+			<param_inout>[out]</param_inout>
+			<param_type> ADDRESS *  </param_type>
+			<param_name> pEntryPoint </param_name>
+			<param_note>
+				<para>
+					If the function succeeds, the entry point address of the module is returned.
+				</para>
+			</param_note>
+		</api_param>
+	   </parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+			<td>Return Value </td>
+			<td>Hex Value</td>
+			<td>Description</td>
+	    </th>
+	    <tr>
+			<td>NOERROR</td>
+			<td>0x00000000</td>
+			<td>Function succeeds in getting the entry point address of the module.</td>
+	    </tr>
+	    <tr>
+		    <td>E_INVALID_ARGUMENT</td>
+		    <td>0x80070057</td>
+		    <td>Invalid argument(s)</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+	 	<para>
+	 	        The module's entry point is the location of the function that is called during process startup or process shutdown.
+	 	        If the module is an EXE, the function will be called only during process startup. If the module is a DLL,
+	 	        the function will be called during both process startup and process shutdown. while the entry point is not the address
+	 	        of the main or DllMain function, it should be close enough for most purposes.
+	 	        Usually, the entry point function is provided by elacrt.lib.
+	 	</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 or later; Elastos 2.0 or later
+	    	</system_name>
+        </system>
+    </requirements>
+</manpage>

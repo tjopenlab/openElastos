@@ -1,0 +1,84 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>设备管理方法</volume>
+    <title>DzUnregisterDevice</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>注销设备。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> const wchar_t *</param_type>
+                <param_name> wszDeviceName </param_name>
+                <param_note>
+                    <para>注销的设备名字符串</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> uint_t</param_type>
+                <param_name> uDeviceNo </param_name>
+                <param_note>
+                    <para>注销的设备编号</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_DEVICE_NAME_TOO_LONG</td>
+                <td>指定的设备名超过所允许的最大长度</td>
+            </tr>
+            <tr>
+                <td>E_DEVICE_NOT_FOUND</td>
+                <td>无法找到指定的设备</td>
+            </tr>
+            <tr>
+                <td>ELADRV_S_UNREGISTER_DRIVER_FAILED</td>
+                <td>注销设备成功，但注销曾经注册过的设备所对应的驱动程序对象失败</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>DzUnregisterDevice向设备配置信息表<link url="..\data_structure\DeviceConfig.htm">DeviceConfig</link>注销一个设备，并从驱动配置信息表<link url="..\data_structure\DriverConfig.htm">DriverConfig</link>中注销对应的驱动程序。</para>
+        <para>假如要注销的设备未经<link url="DzRegisterDevice.htm">DzRegisterDevice</link>注册，将返回E_DEVICE_NOT_FOUND。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>DzRegisterDevice</ref_name>
+            <ref_url>DzRegisterDevice</ref_url>
+        </reference>
+    </references>
+
+</manpage>

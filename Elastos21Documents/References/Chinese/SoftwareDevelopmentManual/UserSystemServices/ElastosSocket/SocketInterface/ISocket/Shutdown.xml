@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>ISocket</interface><method> Shutdown </method>
+    <description>
+        <para>
+            禁止在一个套接口上进行数据的接收或发送，但并不释放套接口占用的系统资源。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT32 </param_type>
+                <param_name> how </param_name>
+                <param_note>
+                    <para>
+所得到的文件系统根目录的指针                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> int * </param_type>
+                <param_name> pError </param_name>
+                <param_note>
+                    <para>
+指向int型的指针，用于当函数执行发生错误时获取其错误返回值，该返回值参见<link url="../SocketWSA.htm">网络接口错误返回值</link>文档                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回 NOERROR；如果方法调用成功，但逻辑错误，则返回S_FALSE。</para><para>            更多返回值，参见            <link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECODE            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos 操作系统            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            参数how的取值如下：</para><para>            <table>            <th>            <td>            取值            </td>            <td>            数值            </td>            <td>            含义            </td>            </th>            <tr>            <td>            SD_RECEIVE            </td>            <td>            0x00            </td>            <td>            该套接口上的后续接收操作将被禁止。对套接口接收功能的禁止并不影响低层协议。对于TCP协议，TCP窗口将继续接收数据（但不确认）直至窗口满。对于UDP协议，仍将接收并排队到来的数据。任何情况下都不会产生ICMP错误包。            </td>            </tr>            <tr>            <td>            SD_SEND            </td>            <td>            0x01            </td>            <td>            禁止后续发送操作。对于TCP，将发送FIN。            </td>            </tr>            <tr>            <td>            SD_BOTH            </td>            <td>            0x02            </td>            <td>            同时禁止收和发。            </td>            </tr>            </table>
+        </para>
+    </remarks>
+</manpage>

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Widgets:标签/控件列表</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>基于XmlGlue编程模型下的Widgets开发介绍</span></a></li>
+    <li><a href="flow.html"><span>Widgets开发流程</span></a></li>
+    <li class="current"><a href="flow.html"><span>Widgets开发专题介绍</span></a></li>
+    <li><a href="sample.html"><span>Widgets开发示例</span></a></li>
+  </ul>
+</div>  
+<div class="tabs">  
+  <ul>
+    <li><a href="dataset.html"><span>数据集(dataset)的使用</span></a></li>
+    <li class="current"><a href="locale.html"><span>多语言(locale)的使用</span></a></li>
+  </ul>  
+</div>
+
+<h1>多语言(locale)的使用</h1>
+<p>引入多语言(locale)，可以方便用户在多个语言环境的字符集中灵活切换，以获取相应的语言环境的字符集。一般操作步骤为；先在manifest.xml中创建多语言包(languageBundle),并指定已加载的且已编译的多语言包源文件的包名(package)，包名一般在相应的source文件中。
+<p>创建目录如下图所示。
+<center><img src="images/directory_tree.jpg"></center>
+<p>其中main.xgl为主视图文件，manifest.xml为配置文件，locale storage为多语言文件夹，locale sources为多语言源代码文件夹，其内包括是定义了字符集的多语言源文件.xml和定义编译处理的defined source文件，通过编译后的这些xml文件即为compiled resources，即这两者存在一一对应的关系。同时，这里需要用户将这些XDK相关目录下的已编译多语言文件.res手动拷贝至locale storage目录。
+<h2>◆ 编写多语言源文件</h2>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+<pre>  
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;languageBundle locale="<i>language</i>"&gt;
+    &lt;strings&gt;
+    	  &lt;string id="<i>id value</i>"&gt;<i>string value</i>&lt;/string&gt;
+    &lt;/strings&gt;
+&lt;/languageBundle&gt; 
+</td></tr></table>
+<p>一般多语言源文件如上所示，其中locale属性为指定语言环境，目前有英文(en),中文简体(zh_CN),繁体(zh_TW),默认为英文。id value为string标签的id属性值。string的内容(string value)为相应语言环境的字符串。同时各语言源文件的相应string的id应保持一致。	  
+<h2>◆	编写sources文件</h2>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+<pre>
+LANG_PACK= <i>package name</i>
+
+RESOURCES= \
+    root.xml \
+    <i>other other  locale sources</i>  \
+</td></tr></table>
+<p>LANG_PACK需要即指定此语言包的名字(package name)，RESOURCES则需要列出此目录下所有语言源文件。与三种语言环境：英文，中文简体，中文繁体对应的多语言源文件名分别为root.xml,zh_CN.xml,zh_TW.xml。
+<h2>◆ 在manifest.xml中指定多语言包的信息。</h2>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+<pre>
+&lt;languageBundle package="<i>package name</i>" path="<i>file path</i>"/&gt;
+</td></tr></table>
+<p>package需要用户指定编译后的多语言包的名字，即此名字需与sources文件指定的多语言包的名字一致。path需要用户指定此开发包的相对路径。
+
+<h2>◆ 在XML中与相关图形控件标签元素绑定</h2>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td class="memitem" valign="bottom">
+<pre>  
+&lt;<i>control</i> width="240" height="100" y="100"
+            style="ControlStyle:Border ControlStyle:Transparent ListBoxStyle:Loop"&gt;
+            &lt;item text="locale:<i>id</i>"/&gt;
+&lt;/<i>control</i>&gt;
+</td></tr></table>
+<p>目前可与之相绑定的控件(control)是那些有text属性的图形图形控件元素或其子结点。具体而言，在XML编程中通过预定义对象Locale对象这些控件标签或其子结点的text属性来绑定。此时请注意locale首字母小写。
+<p>在这里text应写成"locale:<i>id</i>"/&gt;,id为多语言源文件中的string 的id的值。
+<h2>◆ 在脚本中与相关图形控件绑定</h2>
+	<p>除了可与XML中图形标签元素绑定外，同时多语言还可以在脚本中与图形控件相绑定。一般通过Locale对象结合SetText方法将指定多语言包的字符的id指定为控件的显示文本。如btn:SetText(Locale.Outbox),btn为已一个已实例化控件元素的id(通过标签在XML中指定）或变量名（此时，控件在脚本中实例化），Outbox为多语言包中某个字符的id。这里Locale首字母需大写，以上述用法不同。
+<p>使用多语言涉及使用预定义对象<a href="../script_programming/Locale_Object.html">Locale</a>和<a href="../script_programming/LocaleManager_Object.html">LocaleManager</a>，详细请参考它们的介绍。
+<script>footer("chinese")</script>
+</body>
+</html>

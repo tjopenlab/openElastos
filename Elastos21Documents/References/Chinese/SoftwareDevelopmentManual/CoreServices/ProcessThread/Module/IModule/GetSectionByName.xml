@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IModule\AddressFunction"> GetSectionByName </sample>
+<volume>可执行文件和模块</volume>
+<interface>IModule</interface>
+<method> GetSectionByName </method>
+    <description>
+        <para>
+            根据段的名字取段的起始地址。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+			<parameters>
+				<api_param>
+					<param_inout>[in]</param_inout>
+					<param_type> AString  </param_type>
+					<param_name> esName </param_name>
+					<param_note>
+						<para>
+							指定段的名字，不能为空
+						</para>
+					</param_note>
+				</api_param>
+				<api_param>
+					<param_inout>[out]</param_inout>
+					<param_type> Address *  </param_type>
+					<param_name> pAddress </param_name>
+					<param_note>
+						<para>
+							指向Address类型的指针，用于获取指定段的起始地址，不能为空
+						</para>
+					</param_note>
+				</api_param>
+			</parameters>
+    </syntax>
+
+    <return>
+	    <table>
+	        <th>
+	    	    <td>返回值</td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>函数成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_DOES_NOT_EXIST</td>
+	    	    <td>指定名字的段不存在</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统 
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

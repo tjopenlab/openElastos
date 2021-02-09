@@ -1,0 +1,58 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IThread\SetName">GetName</sample>
+<volume>线程</volume>
+<interface>IThread</interface><method> GetName </method>
+    <description>
+        <para>
+            获取线程的名字。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf * </param_type>
+                <param_name> pName </param_name>
+                <param_note>
+                    <para>
+                        线程的名字
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>设置线程名字成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数不正确</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>此方法用于获取线程的名字。线程名字的最大长度为MAXIMUM_THREAD_NAME_LENGTH（包括了字符串结尾的L’\0’）。</para>
+		<para>通过<link url="SetName.htm">IThread::SetName</link>方法可以设置线程的名字。如果线程没有调用过<link url="SetName.htm">IThread::SetName</link>，方法调用的结果取决于系统具体的实现。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+
+</manpage>

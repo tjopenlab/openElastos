@@ -1,0 +1,103 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>设备管理方法</volume>
+    <title>DzRegisterDevice</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>注册设备。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> const wchar_t *</param_type>
+                <param_name> wszDeviceName </param_name>
+                <param_note>
+                    <para>注册的设备名字符串</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> uint_t</param_type>
+                <param_name> uDeviceNo </param_name>
+                <param_note>
+                    <para>注册的设备编号</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> void *</param_type>
+                <param_name> pvParameter </param_name>
+                <param_note>
+                    <para>指向注册设备时的附加参数的指针</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_DEVICE_NAME_TOO_LONG</td>
+                <td>指定的设备名超过所允许的最大长度</td>
+            </tr>
+            <tr>
+                <td>E_DEVICE_EXISTS</td>
+                <td>指定的设备已经注册</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td>
+                <td>内存不足</td>
+            </tr>
+            <tr>
+                <td>ELADRV_S_DRIVER_NOT_FOUND</td>
+                <td>注册设备成功，但所对应的驱动程序没有找到</td>
+            </tr>
+            <tr>
+                <td>ELADRV_S_CREATE_DRIVER_FAILED</td>
+                <td>注册设备成功，但创建所对应的驱动程序对象失败</td>
+            </tr>
+            <tr>
+                <td>ELADRV_S_REGISTER_DRIVER_FAILED</td>
+                <td>注册设备成功，但注册所对应的驱动程序对象失败</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECODE</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>RegisterDevice向设备配置信息表<link url="..\data_structure\DeviceConfig.htm">DeviceConfig</link>注册一个设备，并在驱动配置信息表<link url="..\data_structure\DriverConfig.htm">DriverConfig</link>中注册对应的驱动程序。</para>
+        <para>可使用<link url="DzUnregisterDevice.htm">DzUnregisterDevice</link>注销该设备。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>DzUnregisterDevice</ref_name>
+            <ref_url>DzUnregisterDevice</ref_url>
+        </reference>
+    </references>
+
+</manpage>

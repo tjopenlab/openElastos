@@ -1,0 +1,210 @@
+<html>
+	
+	<head>
+		<meta http-equiv=Content-Type content = "text/html; charset=GB2312">
+		<link rel="stylesheet" href="/xsl/docdemo.css" type="text/css">
+    <script src="/xsl/docstyles.js"></script>
+    <title> cntext_write</title>	
+	</head>
+	
+	<body>
+<h2>调用DLL</h2>
+
+	 <h3>创建sources文件</h3>
+	 <p> 按照上节所述，在GoToSchoolExe目录下新建一个souces文件，内容如下：</p>
+		<pre class= code>
+TARGET_NAME = client_context
+TARGET_TYPE = exe
+
+IMPORTS= GoToSchoolDemo.dll    //导入相应的DLL
+
+SOURCES = client_context.cpp
+
+LIBRARIES = $(XDK_LIB_PATH)\ELCRuntime.lib
+LIBRARIES += $(XDK_LIB_PATH)\elastos.lib
+
+    </pre>		
+		<h3>实现调用</h3>
+		<p> 在GoToSchoolExe目录下新建一个C++源文件:client_context.cpp，具体实现如下：</p>
+
+
+	<pre class=code>
+#include "GoToSchoolDemo.h"        // 这里需要包含对应的dll文件，即与dll相应的car文件名一致
+using namespace Elastos;
+
+ECode ElastosMain(const BufferOf&lt;WString&gt;& args)
+{
+    // There are three components used in this example.
+    //
+    IChild* pChild1 = NULL;
+    IChild* pChild2 = NULL;
+    ISchool* pSchool = NULL;
+
+    // CFoo::New(...) allocates a component on the heap.
+    //
+    ECode ec = CChild::New(L"Sophie", &pChild1);
+    if (FAILED(ec)) {
+        goto MainExit;
+    }
+    pChild1->Play();
+
+    // IFoo::Probe() does not impose a reference count, so
+    // the lifespan of the interim pointer, pStudent, has to be
+    // shorter than that of the component pointer, pChild1.
+    //
+    IStudent* pStudent;
+    pStudent = IStudent::Probe(pChild1); 
+    if (!pStudent) {
+        WStringBuf_<40> wstrBuf;
+        pChild1->GetName(&wstrBuf);
+        wstrBuf.Append(L"'s not a student yet.");
+        CConsole::WriteLine(wstrBuf);
+    }
+
+    // A context is a special kind of component, which may have its own
+    // member variables and methods, e.g., KSchool::Open().
+    //
+    ec = KSchool::New(&pSchool);
+    if (FAILED(ec)) {
+        goto MainExit;
+    }
+    pSchool->Open();
+
+    // A context usually has one or more aspects affiliated with it.
+    // In this case, the context, KSchool, has an aspect, AStudent.
+    // An aspect is also a special kind of component, which may never
+    // be created directly by an application.  Instead, an aspect is
+    // created implicitly either when a prime component enters a context
+    // or via an attach operation, i.e., AFoo::Attach(pBar), where pBar
+    // refers to a prime component.  As soon as an aspect is created,
+    // it is aggregated with the prime component to form an indistinguishable
+    // composite component.
+    //
+    ec = CObject::EnterContext(pChild1, pSchool);
+    if (FAILED(ec)) {
+        goto MainExit;
+    }
+
+    // After a child enters a school, she has acquired a student aspect,
+    // so she suddenly possesses an IStudent interface.
+    //
+    pStudent = IStudent::Probe(pChild1);
+    if (pStudent) {
+        pStudent->Study();
+
+        WStringBuf_<40> wstrBuf;
+        pChild1->GetName(&wstrBuf);
+        wstrBuf.Append(L"'s student ID is ");
+
+        Int32 id;
+        pStudent->GetID(&id);
+        wstrBuf.Append(id);
+        CConsole::WriteLine(wstrBuf);
+    }
+
+    // A prime component may be created in a context directly,
+    // via the CFoo::NewInContext() operation.  In fact, a context
+    // is a component, which has some kind of "container" capability.
+    // For example, a context may be a remote process or a special
+    // security domain where all member components are being watched
+    // by the "big brother".  In other words, CFoo::NewInContext() is not
+    // only useful for aspect oriented programming (AOP), it is also
+    // a mechanism for implementing distributed systems.
+    //
+    ec = CChild::NewInContext(pSchool, L"Laura", &pChild2);
+    if (FAILED(ec)) {
+        goto MainExit;
+    }
+    pChild2->Play();
+
+    pStudent = IStudent::Probe(pChild2);
+    if (pStudent) {
+        pStudent->Study();
+
+        WStringBuf_<40> wstrBuf;
+        pChild2->GetName(&wstrBuf);
+        wstrBuf.Append(L"'s student ID is ");
+
+        Int32 id;
+        pStudent->GetID(&id);
+        wstrBuf.Append(id);
+        CConsole::WriteLine(wstrBuf);
+    }
+
+    // As soon as a prime component leaves a context, the aspects,
+    // imposed by the context, are stripped off implicitly.
+    //
+    ec = CObject::LeaveContext(pChild1, pSchool);
+    if (FAILED(ec)) {
+        goto MainExit;
+    }
+
+    // When a child leaves school, she does not have
+    // IStudent interface any more.
+    //
+    pStudent = IStudent::Probe(pChild1);
+    if (!pStudent) {
+        WStringBuf_<40> wstrBuf;
+        pChild1->GetName(&wstrBuf);
+        wstrBuf.Append(L"'s not a student anymore.");
+        CConsole::WriteLine(wstrBuf);
+    }
+
+MainExit:
+    if (pChild1) pChild1->Release();
+    if (pChild2) pChild2->Release();
+    if (pSchool) pSchool->Release();
+    CProcess::Exit(ec);
+    return ec;
+}
+</pre>
+<h3>编译运行</h3>
+<p> 在XDK环境下编译上述cpp文件，生成client_context.exe</p>
+<p> 运行该程序：elaura client_context.exe</p>
+
+<p>编译后运行的结果为：</p>
+<pre class=code>
+Sophie's playing.
+Sophie's not a student yet.
+The school opens.
+-> KSchool::OnObjectEntering()...
+-> AStudent::OnAspectAttaching()...
+-> CChild::OnAspectAttaching()...
+-> KSchool::OnObjectEntered()...
+Sophie's studying.
+Sophie's student ID is 101
+-> KSchool::OnObjectEntering()...
+-> AStudent::OnAspectAttaching()...
+-> CChild::OnAspectAttaching()...
+-> KSchool::OnObjectEntered()...
+Laura's playing.
+Laura's studying.
+Laura's student ID is 102
+-> KSchool::OnObjectLeaving()...
+-> CChild::OnAspectDetaching()...
+-> AStudent::OnAspectDetaching()...
+-> KSchool::OnObjectLeft()...
+Sophie's not a student anymore.
+-> CChild::OnAspectDetaching()...
+-> AStudent::OnAspectDetaching()...
+
+</pre>
+<h3>其他说明 </h3>
+		<p>CAR构件库提供系统语境构件context.lib来实现普通类对象CClass进出普通语境类对象KContext，以及对已经进入KContext的多个普通类对象进行管理，并实现了一些通用的接口。其中定义了一个接口，包含了以下一组方法：</p>
+		<pre class=code>
+    1.AddItem(PObject pObject);　//向KContext中添加普通类对象
+      AddItem函数完成的功能是：由语境创建其特征实例(aspect对象)，而语境进入者pObject动态聚合这些aspect对象。
+    
+    2.RemoveItem(PObject pObject); //从KContext中移除普通类对象
+      RemoveItem实现的功能是对象进入者pObject拆卸聚合语境的特征。
+    
+    3.GetAllItems(IObjectEnumerator **enumerator); //获得KContext中普通类对象的枚举
+
+    4.RemoveAllItems(); //获得KContext中普通类对象的个数
+   </pre>
+    
+   <p>其中pObject为进入或离开语境的普通类构件对象指针。</p>
+   <p>当客户端定义的构件对象调用这两个方法，进入一个语境，就会自动聚合server端KContext构件类属性aspect中所指定要聚合的AAspect对象。离开这个语境时会自动拆卸聚合。</p>
+		
+	</body>
+</html>

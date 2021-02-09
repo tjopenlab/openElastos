@@ -1,0 +1,52 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\ISharedMemory\Read"> Attach </sample>
+<volume>共享内存 </volume>
+<interface>ISharedMemory</interface><method> Detach </method>
+    <description>
+        <para>
+        去除共享内存在进程空间中的映射。
+        </para>
+    </description>
+    <syntax_nopara>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值</td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION</td>
+	    	    <td>进行无效操作</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		当用户不再需要对共享内存进行操作时，可以调用Detach方法从进程空间中去除对该映射的使用，这样进程内的线程再也无法访问该内存块。调用Detach方法对其它进程使用该共享内存区域不产生影响。每个进程调用Detach的次数要与该进程调用Attach的次数一致。最后一次Detach才会从该进程空间中去除该映射。
+		</para>
+		<para>
+		如果用户在调用Detach方法之前没有调用<link url="Attach.htm">Attach</link>方法将该共享内存映射到进程空间，将返回E_INVALID_OPERATION。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

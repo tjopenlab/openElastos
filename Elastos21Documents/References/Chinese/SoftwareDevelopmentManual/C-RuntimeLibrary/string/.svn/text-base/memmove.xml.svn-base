@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\string\memmove">memmove</sample>
+    <title> memmove </title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> str_idx.htm </routine_idx>
+
+    <description>
+        <para>把一个缓冲区里的内容移到另一个缓冲区。</para>
+    </description>
+
+    <syntax>
+        <return_val>void*</return_val>
+        <func_name>memmove</func_name>
+        <parameters>
+            <func_param>
+                <param_type>void*</param_type>
+                <param_name>dest</param_name>
+                <param_note>
+                    <para>目标缓冲区</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const void*</param_type>
+                <param_name>src</param_name>
+                <param_note>
+                    <para>源缓冲区</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>count</param_name>
+                <param_note>
+                    <para>要拷贝的字符所占的字节数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回指向目的缓冲区的指针。</para>
+    </return>
+
+    <remarks>
+        <para>函数memmove将count个字节从源缓冲区拷贝到目标缓冲区，如果源缓冲区和目标缓冲区有重叠，此函数确保，在覆盖之前将原始数据从重叠区域里拷贝出来。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>memmove</routine_name>
+            <headerfile>string.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* memmove.cpp:this program use memmoe to copies count bytes of characters from src to dest
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+char string1[60] = &quot;The quick brown dog jumps over the lazy fox&quot;;
+/*                           1         2         3         4         5
+ *                  12345678901234567890123456789012345678901234567890
+ */
+
+int main()
+{
+    printf(&quot;Function : memmove with overlap\n&quot;);
+    printf(&quot;Source : %s\n&quot;, string1 + 4);
+    printf(&quot;Destination : %s\n&quot;, string1 + 10);
+    memmove(string1 + 10, string1 + 4, 40);
+    printf(&quot;Result : %s\n&quot;, string1);
+    printf(&quot;Length : %d characters\n&quot;, strlen(string1));
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Function : memmove with overlap
+Source : quick brown dog jumps over the lazy fox
+Destination : brown dog jumps over the lazy fox
+Result : The quick quick brown dog jumps over the lazy fox
+Length : 49 characters
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>_memccpy</ref_name>
+            <ref_url>_memccpy</ref_url>
+        </reference>
+        <reference>
+            <ref_name>memcpy</ref_name>
+            <ref_url>memcpy</ref_url>
+        </reference>
+    </references>
+
+</manpage>

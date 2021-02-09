@@ -1,0 +1,46 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/shellmanual.xsl"?>
+
+<manpage>
+    <title> comcons 工具</title>
+    <volume>XDK常用工具</volume>
+
+    <description>
+        <para>comcons工具为串口控制台工具程序，接收串口传来的字符并显示，接收键盘输入字符并向串口传送，命令格式：</para>
+    </description>
+
+    <syntax>
+        <cmd_name> COMCONS </cmd_name>
+        <cmd_param> [-?] [/L] [/Hn] [/2] [/?]</cmd_param>
+    </syntax>
+    <parameters>
+    <param>
+        <param_name> -?  </param_name>
+        <param_note> 显示帮助信息 </param_note>
+    </param>
+    <param>
+        <param_name> /L  </param_name>
+        <param_note> 使用9600的波特率进行通讯 </param_note>
+    </param>
+    <param>
+        <param_name>  /Hn </param_name>
+        <param_note> 以数字n指定的等级传输数据。如果参数只是/h 使用115200的波特率传输。n=0 波特率为115200，n=1 波特率为19200，n=2 波特率为9600 </param_note>
+    </param>
+    <param>
+        <param_name> /n   </param_name>
+        <param_note> 使用com n串口进行通讯(2≤n≤9) </param_note>
+    </param>
+    <param>
+        <param_name> /?   </param_name>
+        <param_note> 显示帮助信息  </param_note>
+    </param>
+    </parameters>
+
+    <examples>
+     <example>
+        <eg_line>comcons /h/2  </eg_line>
+        <eg_note> 通过com2端口，使用高速（115200波特率）进行通讯。</eg_note>
+    </example>
+    </examples>
+
+</manpage>

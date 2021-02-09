@@ -1,0 +1,107 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\scanf">scanf</sample>
+    <title>scanf</title>
+    <volume>C Run-Time Libaray Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Reads formatted data from the standard input stream.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>scanf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format[, argument]...</param_name>
+                <param_note>
+                    <para>Format control string(argument is optional parameter).</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>Scanf returns the number of fields successfully converted and assigned; the return value does not include fields that were read but not assigned. A return value of 0 indicates that no fields were assigned. The return value is EOF for an error or if the end-of-file character or the end-of-string character is encountered in the first attempt to read a character.</para>
+    </return>
+
+    <remarks>
+        <para>The scanf function reads data from the standard input stream stdin and writes the data into the location given by argument. Each argument must be a pointer to a variable of a type that corresponds to a type specifier in format. If copying takes place between strings that overlap, the behavior is undefined.
+</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>scanf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* scanf.cpp: This program uses the scanf and wscanf functions
+  * to read formatted input.
+  */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+   int   i, result;
+   float fp;
+   char  c, s[81];
+   wchar_t wc, ws[81];
+
+   printf(&quot;\n\nEnter an int, a float, two chars and two strings\n&quot;);
+
+   result = scanf(&quot;%d %f %c %C %s %S&quot;, &amp;i, &amp;fp, &amp;c, &amp;wc, s, ws);
+   printf(&quot;\nThe number of fields input is %d\n&quot;, result);
+   printf(&quot;The contents are: %d %f %c %C %s %S\n&quot;, i, fp, c, wc, s, ws);
+
+   return 0;
+}
+</pre>
+    </example>
+<result>
+Enter an int, a float, two chars and two strings
+71
+98.6
+h
+z
+Byte characters
+
+The number of fields input is 6
+The contents are: 71 98.599998 h z Byte characters
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fscanf</ref_name>
+            <ref_url>fscanf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>printf</ref_name>
+            <ref_url>wprintf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>sprintf</ref_name>
+            <ref_url>swprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

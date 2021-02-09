@@ -1,0 +1,125 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fputc">fputc</sample>
+    <title> fputc, fputwc</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>Writes the character c to the output stream pointed to by stream.</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fputc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>Character to be written to file stream.</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wint_t</return_val>
+        <func_name>fputwc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wint_t</param_type>
+                <param_name>c</param_name>
+            </func_param>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The functions return the character written, for fputc, a return value of EOF indicates an error. For fputwc, a return value WEOF indicates an error.</para>
+    </return>
+
+    <remarks>
+        <para>The functions write the single character c to a file at the position indicated by the associated file position indicator (if defined) and advances the indicator as appropriate. In the case of fputc, the file is associated with stream. If the file cannot support positioning requests or was opened in append mode, the character is appended to the end of the stream.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fputc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+        <routine>
+            <routine_name>fputwc</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fputc.cpp: This program uses fputc
+ * to send a character array to stdout.
+ */
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+   char strptr1[] = &quot;This is a test of fputc!!\n&quot;;
+   char *p;
+
+   /* Print line to stream using fputc. */
+   p = strptr1;
+   while ((*p != &apos;\0&apos;) &amp;&amp; fputc(*(p++), stdout) != EOF) ;
+
+   return 0;
+}
+</pre>
+    </example>
+<result>
+This is a test of fputc!!
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fgetc</ref_name>
+            <ref_url>fgetwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getc</ref_name>
+            <ref_url>getwc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>putc</ref_name>
+            <ref_url>putc</ref_url>
+        </reference>
+        <reference>
+            <ref_name>putwchar</ref_name>
+            <ref_url>putwchar</ref_url>
+        </reference>
+    </references>
+
+</manpage>

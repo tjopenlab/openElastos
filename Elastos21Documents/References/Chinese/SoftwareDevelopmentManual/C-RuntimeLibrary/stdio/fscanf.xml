@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\fscanf">fscanf fwscanf</sample>
+    <title>fscanf fwscanf</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>从文件流中读取格式化数据。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>fscanf</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>文件流指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>format[, argument]...</param_name>
+                <param_note>
+                    <para>格式化控制字符串（argument为可选参数）</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数fscanf返回成功转换并赋值的字段数，其中不包含已读取但未赋值的字段。如果没有给任何字段赋值，返回0；如果出错或者第一次转换前就到达文件流末尾，返回EOF。</para>
+    </return>
+
+    <remarks>
+        <para>函数fscanf从文件流的当前位置读取数据，并把数据写入argument指定的存储区。每个argument都必须是指针，指向由format指定类型的变量。参数format控制输入字段的输入形式，与scanf的参数format具有相同的形式和功能。参见函数scanf对format的描述。重叠字符串之间的拷贝，操作未定义。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>fscanf</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fscanf.cpp: This program writes formatted
+ * data to a file. It then uses fscanf to
+ * read the various data back from the file.
+ */
+
+#include &lt;stdio.h&gt;
+
+FILE *stream;
+
+int main()
+{
+    long l;
+    float fp;
+    char s[81];
+    char c;
+
+    stream = fopen(&quot;fscanf.out&quot;, &quot;w+&quot;);
+    if (stream == NULL)
+        printf(&quot;The file fscanf.out was not opened\n&quot;);
+    else {
+        fprintf(stream, &quot;%s %ld %f%c&quot;, &quot;a-string&quot;,
+                    65000, 3.14159, &apos;x&apos;);
+
+        /* Set pointer to beginning of file: */
+        fseek(stream, 0L, SEEK_SET);
+
+        /* Read data back from file: */
+        fscanf(stream, &quot;%s&quot;, s);
+        fscanf(stream, &quot;%ld&quot;, &amp;l);
+
+        fscanf(stream, &quot;%f&quot;, &amp;fp);
+        fscanf(stream, &quot;%c&quot;, &amp;c);
+
+
+        printf(&quot;%s\n&quot;, s);
+        printf(&quot;%ld\n&quot;, l);
+        printf(&quot;%f\n&quot;, fp);
+        printf(&quot;%c\n&quot;, c);
+
+        fclose(stream);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+data read:
+a-string
+65000
+3.141590
+x
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>scanf</ref_name>
+            <ref_url>scanf</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fprintf</ref_name>
+            <ref_url>fwprintf</ref_url>
+        </reference>
+    </references>
+
+</manpage>

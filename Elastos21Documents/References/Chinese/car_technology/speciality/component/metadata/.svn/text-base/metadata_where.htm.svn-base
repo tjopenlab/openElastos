@@ -1,0 +1,20 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR构件</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Elastos在何处使用元数据？</h2>
+    <p>目前系统中存在两种接口元数据：一种是通过数组打包到exe或dll程序中；另一种是以单独的文件形式存在，存放在目标目录中。文件的后缀名为cls，以zip压缩的方式存储。当生成一个CAR构件的时候，编译环境会将其放置到可执行文件的资源段中。</p>
+    <p>系统在加载CAR构件的过程中，会调用SysRegisterClsInfo将接口信息注册到内核。根据元数据在Marshalling和unMarshalling的过程中，可以将数据打包构建调用栈以及数据解包。</p>
+    <p>此外，在java和.net中也存在元数据。Java元数据的组织可参考JMI(Java&nbsp;Metadata&nbsp;Interface)文档（可以从sun的官方网站<a class="style1" href="http://www.sun.com" target="_blank">http://www.sun.com</a>下载）；.Net的元数据组织可参考微软的相关网站或者《Inside&nbsp;Microsoft&nbsp;.Net&nbsp;Il&nbsp;Assembler》一书，其中文名《Microsoft&nbsp;.Net&nbsp;Il汇编语言程序设计》。</p>
+
+<script>footer("chinese")</script>
+</body>
+</html>

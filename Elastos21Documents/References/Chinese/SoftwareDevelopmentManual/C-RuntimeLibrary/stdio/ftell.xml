@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\ftell">ftell</sample>
+    <title>ftell</title>
+    <volume>C 运行库函数</volume>
+  	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>获取文件指针的当前位置。</para>
+    </description>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>ftell</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>指向文件结构的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回文件指针的当前位置。对于以文本模式打开的文件流，因为进行了回车换行转换，返回值不能反映出文件指针的物理偏移量。出错时，返回-1L。</para>
+    </return>
+
+    <remarks>
+        <para>函数ftell获取文件指针的当前位置。此位置为，文件指针的当前位置相对于文件头的偏移量。</para>
+        <para>注意，当打开文件准备追加数据时，文件指针的当前位置由最后一次I/O操作决定，而不是由将要写入的位置决定。例如，为了追加数据而打开文件，且最后一次操作是读，文件指针应该在下一次开始读的位置，而不是下一次开始写的位置。（当打开文件准备追加数据时，在写之前，文件指针将被移动到文件末尾。）如果在此文件上，还没有做过任何I/O操作，文件指针指向文件头。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>ftell</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ftell.cpp: This program opens a file named FTELL.C
+ * for reading and tries to read 100 characters. It
+ * then uses ftell to determine the position of the
+ * file pointer and displays this position.
+ */
+
+#include &lt;stdio.h&gt;
+
+FILE *stream;
+
+int main()
+{
+    long position;
+    char list[100];
+    if ((stream = fopen(&quot;ftell.exe&quot;, &quot;rb&quot;)) != NULL) {
+        /* Move the pointer by reading data: */
+        fread(list, sizeof(char), 100, stream);
+        /* Get position after read: */
+        position = ftell(stream);
+        printf(&quot;Position after trying to read 100 bytes: %ld\n&quot;,
+                  position);
+        fclose(stream);
+    }
+    else
+        printf(&quot;problem open the file!&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Position after trying to read 100 bytes: 100
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>fseek</ref_name>
+            <ref_url>fseek</ref_url>
+        </reference>
+        <reference>
+            <ref_name>rewind</ref_name>
+            <ref_url>rewind</ref_url>
+        </reference>
+    </references>
+
+</manpage>

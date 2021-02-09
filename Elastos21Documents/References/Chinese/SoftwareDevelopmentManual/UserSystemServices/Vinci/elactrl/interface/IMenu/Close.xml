@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IMenu</interface><method> Close </method>
+    <description>
+        <para>
+            关闭菜单。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <NoArguments/>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        点击某个处于活动状态的菜单项等效于调用该方法。该方法的调用会将该菜单及其子菜单一并隐藏起来，但是 Menu 的资源并没有释放，可以重新显示出来。显示一个 Menu 可以通过 <link url="Show.htm">Show</link> 方法。
+    </para>
+    <para>
+        该方法的调用可以触发 <link url="../JMenuEvents/Closed.htm">Closed</link> 事件。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CMenu 类介绍 </ref_name>
+        <ref_url>../../class/Menu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IMenu 接口方法列表</ref_name>
+        <ref_url>../IMenu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Show</ref_name>
+        <ref_url>Show</ref_url>
+    </reference>
+    <reference>
+        <ref_name>Closed</ref_name>
+        <ref_url>../JMenuEvents/Closed</ref_url>
+    </reference>
+</references>
+</manpage>

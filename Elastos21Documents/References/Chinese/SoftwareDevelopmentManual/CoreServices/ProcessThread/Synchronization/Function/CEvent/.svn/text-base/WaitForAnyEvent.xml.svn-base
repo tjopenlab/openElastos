@@ -1,0 +1,83 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\IEvent\TryWait">CEvent::WaitForAnyEvent</sample>
+<volume>事件</volume>
+    <title>CEvent::WaitForAnyEvent</title>
+    <routine_idx>../../Event.htm</routine_idx>
+    <description>
+        <para>等待一组事件对象中的任何一个变成通知状态。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> const BufferOf&lt;IEvent *&gt; &amp; </param_type>
+                <param_name> events </param_name>
+                <param_note>
+                    <para>存放事件对象接口指针(IEvent *)的数组。不能为NULL，否则函数返回E_INVALID_ARGUMENT。若数组中等待的事件对象数为0或大于MAXIMUM_WAIT_EVENTS，或者数组中有元素为NULL，或者数组中有重复的元素，或者数组中有元素不是IEvent对象，则函数也返回E_INVALID_ARGUMENT</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>指向WaitResult枚举类型的指针，用于存放方法调用的结果。不能为NULL，否则函数返回E_INVALID_ARGUMENT</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32 * </param_type>
+                <param_name> pIndex </param_name>
+                <param_note>
+                    <para>指向一个Int32型变量的指针，用于存放唤醒本线程的事件在events数组中的索引号。不能为NULL，否则函数返回E_INVALID_ARGUMENT</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EventState * </param_type>
+                <param_name> pState </param_name>
+                <param_note>
+                    <para>指向一个EventState型变量的指针，用于存放线程被唤醒时所获取的状态值。pState可以为NULL，则表明当前线程忽略此参数</para>
+                </param_note>
+            </api_param>
+
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数不正确</td>
+	        </tr>
+	    </table>
+	   <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+        <para>系统允许一个线程一次等待多个事件对象（系统限制：一个线程同时等待的同步对象不能超过MAXIMUM_WAIT_EVENTS个），只要多个事件对象中有一个变为已通知状态，则等待线程被唤醒，且在唤醒的同时可以通过参数pState得到通过事件对象传出的状态值，该状态值是其它线程通过Notify方法设置该事件对象时传入的。</para>
+		<para>在使用<link url="WaitForAnyEvent.htm">CEvent::WaitForAnyEvent</link>方法前，必须先初始化events数组，将所要等待的事件对象的接口指针放入其中，再将events做为参数传入。线程所要同时等待的事件对象的数目即为events数组中元素的数目。</para>
+		<para>如果成功等待到事件发生，则参数pResult返回WaitResult_OK，并可以通过参数pIndex获得唤醒本线程的事件对象在events数组中的索引号，通过参数pState得到线程被唤醒时所获取的状态值。如果等待过程被打断，则pResult返回WaitResult_Interrupted。如果在指定的指定时间间隔内没有成功等待到任一个事件对象变为已通知状态，则pResult返回WaitResult_TimedOut。</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+
+</manpage>

@@ -1,0 +1,99 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Thread and Scheduling</volume>
+<interface>IThread</interface><method> GetPriority </method>
+    <description>
+        <para>
+        	Gets the priority of a thread.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> ThreadPriority *</param_type>
+                <param_name> pPriority </param_name>
+                <param_note>
+                    <para>
+                        Pointer to ThreadPriority enumeration type, it is used to get thread priority.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return Value </td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>S_OK</td>
+		<td>0x00000000</td>
+		<td>Function succeeds in getting the priority of a thread.</td>
+	    </tr>
+	    <tr>
+		<td>E_INVALIDARG</td>
+		<td>0x80070057</td>
+		<td>Invalid argument(s)</td>
+	    </tr>
+	    <tr>
+		<td>E_FAIL</td>
+		<td>0x80004005</td>
+		<td>Thread is exited </td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+	        If parameter pPriority is NULL, the return value is E_INVALIDARG.
+			If the associated thread has been finished, the function has no effect and return E_FAIL.
+		</para>
+		<para>
+			The priority of a thread can be changed by calling the method <link url="SetPriority.htm">
+			IThread::SetPriority</link>. The default priority is ThreadPriority_Normal.
+		</para>
+		<table>
+			<th>
+				<td>Priority</td>
+				<td>Value</td>
+			</th>
+			<tr>
+				<td>ThreadPriority_Lowest</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>ThreadPriority_BelowNormal</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>ThreadPriority_Normal</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>ThreadPriority_AboveNormal</td>
+				<td>4</td>
+			</tr>
+			<tr>
+				<td>ThreadPriority_Highest</td>
+				<td>5</td>
+			</tr>
+		</table>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

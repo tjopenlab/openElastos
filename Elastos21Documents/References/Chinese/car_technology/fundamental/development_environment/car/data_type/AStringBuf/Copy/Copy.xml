@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+   
+    <volume> 常用数据结构 </volume>
+    <class>AStringBuf</class>
+    <method> Copy </method>
+
+    <description>
+        <para> 将AString对象字符串拷贝到当前AStringBuf对象字符串中。</para>
+    </description>
+
+   
+    <syntax>
+        <return_val> AStringBuf &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type> AString &amp;</param_type>
+            <param_name>as</param_name>
+            <param_note>
+                <para> AString对象 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回AStringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>超过AStringBuf对象可用的长度会被省略掉。 </para>
+    </remarks>
+<example>
+<pre>
+AStringBuf_&lt;5&gt; asbuf;
+AString as="123";
+asbuf.Copy(as);
+CConsole::WriteLine(asbuf);  //Display : "123"
+asbuf.Copy("abc");
+CConsole::WriteLine(asbuf);  //Display : "abc"	
+</pre>
+</example>
+ <references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Copy</ref_name>
+        <ref_url>index/Copy</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Replace</ref_name>
+        <ref_url>../Replace</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AStringBuf::Append</ref_name>
+        <ref_url>../Append/index/Append</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::Copy</ref_name>
+        <ref_url>../../WStringBuf/Copy/index/Copy</ref_url>
+    </reference>
+</references>   
+
+     
+</manpage>

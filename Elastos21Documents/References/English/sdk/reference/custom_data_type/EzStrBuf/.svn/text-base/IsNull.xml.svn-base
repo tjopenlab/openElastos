@@ -1,0 +1,51 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\ezarray\IsNull">IsNull</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzStrBuf</interface>
+    <method> IsNull </method>
+
+    <description>
+        <para>  Indicates whether the EzStrBuf object is NULL. </para>
+    </description>
+
+    <return>
+        <para> Returns TRUE if the EzStrBuf object is NULL, otherwise returns FALSE. </para>
+    </return>
+    <syntax>
+        <return_val> BOOL </return_val>
+        <NoArguments/>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezarray.h>
+
+int __cdecl main()
+{
+    EzArray<int> myArray = EzArray<int>::CreateObject(10);
+
+    if (!myArray.IsNull()) {
+        printf("myArray's value is not NULL.");
+    }
+    else {
+        printf("myArray's value is NULL.");
+    }
+    myArray.Dispose();
+    return 0;
+}
+]]></pre></example>
+
+    <result>
+    <![CDATA[
+myArray's value is not NULL.
+]]>
+    </result>
+
+</manpage>

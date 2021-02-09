@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\_fullpath">_fullpath</sample>
+    <title> _fullpath, _wfullpath</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx>slib_idx.htm</routine_idx>
+
+    <description>
+        <para>为指定的相对路径补全它的绝对路径名。</para>
+    </description>
+
+    <syntax>
+        <return_val>char *</return_val>
+        <func_name>_fullpath</func_name>
+        <parameters>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>absPath</param_name>
+                <param_note>
+                    <para>指向绝对路径的缓冲区指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>const char*</param_type>
+                <param_name>relPath</param_name>
+                <param_note>
+                    <para>指向相对路径字符串的指针</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>maxLength</param_name>
+                <param_note>
+                    <para>缓冲区的大小</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t *</return_val>
+        <func_name>_wfullpath</func_name>
+        <parameters>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>absPath</param_name>
+            </func_param>
+            <func_param>
+                <param_type>const wchar_t*</param_type>
+                <param_name>relPath</param_name>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>maxLength</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>_fullpath和_wfullpath在不出错的情况下，均返回用来存放绝对路径的缓冲区指针，如果出错（包括：相对路径里的盘符或路径是无效的；绝对路径的长度超过缓冲区的大小），则返回空指针。</para>
+    </return>
+
+    <remarks>
+        <para>函数_fullpath将指针变量relPath指向的相对路径名扩充成为绝对路径名，并存储在指针变量absPath所指向的缓冲区中。相对路径名描述了相对于当前位置的其他路径（比如当前工作目录：“.”）。绝对路径名是相对路径名的扩展，描述了到达预期位置的全部路径，这个路径的起点是文件系统的根。_fullpath还可以用来获得那些包括了“./”和“../”的相对路径名的绝对路径名。</para>
+        <para>_wfullpath是_fullpath的宽字符版本。在_wfullpath中声明的字符串是宽字节类型的。</para>
+        <para>如果指向绝对路径的缓冲区指针absPath为空，函数将调用<link url=".\malloc.htm">malloc</link>函数，分配一个大小为_MAX_PATH的缓冲区，忽略maxLength参数的声明，并且返回指向该缓冲区的指针。用户必须在适当的地方释放该缓冲区所占用的内存(调用<link url=".\free.htm">free</link>函数)。如果相对路径指明了盘符，则该路径由指明盘符的当前路径和相对路径组合而成。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_fullpath</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_wfullpath</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* fullpath.cpp: This program demonstrates how _fullpath
+ * creates a full path from a partial path.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;direct.h&gt;
+
+char full[_MAX_PATH], part[_MAX_PATH];
+
+int main()
+{
+    while (1) {
+        printf(&quot;Enter partial path or ENTER to quit: &quot;);
+        gets(part);
+        if (part[0] == 0)
+            break;
+
+        if (_fullpath(full, part, _MAX_PATH) != NULL)
+            printf(&quot;Full path is: %s\n&quot;, full);
+        else
+            printf(&quot;Invalid path\n&quot;);
+    }
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Enter partial path or ENTER to quit: Elastos
+Full path is:D:\Elastos21\XDK\Targets\pdk\win32\x86.msvc.pc.dbg\Elastos
+</result>
+
+    
+
+    <references>
+        <reference>
+            <ref_name>_getcwd</ref_name>
+            <ref_url>../direct/_getcwd</ref_url>
+        </reference>
+    </references>
+
+</manpage>

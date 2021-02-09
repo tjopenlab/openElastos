@@ -1,0 +1,80 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<sample url="sdk\operating_system\system_com_interface\ICondition\Wait_Pulse">Wait</sample>
+<volume>同步</volume>
+<interface>ICondition</interface><method> Wait </method>
+    <description>
+        <para>使调用线程在条件变量对象上等待。</para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+       <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IMutex * </param_type>
+                <param_name> pMutex </param_name>
+                <param_note>
+                    <para>传入的互斥体对象接口指针。此参数不可为NULL。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+               <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WaitResult * </param_type>
+                <param_name> pResult </param_name>
+                <param_note>
+                    <para>指向<link url="../../../DataStructure/WaitResult.htm">WaitResult</link>枚举类型的指针，用于存放等待结果的变量的地址,不能为空。如果方法调用成功，则返回WaitResult_OK；如果事件对象仍处于未通知状态，则返回WaitResult_TimedOut；如果在等待事件对象变为已通知状态期间被打断，则返回WaitResult_Interrupted。本参数不能为NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数不正确</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_OPERATION</td>
+	    	    <td>非法操作</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_NOT_OWNER</td>
+	    	    <td>调用失败，线程并未占有所传入的互斥体对象</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+	<remarks>
+		<para>
+		本方法使当前线程在条件变量对象上等待，并原子地释放传入的已经获取了一次的互斥体对象。调用线程将一直处于等待状态，直到被其它线程通过调用<link url="../ICondition/Pulse.htm">ICondition::Pulse</link>或<link url="../ICondition/PulseAll.htm">ICondition::PulseAll</link>方法唤醒为止，才从本方法中成功返回。在调用线程被唤醒后，本方法在返回前将重新获取一次所传入的互斥体对象。
+		</para>
+		<para>
+		当前线程必须是参数pMutex所指向的互斥体对象的属主，并且获取本互斥体对象时只成功调用了一次<link url="../IMutex/Lock.htm">IMutex::Lock</link>方法或<link url="../IMutex/TryLock.htm">IMutex::TryLock</link>方法。
+		</para>
+		<para>
+		在当前线程被唤醒后，本方法在返回前将重新获取一次所传入的互斥体对象。
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Windows 2000 或更高版本；Elastos操作系统
+			</system_name>
+        </system>
+    </requirements>
+    <example>
+    </example>
+</manpage>

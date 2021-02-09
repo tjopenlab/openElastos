@@ -1,0 +1,121 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Kortide DCD API: callbace.car文件参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<div class="tabs">
+  <ul>
+    <li><a href="main.html"><span>首页</span></a></li>
+    <li><a href="globals.html"><span>全部</span></a></li>
+    <li><a href="Engineglobals.html"><span>引擎部分</span></a></li>
+    <li class="current"><a href="UIglobals.html"><span>UI部分</span></a></li>
+  </ul>
+</div>
+<h1>DCD引擎回调相关API参考</h1>
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>类型定义</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef int(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="callbace_8car.html#d3a32d68e5efe663e5a858c552938c69">UpdateChannelsCallback</a> )(int nChannelsCount)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">当DCD引擎完成更新频道后向上层通知, 并告知当前的频道个数，DCD引擎用户通过该回调函数可知频道已更新.  <a href="#d3a32d68e5efe663e5a858c552938c69"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="callbace_8car.html#bf962aac48053c44a5be4b6b72b22594">ManualUpdateStatusCallback</a> )(int nStatus)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">用于手动更新频道内容，手动更新时dcd引擎调用ManualUpdateStatusCallback回调函数，通过参数nStatus报告更新的状态.  <a href="#bf962aac48053c44a5be4b6b72b22594"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>函数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="callbace_8car.html#7314f55a766251f9bfd85534de10bf16">DCDSetUpdateChannelCallback</a> (<a class="el" href="callbace_8car.html#d3a32d68e5efe663e5a858c552938c69">UpdateChannelsCallback</a> puc)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置UpdateChannelsCallback回调函数.  <a href="#7314f55a766251f9bfd85534de10bf16"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="callbace_8car.html#73c89ff1fd074312d304d84465b57481">DCDSetManualUpdateStatusCallback</a> (<a class="el" href="callbace_8car.html#bf962aac48053c44a5be4b6b72b22594">ManualUpdateStatusCallback</a> pmus)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">设置ManualUpdateStatusCallback回调函数.  <a href="#73c89ff1fd074312d304d84465b57481"></a><br></td></tr>
+</table>
+<hr><h2>类型定义文档</h2>
+<a class="anchor" name="bf962aac48053c44a5be4b6b72b22594"></a><!-- doxytag: member="callbace.car::ManualUpdateStatusCallback" ref="bf962aac48053c44a5be4b6b72b22594" args=")(int nStatus)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* <a class="el" href="callbace_8car.html#bf962aac48053c44a5be4b6b72b22594">ManualUpdateStatusCallback</a>)(int nStatus)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+用于手动更新频道内容，手动更新时dcd引擎调用ManualUpdateStatusCallback回调函数，通过参数nStatus报告更新的状态.
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>nStatus</em>&nbsp;</td><td>- 为0表示DCD引擎是关闭状态没法更新， 1表示连接失败， 2表示连接成功， 3表示正在下载，4表示下载失败，5表示下载成功,6无Sim卡，7正在连接. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d3a32d68e5efe663e5a858c552938c69"></a><!-- doxytag: member="callbace.car::UpdateChannelsCallback" ref="d3a32d68e5efe663e5a858c552938c69" args=")(int nChannelsCount)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int(* <a class="el" href="callbace_8car.html#d3a32d68e5efe663e5a858c552938c69">UpdateChannelsCallback</a>)(int nChannelsCount)          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+当DCD引擎完成更新频道后向上层通知, 并告知当前的频道个数，DCD引擎用户通过该回调函数可知频道已更新.
+<p>
+
+</div>
+</div><p>
+<hr><h2>函数文档</h2>
+<a class="anchor" name="73c89ff1fd074312d304d84465b57481"></a><!-- doxytag: member="callbace.car::DCDSetManualUpdateStatusCallback" ref="73c89ff1fd074312d304d84465b57481" args="(ManualUpdateStatusCallback pmus)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DCDSetManualUpdateStatusCallback           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="callbace_8car.html#bf962aac48053c44a5be4b6b72b22594">ManualUpdateStatusCallback</a>&nbsp;</td>
+          <td class="paramname"> <em>pmus</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设置ManualUpdateStatusCallback回调函数.
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="7314f55a766251f9bfd85534de10bf16"></a><!-- doxytag: member="callbace.car::DCDSetUpdateChannelCallback" ref="7314f55a766251f9bfd85534de10bf16" args="(UpdateChannelsCallback puc)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DCDSetUpdateChannelCallback           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="callbace_8car.html#d3a32d68e5efe663e5a858c552938c69">UpdateChannelsCallback</a>&nbsp;</td>
+          <td class="paramname"> <em>puc</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+设置UpdateChannelsCallback回调函数.
+<p>
+
+</div>
+</div><p>
+<hr size="1"><address style="text-align: right;"><small>
+<a href="http://www.kortide.com.cn">© Kortide Corp.All rights reserved.</a></small></address></body>
+</html>

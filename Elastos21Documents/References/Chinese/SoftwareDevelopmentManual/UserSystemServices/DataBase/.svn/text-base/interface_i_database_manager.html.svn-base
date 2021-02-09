@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: IDatabaseManager接口参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>IDatabaseManager接口参考</h1><!-- doxytag: class="IDatabaseManager" -->数据库管理器接口。  
+<a href="#_details">更多...</a>
+<p>
+<code>import &quot;<a class="el" href="database_8car-source.html">database.car</a>&quot;;</code>
+<p>
+
+<p>
+<a href="interface_i_database_manager-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database_manager.html#255f3b1222a0ff0561eedb7f5e593252">Version</a> ([out] WStringBuf_&lt; 256 &gt; esbVersion)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取Database Manager的版本信息。  <a href="#255f3b1222a0ff0561eedb7f5e593252"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database_manager.html#c9ab5ea96a68aa42a85c1bdab6a6b7d7">OpenDatabase</a> ([in] WString esDbFileName,[out]<a class="el" href="interface_i_database.html">IDatabase</a> **piDb)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">打开文件指定的数据库。如果数据库不存在，则创建数据库。  <a href="#c9ab5ea96a68aa42a85c1bdab6a6b7d7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database_manager.html#5629d21d777a85b55f0fa307c3db7c6d">OpenDatabaseEx</a> ([in] WString esDbFileName,[in] Int32 nPageSize,[in] <a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19">DbEncoding</a> enc,[out]<a class="el" href="interface_i_database.html">IDatabase</a> **piDb)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">新建或打开文件指定的数据库。如果数据库不存在，则创建数据库， 并且数据库使用enc指定的编码，页面大小为nPageSize字节。如果 数据库存在，则忽略nPageSize和enc两个参数，直接打开数据库, 这时等同于OpenDatabase。  <a href="#5629d21d777a85b55f0fa307c3db7c6d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_database_manager.html#41d9b59870b4e10762b1b677f9e20e5b">ForceClose</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">强迫关闭调用线程所持有的所有数据库连接  <a href="#41d9b59870b4e10762b1b677f9e20e5b"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+数据库管理器接口。 <hr><h2>成员函数文档</h2>
+<a class="anchor" name="255f3b1222a0ff0561eedb7f5e593252"></a><!-- doxytag: member="IDatabaseManager::Version" ref="255f3b1222a0ff0561eedb7f5e593252" args="([out] WStringBuf_&lt; 256 &gt; esbVersion)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabaseManager::Version           </td>
+          <td>(</td>
+          <td class="paramtype">[out] WStringBuf_&lt; 256 &gt;&nbsp;</td>
+          <td class="paramname"> <em>esbVersion</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取Database Manager的版本信息。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>esbVersion</em>&nbsp;</td><td>- 返回的版本信息，Caller 分配空间。 </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>正确返回 NOERROR，否则为E_INVALID_ARGUMENT。 </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="c9ab5ea96a68aa42a85c1bdab6a6b7d7"></a><!-- doxytag: member="IDatabaseManager::OpenDatabase" ref="c9ab5ea96a68aa42a85c1bdab6a6b7d7" args="([in] WString esDbFileName,[out]IDatabase **piDb)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabaseManager::OpenDatabase           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>esDbFileName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] <a class="el" href="interface_i_database.html">IDatabase</a> **&nbsp;</td>
+          <td class="paramname"> <em>piDb</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+打开文件指定的数据库。如果数据库不存在，则创建数据库。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>esDbFileName</em>&nbsp;</td><td>- 数据库文件路径。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>piDb</em>&nbsp;</td><td>- 打开的数据库的接口。 </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>正确返回 NOERROR，否则为E_INVALID_ARGUMENT, E_DB_INTERNAL_ERROR,或者E_DB_OUT_OF_MEMORY. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="5629d21d777a85b55f0fa307c3db7c6d"></a><!-- doxytag: member="IDatabaseManager::OpenDatabaseEx" ref="5629d21d777a85b55f0fa307c3db7c6d" args="([in] WString esDbFileName,[in] Int32 nPageSize,[in] DbEncoding enc,[out]IDatabase **piDb)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabaseManager::OpenDatabaseEx           </td>
+          <td>(</td>
+          <td class="paramtype">[in] WString&nbsp;</td>
+          <td class="paramname"> <em>esDbFileName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>nPageSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[in] <a class="el" href="database_8car.html#7e12dd6e69749fed6ec2f1ec1db57e19">DbEncoding</a>&nbsp;</td>
+          <td class="paramname"> <em>enc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] <a class="el" href="interface_i_database.html">IDatabase</a> **&nbsp;</td>
+          <td class="paramname"> <em>piDb</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+新建或打开文件指定的数据库。如果数据库不存在，则创建数据库， 并且数据库使用enc指定的编码，页面大小为nPageSize字节。如果 数据库存在，则忽略nPageSize和enc两个参数，直接打开数据库, 这时等同于OpenDatabase。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>esDbFileName</em>&nbsp;</td><td>- 数据库文件路径。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>nPageSize</em>&nbsp;</td><td>- 创建数据库的页面大小，应为2的幂次， 并且最小为512，最大为8192。 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>enc</em>&nbsp;</td><td>- 创建数据库编码，参见DB_ENC。 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>piDb</em>&nbsp;</td><td>- 打开的数据库的接口。 </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>正确返回 NOERROR，否则为E_INVALID_ARGUMENT, E_DB_INTERNAL_ERROR,或者E_DB_OUT_OF_MEMORY. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="41d9b59870b4e10762b1b677f9e20e5b"></a><!-- doxytag: member="IDatabaseManager::ForceClose" ref="41d9b59870b4e10762b1b677f9e20e5b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDatabaseManager::ForceClose           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+强迫关闭调用线程所持有的所有数据库连接 
+<p>
+<dl class="return" compact><dt><b>返回:</b></dt><dd>正确返回 NOERROR,否则为E_DB_INTERNAL_ERROR. </dd></dl>
+
+</div>
+</div><p>
+<hr>该接口的文档由以下文件生成：<ul>
+<li>E:/SouandDoc/MyDox/src/<a class="el" href="database_8car-source.html">database.car</a></ul>
+<script>footer("chinese")</script>
+</body>
+</html>

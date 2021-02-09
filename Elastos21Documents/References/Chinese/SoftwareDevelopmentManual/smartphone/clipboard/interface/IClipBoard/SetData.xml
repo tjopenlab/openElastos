@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IClipBoard</interface><method> SetData </method>
+    <description>
+        <para>
+            把指定的格式的数据放到剪贴板上。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> format </param_name>
+                <param_note>
+                    <para>
+一个已知的剪贴板格式                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzByteBuf </param_type>
+                <param_name> esbBuf </param_name>
+                <param_note>
+                    <para>
+指定格式的数据                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            成功调用，返回S_OK；format不在剪贴板支持的格式范围内或esbBuf为空，返回E_INVALIDARG；设置的数据太大，返回E_OUTOFMEMORY，剪贴板原始数据保持不变。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+</manpage>

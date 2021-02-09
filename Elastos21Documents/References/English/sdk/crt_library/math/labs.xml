@@ -1,0 +1,84 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\math\labs">labs</sample>
+    <title> labs</title>
+    <volume>C Run-Time Library Functions</volume>
+    <routine_idx> math_idx.htm </routine_idx>
+
+    <description>
+        <para>The labs function returns the absolute value of the long integer n.</para>
+    </description>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>labs</func_name>
+        <parameters>
+            <func_param>
+                <param_type>long</param_type>
+                <param_name>n</param_name>
+                <param_note>
+                    <para>Long integer value.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>The labs function returns the absolute value of its argument. There is no error return.</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>labs</routine_name>
+            <headerfile>math.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* labs.cpp:This program displays the absolute value of lx.
+ */
+
+#include  &lt;stdio.h&gt;
+#include  &lt;math.h&gt;
+
+int main()
+{
+    long lx = -41567L, ly;
+
+    ly = labs(lx);
+    printf(&quot;The absolute value of %ld is %ld\n&quot;, lx, ly);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The absolute value of -41567 is 41567
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>abs</ref_name>
+            <ref_url>abs</ref_url>
+        </reference>
+        <reference>
+            <ref_name>fabs</ref_name>
+            <ref_url>fabs</ref_url>
+        </reference>
+    </references>
+
+</manpage>

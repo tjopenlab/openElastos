@@ -1,0 +1,45 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WStringBuf</interface>
+    <method> LastIndexOfAnyChar(暂未实现)</method>
+
+    <description>
+        <para> 按是否区分大小写标志获得strCharSet中任意一个字符在当前对象字符串中最后出现的索引值。</para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <parameters>
+        <api_param>
+            <param_type>Char32 *</param_type>
+            <param_name> strCharSet </param_name>
+            <param_note>
+                <para> 指定字符集。</para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive</param_default>
+            <param_note>
+                <para> 是否区分大小写标志。参见<link url="../../others/StringCase.htm">StringCase</link>枚举类型说明。</para>
+            </param_note>
+        </api_param>      
+        </parameters>        
+    </syntax>
+    <return>
+        <para>返回strCharSet中任意一个字符在当前对象字符串中最后出现的索引值，若没出现则返回-1。</para>
+    </return>
+    <remarks>
+        <para>如果WStringBuf对象字符串指针为NULL或内容为空，则返回-1。</para>
+        <para>如果strCharSet指针为NULL或内容为空，则返回-1。</para>
+    </remarks>
+ <references>
+    <reference>
+        <ref_name> CAR支持的数据类型对比表 </ref_name>
+        <ref_url> ../../data_type</ref_url>
+    </reference>
+</references>      
+</manpage>

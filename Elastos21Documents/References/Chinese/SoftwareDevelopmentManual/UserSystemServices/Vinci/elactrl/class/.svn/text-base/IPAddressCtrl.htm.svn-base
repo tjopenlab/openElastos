@@ -1,0 +1,44 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<head>
+<title>IPAddressCtrl</title>
+<script src="/xsl/docstyles.js"></script>
+</head>
+<body>
+<center><h2><b>IPAddressCtrl</b></h2></center>
+<small><p><b>头文件：</b>ElControls.h
+<p><b>程序库：</b>ElControls.dll
+（<b>备注：</b>当在 CAR 文件中通过 <a class="doxygen" href="../../../../../car_technology/fundamental/development_environment/car/keywords/keywords_importlib.htm">importlib</a> 引入 ElControls.dll 时，则无需在源文件中添加“include &lt;ElControls.h&gt;”该句；若 ElControls.dll 是在 sources 文件中引入的，则需要在源文件中添加“include &lt;ElControls.h&gt;”该句。有关更多信息请参考：<a class="doxygen" href="../../../../../car_technology/car.htm">CAR 编程入门</a>）</small>
+<hr size="1">
+<h4><li><b>详细描述：</b></h3>
+<center> <img src="images/IPAddressCtrl.jpg"> </center>
+<center><small>IPAddressCtrl 图例</small></center>
+<p>IP 地址控件。该控件允许用户以 IP 格式输入数字地址。该格式分为四个域，每个域有3个数字，如图例所示。IP 地址只能从左至右依次输入。当某一位被输入数字后，焦点将自动移动至下一位。IP 地址栏的每个域允许用户键入的范围为：minValue～maxValue（默认为：0～255），一旦输入的数字超过或低于最大最小值，则自动以最大或者最小值显示。除了通过键盘键入 IP 地址外，还可以调用 <a class="doxygen" href="../interface/IIPAddressCtrl/SetAddress.htm">SetAddress</a> 方法进行设置。设置每个域允许输入的范围可以通过调用 <a class="doxygen" href="../interface/IIPAddressCtrl/SetFieldRange.htm">SetFieldRange</a> 方法。
+<p>IP 地址栏内显示的字体受 <a class="doxygen" href="../../graphics/class/CFont.htm">Font</a> 控制，有关更多信息请参考：<a class="doxygen" href="../reference/SetText.htm">如何设置控件所显示的字体</a>。一旦设置字体的大小超过控件可以显示的范围将被自动剪裁。 
+<p><b>注意：</b>IPAddressCtrl 必须放在一个 <a class="doxygen" href="Form.htm">Form</a> 内，或者 IPAddressCtrl 的 parent 控件在一个 Form 内。
+<hr size="1">
+<h4><li><b>CIPAddressCtrl类封装图：</b></font></h4>
+<center> <img src="images/CIPAddressCtrl.jpg"> </center>
+        <p>如图所示，JControlEvents（通用回调事件接口）、JIPAddressCtrlEvents 为回调事件接口，用户可以通过 AddXXXCallback 的方法为 IPAddressCtrl 注册回调事件，当该 XXX 事件发生时，相应的回调处理函数会被调用。当销毁一个对象前，需要调用 RemoveXXXCallback 取消该事件。具体 Callbak 机制的介绍，详见 Elastos 编程入门中 Callback 这节。
+        <p>当使用 <a class="doxygen" href="CIPAddressCtrl/CIPAddressCtrl_New.htm">New</a> 方法创建了一个 IPAddressCtrl 对象后，可以获得 <a class="doxygen" href="../interface/IIPAddressCtrl.htm">IIPAddressCtrl</a> 接口指针，通过该接口指针用户可以调用接口内的方法对 IPAddressCtrl 进行一系列操作。
+
+<hr size="1">
+<h4><li><b>构造函数：</b></font></h4>
+<table>
+<thead><td>名称</td><td class="memitem">说明</td></thead>
+<tr><td><a class="doxygen" href="CIPAddressCtrl/CIPAddressCtrl_New.htm">CIPAddressCtrl::New</as></td><td>创建一个 IPAddressCtrl 对象</td></tr>
+</table>
+<h4><li><b><a class="doxygen" href="../interface/IIPAddressCtrl.htm">IIPAddressCtrl 接口方法列表</a></b></font></h4>
+<ul><p><b>注：</b>IIPAddressCtrl 接口继承于 <a class="doxygen" href="../interface/IControl.htm">IControl</a> 接口。</ul>
+
+<h4><li><b><a class="doxygen" href="../interface/JIPAddressCtrlEvents.htm">IPAddressCtrl 回调事件列表</a></b></font></h4>
+
+<hr size="1">
+<h4><li><b>示例</b></font></h4>
+
+<script>footer("chinese")</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 接口智能指针类共有方法 </volume>
+    <interface> InterfaceRef </interface>
+    <method>IsValid</method>
+
+    <description>
+        <para>判断指定接口智能指针是否有效。</para>
+    </description>
+
+    <syntax_nopara>
+        <return_val>BOOL</return_val>
+        <NoArguments/>
+    </syntax_nopara>
+
+    <return>
+        <para>如果指定接口智能指针有效，返回TRUE；否则，返回FALSE。</para>
+    </return>
+
+    <remarks>
+        <para> 在使用接口智能指针之前，必须判断其有效性，只有确认接口智能指针有效，才可以通过它调用相应接口智能指针类中的所有方法。如果当前的接口智能指针不是通过Instantiate初始化的，则需要调用IsValid方法对其进行有效性判断。</para>
+    </remarks>
+
+    <example><pre><![CDATA[
+情况一：接口智能指针作为参数传递给函数，需要调用IsValid方法进行判断，例如：
+void Foo(InterfaceRef& senderRef)
+{
+    if (!senderRef.IsValid()) { //调用IsValid方法判断接口智能指针senderRef的有效性.
+        assert(0 && "senderRef is invalid.");
+        return;
+    }
+    ……
+}
+]]></pre>
+        <pre><![CDATA[
+情况二：接口智能指针是通过i2i函数转换而来的，需要调用IsValid方法进行判断，例如：
+InterfaceRef iInterfaceRef
+
+//已经有接口智能指针IXXXRef指向指定对象中的Interface接口，可以通过它获取相应的接口智能指针
+InterfaceRef iInterfaceRef = i2i(IXXXRef);
+
+if (!iInterfaceRef.IsValid()) { //调用IsValid方法判断接口智能指针iInterfaceRef的有效性.
+    assert(0 && "iInterfaceRef is invalid.");
+    return;
+}
+]]></pre></example>
+
+</manpage>

@@ -1,0 +1,126 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="system_lib\RegisterRunningObject"> RegisterRunningObject </sample>
+    <volume>System API</volume>
+    <title>CSystem::RegisterRunningObject</title>
+    <routine_idx> ..\naming_service_idx.htm </routine_idx>
+
+    <description>
+        <para>
+        	Registers a named service interface in the operating system.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ECODE</return_val>
+        <api_name>CSystem::RegisterRunningObject</api_name>
+        <parameters>
+            <api_param>
+                <param_type> WString </param_type>
+                <param_name> name </param_name>
+                <param_note>
+                    <para>
+                    	[in] Sepcifies the name of the service interface,which can not be NULL.And its length must be limited within 256 characters.
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> PObject </param_type>
+                <param_name>pRunningObject</param_name>
+                <param_note>
+                    <para>
+                    	[in] Pointer to service interface. Can not be NULL.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>Return Value</td><td>Description</td>
+            </th>
+            <tr>
+                <td>NOERROR</td>
+                <td>Funtion succeeds in registering a named service interface in the operating system.</td>
+            </tr>
+            
+            <tr>
+                <td>E_INVALIDARG</td>
+                <td>Invalid argument(s)</td>
+            </tr>
+            <tr>
+                <td>E_ALREADY_EXISTS </td>
+                <td>The name of the service  already registered</td>
+            </tr>
+           <tr>
+                <td>E_DOES_NOT_EXIST </td>
+                <td>The service dosen't exist</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY </td>
+                <td>Insufficient memory</td>
+            </tr>
+            <tr>
+                <td>E_SERVICE_NAME_TOO_LONG </td>
+                <td>The service name is too long</td>
+            </tr>
+        </table>
+        <para>See <link url="/sdk/reference/basic_data_type/hresult.htm">ECODE</link> related help for more details.</para>
+    </return>
+
+    <remarks>
+        <para>
+        	The named service is identified by a string. The interface of the service is registered in operating system
+         	by calling EzRegisterService. The user of the service (client program) can look up the service and get the 
+         	specified service interface by calling <link url="FindRunningObject.htm">CSystem::FindRunningObject</link>.</para>
+        	<para>There are not any specific restrictions for the service name, but a reasonable length is suggested. 
+        	.If the length  beyonds the confines of 256 characters ,the function will return E_SERVICE_NAME_TOO_LONG.  if the name is same as a registed name, the function will return E_ALREADY_EXISTS. A name of a service can be
+        	a NULL string, but is not recommended.
+        </para>
+        <para>
+        	When the user process exits (including exceptional exit), the services that have not been unregistered 
+        	will exit forcefully.
+        </para>
+        <para>
+        	The existing named services in operating system include TCP/IP and FILESYS.
+        </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 or later; Elastos 2.0 or later.
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+    <reference>
+        <ref_name>CSystem::FindRunningObject</ref_name>
+        <ref_url>FindRunningObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CSystem::WaitForRunningObject</ref_name>
+        <ref_url>WaitForRunningObject</ref_url>
+    </reference>
+    <reference>
+        <ref_name>CSystem::UnregisterRunningObject</ref_name>
+        <ref_url>UnregisterRunningObject</ref_url>
+    </reference>
+    </references>
+
+</manpage>

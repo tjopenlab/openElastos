@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>WStringBuf</interface>
+    <method>SetLength</method>
+
+    <description>
+        <para> 设置此对象字符串所占的字符数,以sizeof(WChar)为单位。</para>
+    </description>
+   <syntax>
+        <apiname>SetLength</apiname>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>Int32 </param_type>
+            <param_name> len </param_name>
+            <param_note>
+                <para> 要设置的长度 </para>
+            </param_note>
+         </api_param>
+         </parameters>
+    </syntax>
+    <remarks>
+        <para>如果len小于0，字符串长度不变。</para>
+        <para>如果len大于0并且小于字符串当前长度，字符串长度设置为len,并在len+1的位置设置'\0'。</para>
+         <para>如果len大字符串当前长度，字符串长度不变。</para>
+    </remarks>
+<example>
+<pre>
+请参见：<link url="../AStringBuf/SetLength.htm">AStringBuf::SetLength</link>
+</pre>
+</example>
+ <references>
+    <reference>
+        <ref_name>WStringBuf</ref_name>
+        <ref_url>../WStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::GetLength</ref_name>
+        <ref_url>../WStringBuf/GetLength</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::GetCapacity</ref_name>
+        <ref_url>../WStringBuf/GetCapacity</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::GetAvailableSpace</ref_name>
+        <ref_url>../WStringBuf/GetAvailableSpace</ref_url>
+    </reference>
+
+</references>   
+</manpage>

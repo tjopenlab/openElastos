@@ -1,0 +1,93 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Synchronization</volume>
+<interface>Event</interface><method> TryWait </method>
+    <description>
+        <para>
+           Attempts to wait for the <b>Event</b> object to change into notified state within specified time-out period. 
+        </para>
+    </description>
+    <syntax>
+        <return_val>ECODE</return_val>
+        <parameters>
+            <api_param>
+            	<param_inout>[in]</param_inout>
+                <param_type> uint_t </param_type>
+                <param_name> uTicks</param_name>
+                <param_note>
+                    <para>
+                       Specifies a period which is over the specified time, the unit is tick. It will return at once if 
+                       this parameter is zero. If Event object is in notified state, it returns S_OK; if Event object 
+                       is not in notified state, returns S_TIMED_OUT.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+        <parameters>
+            <api_param>
+            	<param_inout>[out]</param_inout>
+                <param_type> uint_t * </param_type>
+                <param_name> puState </param_name>
+                <param_note>
+                    <para>
+                       Pointer to hold the specific value of notified state of Event object. 
+                       It means waiting thread ignore this parameter if it is NULL. It will make sense only when this 
+                       function succeeds in waiting Event object changing into notified state.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    
+    	<table>
+            <th>
+                <td>Return Value</td>
+                <td>Hex Value</td>
+                <td>Description</td>
+            </th>
+            <tr>
+                <td>S_OK</td>
+                <td>0x00000000</td>
+                <td>Function succeeds in attempting to wait for the Event object to change into notified state.</td>
+            </tr>
+            <tr>
+                <td>S_TIMED_OUT</td>
+                <td>0x00060003</td>
+                <td>The wait time exceeds the specified time-out period, but the event object is still not notified.</td>
+            </tr>
+            <tr>
+                <td>S_INTERRUPTED</td>
+                <td>0x00060014</td>
+                <td>Waiting is interrupted.</td>
+            </tr>
+
+        </table>
+        <para>References <link url="/sdk/hresult.htm">ECODE</link>related help for more details</para>
+	</return>
+
+	<remarks>
+		<para>
+            This member function attempts to make the Event object wait, from changing into notified state. If Event object 
+            is not in notified state, calling thread will get into waiting state, and it won't stop waiting until the 
+            Event object is changed into notified state, and then returns from this function. If waiting time exceeds 
+            the specified time, calling thread will stop waiting and returns from this function. If Event object is 
+            in notified state, this function will return at once. At this time, if Event object is reset automatically,
+            it will reset as not notified state. If it is reset manually, Event object will keep notified state. Thread 
+            waiting period can be interrupted.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

@@ -1,0 +1,255 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+<html>
+<head>
+<title>英文文档规范</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<style type="text/css">
+<!--
+a:link {
+	font-size: 12px;
+	color: #FFFFFF;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+	text-decoration: none;
+}
+a:visited {
+	font-size: 12px;
+	color: #FFFFFF;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+	text-decoration: none;
+}
+a:hover {
+	color: #FFFFFF;
+	text-decoration: underline;
+	font-size: 12px;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+}
+a:active {
+	font-size: 12px;
+	color: #FFFFFF;
+	text-decoration: none;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+}
+a.a1:link {
+	font-size: 12px;
+	color: #CC0000;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+	text-decoration: none;
+}
+a.a1:visited {
+	font-size: 12px;
+	color: #CC0000;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+	text-decoration: none;
+}
+a.a1:hover {
+	color: #CC0000;
+	text-decoration: underline;
+	font-size: 12px;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+}
+a.a1:active {
+	font-size: 12px;
+	color: #CC0000;
+	text-decoration: none;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+}
+td {
+	font-size: 13px;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+}
+legend {
+	font-size: 13px;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-weight: bold;
+}
+input,option{
+	BORDER-TOP-WIDTH: 1px;
+	BORDER-LEFT-WIDTH: 1px;
+	FONT-SIZE: 10pt;
+	BORDER-LEFT-COLOR: #666666;
+	BORDER-BOTTOM-WIDTH: 1px;
+	BORDER-BOTTOM-COLOR: #666666;
+	BORDER-TOP-COLOR: #666666;
+	HEIGHT: 22px;
+	BORDER-RIGHT-WIDTH: 1px;
+	BORDER-RIGHT-COLOR: #666666;
+	color: #000000;
+}
+textarea{
+	BORDER-TOP-WIDTH: 1px;
+	BORDER-LEFT-WIDTH: 1px;
+	FONT-SIZE: 10pt;
+	BORDER-LEFT-COLOR: #666666;
+	BORDER-BOTTOM-WIDTH: 1px;
+	BORDER-BOTTOM-COLOR: #666666;
+	BORDER-TOP-COLOR: #666666;
+	BORDER-RIGHT-WIDTH: 1px;
+	BORDER-RIGHT-COLOR: #666666;
+	color: #000000;
+}
+.button{
+	BORDER-TOP-WIDTH: 1px;
+	BORDER-LEFT-WIDTH: 1px;
+	FONT-SIZE: 9pt;
+	BORDER-LEFT-COLOR: #000000;
+	BORDER-BOTTOM-WIDTH: 1px;
+	BORDER-BOTTOM-COLOR: #000000;
+	BORDER-TOP-COLOR: #000000;
+	HEIGHT: 20px;
+	BORDER-RIGHT-WIDTH: 1px;
+	BORDER-RIGHT-COLOR: #000000;
+	background-color: #BBF8FF;
+}
+p {
+	font-size: 13px;
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+}
+-->
+</style>
+
+</head>
+
+<body>
+
+<h2>英文文档规范</h2>
+
+<h3>背景</h3>
+
+<p>2004, July, 8<br>
+Version 1.0.3</p>
+
+<p>Version 1.0.3 主要添加的东西：<br>
+-	把英文文档规范从1.x文档移植过来，改变原来的描述。<br>
+-	文档的返回值列表的表头统一规定中，英文措辞。<br></p>
+
+<p>Version 1.0.2 主要添加的东西：<br>
+-	注意把握来龙去脉，有时要参考msdn，但不要全盘照搬msdn的内容。<br>
+-	统一“注意”的翻译。<br></p>
+
+<p>Version 1.0.1 主要添加的东西：<br>
+-	统一英文文档中对中文书名号的处理。<br>
+-	修改第15条，使意思表达得更确切。<br>
+-	应该翻译成 ”elaw32 API” 的地方，不要误翻为 “Win32 API”，或者 “W32 API”。<br></p>
+
+<h3>规定</h3>
+
+<p>1．	不要checkin 以下文件夹中的文件：<br>
+English/manual/programming/zee<br>
+English/manual/programming/graphics 中除了 gdi 之外的内容。<br>
+English/manual/programming/file_system/（1.x）<br></p>
+
+<p>2． 不要checkin English/Elastos_hlp.idx (index) 文件。（1.x）<br></p>
+
+<p>3.	Libc 中范例程序英文版总述要有英文句号 “.”。<br>
+	（格式）<br></p>
+
+<p>4。 Unicode 第一个字母一律大写。<br>
+ Unicode 万国码的英文第一个字母一律大写。 （文字）<br></p>
+
+<p>5． 统一一段CreateFile 文字<br>
+<br>
+  象这样的句子要统一下：<br>
+<br>
+《和欣 2.0》对于CreateFile函数只是做了最基本的实现，现在只有参数pFileName、<br>
+dwDesiredAccess和dwCreationDisposition是起作用的，其余的参数都不起作用。在编<br>
+程过程中调用CreateFile函数时，只要根据需要填写参数pFileName、dwDesiredAccess<br>
+和dwCreationDisposition的值，并且保证其余四个参数pSecurityAttributes、<br>
+dwShareMode、dwFlagsAndAttributes和hTemplateFile的类型符合规定，编译就能通<br>
+过。<br>
+<br>
+  Elastos 2.0 implemented the most basic functionalities of CreateFile<br>
+function, only the parameters pFileName, dwDesiredAccess, and<br>
+dwCreationDisposition is functional, other parameters are not functional<br>
+yet. When invoking CreateFile function during programming, the programmer<br>
+needs to make sure parameters pFileName, dwDesiredAccess, and<br>
+dwCreationDisposition have corresponding valid values as needed, and make<br>
+sure data types of the rest four parameters pSecurityAttributes,<br>
+dwShareMode, dwFlagsAndAttributes and hTemplateFile are also valid. Then<br>
+function CreateFile should compile.<br></p>
+
+
+<p>6． Elastos第一字母一律大写<br>
+	（文字）<br></p>
+
+<p>7.。和欣SDK常用工具： 	Common Elastos.SDK Tools<br>
+	（文字）<br></p>
+
+<p>8．详细内容请参见微软文档： 	Please see Microsoft documentations for details<br>
+	（文字）<br></p>
+
+<p>9．ezCOM 一律写成 ezCOM<br>
+	不是ezCom，因为这已经被注册了，不应该被修改。（文字1.x）<br>
+
+<p>10．和欣SDK： 	Elastos.SDK<br>
+	（文字）<br>
+
+<p>11．常用数据结构： 	Common Data Structure<br>
+在标题部分，每个单词的首字母都应该大写。请大家统一翻译。（文字）<br></p>
+
+<p>12．显示帮助信息： 	Display help information<br>
+	统一为这种翻译比较合适。（文字）<br>
+
+<p>13．Windows 2000或更高版本；《和欣 2.0》或更高版本： 	Windows 2000 or later; Elastos 2.0 or later.<br>
+	（文字）<br>
+
+<p>14．和欣SDK提供的工具： 	Tools Provided by Elasots.SDK<br>
+	（文字）<br>
+
+<p>15．英文文档中不能出现中文字符。<br>
+（专门为演示汉字而显示的中文字符例外）英文文档中有中文的标点符号。目前，我们文档有encoding="GB2312" 标识，显示都没有问题。但如果以后去掉此标识，有中文标点的页面就会无法显示。（格式）<br></p>
+
+<p>16．标点符号（逗号，句号，冒号等）后面，应该留有一个空格，很多人都不注意此问<br>
+题。（格式）<br></p>
+
+<p>17．某句话的开头是动词，应该加s。例如：<br>
+   方法EzArray:: Clone，中文的意思是：获取一个EzArray对象的深拷贝，即在堆上<br>
+复制EzArray数组。<br>
+   英文翻译为：Gets a copy of EzArray object, namely copying EzArray array<br>
+on heap.<br>
+	（格式）<br></p>
+
+<p>18．参见ECODE相关帮助： 	See ECODE related help for more details<br>
+	（文字）<br></p>
+
+<p>19．32位： 	32-bit<br>
+	（文字）<br></p>
+
+<p>20．英文文档中中文书名号不能出现。<br>
+	（格式）<br></p>
+
+<p>21．《和欣 2。0》工具程序： 	Elastos 1.1 Tools<br>
+	（文字）<br></p>
+
+<p>22．应该翻译成 ”elaw32 API” 的地方，不要误翻为 “Win32 API”，或者 “W32 API”。<br>
+	（文字）<br></p>
+
+<p>23．elacmd命令解释程序: 	elacmd Command Interpreter<br>
+	（文字）<br></p>
+
+<p>24．有些从msdn中参考过来的翻译  没有修改参数名称  通常msdn中的指针参数是以<br>
+lp*** 开头儿的  而我们的参数名通常是以 p*** 开头的  这个问题需要翻译和review<br>
+的同事注意<br></p>
+	（格式）<br></p>
+
+<p>25．不能使用【】这个符号  去掉encoding="GB2312" 后  无法显示。<br>
+这个符号在注意旁边，和一些链接旁边特别多。<br>
+	（文字）<br></p>
+
+<p>26．注意： 	Note<br>
+“注意”的翻译需要统一：<br>
+  目前翻译中使用的有  Note  Notice  notice  Attention	（文字）<br></p>
+
+<p>27．《和欣 2。0》： 	Elastos 2.0<br>
+在有些文档里面还有&lt;Elastos 2.0&gt;、《Elastos 2.0》的字样<br>
+  另见规范第5条，规范第13条，规范第21条中相关翻译。<br>
+	（文字）<br></p>
+
+<p>28．统一文档的返回值列表的表头.<br>
+  现在统一文档的返回值列表的表头统一规定中，英文措辞如下：<br>
+中文：	返回值，	十六进制值，	描述<br>
+英文：	Return Value,	Hex Value,	Description<br>
+	（文字）<br></p>
+
+</body>

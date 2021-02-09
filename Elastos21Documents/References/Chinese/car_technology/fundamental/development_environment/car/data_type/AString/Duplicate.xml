@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AString</interface>
+    <method> Duplicate </method>
+
+    <description>
+        <para> 创建一个与指定的AString具有相同值的AString的新实例。</para>
+    </description>
+    <syntax>
+        <return_val> static AString </return_val>
+        <parameters>
+        <api_param>
+            <param_type>const AString &amp;</param_type>
+            <param_name> strSource </param_name>
+            <param_note>
+                <para> 要复制的AString。 </para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <return>
+        <para>与strSource具有相同值的新AString。</para>
+    </return>
+    <remarks>
+        <para>1.如果strSource包含的字符串指针不为NULL,本函数会调用函数malloc为要拷贝的串分配内存，然后把strSource拷贝到分配的内存中。</para>
+        <para>2.用户需用Free函数释放Duplicate返回指针所指向的空间。</para>
+    </remarks>
+
+<example>
+<pre>
+AString astr1("eprk124");
+AString astr2(AString::Duplicate(astr1));
+CConsole::WriteLine(astr2) ;   //DisPlay：eprk124
+AString::Free(astr2);
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>AString</ref_name>
+        <ref_url>../AString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>AString::Free </ref_name>
+        <ref_url>../AString/Free</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::Duplicate </ref_name>
+        <ref_url>../WString/Duplicate</ref_url>
+    </reference>
+</references>       
+
+ 
+</manpage>

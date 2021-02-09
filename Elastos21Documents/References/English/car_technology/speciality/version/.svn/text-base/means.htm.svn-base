@@ -1,0 +1,35 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>Four Level Version Numbering Method Of CAR Component</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+<h2>Four Level Version Numbering Method Of CAR Component</h2>
+<p>In Elastos systems, CAR component version have four levels of version numbering, thus: </p>
+<p>Format: &nbsp;Major version number&nbsp;Minor version number&nbsp;Build number&nbsp;Modification number</p>
+<p>Sample: &nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2</p>
+<p>The above version number is denoted: 2.0.8.2 .</p>
+    <h3>Major Version Number</h3>
+    <p>Major version number identifies a major change; component functionality changed greatly or have major upgrade, in certain area it is different from its previous version or have greater improvement, reaches relative stability in a certain period of time. Changes of major version usually have milestone significance.It is determined by the progress in company production .</p>
+    <h3>Minor Version Number</h3>
+    <p>There is some change or extension to the contents of the component or some feature of the component is changed or completed. Under most conditions, change in code among different versions does not affect the compatibility of the component.</p>
+    <h3>Build Number</h3>
+    <p>Build number identifies the generated order of the component. For example: Daily build system compile and build Elastos system and CAR component everyday.Each day the program can be the same but can be different too, everyday compile and generate corresponding system program and CAR component, we specifies its build number. In 2.0.8.3, it means the component passed the 8th compilation of 2.0 system.</p>
+    <h3>Modification Number</h3>
+    <p>Between two build numbers, thus before the next build of the component, it is possible that we find some BUG and we need to modify corresponding programs at the very same day.After modification we need to build again in the same day, which cause the modification number to come into play. 2.0.8.3 means the 3rd modification of 2.0.8 version.</p>
+    <h3>Version Recognition</h3>
+    <p>Version recognition method of CAR component: </p>
+    <ol>
+        <li>From CAR component generation standard we know that CAR component is a self-descriptive component.All CAR component version information are encapsulated by using self-descriptive language.These information can be obtained by extracting corresponding attribute.
+        <li>For a few special CAR components or the same component used in different environments, sometimes they are distinguished in their names. For example Hello_dbg.dll and Hello_rls.dll, they both output "Hello world!".All four levels of version numbers even can be exactly the same.It is still obvious that they are components built under different environments.
+    </ol>
+    
+<script>footer("english")</script>
+</body>
+</html>    

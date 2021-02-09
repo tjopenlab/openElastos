@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> IApplet接口方法介绍 </volume>
+    <interface>IApplet</interface>
+    <method> SetPriorityRank </method>
+
+    <description>
+        <para>设置applet的优先级。</para>
+    </description>
+
+    <syntax>
+        <parameters>
+        <api_param>
+            <param_type>[in] ThreadPriorityRank </param_type>
+            <param_name>priorityRank </param_name>
+            <param_note>
+                <para>applet的优先级。参见<link url="../../../../SoftwareDevelopmentManual/CoreServices/DataStructure/PriorityRank.htm">ThreadPriorityRank</link>枚举类型说明。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+    <remarks>
+        <para>SetPriorityRank不是直接设定applet主线程的优先级，而是设定属于applet的所有线程的优先级类别，相当于一个基数，具体线程的优先级是由线程优先级和所属的applet的优先级类别共同决定的，假如applet's PriroityRank作为base，线程可设定的优先级为delta，那么线程运行的优先级就表示为base+delta。</para>
+    </remarks>
+<references>
+        <reference>
+            <ref_name>IApplet::GetPriorityRank()</ref_name>
+            <ref_url> GetPriorityRank</ref_url>
+        </reference>
+    </references>
+</manpage>

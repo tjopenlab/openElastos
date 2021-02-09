@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IGrafixMain</interface><method> SetScreenSaverTimeout </method>
+    <description>
+        <para>
+            设置屏保时间。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> timeout </param_name>
+                <param_note>
+                    <para>
+屏保时间。单位为毫秒。                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            如果方法调用成功，则返回NOERROR；当timeout是0、或-1时同样返回NOERROR，小于-1时为E_INVALID_ARGUMENT。
+    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+Elastos操作系统             </system_name>
+        </system>
+        <headerfile>
+            <file_name>ElControls.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elastos.lib</lib_name>
+        </library>
+    </requirements>
+<remarks>
+        <para>
+              目前将0和-1都定义为关闭屏保，所有设置过屏保事件的，到最后一定要用SetScreenSaverTimeout(-1)或SetScreenSaverTimeout(0)将这个timer关闭掉，
+              否则会有内存泄漏。
+        </para>
+</remarks>    
+</manpage>

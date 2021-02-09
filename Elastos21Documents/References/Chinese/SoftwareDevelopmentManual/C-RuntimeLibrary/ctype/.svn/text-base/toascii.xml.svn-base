@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\ctype\toascii">toascii</sample>
+    <title>toascii</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> ctype_idx.htm </routine_idx>
+
+    <description>
+        <para>将一个整型值换成ASCII字符。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <func_name>toascii</func_name>
+        <parameters>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>c</param_name>
+                <param_note>
+                    <para>需要判断的整型值</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>toascii()会将参数c转换成7位的unsigned char值，第八位则会被清除，此字符即会被转成ASCII码字符。</para>
+    </return>
+
+    <requirements>
+        <routine>
+            <routine_name>toascii</routine_name>
+            <headerfile>ctype.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* toascii.cpp: This program converts integer 45 and 301
+ * into ASCII characters
+ */
+
+
+#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main()
+
+{
+   int a=217;
+   char b;
+   printf(&quot;before toascii () : a value =%d(%c)\n&quot;,a,a);  
+   b=toascii(a);
+   printf(&quot;after toascii() : a value =%d(%c)\n&quot;,b,b);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+before toascii () : a value =217
+after toascii() : a value =89(Y)
+</result>
+
+    
+
+</manpage>

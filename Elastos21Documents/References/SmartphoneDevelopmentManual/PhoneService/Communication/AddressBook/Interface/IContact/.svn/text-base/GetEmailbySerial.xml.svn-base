@@ -1,0 +1,74 @@
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>地址薄引擎</volume>
+<interface>IContact</interface><method> GetEmailbySerial </method>
+    <description>
+        <para>
+           根据指定的序号获取email。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> UINT </param_type>
+                <param_name> nSerial </param_name>
+                <param_note>
+                    <para>
+                      指定的序列号
+                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> EzWStrBuf </param_type>
+                <param_name> wsbValue </param_name>
+                <param_note>
+                    <para>
+                      返回的Email
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+     <return>
+	    <table>
+	        <th>
+	    	    <td>返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>程序执行成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数错误</td>
+	        </tr>
+	    </table>
+	    <para>参见<link url="../../../../../QuickReference/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <requirements>
+        <system>
+            <system_name>
+《和欣 2.0》或更高版本            </system_name>
+        </system>
+         <dll>
+            <dll_name>database.dll</dll_name>
+        </dll>
+        <headerfile>
+            <file_name>CAddressBook.h, CContact.h, Abdata.h, spcomm.h, sperr.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name>elacrt.lib, elastos.lib, utility.lib</lib_name>
+        </library>
+    </requirements>
+     <references>
+        <reference>
+            <ref_name>SetEmailbySerial</ref_name>
+            <ref_url>SetEmailbySerial</ref_url>
+        </reference>
+    </references>
+</manpage>

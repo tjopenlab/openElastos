@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IMenu</interface><method> GetTrailingTransition </method>
+    <description>
+        <para>
+            获取菜单消失时的动画效果。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> TransitionEffect* </param_type>
+                <param_name> effect </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../../datatype/TransitionEffect.htm">TransitionEffect</link> 枚举类型指针，用于获取菜单消失时的动画效果，不能为 NULL</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32* </param_type>
+                <param_name> offsetX </param_name>
+                <param_note>
+                    <para>
+Int32 型指针，用于获取菜单左上角横坐标起始到最终位置的偏移量（相对于屏幕左上角），不能为 NULL</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32* </param_type>
+                <param_name> offsetY </param_name>
+                <param_note>
+                    <para>
+Int32 型指针，用于获取菜单左上角纵坐标起始到最终位置的偏移量（相对于屏幕左上角），不能为 NULL</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Int32* </param_type>
+                <param_name> opacity </param_name>
+                <param_note>
+                    <para>
+Int32型指针，用于获取菜单的动画效果开始或结束时的不透明度，不能为 NULL 
+</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> Millisecond32* </param_type>
+                <param_name> duration </param_name>
+                <param_note>
+                    <para>
+Int32型指针，用于获取菜单出现时动画过程所用的时间，不能为 NULL </para>
+                </param_note>
+            </api_param>                                                 
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+    <para>
+        参数地址不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        设置菜单消失时的动画效果可以通过 <link url="SetTrailingTransition.htm">SetTrailingTransition</link> 方法。
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CMenu 类介绍 </ref_name>
+        <ref_url>../../class/Menu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IMenu 接口方法列表</ref_name>
+        <ref_url>../IMenu</ref_url>
+    </reference>
+    <reference>
+        <ref_name>SetTrailingTransition</ref_name>
+        <ref_url>SetTrailingTransition</ref_url>
+    </reference>
+</references> 
+</manpage>

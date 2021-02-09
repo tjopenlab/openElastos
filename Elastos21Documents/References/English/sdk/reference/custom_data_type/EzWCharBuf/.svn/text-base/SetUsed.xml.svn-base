@@ -1,0 +1,77 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?>
+
+<manpage>
+    <sample url="datatypes\EzWCharBuf\SetUsed">setused</sample>
+    <volume> Common Data Structure </volume>
+    <interface> EzWCharBuf   </interface>
+    <method> SetUsed </method>
+
+    <description>
+        <para> Sets the number of the Unicode characters currently used in the buffer.</para>
+    </description>
+
+    <return>
+        <para> Returns the number of the Unicode characters actually set. If the length to be set is greater than maximum capacity of the buffer, then it returns the capacity of the buffer.</para>
+    </return>
+
+    <syntax>
+        <return_val> int </return_val>
+        <parameters>
+        <api_param>
+            <param_type> int </param_type>
+            <param_name> used </param_name>
+            <param_note>
+                <para> The number of the Unicode character to be set.</para>
+            </param_note>
+        </api_param>
+        </parameters>
+    </syntax>
+
+    <example><pre><![CDATA[
+#include <stdio.h>
+#include <ezbuf.h>
+
+int __cdecl main()
+{
+    EzWCharBuf_<200> buf;
+    int old_used,new_used;
+
+    buf.Copy(L"Good luck!",11);
+    old_used = buf.Used();
+
+    buf.SetUsed(20);
+    new_used = buf.Used();
+
+    if (!buf.IsNull()) {
+        wprintf(L"'%s' original used %d wchars,\n",(wchar_t*)buf,old_used);
+        wprintf(L"After setused 20,now used %d wchars.\n",new_used);
+    } else {
+        printf("wrong EzWCharBuf!");
+    }
+
+    return 0;
+}
+]]></pre></example>
+
+    <result><![CDATA[
+'Good luck!' original used 11 wchars,
+After setused 20,now used 20 wchars.
+]]></result>
+
+    <references>
+        <reference>
+            <ref_name> Used </ref_name>
+            <ref_url> Used </ref_url>
+        </reference>
+        <reference>
+            <ref_name> Capacity </ref_name>
+            <ref_url> Capacity </ref_url>
+        </reference>
+    </references>
+
+</manpage>

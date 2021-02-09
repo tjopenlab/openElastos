@@ -1,0 +1,48 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="../../../../xsl/xsl_c/interfaceman.xsl"?>    <manpage>
+
+    <volume>标准驱动回调例程</volume>
+    <interface> IDeviceDriver </interface>
+
+    <description>
+        <para>标准驱动接口</para>
+    </description>
+    <methods>
+<self>
+    <method>
+        <method_name>Read</method_name>
+        <method_url>IDeviceDriver\Read</method_url>
+    <m_description>
+        从设备读出数据。
+    </m_description>
+    </method>
+    <method>
+        <method_name>Write</method_name>
+        <method_url>IDeviceDriver\Write</method_url>
+    <m_description>
+        向设备写入数据。
+    </m_description>
+    </method>
+    <method>
+        <method_name>Control</method_name>
+        <method_url>IDeviceDriver\Control</method_url>
+    <m_description>
+        向设备发送命令、获取状态信息。
+    </m_description>
+    </method>
+
+</self>
+    </methods>
+
+    <remarks>
+        <para>Elastos设备驱动程序以静态方式被链入内核映像文件，成为内核的一部分。与内核的其他部分一样，设备驱动程序代码在处理器特权态下执行。除了这些特征之外，Elastos设备驱动程序本质上就是一类存在于内核之中的特殊的CAR构件。它们都必须暴露出此标准的IDeviceDriver接口。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+    </requirements>
+</manpage>

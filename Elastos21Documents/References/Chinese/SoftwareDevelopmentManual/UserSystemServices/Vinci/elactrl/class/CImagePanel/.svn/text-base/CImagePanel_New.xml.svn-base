@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<method>CImagePanel::New </method>
+    <description>
+        <para>
+            创建一个 ImagePanel 对象。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> WString </param_type>
+                <param_name> caption </param_name>
+                <param_note>
+                    <para>
+ImagePanel 的文字说明                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> style </param_name>
+                <param_note>
+<para>
+ImagePanel 的风格，详见 <link url="../../datatype/ControlStyle.htm">ControlStyle</link> 和 <link url="../../datatype/ImagePanelStyle.htm">ImagePanelStyle。</link>不同风格可以通过“|”（或）配合使用</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> x </param_name>
+                <param_note>
+                    <para>
+ImagePanel 的左顶点在其父类控件中的横坐标                     </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> y </param_name>
+                <param_note>
+                    <para>
+ImagePanel 的左顶点在其父类控件中的纵坐标                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> width </param_name>
+                <param_note>
+                    <para>
+ImagePanel 的宽度                     </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32  </param_type>
+                <param_name> height </param_name>
+                <param_note>
+                    <para>
+ImagePanel 的高度                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> IControl *  </param_type>
+                <param_name> parent </param_name>
+                <param_note>
+                    <para>
+ImagePanel 的父类控件接口指针                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IImagePanel**   </param_type>
+                <param_name> imagepanel </param_name>
+                <param_note>
+<para>指向 <link url="../../interface/IImagePanel.htm">IImagePanel</link> 接口指针的指针，用于获取 IImagePanel 接口指针</para>
+                </param_note>
+            </api_param>                                                             
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+	  	  当创建了一个 ImagePanel 对象后，就可以获取 <link url="../../interface/IImagePanel.htm">IImagePanel</link> 接口指针，通过该接口指针，您就可以调用给种方法对该 ImagePanel 设置各种属性值。
+	  </para>
+	  <para>
+	  	  该方法的调用仅仅是创建了图片面板，要产生用户所需要的效果，还需要通过 <link url="ImagePanelPane_struct.htm">ImagePanelPane</link> 设置每个窗格的属性值（包括窗格在 ImagePanel 内的位置，截取图片的位置等）。由于控件所表现出来的视觉效果是通过处于不同状态的控件图片间的切换来实现的，故还需要通过 <link url="../../interface/IImagePanel/SetPanelImages.htm">SetPanelImages</link> 或 <link url="../../interface/IImagePanel/SetNormalImage.htm">SetNormalImage</link> 等方法设置所有窗格在不同状态时的图片，注意：若一个 ImagePanel 中涉及多个控件图片，则需要将所有控件在相同状态下的图片整合在一起放在一张大图中。有关更多信息可参考：<link url="../../reference/ImagePanelSample.htm">如何使用 ImagePanel 控件</link>
+	  </para>
+	  <para>
+	  	  通常情况下 ImagePanel 上显示的是每个窗格配置的那部分图片，但是一旦 <link url="../../datatype/ImagePanelStyle.htm">ImagePanelStyle</link> 指定为 ImagePanelStyle_ImageFrame 时，整张大图会作为背景显示在 Imagepanel 上，建议需要使用大图中所有小图的时候采用此风格。ImagePanel 控件允许用户为每一个小窗格设置快捷键，此时 ImagePanelStyle 必须指定为 ImagePanelStyle_AcceleratorKey，否则将无法到达预期的效果，有关更多信息可参考：<link url="../../reference/ImagePanel_AcceleratorKey.htm">如何为 ImagePanelPane 设置快捷键</link>。
+	  </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CImagePanel 类介绍</ref_name>
+        <ref_url>../ImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IImagePanel 接口方法列表</ref_name>
+        <ref_url>../../interface/IImagePanel</ref_url>
+    </reference>
+    <reference>
+        <ref_name>ImagePanel 的回调事件</ref_name>
+        <ref_url>../../interface/JImagePanelEvents</ref_url>
+    </reference>
+    <reference>
+        <ref_name>如何为 ImagePanelPane 设置快捷键</ref_name>
+        <ref_url>../../reference/ImagePanel_AcceleratorKey</ref_url>
+    </reference>
+    <reference>
+        <ref_name>如何使用 ImagePanel 控件</ref_name>
+        <ref_url>../../reference/ImagePanelSample</ref_url>
+    </reference>
+</references>
+</manpage>

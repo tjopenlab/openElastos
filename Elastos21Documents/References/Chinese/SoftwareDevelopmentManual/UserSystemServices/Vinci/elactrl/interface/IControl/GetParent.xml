@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IControl</interface><method> GetParent </method>
+    <description>
+        <para>
+            获取控件的父控件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> IControl** </param_type>
+                <param_name> parent </param_name>
+                <param_note>
+                    <para>
+指向 <link url="../IControl.htm">IControl</link> 接口指针的指针，用于获取父类控件的接口指针，不能为 NULL</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_INVALID_ARGUMENT</td>
+	    	    <td>参数无效</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>
+	  <para>
+        参数不能为 NULL，否则方法将调用失败。
+    </para>
+    <para>
+        成功调用该方法获取父类控件接口时，会自动对该接口的引用计数加 1，故一旦不再需要该接口，需要调用 Release() 方法释放该接口，否则在销毁该控件时将造成内存泄漏。 
+    </para>
+    <para>
+        某控件的父控件需要在构造函数中通过 parent 参数指定。 
+    </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>IControl 接口方法列表</ref_name>
+        <ref_url>../IControl</ref_url>
+    </reference>
+</references> 
+</manpage>

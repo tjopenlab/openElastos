@@ -1,0 +1,131 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2006,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>CAR中的数据类型</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</head>
+
+<body>
+<h2 align="left">进程函数</h2>
+
+    <h3 align="left">进程函数对比表</h3>
+    <p align="left">下表列出进程函数分别在2.0和2.1上的对比以及在其它语言中的映射：</p>
+
+
+    <table class="MsoNormalTable" border="1" cellpadding="0" style="width: 771px" id="table1">
+		<thead>
+			<tr>
+				<td style="width:232px;padding:.75pt">
+				<p class="MsoNormal" align="left">2.1</td>
+				<td style="width:178px;padding:.75pt">
+				<p class="MsoNormal" align="left"><span lang="EN-US">2.0</span></td>
+				<td style="padding:.75pt .75pt .75pt .75pt" width="339">
+				<p class="MsoNormal" align="left"><span lang="EN-US">C++</span>数据类型</td>
+			</tr>
+		</thead>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="4">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CProcess::New </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateProcessObject</span><span style="font-size: 10.5pt; font-family: 宋体">（）</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="32" width="339">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CProcess_NewUnstarted(ppProcess);
+			</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="29">
+			<p align="left">
+			<span style="font-family: 宋体">创建一个新进程对象</span> </td>
+		</tr>
+		<tr style="height: 13.2pt">
+			<td style="padding:.75pt;height:29px">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzCreateProcess</span><span style="font-size: 10.5pt; font-family: 宋体">（）</span><span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">;</span></td>
+			<td style="padding:.75pt;height:29px" width="339">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CProcess_New(name, 
+			args, ppProcess); </span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="32">
+			<p align="left">创建一个新进程</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CProcess::Exit </span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="34">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzExitProcess</span><span style="font-size: 10.5pt; font-family: 宋体">（）</span><span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">;</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="34" width="339">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CProcess_Exit(exitCode);
+			</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="30">
+			<p align="left">退出当前进程</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CProcess::AtExit</span></td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="33">
+		<p class="MsoNormal" align="left">
+		没有对应</td>
+		<td style="padding:.75pt .75pt .75pt .75pt" height="33" width="339">
+		<p class="MsoNormal" align="left">
+		<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CProcess_AtExit(pEntry, 
+		pUserData);</span></td>
+		</tr>
+		<tr>
+		<td style="padding:.75pt .75pt .75pt .75pt" colspan="2" height="33">
+		<p class="MsoNormal" align="left">退出当前进程</td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" rowspan="2">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">
+			CProcess::GetCurrent</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="21">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 10.5pt; font-family: Times New Roman">
+			EzGetCurrentProcess</span><span style="font-size: 10.5pt; font-family: 宋体">（）</span></td>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="21" width="339">
+			<p class="MsoNormal" align="left">
+			<span lang="EN-US" style="font-size: 12.0pt; font-family: 宋体">_CProcess_GetCurrent(ppCurrentProcess);</span></td>
+		</tr>
+		<tr>
+			<td style="padding:.75pt .75pt .75pt .75pt" height="38" colspan="2">
+			<p align="left">获得当前进程接口IProcess的指针</td>
+		</tr>
+		</table>
+
+
+<p>　</p>
+
+
+    </body>
+</html>

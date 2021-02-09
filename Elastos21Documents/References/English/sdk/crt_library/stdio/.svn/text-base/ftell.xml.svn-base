@@ -1,0 +1,102 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdio\ftell">ftell</sample>
+    <title>ftell</title>
+    <volume>C Run-Time Library Functions</volume>
+  	<routine_idx> stio_idx.htm </routine_idx>
+
+    <description>
+        <para>The ftell function obtains the current value of the file position indicator for the stream pointed to by stream.</para>
+    </description>
+
+    <syntax>
+        <return_val>long</return_val>
+        <func_name>ftell</func_name>
+        <parameters>
+            <func_param>
+                <param_type>FILE*</param_type>
+                <param_name>stream</param_name>
+                <param_note>
+                    <para>Pointer to FILE structure.</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>ftell returns a long integer of current file pointer position. For file streams opened in text mode, since carriage return newline conversion is done, return value does not reflect the physical offset of file pointer. -1L to indicate an error or parameter is wrong.</para>
+    </return>
+
+    <remarks>
+        <para>Function ftell gets current position of file pointer. The position is file pointer current position relative to file beginning offset.</para>
+        <para>Note that when a file is opened for appending data, the current file position is determined by the last I/O operation and not by where the next write would occur.  For example , if a file is opened for an append and the last operation was a read, the file position is the point where the next read operation would start and not where the next write would start. (When open file for appending, the file position is moved to end of file before any write operation.) If no I/O has been done on the file,then file pointer points to beginning of file.</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>ftell</routine_name>
+            <headerfile>stdio.h</headerfile>
+            <compatibility>ANSI, Windows 2000, Elastos 2.0</compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* ftell.cpp: This program opens a file named FTELL.C
+ * for reading and tries to read 100 characters. It
+ * then uses ftell to determine the position of the
+ * file pointer and displays this position.
+ */
+
+#include &lt;stdio.h&gt;
+
+FILE *stream;
+
+int main()
+{
+    long position;
+    char list[100];
+    if ((stream = fopen(&quot;ftell.exe&quot;, &quot;rb&quot;)) != NULL) {
+        /* Move the pointer by reading data: */
+        fread(list, sizeof(char), 100, stream);
+        /* Get position after read: */
+        position = ftell(stream);
+        printf(&quot;Position after trying to read 100 bytes: %ld\n&quot;,
+                  position);
+        fclose(stream);
+    }
+    else
+        printf(&quot;problem open the file!&quot;);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Position after trying to read 100 bytes: 100
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>fseek</ref_name>
+            <ref_url>fseek</ref_url>
+        </reference>
+        <reference>
+            <ref_name>rewind</ref_name>
+            <ref_url>rewind</ref_url>
+        </reference>
+    </references>
+
+</manpage>

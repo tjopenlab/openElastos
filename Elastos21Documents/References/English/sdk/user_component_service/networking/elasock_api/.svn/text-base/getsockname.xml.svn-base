@@ -1,0 +1,97 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <sample url="elasock\UDP"></sample>
+    <volume>elasock API </volume>
+    <title>getsockname</title>
+    <routine_idx> elasock_idx.htm </routine_idx>
+
+    <description>
+        <para>获取套接口的本地地址。</para>
+    </description>
+
+    <syntax>
+        <return_val>int</return_val>
+        <parameters>
+            <api_param>
+                <param_type>SOCKET</param_type>
+                <param_name>s</param_name>
+                <param_note>
+                    <para>套接口</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>struct sockaddr *</param_type>
+                <param_name>name</param_name>
+                <param_note>
+                    <para>套接口地址（名字）</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type>int *</param_type>
+                <param_name>namelen</param_name>
+                <param_note>
+                    <para>名字结构的长度</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>当程序执行成功时，getsockname返回0；否则，返回SOCKET_ERROR，应用程序可通过WSAGetLastError()获取相应错误代码。</para>
+    </return>
+
+    <remarks>
+        <para>getsockname()用来获取已绑定或已连接套接口的地址。例如，调用connect()之前未调用bind()，这时只有调用getsockname()才能够获知系统分配给套接口的地址。</para>
+        <para>namelen参数开始时包含了地址结构的大小值。在返回时，namelen参数包含了实际地址结构的字节数。</para>
+        <para>如果套接口已设为INADDR_ANY，即该套接口可以使用任意类型的主机地址，则在调用connect()或accept()之前调用getsocckname()将不会返回主机地址的任何信息。在套接口完成连接之后，“和欣”应用程序不应当假设主机地址为某种类型的地址，因为在复合地址的情况下可能存在多种地址，实际的地址形式应该调用本函数来获知。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000或更高版本；《和欣 2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> winsock.h</file_name>
+        </headerfile>
+        <library>
+            <lib_name> elasock.lib  </lib_name>
+        </library>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>accept</ref_name>
+            <ref_url>accept</ref_url>
+        </reference>
+        <reference>
+            <ref_name>bind</ref_name>
+            <ref_url>bind</ref_url>
+        </reference>
+        <reference>
+            <ref_name>connect</ref_name>
+            <ref_url>connect</ref_url>
+        </reference>
+        <reference>
+            <ref_name>getpeername</ref_name>
+            <ref_url>getpeername</ref_url>
+        </reference>
+        <reference>
+            <ref_name>socket</ref_name>
+            <ref_url>socket</ref_url>
+        </reference>
+        <reference>
+            <ref_name>WSAStartup</ref_name>
+            <ref_url>WSAStartup</ref_url>
+        </reference>
+    </references>
+    <example>
+    </example>
+</manpage>

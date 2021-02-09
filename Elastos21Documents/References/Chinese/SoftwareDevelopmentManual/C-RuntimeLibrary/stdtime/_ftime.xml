@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdtime\_ftime">_ftime</sample>
+    <title>_ftime,_wcsftime</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> time_idx.htm </routine_idx>
+
+    <description>
+        <para>获取当前时间。</para>
+    </description>
+    <syntax>
+        <return_val>void</return_val>
+        <func_name>_ftime</func_name>
+        <parameters>
+            <func_param>
+                <param_type>struct _timeb*</param_type>
+                <param_name>timeptr</param_name>
+                <param_note>
+                    <para>指向一个_timeb结构体的指针</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>_ftime函数获取当前本地区时间，存储在由参数timeptr指向的结构体中。结构体_timeb定义在time.h文件中。该结构体包括4部分内容：</para>
+        <table>
+            <th>
+                <td>名称</td>
+                <td>描述</td>
+            </th>
+            <tr>
+                <td>dstflag</td>
+                <td>如果当前时区夏令时有效，该值为非零</td></tr>
+            <tr>
+                <td>millitm</td>
+                <td>毫秒</td></tr>
+            <tr>
+                <td>time</td>
+                <td>从UTC（Coordinated Universal Time，通用协调时间）1970年1月1日00:00:00开始至今所经历的时间，单位：秒</td></tr>
+            <tr>
+                <td>timezone</td>
+                <td>UTC时间与本地时间的时差</td></tr>
+        </table>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_ftime</routine_name>
+            <headerfile>time.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _ftime.cpp: This program uses _ftime to obtain the current
+ * time and then stores this time in timebuffer.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;timeb.h&gt;
+
+int main()
+{
+    struct _timeb timebuffer;
+    char *timeline;
+
+    _ftime(&amp;timebuffer);
+    timeline = ctime(&amp; (timebuffer.time));
+
+    printf(&quot;The time is %.19s.%hu %s&quot;, timeline,
+        timebuffer.millitm, &amp;timeline[20]);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+The time is Tue Mar 21 15:26:41.341 1995
+</result>
+
+
+
+    <references>
+        <reference>
+            <ref_name>ctime</ref_name>
+            <ref_url>ctime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>localtime</ref_name>
+            <ref_url>localtime</ref_url>
+        </reference>
+        <reference>
+            <ref_name>time</ref_name>
+            <ref_url>time</ref_url>
+        </reference>
+        <reference>
+            <ref_name>_wasctime</ref_name>
+            <ref_url>_wasctime</ref_url>
+        </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,61 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2008,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<html>
+<head>
+<title>XDK开发环境目录结构介绍</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<script src="/xsl/docstyles.js"></script>
+</head>
+
+<body>
+    <h2>Targets的目录树结构</h2>
+    <p>Targets目录结构见图2-5：</p>
+     <center><img src="images/Targets.jpg"></center>
+            <center>图2-5</center>
+            <p></p>
+            <center>Targets目录树结构图</center>
+      <p>在XDK编译完成后，会在Targets下的相应子目录内生成最终的目标二进制文件(DLL和EXE文件)。所以，Targets目录是专门用于存放可执行的目标二进制文件的。对于其他一些可能需要的资源或配置文件，也将按照需要copy到相应子目录内。Targets下相应的子目录可以被视为专门为运行而设的用于存放所有所需文件的临时目录。</p>
+      <p>在虚拟运行平台和模拟器（例如，win32环境中）运行目标二进制文件的时候，某些工具的操作和搜索路径设置在Targets的相应子目录，相关详细内容请参考相应的文档。</p>
+      <p>在Elastos的真实运行环境中（例如，zener环境中），某些工具的操作和搜索路径同样是设置在Targets的相应子目录，相关详细内容请参考相应的文档。</p>
+      <p>对于各种运行环境，如果运行的时候，对DLL有依赖关系，同样会以Targets的相应子目录为搜索路径来查找所要依赖的DLL。</p>
+      <h3>各目录及子目录内容说明:</h3>
+            <table align=center border=1 >
+                <thead>
+                    <td>目录</td>
+                    <td>说明</td>
+		</thead>
+                 <tr>
+		    <td>Targets</td>
+                    <td>用户运行的目标目录</td>
+                </tr>
+                <tr>
+                    <td>Targets\ddk\zener</td>
+		    <td>开发包为ddk, 运行平台为zener</td>
+                </tr>
+                <tr>
+                    <td>Targets\ddk\win32</td>
+                    <td>开发包为ddk,运行平台为win32</td>
+                </tr>
+                <tr>
+                    <td>Targets\pdk\zener</td>
+                    <td>开发包为pdk,运行平台为zener</td>
+                </tr>
+                <tr>
+                    <td>Targets\pdk\win32</td>
+                    <td>开发包为pdk,运行平台为win32</td>
+                </tr>   
+                <tr>
+                    <td>Targets\sdk\zener</td>
+                    <td>开发包为sdk,运行平台为zener</td>
+                </tr>
+                <tr>
+                    <td>Targets\sdk\win32</td>
+                    <td>开发包为sdk,运行平台为win32</td>
+                </tr>              
+            </table>
+	    
+<script>footer("chinese")</script>
+</body>
+</html>

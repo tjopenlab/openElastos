@@ -1,0 +1,71 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+ 
+    <volume>内存管理函数</volume>
+    <title>DzAllocPage</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>分配一个物理页。</para>
+    </description>
+
+    <syntax>
+        <return_val>physaddr_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> uint_t</param_type>
+                <param_name> uPreferredZoneNo </param_name>
+                <param_note>
+                    <para>首选物理内存区号，函数将优先从这个物理内存区中分配内存</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>INVALID_PAGE_ADDRESS</td><td>分配失败，没有足够的内存</td>
+            </tr>
+            <tr>
+                <td>非INVALID_PAGE_ADDRESS</td><td>分配成功，返回分配的物理页的首地址（物理地址）</td>
+            </tr>
+        </table>
+    </return>
+
+    <remarks>
+        <para>此函数用于分配一个物理页，函数优先从uPreferredZoneNo指定的物理内存区中分配该页。</para>
+        <para>事实上AllocPage(uPreferredZoneNo)等价于AllocPages(0, uPreferredZoneNo)。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name>ddk.h</file_name>
+        </headerfile>
+
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>DzFreePage</ref_name>
+            <ref_url>DzFreePage</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzFreePages</ref_name>
+            <ref_url>DzFreePages</ref_url>
+        </reference>
+        <reference>
+            <ref_name>DzAllocPages</ref_name>
+            <ref_url>DzAllocPages</ref_url>
+        </reference>
+    </references>
+</manpage>

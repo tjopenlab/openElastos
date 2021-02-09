@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume>图形系统</volume>
+<interface>IForm</interface><method> GrabKey </method>
+    <description>
+        <para>
+            抢特定的按键事件。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> Int32 </param_type>
+                <param_name> keyCode </param_name>
+                <param_note>
+                    <para>
+需要捕获的键值
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <table>
+	        <th>
+	    	    <td>常见返回值 </td>
+	    	    <td>描述</td>
+	        </th>
+	        <tr>
+	    	    <td>NOERROR</td>
+	    	    <td>方法调用成功</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_ALREADY_EXIST</td>
+	    	    <td>该键值已经待捕获</td>
+	        </tr>
+	        <tr>
+	    	    <td>E_WINDOW_CLOSED</td>
+	    	    <td>窗体已关闭</td>
+	        </tr>
+	    </table>
+    <para>其它参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+</return>
+<remarks>    
+       <para>
+            GrabKey是抢键的意思，用户调用了此方法后，所对应的键如果被按下，除了监听的窗口只有该窗口可以获得该键值消息，即某个键可以被某个调用者给抢断。一旦某个键值已经被特定的 Form 抢断，则其它控件再调用该方法将失败，直至特定的 Form 调用 <link url="UngrabKey.htm">UngrabKey</link> 方法取消抢键或者该 Form 被关闭。
+       </para>
+</remarks>
+<references>
+    <reference>
+        <ref_name>CForm 类介绍 </ref_name>
+        <ref_url>../../class/Form</ref_url>
+    </reference>
+    <reference>
+        <ref_name>IForm 接口方法列表</ref_name>
+        <ref_url>../IForm</ref_url>
+    </reference>
+    <reference>
+        <ref_name>UngrabKey</ref_name>
+        <ref_url>UngrabKey</ref_url>
+    </reference>
+    <reference>
+        <ref_name>GrabStylus</ref_name>
+        <ref_url>GrabStylus</ref_url>
+    </reference>
+</references>
+</manpage>

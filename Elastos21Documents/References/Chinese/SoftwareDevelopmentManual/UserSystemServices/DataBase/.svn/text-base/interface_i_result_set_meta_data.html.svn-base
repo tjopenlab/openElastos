@@ -1,0 +1,435 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=GB2312">
+<title>Elastos Database: IResultSetMetaData接口参考</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+<script src="../../../xsl/docstyles_for_doxgen.js"></script>
+</head><body>
+<!-- 制作者 Doxygen 1.5.4 -->
+<div class="tabs">
+  <ul>
+    <li><a href="index.html"><span>首页</span></a></li>
+    <li class="current"><a href="annotated.html"><span>类</span></a></li>
+    <li><a href="files.html"><span>文件</span></a></li>
+    <li><a href="examples.html"><span>示例</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+    <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+    <li><a href="functions.html"><span>组合类型成员</span></a></li>
+  </ul>
+</div>
+<h1>IResultSetMetaData接口参考</h1><!-- doxytag: class="IResultSetMetaData" -->该接口被用于从一个ResultSet对象获取某列的类型和属性的信息描述。
+<a href="#_details">更多...</a>
+<p>
+<code>import &quot;<a class="el" href="database_8car-source.html">database.car</a>&quot;;</code>
+<p>
+
+<p>
+<a href="interface_i_result_set_meta_data-members.html">所有成员的列表。</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>公有成员</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set_meta_data.html#e65a3236f73b3ae957775daf3f90d2db">GetColumnCount</a> ([out] Int32 *count)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取ResultSet 对象的列数。  <a href="#e65a3236f73b3ae957775daf3f90d2db"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set_meta_data.html#10cc7b302feef485f527eb730866bdd1">GetColumnDeclareTypeName</a> ([in] Int32 column,[out] WStringBuf * typeName)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取结果集某列的声明数据类型。  <a href="#10cc7b302feef485f527eb730866bdd1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set_meta_data.html#2e94c7bb330b9856010d6444a6b01874">GetColumnType</a> ([in] Int32 column,[out] <a class="el" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea3">DbDatatype</a> *type)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取结果集某列的内部数据类型。  <a href="#2e94c7bb330b9856010d6444a6b01874"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set_meta_data.html#485f4e8ffb3b76be6596587091e5dabb">GetColumnName</a> ([in] Int32 column,[out] WStringBuf * name)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取查询结果集指定列的名字。  <a href="#485f4e8ffb3b76be6596587091e5dabb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set_meta_data.html#f4ea8b8f3962fe47b51696e6a5e5cc69">GetColumnOriginName</a> ([in] Int32 column,[out] WStringBuf * name)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取某列的原始列名(在表中的列名)。注：该方法在 android 平台上调用无效。  <a href="#f4ea8b8f3962fe47b51696e6a5e5cc69"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set_meta_data.html#141810404ab531dca38951661945acc4">GetTableName</a> ([in] Int32 column,[out] WStringBuf * name)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取指定列所在表的表名。注：该方法在 android 平台上调用无效。  <a href="#141810404ab531dca38951661945acc4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set_meta_data.html#44b2adc9888022bcba53c322fadb9ae1">GetDatabaseName</a> ([in] Int32 column,[out] WStringBuf * name)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取含有指定列的数据库的名字。注：该方法在 andriod 平台上调用无效。  <a href="#44b2adc9888022bcba53c322fadb9ae1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set_meta_data.html#9a74f6260338965c0b942988aa113dd5">IsAutoIncrement</a> ([in] Int32 column,[out] Boolean *autoIncrement)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指示是否自动为指定列进行编号，这样这些列仍然是只读的。 注：该方法在 android 平台上调用将返回错误。  <a href="#9a74f6260338965c0b942988aa113dd5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set_meta_data.html#186e6502b1ebf5d5ddb0d44039c3b9f4">IsNullable</a> ([in] Int32 column,[out] Boolean *nullable)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检查指定列的值是否可为空。注：该方法在 android 平台上调用将返回错误。   <a href="#186e6502b1ebf5d5ddb0d44039c3b9f4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_result_set_meta_data.html#220e49c2cc5b727dd496f792cbecbf59">IsPrimaryKey</a> ([in] Int32 column,[out] Boolean *primaryKey)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">检查指定列是否为主键。注：该方法在 android 平台上调用将返回错误。   <a href="#220e49c2cc5b727dd496f792cbecbf59"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>详细描述</h2>
+该接口被用于从一个ResultSet对象获取某列的类型和属性的信息描述。
+<p>
+列号从1开始。
+<p>在文件<a class="el" href="database_8car-source.html">database.car</a>第<a class="el" href="database_8car-source.html#l01348">1348</a>行定义。</p>
+<hr><h2>成员函数文档</h2>
+<a class="anchor" name="e65a3236f73b3ae957775daf3f90d2db"></a><!-- doxytag: member="IResultSetMetaData::GetColumnCount" ref="e65a3236f73b3ae957775daf3f90d2db" args="([out] Int32 *count)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSetMetaData::GetColumnCount           </td>
+          <td>(</td>
+          <td class="paramtype">[out] Int32 *&nbsp;</td>
+          <td class="paramname"> <em>count</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取ResultSet 对象的列数。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>count</em>&nbsp;</td><td>- 列的数量。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="10cc7b302feef485f527eb730866bdd1"></a><!-- doxytag: member="IResultSetMetaData::GetColumnDeclareTypeName" ref="10cc7b302feef485f527eb730866bdd1" args="([in] Int32 column,[out] WStringBuf_&lt; MAX_DATABASE_TYPE_NAME &gt; typeName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSetMetaData::GetColumnDeclareTypeName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>typeName</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取结果集某列的声明数据类型。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>typeName</em>&nbsp;</td><td>- 列的声明数据类型。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="2e94c7bb330b9856010d6444a6b01874"></a><!-- doxytag: member="IResultSetMetaData::GetColumnType" ref="2e94c7bb330b9856010d6444a6b01874" args="([in] Int32 column,[out] DbDatatype *type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSetMetaData::GetColumnType           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] <a class="el" href="database_8car.html#4ac4dce7c3e9f977c81e290b193dfea3">DbDatatype</a> *&nbsp;</td>
+          <td class="paramname"> <em>type</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取结果集某列的内部数据类型。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>type</em>&nbsp;</td><td>- 列的内部数据类型。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="485f4e8ffb3b76be6596587091e5dabb"></a><!-- doxytag: member="IResultSetMetaData::GetColumnName" ref="485f4e8ffb3b76be6596587091e5dabb" args="([in] Int32 column,[out] WStringBuf_&lt; MAX_COLUMN_NAME &gt; name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSetMetaData::GetColumnName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>name</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取查询结果集指定列的名字。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>- 列名。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="f4ea8b8f3962fe47b51696e6a5e5cc69"></a><!-- doxytag: member="IResultSetMetaData::GetColumnOriginName" ref="f4ea8b8f3962fe47b51696e6a5e5cc69" args="([in] Int32 column,[out] WStringBuf_&lt; MAX_COLUMN_NAME &gt; name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSetMetaData::GetColumnOriginName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>name</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取某列的原始列名(在表中的列名)。注：该方法在 android 平台上调用无效。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>- 列的原始列名。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="141810404ab531dca38951661945acc4"></a><!-- doxytag: member="IResultSetMetaData::GetTableName" ref="141810404ab531dca38951661945acc4" args="([in] Int32 column,[out] WStringBuf_&lt; MAX_TABLE_NAME &gt; name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSetMetaData::GetTableName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>name</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取指定列所在表的表名。注：该方法在 android 平台上调用无效。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>- 表名。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="44b2adc9888022bcba53c322fadb9ae1"></a><!-- doxytag: member="IResultSetMetaData::GetDatabaseName" ref="44b2adc9888022bcba53c322fadb9ae1" args="([in] Int32 column,[out] WStringBuf_&lt; MAX_DATABASE_NAME &gt; name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSetMetaData::GetDatabaseName           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] WStringBuf * &nbsp;</td>
+          <td class="paramname"> <em>name</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+获取含有指定列的数据库的名字。注：该方法在 andriod 平台上调用无效。
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>name</em>&nbsp;</td><td>- 数据库名。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="9a74f6260338965c0b942988aa113dd5"></a><!-- doxytag: member="IResultSetMetaData::IsAutoIncrement" ref="9a74f6260338965c0b942988aa113dd5" args="([in] Int32 column,[out] Boolean *autoIncrement)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSetMetaData::IsAutoIncrement           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Boolean *&nbsp;</td>
+          <td class="paramname"> <em>autoIncrement</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+指示是否自动为指定列进行编号，这样这些列仍然是只读的。注：该方法在 android 平台上调用将返回错误。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>autoIncrement</em>&nbsp;</td><td>- 是返回true; 否则返回false. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="186e6502b1ebf5d5ddb0d44039c3b9f4"></a><!-- doxytag: member="IResultSetMetaData::IsNullable" ref="186e6502b1ebf5d5ddb0d44039c3b9f4" args="([in] Int32 column,[out] Boolean *nullable)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSetMetaData::IsNullable           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Boolean *&nbsp;</td>
+          <td class="paramname"> <em>nullable</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检查指定列的值是否可为空。注：该方法在 android 平台上调用将返回错误。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>nullable</em>&nbsp;</td><td>- 是返回true; 否则返回false. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="220e49c2cc5b727dd496f792cbecbf59"></a><!-- doxytag: member="IResultSetMetaData::IsPrimaryKey" ref="220e49c2cc5b727dd496f792cbecbf59" args="([in] Int32 column,[out] Boolean *primaryKey)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IResultSetMetaData::IsPrimaryKey           </td>
+          <td>(</td>
+          <td class="paramtype">[in] Int32&nbsp;</td>
+          <td class="paramname"> <em>column</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">[out] Boolean *&nbsp;</td>
+          <td class="paramname"> <em>primaryKey</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+检查指定列是否为主键。注：该方法在 android 平台上调用将返回错误。 
+<p>
+<dl compact><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>column</em>&nbsp;</td><td>- 列的索引，最左边一列的索引为1. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>primaryKey</em>&nbsp;</td><td>- 是返回true; 否则返回false. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<hr>该接口的文档由以下文件生成：<ul>
+<li><a class="el" href="database_8car-source.html">database.car</a></ul>
+<script>footer("chinese")</script>
+</body>
+</html>

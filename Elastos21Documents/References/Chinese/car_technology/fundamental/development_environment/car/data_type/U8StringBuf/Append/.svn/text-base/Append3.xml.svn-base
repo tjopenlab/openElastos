@@ -1,0 +1,47 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>U8StringBuf</class>
+    <method> Append </method>
+
+    <description>
+        <para>按UTF-8编码在U8StringBuf对象字符串中追加WString对象中的字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val> U8StringBuf &amp; </return_val>
+        <parameters>
+        <api_param>
+            <param_type>const WString &amp;</param_type>
+            <param_name>ws</param_name>
+            <param_note>
+                <para> WString对象。</para>
+            </param_note>
+        </api_param>
+        </parameters>
+        <parameters>
+
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>返回U8StringBuf对象引用。</para>
+    </return>
+    <remarks>
+        <para>1.添加字符之后如果超过U8StringBuf对象可用的长度会被省略掉。</para>
+        <para>2.如果待添加的宽字符串中有汉字，且出现在字符串末尾处，则该文字会丢失。</para>
+    </remarks>
+
+<example>
+<pre>
+U8StringBuf_&lt;10&gt; asbuf;
+WString ws=L"WString";
+asbuf.Append(ws);
+CConsole::WriteLine(asbuf);  //Display : "WString" 
+</pre>
+</example>
+
+
+</manpage>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\_ultoa">_ultoa</sample>
+    <title> _ultoa, _ultow</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>把无符号长整型数转换为字符串。</para>
+    </description>
+
+    <syntax>
+        <return_val>char*</return_val>
+        <func_name>_ultoa</func_name>
+        <parameters>
+            <func_param>
+                <param_type>unsigned long</param_type>
+                <param_name>value</param_name>
+                <param_note>
+                    <para>待转换的无符号长整型数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>char*</param_type>
+                <param_name>string</param_name>
+                <param_note>
+                    <para>转换后得到的字符串</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+                <param_note>
+                    <para>value的基数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <syntax>
+        <return_val>wchar_t*</return_val>
+        <func_name>_ultow</func_name>
+        <parameters>
+            <func_param>
+                <param_type>unsigned long</param_type>
+                <param_name>value</param_name>
+            </func_param>
+            <func_param>
+                <param_type>wchar_t*</param_type>
+                <param_name>string</param_name>
+            </func_param>
+            <func_param>
+                <param_type>int</param_type>
+                <param_name>radix</param_name>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>每个函数都返回指向字符串的指针。无错误返回。</para>
+    </return>
+
+    <remarks>
+        <para>_ultoa函数将value转换为以NULL结尾的字符串，存放在string中（最大33个字节数）。不执行溢出检查。radix指定value的基数；radix的取值范围必须在2 – 36之间。_ultow是_ultoa的宽字符版本。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>_ultoa</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+        <routine>
+            <routine_name>_ultow</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* _ultoa.cpp:this program convert ul whose type is unsigned long to string
+ */
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    char buffer[20];
+    unsigned long ul = 1234567890UL;
+
+    _ultoa(ul, buffer, 16);
+    printf(&quot;String of unsigned long %lu (radix 16): 0x%s.\n&quot;, ul,
+                                                                     buffer);
+    return 0;
+}
+</pre>
+    </example>
+<result>
+String of unsigned long 1234567890 (radix 16): 0x499602d2.
+</result>
+
+   
+
+    <references>
+        <reference>
+            <ref_name>_itow</ref_name>
+            <ref_url>_itow</ref_url>
+        </reference>
+    </references>
+
+</manpage>

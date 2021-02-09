@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IEntryNameEnumerator</interface><method> Current </method>
+    <description>
+        <para>
+        	  获取枚举器中当前对象
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECode </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> WStringBuf_&lt;&gt; </param_type>
+                <param_name> entryName </param_name>
+                <param_note>
+                    <para> 用于返回当前枚举值字符串的指针。  </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>如果方法调用成功，返回NOERROR； </para>
+    <para>如果参数pSize为空，或buffer的长度小于当前对象所需的长度，返回E_INVALID_ARGUMENT；</para>
+    <para>创建枚举器对象后直接调用此方法；或当枚举器当前对象指针已经指向最后一个对象的后面，再调用此方法；返回E_INVALID_OPERATION； </para>
+    <para>            其它参见            <link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">            ECode            </link>            相关帮助。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>Elastos 操作系统 </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+        	  在创建一个WString对象枚举器或者调用 Reset 方法后，都会使WString对象枚举器指向WString对象集合中的第一个对象之前。此时，调用 Current 方法是无效的，并会返回错误信息。所以，如果要获取任意一个WString对象的副本，都必须通过调用<link url="MoveNext.htm">MoveNext</link>方法将WString对象枚举器后移并指向相应的对象上，再调用Current方法。
+        </para>
+        <para>
+        	  如果对WString对象集合进行了修改（包括增加和删除WString对象），建议调用<link url="Reset.htm">Reset</link>方法重新设置WString对象枚举器，否则在调用Current和<link url="MoveNext.htm">MoveNext</link>方法可能产生错误。 
+        </para>
+    </remarks>
+</manpage>

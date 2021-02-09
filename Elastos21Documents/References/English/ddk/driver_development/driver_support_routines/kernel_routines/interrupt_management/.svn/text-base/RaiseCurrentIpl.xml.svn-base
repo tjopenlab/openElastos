@@ -1,0 +1,78 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/apimanual.xsl"?>
+
+<manpage>
+    <volume>Interrupt Management</volume>
+    <title>RaiseCurrentIpl</title>
+    <routine_idx> ../interrupt_management.htm </routine_idx>
+
+    <description>
+        <para>
+        	Raises current system interrupt priority.
+        </para>
+    </description>
+
+    <syntax>
+        <return_val>ipl_t</return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> ipl_t</param_type>
+                <param_name> ipl </param_name>
+                <param_note>
+                    <para>
+                    	The value, current system interrupt priority is to be raised. The value must be between IPL0 
+                    	and IPL31, inclusively.
+                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<para>
+    		If specified interrupt priority is higher than current system interrupt priority, the original system 
+    		interrupt priority will be returned. If specified interrupt priority is not higher than current system 
+    		interrupt priority, the current system interrupt priority is returned.
+    	</para>
+    </return>
+
+    <remarks>
+    	<para>
+    		If specified interrupt priority is higher than current system interrupt priority, this method raises current 
+    		system interrupt priority to specified interrupt priority, and returns the original system interrupt priority.
+    		If specified interrupt priority is not higher than current system interrupt priority, this method only returns 
+    		current system interrupt priority.
+    	</para>
+    	<para>
+    		Raising current system interrupt priority will cause hardware interrupt response with the same or lower 
+    		priority than the specified priority to be blocked. After the current system interrupt priority is raised, 
+    		the code must finish execution and resume the original system interrupt priority as soon as possible. During 
+    		the period that the <i>ipl</i> is raised, kernel services that causes thread to sleep or be blocked should 
+    		not be invoked.
+    	</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Elastos 2.0 or later
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+
+    <references>
+        <reference>
+            <ref_name>LowerCurrentIpl</ref_name>
+            <ref_url>LowerCurrentIpl</ref_url>
+        </reference>
+    </references>
+
+</manpage>

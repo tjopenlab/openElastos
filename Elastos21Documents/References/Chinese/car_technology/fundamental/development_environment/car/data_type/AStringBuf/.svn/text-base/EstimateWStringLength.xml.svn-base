@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <interface>AStringBuf</interface>
+    <method>EstimateWStringLength </method>
+
+    <description>
+        <para>估算把当前AStringBuf对象字符串按特定的编码格式转成WStringBuf时的长度，单位为sizeof(WChar)。 </para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>Encoding</param_type>
+            <param_name> encoding  </param_name>
+            <param_default> Encoding_Default </param_default>
+            <param_note>
+                <para> 编码格式。参见<link url="../../others/Encoding.htm">Encoding</link>枚举类型说明。 </para>
+            </param_note>
+        </api_param>        
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>估算的长度。 </para>
+    </return>
+<example>
+<pre>
+AStringBuf_&lt;10&gt; asbuf;  
+asbuf.Copy("中");
+CConsole::WriteLine(asbuf.GetLength());  //Display : 2
+CConsole::WriteLine(asbuf.EstimateWStringLength());  //Display : 1
+
+asbuf.SetEmpty();
+asbuf.Copy("a");
+CConsole::WriteLine(asbuf.GetLength());  //Display : 1
+CConsole::WriteLine(asbuf.EstimateWStringLength());  //Display : 1
+</pre>
+</example>
+ <references>
+    <reference>
+        <ref_name>AStringBuf</ref_name>
+        <ref_url>../AStringBuf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WStringBuf::EstimateAStringLength</ref_name>
+        <ref_url>../WStringBuf/EstimateAStringLength</ref_url>
+    </reference>
+</references>   
+
+</manpage>

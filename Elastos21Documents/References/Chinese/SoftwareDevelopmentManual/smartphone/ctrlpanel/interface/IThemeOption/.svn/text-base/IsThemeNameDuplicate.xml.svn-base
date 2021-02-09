@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GB2312"?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?><manpage>
+<volume></volume>
+<interface>IThemeOption</interface><method> IsThemeNameDuplicate </method>
+    <description>
+        <para>
+            根据名字esThemeName查找数据库中是否存在该名字。
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <parameters>
+            <api_param>
+                <param_inout>[in]</param_inout>
+                <param_type> EzStr </param_type>
+                <param_name> esThemeName </param_name>
+                <param_note>
+                    <para>
+主题名字                    </para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_inout>[out]</param_inout>
+                <param_type> BOOL * </param_type>
+                <param_name> pbExist </param_name>
+                <param_note>
+                    <para>
+指向BOOL类型的指针，用于确定返回是否存在，为TRUE时，数据库中存在该主题名，为FALSE时，数据库中不存在该主题名                    </para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+<return>
+    <para>
+            方法调用成功，返回S_OK；esThemeName为空或者长度为0或者pbExist为空，返回E_INVALIDARG；读取环境变量（数据库名）失败，返回E_INVALID_ENVIRONMENT。    </para>
+</return>
+    <requirements>
+        <system>
+            <system_name>
+《Elastos 2.0》或更高版本            </system_name>
+        </system>
+    </requirements>
+    <remarks>
+        <para>
+            主题不能重名。
+        </para>
+    </remarks>
+</manpage>

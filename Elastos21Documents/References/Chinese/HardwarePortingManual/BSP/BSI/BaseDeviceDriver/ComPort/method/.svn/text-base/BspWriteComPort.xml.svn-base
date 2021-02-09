@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <volume>串口函数</volume>
+    <title>BspWriteComPort</title>
+    <routine_idx> ../method.htm </routine_idx>
+
+    <description>
+        <para>向串口写出一个字节的数据</para>
+    </description>
+
+    <syntax>
+        <return_val>bool_t</return_val>
+        <parameters>
+            <api_param>
+                <param_type> ComPort</param_type>
+                <param_name> comPort </param_name>
+                <param_note>
+                    <para>指定具体的串口设备，参见<link url="../enum/ComPort.htm">ComPort</link>枚举类型。</para>
+                </param_note>
+            </api_param>
+            <api_param>
+                <param_type> uint8_t</param_type>
+                <param_name> u8Data </param_name>
+                <param_note>
+                    <para>指定向串口写出的一个字节的数据。</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+	<return>
+	    <para>向串口写出数据成功，返回TRUE，否则返回FALSE。</para>
+    </return>
+
+    <remarks>
+        <para>此函数用于向指定的串口写出一个字节的数据。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                《Elastos2.0》或更高版本
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> ddk.h </file_name>
+        </headerfile>
+    </requirements>
+    <references>
+        <reference>
+            <ref_name>BspSetupComPort</ref_name>
+            <ref_url>BspSetupComPort</ref_url>
+        </reference>
+        <reference>
+            <ref_name>BspReadComPort</ref_name>
+            <ref_url>BspReadComPort</ref_url>
+        </reference>
+    </references>
+
+</manpage>
+ 

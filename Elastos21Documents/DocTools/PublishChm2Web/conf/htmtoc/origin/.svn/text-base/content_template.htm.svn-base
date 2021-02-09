@@ -1,0 +1,106 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<!--     <meta http-equiv="Content-Type" content="text/xhtml;charset=iso-8859-1" /> -->
+<!--     <meta http-equiv="Content-Language" content="en" /> -->
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<!--     <link rel="stylesheet" href="docdemo.css"> -->
+
+<style type="text/css">
+<!--
+.directory { font-size: 10pt; font-weight: bold; }
+.directory h3 { margin: 0px; margin-top: 1em; font-size: 11pt; }
+.directory p { margin: 0px; white-space: nowrap; }
+.directory div { display: none; margin: 0px; }
+.directory img { vertical-align: middle; }
+-->
+</style>
+
+<script type="text/javascript">
+<!-- // Hide script from old browsers
+
+function toggleFolder(id, imageNode)
+{
+    var folder = document.getElementById(id);
+    var l = imageNode.src.length;
+
+    /* always a node, then a folder */
+    /* is a folder image ? */
+    if (imageNode.src.substring(l-16,l)=="folderclosed.png" ||
+        imageNode.src.substring(l-14,l)=="folderopen.png") {
+        /* get the node image */
+        imageNode = imageNode.previousSibling;
+        l = imageNode.src.length;
+    }
+
+    if (folder == null) {
+    } else if (folder.style.display == "block") {   /* now opened */
+        if (imageNode != null) {
+            /* set folder image closed */
+            imageNode.nextSibling.src = "folderclosed.png";
+            /* set node image closed (+ plus) */
+            if (imageNode.src.substring(l-9,l) == "mnode.png") {
+                imageNode.src = "pnode.png";
+            }
+        }
+        folder.style.display = "none";
+    } else {    /* closed */
+        if (imageNode != null) {
+            /* set folder image opened */
+            imageNode.nextSibling.src = "folderopen.png";
+            /* set node image opened (- minus) */
+            if (imageNode.src.substring(l-9,l) == "pnode.png") {
+                imageNode.src = "mnode.png";
+            }
+        }
+        folder.style.display = "block";
+    }
+}
+
+// End script hiding -->
+</script>
+</head>
+
+<!-- templates
+IMG_BLANK
+<img src="blank.png" width=16 height=22 />
+
+IMG_DOC
+<img src="doc.png" width=24 height=22 />
+
+IMG_PNODE,IMG_CFOLDER
+<img src="pnode.png" width=16 height=22 onclick="toggleFolder('folder', this)"/>
+<img src="folderclosed.png" width=24 height=22 onclick="toggleFolder('folder', this)"/>
+
+LINK
+<a class="el" href="URL" target="basefrm">LINK NAME</a>
+
+TEXT = '';
+#    #    folderopen.png
+#    #    mnode.png
+#    #    <p>IMG_BLANK*, IMG_PNODE, IMG_CFOLDER, LINK or TEXT</p>
+#    #    <p>IMG_BLANK*, IMG_DOC, LINK or TEXT</p>
+-->
+
+<!-- format
+<p>IMG_BLANK*, IMG_PNODE, IMG_FOLDER_CLOSED, LINK or TEXT</p>
+<p>IMG_BLANK*, IMG_DOC, LINK or TEXT</p>
+-->
+
+<!-- DOC or FOLDER should be distinguished from .idx file -->
+
+<body>
+  <div class="directory">
+    <div style="display: block;">
+      <p><img src="pnode.png" width=16 height=22 onclick="toggleFolder('folder0', this)"/><img src="folderclosed.png" width=24 height=22 onclick="toggleFolder('folder0', this)"/><a class="el" href="aboutthisbook.htm" target="basefrm">¡¶ºÍÐÀ 2.0¡·×ÊÁÏ´óÈ«</a></p>
+      <div id="folder0">
+      <!-- open a div when encounter a node -->
+        <p><img src="blank.png" width=16 height=22 /><img src="blank.png" width=16 height=22 /><img src="doc.png" width=24 height=22 /><a class="el" href="copyright.htm" target="basefrm">¡°ºÍÐÀ¡±ºÍCARÊÚÈ¨Ðí¿ÉÐ­Òé</a></p>
+      <!-- ? when to close a div -->
+    </div>
+  </div>
+</body>
+
+</html>

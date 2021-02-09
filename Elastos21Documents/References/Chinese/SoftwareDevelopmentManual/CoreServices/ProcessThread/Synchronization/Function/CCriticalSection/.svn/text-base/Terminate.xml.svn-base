@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_lib\CriticalSection">CCriticalSection::Terminate</sample>
+    <volume>临界区</volume>
+    <title>CCriticalSection::Terminate</title>
+    <routine_idx>../../CriticalSection.htm</routine_idx>
+
+    <description>
+        <para>删除临界区，释放相关资源。</para>
+    </description>
+
+    <syntax>
+        <return_val>void</return_val>
+    </syntax>
+
+    <return>
+    	<NoReturnValue/>
+    </return>
+
+    <remarks>
+        <para>CriticalSection是一种同步对象，主要用于进程内多线程互斥的使用临界区。</para>
+        <para>本函数用于删除临界区对象及其占用的系统资源。</para>
+        <para>临界区对象一旦被删除，则不能在<link url="Enter.htm">CCriticalSection::Enter</link>、<link url="Leave.htm">CCriticalSection::Leave</link>和<link url="TryEnter.htm">CCriticalSection::TryEnter</link>函数中使用。</para>
+        <para>如果临界区对象在其被占有期间被删除，则等待拥有临界区对象所有权的线程的状态将是未定义的。</para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+                Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+        <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CCriticalSection::Initialize </ref_name>
+        <ref_url> Initialize</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::TryEnter </ref_name>
+        <ref_url> TryEnter</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::Leave </ref_name>
+        <ref_url> Leave</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CCriticalSection::Enter </ref_name>
+        <ref_url> Enter</ref_url>
+    </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,87 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/apimanual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\system_com_interface\IProcess\live"> CProcess::New </sample>
+    <volume>进程</volume>
+    <title>CProcess::New</title>
+    <routine_idx>../../../Process.htm</routine_idx>
+
+    <description>
+        <para>创建一个进程对象。</para>
+    </description>
+
+    <syntax>
+        <return_val>ECode</return_val>
+        <parameters>
+            <api_param>
+                <param_type> IProcess** </param_type>
+                <param_name> ppProcess </param_name>
+                <param_note>
+                    <para>[out] IProcess类型的指针的指针，用于获取进程对象的接口</para>
+                </param_note>
+            </api_param>
+        </parameters>
+    </syntax>
+
+    <return>
+    	<table>
+            <th>
+                <td>返回值</td><td>描述</td>
+            </th>
+            <tr>
+                <td>NOERROR</td><td>程序执行成功</td>
+            </tr>
+            <tr>
+                <td>E_INVALID_ARGUMENT</td><td>指定的参数无效</td>
+            </tr>
+            <tr>
+                <td>E_OUT_OF_MEMORY</td><td>内存不足</td>
+            </tr>
+        </table>
+        <para>参见<link url="../../../../../../car_technology/fundamental/development_environment/car/ECode.htm">ECode</link>相关帮助。</para>
+    </return>
+
+    <remarks>
+        <para>方法只是创建进程对象，并没有实际创建运行的进程。只有调用获取进程接口的<link url="../../IProcess/Start.htm">IProcess::Start</link>方法，才能创建出真正的进程。通过方法返回的进程对象接口的指针，可以进行一些进程方法调用，并选择在合适的时机运行该进程。</para>
+        <para>如果要真正创建一个进程并马上运行，请使用<link url="New.htm">CProcess::New(WString name, WString args, IProcess** ppProcess )</link>方法。</para>
+        <para>如果不再使用该进程对象，需要调用IProcess接口方法Release释放该对象的接口指针。 </para>
+    </remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+               Windows 2000 或更高版本；Elastos操作系统
+            </system_name>
+        </system>
+       <headerfile>
+            <file_name> elastos.h </file_name>
+        </headerfile>
+        <library>
+            <lib_name> elastos.lib </lib_name>
+        </library>
+    </requirements>
+
+    <example>
+    </example>
+
+    <references>
+    <reference>
+        <ref_name> CProcess::New</ref_name>
+        <ref_url> New</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CSystem::GetAllProcesses</ref_name>
+        <ref_url> ../CSystem/GetAllProcesses</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CProcess::GetCurrent</ref_name>
+        <ref_url> GetCurrent</ref_url>
+    </reference>
+    <reference>
+        <ref_name> CProcess::Exit</ref_name>
+        <ref_url> Exit</ref_url>
+    </reference>
+    </references>
+
+</manpage>

@@ -1,0 +1,65 @@
+<!--==========================================================================-->
+<!-- Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.-->
+<!--==========================================================================-->
+
+    <?xml version = "1.0" encoding="GB2312" ?>
+    <?xml:stylesheet type="text/xsl" href="/xsl/xsl_e/methodmanual.xsl"?><manpage>
+<volume>Thread and Scheduling</volume>
+<interface>IThread</interface><method>Start </method>
+    <description>
+        <para>
+        	Starts execution of the thread from entry point.
+        </para>
+    </description>
+    <syntax>
+        <return_val> ECODE </return_val>
+        <NoArguments/>
+    </syntax>
+
+	<return>
+	<table>
+	    <th>
+		<td>Return value </td>
+		<td>Hex Value</td>
+		<td>Description</td>
+	    </th>
+	    <tr>
+		<td>S_OK</td>
+		<td>0x00000000</td>
+		<td>Thread started successfully.</td>
+	    </tr>
+	    <tr>
+		<td>S_FALSE</td>
+		<td>0x00000001</td>
+		<td>The thread is already started.</td>
+	    </tr>
+	    <tr>
+		<td>E_FAIL</td>
+		<td>0x80004005</td>
+		<td>The thread is terminated.</td>
+	    </tr>
+	</table>
+    </return>
+
+	<remarks>
+		<para>
+		    Creates a thread using <link url="../../../../../../sdk/base_service/mem_management/EzMemoryFree.htm">EzCreateThread</link>.
+		</para>    
+		<para>
+			When Start is called, the new thread begins execution at the thread entry, which has been initialized 
+			while the thread is created. The new thread starts and enters the ThreadState_Running state.
+		</para>
+		<para>
+			When the associated thread is already started, the method does not execute and return S_FALSE. When the 
+			thread is already terminated, the method does not either execute and returns E_FAIL.
+		</para>
+	</remarks>
+
+    <requirements>
+        <system>
+            <system_name>
+				Elastos 2.0 or later.
+			</system_name>
+        </system>
+    </requirements>
+</manpage>

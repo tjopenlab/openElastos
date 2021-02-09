@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="GB2312"?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/manual.xsl"?>
+
+<manpage>
+    <sample url="sdk\operating_system\crt\libc\stdlib\calloc">calloc</sample>
+    <title> calloc</title>
+    <volume>C 运行库函数</volume>
+    <routine_idx> slib_idx.htm </routine_idx>
+
+    <description>
+        <para>在内存中分配一个数组，数组元素初始化为0。</para>
+    </description>
+
+    <syntax>
+        <return_val>void *</return_val>
+        <func_name>calloc</func_name>
+        <parameters>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>num</param_name>
+                <param_note>
+                    <para>数组元素个数</para>
+                </param_note>
+            </func_param>
+            <func_param>
+                <param_type>size_t</param_type>
+                <param_name>size</param_name>
+                <param_note>
+                    <para>元素占内存的字节数</para>
+                </param_note>
+            </func_param>
+        </parameters>
+    </syntax>
+
+    <return>
+        <para>函数calloc返回void型指针，该指针指向所分配的空间。返回值指向的存储空间会被恰当地分配，以保证存储任一类型的对象。为了返回void类型以外的指针，要对返回值进行类型转换。</para>
+    </return>
+
+    <remarks>
+        <para>函数calloc为有num个元素，每个元素size个字节的数组分配存储空间。每个元素初始化为0。</para>
+    </remarks>
+
+    <requirements>
+        <routine>
+            <routine_name>calloc</routine_name>
+            <headerfile>stdlib.h</headerfile>
+            <compatibility>Windows 2000, Elastos </compatibility>
+        </routine>
+    </requirements>
+
+    <example>
+<pre>
+//==========================================================================
+// Copyright (c) 2000-2004,  Elastos, Inc.  All Rights Reserved.
+//==========================================================================
+
+/* calloc.cpp: This program uses calloc to allocate space for
+ * 40 long integers. It initializes each element to zero.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    long *buffer;
+
+    buffer = (long *)calloc(40, sizeof(long));
+    if (buffer != NULL)
+        printf(&quot;Allocated 40 long integers\n&quot;);
+    else
+        printf(&quot;Can&apos;t allocate memory\n&quot;);
+    free(buffer);
+
+    return 0;
+}
+</pre>
+    </example>
+<result>
+Allocated 40 long integers
+</result>
+
+
+
+</manpage>

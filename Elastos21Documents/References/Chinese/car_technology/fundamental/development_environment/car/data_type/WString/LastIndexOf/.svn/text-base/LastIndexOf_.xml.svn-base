@@ -1,0 +1,66 @@
+<?xml version = "1.0" encoding="GB2312" ?>
+<?xml:stylesheet type="text/xsl" href="/xsl/xsl_c/methodmanual.xsl"?>
+
+<manpage>
+    <volume> 常用数据结构 </volume>
+    <class>WString</class>
+    <method> LastIndexOf </method>
+
+    <description>
+        <para> 报告指定的WString在此实例内的最后一个匹配项的索引位置。</para>
+    </description>
+    <syntax>
+        <return_val> Int32 </return_val>
+        <modifier>const</modifier>
+        <parameters>
+        <api_param>
+            <param_type>const WString &amp;</param_type>
+            <param_name> str </param_name>
+            <param_note>
+                <para> 要查找的WString。 </para>
+            </param_note>
+        </api_param>
+        <api_param>
+            <param_type>StringCase</param_type>
+            <param_name> stringCase  </param_name>
+            <param_default> StringCase_Sensitive </param_default>
+            <param_note>
+                <para> 大小写标示符。参见<link url="../../../others/StringCase.htm">StringCase</link>枚举类型说明。(StringCase_Insensitive暂不支持)  </para>
+            </param_note>
+        </api_param>                
+        </parameters>        
+    </syntax>
+    <return>
+        <para>如果找到该字符串，则为str的从零开始的索引位置；如果未找到该字符串，则为-1。如果str为空字符串("")，则返回值为0。</para>
+    </return>
+    <remarks>
+        <para>1.索引编号从零开始。 </para>
+        <para>2.若WString实例或str包含的字符串指针为NULL,或WString实例为空字符串("")，则返回-1。 </para>
+    </remarks>
+
+
+<example>
+<pre>
+请参见：<link url="../../AString/LastIndexOf/index/LastIndexOf.htm">AString::LastIndexOf(const AString&amp;,StringCase)</link>
+</pre>
+</example>
+
+<references>
+    <reference>
+        <ref_name>WString</ref_name>
+        <ref_url>../../WString</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::LastIndexOf</ref_name>
+        <ref_url>index/LastIndexOf</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::IndexOfChar </ref_name>
+        <ref_url>../LastIndexOfChar</ref_url>
+    </reference>
+    <reference>
+        <ref_name>WString::IndexOf</ref_name>
+        <ref_url>../IndexOf/index/IndexOf</ref_url>
+    </reference>
+</references>     
+</manpage>
